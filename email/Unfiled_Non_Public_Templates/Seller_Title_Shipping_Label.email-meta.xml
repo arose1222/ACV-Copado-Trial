@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to send the Seller the tracking code to send a title to a buyer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Seller Title Shipping Label</name>
+    <style>none</style>
+    <subject>Shipping Label for {!Case.Vehicle_Year__c} {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c} {!Case.Vehicle_VIN__c}</subject>
+    <textOnly>Print Shipping Label and Send Title
+Mail the vehicle title for the {!Case.Vehicle_Year__c} {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c} ({!Case.Vehicle_VIN__c})
+to ACV as soon as possible.
+
+
+ACV Auctions
+640 Ellicott St, Suite 321
+Buffalo, NY 14203
+
+Print the Shipping Label:
+{!Case.Easypost_PostageLabel_Label_URL__c}
+
+View more information about this transaction in the mobile app by visiting ACVauctions.com
+
+Copyright © 2020 ACV Auctions, Inc., All rights reserved.
+
+
+Our mailing address is:
+640 Ellicott St, Suite 321
+Buffalo, NY 14203</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

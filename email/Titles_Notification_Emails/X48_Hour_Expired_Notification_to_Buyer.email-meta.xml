@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>automated email to the buyer on a 48 hour notice</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>48 Hour Expired - Notification to Buyer</name>
+    <style>freeForm</style>
+    <subject>48 Hour Expired Notification: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Hello,
+
+
+
+You had previously opted to place your 48 hour notice to void the sale of {!Case.Vehicle_Year__c} {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c} {!Case.VIN__c} due to no title.
+
+
+
+It is now {!Case.X48_Hour_Expiration__c} and 48 hours have passed. At this point you may opt to unwind the sale of the vehicle or choose to continue waiting. If you opt to unwind the sale, ACV will arrange transportation to have the vehicle removed from your location and taken back to the seller&apos;s lot. Please confirm the current location of the vehicle before doing so.
+
+
+
+If we do not hear from you to request an unwind on this auction, we will continue to follow up for the title from the seller.
+
+
+
+As always, you can check any status updates on your titles in My ACV. Please reach out to your ACV title clerk, Lisa Vivian, at Lvivian@acvauctions.com with any questions.
+
+
+
+Thank you,
+
+
+
+Titles Team
+
+ACV Auctions</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

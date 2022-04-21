@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Buyer_IST_Failed_Payment_Notification</fullName>
+        <description>Buyer IST- Failed Payment Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Buyer_IST_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Account_Management/Buyer_Payment_Issue_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Buyer_TM_Failed_Payment_Notification</fullName>
+        <description>Buyer TM - Failed Payment Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Buyer_TM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Account_Management/Buyer_Payment_Issue_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Seller_IST_Failed_Payment_Notification</fullName>
+        <description>Seller IST  - Failed Payment Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Seller_IST_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Account_Management/Seller_payment_Issue_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Seller_TM_Failed_Payment_Notification</fullName>
+        <description>Seller TM - Failed Payment Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Seller_TM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Account_Management/Seller_payment_Issue_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Seller_TM_Unpaid_Notification</fullName>
+        <ccEmails>areilly@acvauctions.com</ccEmails>
+        <description>Seller TM - Unpaid Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Seller_TM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Account_Management/Seller_Unpaid_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Transportation_Failed_Payment_Alert</fullName>
+        <ccEmails>transport@acvauctions.com</ccEmails>
+        <description>Transportation Failed Payment Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>jklonowski@acvauctions.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>lbateman@acvauctions.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Account_Management/Notify_Transportation_of_Relesed_Vehicle_with_Payment_Issue</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Seller_TM_Email</fullName>
+        <field>Seller_TM_Email__c</field>
+        <formula>Auction_To_Collections__r.Seller_Dealership__r.Owner.Email</formula>
+        <name>Seller TM Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stamp_Buyer_IST_Email</fullName>
+        <field>Buyer_IST_Email__c</field>
+        <formula>Auction_To_Collections__r.buyer_dealership__r.IST_Account_Owner__r.Email</formula>
+        <name>Stamp Buyer IST Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stamp_Buyer_TM_Email</fullName>
+        <field>Buyer_TM_Email__c</field>
+        <formula>Auction_To_Collections__r.buyer_dealership__r.Owner.Email</formula>
+        <name>Stamp Buyer TM Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stamp_Seller_IST_Email</fullName>
+        <field>Seller_IST_Email__c</field>
+        <formula>Auction_To_Collections__r.Seller_Dealership__r.IST_Account_Owner__r.Email</formula>
+        <name>Stamp Seller IST Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Buyer IST Email Stamp</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Collections_Auctions__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Stamps Buyer IST Account owner to send email in process builder</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Stamp IST%2FTM Email fields</fullName>
+        <actions>
+            <name>Seller_TM_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Stamp_Buyer_IST_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Stamp_Buyer_TM_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Stamp_Seller_IST_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Collections_Auctions__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Stamps Email fields on record for notification emails triggered by process builder</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

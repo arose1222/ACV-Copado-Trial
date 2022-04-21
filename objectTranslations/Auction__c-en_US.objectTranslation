@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Auction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Auctions</value>
+    </caseValues>
+    <fields>
+        <help><!-- Links out to ACV Auction Manager. --></help>
+        <label><!-- ACV Condition Report --></label>
+        <name>ACV_Condition_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Creator VCI id --></label>
+        <name>ACV_Creator_VCI_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Transportation Requested --></label>
+        <name>ACV_Transportation_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV VCI id --></label>
+        <name>ACV_VCI_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Vehicle id --></label>
+        <name>ACV_Vehicle_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV inop --></label>
+        <name>ACV_inop__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Plan --></label>
+        <name>Arbitration_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Resolution Amount --></label>
+        <name>Arbitration_Resolution_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Lights Concatenation --></label>
+        <name>Auction_Lights_Concatenation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Lights --></label>
+        <name>Auction_Lights__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is to be used to note issues in process after Auction is Ended Accepted --></help>
+        <label><!-- Auction Notes --></label>
+        <name>Auction_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bid --></label>
+        <name>Bid__c</name>
+        <relationshipLabel><!-- Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Business Days Since Auction Ended --></label>
+        <name>Business_Days_Since_Ended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Hours Since Auction Ended --></label>
+        <name>Business_Hours_Since_Ended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Contact --></label>
+        <name>Buyer_Contact__c</name>
+        <relationshipLabel><!-- Auctions as Buyer --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Buyer Dealer ID --></label>
+        <name>Buyer_Dealer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Doc Compliance --></label>
+        <name>Buyer_Doc_Compliance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Has License --></label>
+        <name>Buyer_Has_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Has Resale --></label>
+        <name>Buyer_Has_Resale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer IST Account Manager --></label>
+        <name>Buyer_IST_Account_Manager__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field auto populates to show the buying contact&apos;s IST Account Manager&apos;s email address. --></help>
+        <label><!-- Buyer IST Email --></label>
+        <name>Buyer_IST_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer IST Rep --></label>
+        <name>Buyer_IST_Rep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer License Number --></label>
+        <name>Buyer_License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Main Phone --></label>
+        <name>Buyer_Main_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Region --></label>
+        <name>Buyer_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer State --></label>
+        <name>Buyer_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Territory --></label>
+        <name>Buyer_Territory__c</name>
+    </fields>
+    <fields>
+        <help><!-- First time offense = &quot;Goodwill&quot; 
+Second time offense = &quot;Retro Charge&quot; 
+Third time offense = &quot;Deny&quot; --></help>
+        <label><!-- Buyer&apos;s Assurance Upsell --></label>
+        <name>Buyer_s_Assurance_Upsell__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Days Since Auction End --></label>
+        <name>Calendar_Days_Since_Auction_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class --></label>
+        <name>Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- Closed Arbitration Cases --></label>
+        <name>Closed_Arbitration_Cases__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lookup Field to Condition Report object. --></help>
+        <label><!-- Condition Report ID --></label>
+        <name>Condition_Report_ID__c</name>
+        <relationshipLabel><!-- Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Count --></label>
+        <name>Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Count of Active Pricing Recommendations --></label>
+        <name>Count_of_Active_Pricing_Recommendations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Count of Pricing Recommendations --></label>
+        <name>Count_of_Pricing_Recommendations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Counted for Account Logistics --></label>
+        <name>Counted_for_Account_Logistics__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Transportation Request Status --></label>
+        <name>Current_Transportation_Request_Status__c</name>
+        <picklistValues>
+            <masterLabel>Assigned</masterLabel>
+            <translation><!-- Assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered</masterLabel>
+            <translation><!-- Delivered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-Transit</masterLabel>
+            <translation><!-- In-Transit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Posted</masterLabel>
+            <translation><!-- Posted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requested</masterLabel>
+            <translation><!-- Requested --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Date vehicle delivered when transported by ACV --></help>
+        <label><!-- XDate Delivered --></label>
+        <name>Date_Delivered__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the date the vehicle was picked up by transporter if ACV transport was used --></help>
+        <label><!-- Date Picked Up --></label>
+        <name>Date_Picked_Up__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer ID --></label>
+        <name>Dealer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Type --></label>
+        <name>Dealer_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Difference Between Recommended and Floor --></label>
+        <name>Difference_Between_Recommended_and_Floor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Collections --></label>
+        <name>Escalated_to_Collections__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floor Price and Highest Bid Gap --></label>
+        <name>Floor_Price_and_Highest_Bid_Gap__c</name>
+    </fields>
+    <fields>
+        <label><!-- Green Light --></label>
+        <name>Image_Stop_Light__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inventory Life Cycle --></label>
+        <name>Inventory_Life_Cycle__c</name>
+        <relationshipLabel><!-- Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Is Gross Sold --></label>
+        <name>Is_Gross_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Net Sold --></label>
+        <name>Is_Net_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Unwound --></label>
+        <name>Is_Unwound__c</name>
+    </fields>
+    <fields>
+        <label><!-- MMR AutoCheck URL --></label>
+        <name>MMR_AutoCheck_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- MMR Link --></label>
+        <name>MMR_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Make --></label>
+        <name>Make__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Auction --></label>
+        <name>Most_Recent_Auction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Arbitrations --></label>
+        <name>Number_of_Arbitrations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Open Arbitration Cases --></label>
+        <name>Open_Arbitration_Cases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Cleared --></label>
+        <name>Payment_Cleared__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Selected --></label>
+        <name>Payment_Selected__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Payment Status Date --></label>
+        <name>Payment_Status_Timestamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prior Payment Method --></label>
+        <name>Prior_payment_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Private Lane Id --></label>
+        <name>Private_Lane_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Private Lane --></label>
+        <name>Private_Lane__c</name>
+        <relationshipLabel><!-- Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- RecPrice Avail to Accept --></label>
+        <name>RecPrice_Avail_to_Accept__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recent Seller&apos;s Failed Runs --></label>
+        <name>Recent_Seller_s_Failed_Runs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release Available --></label>
+        <name>Release_Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release Date --></label>
+        <name>Release_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release Pickup Phrase --></label>
+        <name>Release_Pickup_Phrase__c</name>
+    </fields>
+    <fields>
+        <help><!-- A ceiling price recommendation is not always given. --></help>
+        <label><!-- Relevant Recommended Ceiling Price --></label>
+        <name>Relevant_Recommended_Ceiling_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relevant Recommended Floor Price --></label>
+        <name>Relevant_Recommended_Floor_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relevant Recommended Price Created By --></label>
+        <name>Relevant_Recommended_Price_Created_By__c</name>
+        <relationshipLabel><!-- Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Relevant Recommended Price Date --></label>
+        <name>Relevant_Recommended_Price_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Saved Auction ID --></label>
+        <name>Saved_Auction_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sell Fee Item Pack Fee --></label>
+        <name>Sell_fee_item_pack_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller 90 Day Sell-Thru Rate --></label>
+        <name>Seller_90_Day_Sell_Thru_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Accepted RecPrice 1or0 --></label>
+        <name>Seller_Accepted_RecPrice_1or0__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Accepted Recommended Price? --></label>
+        <name>Seller_Accepted_Recommended_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Dealer ID --></label>
+        <name>Seller_Dealer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Dealership SFDC Id --></label>
+        <name>Seller_Dealership_SFDC_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Dealership --></label>
+        <name>Seller_Dealership__c</name>
+        <relationshipLabel><!-- Launched at Auction --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Seller Inventory Id --></label>
+        <name>Seller_Inventory_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller License Number --></label>
+        <name>Seller_License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Payment Date --></label>
+        <name>Seller_Payment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Payment Method --></label>
+        <name>Seller_Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>ach</masterLabel>
+            <translation><!-- ach --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>check</masterLabel>
+            <translation><!-- check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>none</masterLabel>
+            <translation><!-- none --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Seller Payment Tracking Number --></label>
+        <name>Seller_Payment_Tracking_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller State --></label>
+        <name>Seller_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Tracking Number For Titles --></label>
+        <name>Seller_Tracking_Number_For_Titles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Tracking URL for Titles --></label>
+        <name>Seller_Tracking_URL_for_Titles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Created Date --></label>
+        <name>Source_Created_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Manager - Buyer --></label>
+        <name>Territory_Manager_Buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Manager - Seller --></label>
+        <name>Territory_Manager_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Since Auction Ended --></label>
+        <name>Time_Since_Auction_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Cases --></label>
+        <name>Title_Cases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Shipping Status Seller To ACV --></label>
+        <name>Title_Shipping_Status_Seller_To_ACV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Status --></label>
+        <name>Title_Status_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Arbitration Cases --></label>
+        <name>Total_Arbitration_Cases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transportation Date Delivered --></label>
+        <name>Transportation_Date_Delivered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transportation Price to Customer --></label>
+        <name>Transportation_Price_to_Customer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transportation Requested In-App --></label>
+        <name>Transportation_Requested_In_App__c</name>
+    </fields>
+    <fields>
+        <label><!-- VCI_Creator --></label>
+        <name>VCI_Creator__c</name>
+        <relationshipLabel><!-- Auctions (VCI_Creator) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Vehicle Condition Inspector for this Auction&apos;s Condition Report. --></help>
+        <label><!-- VCI --></label>
+        <name>VCI__c</name>
+        <relationshipLabel><!-- Auctions (VCI) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- VIN --></label>
+        <name>VIN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle ID --></label>
+        <name>Vehicle_ID_formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Make --></label>
+        <name>Vehicle_Make__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Model --></label>
+        <name>Vehicle_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Trim --></label>
+        <name>Vehicle_Trim__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Year --></label>
+        <name>Vehicle_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waived by Pricing Manager --></label>
+        <name>Waived_by_Pricing_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- High Bid Price --></label>
+        <name>Winning_Bid_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- 4 Hours No Buyer --></label>
+        <name>X4_Hours_No_Buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- XDate Vehicle Delivered --></label>
+        <name>XDate_Vehicle_Delivered__c</name>
+    </fields>
+    <fields>
+        <label><!-- XDate Vehicle Picked Up --></label>
+        <name>XDate_Vehicle_Picked_Up__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year/Make/Model/Trim --></label>
+        <name>Year_Make_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pick-up Address --></label>
+        <name>address_id__c</name>
+        <relationshipLabel><!-- Auction Pick-ups --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- False = Live Appraisal
+True = Auction --></help>
+        <label><!-- Auto-sell --></label>
+        <name>auto_sell__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blue Light --></label>
+        <name>blue_light__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Fee --></label>
+        <name>buy_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Credit --></label>
+        <name>buyer_credit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Dealership --></label>
+        <name>buyer_dealership__c</name>
+        <relationshipLabel><!-- High Bid at Auction --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Buyer Total --></label>
+        <name>buyer_total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>category__c</name>
+        <picklistValues>
+            <masterLabel>ATV</masterLabel>
+            <translation><!-- ATV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cargo Van</masterLabel>
+            <translation><!-- Cargo Van --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commercial Truck</masterLabel>
+            <translation><!-- Commercial Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compact</masterLabel>
+            <translation><!-- Compact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compact Car</masterLabel>
+            <translation><!-- Compact Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compact Van</masterLabel>
+            <translation><!-- Compact Van --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crossover</masterLabel>
+            <translation><!-- Crossover --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crossover SUV</masterLabel>
+            <translation><!-- Crossover SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crossover Van</masterLabel>
+            <translation><!-- Crossover Van --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cruiser</masterLabel>
+            <translation><!-- Cruiser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full-Size Car</masterLabel>
+            <translation><!-- Full-Size Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full-Size SUV</masterLabel>
+            <translation><!-- Full-Size SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full-Size Van</masterLabel>
+            <translation><!-- Full-Size Van --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heavy Duty Truck</masterLabel>
+            <translation><!-- Heavy Duty Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jet Boats</masterLabel>
+            <translation><!-- Jet Boats --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Large Crossover/SUV</masterLabel>
+            <translation><!-- Large Crossover/SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Large Luxury Crossover/SUV</masterLabel>
+            <translation><!-- Large Luxury Crossover/SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Large Truck</masterLabel>
+            <translation><!-- Large Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxury Car</masterLabel>
+            <translation><!-- Luxury Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxury Crossover</masterLabel>
+            <translation><!-- Luxury Crossover --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxury Crossover SUV</masterLabel>
+            <translation><!-- Luxury Crossover SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Duty Truck</masterLabel>
+            <translation><!-- Medium Duty Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Size Car</masterLabel>
+            <translation><!-- Mid-Size Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Size SUV</masterLabel>
+            <translation><!-- Mid-Size SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Minivan</masterLabel>
+            <translation><!-- Minivan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off Road</masterLabel>
+            <translation><!-- Off Road --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On/Off Road</masterLabel>
+            <translation><!-- On/Off Road --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passenger Van</masterLabel>
+            <translation><!-- Passenger Van --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pickup</masterLabel>
+            <translation><!-- Pickup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Powersports</masterLabel>
+            <translation><!-- Powersports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recreational Vehicle</masterLabel>
+            <translation><!-- Recreational Vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUV</masterLabel>
+            <translation><!-- SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scooter</masterLabel>
+            <translation><!-- Scooter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small Car</masterLabel>
+            <translation><!-- Small Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small Crossover/SUV</masterLabel>
+            <translation><!-- Small Crossover/SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small Luxury Crossover/SUV</masterLabel>
+            <translation><!-- Small Luxury Crossover/SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Snowmobile</masterLabel>
+            <translation><!-- Snowmobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sporty Car</masterLabel>
+            <translation><!-- Sporty Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Street</masterLabel>
+            <translation><!-- Street --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trailer</masterLabel>
+            <translation><!-- Trailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utility</masterLabel>
+            <translation><!-- Utility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Watercraft</masterLabel>
+            <translation><!-- Watercraft --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Condition Rating --></label>
+        <name>condition_rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Created Date --></label>
+        <name>created__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>end_time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exterior Condition --></label>
+        <name>exterior_condition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floor Price --></label>
+        <name>floor_price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Green Light --></label>
+        <name>green_light__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction ID --></label>
+        <name>id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interior Condition --></label>
+        <name>interior_condition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mechanical Condition --></label>
+        <name>mechanical_condition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes --></label>
+        <name>notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Odometer --></label>
+        <name>odometer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Payment Method --></label>
+        <name>payment_method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer Payment Status --></label>
+        <name>payment_status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cleared</masterLabel>
+            <translation><!-- Cleared --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deposited</masterLabel>
+            <translation><!-- Deposited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error</masterLabel>
+            <translation><!-- Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hold On File</masterLabel>
+            <translation><!-- Hold On File --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paid</masterLabel>
+            <translation><!-- Paid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment Pending</masterLabel>
+            <translation><!-- Payment Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment Returned</masterLabel>
+            <translation><!-- Payment Returned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recorded</masterLabel>
+            <translation><!-- Recorded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refund Pending</masterLabel>
+            <translation><!-- Refund Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refunded</masterLabel>
+            <translation><!-- Refunded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TA Hold</masterLabel>
+            <translation><!-- TA Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TA On File</masterLabel>
+            <translation><!-- TA On File --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>To Be Floored</masterLabel>
+            <translation><!-- To Be Floored --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>To Be Picked Up</masterLabel>
+            <translation><!-- To Be Picked Up --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sell Fee --></label>
+        <name>sell_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sell Fee Item Base Sell Fee --></label>
+        <name>sell_fee_item_base_sell_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sell Fee Item GL Insurance Fee --></label>
+        <name>sell_fee_item_gl_insurance_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sell Fee Item VCI Fee --></label>
+        <name>sell_fee_item_vci_fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sellable --></label>
+        <name>sellable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Contact --></label>
+        <name>seller__c</name>
+        <relationshipLabel><!-- Auctions as Seller --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Seller Credit --></label>
+        <name>seller_credit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller Total --></label>
+        <name>seller_total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>start_time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Acceptance</masterLabel>
+            <translation><!-- Awaiting Acceptance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Counter Accepted</masterLabel>
+            <translation><!-- Counter Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Counter Original Accepted</masterLabel>
+            <translation><!-- Counter Original Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Counter Original Declined</masterLabel>
+            <translation><!-- Counter Original Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Counter Sent</masterLabel>
+            <translation><!-- Counter Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ended Accepted</masterLabel>
+            <translation><!-- Ended Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ended Declined</masterLabel>
+            <translation><!-- Ended Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ended Killed</masterLabel>
+            <translation><!-- Ended Killed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ended No Bid</masterLabel>
+            <translation><!-- Ended No Bid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ended Unwound</masterLabel>
+            <translation><!-- Ended Unwound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preview</masterLabel>
+            <translation><!-- Preview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>staging</masterLabel>
+            <translation><!-- staging --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Source Updated Date --></label>
+        <name>updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- VIN --></label>
+        <name>vehicle_id__c</name>
+        <relationshipLabel><!-- Vehicle Auctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Yellow Light --></label>
+        <name>yellow_light__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- There appears to be an Arbitration Case already associated with this Auction ID. An Auction can only have a single Arbitration against it, so please work off the existing Case. Contact your System Administrator for additional assistance. --></errorMessage>
+        <name>Only_One_Arb_Case_Allowed</name>
+    </validationRules>
+</CustomObjectTranslation>

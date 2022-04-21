@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Account Count --></label>
+        <name>EXPRN__Account_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIQ Configuration --></label>
+        <name>EXPRN__BIQ_Configuration__c</name>
+        <relationshipLabel><!-- Experian Alert Monitored Set Names --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Client Subcode ID --></label>
+        <name>EXPRN__ClientSubcodeID__c</name>
+        <relationshipLabel><!-- Experian Alert Monitored Set Names (Client Subcode ID) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Number of days after which the alerts are automatically deleted from the system --></help>
+        <label><!-- Retention Period --></label>
+        <name>EXPRN__Retention_Period__c</name>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30</masterLabel>
+            <translation><!-- 30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45</masterLabel>
+            <translation><!-- 45 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60</masterLabel>
+            <translation><!-- 60 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subscriber Code --></label>
+        <name>EXPRN__Subscriber_Code__c</name>
+        <relationshipLabel><!-- Experian Alert Monitored Set Names (Subscriber Code) --></relationshipLabel>
+    </fields>
+    <webLinks>
+        <label><!-- Add_Accounts --></label>
+        <name>EXPRN__Add_Accounts</name>
+    </webLinks>
+</CustomObjectTranslation>

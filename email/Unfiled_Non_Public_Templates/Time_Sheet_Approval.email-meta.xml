@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sends when a Time Sheet is Approved</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Time Sheet Approval</name>
+    <style>formalLetter</style>
+    <subject>Your Time Sheet Has Been Approved</subject>
+    <textOnly>Hello {!TimeSheet.ServiceResource},
+
+This Email is to let you know your Time Sheet for the Week ending {!TimeSheet.EndDate} has been Approved.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

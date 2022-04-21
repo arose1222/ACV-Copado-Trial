@@ -1,1 +1,36 @@
-(hidden)
+<?xml version="1.0" encoding="UTF-8"?>  
+
+
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="RelatedList">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="strTitle" type="String" label="Title" description="Enter the title"/>
+            <property name="modeType" type="String" label="Mode" description="edit, view, or readonly"/>
+            <property name="columnNumber" type="String" label="Number of Columns" description="Integer"/>
+            <property name="layoutType" type="String" label="Layout Type" description="Full or Compact"/>
+            <property name="objectName" type="String" label="Object Name" description="Enter the child object api name that will be displayed on parent or sibling. CASE SENSITIVE"/>
+            <property name="parentFieldAPIName" type="String" label="Parent Field API Name" description="Enter the relationship field API Name found on the child"/>
+            <property name="fieldName1" type="String" label="Filter 1 Field Name" description="Enter the api name of the field you would like to filter on"/>
+            <property name="fieldValue1" type="String" label="Filter 1 Field Value" description="Enter the value to filter in above field name"/>
+            <property name="filterType1" type="String" label="Filter 1 Type" description="Enter the filter type i.e. Boolean or String"/>
+            <property name="operator1" type="String" label="Filter 1 Operator" description="Enter the operator i.e. = or !="/>
+            <property name="fieldName2" type="String" label="Filter 2 Field Name" description="Enter the api name of the field you would like to filter on"/>
+            <property name="fieldValue2" type="String" label="Filter 2 Field Value" description="Enter the value to filter in above field name"/>
+            <property name="filterType2" type="String" label="Filter 2 Type" description="Enter the filter type i.e. Boolean or String"/>
+            <property name="operator2" type="String" label="Filter 2 Operator" description="Enter the operator i.e. = or !="/>
+            <property name="fieldName3" type="String" label="Filter 3 Field Name" description="Enter the api name of the field you would like to filter on"/>
+            <property name="fieldValue3" type="String" label="Filter 3 Field Value" description="Enter the value to filter in above field name"/>
+            <property name="filterType3" type="String" label="Filter 3 Type" description="Enter the filter type i.e. Boolean or String"/>
+            <property name="operator3" type="String" label="Filter 3 Operator" description="Enter the operator i.e. = or !="/>
+            <property name="orderField" type="String" label="Order By Field" description="Optional: API Name of field to order by"/>
+            <property name="orderDirection" type="String" label="Order By Direction" description="ASC or DESC - Required if Order By Field is populated"/>
+            <property name="siblingObjName" type="String" label="Sibling Object API Name" description="API Name of the Sibling (to objectName) where we are displaying the related list."/>
+            <property name="siblingObjParentFieldName" type="String" label="Sibling Object Parent Field API Name" description="Parent Record Id API Field Name on the Sibling (to objectName) object"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

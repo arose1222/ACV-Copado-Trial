@@ -1,0 +1,40 @@
+<apex:page standardController="CSIRCD__ATTUSWDSAccount__c" extensions="CSIRCD.ATTUSNewLookupCtrlAccount" showHeader="false" sidebar="false" >
+<script>
+window.onload=function()
+{
+    //alert("Startup here");
+    var myBtn = document.getElementById('{!$Component.frmMain.block1.btnBlock1.btnRun}');
+    var myRet = document.getElementById('{!$Component.frmMain.block1.btnBlock1.btnReturn}');
+    if({!autolookup} == true)
+    {
+        if(myBtn)
+        {
+         myBtn.click();
+         myBtn.disabled = true;
+        }
+        if(myRet)
+        {
+         myRet.disabled = true;
+        }
+    }
+    else //autolookup = 0
+    {
+        if(myRet)
+        {
+         myRet.disabled = false;
+        }
+    }
+}
+</script>
+<apex:form id="frmMain">
+<apex:pageBlock id="block1">
+<apex:pagemessages >
+</apex:pagemessages>
+<apex:pageBlockButtons id="btnBlock1" location="bottom">
+<apex:commandButton value="Processing...." action="{!checkList}" id="btnRun" rendered="{!autolookup}"/>
+<apex:commandButton value="Return" action="{!goBack}" id="btnReturn" />
+</apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+
+ </apex:page>

@@ -1,0 +1,458 @@
+<apex:page controller="CloudingoAgent.AccountContactsController">
+     <apex:stylesheet value="{!URLFOR($Resource.CloudingoAgent__Styles, 'assets/styles/salesforce-lightning-design-system.min.css')}" />
+    <!-- This is the latest lightning stylesheet I pulled -->
+    <!-- All these styles can be moved into a css -->                             
+    <style>
+                .dingoBkWhite{ background-color: #ffffff; }
+                .dingoGray{ color: #b8c3ce; }
+                .dingoLiGray:before{ color: #b8c3ce; }
+                .dingoBkGray{ background-color: #b8c3ce; }                
+                .dingoA{ background-color: #5a9cdd; }
+                .dingoBlue{ color: #5a9cdd; }                
+                .dingoLiBlue:before{ color: #5a9cdd; }
+                .dingoBkBlue{ background-color: #5a9cdd; }                
+                .dingoB{ background-color: #00c6b7; }
+                .dingoLightBlue{ color: #00c6b7; }                
+                .dingoLiLightBlue:before{ color: #00c6b7; }
+                .dingoBkLightBlue{ background-color: #00c6b7; }                 
+                .dingoC{ background-color: #88c651; }
+                .dingoGreen{ color: #88c651; }                
+                .dingoLiGreen:before{ color: #88c651; }
+                .dingoBkGreen{ background-color: #88c651; }                
+                .dingoD{ background-color: #f39e58; }
+                .dingoOrange{ color: #f39e58; }                
+                .dingoLiOrange:before{ color: #f39e58; }
+                .dingoBkOrange{ background-color: #f39e58; }                
+                .dingoF{ background-color: #00c6b7; }
+                .dingoRed{ color: #ef6e64; }                
+                .dingoLiRed:before{ color: #ef6e64; }
+                .dingoBkRed{ background-color: #ef6e64; }
+                .dingoRedAlt{ color: rgb(194, 57, 52); }                
+                .dingoLiRedAlt:before{ color: rgb(194, 57, 52); }
+                .dingoBkRedAlt{ background-color: rgb(194, 57, 52); }
+                #dingoSuggestions li:before {
+                    content: "• ";
+                    font-size: 2em;
+                    position: relative;
+                    top: 0.15em;
+                    padding: 0px;
+                    margin: 0px;
+                }                   
+                .dingoSuggestionWarning:after {
+                    content: "HIGH PRIORITY";
+                    background-color: rgb(194, 57, 52);
+                    margin-left: 10px;
+                    border-radius: .25em;
+                    color: #ffffff;
+                    padding: 5px;
+                }                              
+                .dingoGradeContainer{
+                    float:left; 
+                    margin: 30px; 
+                    border-radius: .25rem; 
+                    width: 150px;
+                    height: 150px; 
+                    position: relative;
+                }
+                .dingoGrade{
+                    text-transform: uppercase; 
+                    font-size: 80px; 
+                    color: #FFFFFF; 
+                    font-weight: 600; 
+                    position: absolute; 
+                    left: 50px; 
+                    top: 15px;
+                }
+                .dingoCardImgContainer{
+                    border-radius: .125rem;  
+                    width: 75px; 
+                    height: 75px; 
+                    position: relative;
+                }
+                .dingoCardImg{
+                     font-size: 40px; 
+                     color: #FFFFFF; 
+                     font-weight: 300; 
+                     position: absolute; 
+                     top: 5px;
+                }
+                .dingoProgressHldr{
+                    border-radius: .25rem; 
+                    height: 15px; 
+                    margin-right: 15px; 
+                    margin-left: 15px; 
+                    margin-bottom:15px;
+                }
+                .dingoProgress{
+                    border-radius: .25rem; 
+                    height: 15px; 
+                    margin-right: 15px; 
+                    margin-left: 15px; 
+                    margin-bottom:15px; 
+                    position: absolute; 
+                    bottom: -15px; 
+                }   
+                .dingoWarning {
+                    background-color: rgb(194, 57, 52);
+                    border-radius: .25em;
+                    color: #ffffff;           
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 95%;
+                    position: relative;
+                }      
+                .dingoTryContainer{
+                    float: left; 
+                    padding: 0; 
+                    top: 50px; 
+                    margin-left: 25px; 
+                    position: absolute; 
+                    right: 40px;
+                }      
+                .dingoTry{
+                    color: #000000; 
+                    background-color: #fbb439; 
+                    padding: 5px; 
+                    border-radius: .25em; 
+                    font-size: 1.5em; 
+                    font-weight: 600;
+                }  
+
+                .dingoInactive{
+                    background-color: rgb(194, 57, 52);
+                }                
+                .dingoActive{
+                    background-color: rgb(75, 202, 129)
+                }
+                .dingoState {                    
+                    border-radius: .25em;
+                    color: #ffffff;
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 250px;
+                    position: relative;
+                    float:left;
+                    height: 200px;
+                } 
+                .dingoStatusHldr{
+                    border-radius: .25em;
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 250px;
+                    position: relative;
+                    float:left;                    
+                }
+                .dingoStatusLine{
+                    float:left;
+                    border-radius: .125rem;
+                    height: 10px;
+                    margin-right: 5px;
+                    margin-left: 5px;
+                    margin-bottom: 5px;
+                    margin-top: 18px;
+                    width: 50px;
+                }
+                .dingoCurrentState {                    
+                    float:left;
+                    border-radius: 50%;
+                    padding: 15px;
+                } 
+                .dingoCard{
+                    background-color: rgb(244, 246, 249);
+                    border: 1px solid rgb(216, 221, 230);
+                }
+                .dingoWorkList{
+
+                }
+                .dingoWorkList li{
+                    height: 50px;
+                    padding-top: 15px;
+                }
+                #help p{                    
+                    height: 30px;
+                    margin-bottom: 5px;
+                    border-bottom:  1px solid rgb(216, 221, 230);
+                }
+                .cloudingoLink {
+                    text-decoration: none !important;
+                    font-weight: bold;
+                }
+                .cloudingoAgentStatusContainer{
+                    text-align:center; 
+                    float:left; 
+                    min-width: 775px;
+                }
+                .cloudingoActiveHeading{
+                    margin-bottom: 10px; 
+                    margin-top: 10px;
+                }
+                .cloudingoAgentIcon{
+                    float:left; 
+                    top: 100px; 
+                    left: 3px; 
+                    position: relative;
+                }
+                .cloudingoWork{
+                    float:left; 
+                    top: 25px; 
+                    position: relative;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+                .cloudingoWork .slds-panel{
+                    min-height: 200px;
+                }
+                .cloudingoWorkLiImg{
+                    float:left;
+                    margin-top:-10px;
+                    padding-right:10px;
+                }
+                .cloudingoSyncMode{
+                    margin-top: 50px; 
+                    width: 50%; 
+                    min-width: 625px; 
+                    text-align: left; 
+                    display: inline-block;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+                .cloudingoSyncModeList{
+                    float:left; 
+                    padding: 10px; 
+                    border-left: 1px solid rgb(216, 221, 230);
+                }
+                .cloudingoButton{
+                    padding-left: 10px !important; 
+                    padding-right: 10px !important; 
+                    background: none !important;
+                }
+                .cloudingoButtonWhite{
+                    padding-left: 10px !important; 
+                    padding-right: 10px !important; 
+                    background-color: #ffffff !important;
+                    background-image: none !important;
+                }
+                .cloudingoGetStartedButton{
+                    position: absolute; 
+                    left: 80px; 
+                    background-color: #fffff; 
+                    bottom: 5px;
+                }
+                .cloudingoSubscribeButton{
+                    position: absolute; 
+                    left: 84px; 
+                    background-color: #fffff; 
+                    bottom: 5px;
+                }
+                .cloudingoContact{
+                    float:left;
+                    position:relative;
+                    margin:25px;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+    </style> 
+    <apex:form id="theForm">  
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-grid">
+                        <div class="slds-grid slds-no-space">
+                            <p class="slds-page-header__title slds-truncate slds-align-middle slds-text-heading--large" title="Cloudingo Contacts">Cloudingo Contacts</p>                                            
+                        </div>                    
+                    </div>
+                </div>                    
+            </div>              
+        </div>
+        <div style="display:table">
+            <div style="display:table-row">
+                <div style="display:table-cell">
+                    <div>
+                        <div class="cloudingoContact">
+                            <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                                <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                                    <div class="slds-panel__section slds-has-divider--bottom">
+                                        <div class="slds-media slds-tile">             
+                                            <p class="tile__title slds-truncate slds-text-heading--medium">Technical Contact</p>          
+                                        </div>
+                                    </div>
+                                    <div class="dingoWorkList slds-panel__section">
+                                        <div class="slds-form--horizontal">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="techSalesforceUsers">Salesforce User</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:selectList id="techSalesforceUsers" styleClass="slds-select" multiselect="false" size="1" rendered="true" value="{!selectedTechSF}">
+                                                        <apex:selectOptions value="{!techSalesforceUser}"/>
+                                                    </apex:selectList>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="techName">Name</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="techName" label="Name" html-placeholder="Name" value="{!techContactName}" /> 
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="techPhone">Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="techPhone" label="Phone" html-placeholder="Phone"  value="{!techPhone}"/>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="techAlternatePhone">Alternate Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="techAlternatePhone" label="Alternate Phone" html-placeholder="Alternate Phone"  value="{!techAlternatePhone}"/>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="techEmail">Email Address</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="techEmail" label="Email Address" html-placeholder="Email Address" value="{!techEmail}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cloudingoContact">
+                            <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                                <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                                    <div class="slds-panel__section slds-has-divider--bottom">
+                                        <div class="slds-media slds-tile">             
+                                            <p class="tile__title slds-truncate slds-text-heading--medium">Billing Contact</p>          
+                                        </div>
+                                    </div>
+                                    <div class="dingoWorkList slds-panel__section">
+                                        <div class="slds-form--horizontal">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="billingSalesforceUsers">Salesforce User</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:selectList id="billingSalesforceUsers" styleClass="slds-select" multiselect="false" size="1" rendered="true" value="{!selectedBillingSF}">
+                                                        <apex:selectOptions value="{!billingSalesforceUser}"/> 
+                                                    </apex:selectList>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="billingContactName">Name</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="billingContactName" label="Name" html-placeholder="Name" value="{!billingContactName}" /> 
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="billingPhone">Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="billingPhone" label="Phone" html-placeholder="Phone" value="{!billingPhone}"/>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="billingAlternatePhone">Alternate Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="billingAlternatePhone" label="Alternate Phone" html-placeholder="Alternate Phone" value="{!billingAlternatePhone}" />
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="billingEmail">Email Address</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="billingEmail" label="Email Address" html-placeholder="Email Address" value="{!billingEmail}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cloudingoContact">
+                            <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                                <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                                    <div class="slds-panel__section slds-has-divider--bottom">
+                                        <div class="slds-media slds-tile">             
+                                            <p class="tile__title slds-truncate slds-text-heading--medium">Other Contact</p>          
+                                        </div>
+                                    </div>
+                                    <div class="dingoWorkList slds-panel__section">
+                                        <div class="slds-form--horizontal">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="otherSalesforceUsers">Salesforce User</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:selectList id="otherSalesforceUsers" styleClass="slds-select" multiselect="false" size="1" rendered="true" value="{!selectedOtherSF}">
+                                                         <apex:selectOptions value="{!otherSalesforceUser}"/>  
+                                                    </apex:selectList>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="otherContactName">Name</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="otherContactName" label="Name" html-placeholder="Name" value="{!otherContactName}"/> 
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="otherPhone">Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="otherPhone" label="Phone" html-placeholder="Phone" value="{!otherPhone}"/>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="otherAlternatePhone">Alternate Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="otherAlternatePhone" label="Alternate Phone" html-placeholder="Alternate Phone" value="{!otherAlternatePhone}"/>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="otherEmail">Email Address</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" id="otherEmail" label="Email Address" html-placeholder="Email Address" value="{!otherEmail}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:table-row">
+                <div style="display:table-cell">
+                    <div style="width: 100%; text-align:center; display:none;"> <!-- diplay:inline-block -->
+                        <div style="text-align:left; display: inline-block;">
+                            <div class="cloudingoContact">
+                                <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                                    <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                                        <div class="slds-panel__section slds-has-divider--bottom">
+                                            <div class="slds-media slds-tile">             
+                                                <p class="tile__title slds-truncate slds-text-heading--medium">Account Notes</p>  
+                                                <em style="color:#B0B0B0;padding-left:5px;font-size:11px;position:relative;top:5px;">(anything you want the Cloudingo team to be aware of)</em>
+                                            </div>
+                                        </div>
+                                        <div class="dingoWorkList slds-panel__section">
+                                            <div class="slds-form--horizontal">
+                                                <div class="slds-form-element">             
+                                                    <apex:inputTextArea styleClass="slds-input" cols="100" rows="5" id="accountNotes" label="Account Notes" html-placeholder="Account Notes" value="{!accountNotes}"/>
+                                                </div>                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 100%; text-align:center; display:inline-block;">
+                        <div style="text-align:left; display: inline-block;">            
+                            <apex:actionRegion id="savebuttonregion"/>
+                            <apex:commandButton styleClass="cloudingoButton slds-button slds-button--neutral" id="savebutton" value="Update" action="{!save}">
+                                <apex:actionStatus id="saveStatus" startText=" Saving"  stopText=" {!CurrentTime}" for="savebuttonregion" /> 
+                            </apex:commandButton>              
+                        </div>
+                    </div>  
+                </div>
+            </div> 
+        </div>
+    </apex:form>   
+</apex:page>

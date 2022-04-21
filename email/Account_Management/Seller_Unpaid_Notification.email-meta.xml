@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Notifying SellerTM of unpaid seller fee</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Seller Unpaid  Notification</name>
+    <style>freeForm</style>
+    <subject>Seller Unpaid Issue Identified</subject>
+    <textOnly>A payment issue has been identified for your Selling Dealer on Auction {!Collections_Auctions__c.Auction_To_Collections__c}
+
+The payment issue is related to: {!Collections_Auctions__c.Case_Reason__c}
+
+Additional Details of issue described by payments: {!Collections_Auctions__c.Additional_Details__c}
+
+Please reach out to the Seller to resolve this issue. It is important to record the outreach by logging a call on the associated collections case,{!Collections_Auctions__c.Collections_Case_Reord__c}
+
+If you have questions related to this issue, please contact the owner of this collections effort, {!Collections_Auctions__c.OwnerFullName}.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

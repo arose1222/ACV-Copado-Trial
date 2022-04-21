@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Collections Invoice</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Collections Invoices</value>
+    </caseValues>
+    <fields>
+        <help><!-- Helper formula to pull the account name down to the invoice level --></help>
+        <label><!-- Account Name from Acct Record --></label>
+        <name>Account_Name_from_Acct_Record__c</name>
+    </fields>
+    <fields>
+        <help><!-- Auction number for the invoice --></help>
+        <label><!-- Auction Number --></label>
+        <name>Auction_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Method the buyer is using to pay - should match AM --></help>
+        <label><!-- Auction payment Method --></label>
+        <name>Auction_payment_Method__c</name>
+    </fields>
+    <fields>
+        <help><!-- Case the invoices are related to --></help>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Collections Invoices --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Cleared = They were are current in QB as of now
+Floorplan Approve = floorplan found to be approved 
+T/A Check = they were T/A hold and we have a check on file 
+Waved Balance =  If rev recovery found that fees had been waived
+Accounting Adj = Change QB --></help>
+        <label><!-- Investigation Findings --></label>
+        <name>Cleared_Invoice_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Accounting Adjustment</masterLabel>
+            <translation><!-- Accounting Adjustment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cleared in QB</masterLabel>
+            <translation><!-- Cleared in QB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Approved</masterLabel>
+            <translation><!-- Floorplan Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T/A with Check at ACV</masterLabel>
+            <translation><!-- T/A with Check at ACV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waved Balance Amount</masterLabel>
+            <translation><!-- Waved Balance Amount --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Current auction status on this invoice given the auction number --></help>
+        <label><!-- Current Auction Status --></label>
+        <name>Current_Auction_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Helper formula to pull in the dealer ID into the invoice level for reconciliation and reporting. --></help>
+        <label><!-- Dealer ID From Account --></label>
+        <name>Dealer_ID_From_Account__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date of the invoice from QB --></help>
+        <label><!-- Invoice Date --></label>
+        <name>Invoice_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Due Date from QB --></help>
+        <label><!-- Invoice Due Date --></label>
+        <name>Invoice_Due_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Invoice number from QB --></help>
+        <label><!-- Invoice Number --></label>
+        <name>Invoice_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Open Balance in QB --></help>
+        <label><!-- Open Balance --></label>
+        <name>Open_Balance__c</name>
+    </fields>
+    <fields>
+        <help><!-- Payment status from AM, should not be altered in SF, not a picklist so it can take any value from AM - should take the status from AM not manually changed unless absolutely necessary --></help>
+        <label><!-- Payment Status --></label>
+        <name>Payment_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customer Name from QB --></help>
+        <label><!-- QB Customer Name --></label>
+        <name>QB_Customer_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this a transport only invoice from QB, A T-Invoice --></help>
+        <label><!-- T-Invoice --></label>
+        <name>T_Invoice__c</name>
+    </fields>
+    <fields>
+        <help><!-- From Auction Manager - should not be changed in SF, not a picklist so it can take any value from production --></help>
+        <label><!-- Title Status --></label>
+        <name>Title_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- VIN from production give the auction ID --></help>
+        <label><!-- VIN --></label>
+        <name>VIN__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

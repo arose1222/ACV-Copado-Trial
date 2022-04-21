@@ -1,0 +1,4 @@
+<apex:page standardController="Account">
+    <apex:iframe src="https://tableau.acvauctions.com/views/SellerDashboard/Seller_Dashboard?:embed=y&:showVizHome=no&selected_dealer_id={!account.Dealership_ID__c}"
+             height="950" width="100%" scrolling="true"></apex:iframe>
+</apex:page>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows users to edit Preferred Buyer, Preferred Seller and T/A Hold fields on Account object</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Preferred_Seller__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Preferred_buyer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Ta_hold_buyer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Restricted Access To Edit Preferred Buyer, Seller and T/A Buyer Hold Fields</label>
+</PermissionSet>

@@ -1,0 +1,40 @@
+<template>
+    <template if:true={activeSpinner}>
+            <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+        </template>
+    <lightning-accordion class="example-accordion" active-section-name="addAddress">
+        
+        <!-- <lightning-accordion-section name="deactivateAddresses" label="Deactivate Existing Address">
+            Place holder for future development
+        </lightning-accordion-section> -->
+        <lightning-accordion-section name="addAddress" label="Add Address">
+            <lightning-combobox
+            name="Address Type"
+            label="Address Type"
+            value={selectedType}
+            options={addressType}
+            onchange={handleTypeChange} ></lightning-combobox>
+            <lightning-input-address
+                show-address-lookup
+                address-label="Address"
+                street-label="Street"
+                city-label="City"
+                country-label="Country"
+                province-label="State"
+                postal-code-label="Zip Code"
+                street={newAddress.street}
+                city={newAddress.city}
+                country={newAddress.country}
+                province={newAddress.province}
+                postal-code={newAddress.postalCode}
+                country-options={getCountryOptions}
+                province-options={getStateOptions}
+                onchange={handleAddressChange} required >
+            </lightning-input-address>
+            <lightning-input type="text" label="Alternate Address Name" value={altName} onchange={handleAltNameChange}></lightning-input>
+            <lightning-textarea type="text" label="Address Notes" value={addressNotes} onchange={handleNoteChange}></lightning-textarea>
+            <br/>
+            <right><lightning-button variant="brand-outline" label="Save Address" title="Save Address" onclick={handleSave} class="slds-m-left_x-small"></lightning-button></right>
+        </lightning-accordion-section>
+    </lightning-accordion>
+</template>

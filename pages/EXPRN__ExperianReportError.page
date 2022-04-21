@@ -1,0 +1,118 @@
+<apex:page showHeader="true" sidebar="true">
+   
+<style type="text/css">
+ .errorBlock {
+     overflow: hidden;
+     -moz-border-radius: 5px;
+     -webkit-border-radius: 5px;
+     border-radius: 5px;
+     margin-bottom: 20px;
+     background: #fff;
+     top: 1px;
+     position: relative;
+ }
+ .top-line {
+     -moz-border-radius-topleft: 5px;
+     -moz-border-radius-topright: 5px;
+     -moz-border-radius-bottomright: 0;
+     -moz-border-radius-bottomleft: 0;
+     -webkit-border-radius: 5px 5px 0 0;
+     border-radius: 5px 5px 0 0;
+     border: 1px solid #ccc;
+     padding-bottom: 12px;
+     background-color: #dedede;
+     height: 35px;
+ }
+ .panelHeader {
+     position: relative;
+     margin-bottom: 0;
+     font-weight: bold;
+     color: #222;
+     font-size: 1.1em;
+ }
+ .top-line h2 {
+     font-size: 0.983em;
+     font-weight: bold;
+     position: relative;
+     top: 3px;
+     left: 10px;
+     font-family: Arial,Helvetica,sans-serif;
+ }
+ .panelContent {
+     -moz-border-radius-bottomleft: 5px;
+     -webkit-border-bottom-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+     -moz-border-radius-bottomright: 5px;
+     -webkit-border-bottom-right-radius: 5px;
+     border-bottom-right-radius: 5px;
+     border-bottom: 1px solid #ccc;
+     border-right: 1px solid #ccc;
+     border-left: 1px solid #ccc;
+ }
+ .errorSummary {
+     overflow: auto;
+     padding-bottom: 10px;
+     width: 100%;
+ }
+ .warningIcon {
+     margin-left: 20px;
+     margin-bottom: 3px;
+     border-right: 1px solid #e2e0da;
+     width: 50px;
+     height: 40px;
+     margin-top: 6px;
+     padding-top: 6px;
+     float: left;
+ }
+ .errorSummaryText {
+     color: #222;
+     margin-top: 10px;
+     padding-left: 25px;
+     float: left;
+     font-size: 1em;
+     font-weight: bold;
+ }
+ .jump {
+ 	height:10px;
+ }
+ .warningM2 .msgIcon, .warningLarge {
+    background-image: url(/img/msg_icons/warning32.png);
+    background-position: 0 0;
+    width: 32px;
+    height: 32px;
+}
+ </style>
+ 
+ 		<div class="jump">&nbsp;</div>
+        <div class="errorBlock">
+            <div class="top-line">
+                <div class="panelHeader">
+                    <h2>Experian Information</h2>
+                </div>
+            </div>
+            <div class="panelContent">
+                <div class="errorSummary">
+                    <div class="warningIcon">
+                    	<img src="/img/msg_icons/warning32.png" alt="Warning" width="32" height="32" class="warningLarge" id="content_wrap:j_id37" title="Warning" />
+                    </div>
+                    <div class="errorSummaryText">
+						  <apex:outputText rendered="{!$CurrentPage.parameters.errorType == 'US' || $CurrentPage.parameters.errorType == null}" >
+						  	<div class="errorPanel"> <strong> The credit report cannot be pulled at this time due to server unavailability. Please contact Experian customer support at 800 854 7201 to report the problem.</strong> </div>
+						  </apex:outputText>
+						  
+						  <apex:outputText rendered="{!$CurrentPage.parameters.errorType == 'International' }">
+						  <div class="errorPanel">  <strong> System was unable to return results at this time. Please try again during normal business hours (from 2.00am to 4.00pm PST).</strong> </div> 
+						  </apex:outputText>
+						  
+						  <apex:outputText rendered="{!$CurrentPage.parameters.errorType == 'Canada' }">
+						  <div class="errorPanel"> <strong> System was unable to return results at this time. Please try again during normal business hours (from 3:30am to 10:30pm PST).</strong> </div> 
+						  </apex:outputText>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	<br/><br/>
+
+  <apex:outputLink value="/{!$CurrentPage.Parameters.accID}">Go to Account</apex:outputLink>
+ </apex:page>

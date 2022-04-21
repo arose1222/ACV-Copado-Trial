@@ -1,0 +1,13 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:hasSObjectName,lightning:actionOverride" access="global">
+    <lightning:utilityBarAPI aura:id="utilitybar" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <aura:handler name="change" value="{!v.recordId}" action="{!c.onRecordIdChange}"/>
+    <aura:attribute name="contextId" type="String" />
+    
+    <aura:attribute name="myBool" type="Boolean" default="true"/>
+    <aura:handler name="change" value="{!v.myBool}" action="{!c.minimizeUtility}"/>
+    <aura:attribute name="currentlyClosed" type="Boolean" default="false"/>
+    <aura:attribute name="hasBeenClosed" type="Boolean" default="false"/>
+    <c:dealerOutreach recordId="{!v.contextId}" closedCheck="{!v.hasBeenClosed}" aura:id="dealerOutreach" onvaluechange="{!c.getValueFromLwc}"></c:dealerOutreach>
+</aura:component>

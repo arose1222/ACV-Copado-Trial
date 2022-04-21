@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>List of service resource records to either include or exclude for time tracking</description>
+    <fields>
+        <fullName>Resource_Action__c</fullName>
+        <description>Includes different ways code will handle this service resource for timesheets.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Resource Action</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Include</fullName>
+                    <default>true</default>
+                    <label>Include</label>
+                </value>
+                <value>
+                    <fullName>Exclude</fullName>
+                    <default>false</default>
+                    <label>Exclude</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Resource_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Id of Service Resource record</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Resource Id</label>
+        <length>18</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Time Tracking Resource</label>
+    <pluralLabel>Time Tracking Resources</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

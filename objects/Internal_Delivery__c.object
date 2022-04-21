@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used along with Floor_Plan_Setting__mdt when Internal_Delivery__c field is checked. 
+It is used to store dummy shipping labels that will be shared among many Cases from different Auctions. The shipping label is being used to group together Titles to be delivered to another department in ACV.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Easypost_Postage_Label_URL__c</fullName>
+        <description>Easypost postage Label that will be generated by TitlesAutomationAPI. It will be shared by the Floor Plan for the whole day. A new postage label is generated everyday.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Easypost postage Label that will be generated by TitlesAutomationAPI. It will be shared by the Floor Plan for the whole day. A new postage label is generated everyday.</inlineHelpText>
+        <label>Easypost Postage Label URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Easypost_Tracker__c</fullName>
+        <description>Easypost Tracking number that will be generated once a day by TitlesAutomationAPI, which will be used by the Floor Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Easypost Tracking number that will be generated once a day by TitlesAutomationAPI, which will be used by the Floor Plan.</inlineHelpText>
+        <label>Easypost Tracker</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_API_Name__c</fullName>
+        <description>Unique API name form Floor_Plan_Setting__mdt.Payment_Method_API_Name__c.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Unique API name form Floor_Plan_Setting__mdt.Payment_Method_API_Name__c.</inlineHelpText>
+        <label>Payment Method API Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_Group_Name__c</fullName>
+        <description>Group Name from Floor_Plan_Setting__mdt.Payment_Method_Group_Name__c. The group name will be used to generate one shipping label per day and per group. This shipping label will be shared daily by multiple Payment Methods (for all respective Cases &amp; Auctions) within a Group. A new shipping label will be generated daily for all the Group Names.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Group Name from Floor_Plan_Setting__mdt.Payment_Method_Group_Name__c. The group name will be used to generate one shipping label per day and per group. This shipping label will be shared daily by multiple Payment Methods (for all respective Cases &amp; Auctions) within a Group. A new shipping label will be generated daily for all the Group Names.</inlineHelpText>
+        <label>Payment Method Group Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipping_Label_Created_Date__c</fullName>
+        <description>The date &amp; time when this shipping label was generated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date &amp; time when this shipping label was generated.</inlineHelpText>
+        <label>Shipping Label Created Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <label>Internal Delivery</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Payment_Method_Group_Name__c</columns>
+        <columns>Payment_Method_API_Name__c</columns>
+        <columns>Shipping_Label_Created_Date__c</columns>
+        <columns>Easypost_Postage_Label_URL__c</columns>
+        <columns>Easypost_Tracker__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Internal Delivery Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Internal Deliveries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

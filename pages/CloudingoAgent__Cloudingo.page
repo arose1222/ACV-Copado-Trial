@@ -1,0 +1,568 @@
+<apex:page controller="CloudingoAgent.CloudingoController">
+<apex:stylesheet value="{!URLFOR($Resource.CloudingoAgent__Styles, 'assets/styles/salesforce-lightning-design-system.min.css')}" />
+<!-- All these styles can be moved into a css -->                             
+            <style>
+                .dingoBkWhite{ background-color: #ffffff; }
+                .dingoGray{ color: #b8c3ce; }
+                .dingoLiGray:before{ color: #b8c3ce; }
+                .dingoBkGray{ background-color: #b8c3ce; }                
+                .dingoA{ background-color: #5a9cdd; }
+                .dingoBlue{ color: #5a9cdd; }                
+                .dingoLiBlue:before{ color: #5a9cdd; }
+                .dingoBkBlue{ background-color: #5a9cdd; }                
+                .dingoB{ background-color: #00c6b7; }
+                .dingoLightBlue{ color: #00c6b7; }                
+                .dingoLiLightBlue:before{ color: #00c6b7; }
+                .dingoBkLightBlue{ background-color: #00c6b7; }                
+                .dingoC{ background-color: #88c651; }
+                .dingoGreen{ color: #88c651; }                
+                .dingoLiGreen:before{ color: #88c651; }
+                .dingoBkGreen{ background-color: #88c651; }                
+                .dingoD{ background-color: #f39e58; }
+                .dingoOrange{ color: #f39e58; }                
+                .dingoLiOrange:before{ color: #f39e58; }
+                .dingoBkOrange{ background-color: #f39e58; }                
+                .dingoF{ background-color: #00c6b7; }
+                .dingoRed{ color: #ef6e64; }                
+                .dingoLiRed:before{ color: #ef6e64; }
+                .dingoBkRed{ background-color: #ef6e64; }
+                .dingoRedAlt{ color: rgb(194, 57, 52); }                
+                .dingoLiRedAlt:before{ color: rgb(194, 57, 52); }
+                .dingoBkRedAlt{ background-color: rgb(194, 57, 52); }
+                #dingoSuggestions li:before {
+                    content: "• ";
+                    font-size: 2em;
+                    position: relative;
+                    top: 0.15em;
+                    padding: 0px;
+                    margin: 0px;
+                }                   
+                .dingoSuggestionWarning:after {
+                    content: "HIGH PRIORITY";
+                    background-color: rgb(194, 57, 52);
+                    margin-left: 10px;
+                    border-radius: .25em;
+                    color: #ffffff;
+                    padding: 5px;
+                }                              
+                .dingoGradeContainer{
+                    float:left; 
+                    margin: 30px; 
+                    border-radius: .25rem; 
+                    width: 150px;
+                    height: 150px; 
+                    position: relative;
+                }
+                .dingoGrade{
+                    text-transform: uppercase; 
+                    font-size: 80px; 
+                    color: #FFFFFF; 
+                    font-weight: 600; 
+                    position: absolute; 
+                    left: 50px; 
+                    top: 15px;
+                }
+                .dingoCardImgContainer{
+                    border-radius: .125rem;  
+                    width: 75px; 
+                    height: 75px; 
+                    position: relative;
+                }
+                .dingoCardImg{
+                     font-size: 40px; 
+                     color: #FFFFFF; 
+                     font-weight: 300; 
+                     position: absolute; 
+                     top: 5px;
+                }
+                .dingoProgressHldr{
+                    border-radius: .25rem; 
+                    height: 15px; 
+                    margin-right: 15px; 
+                    margin-left: 15px; 
+                    margin-bottom:15px;
+                }
+                .dingoProgress{
+                    border-radius: .25rem; 
+                    height: 15px; 
+                    margin-right: 15px; 
+                    margin-left: 15px; 
+                    margin-bottom:15px; 
+                    position: absolute; 
+                    bottom: -15px; 
+                }   
+                .dingoWarning {
+                    background-color: rgb(194, 57, 52);
+                    border-radius: .25em;
+                    color: #ffffff;           
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 95%;
+                    position: relative;
+                }      
+                .dingoTryContainer{
+                    float: left; 
+                    padding: 0; 
+                    top: 50px; 
+                    margin-left: 25px; 
+                    position: absolute; 
+                    right: 40px;
+                }      
+                .dingoTry{
+                    color: #000000; 
+                    background-color: #fbb439; 
+                    padding: 5px; 
+                    border-radius: .25em; 
+                    font-size: 1.5em; 
+                    font-weight: 600;
+                }  
+
+                .dingoInactive{
+                    background-color: rgb(194, 57, 52);
+                }                
+                .dingoActive{
+                    background-color: rgb(75, 202, 129)
+                }
+                .dingoState {                    
+                    border-radius: .25em;
+                    color: #ffffff;
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 250px;
+                    position: relative;
+                    float:left;
+                    height: 200px;
+                } 
+                .dingoStatusHldr{
+                    border-radius: .25em;
+                    padding: 25px;
+                    margin: 25px;
+                    display: inline-block;
+                    text-align: left;
+                    width: 250px;
+                    position: relative;
+                    float:left;                    
+                }
+                .dingoStatusLine{
+                    float:left;
+                    border-radius: .125rem;
+                    height: 10px;
+                    margin-right: 5px;
+                    margin-left: 5px;
+                    margin-bottom: 5px;
+                    margin-top: 18px;
+                    width: 50px;
+                }
+                .dingoCurrentState {                    
+                    float:left;
+                    border-radius: 50%;
+                    padding: 15px;
+                } 
+                .dingoCard{
+                    background-color: rgb(244, 246, 249);
+                    border: 1px solid rgb(216, 221, 230);
+                }
+                .dingoWorkList{
+
+                }
+                .dingoWorkList li{
+                    height: 50px;
+                    padding-top: 15px;
+                }
+                #help p{                    
+                    height: 30px;
+                    margin-bottom: 5px;
+                    border-bottom:  1px solid rgb(216, 221, 230);
+                }
+                .cloudingoLink {
+                    text-decoration: none !important;
+                    font-weight: bold;
+                }
+                .cloudingoAgentStatusContainer{
+                    text-align:center; 
+                    float:left; 
+                    min-width: 775px;
+                }
+                .cloudingoActiveHeading{
+                    margin-bottom: 10px; 
+                    margin-top: 10px;
+                }
+                .cloudingoAgentIcon{
+                    float:left; 
+                    top: 100px; 
+                    left: 3px; 
+                    position: relative;
+                }
+                .cloudingoWork{
+                    float:left; 
+                    top: 25px; 
+                    position: relative;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+                .cloudingoWork .slds-panel{
+                    min-height: 200px;
+                }
+                .cloudingoWorkLiImg{
+                    float:left;
+                    margin-top:-10px;
+                    padding-right:10px;
+                }
+                .cloudingoSyncMode{
+                    margin-top: 50px; 
+                    width: 50%; 
+                    min-width: 625px; 
+                    text-align: left; 
+                    display: inline-block;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+                .cloudingoSyncModeList{
+                    float:left; 
+                    padding: 10px; 
+                    border-left: 1px solid rgb(216, 221, 230);
+                }
+                .cloudingoButton{
+                    padding-left: 10px !important; 
+                    padding-right: 10px !important; 
+                    background: none !important;
+                }
+                .cloudingoButtonWhite{
+                    padding-left: 10px !important; 
+                    padding-right: 10px !important; 
+                    background-color: #ffffff !important;
+                    background-image: none !important;
+                }
+                .cloudingoGetStartedButton{
+                    position: absolute; 
+                    left: 80px; 
+                    background-color: #fffff; 
+                    bottom: 5px;
+                }
+                .cloudingoSubscribeButton{
+                    position: absolute; 
+                    left: 84px; 
+                    background-color: #fffff; 
+                    bottom: 5px;
+                }
+                .cloudingoContact{
+                    float:left;
+                    position:relative;
+                    margin:25px;
+                    border: 1px solid rgb(216, 221, 230);
+                    border-radius: .25em;
+                }
+            </style>  
+    <apex:form >
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-grid">
+                        <div class="slds-grid slds-no-space">
+                            <p class="slds-page-header__title slds-truncate slds-align-middle slds-text-heading--large" title="Cloudingo Setup">Cloudingo Setup</p>                                            
+                        </div>                    
+                    </div>
+                </div>                    
+            </div>              
+        </div>
+        <div style="display: table;">
+            <div style="display: table-row; min-height: 300px;">
+                <div style="display: table-cell;">
+                    <div class="cloudingoAgentStatusContainer">
+              
+                        <apex:outputPanel rendered="{!activationStatus == 'Not activated'}"> 
+                        <div class="dingoState dingoCard">
+              
+                            <div style="top: 20px; position:relative;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" style="color: #000000; font-weight: normal;" target="_blank">
+                                    <span class="tile__title slds-truncate slds-text-heading--medium cloudingoActiveHeading">Cloudingo is inactive</span>                                                                                   
+                                    <span class="slds-text-body--regular">
+                                        Get started  by going to cloudingo.com and clean up your data today!
+                                    </span>
+                                </a>
+                            </div>                            
+                            <button id="button" class="cloudingoButtonWhite slds-button slds-button--neutral cloudingoGetStartedButton" onclick="window.open('https://app.cloudingo.com'); return false;">
+                                Get Started
+                            </button>    
+                        </div>
+                        
+                        <div class="cloudingoAgentIcon">
+                            <div class="dingoStatusLine dingoBkGray"></div>
+                            <div class="dingoCurrentState dingoInactive">
+                               <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoX.png')}" alt="" id="cloudingoAgentX"  title="" />
+                            </div>
+                            <div class="dingoStatusLine dingoBkWhite"></div>
+                        </div>
+                        <div class="dingoState dingoCard">
+                            <div class="image" style="padding-left: 25px; padding-top: 25px;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" target="_blank">
+                                    <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoLock.png')}" alt="" id="phHeaderLogoImage"  title="" />
+                                </a>
+                            </div>                            
+                        </div> 
+                           
+                      </apex:outputPanel>
+                        
+                      <apex:outputPanel rendered="{!NOT(ISNULL(activationFailedMessage)) && CONTAINS(activationFailedMessage,'your subscription expired on')}">
+                             <div class="dingoState dingoInactive">
+                            <div style="position:relative;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" style="color:#ffffff; font-weight: normal;" target="_blank">
+                                    <span class="tile__title slds-truncate slds-text-heading--medium cloudingoActiveHeading">Cloudingo is inactive</span>                                                                                   
+                                    <span class="slds-text-body--regular">
+                                       <apex:outputText value="{!activationFailedMessage}"/>
+                                       <br />                                        
+                                        Login to cloudingo.com to signup for a subscription and clean up your data today!
+                                    </span>
+                                </a>
+                            </div>                            
+                            <button id="button" class="cloudingoButtonWhite slds-button slds-button--neutral cloudingoSubscribeButton" onclick="window.open('https://app.cloudingo.com/Account/MyPlan'); return false;">
+                                Subscribe
+                            </button>
+                        </div>
+                        <div class="cloudingoAgentIcon">
+                            <div class="dingoStatusLine dingoBkGray"></div>
+                            <div class="dingoCurrentState dingoInactive">
+                                <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoX.png')}" alt="" id="cloudingoAgentX"  title="" />
+                            </div>
+                            <div class="dingoStatusLine dingoBkWhite"></div>
+                        </div>
+                        <div class="dingoState dingoCard">
+                            <div class="image" style="padding-left: 25px; padding-top: 25px;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" target="_blank">
+                                   <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoLock.png')}" alt="" id="phHeaderLogoImage"  title="" />
+                                </a>
+                            </div>                            
+                        </div> 
+                      </apex:outputPanel>
+                        
+                      <apex:outputPanel rendered="{!activationStatus == 'Activated'}">  
+                        <div class="dingoState dingoActive">
+                            <div style="top: 35px; position:relative;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" style="color:#ffffff; font-weight: normal; " target="_blank">
+                                <span class="tile__title slds-truncate slds-text-heading--medium cloudingoActiveHeading">Cloudingo is active</span>                                                                                 
+                                <br />                              
+                                <span class="slds-text-body--regular">
+                                    Login to cloudingo.com to create filters and merge data 
+                                </span>
+                                </a>
+                            </div>
+                             <!--  
+                            <div id="activationSuccess" class="slds-notify_container">
+                              <div class="slds-notify slds-notify--toast" role="alert">      
+                                <button class="slds-button slds-button--icon-inverse slds-notify__close" onclick="document.getElementById('activationSuccess').remove(); return false;">
+                                    <img  src="{!URLFOR($Resource.Styles, 'AgentCloudingoX.png')}" alt="" id="cloudingoAgentX"  title="" />
+                                    <span class="slds-assistive-text">Close</span>
+                                </button> 
+                                                     
+                                <div class="slds-notify__content">
+                                  <h2 class="slds-text-heading--small">Activation Succeeded!</h2>  
+                                </div>
+                               
+                              </div>
+                            </div>
+                             -->                            
+                        </div>
+                        
+                         <div class="cloudingoAgentIcon">
+                            <div class="dingoStatusLine dingoBkGray"></div>
+                            <div class="dingoCurrentState dingoActive">
+                                <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoCheck.png')}" alt="" id="cloudingoAgentCheck"  title="" />
+                            </div>
+                            <div class="dingoStatusLine dingoBkGray"></div>
+                        </div>
+                        <div class="dingoState dingoCard">
+                            <div class="image" style="padding-left: 25px; padding-top: 25px;">
+                                <a href="https://app.cloudingo.com" class="cloudingoLink" target="_blank"> 
+                                    <img src="{!URLFOR($Resource.Styles, 'AgentCloudingoLock.png')}" alt="" id="phHeaderLogoImage"  title="" />
+                                </a>
+                            </div>                            
+                        </div>     
+                        </apex:outputPanel>                       
+                    </div>
+                    
+                   <apex:outputPanel rendered="{!activationStatus == 'Not activated'}"> 
+                    <div class="cloudingoWork">
+                        <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                          <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                            <div class="slds-panel__section slds-has-divider--bottom">
+                              <div class="slds-media slds-tile">             
+                                <p class="tile__title slds-truncate slds-text-heading--medium">How does it work?</p>          
+                              </div>
+                            </div>
+                            <div class="dingoWorkList slds-panel__section">
+                                <ul>
+                                    <li>
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '1.png')}" styleClass="cloudingoWorkLiImg" />
+                                        <span class="slds-text-body--regular">
+                                            Click 
+                                            <button id="button" class="cloudingoButtonWhite slds-button slds-button--neutral" onclick="window.open('https://app.cloudingo.com'); return false;">
+                                                Get Started
+                                            </button>
+                                            to connect Salesforce and Cloudingo
+                                        </span>
+                                    </li>
+                                    <li class="slds-has-divider--top">
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '2.png')}" styleClass="cloudingoWorkLiImg"/>
+                                        Login to <span class="notactiveText"><a href="https://app.cloudingo.com" class="cloudingoLink" target="_blank">cloudingo.com</a></span>
+                                    </li>
+                                    <li class="slds-has-divider--top">
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '3.png')}" styleClass="cloudingoWorkLiImg"/>
+                                        Find duplicates and start merging
+                                    </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                   
+                   <apex:outputPanel rendered="{!activationStatus == 'Activated'}"> 
+                     <div class="cloudingoWork">
+                        <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+                          <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                            <div class="slds-panel__section slds-has-divider--bottom">
+                              <div class="slds-media slds-tile">             
+                                <p class="tile__title slds-truncate slds-text-heading--medium">How does it work?</p>          
+                              </div>
+                            </div>
+                            <div class="dingoWorkList slds-panel__section">
+                                <ul>
+                                    <!-- <li>
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '1.png')}" styleClass="cloudingoWorkLiImg" />
+                                        <span class="slds-text-body--regular">
+                                            Click 
+                                            <apex:outputPanel >&nbsp;"Active"</apex:outputPanel>
+                                            to connect Salesforce and Cloudingo
+                                        </span>
+                                    </li> -->
+                                    <li>
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '1.png')}" styleClass="cloudingoWorkLiImg"/>
+                                        Login to <span class="notactiveText"><a href="https://app.cloudingo.com" class="cloudingoLink" target="_blank">cloudingo.com</a></span>
+                                    </li>
+                                    <li class="slds-has-divider--top">
+                                        <apex:image url="{!URLFOR($Resource.CloudingoAgent__Styles, '2.png')}" styleClass="cloudingoWorkLiImg"/>
+                                        Find duplicates and start merging
+                                    </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                    
+                    
+                </div>
+            </div>
+        </div> 
+        
+       
+        <div style="display: table-row;">
+                <div style="display: table-cell;">
+                 <apex:outputPanel rendered="{!activationStatus == 'Activated'}">
+                    <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap cloudingoSyncMode" style="float: left;">
+                        <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                            <div class="slds-panel__section slds-has-divider--bottom">
+                                <div class="slds-media slds-tile">             
+                                    <p class="tile__title slds-truncate slds-text-heading--medium">Synchronization Mode</p>          
+                                </div>
+                            </div>
+                            <div class="slds-panel__section">
+                                <div style="display:table">
+                                    <div style="display: table-row">
+                                        <div style="display: table-cell">
+                                            <div style="float:left; padding: 10px;">
+                                                
+                                                <apex:selectList id="syncOptions" styleClass="slds-select" value="{!SelectedValue}" multiselect="false" size="1" disabled="{!subscriptionLevel}">   
+                                                   <apex:selectOptions value="{!items}"/>
+                                                 </apex:selectList>
+                                                  
+                                            </div>
+                                            <div class="cloudingoSyncModeList">
+                                                <div id="help">
+                                                    <h3 class="slds-text-heading--small">Automatic</h3><em style="color:#B0B0B0;padding-left:5px;font-size:11px;">(recommended)</em>
+                                                    <p class="slds-text-body--regular">Uses the optimal setup based on your organization’s setup.</p>
+                                                    <h3 class="slds-text-heading--small">Low Frequency</h3>
+                                                    <p class="slds-text-body--regular">Syncs with Cloudingo at a lower frequency to preserve system resources.</p>
+                                                    <h3 class="slds-text-heading--small">High Frequency</h3>
+                                                    <p class="slds-text-body--regular">Recommended for large organizations (lots of users and lots of data).</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div style="display: table-row">
+                                        <div style="display: table-cell; text-align:center;">
+                                            <div style="display: inline-block; text-align:left; margin: 10px;">
+                                                <apex:actionRegion id="savebuttonregion"></apex:actionRegion>
+                                                <apex:commandButton styleClass="cloudingoButton slds-button slds-button--neutral" id="savebutton" value="Save" status="saveStatus" action="{!save}">
+                                                    <apex:actionStatus id="saveStatus" startText=" Saving" for="savebuttonregion" stopText=" {!CurrentTime}" /> 
+                                                </apex:commandButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    </apex:outputPanel> 
+                    
+                    <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap cloudingoSyncMode" style="float: left; margin-left: 15px; min-width: 415px; width: 415px;">
+                        <div class="slds-form--stacked slds-grow slds-scrollable--y">
+                            <div class="slds-panel__section slds-has-divider--bottom">
+                                <div class="slds-media slds-tile">             
+                                    <p class="tile__title slds-truncate slds-text-heading--medium">Need some help?  Feel free to reach out.</p>          
+                                </div>
+                            </div>
+                            <div class="slds-panel__section">
+                                <div style="display:table">
+                                    <div style="display: table-row">
+                                        <div style="display: table-cell">
+                                            <div class="dingoState dingoCard" style="width:150px; height: 100px; padding: 29px;">                                                
+                                                <a href="https://help.cloudingo.com/" class="cloudingoLink" target="_blank">                                                    
+                                                    Videos and Documentation
+                                                </a>                            
+                                            </div>                                             
+                                            <div class="cloudingoSyncModeList" style='margin-top: 25px;'>
+                                                <p>Symphonic Source, Inc.</p>
+                                                <p>4004 Beltline Rd. Suite 120</p>
+                                                <p>Addison, TX 75001</p>
+                                                <p>Ph: +1 972.241.1543</p>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div style="display: table-row">
+                                        <div style="display: table-cell; text-align:center;">
+                                            <div style="display: inline-block; text-align:left; margin: 10px;">
+                                                <input id="contactUsButton" type="submit" name="contactUsButton" value="Contact Us" onclick="javascript:window.open('https://help.cloudingo.com/contact-support/'); return false;" class="btn cloudingoButton slds-button slds-button--neutral"></input>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div style="display: table-row">
+                                        <div style="display: table-cell; text-align:center;">
+                                            <div style="display: inline-block; text-align:left; margin: 10px;">
+                                                <input id="updateContact" type="submit" name="updateContactButton" value="Update Contacts" onclick="javascript:window.open('../apex/AccountContacts'); return false;" class="btn cloudingoButton slds-button slds-button--neutral"></input>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>  
+                    
+               
+                    
+                </div>
+            </div>
+         
+         
+              
+                         
+    </apex:form>
+</apex:page>

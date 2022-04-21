@@ -1,0 +1,181 @@
+<template>
+	<!-- Spinner -->
+	<template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+	<lightning-layout style="background-color: #F9F9F9;">
+		<lightning-layout-item size=12>
+			<lightning-card>
+				<!-- Header Section -->
+				<!-- Card Header -->
+				<h1 slot="title">						
+					<lightning-icon style="float: left;" icon-name="custom:custom31" size="medium"></lightning-icon>
+					<template if:false={showConfirmationVariables}>
+						<div style="padding-left: 40px;">
+							<p style="font-size: 13px; padding-bottom: 2px;">Inventory Life Cycle</p>
+							<p style="font-size: 20px; font-weight: bold;">{filterName}</p>
+							<p style="font-size: 10px; line-height: 13px; ">{rangedShowing} out of {totalNumOfRows} items • Sorted by {sortedByLabel} • Updated <lightning-relative-date-time value={lastRefreshed}></lightning-relative-date-time> <lightning-button-icon icon-name="utility:refresh"  variant="container" alternative-text="Refresh" title="Refresh" onclick={handleRefreshTable} size="small"></lightning-button-icon></p>
+							<template if:true={showActions}>
+								<div>
+									<lightning-button-group>
+										<lightning-button label="Launch" name="Launch Auction" icon-name="utility:send" variant="base" onclick={handleLaunchAuctionClick}></lightning-button>
+										<lightning-button class= "slds-m-left_x-small" name="Kill Auction" label="Terminate" icon-name="utility:error" variant="base" onclick={handleTerminateAuctionClick}></lightning-button>
+									</lightning-button-group>
+								</div>
+							</template>
+						</div>
+					</template>
+					<template if:true={showConfirmationVariables}>
+						<div style="padding-left: 40px;">
+							<p style="font-size: 13px; padding-bottom: 2px;">{confirmationVariables.actionExecutedTitle}</p>
+							<p style="font-size: 20px; font-weight: bold;">{confirmationVariables.actionExecutedSubTitle}</p>
+							<p style="font-size: 10px; line-height: 13px; ">{confirmationVariables.totalItemsText}
+								<template if:true={confirmationSelectedRowsShow}>
+									<span class="slds-p-left_small">
+										<lightning-button-group>
+											<lightning-button label="Edit Schedule" variant="base" icon-name="utility:event" onclick={handleEditSchedule}></lightning-button>
+										</lightning-button-group>
+									</span>
+								</template>
+							</p>
+						</div>
+					</template>
+				</h1>
+				<!-- Card Actions (Right Side) -->
+				<template if:false={showConfirmationVariables}>
+					<div slot="actions">
+						<p>
+							<c-download-table-button onloading={toggleSpinner} file-type="csv" file-name={downloadFileName} columns={columnNames} table-data={filteredIlcRowsCleaned} button-variant="neutral"></c-download-table-button>
+							<lightning-button label="Import Manager" onclick={handleImportManagerNavigation} class="slds-m-left_small"></lightning-button>
+							<lightning-button-stateful
+								label-when-off="Filter Manager"
+								label-when-on="Filter Manager"
+								selected={filterManagerIsSelected}
+								variant={filterManagerVariant}
+								onclick={handleFilterManager}
+								class="slds-m-left_x-small"
+							></lightning-button-stateful>
+							<!-- <lightning-button-menu menu-alignment="auto" alternative-text="Show menu" icon-name="utility:threedots_vertical" icon-size="large" onclick={handleSectionHeaderButtons} variant="container" class="slds-m-left_x-small">
+								<lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
+							</lightning-button-menu> -->
+						</p>
+						<p onkeyup={handleOnKeyUpSearch}>
+							<lightning-input
+								name="searchTable"
+								type="search"
+								placeholder="Search this List..."
+								onblur={handleSearchTable}
+								onchange={handleSearchValueAssignment}
+								is-loading={searchLoading}
+							></lightning-input>
+						</p>
+					</div>
+				</template>
+				<!-- Card Body -->
+				<div style="position: relative;">
+					<!-- Datatable -->
+					<div style="height: 60vh;">
+						<template if:false={showConfirmationVariables}>
+							<c-custom-data-table
+								columns={columns}
+								data={displayedIlcRows}
+								key-field="Id"
+								show-row-number-column=true
+								row-number-offset={rowNumberOffset}
+								sorted-by={sortedBy}
+								sorted-direction={sortedDirection}
+								onsort={handleOnSort}
+								onrowselection={handleRowSelection}
+								column-widths-mode="auto"
+							></c-custom-data-table>
+						</template>
+						<template if:true={showConfirmationVariables}>
+							<c-custom-data-table
+								columns={confirmationVariables.tableColumns}
+								data={confirmationVariables.tableRows}
+								key-field="Id"
+								show-row-number-column=true
+								onrowselection={handleConfirmationRowSelection}
+								column-widths-mode="auto"
+								onsave={handleConfirmationInlineEdit}
+								suppress-bottom-bar={suppressBottomBar}
+								oncellchange={handleConfirmationInlineCellChange}
+							></c-custom-data-table>
+						</template>
+					</div>
+					<!-- Card Footer -->
+					<!-- Pagination -->
+					<div slot="footer" class="footerPaginationSection slds-grid--vertical-align-center">
+						<lightning-layout>
+							<template if:false={showConfirmationVariables}>
+								<lightning-layout-item size=2>
+									<!-- empty space to keep pagination centered -->
+								</lightning-layout-item>
+								<lightning-layout-item size=8>
+									<lightning-button-group>
+										<lightning-button label="First" onclick={handlePaginationOnclick} disabled={disableFP}></lightning-button>
+										<lightning-button label="Previous" onclick={handlePaginationOnclick} disabled={disableFP}></lightning-button>
+										<template for:each={pagesList} for:item="page">
+											<lightning-button key={page.label} label={page.label} variant={page.variant} onclick={handlePaginationOnclick}></lightning-button>
+										</template>
+										<lightning-button label="Next" onclick={handlePaginationOnclick} disabled={disableNL}></lightning-button>
+										<lightning-button label="Last" onclick={handlePaginationOnclick} disabled={disableNL}></lightning-button>
+									</lightning-button-group>
+								</lightning-layout-item>
+								<lightning-layout-item size=2>
+									<div class="slds-float_right slds-p-right_x-small" style="width:fit-content;">
+										<lightning-formatted-text value="Rows per page:    " ></lightning-formatted-text>
+										<lightning-button-menu label={rowsPerPageLabel} onselect={handleRowPerPageChange} menu-alignment="auto" variant="bare">
+											<template for:each={rowsDisplayedOptions} for:item="sizeOption">
+												<lightning-menu-item key={sizeOption.label} value={sizeOption.label} label={sizeOption.label} checked={sizeOption.isSelected}></lightning-menu-item>
+											</template>
+										</lightning-button-menu>
+									</div>
+								</lightning-layout-item>
+							</template>
+							<template if:true={showConfirmationVariables}>
+								<lightning-layout-item size=9>
+									<!-- Emptyness -->
+								</lightning-layout-item>
+								<lightning-layout-item size=3>
+									<div style="text-align: right;">
+										<lightning-button label="Cancel" class="slds-p-around_small" variant="neutral" onclick={handleConfirmationCancel}></lightning-button>
+										<lightning-button label="Confirm" class="slds-p-around_small" variant="brand" onclick={handleConfirmationConfirm}></lightning-button>
+									</div>
+										<!-- <div class="slds-float_right slds-p-right_x-small" style="width:fit-content;"> -->
+									<!-- </div> -->
+								</lightning-layout-item>
+							</template>
+						</lightning-layout>
+					</div>
+					<!-- Filter Manager Sidebar -->
+					<template if:true={filterManagerIsSelected}>
+						<c-filter-manager-sidebar
+							onclose={handleFilterManager}
+							onfilterselection={handleUpdateFilterId}
+						></c-filter-manager-sidebar>
+					</template>
+				</div>
+			</lightning-card>
+		</lightning-layout-item>
+	</lightning-layout>
+	<!-- Launch Model -->
+	<template if:true={showLaunchAuction}>
+		<c-launch-auction-modal
+			selectedilcrowsjson={ilcsToPass}
+			sendtoconfirmationpage=true
+			editscheduleclicked={editScheduleClicked}
+			onclose={handleLaunchAuctionClose}
+			launchtype={launchType}
+		></c-launch-auction-modal>
+	</template>
+	<!-- Terminate Auction Modal -->
+	<template if:true={showTerminateAuction}>
+		<c-terminate-auction-modal
+			selectedilcrowsjson={ilcsToPass}
+			onclose={handleTerminateAuctionClose}
+		></c-terminate-auction-modal>
+	</template>
+</template>

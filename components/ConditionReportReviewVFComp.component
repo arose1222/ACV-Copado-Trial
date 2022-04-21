@@ -1,0 +1,62 @@
+<apex:component controller="ConditionReportReviewEmailCont" access="global" rendered="true"> 
+    <style type="text/css">
+        #CSSList{ 
+                padding-left: 10px;
+            }
+    </style>
+    <apex:attribute name="InputId" assignTo="{!CRRId}" type="String" description="Id of CRR"/>
+    <apex:outputPanel rendered="{!if( ( crqList.size > 0 || ( LEN( cRRrecord.Question_Notes__c ) > 0 || cRRrecord.Question_Notes__c != null ) ), true, false)}">
+        {!cRRrecord.VCI__r.FirstName},
+        <br>
+            Your condition report review has been completed. Please note issues found on CR. 
+        </br>    
+            Corrections have been made, unless related to photos or AMP audio.  Check for thoses changes and correct,  then the CR is ready to launch.
+        <ul>
+            <apex:repeat var="q" value="{!crqList}">  
+                <li>
+                    <apex:outputText value="{!q.QuestionType}"/>
+                    <ul id="CSSList">
+                        <apex:repeat var="sq" value="{!q.QuestionSubTypes}">
+                            <li>
+                                <apex:outputText value="{!sq.question}"/>
+                                <ul>
+                                    <li>
+                                        <apex:outputText value="{!sq.comments}"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </apex:repeat>
+                    </ul>
+                </li>
+            </apex:repeat>
+        </ul>
+        {!cRRrecord.Question_Notes__c}
+        <li>
+        Changes to CR may have affected the vehicle value, please have a conversation with the seller as needed. Green, Yellow, and Red light changes may not be visible in the IOS App.
+    </li>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!if( crqList.size == 0 && cRRrecord.Question_Notes__c == null, true, false)}">
+        {!cRRrecord.VCI__r.FirstName},
+        <br/>
+            Your condition report review has been completed. No items were found that need to be address and you may now launch the vehicle.
+    </apex:outputPanel>
+    <!-- General Footer for both types of email -->
+    <br/>
+    <br/>
+    <b>Vehicle Information: </b> 
+    <br/>
+    <br/>
+    <apex:outputText value="{!cRRrecord.Condition_Report__r.Vehicle_Information__c}" escape="false"/>
+    <br/>
+    <br/>
+
+    If you have any questions or require additional clarity, please contact {!cRRrecord.Owner.Name} at {!cRRrecord.Owner.Email}.
+        <br/>
+        <br/>
+        Thank you,
+        <br/>
+        The Condition Report Review Team
+        <br/>
+        Prescreen Reference:&nbsp;<apex:outputlink value="{!LEFT($Api.Partner_Server_URL_530,FIND('.com',$Api.Partner_Server_URL_530)+4)+cRRrecord.Id}">{!cRRrecord.Name}</apex:outputlink>
+        <br/>
+</apex:component>

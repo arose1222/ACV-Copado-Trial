@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Other_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Details</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Problem__c</fullName>
+        <externalId>false</externalId>
+        <label>Problem</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Incorrect Vehicle Information on Title</fullName>
+                    <default>false</default>
+                    <label>Incorrect Vehicle Information on Title</label>
+                </value>
+                <value>
+                    <fullName>Odometer Discrepancy</fullName>
+                    <default>false</default>
+                    <label>Odometer Discrepancy</label>
+                </value>
+                <value>
+                    <fullName>Missing Signature</fullName>
+                    <default>false</default>
+                    <label>Missing Signature</label>
+                </value>
+                <value>
+                    <fullName>Reassignment Error</fullName>
+                    <default>false</default>
+                    <label>Reassignment Error</label>
+                </value>
+                <value>
+                    <fullName>Missing Notary</fullName>
+                    <default>false</default>
+                    <label>Missing Notary</label>
+                </value>
+                <value>
+                    <fullName>Write-Overs</fullName>
+                    <default>false</default>
+                    <label>Write-Overs</label>
+                </value>
+                <value>
+                    <fullName>Reassigned to Wrong Purchaser</fullName>
+                    <default>false</default>
+                    <label>Reassigned to Wrong Purchaser</label>
+                </value>
+                <value>
+                    <fullName>Missing Document(s)</fullName>
+                    <default>false</default>
+                    <label>Missing Document(s)</label>
+                </value>
+                <value>
+                    <fullName>Damaged Title</fullName>
+                    <default>false</default>
+                    <label>Damaged Title</label>
+                </value>
+                <value>
+                    <fullName>Listing Error</fullName>
+                    <default>false</default>
+                    <label>Listing Error</label>
+                </value>
+                <value>
+                    <fullName>More Recently Issued Title</fullName>
+                    <default>false</default>
+                    <label>More Recently Issued Title</label>
+                </value>
+                <value>
+                    <fullName>Buyer Requested Duplicate</fullName>
+                    <default>false</default>
+                    <label>Buyer Requested Duplicate</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Buyer/Seller Info Incomplete/Incorrect</fullName>
+                    <default>false</default>
+                    <label>Buyer/Seller Info Incomplete/Incorrect</label>
+                </value>
+                <value>
+                    <fullName>ODOM/Date</fullName>
+                    <default>false</default>
+                    <label>ODOM/Date</label>
+                </value>
+                <value>
+                    <fullName>Missed AGT Signature</fullName>
+                    <default>false</default>
+                    <label>Missed AGT Signature</label>
+                </value>
+                <value>
+                    <fullName>Incomplete Vehicle Info</fullName>
+                    <default>false</default>
+                    <label>Incomplete Vehicle Info</label>
+                </value>
+                <value>
+                    <fullName>Filed Incorrectly</fullName>
+                    <default>false</default>
+                    <label>Filed Incorrectly</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quality_Control__c</fullName>
+        <externalId>false</externalId>
+        <label>Quality Control</label>
+        <referenceTo>Quality_Control__c</referenceTo>
+        <relationshipLabel>QC Problems Identified</relationshipLabel>
+        <relationshipName>QC_Problems_Identified</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Resolved</fullName>
+                    <default>false</default>
+                    <label>Resolved</label>
+                </value>
+                <value>
+                    <fullName>Unresolved</fullName>
+                    <default>false</default>
+                    <label>Unresolved</label>
+                </value>
+                <value>
+                    <fullName>Invalid</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Invalid</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title_Problem_Subset__c</fullName>
+        <externalId>false</externalId>
+        <label>Title Problem Subset</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>Problem__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>Address - Write over</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>Branded on the Front of Title - Odom Discr.</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>Buyer Signature Missing from Prior Reassignment</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>Date - Write over</label>
+                </value>
+                <value>
+                    <fullName>E</fullName>
+                    <default>false</default>
+                    <label>Dated Incorrectly on Reassignment</label>
+                </value>
+                <value>
+                    <fullName>F</fullName>
+                    <default>false</default>
+                    <label>Incorrect Address on Reassignment</label>
+                </value>
+                <value>
+                    <fullName>G</fullName>
+                    <default>false</default>
+                    <label>Incorrect Name - Wrong Purchaser</label>
+                </value>
+                <value>
+                    <fullName>H</fullName>
+                    <default>false</default>
+                    <label>Mileage - Write over</label>
+                </value>
+                <value>
+                    <fullName>I</fullName>
+                    <default>false</default>
+                    <label>Name - Write over</label>
+                </value>
+                <value>
+                    <fullName>J</fullName>
+                    <default>false</default>
+                    <label>Reassignment not Included</label>
+                </value>
+                <value>
+                    <fullName>K</fullName>
+                    <default>false</default>
+                    <label>Original Owner Missing Signature</label>
+                </value>
+                <value>
+                    <fullName>L</fullName>
+                    <default>false</default>
+                    <label>Reassigned to ACV - Wrong Purchaser</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>Seller Missing Signature &amp; Missing ACV POA</label>
+                </value>
+                <value>
+                    <fullName>O</fullName>
+                    <default>false</default>
+                    <label>VIN Incorrect on Title</label>
+                </value>
+                <value>
+                    <fullName>R</fullName>
+                    <default>false</default>
+                    <label>Year, Make, or Model Incorrect on Title</label>
+                </value>
+                <value>
+                    <fullName>P</fullName>
+                    <default>false</default>
+                    <label>Written Odom Discr.</label>
+                </value>
+                <value>
+                    <fullName>N</fullName>
+                    <default>false</default>
+                    <label>Separate Reassignment Odom Discr.</label>
+                </value>
+                <value>
+                    <fullName>Q</fullName>
+                    <default>false</default>
+                    <label>VIN Incorrect on Reassignment</label>
+                </value>
+                <value>
+                    <fullName>S</fullName>
+                    <default>false</default>
+                    <label>Year, Make, or Model Incorrect on Reassignment</label>
+                </value>
+                <value>
+                    <fullName>T</fullName>
+                    <default>false</default>
+                    <label>Missing Notary</label>
+                </value>
+                <value>
+                    <fullName>U</fullName>
+                    <default>false</default>
+                    <label>Missing Lien Release</label>
+                </value>
+                <value>
+                    <fullName>V</fullName>
+                    <default>false</default>
+                    <label>Damaged Title</label>
+                </value>
+                <value>
+                    <fullName>W</fullName>
+                    <default>false</default>
+                    <label>Undisclosed repossession paperwork</label>
+                </value>
+                <value>
+                    <fullName>Dealer Stamp Used Instead of Notary</fullName>
+                    <default>false</default>
+                    <label>Dealer Stamp Used Instead of Notary</label>
+                </value>
+                <value>
+                    <fullName>Missing Owner POA</fullName>
+                    <default>false</default>
+                    <label>Missing Owner POA</label>
+                </value>
+                <value>
+                    <fullName>Missing One and the Same</fullName>
+                    <default>false</default>
+                    <label>Missing One and the Same</label>
+                </value>
+                <value>
+                    <fullName>Missing Death / Marriage / Divorce Certificate</fullName>
+                    <default>false</default>
+                    <label>Missing Death / Marriage / Divorce Certificate</label>
+                </value>
+                <value>
+                    <fullName>Undisclosed application for title</fullName>
+                    <default>false</default>
+                    <label>Undisclosed application for title</label>
+                </value>
+                <value>
+                    <fullName>Undisclosed Non-Titled Vehicle</fullName>
+                    <default>false</default>
+                    <label>Undisclosed Non-Titled Vehicle</label>
+                </value>
+                <value>
+                    <fullName>More Recently Issued Title</fullName>
+                    <default>false</default>
+                    <label>More Recently Issued Title</label>
+                </value>
+                <value>
+                    <fullName>Buyer Requested Duplicate - Buyer at Fault</fullName>
+                    <default>false</default>
+                    <label>Buyer Requested Duplicate - Buyer at Fault</label>
+                </value>
+                <value>
+                    <fullName>Buyer Requested Duplicate - ACV at Fault</fullName>
+                    <default>false</default>
+                    <label>Buyer Requested Duplicate - ACV at Fault</label>
+                </value>
+                <value>
+                    <fullName>Misspelling on Title</fullName>
+                    <default>false</default>
+                    <label>Misspelling on Title</label>
+                </value>
+                <value>
+                    <fullName>Letter of Correction not Accepted in Purchaser State</fullName>
+                    <default>false</default>
+                    <label>Letter of Correction not Accepted in Purchaser State</label>
+                </value>
+                <value>
+                    <fullName>Information or Signature in Incorrect Location on Title</fullName>
+                    <default>false</default>
+                    <label>Information or Signature in Incorrect Location on Title</label>
+                </value>
+                <value>
+                    <fullName>Misspelling on Reassignment</fullName>
+                    <default>false</default>
+                    <label>Misspelling on Reassignment</label>
+                </value>
+                <value>
+                    <fullName>Information or Signature in Incorrect Location on Reassignment</fullName>
+                    <default>false</default>
+                    <label>Information or Signature in Incorrect Location on Reassignment</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>More Recently Issued Title</controllingFieldValue>
+                <valueName>More Recently Issued Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Buyer Requested Duplicate</controllingFieldValue>
+                <valueName>Buyer Requested Duplicate - Buyer at Fault</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Buyer Requested Duplicate</controllingFieldValue>
+                <valueName>Buyer Requested Duplicate - ACV at Fault</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
+                <valueName>O</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
+                <valueName>R</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
+                <valueName>Misspelling on Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
+                <valueName>Letter of Correction not Accepted in Purchaser State</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
+                <valueName>Information or Signature in Incorrect Location on Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Odometer Discrepancy</controllingFieldValue>
+                <valueName>B</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Odometer Discrepancy</controllingFieldValue>
+                <valueName>P</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Odometer Discrepancy</controllingFieldValue>
+                <valueName>N</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Signature</controllingFieldValue>
+                <valueName>C</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Signature</controllingFieldValue>
+                <valueName>K</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Signature</controllingFieldValue>
+                <valueName>M</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>E</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>F</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>J</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>Q</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>S</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>Misspelling on Reassignment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassignment Error</controllingFieldValue>
+                <valueName>Information or Signature in Incorrect Location on Reassignment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Notary</controllingFieldValue>
+                <valueName>T</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Notary</controllingFieldValue>
+                <valueName>Dealer Stamp Used Instead of Notary</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Write-Overs</controllingFieldValue>
+                <valueName>A</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Write-Overs</controllingFieldValue>
+                <valueName>D</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Write-Overs</controllingFieldValue>
+                <valueName>H</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Write-Overs</controllingFieldValue>
+                <valueName>I</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassigned to Wrong Purchaser</controllingFieldValue>
+                <valueName>G</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Reassigned to Wrong Purchaser</controllingFieldValue>
+                <valueName>L</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Document(s)</controllingFieldValue>
+                <valueName>U</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Document(s)</controllingFieldValue>
+                <valueName>Missing Owner POA</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Document(s)</controllingFieldValue>
+                <valueName>Missing One and the Same</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Missing Document(s)</controllingFieldValue>
+                <valueName>Missing Death / Marriage / Divorce Certificate</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Damaged Title</controllingFieldValue>
+                <valueName>V</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Listing Error</controllingFieldValue>
+                <valueName>W</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Listing Error</controllingFieldValue>
+                <valueName>Undisclosed application for title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Listing Error</controllingFieldValue>
+                <valueName>Undisclosed Non-Titled Vehicle</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <label>QC Problem Identified</label>
+    <nameField>
+        <displayFormat>P{000000}</displayFormat>
+        <label>QC Problem Identified Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>QC Problems Identified</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

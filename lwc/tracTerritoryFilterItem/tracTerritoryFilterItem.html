@@ -1,0 +1,15 @@
+<!--
+ - @description Item for the details of the list item
+ - @name tracTerritoryFilterItem
+ - @author Daniel Labonte, Traction on Demand
+ - @author Karen Reardon, Traction on Demand
+ - @date 2019-09-05
+ -->
+
+<template>
+    <a class="no-decoration" onclick={navigateToRecord}>
+        <div class="slds-p-around_small slds-border_bottom">
+            {item.Work_Order__r.List_View_Display__c} <template if:true={item.Delinquent_Assignment__c}>{alarmClock}</template>
+        </div>
+    </a>
+</template>

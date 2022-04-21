@@ -1,0 +1,97 @@
+<!-- This is the LWC for Bulk Auction Kill -->
+<template>
+    <!-- Error Message -->
+    <template if:true={errorMessage}>
+        <div>
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                    <span class="slds-assistive-text">error</span>
+                    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon size="medium" class="slds-icon" icon-name="utility:error" alternative-text="Error" title="Error"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2><lightning-formatted-text class="slds-text-heading_small" value={errorMessage}></lightning-formatted-text></h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <lightning-button-icon onclick={hideErrorMessage} icon-class="slds-button__icon" size="small" class="slds-button slds-button_icon-inverse" icon-name="utility:close" alternative-text="Close" title="Close"></lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Success Message -->
+    <template if:true={successMessage}>
+        <div>
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                    <span class="slds-assistive-text">success</span>
+                    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon size="medium" class="slds-icon" icon-name="utility:success" alternative-text="Error" title="Error"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2><lightning-formatted-text class="slds-text-heading_small" value={successMessage}></lightning-formatted-text></h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <lightning-button-icon onclick={hideSuccessMessage} icon-class="slds-button__icon" size="small" class="slds-button slds-button_icon-inverse" icon-name="utility:close" alternative-text="Close" title="Close"></lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Header -->
+    <template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+    <div class="slds-align_absolute-center">
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-large">
+                <p class="slds-text-heading_large">Bulk Kill Auction</p>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <!-- Body -->
+    <lightning-layout>
+        <!-- Left Column -->
+        <lightning-layout-item size="6" padding="horizontal-large">
+            <!-- The accordion is default open based on if a section has values in it. -->
+            <lightning-accordion allow-multiple-sections-open
+                         active-section-name={activeOpenSections}>
+                <lightning-accordion-section name="Auctions" label="The follow list contains the Auction(s) that will be killed when you submit this form">
+                    <ul class="slds-has-dividers_bottom-space slds-var-p-*_large">
+                        <!-- Auctions that can be killed -->
+                        <template if:true={auctionsToKillList} for:each={auctionsToKillList} for:item='auction'>
+                            <li class="slds-item" key={auction.id}>
+                                <p><lightning-formatted-url value={auction.idURL} label={auction.yearMakeModelTrim} target="_blank" ></lightning-formatted-url> - Auction #{auction.name}</p>
+                                <p>VIN: {auction.vin} Reserve Price: <lightning-formatted-number value={auction.reservePrice} format-style="currency" currency-code="USD"></lightning-formatted-number> Status: {auction.status}</p>
+                            </li>
+                        </template>
+                    </ul> 
+                </lightning-accordion-section>
+                <lightning-accordion-section name="ILCS" label="These Inventory Life Cycle record(s) do not have an Auction to kill and will not be included in the submit action">
+                    <ul class="slds-has-dividers_bottom-space slds-var-p-*_large">
+                        <!-- Inventory Life Cycle's that don't have an auction that can be killed -->
+                        <template if:true={invalidAuctionsList} for:each={invalidAuctionsList} for:item='ilc'>
+                            <li class="slds-item" key={ilc.Id}>
+                                <p>{ilc.Year_Make_Model_Trim__c} - VIN: {ilc.VIN__c}</p>
+                                <p>Status: {ilc.Status__c}</p>
+                            </li>
+                        </template>
+                    </ul>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </lightning-layout-item>
+        <!-- Right Column -->
+        <lightning-layout-item size="6" padding="horizontal-large">
+            <lightning-textarea name="notes" onchange={setNotesValue} value={notes} label="Why do you want to end these Auctions?" placeholder={defaultNotesMessage}></lightning-textarea>
+            <lightning-layout>
+                <lightning-layout-item size="12" class="slds-align_absolute-center">
+                    <lightning-button label="Back" title="Back" onclick={back} class="slds-m-left_large"></lightning-button>
+                    <lightning-button label="Submit" title="Submit" onclick={submit} disabled={submitDisabled} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
+    <!-- Footer -->
+</template>

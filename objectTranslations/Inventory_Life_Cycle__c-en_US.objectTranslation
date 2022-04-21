@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Inventory Life Cycle</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Inventory Life Cycles</value>
+    </caseValues>
+    <fields>
+        <label><!-- ACV Auction ID --></label>
+        <name>ACV_Auction_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Saved Auction Id --></label>
+        <name>ACV_Saved_Auction_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Archived --></label>
+        <name>Archived__c</name>
+    </fields>
+    <fields>
+        <help><!-- g=Green, y=Yellow, b=Blue, r=red --></help>
+        <label><!-- Auction Lights Concatenation --></label>
+        <name>Auction_Lights_Concatenation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Start Datetime --></label>
+        <name>Auction_Start_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Client --></label>
+        <name>Client__c</name>
+        <relationshipLabel><!-- Inventory Life Cycles (Client) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Dealer Id Text --></label>
+        <name>Dealer_Id_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Id --></label>
+        <name>Dealer_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Type --></label>
+        <name>Dealer_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Force Archival --></label>
+        <name>Force_Archival__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lights --></label>
+        <name>Lights__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Auction --></label>
+        <name>Most_Recent_Auction__c</name>
+        <relationshipLabel><!-- Inventory Life Cycles --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field will stay consistent with the CR related to the Auction. If no Auction yet, this will be the Most Recent CR created --></help>
+        <label><!-- Most Recent Condition Report --></label>
+        <name>Most_Recent_Condition_Report__c</name>
+        <relationshipLabel><!-- Inventory Life Cycles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Work Order Line Item --></label>
+        <name>Most_Recent_Work_Order_Line_Item__c</name>
+        <relationshipLabel><!-- Inventory Life Cycles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Odometer --></label>
+        <name>Odometer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Private Lane --></label>
+        <name>Private_Lane__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processing Status --></label>
+        <name>Processing_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reserve --></label>
+        <name>Reserve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stock # --></label>
+        <name>Stock_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Lookups with Inventory Life Cycle --></label>
+        <name>Update_Lookups_with_Inventory_Life_Cycle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update With Most Current --></label>
+        <name>Update_With_Most_Current__c</name>
+    </fields>
+    <fields>
+        <label><!-- VIN --></label>
+        <name>VIN_Hyperlink_To_Auction__c</name>
+    </fields>
+    <fields>
+        <label><!-- VIN --></label>
+        <name>VIN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle --></label>
+        <name>Vehicle__c</name>
+        <relationshipLabel><!-- Inventory Life Cycles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Year, Make, Model, Trim Text --></label>
+        <name>Year_Make_Model_Trim_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year, Make, Model, Trim --></label>
+        <name>Year_Make_Model_Trim__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <label><!-- Import_Manager --></label>
+        <name>Import_Manager</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Kill_Auction --></label>
+        <name>Kill_Auction</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_to_Run_List --></label>
+        <name>Send_to_Run_List</name>
+    </webLinks>
+</CustomObjectTranslation>

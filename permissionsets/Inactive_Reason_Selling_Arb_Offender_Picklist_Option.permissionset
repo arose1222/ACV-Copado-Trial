@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Inactive_Reason_Selling_Arb_Offender_Picklist_Option</name>
+    </customPermissions>
+    <description>GIVE ACTIVATE/DEACTIVATE ACCOUNT ABILITY Only specific users can select the option &quot;Selling Arb offender&quot; in the Inactive reason picklist required when making a dealer inactive</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Inactive_Sub_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Inactive Reason  - Selling Arb Offender Picklist Option</label>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Account.Standard</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

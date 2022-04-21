@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email notifying ACV Capital that a Borrowed title is 5 days out</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>ACV Capital Borrowed Title</name>
+    <style>freeForm</style>
+    <subject>Borrowed Title 5 Days Out</subject>
+    <textOnly>Hello ACV Capital,
+
+{!Case.Account} has been marked as borrowed for 5 days.
+
+Here is a link to the case record:
+{!Case.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

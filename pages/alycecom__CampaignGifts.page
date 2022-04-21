@@ -1,0 +1,112 @@
+<apex:page standardController="Campaign" extensions="alycecom.GiftsExtension" sidebar="false" showHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.alycecom__fontastic, 'fontastic/fontastic.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alycecom__AlyceCSS)}" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'/>
+    <style>
+        .custom-popup {
+            top: 8%;
+        }
+        .alyce-empty-tab{
+            margin-top: 0;
+        }
+        .top-header {
+            margin-left: 0;
+        }
+        @media only screen and (max-width:1500px){ 
+            #AlycePage .search-input-wrapper{
+                width: 79%;
+                transition: width 0.2s;
+                }
+        }
+        @media only screen and (max-width:1200px){ 
+            #AlycePage .search-input-wrapper{
+                width: 78%;
+                transition: width 0.2s;
+                }
+        }
+        @media only screen and (min-width:1500px){ 
+            #AlycePage .search-input-wrapper{
+                width: 89%;
+                transition: width 0.2s;
+                }
+        }
+        @media only screen and (max-width:1500px){ 
+        #AlycePage .wrapped-search-input{
+            width: 59%;
+            transition: width 0.2s;
+            }
+        }
+        @media only screen and (min-width:1500px){ 
+        #AlycePage .wrapped-search-input{
+            width: 69%;
+            transition: width 0.2s;
+            }
+        }
+        @media only screen and (max-width:1500px){ 
+        #AlycePage .wrapped-search-button{
+            right: 28%;
+            transition: width 0.2s;
+            }
+        }
+        @media only screen and (max-width:1100px){ 
+        #AlycePage .wrapped-search-button{
+            right: 30%;
+            transition: width 0.2s;
+            }
+        }
+        @media only screen and (min-width:1500px){ 
+        #AlycePage .wrapped-search-button{
+            width: 17%;
+            transition: width 0.2s;
+            }
+        }
+        #AlycePage .campaign-button{
+            width: 148px;
+            border-radius: 4px;
+            background-color: #0070d2;
+            padding: 5px 10px;
+            font-size: 15px;
+            text-transform: none;
+            font-family: "effra", helvetica, arial, sans-serif;
+        }
+        #AlycePage .campaign-button:hover {
+            background-color: #0a5da5;
+        }
+    </style>
+    <div style="display: block; position: absolute; width: 100%;">
+        <div Id = "AlycePage">
+            <apex:form id="MainForm" >
+                <apex:variable value="{!ParentId}" var="ParentId"/>
+                <apex:outputPanel rendered="{!DisplayConnectToAlyceSection}">
+                    <div class="welcome-page-header" style="text-align: center; padding-top: 30px;">
+                        This campaign is not connected to Alyce
+                    </div>
+                    <apex:outputPanel rendered="{!UserCanModifyCampaign}">
+                        <div class="welcome-page-description" style="font-size: 16px;">
+                            Connecting your Salesforce campaigns to Alyce allows you to keep track of all of your campaigns in one, easy to use dashboard.
+                        </div>
+                        <div class="welcome-page-description" style="font-size: 16px;">
+                            Choose "Connect with Alyce" to create a new campaign.
+                        </div>
+                        <div class="welcome-page-header" style="text-align: center;">
+                            <apex:commandLink value="Connect with Alyce" styleClass="btn alyce-button blue-button campaign-button" style="text-decoration: none;" action="/apex/alycecom__ConnectCampaign?Id={!ParentId}" target="top"/>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!NOT(UserCanModifyCampaign)}">
+                        <div class="welcome-page-description" style="font-size: 16px;">
+                            You do not have permission to connect this campaign
+                        </div>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT(DisplayConnectToAlyceSection)}">
+                    <div class="welcome-page-header" style="text-align: center; padding-top: 30px;">
+                        This campaign already connected with Alyce!
+                    </div>
+                    <div class="welcome-page-description" style="font-size: 16px;">
+                        Connecting your Salesforce campaigns to Alyce allows you to keep track of all of your campaigns in one, easy to use dashboard.
+                    </div>
+                </apex:outputPanel>
+            </apex:form>
+        </div>
+    </div>
+</apex:page>

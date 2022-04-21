@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- The date when the gift invitation was accepted by the recipient. --></help>
+        <label><!-- Accepted At --></label>
+        <name>alycecom__Accepted_At__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>alycecom__Account__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Status of gift within the Alyce address validation flow --></help>
+        <label><!-- Address Validation Status --></label>
+        <name>alycecom__Address_Validation_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date of the last address validation status update --></help>
+        <label><!-- Address Validation Updated At --></label>
+        <name>alycecom__Address_Validation_Updated_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link to &quot;Alyce Campaign&quot; object in Salesforce. &quot;Alyce Campaign&quot; is hidden object used only for tech purposes. --></help>
+        <label><!-- Alyce Campaign --></label>
+        <name>alycecom__Alyce_Campaign__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Link to Alyce gift landing page. --></help>
+        <label><!-- Alyce Gift Link --></label>
+        <name>alycecom__Alyce_Gift_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- SF only tech field, contains latest synchronization errors if gift synchronization failed --></help>
+        <label><!-- Alyce Synchronization Information --></label>
+        <name>alycecom__Alyce_Synchronization_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Currency --></label>
+        <name>alycecom__Budget_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Value --></label>
+        <name>alycecom__Budget_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Id --></label>
+        <name>alycecom__Campaign_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign --></label>
+        <name>alycecom__Campaign__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient is required to accept sender terms --></help>
+        <label><!-- Capture Affidavit --></label>
+        <name>alycecom__Capture_Availability__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient is required to accept date/time to talk to sender (Calendar). --></help>
+        <label><!-- Capture Date --></label>
+        <name>alycecom__Capture_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient is required to fill his email address --></help>
+        <label><!-- Capture Email --></label>
+        <name>alycecom__Capture_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient is required to fill his phone number. --></help>
+        <label><!-- Capture Phone --></label>
+        <name>alycecom__Capture_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient is required to answer sender&apos;s question. --></help>
+        <label><!-- Capture Question --></label>
+        <name>alycecom__Capture_Question__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link to choose gift and send gift invitation --></help>
+        <label><!-- Choose Gift Option --></label>
+        <name>alycecom__Choose_Options__c</name>
+    </fields>
+    <fields>
+        <help><!-- Description of a product claimed by recipient. --></help>
+        <label><!-- Claimed Description --></label>
+        <name>alycecom__Claimed_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Claimed Gift Cost Value --></label>
+        <name>alycecom__Claimed_Gift_Cost_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Claimed Gift Cost --></label>
+        <name>alycecom__Claimed_Gift_Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- Product images URLs of a product claimed by recipient. --></help>
+        <label><!-- Claimed Gift Image --></label>
+        <name>alycecom__Claimed_Gift_Image__c</name>
+    </fields>
+    <fields>
+        <help><!-- SF only field, it show image based on link stored in Claimed_Gift_Image__c --></help>
+        <label><!-- Claimed Image --></label>
+        <name>alycecom__Claimed_Image__c</name>
+    </fields>
+    <fields>
+        <help><!-- Merchant name of a product claimed by recipient. --></help>
+        <label><!-- Claimed Merchant Name --></label>
+        <name>alycecom__Claimed_Merchant_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of a product claimed by recipient. --></help>
+        <label><!-- Claimed Product Name --></label>
+        <name>alycecom__Claimed_Product_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Title for special description block (for example: &quot;Details&quot;, &quot;Notes&quot;, etc.) --></help>
+        <label><!-- Claimed Special Description Name --></label>
+        <name>alycecom__Claimed_Special_Description_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Extended description (useful notes or details) of product claimed by recipient --></help>
+        <label><!-- Claimed Special Description --></label>
+        <name>alycecom__Claimed_Special_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>alycecom__Contact__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>alycecom__Country__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the gift was created by the sender. --></help>
+        <label><!-- Created At --></label>
+        <name>alycecom__Created_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Meeting Date &amp; Time selected by recipient on Sender&apos;s calendar --></help>
+        <label><!-- Recipient Selected Meeting Date/Time --></label>
+        <name>alycecom__Date_Of_Meeting__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that recipient declined gift --></help>
+        <label><!-- Declined On --></label>
+        <name>alycecom__Declined_On__c</name>
+    </fields>
+    <fields>
+        <help><!-- Method selected for delivering gift invitation --></help>
+        <label><!-- Gift Invitation Delivery Method --></label>
+        <name>alycecom__Delivery_Method__c</name>
+        <picklistValues>
+            <masterLabel>Box</masterLabel>
+            <translation><!-- Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Handwritten Card</masterLabel>
+            <translation><!-- Handwritten Card --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Description of the gift selected for the recipient --></help>
+        <label><!-- Gift Description --></label>
+        <name>alycecom__Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the gift invitation was disabled by the sender. --></help>
+        <label><!-- Disabled At --></label>
+        <name>alycecom__Disabled_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that gift expired --></help>
+        <label><!-- Expired At --></label>
+        <name>alycecom__Expired_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Budget amount set for gift --></help>
+        <label><!-- Gift Budget --></label>
+        <name>alycecom__Gift_Budget__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that gift was purchased and sent to recipient --></help>
+        <label><!-- Gift Finalized --></label>
+        <name>alycecom__Gift_Finalized__c</name>
+    </fields>
+    <fields>
+        <help><!-- Gift unique hash id --></help>
+        <label><!-- Gift Id --></label>
+        <name>alycecom__Gift_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Product images URLs of product sent by recipient. --></help>
+        <label><!-- Gift Image --></label>
+        <name>alycecom__Gift_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Invitation Record --></label>
+        <name>alycecom__Gift_Invitation_Record__c</name>
+    </fields>
+    <fields>
+        <help><!-- Gift message submitted by Sender. --></help>
+        <label><!-- Gift Message --></label>
+        <name>alycecom__Gift_Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the gift selected for the recipient --></help>
+        <label><!-- Gift Name --></label>
+        <name>alycecom__Gift_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Owner --></label>
+        <name>alycecom__Gift_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Reference --></label>
+        <name>alycecom__Gift_Reference__c</name>
+        <picklistValues>
+            <masterLabel>Not too personal</masterLabel>
+            <translation><!-- Not too personal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perfectly matched</masterLabel>
+            <translation><!-- Perfectly matched --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shareable</masterLabel>
+            <translation><!-- Shareable --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Salesforce only tech field --></help>
+        <label><!-- Gift Request Id --></label>
+        <name>alycecom__Gift_Request_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Label of the gift delivery method displayed on the gift list --></help>
+        <label><!-- Gift Send Label --></label>
+        <name>alycecom__Gift_Send_Label__c</name>
+    </fields>
+    <fields>
+        <help><!-- Image of the gift selected for the recipient --></help>
+        <label><!-- Gift Image --></label>
+        <name>alycecom__Image__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the gift invitation was delivered (as reported by USPS) --></help>
+        <label><!-- Invitation Delivered At --></label>
+        <name>alycecom__Invitation_Delivered_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that gift invitation was sent for fulfilment and shipping --></help>
+        <label><!-- Invitation Sent For Fulfilment --></label>
+        <name>alycecom__Invitation_Sent_For_Fulfilment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if Gift Invitation email has bounced --></help>
+        <label><!-- Is Bounced --></label>
+        <name>alycecom__Is_Bounced__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if Gift has been accepted by recipient --></help>
+        <label><!-- Is Claimed --></label>
+        <name>alycecom__Is_Claimed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if Gift has been declined by recipient --></help>
+        <label><!-- Is Declined --></label>
+        <name>alycecom__Is_Declined__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if Gift has expired --></help>
+        <label><!-- Is Expired --></label>
+        <name>alycecom__Is_Expired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead --></label>
+        <name>alycecom__Lead__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Merchant name of the gift selected for the recipient --></help>
+        <label><!-- Gift Merchant Name --></label>
+        <name>alycecom__Merchant_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that information requested from Sender --></help>
+        <label><!-- More Info Requested --></label>
+        <name>alycecom__More_Info_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity --></label>
+        <name>alycecom__Opportunity__c</name>
+        <relationshipLabel><!-- Gifts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date when the Alyce recommended gift(s) are provided to the sender --></help>
+        <label><!-- Options Ready At --></label>
+        <name>alycecom__Options_Ready_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of email addresses who has already received notifications about event that products were proposed --></help>
+        <label><!-- Options Ready Notified --></label>
+        <name>alycecom__Options_Ready_Notified__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of email addresses whom we need to send notifications about event that products were proposed. --></help>
+        <label><!-- Options Ready Notifiers --></label>
+        <name>alycecom__Options_Ready_Notifiers__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recipient&apos;s email address (provided by sender) --></help>
+        <label><!-- Recipient Email --></label>
+        <name>alycecom__Recipient_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Feedback provided by recipient if gift was declined --></help>
+        <label><!-- Recipient Gift Declined Feedback --></label>
+        <name>alycecom__Recipient_Feedback__c</name>
+    </fields>
+    <fields>
+        <help><!-- Gift recipient first name --></help>
+        <label><!-- Recipient First Name --></label>
+        <name>alycecom__Recipient_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recipient Gift Declined Reason --></label>
+        <name>alycecom__Recipient_Gift_Declined_Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- Gift recipient last name --></help>
+        <label><!-- Recipient Last Name --></label>
+        <name>alycecom__Recipient_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recipient --></label>
+        <name>alycecom__Recipient_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recipient&apos;s full name (provided by sender) --></help>
+        <label><!-- Recipient Name --></label>
+        <name>alycecom__Recipient_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Answer provided by recipient to a question asked by sender --></help>
+        <label><!-- Response Provided: Answer --></label>
+        <name>alycecom__Recipient_Response_Answer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email provided by recipient --></help>
+        <label><!-- Response Provided: Email --></label>
+        <name>alycecom__Recipient_Response_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date and time that gift recipient has selected for a meeting time --></help>
+        <label><!-- Recipient Provided Meeting Availability --></label>
+        <name>alycecom__Recipient_Response_Meeting__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recipient message submitted in response to gift invitation. --></help>
+        <label><!-- Recipient Response Message --></label>
+        <name>alycecom__Recipient_Response_Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- Phone Number provided by recipient --></help>
+        <label><!-- Response Provided: Phone --></label>
+        <name>alycecom__Recipient_Response_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that additional information requested from recipient to process gift --></help>
+        <label><!-- Recipient Response Requested --></label>
+        <name>alycecom__Recipient_Response_Requested__c</name>
+    </fields>
+    <fields>
+        <help><!-- Agreement with sender&apos;s terms given by recipient --></help>
+        <label><!-- Recipient Response Sign --></label>
+        <name>alycecom__Recipient_Response_Sign__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if reminder email has been sent to recipient --></help>
+        <label><!-- Reminder Sent --></label>
+        <name>alycecom__Reminder_Sent__c</name>
+    </fields>
+    <fields>
+        <help><!-- The current status of the gift invitation. --></help>
+        <label><!-- Gift Invitation Status --></label>
+        <name>alycecom__Sender_Status_Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sender Status Name --></label>
+        <name>alycecom__Sender_Status_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the gift invitation has completed processing, and is on its way to the recipient --></help>
+        <label><!-- Invitation Sent At --></label>
+        <name>alycecom__Sent_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email address of person who the gift is being sent as --></help>
+        <label><!-- Sent By Email --></label>
+        <name>alycecom__Sent_By_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of person who the gift is being sent as --></help>
+        <label><!-- Sent By Name --></label>
+        <name>alycecom__Sent_By_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email address of person who processed the sending of the gift --></help>
+        <label><!-- Sent As Email --></label>
+        <name>alycecom__Sent_From_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of person who processed the sending of the gift --></help>
+        <label><!-- Sent As Name --></label>
+        <name>alycecom__Sent_From_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date when gift has been sent for Fulfillment --></help>
+        <label><!-- Sent To Fulfillment At --></label>
+        <name>alycecom__Sent_To_Fulfillment_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field represents fulfillment status --></help>
+        <label><!-- Sent To Fulfillment --></label>
+        <name>alycecom__Sent_To_Fulfillment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Internal ID of current Alyce gift status --></help>
+        <label><!-- Gift Status ID --></label>
+        <name>alycecom__Status_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Update Timestamp --></label>
+        <name>alycecom__Status_Update_Timestamp__c</name>
+    </fields>
+    <fields>
+        <help><!-- Internal ID for Alyce team --></help>
+        <label><!-- Team Id --></label>
+        <name>alycecom__Team_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to show if recipient attended booked meeting. --></help>
+        <label><!-- The Meeting Was Held --></label>
+        <name>alycecom__The_Meeting_Was_Held__c</name>
+    </fields>
+    <fields>
+        <help><!-- A tracking link is provided once your gift invitation has been sent. --></help>
+        <label><!-- Tracking Link --></label>
+        <name>alycecom__Tracking_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tracking number for status of gift invitation delivery --></help>
+        <label><!-- Tracking Number --></label>
+        <name>alycecom__Tracking_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status of gift invitation delivery as provided by Shippo --></help>
+        <label><!-- Tracking Delivery Status --></label>
+        <name>alycecom__Tracking_State__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the gift invitation was viewed by the recipient on Alyce.com --></help>
+        <label><!-- Viewed At --></label>
+        <name>alycecom__Viewed_At__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recipient Company Name submitted by Sender --></help>
+        <label><!-- Work Location --></label>
+        <name>alycecom__Work_Location__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- You Cannot Change The Gift Id. --></errorMessage>
+        <name>alycecom__Gift_Id_Not_To_Be_Change</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Refresh_Gift_Details --></label>
+        <name>alycecom__Refresh_Gift_Details</name>
+    </webLinks>
+</CustomObjectTranslation>

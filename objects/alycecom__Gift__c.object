@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>alycecom__Accepted_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift invitation was accepted by the recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift invitation was accepted by the recipient.</inlineHelpText>
+        <label>Accepted At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Address_Validation_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of gift within the Alyce address validation flow</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of gift within the Alyce address validation flow</inlineHelpText>
+        <label>Address Validation Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Address_Validation_Updated_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date of the last address validation status update</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date of the last address validation status update</inlineHelpText>
+        <label>Address Validation Updated At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Alyce_Campaign__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Link to &quot;Alyce Campaign&quot; object in Salesforce. &quot;Alyce Campaign&quot; is hidden object used only for tech purposes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Link to &quot;Alyce Campaign&quot; object in Salesforce. &quot;Alyce Campaign&quot; is hidden object used only for tech purposes.</inlineHelpText>
+        <label>Alyce Campaign</label>
+        <referenceTo>alycecom__Alyce_Campaign__c</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Alyce_Gift_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Link to Alyce gift landing page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Link to Alyce gift landing page.</inlineHelpText>
+        <label>Alyce Gift Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Alyce_Synchronization_Information__c</fullName>
+        <deprecated>false</deprecated>
+        <description>SF only tech field, contains latest synchronization errors if gift synchronization failed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SF only tech field, contains latest synchronization errors if gift synchronization failed</inlineHelpText>
+        <label>Alyce Synchronization Information</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Budget_Currency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Budget Currency</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Budget_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Budget Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Campaign_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>alycecom__Campaign__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Campaign__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Capture_Availability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient is required to accept sender terms</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient is required to accept sender terms</inlineHelpText>
+        <label>Capture Affidavit</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Capture_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient is required to accept date/time to talk to sender (Calendar).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient is required to accept date/time to talk to sender (Calendar).</inlineHelpText>
+        <label>Capture Date</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Capture_Email__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient is required to fill his email address</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient is required to fill his email address</inlineHelpText>
+        <label>Capture Email</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Capture_Phone__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient is required to fill his phone number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient is required to fill his phone number.</inlineHelpText>
+        <label>Capture Phone</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Capture_Question__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient is required to answer sender&apos;s question.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient is required to answer sender&apos;s question.</inlineHelpText>
+        <label>Capture Question</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Choose_Options__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Link to choose gift and send gift invitation</description>
+        <externalId>false</externalId>
+        <formula>IF(alycecom__Status_Id__c == 20 ,HYPERLINK(&quot;/apex/alycecom__GiftChooseOptionsSingle?id=&quot; +Id,IMAGE(&apos;/resource/alycecom__AlyceChooseButton&apos;, &apos;A&apos;,20,100)  , &apos;_parent&apos;),&apos;&apos;)</formula>
+        <inlineHelpText>Link to choose gift and send gift invitation</inlineHelpText>
+        <label>Choose Gift Option</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description of a product claimed by recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of a product claimed by recipient.</inlineHelpText>
+        <label>Claimed Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Gift_Cost_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field matches the final cost, to customers, of accepted gifts, based on the accepted product</description>
+        <externalId>false</externalId>
+        <label>Claimed Gift Cost Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Gift_Cost__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(
+NOT( ISBLANK(alycecom__Claimed_Gift_Cost_Value__c) ),
+alycecom__Budget_Currency__c + &apos; &apos;+ TEXT( alycecom__Claimed_Gift_Cost_Value__c),
+&apos;&apos;
+)</formula>
+        <label>Claimed Gift Cost</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Gift_Image__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Product images URLs of a product claimed by recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Product images URLs of a product claimed by recipient.</inlineHelpText>
+        <label>Claimed Gift Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Image__c</fullName>
+        <deprecated>false</deprecated>
+        <description>SF only field, it show image based on link stored in Claimed_Gift_Image__c</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(alycecom__Claimed_Gift_Image__c) , &apos;&apos;, IMAGE( alycecom__Claimed_Gift_Image__c , &apos;A&apos; , 300, 300))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>SF only field, it show image based on link stored in Claimed_Gift_Image__c</inlineHelpText>
+        <label>Claimed Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Merchant_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Merchant name of a product claimed by recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Merchant name of a product claimed by recipient.</inlineHelpText>
+        <label>Claimed Merchant Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Product_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of a product claimed by recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of a product claimed by recipient.</inlineHelpText>
+        <label>Claimed Product Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Special_Description_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Title for special description block (for example: &quot;Details&quot;, &quot;Notes&quot;, etc.)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Title for special description block (for example: &quot;Details&quot;, &quot;Notes&quot;, etc.)</inlineHelpText>
+        <label>Claimed Special Description Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Claimed_Special_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Extended description (useful notes or details) of product claimed by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Extended description (useful notes or details) of product claimed by recipient</inlineHelpText>
+        <label>Claimed Special Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Created_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift was created by the sender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift was created by the sender.</inlineHelpText>
+        <label>Created At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Date_Of_Meeting__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Meeting Date &amp; Time selected by recipient on Sender&apos;s calendar</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Meeting Date &amp; Time selected by recipient on Sender&apos;s calendar</inlineHelpText>
+        <label>Recipient Selected Meeting Date/Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Declined_On__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that recipient declined gift</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that recipient declined gift</inlineHelpText>
+        <label>Declined On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Delivery_Method__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Method selected for delivering gift invitation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Method selected for delivering gift invitation</inlineHelpText>
+        <label>Gift Invitation Delivery Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Handwritten Card</fullName>
+                    <default>false</default>
+                    <label>Handwritten Card</label>
+                </value>
+                <value>
+                    <fullName>Box</fullName>
+                    <default>false</default>
+                    <label>Box</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>alycecom__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description of the gift selected for the recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the gift selected for the recipient</inlineHelpText>
+        <label>Gift Description</label>
+        <length>131000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Disabled_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift invitation was disabled by the sender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift invitation was disabled by the sender.</inlineHelpText>
+        <label>Disabled At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Expired_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that gift expired</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that gift expired</inlineHelpText>
+        <label>Expired At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Budget__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Budget amount set for gift</description>
+        <externalId>false</externalId>
+        <formula>IF(
+ NOT( ISBLANK(alycecom__Budget_Value__c) ),
+ alycecom__Budget_Currency__c + &apos; &apos;+  TEXT( alycecom__Budget_Value__c),
+ &apos;&apos; 
+)</formula>
+        <inlineHelpText>Budget amount set for gift</inlineHelpText>
+        <label>Gift Budget</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Finalized__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that gift was purchased and sent to recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that gift was purchased and sent to recipient</inlineHelpText>
+        <label>Gift Finalized</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gift unique hash id</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gift unique hash id</inlineHelpText>
+        <label>Gift Id</label>
+        <length>32</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Image__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Product images URLs of product sent by recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Product images URLs of product sent by recipient.</inlineHelpText>
+        <label>Gift Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Invitation_Record__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( alycecom__Gift_Name__c != null, 
+HYPERLINK(&quot;/&quot;+ Id , alycecom__Gift_Name__c ,&apos;_parent&apos;), 
+HYPERLINK(&quot;/&quot;+ Id , alycecom__Sender_Status_Label__c +&quot; for &quot;+ alycecom__Recipient_Name__c ,&apos;_parent&apos;) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gift Invitation Record</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gift message submitted by Sender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gift message submitted by Sender.</inlineHelpText>
+        <label>Gift Message</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the gift selected for the recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the gift selected for the recipient</inlineHelpText>
+        <label>Gift Name</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Owner__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(
+  ISBLANK(Owner:User.Id),
+  HYPERLINK(&quot;/&quot;+  OwnerId  , Owner:Queue.QueueName ,&apos;_parent&apos;), 
+  HYPERLINK(&quot;/&quot;+  OwnerId  , Owner:User.FirstName &amp; &quot; &quot; &amp; Owner:User.LastName ,&apos;_parent&apos;)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gift Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Reference__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Gift Reference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Perfectly matched</fullName>
+                    <default>true</default>
+                    <label>Perfectly matched</label>
+                </value>
+                <value>
+                    <fullName>Not too personal</fullName>
+                    <default>false</default>
+                    <label>Not too personal</label>
+                </value>
+                <value>
+                    <fullName>Shareable</fullName>
+                    <default>false</default>
+                    <label>Shareable</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Request_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Salesforce only tech field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Salesforce only tech field</inlineHelpText>
+        <label>Gift Request Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Gift_Send_Label__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Label of the gift delivery method displayed on the gift list</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Label of the gift delivery method displayed on the gift list</inlineHelpText>
+        <label>Gift Send Label</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Image__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Image of the gift selected for the recipient</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(alycecom__Gift_Image__c) , &apos;&apos;, IMAGE( alycecom__Gift_Image__c , &apos;A&apos; , 300, 300))</formula>
+        <inlineHelpText>Image of the gift selected for the recipient</inlineHelpText>
+        <label>Gift Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Invitation_Delivered_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift invitation was delivered (as reported by USPS)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift invitation was delivered (as reported by USPS)</inlineHelpText>
+        <label>Invitation Delivered At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Invitation_Sent_For_Fulfilment__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that gift invitation was sent for fulfilment and shipping</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that gift invitation was sent for fulfilment and shipping</inlineHelpText>
+        <label>Invitation Sent For Fulfilment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Is_Bounced__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if Gift Invitation email has bounced</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if Gift Invitation email has bounced</inlineHelpText>
+        <label>Is Bounced</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Is_Claimed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if Gift has been accepted by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if Gift has been accepted by recipient</inlineHelpText>
+        <label>Is Claimed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Is_Declined__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if Gift has been declined by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if Gift has been declined by recipient</inlineHelpText>
+        <label>Is Declined</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Is_Expired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if Gift has expired</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if Gift has expired</inlineHelpText>
+        <label>Is Expired</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Lead</label>
+        <referenceTo>Lead</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Merchant_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Merchant name of the gift selected for the recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Merchant name of the gift selected for the recipient</inlineHelpText>
+        <label>Gift Merchant Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__More_Info_Requested__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that information requested from Sender</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that information requested from Sender</inlineHelpText>
+        <label>More Info Requested</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Gifts</relationshipLabel>
+        <relationshipName>Gifts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Options_Ready_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the Alyce recommended gift(s) are provided to the sender</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the Alyce recommended gift(s) are provided to the sender</inlineHelpText>
+        <label>Options Ready At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Options_Ready_Notified__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of email addresses who has already received notifications about event that products were proposed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of email addresses who has already received notifications about event that products were proposed</inlineHelpText>
+        <label>Options Ready Notified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Options_Ready_Notifiers__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of email addresses whom we need to send notifications about event that products were proposed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of email addresses whom we need to send notifications about event that products were proposed.</inlineHelpText>
+        <label>Options Ready Notifiers</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Recipient&apos;s email address (provided by sender)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Recipient&apos;s email address (provided by sender)</inlineHelpText>
+        <label>Recipient Email</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Feedback__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Feedback provided by recipient if gift was declined</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Feedback provided by recipient if gift was declined</inlineHelpText>
+        <label>Recipient Gift Declined Feedback</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_First_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gift recipient first name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gift recipient first name</inlineHelpText>
+        <label>Recipient First Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Gift_Declined_Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Recipient Gift Declined Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Last_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gift recipient last name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gift recipient last name</inlineHelpText>
+        <label>Recipient Last Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( alycecom__Contact__c != null, 
+HYPERLINK(&quot;/&quot;+ alycecom__Contact__c, alycecom__Recipient_Name__c ,&apos;_parent&apos;),
+IF( alycecom__Lead__c != null, 
+HYPERLINK(&quot;/&quot;+ alycecom__Lead__c , alycecom__Recipient_Name__c ,&apos;_parent&apos;),
+alycecom__Recipient_Name__c
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Recipient</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Recipient&apos;s full name (provided by sender)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Recipient&apos;s full name (provided by sender)</inlineHelpText>
+        <label>Recipient Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Answer__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Answer provided by recipient to a question asked by sender</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Answer provided by recipient to a question asked by sender</inlineHelpText>
+        <label>Response Provided: Answer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email provided by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email provided by recipient</inlineHelpText>
+        <label>Response Provided: Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Meeting__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date and time that gift recipient has selected for a meeting time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date and time that gift recipient has selected for a meeting time</inlineHelpText>
+        <label>Recipient Provided Meeting Availability</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Recipient message submitted in response to gift invitation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Recipient message submitted in response to gift invitation.</inlineHelpText>
+        <label>Recipient Response Message</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Phone Number provided by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Phone Number provided by recipient</inlineHelpText>
+        <label>Response Provided: Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Requested__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that additional information requested from recipient to process gift</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that additional information requested from recipient to process gift</inlineHelpText>
+        <label>Recipient Response Requested</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Recipient_Response_Sign__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Agreement with sender&apos;s terms given by recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Agreement with sender&apos;s terms given by recipient</inlineHelpText>
+        <label>Recipient Response Sign</label>
+        <length>16383</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>alycecom__Reminder_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if reminder email has been sent to recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if reminder email has been sent to recipient</inlineHelpText>
+        <label>Reminder Sent</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sender_Status_Label__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The current status of the gift invitation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The current status of the gift invitation.</inlineHelpText>
+        <label>Gift Invitation Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sender_Status_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sender Status Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift invitation has completed processing, and is on its way to the recipient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift invitation has completed processing, and is on its way to the recipient</inlineHelpText>
+        <label>Invitation Sent At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_By_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email address of person who the gift is being sent as</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email address of person who the gift is being sent as</inlineHelpText>
+        <label>Sent By Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_By_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of person who the gift is being sent as</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of person who the gift is being sent as</inlineHelpText>
+        <label>Sent By Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_From_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email address of person who processed the sending of the gift</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email address of person who processed the sending of the gift</inlineHelpText>
+        <label>Sent As Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_From_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of person who processed the sending of the gift</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of person who processed the sending of the gift</inlineHelpText>
+        <label>Sent As Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_To_Fulfillment_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when gift has been sent for Fulfillment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when gift has been sent for Fulfillment</inlineHelpText>
+        <label>Sent To Fulfillment At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Sent_To_Fulfillment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field represents fulfillment status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field represents fulfillment status</inlineHelpText>
+        <label>Sent To Fulfillment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Status_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Internal ID of current Alyce gift status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Internal ID of current Alyce gift status</inlineHelpText>
+        <label>Gift Status ID</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Status_Update_Timestamp__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date of the last status update</description>
+        <externalId>false</externalId>
+        <label>Status Update Timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Team_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Internal ID for Alyce team</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Internal ID for Alyce team</inlineHelpText>
+        <label>Team Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__The_Meeting_Was_Held__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to show if recipient attended booked meeting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to show if recipient attended booked meeting.</inlineHelpText>
+        <label>The Meeting Was Held</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Tracking_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A tracking link is provided once your gift invitation has been sent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A tracking link is provided once your gift invitation has been sent.</inlineHelpText>
+        <label>Tracking Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Tracking_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Tracking number for status of gift invitation delivery</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Tracking number for status of gift invitation delivery</inlineHelpText>
+        <label>Tracking Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Tracking_State__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of gift invitation delivery as provided by Shippo</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of gift invitation delivery as provided by Shippo</inlineHelpText>
+        <label>Tracking Delivery Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Viewed_At__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the gift invitation was viewed by the recipient on Alyce.com</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the gift invitation was viewed by the recipient on Alyce.com</inlineHelpText>
+        <label>Viewed At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Work_Location__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Recipient Company Name submitted by Sender</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Recipient Company Name submitted by Sender</inlineHelpText>
+        <label>Work Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Gift</label>
+    <listViews>
+        <fullName>alycecom__All</fullName>
+        <columns>alycecom__Gift_Invitation_Record__c</columns>
+        <columns>alycecom__Campaign__c</columns>
+        <columns>alycecom__Sender_Status_Label__c</columns>
+        <columns>alycecom__Choose_Options__c</columns>
+        <columns>alycecom__Delivery_Method__c</columns>
+        <columns>alycecom__Invitation_Delivered_At__c</columns>
+        <columns>alycecom__Sent_At__c</columns>
+        <columns>alycecom__Accepted_At__c</columns>
+        <columns>alycecom__Recipient_Link__c</columns>
+        <columns>alycecom__Gift_Owner__c</columns>
+        <columns>alycecom__Gift_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>G-{0000000}</displayFormat>
+        <label>Gift Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Gifts</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>alycecom__Lead__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>alycecom__Contact__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Gift_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Gift_Id__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Lead__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Campaign__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>alycecom__Choose_Options__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>alycecom__Gift_Id_Not_To_Be_Change</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+NOT(ISBLANK(PRIORVALUE(alycecom__Gift_Id__c))),
+ISCHANGED(alycecom__Gift_Id__c)
+)</errorConditionFormula>
+        <errorDisplayField>alycecom__Gift_Id__c</errorDisplayField>
+        <errorMessage>You Cannot Change The Gift Id.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>alycecom__Refresh_Gift_Details</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Refresh Gift Details</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/alycecom__GiftChooseOptionsUpdate?gift_hash_id={!alycecom__Gift__c.alycecom__Gift_Id__c}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,33 @@
+<apex:page standardController="EXPRN__Alerts_View__c" extensions="EXPRN.AlertSummaryController" sidebar="No">
+<Style>
+.pbTitle .h2 {
+    font-size: 1.3em !important;
+}
+.bPageBlock{margin-left:-1%!Important;
+            margin-right:-0.5%!Important;}
+            .headerText{color:#666!Important;}
+.headerStyle{color:#666!Important;
+            font-size:11px;}   
+.dataCell{color:#666!Important;}         
+</style>
+<!--<apex:sectionHeader title="Alerts Summary"/>-->
+ 
+    <apex:form >
+        <apex:pageBlock Title="Top Priority Unread Alerts">
+        <Apex:pageBlockTable value="{!alert}" var="alr" style="color:#666!Important; " >
+        <apex:column headerValue="Alert Date" style="color:#666!Important;" headerClass="headerStyle">
+        <apex:outputField value="{!alr.EXPRN__Alert_Date__c}" /> 
+        </apex:column>
+        <apex:column headerValue="Business" style="color:#666!Important;" headerClass="headerStyle">        
+        <apex:outputField value="{!alr.EXPRN__Business_Name__c}" styleClass="headerStyle" style="color:#666!Important;"/>
+        </apex:column>
+        <apex:column headerValue="Trigger Type" headerClass="headerStyle" style="color:#666!Important;">
+        <apex:outputField value="{!alr.EXPRN__Trigger_Code__c}" /> 
+        </apex:column>
+        <apex:column headerValue="Priority" style="color:#666!Important;" headerClass="headerStyle">
+        <apex:outputField value="{!alr.EXPRN__Priority__c}" /> 
+        </apex:column>
+        </Apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

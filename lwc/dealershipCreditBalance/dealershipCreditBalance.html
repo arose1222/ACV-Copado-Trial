@@ -1,0 +1,19 @@
+<!-- This is the LWC for Displaying a Dealerships Credit Balance -->
+<template>
+    <template if:true={noError}>
+        <lightning-card>
+            <lightning-layout>
+                <lightning-layout-item size=7>
+                    <div class="slds-text-heading_large slds-m-left_small">
+                        <lightning-formatted-text value="Current Credit Balance"></lightning-formatted-text>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <div class="slds-m-right_small slds-float_right">
+                            <lightning-formatted-number class="slds-text-heading_large" value={amount} format-style="currency" currency-code="USD" variant="label-hidden"></lightning-formatted-number>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+    </template>
+</template>

@@ -1,0 +1,205 @@
+<apex:page controller="EXPRN.AlertsSummaryController" renderAs="PDF" readOnly="true" standardStylesheets="true">
+    
+    <head>
+        <style>
+            @page
+            {
+              size:landscape!important;
+            } 
+            
+            .headerLabel {font-weight:bold; font-size:12.5px;}               
+        </style>
+    </head>
+    
+    <body>
+        
+        <apex:image url="{!$Resource.EXPRN__PrintDetails}" width="120" height="70" style="float:right; padding-top:0%; "/>
+           
+        <br/><br/><br/>
+        
+        <apex:outputLabel value="Alerts" style="font-weight:bold; font-size:12px;"/>  
+        <hr/>
+                  
+        <table style="font-size:10px; width:100%; border=1;">
+            <tr width="100%">
+            
+                <td width="50%">
+                
+                    <table>
+                                    
+                        <tr> 
+                            <td> <apex:outputLabel value="Portfolio Name " style="font-weight:bold; font-size:11px;"/> </td>                            
+                            <td> <apex:outputText value=""/> </td> 
+                        </tr>
+                        
+                        <tr> 
+                            <td> <apex:outputLabel value="Portfolio Address " style="font-weight:bold;"/> </td>                            
+                            <td> <apex:outputText value=""/> </td> <!-- 16-10-15 SecurityReview: remove escape = false-->
+                        </tr>
+                        
+                        <tr> 
+                            <td> <apex:outputLabel value="Accounts " style="font-weight:bold;"/> </td>
+                            <td><apex:dynamicComponent componentValue="{!AccountNumbers}" /> </td> <!-- 16-10-15 TCSJ : updated for Securityreview -->                          
+                            
+                        </tr>                    
+                    </table>                                   
+                </td>
+                        
+                <td width="50%">  
+                    <table style="float:left">                   
+                        <tr> 
+                            <td width="40%"> <apex:outputLabel value="Experian Name " style="font-weight:bold;"/> </td>                            
+                            <!--<td> <apex:outputText value="{!AlertView.Business_Name__r.Name}"/> </td> -->
+                            <td> <apex:outputText value="{!AlertView.Business_Name__r.EXPRN__Exp_Business_Name__c}"/> </td>
+                        </tr>
+                        
+                        <tr> 
+                            <td> <apex:outputLabel value="Experian Address " style="font-weight:bold;"/> </td>                            
+                            <td><apex:dynamicComponent componentValue="{!AlertAddress}" /> </td> <!-- 16-10-15 TCSJ : Updated for Securityreview --> 
+                        </tr>
+                        
+                        <tr> 
+                            <td> <apex:outputLabel value="Experian BIN " style="font-weight:bold;"/> </td>                            
+                            <td> <apex:outputText value="{!AlertView.Business_Name__r.EXPRN__BIN_formula__c}"/> </td> 
+                        </tr>
+                    </table>                
+                </td>               
+            </tr>                    
+        </table>         
+        <br/>
+                
+        
+        <apex:outputLabel value="Summary" style="font-weight:bold; font-size:12px;"/>
+        <hr/>
+        
+        <table style="font-size:10px; width:100%; margin-top: -5%;">
+        
+            <tr style="width:100%;">
+            
+                <td style="width:30%;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td width="70%"> <apex:outputLabel value="No. Continuous Trades " style="font-weight:bold;" /> </td> <!-- 16-10-15 Securityreview : removed escape= "false" -->                   
+                            <td style="padding-left:-1%; width=30%;"> <apex:outputText value="{!NoContinuesTrades}"/> </td>
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="Bal. Continuous Trades " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!Bal_ContinuousTrades}"/> </td>                   
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="No. New Continuous Trades " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!No_New_Continues_Trades}"/> </td>  
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="Bal. New & Continuous Trades " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!Bal_New_Continues_Trades}"/> </td>  
+                        </tr>
+                        
+                        <tr>
+                            <td><apex:outputLabel value="Intelliscore Plus" style="font-weight:bold;"/> </td>
+                            <td><apex:outputText value="{!IPScore}" /></td>
+                        </tr> 
+                    </table>
+                </td>
+                
+                <td style="width:30%; margin-top:0%;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td width="50%"> <apex:outputLabel value="6 Mo High Total Balance " style="font-weight:bold;" /> </td>                    
+                            <td width="40%"> <apex:outputText value="{!Mo_High_Total_blnc}"/> </td>
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="6 Mo Low Total Balance " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!Mo_Low_Total_blnc}"/> </td>                   
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="No. of Legal Filings " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!No_of_Legal_Filings}"/> </td>  
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="Bal. of Legal Filings " style="font-weight:bold;" /> </td>                    
+                            <td> <apex:outputText value="{!Bal_of_Legal_Filings}"/> </td>  
+                        </tr>
+                        
+                        <tr>
+                            <td><apex:outputLabel value="Financial Stability Risk" style="font-weight:bold;"/> </td>
+                            <td><apex:outputText value="{!FSRscore}" /></td>
+                        </tr>
+                    </table>
+                </td>
+            
+                <td style="width:40%;"><br/><br/><br/>
+                    <table style="width:100%; float:right;">
+                        <tr>
+                            <td width="30%"> <apex:outputLabel value="High Credit Limit " style="font-weight:bold;" /> </td>                    
+                            <td width="15%"> <apex:outputText value="{!HighLimitCredit}"/> </td>
+                            <td width="40%">&nbsp;</td>
+                        </tr>
+                        
+                        <tr>
+                            <td> <apex:outputLabel value="Percent " style="font-weight:bold;" /> </td> 
+                            <td> <apex:outputLabel value="Current " style="font-weight:bold;" /> </td>        
+                            <td> <apex:outputText value="{!CurrentPercentage}"/> </td>                  
+                        </tr>
+                        
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td> <apex:outputLabel value="1-30 " style="font-weight:bold;" /> </td>       
+                            <td> <apex:outputText value="{!DBT30}"/> </td>                  
+                        </tr>
+                        
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td> <apex:outputLabel value="31-60 " style="font-weight:bold;" /> </td>      
+                            <td> <apex:outputText value="{!DBT60}"/> </td>                  
+                        </tr>
+                        
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td> <apex:outputLabel value="61-90 " style="font-weight:bold;" /> </td>      
+                            <td> <apex:outputText value="{!DBT90}"/> </td>                  
+                        </tr>
+                        
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td> <apex:outputLabel value="91+ " style="font-weight:bold;" /> </td>        
+                            <td> <apex:outputText value="{!DBT120}"/> </td>                 
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+                  
+        <br/>
+      
+        <apex:outputLabel value="Details" style="font-weight:bold; font-size:12px;"/>
+            
+        <hr/>
+            
+        <apex:dataTable value="{!alertWrapperList}" var="a" width="100%" style="font-size: 10px;">
+            <apex:repeat var="f" value="{!$ObjectType.EXPRN__Alert__c.FieldSets.EXPRN__Details}">                                                   
+                <apex:column value="{!a.alert[f]}" headerValue="{!f.label}" headerClass="rich-table-thead" styleClass="rich-table-thead" />                                                                                                                                                    
+            </apex:repeat>
+            
+            <apex:column styleClass="rich-table-thead" headerClass="rich-table-thead">
+                <apex:facet name="header">
+                    Alert Details                                                                                        
+                </apex:facet>
+                
+                <!-- <apex:repeat value="{!a.alertDetails}" var="d">
+                    <apex:outputLabel value="{!d.fieldName} : " style="font-weight:bold;"/>
+                    <apex:outputLabel value="{!d.fieldValue}" escape="false"/> <BR/>
+                </apex:repeat> -->
+                <apex:dynamicComponent componentValue="{!FieldValue}" /><!-- 16-10-15 TCSJ : Updated for Securityreview-->                   
+            </apex:column>
+            
+        </apex:dataTable>      
+                 
+    </body>  
+</apex:page>

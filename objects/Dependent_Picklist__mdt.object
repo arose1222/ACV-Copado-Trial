@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This metadata type mimics the standard picklist dependency feature so that it can be supported in Flow.</description>
+    <fields>
+        <fullName>Controlling_Field_Value__c</fullName>
+        <description>Stores the controlling field value that will drive the dependent options.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Controlling Field Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Controlling_Field__c</fullName>
+        <description>Stores the API name of the controlling field in the dependency.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Use the API name of the controlling field.</inlineHelpText>
+        <label>Controlling Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dependent_Field_Label__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Dependent Field Label</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dependent_Field_Value__c</fullName>
+        <description>Stores the value of the dependent field.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Dependent Field Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dependent_Field__c</fullName>
+        <description>Stores the API name of the dependent field in the dependency.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Use the API name of the dependent field.</inlineHelpText>
+        <label>Dependent Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>Stores the reference to the object where the dependent picklist resides.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Object</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Dependent Picklist</label>
+    <listViews>
+        <fullName>All_Fields</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>Object__c</columns>
+        <columns>Controlling_Field__c</columns>
+        <columns>Controlling_Field_Value__c</columns>
+        <columns>Dependent_Field__c</columns>
+        <columns>Dependent_Field_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Fields</label>
+    </listViews>
+    <pluralLabel>Dependent Picklists</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

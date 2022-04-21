@@ -1,0 +1,8 @@
+<template>
+    <template if:true={pdfUrl}>
+        <iframe src={pdfUrl} style={pdfHeight}></iframe>
+    </template>
+    <template if:false={pdfUrl}>
+        No file has been uploaded relating to this record.
+    </template>
+</template>

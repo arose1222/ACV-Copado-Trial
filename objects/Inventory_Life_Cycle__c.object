@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Inventory_Life_Cycle_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Inventory_Life_Cycle_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_Auction_ID__c</fullName>
+        <description>Used to Kill Auctions. Grabbed from the Auction record</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Auction__r.id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACV Auction ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Saved_Auction_Id__c</fullName>
+        <description>Used to Start an Auction. Grabbed from the Condition Report</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Condition_Report__r.ACV_Saved_Auction_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACV Saved Auction Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Archived__c</fullName>
+        <description>When this checkbox is checked, this record is considered &quot;archived&quot; meaning that it is taken out the logic of updating an existing ilc and a new one will instead be created. Also used to filter out records on the Life View</description>
+        <externalId>false</externalId>
+        <formula>IF( Force_Archival__c = true, true, 
+IF( UPPER(RIGHT(Status__c,4)) = &apos;SOLD&apos; &amp;&amp; TODAY() - DATEVALUE(LastModifiedDate) &gt;= 10, true, false))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Archived</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Auction_Lights_Concatenation__c</fullName>
+        <description>This field is populated by the AuctionLightsConcatenationUpdate Apex class with one letter indicating what lights need to be shown. Is lowercase</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Auction__r.Auction_Lights_Concatenation__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>g=Green, y=Yellow, b=Blue, r=red</inlineHelpText>
+        <label>Auction Lights Concatenation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Start_Datetime__c</fullName>
+        <description>The Start Time of when the Auction Ran</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Auction__r.start_time__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction Start Datetime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Client__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Client</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Inventory Life Cycles (Client)</relationshipLabel>
+        <relationshipName>Inventory_Life_Cycles1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dealer_Id_Text__c</fullName>
+        <description>Used on dataloads</description>
+        <externalId>false</externalId>
+        <label>Dealer Id Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Id__c</fullName>
+        <description>Holds the Dealer Id of the Client</description>
+        <externalId>false</externalId>
+        <formula>Client__r.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <description>This field translates the API Name into the type name. Will need to be updated if the Account field is updated.</description>
+        <externalId>false</externalId>
+        <formula>CASE( TEXT(Client__r.Dealer_Type__c) , 
+&apos;1&apos;,&apos;Franchise&apos;,
+&apos;2&apos;,&apos;Independent&apos;,
+&apos;4&apos;,&apos;Independent - ACV Certified&apos;,
+&apos;3&apos;,&apos;Wholesaler&apos;,
+&apos;5&apos;,&apos;Commercial&apos;,
+TEXT(Client__r.Dealer_Type__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Force_Archival__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When check, this record is considered archived</description>
+        <externalId>false</externalId>
+        <label>Force Archival</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lights__c</fullName>
+        <description>Indicates the Auction Lights from the Most Recent Auciton</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Auction__r.Auction_Lights__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lights</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <description>This is populated with the Billing Address on the Client. Hyper linked to the Most Recent Work Order Line Item if it exists</description>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Most_Recent_Work_Order_Line_Item__c)), HYPERLINK(&apos;/&apos; + Most_Recent_Work_Order_Line_Item__c, Most_Recent_Work_Order_Line_Item__r.WorkOrder.City &amp; &apos;, &apos; &amp; Most_Recent_Work_Order_Line_Item__r.WorkOrder.State, &apos;_self&apos;) , &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Auction__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is populated with the most recent Auction that the car has been listed under. This helps populate some formula fields on Inventory Life Cycle.</description>
+        <externalId>false</externalId>
+        <label>Most Recent Auction</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Inventory Life Cycles</relationshipLabel>
+        <relationshipName>Inventory_Life_Cycles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Condition_Report__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field will stay consistent with the CR related to the Auction. If no Auction yet, this will be the Most Recent CR created</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field will stay consistent with the CR related to the Auction. If no Auction yet, this will be the Most Recent CR created</inlineHelpText>
+        <label>Most Recent Condition Report</label>
+        <referenceTo>Condition_Report__c</referenceTo>
+        <relationshipLabel>Inventory Life Cycles</relationshipLabel>
+        <relationshipName>Inventory_Life_Cycles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Work_Order_Line_Item__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This is linked to the most recent Work Order Line Item for an Inventory Life Cycle</description>
+        <externalId>false</externalId>
+        <label>Most Recent Work Order Line Item</label>
+        <referenceTo>WorkOrderLineItem</referenceTo>
+        <relationshipLabel>Inventory Life Cycles</relationshipLabel>
+        <relationshipName>Inventory_Life_Cycles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Odometer__c</fullName>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.odometer__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Odometer</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Private_Lane__c</fullName>
+        <description>Indicates the Private Lane the Most Recent Auction ran under</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Auction__r.Private_Lane_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Private Lane</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Processing_Status__c</fullName>
+        <description>This is a field that holds a temp status in between Condition Report and Auction. For example, when you take a bulk action on Inventory Rows, it will set the status, while we are waiting for the data to be added into Salesforce</description>
+        <externalId>false</externalId>
+        <label>Processing Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reserve__c</fullName>
+        <description>The floor price of the most recent Condition Report.</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Condition_Report__r.Floor_Price__c</formula>
+        <label>Reserve</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Holds Priority of Status where Priority from Lowest to Highest goes - Work Order Line Item Status, Condition Report Status, Auction Status, Processing Status</description>
+        <externalId>false</externalId>
+        <formula>IF(Force_Archival__c = true,&apos;Vehicle Archived&apos;,
+
+IF(NOT(ISBLANK(Processing_Status__c)), Processing_Status__c,
+
+IF(NOT(ISBLANK(Most_Recent_Auction__c)), &apos;Vehicle &apos; +
+CASE(TEXT(Most_Recent_Auction__r.status__c),
+&apos;Active&apos;,&apos;in Auction&apos;,
+&apos;run_list&apos;,&apos;in Auction&apos;,
+&apos;awaiting_acceptance&apos;,&apos;in Negotiation&apos;,
+&apos;counter_sent&apos;,&apos;in Negotiation&apos;,
+&apos;counter_accepted&apos;,&apos;Sold&apos;,
+&apos;counter_original_accepted&apos;,&apos;Sold&apos;,
+&apos;ended_accepted&apos;,&apos;Sold&apos;,
+&apos;counter_declined&apos;,&apos;Unsold&apos;,
+&apos;counter_original_declined&apos;,&apos;Unsold&apos;,
+&apos;ended_declined&apos;,&apos;Unsold&apos;,
+&apos;ended_killed&apos;,&apos;Unsold&apos;,
+&apos;ended_nobid&apos;,&apos;Unsold&apos;,
+&apos;ended_unwound&apos;,&apos;Unsold&apos;,
+TEXT(Most_Recent_Auction__r.status__c)),
+
+IF( NOT(ISBLANK(Most_Recent_Condition_Report__c)), IF( NOT(ISBLANK(Most_Recent_Condition_Report__r.Floor_Price__c)) &amp;&amp; Most_Recent_Condition_Report__r.Floor_Price__c &gt;= 0 &amp;&amp; Most_Recent_Condition_Report__r.Floor_Price__c != 999999, &apos;Ready to Launch&apos;,
+IF( Most_Recent_Condition_Report__r.Awaiting_Floor_Price__c = TRUE, &apos;Awaiting Floor Price&apos;,
+IF( Most_Recent_Condition_Report__r.CR_in_review__c = TRUE, &apos;Internal Review&apos;,
+IF( Most_Recent_Condition_Report__r.CR_Doc_Complete__c = TRUE, &apos;Inspected&apos;,&apos;&apos;)))),
+
+IF( NOT(ISBLANK(Most_Recent_Work_Order_Line_Item__c)), &apos;Vehicle &apos; + CASE(TEXT(Most_Recent_Work_Order_Line_Item__r.Status), 
+&apos;New&apos;, &apos;Scheduled for Inspection&apos;,
+&apos;Cancelled&apos;,&apos;Archived&apos;,
+TEXT(Most_Recent_Work_Order_Line_Item__r.Status)),
+
+&apos;&apos;)))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stock_Number__c</fullName>
+        <description>Populated with the value on the Most Recent Work Order Line Item</description>
+        <externalId>false</externalId>
+        <formula>Most_Recent_Work_Order_Line_Item__r.Stock_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stock #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Update_Lookups_with_Inventory_Life_Cycle__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Update Lookups with Inventory Life Cycle</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Update_With_Most_Current__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Update With Most Current</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VIN_Hyperlink_To_Auction__c</fullName>
+        <description>Creates a hyper link that when the VIN is clicked, it will navigate us to the Auction rather than the vehicle record</description>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Most_Recent_Auction__c)), HYPERLINK(&apos;/&apos; &amp;  Most_Recent_Auction__c , VIN__c, &apos;_self&apos;) , VIN__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VIN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <description>Vin Number of the Vehicle. This will be populated either when a WOLI is created or a Vehicle is created.</description>
+        <externalId>true</externalId>
+        <label>VIN</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Inventory Life Cycles</relationshipLabel>
+        <relationshipName>Inventory_Life_Cycles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Year_Make_Model_Trim_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Vehicle__c)), Vehicle__r.Year_Make_Model_Trim__c, IF(NOT(ISBLANK(Most_Recent_Work_Order_Line_Item__c)), Most_Recent_Work_Order_Line_Item__r.Year_and_Make_and_Model__c, &apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year, Make, Model, Trim Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_Make_Model_Trim__c</fullName>
+        <description>Hyper links to the Most Recent Condition Report if it exists</description>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Most_Recent_Condition_Report__c)), HYPERLINK(&apos;/&apos; &amp; Most_Recent_Condition_Report__c, IF(ISBLANK(Vehicle__c), Most_Recent_Work_Order_Line_Item__r.Year_and_Make_and_Model__c,Vehicle__r.Year_Make_Model_Trim__c), &apos;_self&apos;),  IF(ISBLANK(Vehicle__c), Most_Recent_Work_Order_Line_Item__r.Year_and_Make_and_Model__c,Vehicle__r.Year_Make_Model_Trim__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year, Make, Model, Trim</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Inventory Life Cycle</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Dealer_Id__c</columns>
+        <columns>Client__c</columns>
+        <columns>Location__c</columns>
+        <columns>VIN_Hyperlink_To_Auction__c</columns>
+        <columns>Status__c</columns>
+        <columns>Year_Make_Model_Trim__c</columns>
+        <columns>Odometer__c</columns>
+        <columns>Reserve__c</columns>
+        <columns>Lights__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Dealer_Id__c</field>
+            <operation>equals</operation>
+            <value>1257018</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Inventory Life Cycle Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Inventory Life Cycles</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Forward</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <listViewButtons>Import_Manager</listViewButtons>
+        <listViewButtons>Kill_Auction</listViewButtons>
+        <listViewButtons>Send_to_Run_List</listViewButtons>
+        <searchResultsAdditionalFields>Dealer_Id__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Client__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>VIN_Hyperlink_To_Auction__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Year_Make_Model_Trim__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Odometer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Reserve__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Lights__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Import_Manager</fullName>
+        <availability>online</availability>
+        <description>Navigates the user to the Import Manager</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Import Manager</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/lightning/n/Import_Manager</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Kill_Auction</fullName>
+        <availability>online</availability>
+        <description>Used to bulk Kill Auctions</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Kill Auction</masterLabel>
+        <openType>noSidebar</openType>
+        <page>AuctionKillWrapper</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_to_Run_List</fullName>
+        <availability>online</availability>
+        <description>This is used on the Inventory Life Cycle List view to Bulk send to run list</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send to Run List</masterLabel>
+        <openType>sidebar</openType>
+        <page>RunListSendWrapper</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

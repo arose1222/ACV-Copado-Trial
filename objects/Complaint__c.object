@@ -1,0 +1,4749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Arb_Complaint_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Arb_Complaint_Layout</fullName>
+        <fields>claim_type__c</fields>
+        <fields>arbitration_id__c</fields>
+        <fields>complaint_type__c</fields>
+        <fields>Complexity__c</fields>
+        <fields>valid__c</fields>
+        <fields>avoidable__c</fields>
+        <label>Arb Complaint Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A child object of Case to be used in arbitration claims process to log the complaints that accompany a claim.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Additional_evidence_required__c</fullName>
+        <description>The additional evidence required</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What evidence should have been added to avoid a valid arbitration case?</inlineHelpText>
+        <label>Additional evidence required?</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Complaint_Id__c</fullName>
+        <description>Complaint Id that is coming through the event processed by the arbitration consumer.</description>
+        <externalId>true</externalId>
+        <label>Arbitration Complaint Id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Number_Complaint__c</fullName>
+        <externalId>false</externalId>
+        <formula>arbitration_id__r.Auction_Number__r.id__c</formula>
+        <label>Auction Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Avoidable_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Avoidable Notes</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Avoidable_Reason__c</fullName>
+        <description>Why was this complaint avoidable - filled out in the complaint flow.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Why was this complaint avoidable</inlineHelpText>
+        <label>Avoidable Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>avoidable__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Included in photos, not in notes - VCI Error</fullName>
+                    <default>false</default>
+                    <label>Included in photos, not in notes - VCI Error</label>
+                </value>
+                <value>
+                    <fullName>Included in notes, not in photos - VCI Error</fullName>
+                    <default>false</default>
+                    <label>Included in notes, not in photos - VCI Error</label>
+                </value>
+                <value>
+                    <fullName>Included in amp recording, not in notes - VCI Error</fullName>
+                    <default>false</default>
+                    <label>Included in amp recording, not in notes - VCI Error</label>
+                </value>
+                <value>
+                    <fullName>Described incorrectly - VCI Error</fullName>
+                    <default>false</default>
+                    <label>Described incorrectly - VCI Error</label>
+                </value>
+                <value>
+                    <fullName>Not included at all in CR - VCI Error</fullName>
+                    <default>false</default>
+                    <label>Not included at all in CR - VCI Error</label>
+                </value>
+                <value>
+                    <fullName>Not covered by policy</fullName>
+                    <default>false</default>
+                    <label>Not covered by policy</label>
+                </value>
+                <value>
+                    <fullName>High speed issue</fullName>
+                    <default>false</default>
+                    <label>High speed issue</label>
+                </value>
+                <value>
+                    <fullName>Codes cleared ahead of inspection- Seller Intentional</fullName>
+                    <default>false</default>
+                    <label>Codes cleared ahead of inspection- Seller Intentional</label>
+                </value>
+                <value>
+                    <fullName>Vehicle ran prior to inspection - Seller Intentional</fullName>
+                    <default>false</default>
+                    <label>Vehicle ran prior to inspection - Seller Intentional</label>
+                </value>
+                <value>
+                    <fullName>Known issue prior to inspection not disclosed - Seller Intentional</fullName>
+                    <default>false</default>
+                    <label>Known issue prior to inspection not disclosed - Seller Intentional</label>
+                </value>
+                <value>
+                    <fullName>Seller Unintentional</fullName>
+                    <default>false</default>
+                    <label>Seller Unintentional</label>
+                </value>
+                <value>
+                    <fullName>No Evidence Collected</fullName>
+                    <default>false</default>
+                    <label>No Evidence Collected</label>
+                </value>
+                <value>
+                    <fullName>Disclosed Properly</fullName>
+                    <default>false</default>
+                    <label>Disclosed Properly</label>
+                </value>
+                <value>
+                    <fullName>Not Visible on Walkaround Inspection</fullName>
+                    <default>false</default>
+                    <label>Not Visible on Walkaround Inspection</label>
+                </value>
+                <value>
+                    <fullName>No Disclosure Required by Policy</fullName>
+                    <default>false</default>
+                    <label>No Disclosure Required by Policy</label>
+                </value>
+                <value>
+                    <fullName>High speed issue - Seller Intentional</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>High speed issue - Seller Intentional</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Included in photos, not in notes - VCI Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Included in notes, not in photos - VCI Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Included in amp recording, not in notes - VCI Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Described incorrectly - VCI Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Not included at all in CR - VCI Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Not covered by policy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>High speed issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Codes cleared ahead of inspection- Seller Intentional</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Vehicle ran prior to inspection - Seller Intentional</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Known issue prior to inspection not disclosed - Seller Intentional</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Seller Unintentional</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Disclosed Properly</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Not Visible on Walkaround Inspection</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unknown</controllingFieldValue>
+                <valueName>No Evidence Collected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unknown</controllingFieldValue>
+                <valueName>No Disclosure Required by Policy</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Claim_Parent_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Claim Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Arbitration_Claim_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Complaint_Created__c</fullName>
+        <description>Date complaint was created Filled in with a Workflow &quot;Complaint Created Time Stamp&quot;</description>
+        <externalId>false</externalId>
+        <label>Complaint Created</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Complaint_Sub_Type_Bucket__c</fullName>
+        <externalId>false</externalId>
+        <label>Complaint Sub-Type Bucket</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Drivability</fullName>
+                    <default>false</default>
+                    <label>Drivability</label>
+                </value>
+                <value>
+                    <fullName>Engine Accessory Issue</fullName>
+                    <default>false</default>
+                    <label>Engine Accessory Issue</label>
+                </value>
+                <value>
+                    <fullName>Abnormal Exhaust Smoke</fullName>
+                    <default>false</default>
+                    <label>Abnormal Exhaust Smoke</label>
+                </value>
+                <value>
+                    <fullName>Interior Cosmetic Damage</fullName>
+                    <default>false</default>
+                    <label>Interior Cosmetic Damage</label>
+                </value>
+                <value>
+                    <fullName>Tire/Rim Damage/Issue</fullName>
+                    <default>false</default>
+                    <label>Tire/Rim Damage/Issue</label>
+                </value>
+                <value>
+                    <fullName>Title / VIN / Trim Level Discrepancy</fullName>
+                    <default>false</default>
+                    <label>Title / VIN / Trim Level Discrepancy</label>
+                </value>
+                <value>
+                    <fullName>Shifting Issue</fullName>
+                    <default>false</default>
+                    <label>Shifting Issue</label>
+                </value>
+                <value>
+                    <fullName>Transmission Issue</fullName>
+                    <default>false</default>
+                    <label>Transmission Issue</label>
+                </value>
+                <value>
+                    <fullName>Warning Lamps / Codes</fullName>
+                    <default>false</default>
+                    <label>Warning Lamps / Codes</label>
+                </value>
+                <value>
+                    <fullName>Interior Mechanical Issue</fullName>
+                    <default>false</default>
+                    <label>Interior Mechanical Issue</label>
+                </value>
+                <value>
+                    <fullName>Body Damage</fullName>
+                    <default>false</default>
+                    <label>Body Damage</label>
+                </value>
+                <value>
+                    <fullName>Undisclosed Aftermarket Accessory</fullName>
+                    <default>false</default>
+                    <label>Undisclosed Aftermarket Accessory</label>
+                </value>
+                <value>
+                    <fullName>Missing Interior Equipment</fullName>
+                    <default>false</default>
+                    <label>Missing Interior Equipment</label>
+                </value>
+                <value>
+                    <fullName>Steering Issue</fullName>
+                    <default>false</default>
+                    <label>Steering Issue</label>
+                </value>
+                <value>
+                    <fullName>Missing or Inop Keys or Collateral</fullName>
+                    <default>false</default>
+                    <label>Missing or Inop Keys or Collateral</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Complaint_guid__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>GUID generated in Salesforce to identify this unique Complaint Record across Datahub systems</description>
+        <externalId>true</externalId>
+        <label>Complaint guid</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Complexity__c</fullName>
+        <description>Stores the complexity rating of the claim.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A - High Complexity
+B - Medium Complexity
+C - Low Complexity</inlineHelpText>
+        <label>Complexity</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Condition_Report_Question_Id__c</fullName>
+        <description>Condition report section text this complaint is reporting</description>
+        <externalId>false</externalId>
+        <label>Condition Report Question</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>test</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>Minor Body Damage</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>Moderate Body Damage</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>Major Body Damage</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>Collision Damage</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>Scratches</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>Glass Damaged/Cracked</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>Lights Damaged/Cracked</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>Minor Body Rust</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>Moderate Body Rust</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>Major Body Rust</label>
+                </value>
+                <value>
+                    <fullName>17</fullName>
+                    <default>false</default>
+                    <label>Hail Damage</label>
+                </value>
+                <value>
+                    <fullName>18</fullName>
+                    <default>false</default>
+                    <label>Aftermarket Parts - Exterior</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>Mismatched Paint Colors</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>Poor Quality Repairs</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>Paint Meter Readings</label>
+                </value>
+                <value>
+                    <fullName>22</fullName>
+                    <default>false</default>
+                    <label>Previous Paint Work</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>Structural Announcements</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>Undercarriage Surface Rust</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>Undercarriage Heavy Rust</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>Penetrating Rust</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>Jump Start Required</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Engine Does Not Crank</label>
+                </value>
+                <value>
+                    <fullName>29</fullName>
+                    <default>false</default>
+                    <label>Engine Cranks, Does Not Start</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Engine Does Not Stay Running</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>Engine Has Abnormal Ticking Noise</label>
+                </value>
+                <value>
+                    <fullName>32</fullName>
+                    <default>false</default>
+                    <label>Engine Has Knocking Noise</label>
+                </value>
+                <value>
+                    <fullName>33</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Runs Rough/Hesitation</label>
+                </value>
+                <value>
+                    <fullName>34</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Excessive Smoke from Exhaust</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Head Gasket Issue</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>Excessive Exhaust Noise</label>
+                </value>
+                <value>
+                    <fullName>37</fullName>
+                    <default>false</default>
+                    <label>Exhaust Modifications</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>Suspension Modifications</label>
+                </value>
+                <value>
+                    <fullName>39</fullName>
+                    <default>false</default>
+                    <label>Emissions Modifications</label>
+                </value>
+                <value>
+                    <fullName>40</fullName>
+                    <default>false</default>
+                    <label>Aftermarket Parts - Mechanical</label>
+                </value>
+                <value>
+                    <fullName>41</fullName>
+                    <default>false</default>
+                    <label>Engine Accessory Issue</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>Actively Dripping Oil Leak</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>Vehicle INOP (Does Not Move)</label>
+                </value>
+                <value>
+                    <fullName>44</fullName>
+                    <default>false</default>
+                    <label>Transmission Issue</label>
+                </value>
+                <value>
+                    <fullName>45</fullName>
+                    <default>false</default>
+                    <label>4x4 / 4WD / Drivetrain Issue</label>
+                </value>
+                <value>
+                    <fullName>46</fullName>
+                    <default>false</default>
+                    <label>Steering Issue</label>
+                </value>
+                <value>
+                    <fullName>47</fullName>
+                    <default>false</default>
+                    <label>Brake Issue</label>
+                </value>
+                <value>
+                    <fullName>48</fullName>
+                    <default>false</default>
+                    <label>Suspension Issue</label>
+                </value>
+                <value>
+                    <fullName>49</fullName>
+                    <default>false</default>
+                    <label>Check Engine Light</label>
+                </value>
+                <value>
+                    <fullName>50</fullName>
+                    <default>false</default>
+                    <label>Airbag Light</label>
+                </value>
+                <value>
+                    <fullName>51</fullName>
+                    <default>false</default>
+                    <label>Brake/ABS Light</label>
+                </value>
+                <value>
+                    <fullName>52</fullName>
+                    <default>false</default>
+                    <label>Traction Control Light</label>
+                </value>
+                <value>
+                    <fullName>53</fullName>
+                    <default>false</default>
+                    <label>Battery/Charging Light</label>
+                </value>
+                <value>
+                    <fullName>54</fullName>
+                    <default>false</default>
+                    <label>Other Warning Light</label>
+                </value>
+                <value>
+                    <fullName>55</fullName>
+                    <default>false</default>
+                    <label>OBDII Codes</label>
+                </value>
+                <value>
+                    <fullName>56</fullName>
+                    <default>false</default>
+                    <label>Incomplete Readiness Monitors</label>
+                </value>
+                <value>
+                    <fullName>57</fullName>
+                    <default>false</default>
+                    <label>Seat Damage</label>
+                </value>
+                <value>
+                    <fullName>58</fullName>
+                    <default>false</default>
+                    <label>Carpet Damage</label>
+                </value>
+                <value>
+                    <fullName>59</fullName>
+                    <default>false</default>
+                    <label>Dash/Instrument Panel Damage</label>
+                </value>
+                <value>
+                    <fullName>60</fullName>
+                    <default>false</default>
+                    <label>Headliner Damage</label>
+                </value>
+                <value>
+                    <fullName>61</fullName>
+                    <default>false</default>
+                    <label>Interior Trim Damage</label>
+                </value>
+                <value>
+                    <fullName>62</fullName>
+                    <default>false</default>
+                    <label>Interior Odor</label>
+                </value>
+                <value>
+                    <fullName>63</fullName>
+                    <default>false</default>
+                    <label>Major Reconditioning Required</label>
+                </value>
+                <value>
+                    <fullName>64</fullName>
+                    <default>false</default>
+                    <label>Crank Windows</label>
+                </value>
+                <value>
+                    <fullName>65</fullName>
+                    <default>false</default>
+                    <label>Not Equipped with Factory A/C</label>
+                </value>
+                <value>
+                    <fullName>66</fullName>
+                    <default>false</default>
+                    <label>Electronics Issue</label>
+                </value>
+                <value>
+                    <fullName>67</fullName>
+                    <default>false</default>
+                    <label>Sunroof</label>
+                </value>
+                <value>
+                    <fullName>68</fullName>
+                    <default>false</default>
+                    <label>Navigation</label>
+                </value>
+                <value>
+                    <fullName>69</fullName>
+                    <default>false</default>
+                    <label>Aftermarket Stereo Equipment</label>
+                </value>
+                <value>
+                    <fullName>70</fullName>
+                    <default>false</default>
+                    <label>Airbag Deployed</label>
+                </value>
+                <value>
+                    <fullName>71</fullName>
+                    <default>false</default>
+                    <label>Air Conditioning Not Working</label>
+                </value>
+                <value>
+                    <fullName>72</fullName>
+                    <default>false</default>
+                    <label>Leather or Leather Type Seats</label>
+                </value>
+                <value>
+                    <fullName>73</fullName>
+                    <default>false</default>
+                    <label>Aftermarket Rims / Tires</label>
+                </value>
+                <value>
+                    <fullName>74</fullName>
+                    <default>false</default>
+                    <label>Damaged Wheels</label>
+                </value>
+                <value>
+                    <fullName>75</fullName>
+                    <default>false</default>
+                    <label>Incorrectly Sized Tires</label>
+                </value>
+                <value>
+                    <fullName>76</fullName>
+                    <default>false</default>
+                    <label>Damaged Tires</label>
+                </value>
+                <value>
+                    <fullName>77</fullName>
+                    <default>false</default>
+                    <label>Uneven Tread Wear</label>
+                </value>
+                <value>
+                    <fullName>78</fullName>
+                    <default>false</default>
+                    <label>Mismatched Tires</label>
+                </value>
+                <value>
+                    <fullName>79</fullName>
+                    <default>false</default>
+                    <label>Missing Spare Tire and / or Equipment</label>
+                </value>
+                <value>
+                    <fullName>80</fullName>
+                    <default>false</default>
+                    <label>Tire Measurements</label>
+                </value>
+                <value>
+                    <fullName>81</fullName>
+                    <default>false</default>
+                    <label>Title Absent (30 Days)</label>
+                </value>
+                <value>
+                    <fullName>82</fullName>
+                    <default>false</default>
+                    <label>Branded Title</label>
+                </value>
+                <value>
+                    <fullName>83</fullName>
+                    <default>false</default>
+                    <label>True Mileage Unknown/Not Actual Miles</label>
+                </value>
+                <value>
+                    <fullName>84</fullName>
+                    <default>false</default>
+                    <label>Front Line Vehicle</label>
+                </value>
+                <value>
+                    <fullName>85</fullName>
+                    <default>false</default>
+                    <label>Off Lease Vehicle</label>
+                </value>
+                <value>
+                    <fullName>86</fullName>
+                    <default>false</default>
+                    <label>Repair Order Attached</label>
+                </value>
+                <value>
+                    <fullName>88</fullName>
+                    <default>false</default>
+                    <label>Oil/Coolant Intermix on Dipstick?</label>
+                </value>
+                <value>
+                    <fullName>89</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Oil/Coolant Intermix on Dipstick</label>
+                </value>
+                <value>
+                    <fullName>90</fullName>
+                    <default>false</default>
+                    <label>Mobility</label>
+                </value>
+                <value>
+                    <fullName>91</fullName>
+                    <default>false</default>
+                    <label>Five Digit Odometer</label>
+                </value>
+                <value>
+                    <fullName>92</fullName>
+                    <default>false</default>
+                    <label>Repossession Papers Without Title</label>
+                </value>
+                <value>
+                    <fullName>93</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Internal Engine Noise</label>
+                </value>
+                <value>
+                    <fullName>94</fullName>
+                    <default>false</default>
+                    <label>Repossession Papers</label>
+                </value>
+                <value>
+                    <fullName>95</fullName>
+                    <default>false</default>
+                    <label>Engine Problem: Timing Chain/Camshaft Issue</label>
+                </value>
+                <value>
+                    <fullName>96</fullName>
+                    <default>false</default>
+                    <label>TPMS Light</label>
+                </value>
+                <value>
+                    <fullName>97</fullName>
+                    <default>false</default>
+                    <label>Climate Control Not Working</label>
+                </value>
+                <value>
+                    <fullName>98</fullName>
+                    <default>false</default>
+                    <label>Catalytic Converters Missing</label>
+                </value>
+                <value>
+                    <fullName>99</fullName>
+                    <default>false</default>
+                    <label>Body Damage</label>
+                </value>
+                <value>
+                    <fullName>100</fullName>
+                    <default>false</default>
+                    <label>Surface Rust</label>
+                </value>
+                <value>
+                    <fullName>101</fullName>
+                    <default>false</default>
+                    <label>Moderate Rust</label>
+                </value>
+                <value>
+                    <fullName>102</fullName>
+                    <default>false</default>
+                    <label>Heavy Rust</label>
+                </value>
+                <value>
+                    <fullName>103</fullName>
+                    <default>false</default>
+                    <label>Previous Repair</label>
+                </value>
+                <value>
+                    <fullName>104</fullName>
+                    <default>false</default>
+                    <label>Aftermarket Interior Accessories</label>
+                </value>
+                <value>
+                    <fullName>105</fullName>
+                    <default>false</default>
+                    <label>Emissions Sticker Issue</label>
+                </value>
+                <value>
+                    <fullName>106</fullName>
+                    <default>false</default>
+                    <label>Oil Level Issue</label>
+                </value>
+                <value>
+                    <fullName>107</fullName>
+                    <default>false</default>
+                    <label>Oil Condition Issue</label>
+                </value>
+                <value>
+                    <fullName>108</fullName>
+                    <default>false</default>
+                    <label>Coolant Level Issue</label>
+                </value>
+                <value>
+                    <fullName>109</fullName>
+                    <default>false</default>
+                    <label>OBDII Codesㅤ</label>
+                </value>
+                <value>
+                    <fullName>110</fullName>
+                    <default>false</default>
+                    <label>Incomplete Readiness Monitorsㅤ</label>
+                </value>
+                <value>
+                    <fullName>111</fullName>
+                    <default>false</default>
+                    <label>Possible Flood Damage</label>
+                </value>
+                <value>
+                    <fullName>112</fullName>
+                    <default>false</default>
+                    <label>Penetrating Rustㅤ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Condition_Report_Section_Id__c</fullName>
+        <description>Condition report section Id this complaint is reporting</description>
+        <externalId>false</externalId>
+        <label>Condition Report Section Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>Exterior</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Frame &amp; Unibody</label>
+                </value>
+                <value>
+                    <fullName>29</fullName>
+                    <default>false</default>
+                    <label>Mechanicals</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>Wheels &amp; Tires</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>Warning Lights</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>Interior</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>Title &amp; History</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>Driveability</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>Mechanicalsㅤ</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>Warning Lightsㅤ</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>Interiorㅤ</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤ</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>Exteriorㅤ</label>
+                </value>
+                <value>
+                    <fullName>32</fullName>
+                    <default>false</default>
+                    <label>Frame &amp; Unibodyㅤ</label>
+                </value>
+                <value>
+                    <fullName>33</fullName>
+                    <default>false</default>
+                    <label>Mechanicalsㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>34</fullName>
+                    <default>false</default>
+                    <label>Driveabilityㅤ</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>Warning Lightsㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>Interiorㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>37</fullName>
+                    <default>false</default>
+                    <label>Wheels &amp; Tiresㅤ</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>39</fullName>
+                    <default>false</default>
+                    <label>Mechanicalsㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>40</fullName>
+                    <default>false</default>
+                    <label>Warning Lightsㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>41</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>Mechanicalsㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>44</fullName>
+                    <default>false</default>
+                    <label>Exteriorㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>45</fullName>
+                    <default>false</default>
+                    <label>Exteriorㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>46</fullName>
+                    <default>false</default>
+                    <label>Mechanicalsㅤㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>47</fullName>
+                    <default>false</default>
+                    <label>Driveabilityㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>48</fullName>
+                    <default>false</default>
+                    <label>Warning Lightsㅤㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>49</fullName>
+                    <default>false</default>
+                    <label>Interiorㅤㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>50</fullName>
+                    <default>false</default>
+                    <label>Wheels &amp; Tiresㅤㅤ</label>
+                </value>
+                <value>
+                    <fullName>51</fullName>
+                    <default>false</default>
+                    <label>Title &amp; Historyㅤㅤㅤㅤㅤㅤㅤ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Count__c</fullName>
+        <description>Power of one formula for reporting on Complaints with Resolutions without double-counting Complaints.</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Label__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Claim Type: &quot; &amp; TEXT(Claim_Parent_Type__c) &amp; BR() &amp;
+&quot;Claim Sub-Type: &quot; &amp; TEXT(claim_type__c) &amp; BR() &amp;
+&quot;Resolution Count: &quot; &amp; TEXT(Resolution_Count__c) &amp; BR() &amp;
+&quot;Resolution Amount: $&quot; &amp; TEXT(Resolution_Amount__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Needs_Review__c</fullName>
+        <description>Used for flow to determine if the Valid and avoidable fields filled out</description>
+        <externalId>false</externalId>
+        <label>Needs Review</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Post_Close_Resolutions__c</fullName>
+        <externalId>false</externalId>
+        <label>Post Close Resolutions</label>
+        <summaryFilterItems>
+            <field>Resolution__c.Post_Close_Resolution__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Resolution__c.complaint_id__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Resolution_Amount__c</fullName>
+        <description>Rolls up the sum of resolutions against a complaint.</description>
+        <externalId>false</externalId>
+        <label>Resolution Amount</label>
+        <summarizedField>Resolution__c.Amount__c</summarizedField>
+        <summaryForeignKey>Resolution__c.complaint_id__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Resolution_Count__c</fullName>
+        <description>Counts the number of resolutions against a complaint.</description>
+        <externalId>false</externalId>
+        <label>Resolution Count</label>
+        <summaryForeignKey>Resolution__c.complaint_id__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Review_Completed__c</fullName>
+        <description>Checks if all reviewed fields are checked to help place validation rule on case - do not allow case to be moved to &quot;Reviewed&quot; unless complaint total matches reviewed total</description>
+        <externalId>false</externalId>
+        <formula>IF( AND(Reviewed_Valid__c = True,
+ Reviewed_Avoidable__c = True,
+ Reviewed_Avoidable_Reason__c= True, 
+ Reviewed_Invalid_Reason__c = True),1,null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Review Completed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reviewed_Avoidable_Reason__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to check that the reviewer acknowledged the Avoidable Reason selection</description>
+        <externalId>false</externalId>
+        <label>Reviewed Avoidable Reason</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reviewed_Avoidable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to check that the reviewer acknowledged the Avoidable selection</description>
+        <externalId>false</externalId>
+        <label>Reviewed Avoidable</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reviewed_Invalid_Reason__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to check that the reviewer acknowledged the Invalid selection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will only be filled in on an INVALID claim</inlineHelpText>
+        <label>Reviewed Invalid Reason</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reviewed_Valid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to check that the reviewer acknowledged the Valid selection</description>
+        <externalId>false</externalId>
+        <label>Reviewed Valid</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Approved_Credits__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Approved Credits</label>
+        <summarizedField>Resolution__c.Approved_Credits__c</summarizedField>
+        <summaryForeignKey>Resolution__c.complaint_id__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>User_Submitted_Details__c</fullName>
+        <description>Section to put in user submitted details from the arb process</description>
+        <externalId>false</externalId>
+        <label>User Submitted Details</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>What_disclosure_was_misrepresented__c</fullName>
+        <description>What was misrepresented on the CR that validated the claim?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What was misrepresented on the CR that validated the claim?</inlineHelpText>
+        <label>What disclosure was misrepresented?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>valid__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Note</fullName>
+                    <default>false</default>
+                    <label>Note</label>
+                </value>
+                <value>
+                    <fullName>Toggle</fullName>
+                    <default>false</default>
+                    <label>Toggle</label>
+                </value>
+                <value>
+                    <fullName>Picture</fullName>
+                    <default>false</default>
+                    <label>Picture</label>
+                </value>
+                <value>
+                    <fullName>Yellow light</fullName>
+                    <default>false</default>
+                    <label>Yellow light</label>
+                </value>
+                <value>
+                    <fullName>Red Light</fullName>
+                    <default>false</default>
+                    <label>Red Light</label>
+                </value>
+                <value>
+                    <fullName>All disclosures were accurately represented</fullName>
+                    <default>false</default>
+                    <label>All disclosures were accurately represented</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Note</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Toggle</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Picture</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Yellow light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Red Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>All disclosures were accurately represented</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>What_disclosure_was_missing__c</fullName>
+        <description>What disclosure was missing that validated the claim?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What disclosure was missing that validated the claim?</inlineHelpText>
+        <label>What disclosure was missing?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>valid__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Note</fullName>
+                    <default>false</default>
+                    <label>Note</label>
+                </value>
+                <value>
+                    <fullName>Toggle</fullName>
+                    <default>false</default>
+                    <label>Toggle</label>
+                </value>
+                <value>
+                    <fullName>Picture</fullName>
+                    <default>false</default>
+                    <label>Picture</label>
+                </value>
+                <value>
+                    <fullName>Yellow light</fullName>
+                    <default>false</default>
+                    <label>Yellow light</label>
+                </value>
+                <value>
+                    <fullName>Red Light</fullName>
+                    <default>false</default>
+                    <label>Red Light</label>
+                </value>
+                <value>
+                    <fullName>All proper disclosures present</fullName>
+                    <default>false</default>
+                    <label>All proper disclosures present</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Note</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Toggle</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Picture</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Yellow light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>Red Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Yes</controllingFieldValue>
+                <valueName>All proper disclosures present</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>arbitration_id__c</fullName>
+        <description>Stores the reference to the Arbitration case.</description>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Complaints</relationshipLabel>
+        <relationshipName>Complaints</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>avoidable__c</fullName>
+        <description>avoidable</description>
+        <externalId>false</externalId>
+        <label>Avoidable</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Unknown</fullName>
+                    <default>false</default>
+                    <label>Unknown</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>claim_type__c</fullName>
+        <description>Stores the types of Complaints a buyer can claim.</description>
+        <externalId>false</externalId>
+        <label>Claim Sub-Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Claim_Parent_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Arbitration_Claim_Sub_Type</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Abnormal smoke</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Emissions Modifications (Triggers Yellow-Light)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Engine Does Not Crank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Engine Inoperable</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Engine Noise</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Engine Overheats</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Engine Stalls</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Head Gasket</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Rear Main Seal Leak</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engine_Engine_Performance</controllingFieldValue>
+                <valueName>Turbo Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>4x4</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>AWD</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>Difficulty Shifting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>Rear Differential leak</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>Stuck in Gear / no shift / In op</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Transmission</controllingFieldValue>
+                <valueName>Transmission - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Body Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Bumper / Trim</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Exterior - Cosmetic - Other (trim, panels)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Frame Rot</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Hail damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Paint/Poor Quality</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Rims</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Cosmetic</controllingFieldValue>
+                <valueName>Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning_Lamps_Codes</controllingFieldValue>
+                <valueName>Check Engine Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning_Lamps_Codes</controllingFieldValue>
+                <valueName>OBDII</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning_Lamps_Codes</controllingFieldValue>
+                <valueName>Warning Lamp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning_Lamps_Codes</controllingFieldValue>
+                <valueName>Warning Lamps / Codes - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Aftermarket Body Modification / Attachment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Catalytic Converters Missing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Electronic Running Boards</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Engine Bay component body modification / attachment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Exhaust System</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Exterior - Mechanical - Bumper/Trim</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Exterior - Mechanical - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Fluid Leaks</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Glass ( cracked / broken / missing )</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Headlamps/Tail lights Broken or Cracked</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Latches</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Structural Announcements</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Structural Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior_Mechanical</controllingFieldValue>
+                <valueName>Wheels, Broken, Missing, Flat</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Hybric_Electric</controllingFieldValue>
+                <valueName>Hybrid Light on</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Hybric_Electric</controllingFieldValue>
+                <valueName>Missing Charging Cable</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Hybric_Electric</controllingFieldValue>
+                <valueName>Vehicle does not charge</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Interior - Cosmetic - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Interior trim damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Missing Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Non-Seat Feature Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Odor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Seat and Carpet Coverings (Carpet, Cloth, Vinyl, Leather)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Cosmetic</controllingFieldValue>
+                <valueName>Wet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>AC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>Air Bags</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>Electrical / power features / (non-battery)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>Gauges</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>Interior - Features - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Features</controllingFieldValue>
+                <valueName>NAV / Entertainment center / Radio</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Broken / Missing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Interior - Mechanical - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Main Cabin</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Power Windows / Sunroof / Windows / Sliders</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Seats / Belts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior_Mechanical</controllingFieldValue>
+                <valueName>Trunk</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Accessories (Aftermarket adds)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Cameras</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Keys and Collateral (remotes, toppers covers, jacks)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Options / Adds - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Spare Tire</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Options_Adds</controllingFieldValue>
+                <valueName>Tow hitch / Trailer hitch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ride_and_Handling</controllingFieldValue>
+                <valueName>Air Ride Suspension</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ride_and_Handling</controllingFieldValue>
+                <valueName>Bearings / Joins / Boots / Linkage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ride_and_Handling</controllingFieldValue>
+                <valueName>Ride and Handling - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ride_and_Handling</controllingFieldValue>
+                <valueName>Steering</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ride_and_Handling</controllingFieldValue>
+                <valueName>Suspension</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tires_Rims</controllingFieldValue>
+                <valueName>Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tires_Rims</controllingFieldValue>
+                <valueName>Rot</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tires_Rims</controllingFieldValue>
+                <valueName>Spare</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tires_Rims</controllingFieldValue>
+                <valueName>Tires/Rims - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tires_Rims</controllingFieldValue>
+                <valueName>Tread</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>ADAS  (cruise, lane departure)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Battery / hybrid / Power systems / chargers / Key In-op</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Brakes Inop</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Driveability - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Gas Tank / Fuel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>CA DMV Fees</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Flood / Salvage / Carfax Dispute</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Milage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Possible Flood Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Title / History / VIN / Trim - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Title issue, history ,absent / Liens / previous owner</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>Trim</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title_History_VIN_TRIM</controllingFieldValue>
+                <valueName>VIN dispute</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>complaint_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Arbitration_Complaint_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>description__c</fullName>
+        <description>Stores the details of the Complaint.</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>id__c</fullName>
+        <description>The external ID for this complaint from ACV DB.</description>
+        <externalId>true</externalId>
+        <label>id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>insurance__c</fullName>
+        <description>The type field of the parent Case. This maps to the insurance field in ACV DB.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(arbitration_id__r.Type)</formula>
+        <label>Arbitration Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>invalid_Reason__c</fullName>
+        <description>Reason why invalid was selected on the complaint</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Why was this marked as invalid?</inlineHelpText>
+        <label>Invalid Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>valid__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Component not covered by policy</fullName>
+                    <default>false</default>
+                    <label>Component not covered by policy</label>
+                </value>
+                <value>
+                    <fullName>Outside of timeframe</fullName>
+                    <default>false</default>
+                    <label>Outside of timeframe</label>
+                </value>
+                <value>
+                    <fullName>Disclosed Properly in CR</fullName>
+                    <default>false</default>
+                    <label>Disclosed Properly in CR</label>
+                </value>
+                <value>
+                    <fullName>Wearable Part</fullName>
+                    <default>false</default>
+                    <label>Wearable Part</label>
+                </value>
+                <value>
+                    <fullName>Does not Meet Minimum Dollar Threshold</fullName>
+                    <default>false</default>
+                    <label>Does not Meet Minimum Dollar Threshold</label>
+                </value>
+                <value>
+                    <fullName>No Evidence Collected</fullName>
+                    <default>false</default>
+                    <label>No Evidence Collected</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Component not covered by policy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Outside of timeframe</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Disclosed Properly in CR</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Wearable Part</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Does not Meet Minimum Dollar Threshold</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>valid__c</fullName>
+        <description>Field used by Resolution Validation Rule.  Field is required in order to resolve complaint</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field is required in order to resolve complaint</inlineHelpText>
+        <label>Valid</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Complaint</label>
+    <nameField>
+        <displayFormat>AC-{0000000}</displayFormat>
+        <label>Complaint Number</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Complaints</pluralLabel>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Arbitration_Complaint</fullName>
+        <active>true</active>
+        <label>Arbitration Complaint</label>
+        <picklistValues>
+            <picklist>Avoidable_Reason__c</picklist>
+            <values>
+                <fullName>Codes cleared ahead of inspection- Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Described incorrectly - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in amp recording%2C not in notes - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in notes%2C not in photos - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in photos%2C not in notes - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Known issue prior to inspection not disclosed - Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Evidence Collected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not covered by policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not included at all in CR - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Unintentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle ran prior to inspection - Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Claim_Parent_Type__c</picklist>
+            <values>
+                <fullName>Driveability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine_Engine_Performance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior_Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior_Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hybric_Electric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Features</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Options_Adds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ride_and_Handling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tires_Rims</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title_History_VIN_TRIM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning_Lamps_Codes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complaint_Sub_Type_Bucket__c</picklist>
+            <values>
+                <fullName>Abnormal Exhaust Smoke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drivability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Accessory Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Cosmetic Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Mechanical Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Interior Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing or Inop Keys or Collateral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shifting Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tire%2FRim Damage%2FIssue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title %2F VIN %2F Trim Level Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undisclosed Aftermarket Accessory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamps %2F Codes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complexity__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Condition_Report_Question_Id__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>100</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>102</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>103</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>104</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>105</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>106</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>107</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>108</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>109</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>110</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>111</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>112</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>31</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>33</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>34</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>36</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>44</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>49</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>52</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>57</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>58</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>61</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>62</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>63</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>64</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>65</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>66</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>67</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>68</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>69</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>71</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>73</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>74</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>77</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>78</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>79</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>85</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>86</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>88</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>91</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>94</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>96</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Condition_Report_Section_Id__c</picklist>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>31</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>33</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>34</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>36</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>44</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>49</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Needs_Review__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>What_disclosure_was_misrepresented__c</picklist>
+            <values>
+                <fullName>All disclosures were accurately represented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Note</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Picture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toggle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yellow light</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>What_disclosure_was_missing__c</picklist>
+            <values>
+                <fullName>All proper disclosures present</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Note</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Picture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toggle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yellow light</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>avoidable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>claim_type__c</picklist>
+            <values>
+                <fullName>4x4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ADAS  %28cruise%2C lane departure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AWD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Abnormal smoke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Accessories %28Aftermarket adds%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Body Modification %2F Attachment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Air Bags</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Air Ride Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battery %2F hybrid %2F Power systems %2F chargers %2F Key In-op</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bearings %2F Joins %2F Boots %2F Linkage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brakes Inop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broken %2F Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bumper %2F Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalytic Converters Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Engine Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic - Bumper %2F Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Difficulty Shifting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driveability - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical %2F power features %2F %28non-battery%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronic Running Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emissions Modifications %28Triggers Yellow-Light%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Bay component body modification %2F attachment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Does Not Crank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Inoperable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Noise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Overheats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Stalls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Cosmetic - Other %28trim%2C panels%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Mechanical - Bumper%2FTrim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Mechanical - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flood %2F Salvage %2F Carfax Dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fluid Leaks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frame Rot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gas Tank %2F Fuel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gauges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass %28 cracked %2F broken %2F missing %29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hail damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Gasket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Headlamps%2FTail lights Broken or Cracked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hybrid Light on</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Cosmetic - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Features - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Mechanical - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior trim damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keys and Collateral %28remotes%2C toppers covers%2C jacks%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latches</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main Cabin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Milage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Charging Cable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAV %2F Entertainment center %2F Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Seat Feature Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBDII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Options %2F Adds - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paint%2FPoor Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible Flood Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power Windows %2F Sunroof %2F Windows %2F Sliders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Differential leak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Main Seal Leak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ride and Handling - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rims</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seat and Carpet Coverings %28Carpet%2C Cloth%2C Vinyl%2C Leather%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seats %2F Belts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spare Tire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Announcements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stuck in Gear %2F no shift %2F In op</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tires%2FRims - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title %2F History %2F VIN %2F Trim - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title issue%2C history %2Cabsent %2F Liens %2F previous owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tow hitch %2F Trailer hitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tread</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trunk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turbo Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIN dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle does not charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamps %2F Codes - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wheels%2C Broken%2C Missing%2C Flat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>complaint_type__c</picklist>
+            <values>
+                <fullName>Car Not As Described %28ACV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Not As Described %28Seller%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Discrepancy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>invalid_Reason__c</picklist>
+            <values>
+                <fullName>Component not covered by policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disclosed Properly in CR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Does not Meet Minimum Dollar Threshold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Evidence Collected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outside of timeframe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wearable Part</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>valid__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CR_Review_Issue</fullName>
+        <active>true</active>
+        <label>CR Review Issue</label>
+        <picklistValues>
+            <picklist>Avoidable_Reason__c</picklist>
+            <values>
+                <fullName>Codes cleared ahead of inspection- Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Described incorrectly - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in amp recording%2C not in notes - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in notes%2C not in photos - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Included in photos%2C not in notes - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Known issue prior to inspection not disclosed - Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Evidence Collected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not covered by policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not included at all in CR - VCI Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Unintentional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle ran prior to inspection - Seller Intentional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Claim_Parent_Type__c</picklist>
+            <values>
+                <fullName>Driveability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine_Engine_Performance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior_Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior_Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hybric_Electric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Features</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior_Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Options_Adds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ride_and_Handling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tires_Rims</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title_History_VIN_TRIM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning_Lamps_Codes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complaint_Sub_Type_Bucket__c</picklist>
+            <values>
+                <fullName>Abnormal Exhaust Smoke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drivability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Accessory Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Cosmetic Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Mechanical Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Interior Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing or Inop Keys or Collateral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shifting Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tire%2FRim Damage%2FIssue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title %2F VIN %2F Trim Level Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undisclosed Aftermarket Accessory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamps %2F Codes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complexity__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Condition_Report_Question_Id__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>100</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>102</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>103</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>104</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>105</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>106</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>107</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>108</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>109</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>110</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>111</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>112</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>31</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>33</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>34</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>36</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>44</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>49</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>52</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>57</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>58</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>61</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>62</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>63</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>64</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>65</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>66</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>67</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>68</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>69</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>71</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>73</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>74</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>77</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>78</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>79</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>85</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>86</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>88</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>89</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>91</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>94</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>96</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Condition_Report_Section_Id__c</picklist>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>31</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>33</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>34</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>36</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>44</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>49</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Needs_Review__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>What_disclosure_was_misrepresented__c</picklist>
+            <values>
+                <fullName>All disclosures were accurately represented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Note</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Picture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toggle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yellow light</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>What_disclosure_was_missing__c</picklist>
+            <values>
+                <fullName>All proper disclosures present</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Note</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Picture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toggle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yellow light</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>avoidable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>claim_type__c</picklist>
+            <values>
+                <fullName>4x4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ADAS  %28cruise%2C lane departure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AWD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Abnormal smoke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Accessories %28Aftermarket adds%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Body Modification %2F Attachment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Air Bags</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Air Ride Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battery %2F hybrid %2F Power systems %2F chargers %2F Key In-op</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bearings %2F Joins %2F Boots %2F Linkage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brakes Inop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broken %2F Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bumper %2F Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalytic Converters Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Engine Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic - Bumper %2F Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Difficulty Shifting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driveability - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical %2F power features %2F %28non-battery%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronic Running Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emissions Modifications %28Triggers Yellow-Light%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Bay component body modification %2F attachment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Does Not Crank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Inoperable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Noise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Overheats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Stalls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Cosmetic - Other %28trim%2C panels%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Mechanical - Bumper%2FTrim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior - Mechanical - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flood %2F Salvage %2F Carfax Dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fluid Leaks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frame Rot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gas Tank %2F Fuel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gauges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass %28 cracked %2F broken %2F missing %29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hail damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Gasket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Headlamps%2FTail lights Broken or Cracked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hybrid Light on</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Cosmetic - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Features - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior - Mechanical - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior trim damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keys and Collateral %28remotes%2C toppers covers%2C jacks%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latches</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main Cabin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Milage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Charging Cable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAV %2F Entertainment center %2F Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Seat Feature Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBDII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Options %2F Adds - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paint%2FPoor Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible Flood Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power Windows %2F Sunroof %2F Windows %2F Sliders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Differential leak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Main Seal Leak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ride and Handling - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rims</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seat and Carpet Coverings %28Carpet%2C Cloth%2C Vinyl%2C Leather%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seats %2F Belts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spare Tire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Announcements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stuck in Gear %2F no shift %2F In op</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tires%2FRims - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title %2F History %2F VIN %2F Trim - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title issue%2C history %2Cabsent %2F Liens %2F previous owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tow hitch %2F Trailer hitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tread</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trunk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turbo Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIN dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle does not charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lamps %2F Codes - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wheels%2C Broken%2C Missing%2C Flat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>complaint_type__c</picklist>
+            <values>
+                <fullName>Car Not As Described %28ACV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Not As Described %28Seller%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Discrepancy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>invalid_Reason__c</picklist>
+            <values>
+                <fullName>Component not covered by policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disclosed Properly in CR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Does not Meet Minimum Dollar Threshold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outside of timeframe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wearable Part</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>valid__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Avoidable_Yes_must_have_Notes</fullName>
+        <active>true</active>
+        <errorConditionFormula>And (  $Profile.Name != &quot;System Administrator&quot;,
+ ISPICKVAL( avoidable__c, &quot;Yes&quot;),
+  ISBLANK( Avoidable_Notes__c )
+)</errorConditionFormula>
+        <errorDisplayField>Avoidable_Notes__c</errorDisplayField>
+        <errorMessage>You must add details to the Avoidable Notes field in order to save this record as Avoidable.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Avoidable_reason_is_required</fullName>
+        <active>false</active>
+        <description>Avoidable Reason is required when complaint is avoidable</description>
+        <errorConditionFormula>ISPICKVAL( avoidable__c ,&apos;Yes&apos;) &amp;&amp; ISPICKVAL( Avoidable_Reason__c ,&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>Avoidable_Reason__c</errorDisplayField>
+        <errorMessage>Avoidable reason is required when complaint is avoidable.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Disallow_Avoidable_if_Valid_is_No</fullName>
+        <active>false</active>
+        <description>This rule prevents a user from specifying whether a claim was Avoidable or not if the claim is not Valid.</description>
+        <errorConditionFormula>ISPICKVAL(valid__c, &quot;No&quot;) &amp;&amp; NOT(ISBLANK(TEXT(avoidable__c)))</errorConditionFormula>
+        <errorDisplayField>avoidable__c</errorDisplayField>
+        <errorMessage>Please leave Avoidable as &quot;None&quot; if the Claim is not Valid.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Invalid_reason_is_required</fullName>
+        <active>false</active>
+        <description>Invalid Reason is required when complaint is invalid</description>
+        <errorConditionFormula>ISPICKVAL(valid__c,&apos;No&apos;) &amp;&amp; ISPICKVAL(invalid_Reason__c,&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>invalid_Reason__c</errorDisplayField>
+        <errorMessage>Invalid reason is required when complaint is invalid.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Avoidable_if_Valid_equals_Yes</fullName>
+        <active>false</active>
+        <description>This rule requires a user to specify whether a claim was Avoidable if Valid = Yes</description>
+        <errorConditionFormula>ISPICKVAL(valid__c, &quot;Yes&quot;) &amp;&amp; ISBLANK(TEXT(avoidable__c))</errorConditionFormula>
+        <errorDisplayField>avoidable__c</errorDisplayField>
+        <errorMessage>You must specify whether a Valid claim was Avoidable or not.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_fields_when_complaint_is_valid</fullName>
+        <active>false</active>
+        <description>Please fill &quot;What disclosure was misrepresented?&quot;, &quot;What disclosure was missing?&quot; and &quot;Additional evidence required?&quot; when complaint is valid</description>
+        <errorConditionFormula>ISPICKVAL(valid__c,&apos;Yes&apos;) &amp;&amp; (ISBLANK( What_disclosure_was_misrepresented__c) || ISBLANK( What_disclosure_was_missing__c) ||  ISBLANK( Additional_evidence_required__c ) )</errorConditionFormula>
+        <errorMessage>Please fill &quot;What disclosure was misrepresented?&quot;, &quot;What disclosure was missing?&quot; and &quot;Additional evidence required?&quot; when complaint is valid.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

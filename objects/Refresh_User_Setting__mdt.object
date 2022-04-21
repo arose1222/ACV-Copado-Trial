@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>The users in this list will have their emails automatically updated after a refresh</description>
+    <fields>
+        <fullName>Profile_Name__c</fullName>
+        <description>This is populated with the Name of a Profile in Prod that a user can be updated to automatically post refresh.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Optional: If populated with a Profile Name, the user will have the profile also updated on refresh.</inlineHelpText>
+        <label>Profile Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Username__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This is populated with the Prod username of the user you wish to refresh. We query based on this value. Case-Insensitive</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is populated with the prod username.</inlineHelpText>
+        <label>Username</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Refresh User Setting</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Username__c</columns>
+        <columns>Profile_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <pluralLabel>Refresh User Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

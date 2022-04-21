@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email informs user their SF Request has been closed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>SF Request Complete</name>
+    <style>freeForm</style>
+    <subject>Your Salesforce Request &amp; Inquiry Ticket Is Complete!</subject>
+    <textOnly>{!Salesforce_Request__c.OwnerFirstName},
+
+Your Salesforce request ticket is complete!
+
+To view details or connect with the Salesforce team via Chatter, please visit your ticket: {!Salesforce_Request__c.Link}.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

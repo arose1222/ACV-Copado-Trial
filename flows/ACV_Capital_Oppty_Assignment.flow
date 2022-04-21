@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Opp_Re_Assigned</name>
+        <label>Opp Re-Assigned</label>
+        <locationX>710</locationX>
+        <locationY>695</locationY>
+        <actionName>Opportunity.ACV_Capital_Opportunity_Re_assigned_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Opp_Re_Assigned_0</name>
+        <label>Opp Re-Assigned</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <actionName>Opportunity.ACV_Capital_Opportunity_Re_assigned_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <decisions>
+        <description>Does the account have an ACV Capital Sales Rep?</description>
+        <name>Is_Dealer_Assigned_to_Capital</name>
+        <label>Is Dealer Assigned to Capital?</label>
+        <locationX>512</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>END</defaultConnectorLabel>
+        <rules>
+            <name>Not_Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.ACV_Capital_Sales_Rep__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssigntoErica</targetReference>
+            </connector>
+            <label>Not Assigned</label>
+        </rules>
+        <rules>
+            <name>Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.ACV_Capital_Sales_Rep__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_to_ACV_Capital_Sales_Rep</targetReference>
+            </connector>
+            <label>Assigned</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>IF the opportunity owner = Created By User, do not send the email alert.</description>
+        <name>Send_Email_Alert</name>
+        <label>Send Email Alert?</label>
+        <locationX>578</locationX>
+        <locationY>575</locationY>
+        <defaultConnector>
+            <targetReference>Opp_Re_Assigned</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Email Notification</defaultConnectorLabel>
+        <rules>
+            <name>No_email_Alert_needed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.CreatedById</elementReference>
+                </rightValue>
+            </conditions>
+            <label>No Email notification</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>IF the opportunity owner = Created By User, do not send the email alert.</description>
+        <name>Send_Email_Alert_0</name>
+        <label>Send Email Alert?</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <defaultConnector>
+            <targetReference>Opp_Re_Assigned_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Email Notification</defaultConnectorLabel>
+        <rules>
+            <name>No_email_Alert_needed_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.CreatedById</elementReference>
+                </rightValue>
+            </conditions>
+            <label>No Email notification</label>
+        </rules>
+    </decisions>
+    <description>CSO-336 - Assign New Oppty to user marked as Account ACV Capital Sales Rep or, if that is unassigned, assign to Erica Novak.</description>
+    <interviewLabel>ACV Capital Oppty Assignment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ACV Capital Oppty Assignment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Assign owner to user indicated as the ACV Capital Sales Rep on the account</description>
+        <name>Assign_to_ACV_Capital_Sales_Rep</name>
+        <label>Assign to ACV Capital Sales Rep</label>
+        <locationX>578</locationX>
+        <locationY>455</locationY>
+        <connector>
+            <targetReference>Send_Email_Alert</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.Account.ACV_Capital_Sales_Rep__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>AssigntoErica</name>
+        <label>Assign to Erica</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <connector>
+            <targetReference>Send_Email_Alert_0</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>0055b00000OZccvAAD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>386</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Dealer_Assigned_to_Capital</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordType_DeveloperName__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Capital</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

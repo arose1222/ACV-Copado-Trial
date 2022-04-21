@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email alert for transportation to be notified of ACV Transported vehicles with payment issue</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Notify Transportation of Relesed Vehicle with Payment Issue</name>
+    <style>freeForm</style>
+    <subject>Auction Payment Issue and ACV Transport Selected</subject>
+    <textOnly>Auction {!Collections_Auctions__c.Auction_To_Collections__c} was completed and release slips sent out, however there was a payment issue with the buyer.
+
+Please be aware that ACV transport has been selected for this vehicle.
+
+Additional details regarding the failed payment:
+
+Payment issue related to: {!Collections_Auctions__c.Case_Reason__c}
+Additional Details: {!Collections_Auctions__c.Additional_Details__c}
+
+Please reach out to {!Collections_Auctions__c.OwnerFullName} in payments for additional details.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

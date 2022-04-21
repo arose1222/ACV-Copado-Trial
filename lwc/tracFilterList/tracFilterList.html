@@ -1,0 +1,35 @@
+<!--
+* @description Filter lists - two-level tree view of selectable items
+* @author Karen Reardon, Traction on Demand
+* @date 2019-09-12
+-->
+
+<template>
+    <template if:true={getitems}>
+        <template for:each={itemList} for:item='item'>
+            <div class="slds-grid" key={item.name}>
+                <template if:true={item.visible}>
+                    <span key={item.name} class="slds-col slds-grow-none">
+                        <template if:true={item.parent}>
+                            <template if:true={item.expanded}>
+                                <lightning-button variant="base" key={item.name} icon-name="utility:chevrondown" value={item.name} onclick={handleToggle}></lightning-button>
+                            </template>
+                            <template if:false={item.expanded}>
+                                <lightning-button variant="base" key={item.name} icon-name="utility:chevronright" value={item.name} onclick={handleToggle}></lightning-button>
+                            </template>
+                        </template>
+                        <template if:true={item.child} class="slds-p-left_none">
+                            <span class="slds-col slds-p-left_medium slds-grow-none"></span>
+                        </template>
+                        <template if:true={item.grandchild} class="slds-p-left_none">
+                            <span class="slds-col slds-p-left_xx-large slds-grow-none"></span>
+                        </template>
+                    </span>
+                    <span key={item.name} style="width:100%">
+                        <c-trac-filter-item name={item.name} value={item.value} label={item.label} selected={item.selected} onselectitem={handleSelect}></c-trac-filter-item>
+                     </span>
+                </template>
+            </div>
+        </template>
+    </template>
+</template>

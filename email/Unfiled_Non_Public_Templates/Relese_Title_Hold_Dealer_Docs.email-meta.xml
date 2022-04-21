@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Relese Title Hold Dealer Docs</name>
+    <style>freeForm</style>
+    <subject>Lift Title Hold For {!Account.Dealership_ID__c} {!Account.Name}</subject>
+    <textOnly>Hello Titles,
+
+{!Account.Name} has returned their dealer documents  and we can now send any titles that may have been held.
+
+Here is a link to the Account Record: {!Account.Link}
+
+
+Thank you.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

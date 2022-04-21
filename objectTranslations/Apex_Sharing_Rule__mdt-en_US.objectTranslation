@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Apex Sharing Rule</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Apex Sharing Rules</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Field Name --></label>
+        <name>Field_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object API Name --></label>
+        <name>Object_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operation --></label>
+        <name>Operation__c</name>
+        <picklistValues>
+            <masterLabel>Contains</masterLabel>
+            <translation><!-- Contains --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equals</masterLabel>
+            <translation><!-- Equals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Starts With</masterLabel>
+            <translation><!-- Starts With --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If needed, you can use &apos;%%&apos; to represent a white space requirement for the sake any functionality (For example of if you wanted any values that start with &quot;C &lt;Some Territory Name Here&gt;&quot; to be shared with a specific group, you can write it as &quot;C%%&quot; for the sake of the Starts With function. If you just enter &quot;C&quot;, it will then also share records like &quot;Canada&quot; or &quot;Central&quot; (since those start with C). --></help>
+        <label><!-- Value --></label>
+        <name>Value__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

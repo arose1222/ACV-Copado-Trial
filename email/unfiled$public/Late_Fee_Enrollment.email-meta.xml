@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inform TM Dealer has been enrolled in Late Fee Program</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Late Fee Enrollment</name>
+    <style>freeForm</style>
+    <subject>Dealer Added to Title Late Fee Program</subject>
+    <textOnly>{!Account.Name} has been enrolled in the Title Late Fee program.  This dealer will now be charged $25 per day for each late title.  The $25 dollar fee will be applied for up to a maximum of $250 until ACV receives the title and any needed paperwork.
+
+Dealer Name: {!Account.Name}
+Dealer ID:{!Account.Dealership_ID__c}
+
+Link to dealer Account: {!Account.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

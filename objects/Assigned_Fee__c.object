@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction object between Fee&apos;s and another object</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Account associated with the fee.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Account associated with the fee.</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assigned Fees</relationshipLabel>
+        <relationshipName>Assigned_Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Different_Than_Default__c</fullName>
+        <description>If Override Amount is different than the Fee&apos;s default amount, this field is checked.</description>
+        <externalId>false</externalId>
+        <formula>Override_Amount__c &lt;&gt; Fee__r.Default_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Amount Different Than Default</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <description>The amount for this Assigned Fee</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Override_Amount__c), Fee__r.Default_Amount__c, Override_Amount__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Case associated with the fee.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Case associated with the fee.</inlineHelpText>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Assigned Fees</relationshipLabel>
+        <relationshipName>Assigned_Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_Fee_Accessed__c</fullName>
+        <description>The date when the Fee Status changed to Fee assessed. Fee assessed status is set when the Title is received or max fee limit has reached.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the Fee Status changed to Fee assessed. Fee assessed status is set when the Title is received or max fee limit has reached.</inlineHelpText>
+        <label>Date Fee Assessed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fee_Status__c</fullName>
+        <description>Indicates if the fee has been paid or not.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if the fee has been paid or not.</inlineHelpText>
+        <label>Fee Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fee Pending</fullName>
+                    <default>true</default>
+                    <label>Fee Pending</label>
+                </value>
+                <value>
+                    <fullName>Fee Assessed</fullName>
+                    <default>false</default>
+                    <label>Fee Assessed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fee__c</fullName>
+        <description>The Type of Fee associated</description>
+        <externalId>false</externalId>
+        <label>Fee</label>
+        <referenceTo>Fee__c</referenceTo>
+        <relationshipLabel>Assigned Fees</relationshipLabel>
+        <relationshipName>Assigned_Fees</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Override_Amount__c</fullName>
+        <defaultValue>null</defaultValue>
+        <description>If indicated, is used over the default amount on fee</description>
+        <externalId>false</externalId>
+        <label>Override Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Potential_Billable_Amount__c</fullName>
+        <description>Currently, it holds the maximum amount of Title late fee we could have potentially charged if there was no cap on the max late fee amount. Later, we can add more outstanding potential balances/fees.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Currently, it holds the maximum amount of Title late fee we could have potentially charged if there was no cap on the max late fee amount.</inlineHelpText>
+        <label>Potential Billable Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Private_Lane__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Private Lane associated this Fee</description>
+        <externalId>false</externalId>
+        <label>Private Lane</label>
+        <referenceTo>Private_Lane__c</referenceTo>
+        <relationshipLabel>Assigned Fees</relationshipLabel>
+        <relationshipName>Assigned_Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Billable_Amount__c</fullName>
+        <description>Currently, it holds the the total amount of unpaid Title late fee. Later, we can add other outstanding balance.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It holds the the total amount of unpaid Title late fee.</inlineHelpText>
+        <label>Total Billable Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Assigned Fee</label>
+    <nameField>
+        <displayFormat>AF-{0}</displayFormat>
+        <label>Assigned Fee Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Assigned Fees</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Standard_Fee</fullName>
+        <active>true</active>
+        <label>Standard Fee</label>
+        <picklistValues>
+            <picklist>Fee_Status__c</picklist>
+            <values>
+                <fullName>Fee Assessed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fee Pending</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Title_Late_Fee</fullName>
+        <active>true</active>
+        <description>Late Fee when the Title is not received by the due date.</description>
+        <label>Title Late Fee</label>
+        <picklistValues>
+            <picklist>Fee_Status__c</picklist>
+            <values>
+                <fullName>Fee Assessed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fee Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

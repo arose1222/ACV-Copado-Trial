@@ -1,0 +1,8 @@
+<messaging:emailTemplate subject="Alert: Avoidable Resolution {!relatedTo.Case__r.CaseNumber}" recipientType="User" relatedToType="Resolution__c">
+    <messaging:htmlEmailBody >
+        <c:AvoidableResolutionComp currentResId="{!relatedTo.Id}"/>
+    </messaging:htmlEmailBody>
+    <!--<messaging:attachment renderAs="text/html" filename="test.html">
+        <c:AvoidableResolutionAttaComp caseIdProvided="{!relatedTo.Case__c}"/>
+    </messaging:attachment>-->
+</messaging:emailTemplate>

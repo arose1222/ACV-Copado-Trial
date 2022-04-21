@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <description>Update Duration if Scheduled Start or Scheduled End Changed.</description>
+        <name>Assignment_Duration</name>
+        <label>Calculate &amp; Assign Duration</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <assignmentItems>
+            <assignToReference>VariableDuration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>DurationCalcfromSchedEndAndStart</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Duration</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Update Actual Duration if Actual Start or Actual End Changed.</description>
+        <name>Calculate_Assign_Actual_Duration</name>
+        <label>Calculate &amp; Assign Actual Duration</label>
+        <locationX>50</locationX>
+        <locationY>911</locationY>
+        <assignmentItems>
+            <assignToReference>VariableActualDuration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ActualDurationCalcfromActualEndAndStart</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Actual_Duration</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>If Actual Start or Actual End Changes, then Update Actual Duration.</description>
+        <name>ActualStartTime_or_ActualEndTime_Changed</name>
+        <label>ActualStartTime or ActualEndTime Changed</label>
+        <locationX>182</locationX>
+        <locationY>791</locationY>
+        <defaultConnectorLabel>Did Not Changed</defaultConnectorLabel>
+        <rules>
+            <name>Actual_Start_Or_End_Changed</name>
+            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ActualStartTime</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ActualEndTime</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SchedStartTime</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SchedEndTime</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Calculate_Assign_Actual_Duration</targetReference>
+            </connector>
+            <label>Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If Scheduled Start or Scheduled End Changes, then Update Duration.</description>
+        <name>SchedStartTime_or_SchedEndtime_Changed</name>
+        <label>SchedStartTime or SchedEndtime Changed</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>ActualStartTime_or_ActualEndTime_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Did not Change</defaultConnectorLabel>
+        <rules>
+            <name>Scheduled_Start_or_End_Changed</name>
+            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SchedStartTime</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SchedEndTime</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SchedStartTime</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SchedEndTime</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assignment_Duration</targetReference>
+            </connector>
+            <label>Changed</label>
+        </rules>
+    </decisions>
+    <description>ID-3519 In the flow FSL Update Duration or Actual Duration, do not update Duration or Actual Duration if Sched Start or Sched end is NULL</description>
+    <formulas>
+        <description>Calculate Actual Duration from Actual End and Actual Start</description>
+        <name>ActualDurationCalcfromActualEndAndStart</name>
+        <dataType>Number</dataType>
+        <expression>({!$Record.ActualEndTime} - {!$Record.ActualStartTime}) * 24 * 60</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Calculate Duration from Scheduled End and Scheduled Start</description>
+        <name>DurationCalcfromSchedEndAndStart</name>
+        <dataType>Number</dataType>
+        <expression>({!$Record.SchedEndTime} - {!$Record.SchedStartTime}) * 24 * 60</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>FSL Update Duration or Actual Duration {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FSL Update Duration or Actual Duration</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update Duration in the Service Appointment record.</description>
+        <name>Update_Actual_Duration</name>
+        <label>Update Actual Duration</label>
+        <locationX>50</locationX>
+        <locationY>1031</locationY>
+        <inputAssignments>
+            <field>ActualDuration</field>
+            <value>
+                <elementReference>VariableActualDuration</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update Duration in the Service Appointment record.</description>
+        <name>Update_Duration</name>
+        <label>Update Duration</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <connector>
+            <targetReference>ActualStartTime_or_ActualEndTime_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Duration</field>
+            <value>
+                <elementReference>VariableDuration</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>DurationType</field>
+            <value>
+                <stringValue>Minutes</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>SchedStartTime_or_SchedEndtime_Changed</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>SchedStartTime</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SchedEndTime</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ActualStartTime</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ActualEndTime</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>ServiceAppointment</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Variable to store the Actual Duration calculated from Actual End and Actual Start.</description>
+        <name>VariableActualDuration</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <description>Variable to store the Duration calculated from Scheduled End and Scheduled Start.</description>
+        <name>VariableDuration</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+</Flow>

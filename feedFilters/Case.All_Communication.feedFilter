@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFeedFilter xmlns="http://soap.sforce.com/2006/04/metadata">
+    <criteria>
+        <feedItemType>CallLogPost</feedItemType>
+        <relatedSObjectType>Task</relatedSObjectType>
+    </criteria>
+    <criteria>
+        <feedItemType>EmailMessageEvent</feedItemType>
+        <relatedSObjectType>EmailMessage</relatedSObjectType>
+    </criteria>
+    <criteria>
+        <feedItemType>TextPost</feedItemType>
+        <feedItemVisibility>AllUsers</feedItemVisibility>
+    </criteria>
+    <criteria>
+        <feedItemType>CaseCommentPost</feedItemType>
+        <feedItemVisibility>AllUsers</feedItemVisibility>
+        <relatedSObjectType>CaseComment</relatedSObjectType>
+    </criteria>
+    <criteria>
+        <feedItemType>LinkPost</feedItemType>
+        <feedItemVisibility>AllUsers</feedItemVisibility>
+    </criteria>
+    <criteria>
+        <feedItemType>PollPost</feedItemType>
+        <feedItemVisibility>AllUsers</feedItemVisibility>
+    </criteria>
+    <criteria>
+        <feedItemType>SocialPost</feedItemType>
+        <relatedSObjectType>SocialPost</relatedSObjectType>
+    </criteria>
+    <description>Includes Call Log, Email Message, Text Post, Case Comment, Link Post, Poll, and Social Post for Chatter Feed</description>
+    <label>All Communication</label>
+</CustomFeedFilter>

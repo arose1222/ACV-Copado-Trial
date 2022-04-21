@@ -1,0 +1,128 @@
+<!-- This is the LWC For the Participating Dealerships LWC  -->
+<template>
+    <lightning-layout>
+        <!-- Spinner -->
+        <template if:true={activeSpinner}>
+            <div class="spinner">
+                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+        <lightning-layout-item size=12>
+            <!-- Parent Card -->
+            <article class="slds-card">
+                <!-- Parent - Header -->
+                <div class="slds-card__header slds-grid gray-gradient-background slds-p-bottom_small">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <lightning-icon 
+                                icon-name="custom:custom76"
+                                size="small"
+                            ></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span class="slds-m-left_x-small">Participating Dealership Groups</span>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <!-- Parent - Body -->
+                <!-- Iteration to list out each Dealership Group -->
+                <template if:true={showEmptyMessage}>
+                    <div class="slds-m-left_medium">
+                        {emptyMessage}
+                    </div>
+                </template>
+                <template if:false={showEmptyMessage}>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <template for:each={plaList} for:item="thisPla">
+                            <article class="slds-card slds-card_boundary" key={thisPla.Id}>
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <a data-id={thisPla.Organization_Group__c} onclick={handleNavigateToOrgGroup} class="slds-card__header-link slds-truncate" title={thisPla.Organization_Group__r.Name}>
+                                                    <span>{thisPla.Organization_Group__r.Name}</span>
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="slds-no-flex">
+                                            <lightning-button-menu alternative-text="Actions" menu-alignment="auto" onselect={handleButtonMenuSelect} name={thisPla.Id}>
+                                                <lightning-menu-item value="View Information" label="View Information"></lightning-menu-item>
+                                                <lightning-menu-item value="Delete" label="Delete" class="destructiveTextColor"></lightning-menu-item>
+                                            </lightning-button-menu>
+                                        </div>
+                                    </header>
+                                </div>
+                                <div class="slds-card__body slds-card__body_inner">
+                                    <lightning-input type="checkbox" label="Buying Power" name="buyingPower" 
+                                        checked={thisPla.Buying_Power__c}
+                                        disabled=true
+                                    ></lightning-input>
+                                    <lightning-input type="checkbox" label="Selling Power" name="sellingPower" 
+                                        checked={thisPla.Selling_Power__c}
+                                        disabled=true
+                                    ></lightning-input>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
+                </template>
+                <!-- Parent - Footer -->
+                <footer class="slds-card__footer">
+                    <div class="slds-text-align_left">
+                        <lightning-button 
+                            variant="brand" 
+                            label="Add Dealership Group"
+                            title="Add Dealership Group"
+                            icon-name="utility:add"
+                            onclick={handleAddDealershipGroup}
+                        ></lightning-button>
+                    </div>
+                </footer>
+              </article>
+        </lightning-layout-item>
+    </lightning-layout>
+    <!-- Modal -->
+    <template if:true={showModal}>
+        <lightning-layout>
+            <lightning-layout-item size=12>
+                <!-- Modal/Popup Box LWC starts here -->
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">	
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box LWC header here -->
+                        <lightning-layout>
+                            <header id="modalPopup" class="slds-modal__header" style="width:100%">
+                                <lightning-button-icon
+                                    icon-name="utility:close"
+                                    size="large"
+                                    variant="bare"
+                                    alternative-text="Close"
+                                    class="slds-float_right"
+                                    onclick={handleCloseModal}
+                                ></lightning-button-icon>
+                            </header>
+                        </lightning-layout>
+                        <!-- Modal/Popup Box LWC body starts here -->
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <c-private-lane-access-layout
+                                mode="edit"
+                                privatelane={recordId}
+                                isfromrl=true
+                                onclose={handlePrivateLaneAccessClose}
+                            ></c-private-lane-access-layout>
+                        </div>
+                        <!-- Modal/Popup Box LWC footer starts here -->
+                        <lightning-layout>
+                            <lightning-layout-item size=12>
+                                <footer class="slds-modal__footer">
+                                </footer>
+                            </lightning-layout-item>
+                    </lightning-layout>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+</template>

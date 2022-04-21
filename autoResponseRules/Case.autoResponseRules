@@ -1,3 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>ACV Auto-response Rules</fullName>
+        <active>false</active>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Arbitration Claim</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.IsClosedOnCreate</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.SuppliedEmail</field>
+                <operation>notContain</operation>
+                <value>@acvauctions.com</value>
+            </criteriaItems>
+            <notifyCcRecipients>false</notifyCcRecipients>
+            <replyToEmail>acvarbitrations@acvauctions.com</replyToEmail>
+            <senderEmail>system@acvauctions.com</senderEmail>
+            <senderName>ACV Arbitrations</senderName>
+            <template>Arbitration_Claim_Templates/Outbound_Notification_Arb_Case_Created_Text</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

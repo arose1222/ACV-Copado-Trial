@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Border Opacity --></label>
+        <name>geopointe__Border_Opacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Set --></label>
+        <name>geopointe__Data_Set__c</name>
+        <relationshipLabel><!-- Geopointe Map Layers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>geopointe__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Detail --></label>
+        <name>geopointe__Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fields --></label>
+        <name>geopointe__Fields__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fill Opacity --></label>
+        <name>geopointe__Fill_Opacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Folder --></label>
+        <name>geopointe__Folder__c</name>
+        <relationshipLabel><!-- Geopointe Map Layers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Geometry --></label>
+        <name>geopointe__Geometry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Sync Date --></label>
+        <name>geopointe__Last_Sync_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legend --></label>
+        <name>geopointe__Legend__c</name>
+    </fields>
+    <fields>
+        <label><!-- Personal --></label>
+        <name>geopointe__Personal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>geopointe__Type__c</name>
+        <picklistValues>
+            <masterLabel>DataLayer</masterLabel>
+            <translation><!-- DataLayer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thematic</masterLabel>
+            <translation><!-- Thematic --></translation>
+        </picklistValues>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Detail__c field is required for data layers. --></errorMessage>
+        <name>geopointe__Data_Layer_Detail_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Data layers must be associated with a folder if they are not personal. --></errorMessage>
+        <name>geopointe__Data_Layer_Folder_Check</name>
+    </validationRules>
+</CustomObjectTranslation>

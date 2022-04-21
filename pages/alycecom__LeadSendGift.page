@@ -1,0 +1,15 @@
+<apex:page standardController="Lead" extensions="alycecom.LeadSendGiftExtension" sidebar="false" showHeader="false">
+    <apex:include pageName="alycecom__AuthorizationForm"/>
+    <script type="text/javascript">
+        function closeModalDialog() {
+            lead_url = '/{!Lead.Id}';
+            window.parent.location.href = lead_url;
+        }
+        function reloadParent(){
+            window.parent.location.href = window.parent.location.href;
+        }
+    </script>
+    <div Id= "AlycePage">
+        <apex:iframe src="{!$Setup.alycecom__Alyce_Endpoints__c.alycecom__AlyceBase__c}/salesforce/v2/iframe/open/gift-create?sf_id={!SFId}&sf_version={!SFVersion}&token={!AccessToken}&payload={!URLENCODE(PayloadJson)}&cb_success={!BaseURL}/apex/alycecom__CreateGiftPage?LeadId={!Lead.Id}&cb_error={!BaseURL}/apex/alycecom__CreateGiftPage" scrolling="true" Id="AlyceIframeBody"/>
+    </div>
+</apex:page>

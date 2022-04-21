@@ -1,0 +1,1257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Customer_Inquiry_Compact</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Customer_Inquiry_Compact</fullName>
+        <fields>Customer_Inquiry__c</fields>
+        <fields>Call_Bucket__c</fields>
+        <fields>VIN_Last_6__c</fields>
+        <fields>Status__c</fields>
+        <fields>Ops_Case__c</fields>
+        <fields>Account__c</fields>
+        <label>Customer Inquiry Compact</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The account that the CI is related to.</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Customer Inquiries</relationshipLabel>
+        <relationshipName>Customer_Inquiries</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The user assigned to this inquiry</description>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Customer_Inquiries1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assignee_Profile__c</fullName>
+        <description>The profile name of the assigned to user</description>
+        <externalId>false</externalId>
+        <formula>Assigned_To__r.Profile.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Assignee Profile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/&apos;+Ops_Case__r.Auction_Number__c,  Ops_Case__r.Auction_Number__r.Name, &quot;_parent&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Auction</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Related Customer Inquiries</relationshipLabel>
+        <relationshipName>Related_Cases</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Call_Bucket__c</fullName>
+        <description>The bucket that the call falls into.</description>
+        <externalId>false</externalId>
+        <label>Call Bucket</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Buyer Shipment</fullName>
+                    <default>false</default>
+                    <label>Buyer Shipment</label>
+                </value>
+                <value>
+                    <fullName>Sales</fullName>
+                    <default>false</default>
+                    <label>Sales</label>
+                </value>
+                <value>
+                    <fullName>Helpdesk</fullName>
+                    <default>false</default>
+                    <label>Helpdesk</label>
+                </value>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>ACV Transport</fullName>
+                    <default>false</default>
+                    <label>ACV Transport</label>
+                </value>
+                <value>
+                    <fullName>Resolutions</fullName>
+                    <default>false</default>
+                    <label>Resolutions</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Call_Count__c</fullName>
+        <description>The number of times that the customers have called about a specific inquiry.</description>
+        <externalId>false</externalId>
+        <label>Call Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_Notes__c</fullName>
+        <description>The notes from the call.</description>
+        <externalId>false</externalId>
+        <label>Call Notes</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Call_Type__c</fullName>
+        <description>The subset of Call Bucket, further defines what the dealer is calling about.</description>
+        <externalId>false</externalId>
+        <label>Call Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Call_Bucket__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Release Slip</fullName>
+                    <default>false</default>
+                    <label>Release Slip</label>
+                </value>
+                <value>
+                    <fullName>Payment Not Selected</fullName>
+                    <default>false</default>
+                    <label>Payment Not Selected</label>
+                </value>
+                <value>
+                    <fullName>NSF</fullName>
+                    <default>false</default>
+                    <label>NSF</label>
+                </value>
+                <value>
+                    <fullName>Buyer Payment Status</fullName>
+                    <default>false</default>
+                    <label>Buyer Payment Status</label>
+                </value>
+                <value>
+                    <fullName>Seller Payment Status</fullName>
+                    <default>false</default>
+                    <label>Seller Payment Status</label>
+                </value>
+                <value>
+                    <fullName>Default Payment Update</fullName>
+                    <default>false</default>
+                    <label>Default Payment Update</label>
+                </value>
+                <value>
+                    <fullName>ACV Capital</fullName>
+                    <default>false</default>
+                    <label>ACV Capital</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Abandoned</fullName>
+                    <default>false</default>
+                    <label>Abandoned</label>
+                </value>
+                <value>
+                    <fullName>Pickup Issue</fullName>
+                    <default>false</default>
+                    <label>Pickup Issue</label>
+                </value>
+                <value>
+                    <fullName>Cancel Transport</fullName>
+                    <default>false</default>
+                    <label>Cancel Transport</label>
+                </value>
+                <value>
+                    <fullName>Dealmaker</fullName>
+                    <default>false</default>
+                    <label>Dealmaker</label>
+                </value>
+                <value>
+                    <fullName>Make an Offer</fullName>
+                    <default>false</default>
+                    <label>Make an Offer</label>
+                </value>
+                <value>
+                    <fullName>False Proxy</fullName>
+                    <default>false</default>
+                    <label>False Proxy</label>
+                </value>
+                <value>
+                    <fullName>Goodwill Request</fullName>
+                    <default>false</default>
+                    <label>Goodwill Request</label>
+                </value>
+                <value>
+                    <fullName>Multi-Store Buyer</fullName>
+                    <default>false</default>
+                    <label>Multi-Store Buyer</label>
+                </value>
+                <value>
+                    <fullName>Ghost Bid</fullName>
+                    <default>false</default>
+                    <label>Ghost Bid</label>
+                </value>
+                <value>
+                    <fullName>Account/Contact Update</fullName>
+                    <default>false</default>
+                    <label>Account/Contact Update</label>
+                </value>
+                <value>
+                    <fullName>User Login Support</fullName>
+                    <default>false</default>
+                    <label>User Login Support</label>
+                </value>
+                <value>
+                    <fullName>Deactivation</fullName>
+                    <default>false</default>
+                    <label>Deactivation</label>
+                </value>
+                <value>
+                    <fullName>Good Experience</fullName>
+                    <default>false</default>
+                    <label>Good Experience</label>
+                </value>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+                <value>
+                    <fullName>Unwind</fullName>
+                    <default>false</default>
+                    <label>Unwind</label>
+                </value>
+                <value>
+                    <fullName>Competition</fullName>
+                    <default>false</default>
+                    <label>Competition</label>
+                </value>
+                <value>
+                    <fullName>Valid Business Reason</fullName>
+                    <default>false</default>
+                    <label>Valid Business Reason</label>
+                </value>
+                <value>
+                    <fullName>Called No Answer, Try Again</fullName>
+                    <default>false</default>
+                    <label>Called No Answer, Try Again</label>
+                </value>
+                <value>
+                    <fullName>App Education</fullName>
+                    <default>false</default>
+                    <label>App Education</label>
+                </value>
+                <value>
+                    <fullName>Buyer Reported Problem</fullName>
+                    <default>false</default>
+                    <label>Buyer Reported Problem</label>
+                </value>
+                <value>
+                    <fullName>Buyer Title Status</fullName>
+                    <default>false</default>
+                    <label>Buyer Title Status</label>
+                </value>
+                <value>
+                    <fullName>Seller Title Status</fullName>
+                    <default>false</default>
+                    <label>Seller Title Status</label>
+                </value>
+                <value>
+                    <fullName>48 Hour Notice Request</fullName>
+                    <default>false</default>
+                    <label>48 Hour Notice Request</label>
+                </value>
+                <value>
+                    <fullName>Case Status</fullName>
+                    <default>false</default>
+                    <label>Case Status</label>
+                </value>
+                <value>
+                    <fullName>Payout Dispute</fullName>
+                    <default>false</default>
+                    <label>Payout Dispute</label>
+                </value>
+                <value>
+                    <fullName>Questions on Policy</fullName>
+                    <default>false</default>
+                    <label>Questions on Policy</label>
+                </value>
+                <value>
+                    <fullName>Delivery Status</fullName>
+                    <default>false</default>
+                    <label>Delivery Status</label>
+                </value>
+                <value>
+                    <fullName>Carrier Issue</fullName>
+                    <default>false</default>
+                    <label>Carrier Issue</label>
+                </value>
+                <value>
+                    <fullName>Transport Damage</fullName>
+                    <default>false</default>
+                    <label>Transport Damage</label>
+                </value>
+                <value>
+                    <fullName>Cost Inquiry</fullName>
+                    <default>false</default>
+                    <label>Cost Inquiry</label>
+                </value>
+                <value>
+                    <fullName>After-Auction Request</fullName>
+                    <default>false</default>
+                    <label>After-Auction Request</label>
+                </value>
+                <value>
+                    <fullName>Unwind Refund Status</fullName>
+                    <default>false</default>
+                    <label>Unwind Refund Status</label>
+                </value>
+                <value>
+                    <fullName>Goodwill Status</fullName>
+                    <default>false</default>
+                    <label>Goodwill Status</label>
+                </value>
+                <value>
+                    <fullName>Unwind Request</fullName>
+                    <default>false</default>
+                    <label>Unwind Request</label>
+                </value>
+                <value>
+                    <fullName>Unwind Delivery Status</fullName>
+                    <default>false</default>
+                    <label>Unwind Delivery Status</label>
+                </value>
+                <value>
+                    <fullName>Unwind Title Status</fullName>
+                    <default>false</default>
+                    <label>Unwind Title Status</label>
+                </value>
+                <value>
+                    <fullName>48 Hour Unwind Request</fullName>
+                    <default>false</default>
+                    <label>48 Hour Unwind Request</label>
+                </value>
+                <value>
+                    <fullName>48 Hour Update</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>48 Hour Update</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>Release Slip</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>Payment Not Selected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>NSF</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>Buyer Payment Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>Seller Payment Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>Default Payment Update</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <valueName>ACV Capital</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Buyer Shipment</controllingFieldValue>
+                <controllingFieldValue>Sales</controllingFieldValue>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <valueName>Multi-Store Buyer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Buyer Shipment</controllingFieldValue>
+                <valueName>Abandoned</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Buyer Shipment</controllingFieldValue>
+                <valueName>Pickup Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Buyer Shipment</controllingFieldValue>
+                <valueName>Cancel Transport</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Sales</controllingFieldValue>
+                <valueName>Dealmaker</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Sales</controllingFieldValue>
+                <valueName>Make an Offer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Sales</controllingFieldValue>
+                <valueName>False Proxy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Sales</controllingFieldValue>
+                <valueName>Goodwill Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <valueName>Ghost Bid</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <valueName>Account/Contact Update</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <valueName>User Login Support</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Helpdesk</controllingFieldValue>
+                <valueName>Deactivation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Good Experience</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Arbitration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Titles</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Payments</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Transportation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Unwind</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Competition</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Valid Business Reason</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Called No Answer, Try Again</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>App Education</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>Buyer Reported Problem</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>Buyer Title Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>Seller Title Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>48 Hour Notice Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>48 Hour Unwind Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Case Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Payout Dispute</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Questions on Policy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <valueName>Delivery Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <valueName>Carrier Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <valueName>Transport Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <valueName>Cost Inquiry</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ACV Transport</controllingFieldValue>
+                <valueName>After-Auction Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Unwind Refund Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Goodwill Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Unwind Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Unwind Delivery Status</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Resolutions</controllingFieldValue>
+                <valueName>Unwind Title Status</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Case_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Ops_Case__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ops Case Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The contact related to the CI</description>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Customer Inquiries</relationshipLabel>
+        <relationshipName>Customer_Inquiries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Inquiry__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(TEXT(Call_Type__c)) , HYPERLINK( &quot;/&quot; + Id,  &quot;Historic Record&quot;, &quot;_self&quot;), HYPERLINK( &quot;/&quot; + Id,  TEXT(Call_Type__c), &quot;_self&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer Inquiry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This is the external id for CI records coming from the Report a Problem process in tools. It is a concatenated id made up of the auction_issues table id and the auction_issues_note table id.</description>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>16</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>First_Call_Resolution__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This will be true when a customer inquiry is resolved upon creation</description>
+        <externalId>false</externalId>
+        <label>First Call Resolution</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Initial_Inquiry_Comment__c</fullName>
+        <description>The first inquiry comment logged on this customer inquiry</description>
+        <externalId>false</externalId>
+        <label>Initial Inquiry Comment</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Last_Ops_Call_Comments__c</fullName>
+        <description>Comments from the last call logged on the related Ops Case</description>
+        <externalId>false</externalId>
+        <label>Last Ops Call Comments</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Last_Ops_Call_Date__c</fullName>
+        <description>The date the last call was logged on the related Ops Case.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the last call was logged on the related Ops Case.</inlineHelpText>
+        <label>Last Ops Call Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Last_Ops_Call_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The user who logged the last call on the related Ops Case</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The user who logged the last call on the related Ops Case</inlineHelpText>
+        <label>Last Ops Call User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Customer_Inquiries</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Inquiry_Comment__c</fullName>
+        <description>The last comment logged on this customer inquiry.</description>
+        <externalId>false</externalId>
+        <label>Most Recent Inquiry Comment</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ops_Case_Seller_Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>Ops_Case__r.Seller_Dealership__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ops Case Seller Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ops_Case_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Ops_Case__r.Status)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ops Case Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ops_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Ops Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Related Support Cases</relationshipLabel>
+        <relationshipName>Related_Cases1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ops_Follow_Up_Date__c</fullName>
+        <description>The follow up date selected on the last logged call on the related Ops Case</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The follow up date selected on the last logged call on the related Ops Case</inlineHelpText>
+        <label>Ops Follow Up Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Origin__c</fullName>
+        <description>Displays which process a CI record was created by.</description>
+        <externalId>false</externalId>
+        <label>Origin</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>48 Hr Notice Tab</fullName>
+                    <default>false</default>
+                    <label>48 Hr Notice Tab</label>
+                </value>
+                <value>
+                    <fullName>Log an Interaction</fullName>
+                    <default>false</default>
+                    <label>Log an Interaction</label>
+                </value>
+                <value>
+                    <fullName>Report a Problem</fullName>
+                    <default>false</default>
+                    <label>Report a Problem</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <description>The priority of the inquiry.</description>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Low</fullName>
+                    <default>false</default>
+                    <label>Low</label>
+                </value>
+                <value>
+                    <fullName>Medium</fullName>
+                    <default>false</default>
+                    <label>Medium</label>
+                </value>
+                <value>
+                    <fullName>High</fullName>
+                    <default>false</default>
+                    <label>High</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Seller_Link__c</fullName>
+        <description>Link to the Seller Account on the related ops case.  Within Salesforce this will work in all environments.  Will only work properly from an email template when used in production.</description>
+        <externalId>false</externalId>
+        <formula>IF( $Organization.Id = &apos;00D8D0000004wdm&apos;, 
+HYPERLINK( &quot;https://acvauctions.lightning.force.com/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;),
+HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Should_Assign_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Should Assign To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Consultant</fullName>
+                    <default>false</default>
+                    <label>Consultant</label>
+                </value>
+                <value>
+                    <fullName>Specialist</fullName>
+                    <default>false</default>
+                    <label>Specialist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>The status of the inquiry.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Working</fullName>
+                    <default>false</default>
+                    <label>Working</label>
+                </value>
+                <value>
+                    <fullName>AM Follow Up</fullName>
+                    <default>false</default>
+                    <label>AM Follow Up</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Inquiry Resolved</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Inquiry Resolved</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Support_Case_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Support_Case__r.Status)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Support Case Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Support_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Support Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Related Cases &amp; Auctions</relationshipLabel>
+        <relationshipName>Related_Cases</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Titles_Reason_for_Delay__c</fullName>
+        <description>The Reason For Title Delay on the last logged call on the related Ops Case.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Reason For Title Delay on the last logged call on the related Ops Case.</inlineHelpText>
+        <label>Titles Reason for Delay</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VIN_Last_6__c</fullName>
+        <description>Returns the Last 6 characters of VIN.  First checking related auction and then related ops case.</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+ !ISBLANK(Auction__r.VIN__c), 
+  RIGHT(Auction__r.VIN__c, 6) , 
+  Ops_Case__r.Vehicle_VIN_Last_6__c 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VIN Last 6</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/&apos;+Ops_Case__r.Vehicle__c, Ops_Case__r.Vehicle__r.Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Weekdays_Open__c</fullName>
+        <description>Returns the total weekdays the Customer Inquiry has been opened. Starts at 0 on creation and goes to 1 the next business day.</description>
+        <externalId>false</externalId>
+        <formula>CASE(
+ MOD( DATEVALUE(CreatedDate) - DATE(1985,6,24),7), 
+ 0 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+ 1 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+ 2 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+ 3 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+ 4 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+ 5 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+ 6 , CASE( MOD( TODAY() - DATEVALUE(CreatedDate) ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+ 999
+) 
++(FLOOR(( TODAY() - DATEVALUE(CreatedDate) )/7)*5)
+-1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Weekdays Open</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_Make_Model__c</fullName>
+        <description>The year make and model of related vehicle.  First looks for vehicle on ops case.  If no ops case gets vehicle from auction</description>
+        <externalId>false</externalId>
+        <formula>IF(
+ !ISBLANK(Ops_Case__c),
+ Ops_Case__r.Vehicle_Year_Make_Model__c, 
+ Auction__r.Vehicle_Year__c + &apos; &apos; +  Auction__r.Vehicle_Make__c  + &apos; &apos; + Auction__r.Vehicle_Model__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year/Make/Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Customer Inquiry</label>
+    <nameField>
+        <displayFormat>CI-{000000}</displayFormat>
+        <label>Customer Inquiry Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Customer Inquiries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Cannot_Reopen_Non_Titles</fullName>
+        <active>true</active>
+        <description>Inquiries that have a non Titles call bucket cannot be reopened</description>
+        <errorConditionFormula>AND(
+ !ISPICKVAL( Call_Bucket__c , &apos;Titles&apos;),
+ First_Call_Resolution__c = true,
+ TEXT(PRIORVALUE(Status__c)) = &apos;Closed&apos;,
+ ISCHANGED(Status__c) 
+)</errorConditionFormula>
+        <errorMessage>Closed Inquiries that do not have a Titles call bucket cannot be reopened.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_Set_CI_Back_to_New</fullName>
+        <active>false</active>
+        <description>Once a CI has been moved out of New, it cannot be set back.
+Created By</description>
+        <errorConditionFormula>AND(
+ISCHANGED(Status__c),
+TEXT(Status__c) = &apos;New&apos;,
+$Profile.Name != &quot;System Administrator&quot;
+)</errorConditionFormula>
+        <errorMessage>CI cannot be set back to &apos;New&apos; status once it has been worked on.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Title_User_Cannot_Close</fullName>
+        <active>false</active>
+        <description>Users with a title profile should not be allowed to change Customer inquiry status to closed.</description>
+        <errorConditionFormula>AND(
+ ISCHANGED( Status__c ),
+ ISPICKVAL(Status__c, &quot;Closed&quot;),
+ !ISPICKVAL(Call_Type__c, &quot;Seller Title Status&quot;),
+ $Profile.Name != &quot;Inside Sales - Account Managers&quot;,
+ $Profile.Name != &quot;Inside Sales - Account Managers Unwind&quot;,
+ $Profile.Name != &quot;Inside Sales - Activation&quot;,
+ $Profile.Name != &quot;Inside Sales - Managers&quot;,
+ $Profile.Name != &quot;Inside Sales Acct. Managers Legal Review&quot;,
+ $Profile.Name != &quot;Customer Success Team&quot;,
+ $Profile.Name != &quot;Business Development Rep&quot;,
+ $Profile.Name != &quot;Major Accounts CSM&quot;,
+ $Profile.Name != &quot;System Administrator&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Only Account Management can mark a ticket as Closed. If you feel you have resolved the issue, please update status to AM Follow Up.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

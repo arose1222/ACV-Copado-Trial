@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Case Title Clerks" icon-name='standard:individual'>
+        <div class="slds-m-around_medium">
+            <!-- <template for:each={contacts} for:item='contact'>
+                <lightning-card key={contact.id}>
+                    <p key={contact}></p>
+                </lightning-card>
+            </template> -->
+            <!-- <template for:each={contact} for:item="person"> -->
+            <p style="color:rgb(62, 62, 60);font-size: 14px;padding-left: 10px;padding-bottom: 4px">Buyer Title Clerk:</p>
+            <p style="color:rgb(62, 62, 60);text-align: center;font-size: 13px;padding-bottom: 7px;padding-top: 8px;border: 1px solid lightgrey; border-radius: 3px">
+                {buyerContact}
+            </p>
+            <br>
+            <!-- <hr style="margin-top: 8px;margin-bottom: 8px"> -->
+            <p style="color:rgb(62, 62, 60);font-size: 14px;padding-left: 10px;padding-bottom: 4px">Seller Title Clerk:</p>
+            <p style="color:rgb(62, 62, 60);text-align: center;font-size: 13px;padding-bottom: 7px;padding-top: 8px;border: 1px solid lightgrey; border-radius: 3px">
+                {sellerContact}
+            </p>
+            <!-- </template> -->
+            <!-- <lightning-datatable
+            key-field="Id"
+            data={contact}
+            columns={columns}
+            hide-checkbox-column="true">
+            </lightning-datatable> -->
+        </div>
+    </lightning-card>
+</template>

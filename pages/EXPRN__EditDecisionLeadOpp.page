@@ -1,0 +1,8 @@
+<apex:page standardController="EXPRN__Decisioning_Lead_Opp__c" extensions="EXPRN.EditDecisionLeadOppController" action="{!reDirect}">
+
+  <apex:pageMessages /> <br/>
+  <!--<a href="{!returnUrl}" style = "margin-left:1%;" >Back</a>-->
+  
+  <apex:outputLink target="_parent" value="/{!returnUrlId}"> Back </apex:outputLink>
+   
+</apex:page>

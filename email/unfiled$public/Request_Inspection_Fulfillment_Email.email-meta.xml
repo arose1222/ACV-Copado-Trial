@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for work order completion email subscriptions.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Request Inspection Fulfillment Email</name>
+    <style>none</style>
+    <subject>Service Appointment Status Update</subject>
+    <textOnly>Â
+
+Account: {!Email_Notification__c.Account_Name__c}
+Service Appointment Work Type: {!Email_Notification__c.Service_Appointment_Work_Type__c}
+Service Appointment Status: {!Email_Notification__c.Service_Appointment_Status__c}
+Completed Date/Time:{!Email_Notification__c.Service_Appointment_Completed_Date_Time__c}
+
+Thank You!
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

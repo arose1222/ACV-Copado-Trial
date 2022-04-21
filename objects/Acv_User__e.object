@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Channel used to publish ACV User related Events. These will come from the ACV User Contact Record Type</description>
+    <eventType>HighVolume</eventType>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if the User is Active</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cell_Phone_Number__c</fullName>
+        <description>Cell phone field mapping from mobile phone</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Cell Phone Number</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Changed_By_Sf_User_Id__c</fullName>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Changed By Sf User Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Changed_By_Username__c</fullName>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Changed By Username</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Creation_Source__c</fullName>
+        <description>Indicates how the record was created using a Picklist field</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Creation Source</label>
+        <length>128</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Opt_Out_Categories__c</fullName>
+        <description>Indicates the opt out updates this user has selected</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Email Opt Out Categories</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>User Email</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Email</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Full_Name__c</fullName>
+        <description>Concat of the Contacts First and Last name</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Full Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Identity_Id__c</fullName>
+        <description>The id related to this user which originates from the Identity entity in the entity-breakout</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Identity Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Staff__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if the Contact record is a Staff member</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Is Staff</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Superuser__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Designates that this user has all permissions without explicitly assigning them</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Is Superuser</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Phone_Number__c</fullName>
+        <description>User Phone Number</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Phone Number</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Referral_Code__c</fullName>
+        <description>Referral Code applied by the user when creating their account</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Referral Code</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sms_Opt_In__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Designates that this user has opted in for SMS messages if True</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Sms Opt In</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>User_Guid__c</fullName>
+        <description>Indicates the User Guid for this record</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>User Guid</label>
+        <length>128</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Id__c</fullName>
+        <description>Indicates the User Id for this event</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>User Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zip_Code__c</fullName>
+        <description>Zip Code for the User</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Zip Code</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>event_type__c</fullName>
+        <description>Indicates the Type of Event being published</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>event type</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Acv User</label>
+    <pluralLabel>Acv Users</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>

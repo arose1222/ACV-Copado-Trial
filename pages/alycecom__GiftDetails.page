@@ -1,0 +1,44 @@
+<apex:page standardController="alycecom__Gift__c" extensions="alycecom.GiftDetailsExtension" sidebar="false" showHeader="false" Action="{!retrieveGiftDetails}">
+    <apex:stylesheet value="{!URLFOR($Resource.alycecom__fontastic, 'fontastic/fontastic.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alycecom__AlyceCSS)}"  />
+    <style type="text/css">
+        #AlycePage{
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 5px;
+        }
+        #AlycePage thead {
+            display: none;
+        }
+        .meeting-table {
+            width: 50% !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: none !important;
+        }
+        .meeting-date{
+            font-weight: 700;
+            color: #464646;
+            padding: 5px;
+        }
+        .meeting-time{
+            padding-left: 3px;
+            padding-left: 5px;
+        }
+    </style>
+    <div id = "AlycePage">
+        <apex:form >
+            <apex:inputHidden value="{!alycecom__Gift__c.alycecom__Gift_Id__c}"/>
+            <apex:pageBlock mode="mainDetail">
+                <apex:pageBlockTable value="{!FreeMeetings}" var="meeting" styleClass="meeting-table">
+                    <apex:column >
+                        <div class="meeting-date">{!meeting.FormatedDate}</div>
+                        <apex:repeat value="{!meeting.FormatedMeetings}" var="formated_meeting">
+                            <div class="meeting-time">{!formated_meeting}</div>
+                        </apex:repeat>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:form>
+    </div>
+</apex:page>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your $100 Credit Expires on March 15th… don’t miss out!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>NADA Followup - Attempted Call 3</name>
+    <style>none</style>
+    <subject>Your $100 Credit Expires on March 15th… don’t miss out!</subject>
+    <textOnly>Dear {!Lead.FirstName} {!Lead.LastName},
+
+I am hoping that you have time within the next few days so I can take you through a demo of our product… and show you how to take advantage of the $100 credit that is waiting for you! Remember, this offer expires on March 15th and I don’t want you to miss out!
+
+If you would prefer to have an ACV Territory Representative stop by and take you through a demo I can arrange that as well. I know they would be excited to meet you in person and learn more about your business needs.
+
+If for some reason, you are not the right contact within your dealership for buying and selling wholesale cars, can you please refer me to the right person.
+
+Thank you again for your interest in ACV Auctions.
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>slack__PostToSlack</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>slack__SlackController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>slack__SlackPostController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>slack__Utilities</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>Set of Object, Apex Class, and Visualforce permissions that enables Slack integration features for a user.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Slack Permissions</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>slack__Slack_Relationship__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <pageAccesses>
+        <apexPage>slack__Setup</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>slack__SlackGlobalAction</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

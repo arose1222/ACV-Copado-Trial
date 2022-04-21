@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>TM email template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>TM Outreach Template</name>
+    <style>freeForm</style>
+    <subject>How&apos;s it going?</subject>
+    <textOnly>Hi there {!Contact.FirstName},
+
+Set some saved searches and we can bring vehicles to you. Looking for a specific car? Let me know, I can help!
+
+
+
+We were founded BY a dealer FOR dealers like you. So if you have any questions or concerns with ACV, I would be more than happy to assist.
+
+
+
+Thank you! {!Contact.Account_Owner_TM__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

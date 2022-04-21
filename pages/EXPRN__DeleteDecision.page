@@ -1,0 +1,15 @@
+<apex:page standardController="EXPRN__Decisioning__c" extensions="EXPRN.DeleteDecisionController" action="{!reDirect}">
+
+  <apex:pageMessages /> <br/>
+  
+  <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme3' }">
+    <a href="{!returnUrl}" style = "margin-left:1%;">Back</a>
+  </apex:outputPanel>
+  <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }">
+    <apex:slds />
+    <div class="slds-scope">
+        <a class="slds-m-left--large slds-button slds-button_brand" href="/lightning/n/EXPRN__Experian_Decisioning1" >Back</a>
+    </div>    
+  </apex:outputPanel>
+  
+</apex:page>

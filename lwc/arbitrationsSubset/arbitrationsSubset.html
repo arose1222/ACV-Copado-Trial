@@ -1,0 +1,45 @@
+<template>
+    <div class="c-container">    
+        <lightning-layout horizontal-align="center">
+            <lightning-layout-item padding="around-small" size="2"></lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="4">
+                 <template for:each={formOptionsCol1} for:item="keyValue">
+                    <div key={keyValue}>
+                           
+                            <div class="header-column">
+                                 <p   style="margin-Right: 1%; font-weight:bold;" title={keyValue.key} >{keyValue.key}</p>
+                                <br/>
+                            </div>
+                            <template for:each={keyValue.value} for:item="value">
+                                 <div key={value} style="margin-Right: 1%;font-size: 12px;" >
+                                       <lightning-input style="margin-Right: 1%;"   type="checkbox" data-id="checkbox" label={value} onchange = {handleChanges}></lightning-input><br/>
+                                 </div>
+                            </template>
+                         <!--</lightning-layout-item>--> 
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="4">
+                <template for:each={formOptionsCol2} for:item="keyValue">
+                    <div key={keyValue}>
+                            
+                        <div class="header-column">
+                            <p   style="margin-Right: 1%; font-weight:bold;" title={keyValue.key} >{keyValue.key}</p>
+                            <br/>
+                        </div>
+                        <template for:each={keyValue.value} for:item="value">
+                            <div key={value} style="margin-Right: 1%;font-size: 12px;" >
+                                <lightning-input style="margin-Right: 1%;"   type="checkbox" data-id="checkbox" label={value} onchange = {handleChanges} ></lightning-input><br/>
+                            </div>
+                        </template>
+                        <!--</lightning-layout-item>--> 
+                    </div>  
+                </template>
+                    
+
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="2"></lightning-layout-item>
+        </lightning-layout>
+       
+    </div>
+</template>

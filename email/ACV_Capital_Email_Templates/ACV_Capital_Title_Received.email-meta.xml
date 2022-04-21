@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Once ACV Capital title status is changed to received an automatic email is sent to buyer letting them know that this title is in office and includes auction ID and vin.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>ACV Capital Title Received</name>
+    <style>freeForm</style>
+    <subject>ACV Capital Title Received {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Dear {!Case.Buyer_Name__c},
+
+
+We have received the title for the below mentioned vehicle:
+
+
+{!Case.Vehicle_Year_Make_Model__c}
+
+{!Case.VIN__c}
+
+Auction ID: {!Case.Auction_NumberId__c}
+
+
+
+Please reach out to our ACV Capital Operations team at acvadvance@acvauctions.com with any questions.
+
+
+Thank you,
+
+
+ACV Capital Team
+
+ACV Auctions</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,24 @@
+<template>
+        <header class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title">Log Comment</h1>
+        </header>
+
+        
+
+        <lightning-record-edit-form object-api-name="Inquiry_Comment__c" onsubmit={handleSubmit} onsuccess={handleSuccess}>
+          <div>
+            <lightning-input-field if:false={isSaving} field-name="Inquiry_Notes__c" required=true></lightning-input-field>
+            
+            <div if:true={isSaving} class="slds-theme_default" style="position:relative; height:90px">
+              <lightning-spinner
+                variant="brand"
+                size="medium">
+              </lightning-spinner>
+            </div>
+          </div>
+
+            <footer class="slds-modal__footer">
+              <lightning-button variant="success" class="slds-var-m-around_medium" type="submit" label="Save" disabled={isSaving}></lightning-button>
+            </footer>
+        </lightning-record-edit-form>
+</template>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for work order completion email subscriptions.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Work Order Completed Email</name>
+    <style>none</style>
+    <subject>Completed Work Order for Dealer Id {!Email_Notification__c.Dealership_Id__c}</subject>
+    <textOnly>Account: {!Email_Notification__c.Account_Name__c} has recently completed a Work Order. Work Order Number: {!Email_Notification__c.Work_Order_Number__c}.
+The Dealer Id for the account is: {!Email_Notification__c.Dealership_Id__c}.
+Link to Account
+The VINs related to this work order are:
+{!Email_Notification__c.Work_Order_VINs__c}
+Please follow up with any necessary actions.
+
+Thank You!
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

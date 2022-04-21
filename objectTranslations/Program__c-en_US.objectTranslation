@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Program</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Programs</value>
+    </caseValues>
+    <fields>
+        <help><!-- Used to indicate if the program is active or not. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Duration can be used as an override should a program not have definitive start/end date and run 30 days, 90 days, etc. --></help>
+        <label><!-- Duration (Days) --></label>
+        <name>Duration_Days__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to store the end date of program. --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to capture end date of program. --></help>
+        <label><!-- Expiration Date --></label>
+        <name>Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Eligibility Criteria --></label>
+        <name>Program_Eligibility_Criteria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Formula --></label>
+        <name>Program_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Monitoring Criteria --></label>
+        <name>Program_Monitoring_Criteria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Rule Logic Monitoring --></label>
+        <name>Program_Rule_Logic_Monitoring__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Rule Logic Eligibility --></label>
+        <name>Program_Rule_Logic__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to find the sales team member for this Program --></help>
+        <label><!-- Sales Contact --></label>
+        <name>Sales_Contact__c</name>
+        <picklistValues>
+            <masterLabel>Account Manager</masterLabel>
+            <translation><!-- Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Territory Manager</masterLabel>
+            <translation><!-- Territory Manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Used to capture start date of program. --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to capture current status program. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active (initiated at first sale)</masterLabel>
+            <translation><!-- Active (initiated at first sale) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible</masterLabel>
+            <translation><!-- Eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In/under review by IST (use pre and post pending customer response)</masterLabel>
+            <translation><!-- In/under review by IST (use pre and post pending customer response) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not eligible</masterLabel>
+            <translation><!-- Not eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending customer response (pending app completion) -In/under review by IST</masterLabel>
+            <translation><!-- Pending customer response (pending app completion) -In/under review by IST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remove (for performance)</masterLabel>
+            <translation><!-- Remove (for performance) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM will be reaching out to you soon Enrolled (start date)</masterLabel>
+            <translation><!-- TM will be reaching out to you soon Enrolled (start date) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility)</masterLabel>
+            <translation><!-- Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verified by IST (manually updated by IST)</masterLabel>
+            <translation><!-- Verified by IST (manually updated by IST) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on POA (manually updated by IST)</masterLabel>
+            <translation><!-- Waiting on POA (manually updated by IST) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

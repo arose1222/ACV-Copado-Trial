@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title='Report Photos' icon-name="standard:dashboard">
+        <template if:false={showError}> 
+                <c-image-display hover="false" imagezoomenabled = "true">
+                </c-image-display>
+        </template>
+        <template if:true={showError}>
+            <div style="background-color:rgb(238, 236, 236); border-radius:5px; border-width:thin; border-color:rgb(204, 204, 204); border-style:solid;">
+                <ui:message style="color:black; font-size:100%; text-align:center;">
+                    <center>Image could not be located</center>
+                </ui:message>
+            </div>
+        </template>
+    </lightning-card>
+</template>

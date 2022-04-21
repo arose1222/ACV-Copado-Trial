@@ -1,0 +1,117 @@
+<template>
+    <article class="slds-card">
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+              <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                    <span>Program Rule</span>
+                </h2>
+              </div>
+              <div class="slds-no-flex">
+                <!-- <button class="slds-button slds-button_neutral">New</button> -->
+              </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <lightning-record-edit-form object-api-name="Program_Rule__c" onsubmit={programRuleCreateSubmit} onsuccess={programRuleCreateSuccess} onerror={programRuleCreateError}>
+                <lightning-messages>
+                </lightning-messages>
+               <!-- <div class="msgClass" >
+                    Note: Text Fields are not supported in Program Rule Generation  
+                </div>-->
+                <div class="slds-grid slds-wrap">
+                    
+                    <div class="slds-col slds-size_2-of-3">
+                        <lightning-input-field field-name="Name" variant="label-stacked" required>
+                        </lightning-input-field>
+                    </div>
+                   
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox
+                            name="lhsObject"
+                            label="Field To Compare Object"
+                            value={lhsObjectVal}
+                            placeholder="Select object to display fields"
+                            options={lhsObjectOptions}
+                            onchange={lhsObjectChange} 
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox
+                                name="lhsFieldCombo"
+                                label="Select field"
+                                value={lhsFieldVal}
+                                placeholder="Select field"
+                                options={lhsFieldsMap}
+                                onchange={lhsFieldChange}
+                                required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_2-of-3">
+                        <lightning-combobox
+                            name="operatorCombo"
+                            label="Select operator"
+                            value={operatorVal}
+                            placeholder="Select operator"
+                            options={operatorsList}
+                            onchange={operatorChange}
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox
+                            name="rhsObject"
+                            label="Field To Compare Object"
+                            value={rhsObjectVal}
+                            placeholder="Select object to display fields"
+                            options={rhsObjectOptions}
+                            onchange={rhsObjectChange}
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <template if:true={rhsDisplayCombo}>
+                            <lightning-combobox
+                                name="rhsFieldCombo"
+                                label="Select Field"
+                                value={rhsFieldVal}
+                                placeholder="Select Field"
+                                options={rhsFieldsMap}
+                                onchange={rhsFieldChange}
+                                required></lightning-combobox>
+                        </template>
+                        <template if:true={rhsDisplayDate}>
+                            <lightning-input type="date" label="Enter value" onchange={rhsFieldChange} required></lightning-input>
+                        </template>
+                        <template if:true={rhsDisplayInput}>
+                            <lightning-input type="text" label="Enter value" onchange={rhsFieldChange} required></lightning-input>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                                <h3>Select if the rule will be used for Eligibility or Monitoring</h3>
+                                
+                                <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox-eligblity" label="eligblity" onchange={handleEligibilityChange}></lightning-input>
+                                <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox-monitoring" label="monitoring" onchange={handleMonitorChange}></lightning-input>
+                            
+                       
+                    </div>
+                </div>
+                <div class="slds-col slds-m-around_medium slds-align_absolute-center">
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        name="createRuleBtn"
+                        label="Create Rule">
+                    </lightning-button>
+                    <lightning-button class="slds-m-left_x-small" label="Reset" onclick={handleReset}></lightning-button>
+                    <lightning-button class="slds-m-left_x-small" label="Cancel" onclick={handleCancel}></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+        <footer class="slds-card__footer">
+          <!-- <a class="slds-card__footer-action" href="javascript:void(0);">View All
+            <span class="slds-assistive-text">Accounts</span>
+          </a> -->
+        </footer>
+    </article>
+</template>

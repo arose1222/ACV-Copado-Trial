@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Bundle Members --></label>
+        <name>FSL__Bundle_Members</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Bundle Members Siblings --></label>
+        <name>FSL__Bundle_Members_Siblings</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Bundler Lightbox --></label>
+        <name>FSL__Bundler_Lightbox</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Capacity Service Columns --></label>
+        <name>FSL__Capacity_Service_Columns</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Crew Management --></label>
+        <name>FSL__CrewManagement</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Crew Management Tooltip --></label>
+        <name>FSL__CrewManagementTooltip</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Designated Work Fields --></label>
+        <name>FSL__Designated_Work_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Deprecated --></label>
+        <name>FSL__Emergency_Current_Service_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Gantt Filter --></label>
+        <name>FSL__Gantt_Filter</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Appointment Expanded --></label>
+        <name>FSL__Service_Appointment_Expanded</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Appointment List Columns --></label>
+        <name>FSL__Service_Appointment_List_Columns</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Appointment List Preview --></label>
+        <name>FSL__Service_Appointment_List_Preview</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Appt Resource Calendar Display --></label>
+        <name>FSL__Service_Appt_Resource_Calendar_Display</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Appt Resource Calendar Tooltip --></label>
+        <name>FSL__Service_Appt_Resource_Calendar_Tooltip</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Info Window Map --></label>
+        <name>FSL__Service_Info_Window_Map</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Lightbox --></label>
+        <name>FSL__Service_Lightbox</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Lightbox Address --></label>
+        <name>FSL__Service_Lightbox_Address</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Lightbox Time --></label>
+        <name>FSL__Service_Lightbox_Time</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Service Tooltip Gantt --></label>
+        <name>FSL__Service_Tooltip_Gantt</name>
+    </fieldSets>
+    <fields>
+        <label><!-- ACV Anywhere or FBI --></label>
+        <name>ACV_Anywhere_or_FBI__c</name>
+    </fields>
+    <fields>
+        <label><!-- _AO Dynamic Priority --></label>
+        <name>AO_Dynamic_Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- _AO_Is_ASAP_Important --></label>
+        <name>AO_IsAO_Is_ASAP_Important_ASAP_Important__c</name>
+    </fields>
+    <fields>
+        <label><!-- _AO Is ASAP Non Important --></label>
+        <name>AO_Is_ASAP_Non_Important__c</name>
+    </fields>
+    <fields>
+        <label><!-- _AO Optimizable --></label>
+        <name>AO_Optimizable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Allow Change From Flow --></label>
+        <name>Allow_Change_From_Flow__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allow VCI Status Change --></label>
+        <name>Allow_VCI_Status_Change__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned Resource Has In Progress Work --></label>
+        <name>Assigned_Resource_Has_In_Progress_Work__c</name>
+    </fields>
+    <fields>
+        <help><!-- Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories). --></help>
+        <label><!-- Beta Flag --></label>
+        <name>Beta_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bundled --></label>
+        <name>Bundled__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPO Work --></label>
+        <name>CPO_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cannot Complete Reason --></label>
+        <name>Cannot_Complete_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Contact not Available</masterLabel>
+            <translation><!-- Contact not Available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Closed</masterLabel>
+            <translation><!-- Dealer Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Out of Business</masterLabel>
+            <translation><!-- Dealer Out of Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Uncooperative</masterLabel>
+            <translation><!-- Dealer Uncooperative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Auction uncooperative</masterLabel>
+            <translation><!-- Dry Run Auction  - Auction uncooperative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Contact not available</masterLabel>
+            <translation><!-- Dry Run Auction  - Contact not available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - In service or body shop</masterLabel>
+            <translation><!-- Dry Run Auction  - In service or body shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Incorrect contact listed</masterLabel>
+            <translation><!-- Dry Run Auction  - Incorrect contact listed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Moved to another location</masterLabel>
+            <translation><!-- Dry Run Auction  - Moved to another location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Unable to locate keys</masterLabel>
+            <translation><!-- Dry Run Auction  - Unable to locate keys --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Unable to locate vehicle</masterLabel>
+            <translation><!-- Dry Run Auction  - Unable to locate vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Unit sold</masterLabel>
+            <translation><!-- Dry Run Auction  - Unit sold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Auction  - Vehicle will not start</masterLabel>
+            <translation><!-- Dry Run Auction  - Vehicle will not start --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Contact not available</masterLabel>
+            <translation><!-- Dry Run Dealer  - Contact not available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Dealer uncooperative</masterLabel>
+            <translation><!-- Dry Run Dealer  - Dealer uncooperative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Incorrect contact listed</masterLabel>
+            <translation><!-- Dry Run Dealer  - Incorrect contact listed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Moved to another location</masterLabel>
+            <translation><!-- Dry Run Dealer  - Moved to another location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Unable to locate vehicle</masterLabel>
+            <translation><!-- Dry Run Dealer  - Unable to locate vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Unit sold</masterLabel>
+            <translation><!-- Dry Run Dealer  - Unit sold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer  - Vehicle will not start</masterLabel>
+            <translation><!-- Dry Run Dealer  - Vehicle will not start --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer -Unable to access vehicle at storage facility</masterLabel>
+            <translation><!-- Dry Run Dealer -Unable to access vehicle at storage facility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- In service or body shop</masterLabel>
+            <translation><!-- Dry Run Dealer- In service or body shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- No start/ No jump</masterLabel>
+            <translation><!-- Dry Run Dealer- No start/ No jump --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- Purchasing</masterLabel>
+            <translation><!-- Dry Run Dealer- Purchasing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- Unable to locate keys</masterLabel>
+            <translation><!-- Dry Run Dealer- Unable to locate keys --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- Vehicle moved to auto auction</masterLabel>
+            <translation><!-- Dry Run Dealer- Vehicle moved to auto auction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- Vehicle not at location</masterLabel>
+            <translation><!-- Dry Run Dealer- Vehicle not at location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Dealer- Vehicle not at storage location</masterLabel>
+            <translation><!-- Dry Run Dealer- Vehicle not at storage location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Address incomplete/incorrect</masterLabel>
+            <translation><!-- Dry Run Home  - Address incomplete/incorrect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Lessee not available</masterLabel>
+            <translation><!-- Dry Run Home  - Lessee not available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - No answer to calls</masterLabel>
+            <translation><!-- Dry Run Home  - No answer to calls --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Purchasing/Extending</masterLabel>
+            <translation><!-- Dry Run Home  - Purchasing/Extending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Returned to dealer</masterLabel>
+            <translation><!-- Dry Run Home  - Returned to dealer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Vehicle not at location</masterLabel>
+            <translation><!-- Dry Run Home  - Vehicle not at location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Run Home  - Vehicle will not start</masterLabel>
+            <translation><!-- Dry Run Home  - Vehicle will not start --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insufficient time to complete</masterLabel>
+            <translation><!-- Insufficient time to complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Vehicles to Inspect</masterLabel>
+            <translation><!-- No Vehicles to Inspect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety Hazard</masterLabel>
+            <translation><!-- Safety Hazard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Committed --></label>
+        <name>Committed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed/Canceled Notes --></label>
+        <name>Completed_Canceled_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Email --></label>
+        <name>Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Mobile Number --></label>
+        <name>Contact_Mobile_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Name --></label>
+        <name>Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Phone Number --></label>
+        <name>Contact_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Service Resource --></label>
+        <name>Current_Service_Resource__c</name>
+        <relationshipLabel><!-- Service Appointments (Current Service Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer Email --></label>
+        <name>Customer_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealership Name --></label>
+        <name>Dealership_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delinquent Assignment --></label>
+        <name>Delinquent_Assignment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Latitude --></label>
+        <name>Display_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Longitude --></label>
+        <name>Display_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Driving Directions --></label>
+        <name>Driving_Directions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dry Run --></label>
+        <name>Dry_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- DueDate Adjustment Engine Bypass --></label>
+        <name>DueDate_Adjustment_Engine_Bypass__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date (Date Type) --></label>
+        <name>Due_Date_Date_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude from Optimization --></label>
+        <name>Exclude_from_Optimization__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Assignment Id --></label>
+        <name>External_Assignment_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Link Code --></label>
+        <name>External_Link_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Link --></label>
+        <name>External_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appointment Grade --></label>
+        <name>FSL__Appointment_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auto Schedule --></label>
+        <name>FSL__Auto_Schedule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration In Minutes --></label>
+        <name>FSL__Duration_In_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Emergency --></label>
+        <name>FSL__Emergency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gantt Color --></label>
+        <name>FSL__GanttColor__c</name>
+    </fields>
+    <fields>
+        <help>Въведете URL адрес за икона. URL адресът трябва да завършва със суфикс на изображение, като например .png.</help>
+        <label><!-- Gantt Icon --></label>
+        <name>FSL__GanttIcon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gantt Label --></label>
+        <name>FSL__GanttLabel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gantt Display Date --></label>
+        <name>FSL__Gantt_Display_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- In Jeopardy Reason --></label>
+        <name>FSL__InJeopardyReason__c</name>
+        <picklistValues>
+            <masterLabel>Delayed Finish</masterLabel>
+            <translation>Отложен край</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delayed Start</masterLabel>
+            <translation>Отложено начало</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Due Date Approaching</masterLabel>
+            <translation>Наближаващ краен срок</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DueDate Changed (Roll Over)</masterLabel>
+            <translation><!-- DueDate Changed (Roll Over) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forced Appointment</masterLabel>
+            <translation><!-- Forced Appointment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Late Start Work</masterLabel>
+            <translation><!-- Late Start Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Response</masterLabel>
+            <translation>Няма отговор</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Acknowledged</masterLabel>
+            <translation><!-- Not Acknowledged --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open FBI</masterLabel>
+            <translation><!-- Open FBI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to update Schedule</masterLabel>
+            <translation><!-- Unable to update Schedule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unresourced</masterLabel>
+            <translation><!-- Unresourced --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unscheduled Dealer-Auction Task with SLA in Past</masterLabel>
+            <translation><!-- Unscheduled Dealer-Auction Task with SLA in Past --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- In Jeopardy --></label>
+        <name>FSL__InJeopardy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal SLR Geolocation --></label>
+        <name>FSL__InternalSLRGeolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Fill In Candidate --></label>
+        <name>FSL__IsFillInCandidate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is MultiDay --></label>
+        <name>FSL__IsMultiDay__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiday Work Calculated length --></label>
+        <name>FSL__MDS_Calculated_length__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiday Work Operational Time --></label>
+        <name>FSL__MDT_Operational_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pinned --></label>
+        <name>FSL__Pinned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Geocoding For Chatter Actions --></label>
+        <name>FSL__Prevent_Geocoding_For_Chatter_Actions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Service --></label>
+        <name>FSL__Related_Service__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Same Day --></label>
+        <name>FSL__Same_Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- Same Resource --></label>
+        <name>FSL__Same_Resource__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Mode --></label>
+        <name>FSL__Schedule_Mode__c</name>
+        <picklistValues>
+            <masterLabel>Automatic</masterLabel>
+            <translation>Автоматично</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation>Ръчно</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>Няма</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Optimization</masterLabel>
+            <translation>Оптимизация</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Schedule Over Lower Priority Appointment --></label>
+        <name>FSL__Schedule_over_lower_priority_appointment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduling Policy Used --></label>
+        <name>FSL__Scheduling_Policy_Used__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Time Dependency --></label>
+        <name>FSL__Time_Dependency__c</name>
+        <picklistValues>
+            <masterLabel>Finish Before Start</masterLabel>
+            <translation>Край преди началото</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Same Start</masterLabel>
+            <translation>Същото начало</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Start After Finish</masterLabel>
+            <translation>Начало след края</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- UpdatedByOptimization --></label>
+        <name>FSL__UpdatedByOptimization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Use Async Logic --></label>
+        <name>FSL__Use_Async_Logic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Virtual Service For Chatter Action (SLR) --></label>
+        <name>FSL__Virtual_Service_For_Chatter_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter For Daily Optimization --></label>
+        <name>Filter_For_Daily_Optimization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter for Nightly Optimization --></label>
+        <name>Filter_for_Nightly_Optimization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Include in Optimization --></label>
+        <name>Include_in_Optimization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Notes --></label>
+        <name>Inspection_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Beta --></label>
+        <name>Is_Beta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Live Appraisal Event --></label>
+        <name>Live_Appraisal_Event__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local_Scheduled_Start_Time --></label>
+        <name>Local_Scheduled_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Service Resource --></label>
+        <name>Most_Recent_Service_Resource__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Non-ASI Work --></label>
+        <name>Non_ASI_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Not Beta Territory --></label>
+        <name>Not_Beta_Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Related Work Order Lines --></label>
+        <name>Number_of_Related_Work_Order_Lines__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Due Date --></label>
+        <name>Original_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Sched End --></label>
+        <name>Original_Sched_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Sched Start --></label>
+        <name>Original_Sched_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Offer --></label>
+        <name>Selected_Offer__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Special Instructions Acknowledged --></label>
+        <name>Special_Instructions_Acknowledged__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Inspection --></label>
+        <name>Standard_Inspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Start Time --></label>
+        <name>Travel_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- WO Line Item Count --></label>
+        <name>WO_Line_Item_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- Input by the onsite inspector when canceling an appointment. Available in Complete Appointment flow. --></help>
+        <label><!-- When to Return --></label>
+        <name>When_to_Return__c</name>
+        <picklistValues>
+            <masterLabel>Never (Cancel the Work Order)</masterLabel>
+            <translation><!-- Never (Cancel the Work Order) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Today or Tomorrow (Return Work Order to Queue)</masterLabel>
+            <translation><!-- Today or Tomorrow (Return Work Order to Queue) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown (Set Work Order to On Hold)</masterLabel>
+            <translation><!-- Unknown (Set Work Order to On Hold) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Work Order Status --></label>
+        <name>Work_Order_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Order --></label>
+        <name>Work_Order__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Type Duration --></label>
+        <name>Work_Type_Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Type Name --></label>
+        <name>Work_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Type Unique ID --></label>
+        <name>Work_Type_Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- x_AO Is ASAP Non Important --></label>
+        <name>xAO_Is_ASAP_Non_Important__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- You cannot update this service appointment to be outside of the specified arrival window. --></errorMessage>
+        <name>ACVHome_FBI_Respect_Arrival_Window</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Address is required to create a Service Appointment --></errorMessage>
+        <name>Address_is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Status = &apos;Cannot Complete&apos;, a Cannot Complete Reason and Notes is required --></errorMessage>
+        <name>Cannot_Complete_Reason_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot mark a Service Appointment as Complete without a Scheduled Start, Scheduled End, Actual Start, &amp; Actual End --></errorMessage>
+        <name>Complete_Requires_Dates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Completed/Canceled Notes field cannot be blank when status is &apos;Completed&apos; or &apos;Canceled&apos;. --></errorMessage>
+        <name>Completed_Canceled_Notes_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot mark a Service Appointment for Dispatch without a Scheduled Start &amp; Scheduled End --></errorMessage>
+        <name>Dispatch_Work_Requires_Scheduled_Dates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot schedule a CPO after the due date --></errorMessage>
+        <name>Dont_Schedule_CPO_after_Due_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Earliest Start Permitted must precede Scheduled Start and Arrival Window Start. --></errorMessage>
+        <name>EarliestStart_precedes_Arr_and_Sch_Start</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- New service appointment cannot be created in scheduled or  dispatched statuses. --></errorMessage>
+        <name>FSL__Dont_allow_scheduled_or_dispatched</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Select a valid dependency type. If the appointments must be assigned to the same resource, the dependency type can’t be Same Start. --></errorMessage>
+        <name>FSL__Related_Service_with_time_dependency</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Resource dependency is invalid. Time Dependency can&apos;t be Same Start when same resource is required. --></errorMessage>
+        <name>FSL__Same_Resource_Same_Start</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Both scheduled start and end are required --></errorMessage>
+        <name>FSL__Schedule_End_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Both scheduled start and end are required --></errorMessage>
+        <name>FSL__Schedule_Start_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Gantt color must be in hexadecimal format: (for example: #ffffff) --></errorMessage>
+        <name>FSL__Service_Color_HEX_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Related Service. --></errorMessage>
+        <name>FSL__Time_dependency_with_related_service</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DueDate field is required --></errorMessage>
+        <name>FSL__isDueDateExist</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Duration field is required --></errorMessage>
+        <name>FSL__isDurationExist</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- EarliestStartTime field is required --></errorMessage>
+        <name>FSL__isEarliestStartTimeExist</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Scheduled Start must be earlier than the Scheduled End. --></errorMessage>
+        <name>FSL__startTimeShouldPrecedeEndTime</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot mark an Appointment as Committed without a Scheduled Start and Scheduled End Time set --></errorMessage>
+        <name>No_Commit_without_Scheduled_Times</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status cannot be updated to Canceled for Work Types = ACV Home. --></errorMessage>
+        <name>Prevent_Canceling_of_ACVHome_Jobs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status cannot be changed for ASI Work Types. --></errorMessage>
+        <name>Prevent_TMs_change_Status_of_ASI_WorkTyp</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI. --></errorMessage>
+        <name>Prevent_VCIs_LCs_from_Canceling_SA_Jobs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- VCI&apos;s cannot change Service Appointment Status outside the FSL Mobile App. --></errorMessage>
+        <name>Prevent_VCIs_from_changing_SA_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Work Type CANNOT be changed. --></errorMessage>
+        <name>Prevent_Work_Type_Change</name>
+    </validationRules>
+</CustomObjectTranslation>

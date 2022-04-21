@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used to group specific profiles together</description>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>What process is this a part of</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>What process is this record for?</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Group_Name__c</fullName>
+        <description>The name of the group used by all records in the same group</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Group Name</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Profile_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Profile Name</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACV Capital</fullName>
+                    <default>true</default>
+                    <label>ACV Capital</label>
+                </value>
+                <value>
+                    <fullName>ACV Capital Sales</fullName>
+                    <default>false</default>
+                    <label>ACV Capital Sales</label>
+                </value>
+                <value>
+                    <fullName>ACV Capital With Unwind</fullName>
+                    <default>false</default>
+                    <label>ACV Capital With Unwind</label>
+                </value>
+                <value>
+                    <fullName>ACV Standard User</fullName>
+                    <default>false</default>
+                    <label>ACV Standard User</label>
+                </value>
+                <value>
+                    <fullName>Analytics</fullName>
+                    <default>false</default>
+                    <label>Analytics</label>
+                </value>
+                <value>
+                    <fullName>Analytics Cloud Integration User</fullName>
+                    <default>false</default>
+                    <label>Analytics Cloud Integration User</label>
+                </value>
+                <value>
+                    <fullName>Analytics Cloud Security User</fullName>
+                    <default>false</default>
+                    <label>Analytics Cloud Security User</label>
+                </value>
+                <value>
+                    <fullName>API Only User</fullName>
+                    <default>false</default>
+                    <label>API Only User</label>
+                </value>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Arbitration - With Access to Buyer/Seller Dashboard</fullName>
+                    <default>false</default>
+                    <label>Arbitration - With Access to Buyer/Seller Dashboard</label>
+                </value>
+                <value>
+                    <fullName>B2BMA Integration User</fullName>
+                    <default>false</default>
+                    <label>B2BMA Integration User</label>
+                </value>
+                <value>
+                    <fullName>Biz Ops</fullName>
+                    <default>false</default>
+                    <label>Biz Ops</label>
+                </value>
+                <value>
+                    <fullName>Business Development Rep</fullName>
+                    <default>false</default>
+                    <label>Business Development Rep</label>
+                </value>
+                <value>
+                    <fullName>Chatter External User</fullName>
+                    <default>false</default>
+                    <label>Chatter External User</label>
+                </value>
+                <value>
+                    <fullName>Chatter Free User</fullName>
+                    <default>false</default>
+                    <label>Chatter Free User</label>
+                </value>
+                <value>
+                    <fullName>Chatter Moderator User</fullName>
+                    <default>false</default>
+                    <label>Chatter Moderator User</label>
+                </value>
+                <value>
+                    <fullName>Commercial Sales</fullName>
+                    <default>false</default>
+                    <label>Commercial Sales</label>
+                </value>
+                <value>
+                    <fullName>Compliance Review</fullName>
+                    <default>false</default>
+                    <label>Compliance Review</label>
+                </value>
+                <value>
+                    <fullName>Contract Manager</fullName>
+                    <default>false</default>
+                    <label>Contract Manager</label>
+                </value>
+                <value>
+                    <fullName>Customer Success Team</fullName>
+                    <default>false</default>
+                    <label>Customer Success Team</label>
+                </value>
+                <value>
+                    <fullName>Finance Standard User</fullName>
+                    <default>false</default>
+                    <label>Finance Standard User</label>
+                </value>
+                <value>
+                    <fullName>Force.com - App Subscription User</fullName>
+                    <default>false</default>
+                    <label>Force.com - App Subscription User</label>
+                </value>
+                <value>
+                    <fullName>FSL Optimization</fullName>
+                    <default>false</default>
+                    <label>FSL Optimization</label>
+                </value>
+                <value>
+                    <fullName>HR</fullName>
+                    <default>false</default>
+                    <label>HR</label>
+                </value>
+                <value>
+                    <fullName>Identity User</fullName>
+                    <default>false</default>
+                    <label>Identity User</label>
+                </value>
+                <value>
+                    <fullName>Inside Sales - Account Managers</fullName>
+                    <default>false</default>
+                    <label>Inside Sales - Account Managers</label>
+                </value>
+                <value>
+                    <fullName>Inside Sales - Account Managers Unwind</fullName>
+                    <default>false</default>
+                    <label>Inside Sales - Account Managers Unwind</label>
+                </value>
+                <value>
+                    <fullName>Inside Sales Acct. Managers Legal Review</fullName>
+                    <default>false</default>
+                    <label>Inside Sales Acct. Managers Legal Review</label>
+                </value>
+                <value>
+                    <fullName>Inside Sales - Activation</fullName>
+                    <default>false</default>
+                    <label>Inside Sales - Activation</label>
+                </value>
+                <value>
+                    <fullName>Inside Sales - Managers</fullName>
+                    <default>false</default>
+                    <label>Inside Sales - Managers</label>
+                </value>
+                <value>
+                    <fullName>Logistics Coordinator</fullName>
+                    <default>false</default>
+                    <label>Logistics Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Major Accounts CSM</fullName>
+                    <default>false</default>
+                    <label>Major Accounts CSM</label>
+                </value>
+                <value>
+                    <fullName>Marketing User</fullName>
+                    <default>false</default>
+                    <label>Marketing User</label>
+                </value>
+                <value>
+                    <fullName>Minimum Access - Salesforce</fullName>
+                    <default>false</default>
+                    <label>Minimum Access - Salesforce</label>
+                </value>
+                <value>
+                    <fullName>Operations Manager (FSL Traction Beta)</fullName>
+                    <default>false</default>
+                    <label>Operations Manager (FSL Traction Beta)</label>
+                </value>
+                <value>
+                    <fullName>Payment Arbitration</fullName>
+                    <default>false</default>
+                    <label>Payment Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Read Only</fullName>
+                    <default>false</default>
+                    <label>Read Only</label>
+                </value>
+                <value>
+                    <fullName>Read Only - Custom</fullName>
+                    <default>false</default>
+                    <label>Read Only - Custom</label>
+                </value>
+                <value>
+                    <fullName>Recommended Pricing User</fullName>
+                    <default>false</default>
+                    <label>Recommended Pricing User</label>
+                </value>
+                <value>
+                    <fullName>Regional Sales Director</fullName>
+                    <default>false</default>
+                    <label>Regional Sales Director</label>
+                </value>
+                <value>
+                    <fullName>Regional Sales Director (FSL Traction Beta)</fullName>
+                    <default>false</default>
+                    <label>Regional Sales Director (FSL Traction Beta)</label>
+                </value>
+                <value>
+                    <fullName>Resolutions</fullName>
+                    <default>false</default>
+                    <label>Resolutions</label>
+                </value>
+                <value>
+                    <fullName>Revenue Recovery</fullName>
+                    <default>false</default>
+                    <label>Revenue Recovery</label>
+                </value>
+                <value>
+                    <fullName>Revenue Recovery - Read Only</fullName>
+                    <default>false</default>
+                    <label>Revenue Recovery - Read Only</label>
+                </value>
+                <value>
+                    <fullName>Solution Manager</fullName>
+                    <default>false</default>
+                    <label>Solution Manager</label>
+                </value>
+                <value>
+                    <fullName>Standard User</fullName>
+                    <default>false</default>
+                    <label>Standard User</label>
+                </value>
+                <value>
+                    <fullName>System Administrator</fullName>
+                    <default>false</default>
+                    <label>System Administrator</label>
+                </value>
+                <value>
+                    <fullName>Territory Manager</fullName>
+                    <default>false</default>
+                    <label>Territory Manager</label>
+                </value>
+                <value>
+                    <fullName>Territory Manager (FSL Traction Beta)</fullName>
+                    <default>false</default>
+                    <label>Territory Manager (FSL Traction Beta)</label>
+                </value>
+                <value>
+                    <fullName>Territory Manager (Time Tracking Beta)</fullName>
+                    <default>false</default>
+                    <label>Territory Manager (Time Tracking Beta)</label>
+                </value>
+                <value>
+                    <fullName>Title Manager</fullName>
+                    <default>false</default>
+                    <label>Title Manager</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                    <label>Training</label>
+                </value>
+                <value>
+                    <fullName>Transportation User</fullName>
+                    <default>false</default>
+                    <label>Transportation User</label>
+                </value>
+                <value>
+                    <fullName>Transportation User W/Unwind</fullName>
+                    <default>false</default>
+                    <label>Transportation User W/Unwind</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Condition Inspector</fullName>
+                    <default>false</default>
+                    <label>Vehicle Condition Inspector</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Condition Inspector (FSL Traction Beta)</fullName>
+                    <default>false</default>
+                    <label>Vehicle Condition Inspector (FSL Traction Beta)</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Condition Inspector (Time Tracking Beta)</fullName>
+                    <default>false</default>
+                    <label>Vehicle Condition Inspector (Time Tracking Beta)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Profile Group</label>
+    <listViews>
+        <fullName>Profile_Groups</fullName>
+        <columns>Group_Name__c</columns>
+        <columns>Profile_Name__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Profile Groups</label>
+    </listViews>
+    <pluralLabel>Profile Groups</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

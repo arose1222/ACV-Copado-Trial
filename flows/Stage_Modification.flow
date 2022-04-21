@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <assignments>
+        <name>Set_Status</name>
+        <label>Set Status</label>
+        <locationX>686</locationX>
+        <locationY>261</locationY>
+        <assignmentItems>
+            <assignToReference>selectedWorkOrderItem.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>VIN_Status</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_WorkOrderLine_Status</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>AssetVerificationListChoice</name>
+        <choiceText>New Status</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sample Choice</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>AtOtherLocation</name>
+        <choiceText>At Other Location</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>At Other Location</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>CustomPicklistValues</name>
+        <choiceText>{!VIN_Status}</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>ChoicesVar</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Demonstrator</name>
+        <choiceText>&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Helvetica; color: rgb(0, 0, 0);&quot;&gt;Demonstrator&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Demonstrator</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Inspected_Vehicle</name>
+        <choiceText>Inspected Vehicle</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Inspected Vehicle</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>InspectedOtherLocation</name>
+        <choiceText>Inspected Other Location</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Inspected Other Location</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>InTransit</name>
+        <choiceText>In Transit</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>In Transit</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>ServiceLoaner</name>
+        <choiceText>&lt;span style=&quot;background-color: rgb(227, 243, 255); font-size: 11.36px; font-family: Helvetica; color: rgb(0, 0, 0);&quot;&gt;Service Loaner&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Service Loaner</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>SoldButNotPaid</name>
+        <choiceText>Sold But Not Paid</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sold But Not Paid</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>SoldPaid</name>
+        <choiceText>Sold Paid</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Sold Paid</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>SOT</name>
+        <choiceText>SOT</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>SOT</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Is_Asset_Verification</name>
+        <label>Is Asset Verification</label>
+        <locationX>197</locationX>
+        <locationY>374</locationY>
+        <defaultConnector>
+            <targetReference>Non_Asset_Verification</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Is_Asset_Verification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SelectedWorkType.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>AssetVerification</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>TrueAssetVerification</targetReference>
+            </connector>
+            <label>Yes Is Asset Verification</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>WorkOrderStatuses</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Status</picklistField>
+        <picklistObject>WorkOrderLineItem</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>Stage Modification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Stage Modification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>FieldServiceMobile</processType>
+    <recordLookups>
+        <description>Get the Work Type for our current Work Order Line</description>
+        <name>Get_Work_Type</name>
+        <label>Get Work Type</label>
+        <locationX>206</locationX>
+        <locationY>186</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Asset_Verification</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>selectedWorkOrderItem.WorkTypeId</elementReference>
+            </value>
+        </filters>
+        <object>WorkType</object>
+        <outputReference>SelectedWorkType</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>GetWorkOrderItem</name>
+        <label>GetWorkOrderItem</label>
+        <locationX>206</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Work_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Id</elementReference>
+            </value>
+        </filters>
+        <object>WorkOrderLineItem</object>
+        <outputReference>selectedWorkOrderItem</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>WorkTypeId</queriedFields>
+        <queriedFields>Status</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_WorkOrderLine_Status</name>
+        <label>Update WorkOrderLine Status</label>
+        <locationX>923</locationX>
+        <locationY>261</locationY>
+        <inputReference>selectedWorkOrderItem</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Non_Asset_Verification</name>
+        <label>Non-Asset-Verification</label>
+        <locationX>526</locationX>
+        <locationY>479</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;Error: This is not an Asset Verification Record. The status cannot be updated.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>test</name>
+            <fieldText>&lt;p&gt;Work Type: {!SelectedWorkType.Name}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>TrueAssetVerification</name>
+        <label>TrueAssetVerification</label>
+        <locationX>525</locationX>
+        <locationY>261</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_Status</targetReference>
+        </connector>
+        <fields>
+            <name>VIN_Status</name>
+            <choiceReferences>Inspected_Vehicle</choiceReferences>
+            <choiceReferences>InspectedOtherLocation</choiceReferences>
+            <choiceReferences>AtOtherLocation</choiceReferences>
+            <choiceReferences>InTransit</choiceReferences>
+            <choiceReferences>Demonstrator</choiceReferences>
+            <choiceReferences>ServiceLoaner</choiceReferences>
+            <choiceReferences>SoldPaid</choiceReferences>
+            <choiceReferences>SoldButNotPaid</choiceReferences>
+            <choiceReferences>SOT</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>VIN Status</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>GetWorkOrderItem</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>Asset</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Asset</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>AssetVerification</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Asset Verification</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>AssetVerificationText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Asset Verification</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>InputRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>The WorkOrder Item we are trying to update</description>
+        <name>selectedWorkOrderItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>WorkOrderLineItem</objectType>
+    </variables>
+    <variables>
+        <name>SelectedWorkType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>WorkType</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Assign_Duration</name>
+        <label>Assign Duration</label>
+        <locationX>1070</locationX>
+        <locationY>397</locationY>
+        <assignmentItems>
+            <assignToReference>SA.Duration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SA.Work_Type_Duration__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_SchedEnd</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Duration_VehicleCount</name>
+        <label>Assign Duration VehicleCount</label>
+        <locationX>1068</locationX>
+        <locationY>549</locationY>
+        <assignmentItems>
+            <assignToReference>SA.Duration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>WTDuration_X_VehicleCount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_SchedEnd_VehicleCount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_DurationType</name>
+        <label>Assign DurationType</label>
+        <locationX>553</locationX>
+        <locationY>475</locationY>
+        <assignmentItems>
+            <assignToReference>SA.DurationType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Minutes</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Work_Types_FBI_or_CPO_or_Asset_check</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_SchedEnd</name>
+        <label>Assign SchedEnd</label>
+        <locationX>1210</locationX>
+        <locationY>397</locationY>
+        <assignmentItems>
+            <assignToReference>SA.SchedEndTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ScheduledEndFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Updated_total_Duration_Confirmation</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_SchedEnd_VehicleCount</name>
+        <label>Assign SchedEnd VehicleCount</label>
+        <locationX>1212</locationX>
+        <locationY>549</locationY>
+        <assignmentItems>
+            <assignToReference>SA.SchedEndTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ScheduledEndFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Updated_total_Vehicle_Count_Confirmation</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Change_to_False</name>
+        <label>Change to False</label>
+        <locationX>1784</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Service_Appointment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Change_to_True</name>
+        <label>Change to True</label>
+        <locationX>1783</locationX>
+        <locationY>555</locationY>
+        <assignmentItems>
+            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Checkbox_is_True</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Service_Appointment</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_Checkbox_True_Allow_Change_from_Flow</name>
+        <label>Is Checkbox True - Allow Change from Flow</label>
+        <locationX>1522</locationX>
+        <locationY>474</locationY>
+        <defaultConnector>
+            <targetReference>Change_to_True</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Checkbox is False</defaultConnectorLabel>
+        <rules>
+            <name>Checkbox_is_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SA.Allow_Change_From_Flow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Change_to_False</targetReference>
+            </connector>
+            <label>Checkbox is True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if the Work Type is FBI or CPO.  If it is, the Cannot Complete option is NOT available.</description>
+        <name>Work_Types_FBI_or_CPO_or_Asset_check</name>
+        <label>Work Types FBI or CPO or Asset check</label>
+        <locationX>690</locationX>
+        <locationY>477</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Duration</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Work_Type_Inspection_True360_SiriusXM</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Inspection</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>True</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Sirius</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Updated_Vehicle_Count_Screen</targetReference>
+            </connector>
+            <label>Work Type Inspection True360 SiriusXM</label>
+        </rules>
+    </decisions>
+    <description>ID-3489 Changing Toggle from Allow_VCI_Status_Change__c to Allow_Change_From_Flow__c.</description>
+    <formulas>
+        <name>ScheduledEndFormula</name>
+        <dataType>DateTime</dataType>
+        <expression>{!SA.SchedStartTime}+(({!SA.Duration}/60)/24)</expression>
+    </formulas>
+    <formulas>
+        <description>Work Type Duration times Vehicle Count</description>
+        <name>WTDuration_X_VehicleCount</name>
+        <dataType>Number</dataType>
+        <expression>{!Vehicle_Count} * {!SA.Work_Type_Duration__c}</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>FSL Update Vehicle Count {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FSL Update Vehicle Count</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>FieldServiceMobile</processType>
+    <recordLookups>
+        <name>Get_Service_Appointment</name>
+        <label>Get Service Appointment</label>
+        <locationX>417</locationX>
+        <locationY>475</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_DurationType</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Id</elementReference>
+            </value>
+        </filters>
+        <object>ServiceAppointment</object>
+        <outputReference>SA</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Duration</queriedFields>
+        <queriedFields>DurationType</queriedFields>
+        <queriedFields>SchedEndTime</queriedFields>
+        <queriedFields>SchedStartTime</queriedFields>
+        <queriedFields>WorkTypeId</queriedFields>
+        <queriedFields>Work_Type_Name__c</queriedFields>
+        <queriedFields>Work_Type_Duration__c</queriedFields>
+        <queriedFields>Allow_Change_From_Flow__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Service_Appointment</name>
+        <label>Update Service Appointment</label>
+        <locationX>1948</locationX>
+        <locationY>478</locationY>
+        <inputReference>SA</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>Updated total Duration Confirmation</description>
+        <name>Updated_total_Duration_Confirmation</name>
+        <label>Updated total Duration Confirmation</label>
+        <locationX>1345</locationX>
+        <locationY>397</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Is_Checkbox_True_Allow_Change_from_Flow</targetReference>
+        </connector>
+        <fields>
+            <name>Time_Update_Confirmation_Message_0</name>
+            <fieldText>&lt;p&gt;This will update the appointment to be a total duration of {!SA.Duration} minutes.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Updated total Vehicle Count Confirmation</description>
+        <name>Updated_total_Vehicle_Count_Confirmation</name>
+        <label>Updated total Vehicle Count Confirmation</label>
+        <locationX>1349</locationX>
+        <locationY>549</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Is_Checkbox_True_Allow_Change_from_Flow</targetReference>
+        </connector>
+        <fields>
+            <name>Time_Update_Confirmation_Message</name>
+            <fieldText>&lt;p&gt;The total Vehicle Count has been updated to {!Vehicle_Count} Vehicles.&lt;/p&gt;&lt;p&gt;This will update the appointment to be a total duration of {!SA.Duration} minutes.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Updated_Vehicle_Count_Screen</name>
+        <label>Updated Vehicle Count Screen</label>
+        <locationX>946</locationX>
+        <locationY>549</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Duration_VehicleCount</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_Updated_Vehicle_Count</name>
+            <fieldText>&lt;p&gt;Please enter the Updated total &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;number of vehicles to inspect:&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Vehicle_Count</name>
+            <dataType>Number</dataType>
+            <fieldText>Updated total Vehicle Count</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+            <validationRule>
+                <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Vehicle Count must be greater than zero.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>{!Vehicle_Count} &gt; 0</formulaExpression>
+            </validationRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>456</locationY>
+        <connector>
+            <targetReference>Get_Service_Appointment</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SA</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ServiceAppointment</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,72 @@
+<apex:page controller="EXPRN.SelectScoringModelController" showHeader="false" sidebar="false" >
+    <head>    
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-postmessage.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-bbq-min.js')}" />        
+    </head>
+    
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict(); 
+        var parent_domain = '{!JSENCODE($CurrentPage.parameters.parent_domain)}'; 
+        j$(document).ready(function() {
+            j$('input[id$=btnCloseModalDialog]').click(function(event) {          
+                event.preventDefault();
+                if(j$('select[id$="slScoringModel"]').val() != '' && j$('select[id$="slScoringModel"]').val() != 'undefined') {
+                    closeModalDialog();
+                }
+                else {
+                    alert('Please select a scoring model');
+                }
+                
+            });
+            
+            j$('input[id$=btnCancelModalDialog]').click(function(event) {          
+                event.preventDefault();
+                cancelModalDialog();                
+            });
+            
+            
+        });
+        
+        function closeModalDialog() {
+            var cross_result = new Object();
+            cross_result.action = 'close_modal_dialog';
+            cross_result.credit_policy = j$('select[id$="slScoringModel"]').val();
+            j$.postMessage(
+                cross_result,
+                parent_domain,
+                parent
+            );
+            
+        }        
+              
+        function cancelModalDialog()
+        {
+            var cross_result = new Object();
+            cross_result.action = 'cancel_modal_dialog';
+            j$.postMessage(
+                cross_result,
+                parent_domain,
+                parent
+            );            
+        }
+    </script>
+    <style>        
+    </style>
+    <apex:pageMessages />
+    <apex:form ><br/><br/><br/><br/>
+    
+        <apex:outputPanel style="margin-left: 2%; top:20%" id="opanel"> 
+            <div style="margin-left:10px; margin-top:-30px;"><b>{!sSelectedAcctCnt}</b> accounts have been selected for Batch Scoring.</div> <br/ ><br/ >   
+            <apex:outputLabel value="Scoring Model: "  style="font-weight: bold;margin-left: 3%;"/>
+            <apex:selectList value="{!sSelectedSM}" size="1" id="slScoringModel">
+                <apex:selectOption itemLabel="---- Select ----" itemvalue=""/>
+                <apex:selectOptions value="{!lstScoringModel }" />
+            </apex:selectList>
+        </apex:outputPanel><br/><br/>
+        <center>
+        <apex:commandButton id="btnCloseModalDialog" value="Initiate Batch Scoring" />&nbsp; &nbsp;
+        <apex:commandButton value="Cancel" styleClass="ui-icon ui-icon-closethick" id="btnCancelModalDialog"/>
+        </center>
+    </apex:form>
+</apex:page>

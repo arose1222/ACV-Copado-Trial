@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>TSE Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>TSE Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Action --></label>
+        <name>Action__c</name>
+        <picklistValues>
+            <masterLabel>Clock In</masterLabel>
+            <translation><!-- Clock In --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clock Out</masterLabel>
+            <translation><!-- Clock Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interrupt Activity</masterLabel>
+            <translation><!-- Interrupt Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resume Activity</masterLabel>
+            <translation><!-- Resume Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schedule Break</masterLabel>
+            <translation><!-- Schedule Break --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Entry</masterLabel>
+            <translation><!-- Work Entry --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Break Type --></label>
+        <name>Break_Type__c</name>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meeting</masterLabel>
+            <translation><!-- Meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Immediate Action Notes --></label>
+        <name>Immediate_Action_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Immediate Action --></label>
+        <name>Immediate_Action__c</name>
+        <picklistValues>
+            <masterLabel>Break</masterLabel>
+            <translation><!-- Break --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clock Out</masterLabel>
+            <translation><!-- Clock Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End of Day Travel</masterLabel>
+            <translation><!-- End of Day Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Work</masterLabel>
+            <translation><!-- Other Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resume Previous Work</masterLabel>
+            <translation><!-- Resume Previous Work --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Service Appointment --></label>
+        <name>Service_Appointment__c</name>
+        <relationshipLabel><!-- TSE Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Additional Work</masterLabel>
+            <translation><!-- Additional Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arrival</masterLabel>
+            <translation><!-- Arrival --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Break</masterLabel>
+            <translation><!-- Break --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End of Day Travel</masterLabel>
+            <translation><!-- End of Day Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Idle</masterLabel>
+            <translation><!-- Idle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel</masterLabel>
+            <translation><!-- Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work In Progress</masterLabel>
+            <translation><!-- Work In Progress --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- TSE Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Order Line Item --></label>
+        <name>Work_Order_Line_Item__c</name>
+        <relationshipLabel><!-- TSE Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Order --></label>
+        <name>Work_Order__c</name>
+        <relationshipLabel><!-- TSE Requests --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Additional notes are required when selecting &apos;Other&apos; --></errorMessage>
+        <name>Notes_Required_For_Other</name>
+    </validationRules>
+</CustomObjectTranslation>

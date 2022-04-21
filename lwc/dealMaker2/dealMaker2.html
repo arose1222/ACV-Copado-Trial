@@ -1,0 +1,172 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternativetext="Loading" size="large"></lightning-spinner>
+    </template>
+    <section role="dialog" tabindex="-1" class="slds-fade-in-open slds-modal_small">
+        <div>
+            <header class="slds-modal__header">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Deal Maker Page</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <aura:component>
+                <div class="row">
+                    <div class="slds-align_absolute-center">
+                        <lightning-button variant='brand' label='Refresh' onclick={refreshPage}></lightning-button>
+                    </div>
+                    <h2 class="header">Enter :</h2>
+                    <c-lookup custom-key="master" data-item="master" selection={initialSelection} errors={errors}
+                        onsearch={handleOppLookup} onselectionchange={termChange}
+                        label="" name="Find Opportunities for All" class="opportunity" placeholder="Filter by IST or Region" is-multi-entry={isMultiEntry}>
+                    </c-lookup>
+                </div>
+            </aura:component>
+            </div>
+        </div>
+    </section>
+    <article class="slds-card">
+        <table id="dealMakerTable" class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large" style="position: static;">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th><div onclick={sortTableLinkAM} class="slds-truncate" style="cursor: pointer">Link AM</div></th>
+                    <th><div onclick={sortTableEndTime} class="slds-truncate" style="cursor: pointer">End Time</div></th>
+                    <th><div class="slds-truncate" style="cursor: pointer">Vehicle</div></th>
+                    <th><div onclick={sortTableSellDeal} class="slds-truncate" style="cursor: pointer">Sell Deal</div></th>
+                    <th><div onclick={sortTableBuyDeal} class="slds-truncate" style="cursor: pointer">Buy Deal</div></th>
+                    <th><div onclick={sortTableVariance} class="slds-truncate" style="cursor: pointer">Var.</div></th>
+                    <th><div onclick={sortTableVariancePercentage} class="slds-truncate" style="cursor: pointer">Var. %</div></th>
+                    <th><div onclick={sortTableHighBid} class="slds-truncate" style="cursor: pointer">High Bid</div></th>
+                    <th><div onclick={sortTableFloorPrice} class="slds-truncate" style="cursor: pointer">Floor</div></th>
+                    <th><div onclick={sortTableLinkDM} class="slds-truncate" style="cursor: pointer">Link DM</div></th>
+                    <th><div class="slds-truncate" style="cursor: pointer">Notes</div></th>
+                    <th><div onclick={sortTableSellIST} class="slds-truncate" style="cursor: pointer">Sell IST</div></th>
+                    <th><div onclick={sortTableBuyIST} class="slds-runcate" style="cursor:pointer">Buy IST</div></th>
+                    <th><div onclick={sortTableOppName} class="slds-runcate" style="cursor:pointer">Opp.</div></th>
+                    <th><div class="slds-truncate" style="cursor: pointer">Region</div></th>
+                </tr>
+            </thead>
+            <template for:each={rows} for:item='row'>
+                <tr key={row.key} class ="fakewidth">
+                    <td><a id={row.aucId} href={row.linkToAucMan} target='_blank' key={row.key} data-key={row.key} name='linkToAuctionManager'>{row.aucId}</a></td>
+                    <td><output key={row.key} data-key={row.key} name='auctionEndDateTime'>{row.endTime}</output></td>
+                    <td><a id={row.vehicle} onclick={openmodalVehicleInfo} key={row.key} data-key={row.key} name='VehicleInformation'>{row.vinNum}</a></td>
+                    <td><a id={row.sellDeal} onclick={openmodalSellerInfo} key={row.key} data-key={row.key} name='sellerDealership' >{row.sellDeal}</a></td>
+                    <td><a id={row.buyDeal} onclick={openmodalBuyerInfo} key={row.key} data-key={row.key} name='buyerDealership'>{row.buyDeal}</a></td>
+                    <td><output key={row.key} data-key={row.key} name='priceVariance'>{row.priVariance}</output></td>
+                    <td><output key={row.key} data-key={row.key} name='priceVariancePercentage'>{row.priVarPerc}</output></td>
+                    <td><output key={row.key} data-key={row.key} name='highBid'>{row.highBid}</output></td>
+                    <td><output key={row.key} data-key={row.key} name='floorPrice'>{row.floPrice}</output></td>
+                    <td><a id={row.buyId} href={row.linkToDealMake} target='_blank' key={row.key} data-key={row.key} name='linkToDealMaker'>{row.buyId}</a></td>
+                    <td><textarea key={row.key} data-key={row.key} rows='1' onclick={bigTextWindow} onblur={handleRowAction} name='auctionNotes' style="border-radius:5px; border-color:rgb(194, 194, 194);" class='slds-p-bottom_small Notes'>{row.aucNotes2}</textarea></td>
+                    <td><a id={row.sellIST} href={row.sIstUrl} key={row.key} data-key={row.key} name='sellerIST'>{row.sellIST}</a></td>
+                    <td><a id={row.buyIST} href={row.bIstUrl} key={row.key} data-key={row.key} name='buyerIST'>{row.buyIST}</a></td>
+                    <td><a id={row.oppName} href={row.oppUrl} key={row.key} data-key={row.key} name='Opportunity'>{row.oppName}</a></td>
+                    <td><output key={row.key} data-key={row.key} name='region'>{row.sellReg}</output></td>
+                </tr>
+            </template>
+        </table>
+    </article>
+        <div class="slds-theme_default">
+            <template if:true={openmodelBuyerInfo}>
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closemodelBuyerInfo}>
+                                <lightning-icon icon-name="utility:close" size="medium">
+                                </lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Buyer Information</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                            <p>Buyer Dealership: {buyRow.bDealName}</p>
+                            <br>
+                            <p>Buyer Contact: {buyRow.bContName}</p>
+                            <p>Phone: {buyRow.bContPhone}</p>
+                            <p>Email: {buyRow.bContEmail}</p>
+                            <br>
+                            <p>Location: {buyRow.bDealLoc}</p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Close" variant="neutral" onclick={closemodelBuyerInfo}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <lightning-button label="Dealer Link" variant="brand" onclick={buyLinkMethod}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+            </template>
+        </div>
+        <div class="slds-theme_default">
+            <template if:true={openmodelSellerInfo}>
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-3" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closemodelSellerInfo}>
+                                <lightning-icon icon-name="utility:close" size="medium">
+                                </lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Seller Information</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                            <p>Seller Dealership: {sellRow.sDealName}</p>
+                            <br>
+                            <p>Seller Contact: {sellRow.sContName}</p>
+                            <p>Phone: {sellRow.sContPhone}</p>
+                            <p>Email: {sellRow.sContEmail}</p>
+                            <br>
+                            <p>Location: {sellRow.sDealLoc}</p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Close" variant="neutral" onclick={closemodelSellerInfo}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <lightning-button label="Dealer Link" variant="brand" onclick={sellerLinkMethod}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+            </template>
+        </div>
+        <div class="slds-theme_default">
+            <template if:true={openmodelVehicleInfo}>
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-4" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closemodelVehicleInfo}>
+                                <lightning-icon icon-name="utility:close" size="medium">
+                                </lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-04" class="slds-text-heading_medium slds-hyphenate">Vehicle Information</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-5">
+                            <div style="width: 50%; float:left;">
+                                <p>VIN: {vehRow.vVIN}</p>
+                                <p>Year: {vehRow.vYear}</p>
+                                <p>Make: {vehRow.vMake}</p>
+                                <p>Model: {vehRow.vModel}</p>
+                            </div>
+                            <div style="width: 50%; float:left;">
+                                <p>Trim: {vehRow.vTrim}</p>
+                                <p>Milage: {vehRow.vMile}</p>
+                                <p>Lights: <lightning-formatted-rich-text
+                                    value={vehRow.vLights}
+                                ></lightning-formatted-rich-text></p>
+                                <p>Auto Sell: {vehRow.vAutoSell}</p>
+                            </div>         
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Close" variant="neutral" onclick={closemodelVehicleInfo}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!-- <lightning-button label="Vehicle Link" variant="brand" onclick={vehicleLinkMethod}></lightning-button> -->
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+            </template>
+        </div>
+
+</template>

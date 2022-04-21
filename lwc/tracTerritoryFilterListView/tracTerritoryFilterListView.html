@@ -1,0 +1,71 @@
+<!--
+- @description List view that shows work orders for a territory and status selection
+- @name tracTerritoryFilterListView
+- @author Daniel Labonte, Traction on Demand
+- @author Karen Reardon, Traction on Demand
+- @date 2019-08-014
+-->
+
+<template>
+    <lightning-card class="slds-p-around_none slds-m-around_none text-color-override">
+        <div slot="title" class="slds-grid">
+            <lightning-icon class="slds-media slds-no-space slds-icon" icon-name={icon} size="medium"></lightning-icon>
+            <div class="slds-media__figure slds-p-left_small">
+                <h3 class="slds-p-bottom_none">{cardTitle}</h3>
+                <span class="slds-text-body_small">{sobjectCount} of {sobjectTotal}</span>
+            </div>
+        </div>
+        <lightning-button slot="actions" variant="border-filled" icon-name="utility:filterList" icon-position="right" label="Apply Filters" onclick={applyFilters}></lightning-button>
+        <div class="slds-p-left_small">
+
+            <div class="slds-m-around--medium">
+                <lightning-combobox
+                        value={selectedDate}
+                        options={dateFilterComboboxVals}
+                        placeholder="Select an Option"
+                        label="Time Option"
+                        onchange={getSelectedDate}
+                ></lightning-combobox>
+            </div>
+            <div class="slds-m-around--medium">
+                <lightning-combobox
+                            value={selectedRevolving}
+                            options={revolvingFilterComboboxVals}
+                            placeholder="Select an Option"
+                            label="Revolving Appointment Option"
+                            onchange={getSelectedRevolving}
+                ></lightning-combobox>
+            </div>
+
+            <lightning-accordion class="slds-text-body_small" active-section-name={openFilters} allow-multiple-sections-open>
+                <lightning-accordion-section label={statusFilterLabel} name="status_filter">
+                    <c-trac-filter-list name="statuses" items={statusFilterValues} selected-items={selectedStatuses}></c-trac-filter-list>
+                </lightning-accordion-section>
+                <lightning-accordion-section label={workTypeFilterLabel} name="worktype_filter">
+                    <c-trac-filter-list name="worktypes" items={workTypeFilterValues} selected-items={selectedWorkTypes}></c-trac-filter-list>
+                </lightning-accordion-section>
+                <lightning-accordion-section label={territoryFilterLabel} name="territory_filter">
+                    <c-trac-filter-list name="territories" items={territoryFilterValues} selected-items={selectedTerritories}></c-trac-filter-list>
+                </lightning-accordion-section>
+                <lightning-accordion-section label={priorityTypeFilterLabel} name="priority_filter">
+                    <!-- ACV-0035 -->
+                    <c-trac-filter-list name="priorities" items={prioritiesFilterValues} selected-items={selectedPriorities}></c-trac-filter-list>
+                </lightning-accordion-section>
+            </lightning-accordion>
+
+            
+
+            <div class="slds-border_bottom"></div>
+            <template if:true={records}>
+                <template for:each={records} for:item="record" if:true={record}>
+                    <div key={record.Id}>
+                        <c-trac-territory-filter-item sobject={sobject} item={record} fields={fieldList}></c-trac-territory-filter-item>
+                    </div>
+                </template>
+            </template>
+            <span if:false={records} class="slds-align--absolute-center">
+                    No records available
+                </span>
+        </div>
+    </lightning-card>
+</template>

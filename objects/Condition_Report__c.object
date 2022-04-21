@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object receives fields from the condition_report, condition_report_document and saved_auctions tables in ACV Tools.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_Auction_Id__c</fullName>
+        <description>auction.id</description>
+        <externalId>false</externalId>
+        <label>ACV Auction Id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_CR_Document_Id__c</fullName>
+        <description>condition_report_document.id</description>
+        <externalId>false</externalId>
+        <label>ACV CR Document Id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_CR_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>condition_report.id</description>
+        <externalId>true</externalId>
+        <label>ACV CR Id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Condition_Report__c</fullName>
+        <description>Link to the ACV Saved Auction/Condition Report in tools.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://app.acvauctions.com/saved/&quot; &amp; ACV_Saved_Auction_Id__c,&quot;View VCR for Auction &quot; &amp; ACV_Saved_Auction_Id__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACV Condition Report</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Market_Report__c</fullName>
+        <description>Link to the ACV Market Report in ACV Auctions App.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://app.acvauctions.com/market-report?vin=&quot; &amp; VIN__c &amp; &quot;&amp;odometer=&quot; &amp; TEXT(Odometer__c), &quot;View AMR for Vehicle &quot; &amp; VIN__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACV Market Report</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Saved_Auction_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>saved_auctions.id</description>
+        <externalId>true</externalId>
+        <label>ACV Saved Auction Id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>AMP_ML_Score__c</fullName>
+        <description>Populated via /PrescreenService/AmpRequest to determine if a CR needs a prescreen based on AMP ML From R&amp;D</description>
+        <externalId>false</externalId>
+        <label>AMP ML Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Arb_Guard_Present__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Arb Guard Present</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Arb_Risk_Categories__c</fullName>
+        <description>JSON list of the Arb Risk categories through the ArbGuard endpoint</description>
+        <externalId>false</externalId>
+        <label>Arb Risk Categories</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Auction__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Auction</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Condition Reports</relationshipLabel>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Auto_sell__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Auto-sell</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Awaiting_Floor_Price__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CR has been reviewed and Floor price has been populated with &lt;20 value or +999999</description>
+        <externalId>false</externalId>
+        <label>Awaiting Floor Price</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CR_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checks when VCI scans the VIN</description>
+        <externalId>false</externalId>
+        <label>CR Created</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CR_Doc_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>condition_report_document.launchable</description>
+        <externalId>false</externalId>
+        <label>CR Doc Complete</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CR_Doc_CreateDate__c</fullName>
+        <description>condition_report_document.created</description>
+        <externalId>false</externalId>
+        <label>CR Doc CreateDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_Doc_LastUpdated__c</fullName>
+        <description>condition_report_document.updated</description>
+        <externalId>false</externalId>
+        <label>CR Doc LastUpdated</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_Review_Date_Time__c</fullName>
+        <description>Date/Time CR Review field is set to TRUE (Populated via workflow/field update)</description>
+        <externalId>false</externalId>
+        <label>CR Review Date/Time</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_Review_Time_Minus_45__c</fullName>
+        <externalId>false</externalId>
+        <formula>CR_Review_Date_Time__c  - 45 * 0.00069</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CR Review Time Minus 45</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_in_review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked once CR Doc complete but floor price is null</description>
+        <externalId>false</externalId>
+        <label>CR in review</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Most_Recent_Recommended_Price__c</fullName>
+        <description>Stamps the created date of the most recent Recommended Price record.</description>
+        <externalId>false</externalId>
+        <label>Date of Most Recent Recommended Price</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Dealer_Id__c</fullName>
+        <description>Holds the Dealer Id of the Dealership attached</description>
+        <externalId>false</externalId>
+        <formula>Dealership__r.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <description>This holds the API name of the Dealership&apos;s Dealer Type</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Dealership__r.Dealer_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is brought in through integration with acv-api, it is the dealer_id associated with the Saved_Auction_id</description>
+        <externalId>false</externalId>
+        <label>Dealership</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Condition Reports</relationshipLabel>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Floor_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Floor Price</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Inspection_Guid__c</fullName>
+        <description>Inspection Guid generated for SIA records</description>
+        <externalId>false</externalId>
+        <label>Inspection Guid</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_Life_Cycle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Populated with the Inventory Life Cycle record this CR Relates to.</description>
+        <externalId>false</externalId>
+        <label>Inventory Life Cycle</label>
+        <referenceTo>Inventory_Life_Cycle__c</referenceTo>
+        <relationshipLabel>Condition Reports</relationshipLabel>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMR_AutoCheck_URL__c</fullName>
+        <description>Link to the MMR AutoCheck page.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://m.manheim.com/mobile/vin/summary?vin=&quot; &amp; VIN__c &amp; &quot;&amp;mileage=&quot; &amp; TEXT(Odometer__c) , &quot;AutoCheck URL&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MMR AutoCheck URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMR_Link__c</fullName>
+        <description>Link to the main MMR Report page.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://mmr.manheim.com/?WT.svl=m_uni_hdr_sell&amp;country=US&amp;mid=200708003280006&amp;popup=true&amp;source=man&amp;vin=&quot; &amp; VIN__c &amp; &quot;&amp;mileage=&quot; &amp; TEXT(Odometer__c), &quot;View MMR for Vehicle &quot; &amp; VIN__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MMR Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <description>Make field populated via the Vehicle lookup</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.make__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Make</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <description>Model field populated via Vehicle lookup</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.model__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Recommended_Price_Created_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lists the User who created the most recent Recommended Price</description>
+        <externalId>false</externalId>
+        <label>Most Recent Recommended Price Created By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Odometer__c</fullName>
+        <description>This field is populated through inbound integration from the Saved_auctions table</description>
+        <externalId>false</externalId>
+        <label>Odometer</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Percent_RecPrices_Accepted__c</fullName>
+        <description>Percent of Recommended Prices Accepted for this Account.</description>
+        <externalId>false</externalId>
+        <formula>Dealership__r.Percent_RecPrices_Accepted__c</formula>
+        <label>% RecPrices Seller Accepted</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_RecPrices_Accepted__c</fullName>
+        <description>Percentage of Recommended Prices Accepted for this Account.</description>
+        <externalId>false</externalId>
+        <formula>Dealership__r.Percentage_RecPrices_Accepted__c</formula>
+        <label>% RecPrices Accepted for this Seller</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Physical_Review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When selected this indicates the CR was physically reviewed by a human being.</description>
+        <externalId>false</externalId>
+        <label>Physical Review</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Recommended_Price_Ceiling__c</fullName>
+        <description>The ceiling price from the most recent recommended price (populated by Recommend a Price! flow).</description>
+        <externalId>false</externalId>
+        <label>Recommended Price Ceiling</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Recommended_Price_Floor__c</fullName>
+        <description>The floor price from the most recent recommended price (populated by Recommend a Price! flow).</description>
+        <externalId>false</externalId>
+        <label>Recommended Price Floor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Region__c</fullName>
+        <externalId>false</externalId>
+        <formula>Dealership__r.Sales_Region_Formula__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Trim__c</fullName>
+        <description>This field is populated through inbound integration from the Saved_auctions table</description>
+        <externalId>false</externalId>
+        <label>Trim</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Selected_Trim__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Field is calculated based on if a trim was automatically selected for a condition report or if a user manually selected one. It uses the following formula through integration:
+IF(
+            ((SELECT COUNT(DISTINCT trim)
+              FROM vehicle_trims vt
+              WHERE sa.vehicle_id = vt.vehicle_id
+              ) &gt; 1), &apos;true&apos;, &apos;false&apos;
+        )</description>
+        <externalId>false</externalId>
+        <label>User Selected Trim</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VCI_Creator__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The person who starts the Inspection.</inlineHelpText>
+        <label>VCI Creator</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Condition Reports (VCI Creator)</relationshipLabel>
+        <relationshipName>Condition_Reports1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>VCI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The person who submits  the Condition Report.</inlineHelpText>
+        <label>VCI</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Condition Reports</relationshipLabel>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <description>saved_auctions.vin</description>
+        <externalId>false</externalId>
+        <label>VIN</label>
+        <length>17</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Auctions_Link__c</fullName>
+        <description>Link to the Vehicles Auction in ACV Tools.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://tools.acvauctions.com/vehicle/&quot;+VIN__c+&quot;/auctions&quot;, &quot;Vehicle Auctions &quot;+VIN__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Link to the Vehicles Auction in ACV Tools.</inlineHelpText>
+        <label>Vehicle Auctions Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Information__c</fullName>
+        <externalId>false</externalId>
+        <formula>&apos;Selling Dealership: &apos; &amp; Vehicle__r.Most_Recent_Seller__r.Name &amp;
+ BR() &amp;
+&apos;VIN: &apos; &amp; Vehicle__r.vin__c &amp;
+ BR() &amp;
+&apos;Make: &apos; &amp; Vehicle__r.make__c &amp;
+ BR() &amp;
+&apos;Model: &apos; &amp; Vehicle__r.model__c &amp;
+ BR() &amp;
+&apos;Year: &apos; &amp; TEXT( Vehicle__r.Year__c )</formula>
+        <label>Vehicle Information</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Condition Reports</relationshipLabel>
+        <relationshipName>Condition_Reports</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Waived_by_Pricing_Manager__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, CR is removed from the pricing team&apos;s queue</description>
+        <externalId>false</externalId>
+        <label>Waived by Pricing Manager</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X90_Day_RecPrices_Accepted__c</fullName>
+        <description>The total number of times the dealer accepted the recommended price over the last 90 days.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Dealership__r.Num_90_Day_RecPrices_Accepted__c) + &apos; of &apos; +  TEXT(Dealership__r.Num_90_Day_RecPrices_Avail_to_Accept__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>90 Day RecPrices Seller Accepted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X90_Day_Sell_Through_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>Dealership__r.X90_Day_Sell_Thru_Rate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>90 Day Sell Through Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>X90_Day_Seller_Sold__c</fullName>
+        <description>The sum of all sold vehicles by the dealer over the last 90 days.</description>
+        <externalId>false</externalId>
+        <formula>Dealership__r.Total_Sold_the_Past_90_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>90 Day Seller Sold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <description>Year populated with lookup to Vehicle Object</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Vehicle__r.Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Condition Report</label>
+    <listViews>
+        <fullName>This_Months_Condition_Reports</fullName>
+        <columns>NAME</columns>
+        <columns>Vehicle__c</columns>
+        <columns>VCI_Creator__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>VIN__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:60</value>
+        </filters>
+        <label>This Months Condition Reports</label>
+        <sharedTo>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Condition Report Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Condition Reports</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>ACV_Auction_Id__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Vehicle__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

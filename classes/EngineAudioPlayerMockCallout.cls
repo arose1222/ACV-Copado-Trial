@@ -1,0 +1,10 @@
+@isTest
+global class EngineAudioPlayerMockCallout implements HttpCalloutMock{
+    global HTTPResponse respond(HTTPRequest request) {
+        HttpResponse response = new HTTPResponse();
+        response.setHeader('Content-Type','application/json');
+        response.setBody('{"api_version":2.0,"data":{"vin":"3FA6P0HD4ER396301","code":"200","audio_files":[{"guid":1971,"vin":"3FA6P0HD4ER396301","link":"https://cdn.acvauctions.com/ent-micro-audio/prod/upload/audiofiles/2018/12/7/user_1544202583.549608/audio-462854543.wav","tags":[{"key":"BELT_SQUEAL","value":"false","label_text":"Belt Squeal","type":"boolean","category":"user_tags"},{"key":"MAKE","value":"","label_text":"Make","type":"string","category":"generated_tags"},{"key":"HUMID_WET_START","value":"true","label_text":"Wet Weather","type":"boolean","category":"user_tags"},{"key":"HYBRID_ENGINE","value":"false","label_text":"Hybrid Engine","type":"boolean","category":"user_tags"},{"key":"START_WITHIN_30MIN","value":"true","label_text":"Warm Start","type":"boolean","category":"user_tags"},{"key":"YEAR","value":"","label_text":"Year","type":"string","category":"generated_tags"},{"key":"APP_VERSION","value":"","label_text":"App Version","type":"string","category":"automatic_tags"},{"key":"ENGINE_TICK","value":"false","label_text":"Engine Tick","type":"boolean","category":"user_tags"},{"key":"DIFFICULT_START","value":"false","label_text":"Difficult Start","type":"boolean","category":"user_tags"},{"key":"ENGINE_KNOCK","value":"false","label_text":"Engine Knock","type":"boolean","category":"user_tags"},{"key":"EXHAUST_SMOKE","value":"false","label_text":"Exhaust Smoke","type":"boolean","category":"user_tags"},{"key":"COLD_WEATHER","value":"true","label_text":"Cold Weather","type":"boolean","category":"user_tags"},{"key":"MODEL","value":"","label_text":"Model","type":"string","category":"generated_tags"},{"key":"JUMP_START","value":"false","label_text":"Jump Start","type":"boolean","category":"user_tags"}],"owner_remote_uid":11791,"owner_remote_uid_source":"ACV","created":"12:09.43 ET 07/12/18"}]}}');
+        response.setStatusCode(200);
+        return response;
+    }
+}

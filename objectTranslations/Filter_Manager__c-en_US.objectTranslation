@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Filter Manager</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Filter Manager</value>
+    </caseValues>
+    <fields>
+        <help><!-- JSON Formatted --></help>
+        <label><!-- Columns --></label>
+        <name>Columns_JSON__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter API Name --></label>
+        <name>Filter_API_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- JSON Formatted --></help>
+        <label><!-- Filter Items --></label>
+        <name>Filter_Items_JSON__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter --></label>
+        <name>Filter__c</name>
+        <relationshipLabel><!-- Filter Manager --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- You can only have one Pinned per Table Component --></help>
+        <label><!-- Pinned --></label>
+        <name>Pinned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Table Component Name --></label>
+        <name>Table_Component_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Public - Everybody
+Private - Users with the Assignment record --></help>
+        <label><!-- Visibility --></label>
+        <name>Visibility__c</name>
+        <picklistValues>
+            <masterLabel>Private</masterLabel>
+            <translation><!-- Private --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public</masterLabel>
+            <translation><!-- Public --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Assignment --></label>
+        <name>Assignment</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Filter --></label>
+        <name>Filter</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

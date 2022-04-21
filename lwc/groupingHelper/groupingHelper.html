@@ -1,0 +1,30 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Group Management" icon-name="standard:user_role">
+        <lightning-layout multiple-rows="false">
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-card  variant="Narrow"  title="New Group" icon-name="standard:customers">
+                <lightning-record-edit-form object-api-name="Group__c" onsuccess={handleSuccess}>
+                    <lightning-messages>
+                    </lightning-messages>
+                        <lightning-input-field field-name="Name"></lightning-input-field> 
+                        <lightning-input-field field-name="Active__c"></lightning-input-field>
+                        <lightning-input-field field-name="Top_150_Rank__c"></lightning-input-field>
+                        <lightning-button variant="brand" type="submit" name="save" label="Create Group"></lightning-button>
+                </lightning-record-edit-form>
+            </lightning-card>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-card  variant="Narrow"  title="Add From Existing Group" icon-name="standard:omni_supervisor">
+                    <lightning-dual-listbox name="Existing Groups"
+                                label="Select Group"
+                                source-label="Available"
+                                selected-label="Selected"
+                                field-level-help="Select Existing Groups"
+                                options={options}
+                                onchange={handleChange}></lightning-dual-listbox>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+    </lightning-card>
+</template>

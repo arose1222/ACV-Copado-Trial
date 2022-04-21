@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies VP of Sales when lead is assigned to a TM</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VP Email when Lead is assigned</name>
+    <style>none</style>
+    <subject>{!Lead.OwnerFullName} has been assigned a lead</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

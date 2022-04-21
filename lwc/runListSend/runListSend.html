@@ -1,0 +1,97 @@
+<!-- This is the LWC for Bulk Send to Run List -->
+<template>
+    <!-- Error Message -->
+    <template if:true={errorMessage}>
+        <div>
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                    <span class="slds-assistive-text">error</span>
+                    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon size="medium" class="slds-icon" icon-name="utility:error" alternative-text="Error" title="Error"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2><lightning-formatted-text class="slds-text-heading_small" value={errorMessage}></lightning-formatted-text></h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <lightning-button-icon onclick={hideErrorMessage} icon-class="slds-button__icon" size="small" class="slds-button slds-button_icon-inverse" icon-name="utility:close" alternative-text="Close" title="Close"></lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Success Message -->
+    <template if:true={successMessage}>
+        <div>
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                    <span class="slds-assistive-text">success</span>
+                    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon size="medium" class="slds-icon" icon-name="utility:success" alternative-text="Error" title="Error"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2><lightning-formatted-text class="slds-text-heading_small" value={successMessage}></lightning-formatted-text></h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <lightning-button-icon onclick={hideSuccessMessage} icon-class="slds-button__icon" size="small" class="slds-button slds-button_icon-inverse" icon-name="utility:close" alternative-text="Close" title="Close"></lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Header -->
+    <template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+    <div class="slds-align_absolute-center">
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-large">
+                <p class="slds-text-heading_large">Bulk Send to Run List</p>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <lightning-layout>
+        <!-- Left Column -->
+        <lightning-layout-item size="6" padding="horizontal-large">
+            <!-- The accordion is default open based on if a section has values in it. -->
+            <lightning-accordion allow-multiple-sections-open
+                         active-section-name={activeOpenSections}>
+                <lightning-accordion-section name="CRS" label="The follow list contains the Condition Reports that will be sent to the run list">
+                    <ul class="slds-has-dividers_bottom-space slds-var-p-*_large">
+                        <!-- Condition Reports that can be sent to the run list -->
+                        <template if:true={crsToSendList} for:each={crsToSendList} for:item='cr'>
+                            <li class="slds-item" key={cr.id}>
+                                <p><lightning-formatted-url value={cr.idURL} label={cr.yearMakeModelTrim} target="_blank" ></lightning-formatted-url> Condition Report for <lightning-formatted-rich-text value={cr.yearMakeModelTrim}></lightning-formatted-rich-text></p>
+                                <p>VIN: {cr.vin} Reserve Price: <lightning-formatted-number value={cr.reservePrice} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+                            </li>
+                        </template>
+                    </ul> 
+                </lightning-accordion-section>
+                <lightning-accordion-section name="ILCS" label="These Inventory Life Cycle record(s) do not have a Condition Report to send to Run List and will not be included in the submit action">
+                    <ul class="slds-has-dividers_bottom-space slds-var-p-*_large">
+                        <!-- Inventory Life Cycle's that don't have an Condition Report that can be sent -->
+                        <template if:true={invalidCRsList} for:each={invalidCRsList} for:item='ilc'>
+                            <li class="slds-item" key={ilc.ilc.Id}>
+                                <p><lightning-formatted-rich-text value={ilc.ilc.Year_Make_Model_Trim__c}></lightning-formatted-rich-text> - VIN: {ilc.ilc.VIN__c}</p>
+                                <p>Status: {ilc.ilc.Status__c}</p>
+                                <P>Error Message: {ilc.errorMessage}</P>
+                            </li>
+                        </template>
+                    </ul>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </lightning-layout-item>
+        <!-- Right Column -->
+        <lightning-layout-item size="6" padding="horizontal-large">
+            <p><lightning-formatted-text class="slds-text-heading_medium slds-align_absolute-center" value="Are you sure you wish to send these to the Run List?" ></lightning-formatted-text></p>
+            <lightning-layout>
+                <lightning-layout-item size="12" class="slds-align_absolute-center">
+                    <lightning-button label="Back" title="Back" onclick={back} class="slds-m-left_large"></lightning-button>
+                    <lightning-button label="Submit" title="Submit" onclick={submit} disabled={submitDisabled} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
+    <!-- Footer -->
+</template>

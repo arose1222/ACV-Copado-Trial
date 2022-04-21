@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <description>Checks to see whether the Dealer Doc Task is expired. If yes, updates status to equal &apos;expired&apos;.</description>
+    <formulas>
+        <description>Pulls todays date. Purpose is to compare todays date to the due date.</description>
+        <name>TODAY</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <interviewLabel>Is DD Task Expired? {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update DD Task Status Expired</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get DD expiration tasks.</description>
+        <name>Get_DD_Tasks</name>
+        <label>Get DD Task Records</label>
+        <locationX>176</locationX>
+        <locationY>276</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Task_Status_0</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>documents will expire in</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ActivityDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>TODAY</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update task status to equal &apos;Expired&apos; when todays date is greater than &apos;Due Date&apos;.</description>
+        <name>Update_Task_Status_0</name>
+        <label>Update Task Status</label>
+        <locationX>176</locationX>
+        <locationY>396</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>documents will expire in</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ActivityDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>TODAY</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Expired</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_DD_Tasks</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <object>Task</object>
+        <schedule>
+            <frequency>Weekly</frequency>
+            <startDate>2022-01-23</startDate>
+            <startTime>00:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Outside Sales record ID</description>
+        <name>RecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>0120a0000000MGcAAM</stringValue>
+        </value>
+    </variables>
+</Flow>

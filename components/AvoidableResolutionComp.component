@@ -1,0 +1,16 @@
+<apex:component controller="AvoidableResolutionCompCont" access="global">
+    <apex:attribute name="currentResId" description="Record ID" type="id" assignTo="{!resId}"/>
+    <p>
+        Arbitration Number, <apex:outputLink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+newRes.Case__c}">{!newRes.Case__r.CaseNumber}</apex:outputLink>, was found to be avoidable.
+        <p/>
+        The following notes were captured: 
+        <p/>
+        {!newRes.complaint_id__r.Avoidable_Notes__c}
+        <br/>
+        Auction Id: <apex:outputLink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+newRes.Case__r.Auction_Number__c}"> {!newRes.Case__r.Auction_Number__r.Name}</apex:outputLink>
+        <br/>
+        Vehicle: <apex:outputLink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+newRes.Case__r.Vehicle__c}"> {!newRes.Case__r.Vehicle__r.Name}</apex:outputLink>
+        <br/>
+        Year/Make/Model: {!newRes.Case__r.Vehicle__r.Year__c} {!newRes.Case__r.Vehicle__r.make__c} {!newRes.Case__r.Vehicle__r.model__c}
+    </p>
+</apex:component>

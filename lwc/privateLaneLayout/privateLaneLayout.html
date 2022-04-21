@@ -1,0 +1,464 @@
+<template>
+    <!-- Spinner -->
+	<template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+    <!-- Form -->
+    <lightning-layout multiple-rows="true">
+        <!-- Lane Details -->
+        <lightning-layout-item size=12>
+            <div class="slds-p-around_xx-small sectionHeaderDiv">
+                Lane Details
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size=12>
+            <lightning-layout class="slds-m-around_x-small">
+                <!-- Name of Lane and Branding -->
+                <lightning-layout-item size=5>
+                    <lightning-input maxlength="64" name="nameOfLane" data-name="nameOfLane" read-only={isReadOnly} type="text" value={thisPrivateLane.nameOfLane} label="Name of Lane" onchange={handleFieldChangeUpdate}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+												
+                        <c-lookup custom-key="master" data-item="master" selection={brandSelection} errors={errors.branding}
+                            onsearch={handleBrandingLookup} onselectionchange={handleBrandingSelectionChange}
+                            label="Branding" name="brandReference" placeholder="Pick a Brand logo">
+                        </c-lookup>
+                        <div class="slds-has-error slds-form-element__help redText" role="alert">
+                            {errors.branding}
+                        </div>
+												<template if:true={s3Urlpreview}>
+                            	<img src={s3Urlpreview} width="150">
+                        </template>
+												<template if:true={showS3Component}>
+														<br>
+														<span>Upload New Brand Logo</span>
+														
+														<c-s3-file-upload 
+																							s3-bucket={s3Bucket} 
+																							s3-file-path={s3FilePath}  
+																							allow-multiple="false" 
+																							junction-object-type="Private_Lane__c"
+																							junction-object-id={recordId}
+																							s3-reference-type="Private Lane - Branding"
+																							upload-button-text = {uploadButtonText}
+																							cdn-url={cdnUrl}
+																							onsupload={handleS3Upload}
+																							></c-s3-file-upload>
+												</template>
+                    </template>
+                    
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.brandingName} label="Branding"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout class="slds-m-around_x-small">
+                <!-- Status and Lane Id -->
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="status" data-name="status" label="Status" value={thisPrivateLane.status} placeholder="Choose option ..." options={statusPicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.status} label="Status"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=6>
+                    <lightning-input name="laneId" data-name="laneId" read-only=true type="text" value={thisPrivateLane.laneId} label="Lane Id"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+        <!-- Lane Schedule -->
+        <lightning-layout-item size=12>
+            <div class="slds-p-around_xx-small sectionHeaderDiv">
+                Lane Schedule
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size=12>
+            <!-- Frequency -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="frequency" data-name="frequency" label="Frequency" value={thisPrivateLane.frequency} placeholder="Choose option ..." options={freqOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.frequency} label="Frequency"></lightning-input>
+                    </template>
+                    </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <template if:true={showFrequencyType}>
+                    <lightning-layout-item size=5>
+                        <template if:true={isEditOnly}>
+                            <lightning-combobox name="frequencyType" data-name="frequencyType" label="Recurring Timeframe" value={thisPrivateLane.frequencyType} placeholder="Choose option ..." options={freqTypeOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                        </template>
+                        <template if:true={isReadOnly}>
+                            <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.frequencyType} label="Recurring Timeframe"></lightning-input>
+                        </template>
+                        </lightning-layout-item>
+                    <lightning-layout-item size=1 class="slds-text-align_right">
+                        <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+            <template if:true={showSchedulingOptions}>
+                <!-- Days of the Week -->
+                <template if:true={currentFreqScheduleVariable.showDaysOfTheWeek}>
+                    <lightning-layout class="slds-m-around_x-small">
+                        <lightning-layout-item size=5>
+                            <template if:true={isEditOnly}>
+                                <p><lightning-formatted-text value="Days of the Week"></lightning-formatted-text></p>
+                                <lightning-button-group>
+                                    <template for:each={daysOfTheWeekOptions} for:item="day">
+                                        <lightning-button-stateful
+                                            key={day.day}
+                                            name={day.day}
+                                            label-when-off={day.day}
+                                            label-when-on={day.day}
+                                            label-when-hover={day.day}
+                                            variant={day.variant}
+                                            selected={day.isSelected}
+                                            onclick={handleDaysOfTheWeekSelection}
+                                        ></lightning-button-stateful>
+                                    </template>
+                                </lightning-button-group>
+                            </template>
+                            <div class="slds-has-error slds-form-element__help redText" role="alert">
+                                {errors.daysOfTheWeek}
+                            </div>
+                            <template if:true={isReadOnly}>
+                                <lightning-input name="daysOfTheWeek" read-only={isReadOnly} type="text" value={daysOfTheWeekText} label="Days Of The Week"></lightning-input>
+                            </template>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                            <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                        </lightning-layout-item>
+                        <!-- <lightning-layout-item size=5>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=1 class="slds-text-align_right">
+                        </lightning-layout-item> -->
+                    </lightning-layout>
+                </template>
+                <!-- Start Date and Start Time -->
+                <lightning-layout class="slds-m-around_x-small">
+                    <template if:true={currentFreqScheduleVariable.showDates}>
+                        <lightning-layout-item size=5>
+                            <template if:true={isEditOnly}>
+                                <lightning-input name="startDate" data-name="startDate" read-only={isReadOnly} type="date" date-style="long" value={thisPrivateLane.startDate} label="Start Date" onchange={handleFieldChangeUpdate}></lightning-input>
+                            </template>
+                            <template if:true={isReadOnly}>
+                                <lightning-input read-only={isReadOnly} type="date" readonly=true value={thisPrivateLane.startDate} label="Start Date" date-style="long"></lightning-input>
+                            </template>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                            <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                        </lightning-layout-item>
+                    </template>
+                    <template if:true={currentFreqScheduleVariable.showTimes}>
+                        <lightning-layout-item size=5>
+                            <template if:true={isEditOnly}>
+                                <lightning-layout>
+                                    <lightning-layout-item size=5>
+                                        <lightning-input name="startTime" data-name="startTime" read-only={isReadOnly} type="time" value={thisPrivateLane.startTime} label={currentFreqScheduleVariable.startTimeLabel} onchange={handleFieldChangeUpdate}></lightning-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1></lightning-layout-item>
+                                    <lightning-layout-item size=6 class="slds-p-top_large">
+                                        <lightning-combobox name="timezone" data-name="timezone" variant="label-hidden" value={thisPrivateLane.timezone} placeholder="Choose option ..." options={picklistOptions.timezonePicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </template>
+                            <template if:true={isReadOnly}>
+                                <lightning-formatted-text class="slds-form-element__label" value={currentFreqScheduleVariable.startTimeLabel}></lightning-formatted-text>
+                                <div>
+                                    <lightning-formatted-time class="slds-input formattedTimeReadonly" value={thisPrivateLane.startTime}></lightning-formatted-time>
+                                    <lightning-formatted-text class="formattedTimeReadonly" value={readOnlyTextFields.timezone}></lightning-formatted-text>
+                                </div>
+                            </template>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=1 class="slds-text-align_right">
+                            <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+                <template if:true={currentFreqScheduleVariable.showAuctionDuration}>
+                    <!-- Auction Duration and Run Entire Aunction Length -->
+                    <lightning-layout class="slds-m-around_x-small">
+                        <lightning-layout-item size=5>
+                            <template if:true={isEditOnly}>
+                                <lightning-layout>
+                                    <lightning-layout-item size=5>
+                                        <lightning-input name="auctionDuration" data-name="auctionDuration" type="number" label="Auction Duration" value={thisPrivateLane.auctionDuration} step=".25" onchange={handleFieldChangeUpdate}></lightning-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1></lightning-layout-item>
+                                    <lightning-layout-item size=6 class="slds-p-top_large">
+                                        <lightning-combobox name="auctionDurationType" data-name="auctionDurationType" variant="label-hidden" value={thisPrivateLane.auctionDurationType} placeholder="Choose option ..." options={timePicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                                <div class="subtextClass slds-p-top_xx-small">{label.auctionDurationSubtext}</div>
+                            </template>
+                            <template if:true={isReadOnly}>
+                                <lightning-input type="text" read-only={isReadOnly} value={readOnlyTextFields.auctionDuration} label="Auction Duration"></lightning-input>
+                            </template>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                            <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </template>
+        </lightning-layout-item>
+        <!-- Auction Rules -->
+        <lightning-layout-item size=12>
+            <div class="slds-p-around_xx-small sectionHeaderDiv">
+                Auction Rules
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size=12>
+            <!-- Custom Start Price && Sale Format -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <label class="slds-form-element__label" for="unique-id-of-input">Custom Start Price</label>
+                    <lightning-helptext content={label.customStartPriceHelptext}></lightning-helptext>
+                    <template if:true={isEditOnly}>
+                        <lightning-layout>
+                            <lightning-layout-item size=5>
+                                <lightning-input name="customStartPriceValue" data-name="customStartPriceValue" type='number' formatter={customStartPriceFieldFormatter} variant="label-hidden" disabled={customStartPriceDisabled} value={thisPrivateLane.customStartPriceValue} step="1" min="0" onchange={handleCustomStartPriceChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size=1></lightning-layout-item>
+                            <lightning-layout-item size=6>
+                                <lightning-combobox name="customStartPriceType" data-name="customStartPriceType" variant="label-hidden" value={thisPrivateLane.customStartPriceType} placeholder="Choose option ..." options={picklistOptions.customPricePicklistOptions} onchange={handleCustomStartPriceTypeChange} ></lightning-combobox>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <div class="subtextClass slds-p-top_xx-small">{label.customStartPriceSubtext}</div>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input type="text" read-only={isReadOnly} value={customStartPriceText} variant="label-hidden"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="saleFormat" data-name="saleFormat" label="Sale Format" value={thisPrivateLane.saleFormat} placeholder="Choose option ..." options={picklistOptions.saleFormatPicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.saleFormat} label="Sale Format"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Payment Options & Title Options -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="paymentOption" data-name="paymentOption" label="Payment Options" value={thisPrivateLane.paymentOption} placeholder="Choose option ..." options={picklistOptions.paymentOptionPicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.paymentOption} label="Payment Options"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="titleOption" data-name="titleOption" label="Title Options" value={thisPrivateLane.titleOption} placeholder="Choose option ..." options={picklistOptions.toPicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.titleOption} label="Title Options"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+        <!-- Preview & Make Offer -->
+        <lightning-layout-item size=12>
+            <div class="slds-p-around_xx-small sectionHeaderDiv">
+                Preview & Make Offer
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size=12>
+            <!-- Make Offer Duration And Make Offer Duration Type -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-layout>
+                            <lightning-layout-item size=5>
+                                <lightning-input name="makeOfferDuration" data-name="makeOfferDuration" type="number" label="Make Offer Duration" value={thisPrivateLane.makeOfferDuration} step=".25" onchange={handleFieldChangeUpdate}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size=1></lightning-layout-item>
+                            <lightning-layout-item size=6 class="slds-p-top_large">
+                                <lightning-combobox name="makeOfferDurationType" data-name="makeOfferDurationType" variant="label-hidden" value={thisPrivateLane.makeOfferDurationType} placeholder="Choose option ..." options={timePicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <div class="subtextClass slds-p-top_xx-small">{label.makeOfferDurationSubtext}</div>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input type="text" read-only={isReadOnly} value={readOnlyTextFields.makeOfferDuration} label="Make Offer Duration"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-combobox name="makeOfferType" data-name="makeOfferType" label="Make Offer Type" value={thisPrivateLane.makeOfferType} placeholder="Choose option ..." options={picklistOptions.makeOfferTypePicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" value={readOnlyTextFields.makeOfferType} label="Make Offer Type"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+                <!-- Preview Start Price & Preview Proxy Bidding & Preview Duration-->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-layout>
+                            <lightning-layout-item size=5>
+                                <lightning-input name="previewDuration" data-name="previewDuration" type="number" label="Preview Duration" value={thisPrivateLane.previewDuration} step=".25" onchange={handleFieldChangeUpdate}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size=1></lightning-layout-item>
+                            <lightning-layout-item size=6 class="slds-p-top_large">
+                                <lightning-combobox name="previewDurationType" data-name="previewDurationType" variant="label-hidden" value={thisPrivateLane.previewDurationType} placeholder="Choose option ..." options={timePicklistOptions} onchange={handleFieldChangeUpdate} ></lightning-combobox>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <div class="subtextClass slds-p-top_xx-small">{label.previewDurationSubtext}</div>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input type="text" read-only={isReadOnly} value={readOnlyTextFields.previewDuration} label="Preview Duration"></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <lightning-layout class="slds-p-top_medium" horizontal-align="center">
+                        <lightning-layout-item size=6>
+                            <lightning-input type="toggle" name="previewStartPrice" disabled={isReadOnly} label="Preview Start Price" checked={thisPrivateLane.previewStartPrice} data-name="previewStartPrice" onchange={handleFieldChangeUpdate} message-toggle-active="Show" message-toggle-inactive="Hide"></lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=6>
+                            <lightning-input type="toggle" name="previewProxyBidding" disabled={isReadOnly} label="Preview Proxy Bidding" checked={thisPrivateLane.previewProxyBidding} data-name="previewProxyBidding" onchange={handleFieldChangeUpdate} message-toggle-active="Enable" message-toggle-inactive="Disable" ></lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+        <!-- Checkout Fees -->
+        <lightning-layout-item size=12>
+            <div class="slds-p-around_xx-small sectionHeaderDiv">
+                Checkout Fees
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size=12>
+            <!-- Buyer Fee and Base Sell Fee -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-input type="number" name="buyFee" data-name="buyFee" label="Buyer Fee" value={thisPrivateLane.buyFee} formatter="currency" step="0" onchange={handleFieldChangeUpdate}></lightning-input>
+                        <div class="subtextClass slds-p-top_xx-small">If no price is entered, the <span style="font-weight:bold">buy fee</span> will be set to <span style="font-weight:bold">default</span></div>
+                    </template>
+                    <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" label="Buyer Fee" value={readOnlyTextFields.buyFee}></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right slds-m-right_xx-small">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-input type="number" name="sellFee" data-name="sellFee" label="Base Sell Fee" value={thisPrivateLane.sellFee} formatter="currency" step="0" onchange={handleFieldChangeUpdate}></lightning-input>
+                        <div class="subtextClass slds-p-top_xx-small">If no price is entered, the <span style="font-weight:bold">base sell fee</span> will be set to <span style="font-weight:bold">default</span></div>
+                    </template>
+                        <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" label="Base Sell Fee" value={readOnlyTextFields.sellFee}></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Blank and VCI Launch Fee -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=6 class="slds-m-right_xx-small">
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-input type="number" name="vciFee" data-name="vciFee" label="VCI Launch Fee" value={thisPrivateLane.vciFee} formatter="currency" step="0" onchange={handleFieldChangeUpdate}></lightning-input>
+                        <div class="subtextClass slds-p-top_xx-small">If no price is entered, the <span style="font-weight:bold">vci launch fee</span> will be set to <span style="font-weight:bold">default</span></div>
+                    </template>
+                        <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" label="VCI Launch Fee" value={readOnlyTextFields.vciFee}></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Blank and Go Green Fee -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=6 class="slds-m-right_xx-small">
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-input type="number" name="goGreenFee" data-name="goGreenFee" label="Go Green Fee" value={thisPrivateLane.goGreenFee} formatter="currency" step="0" onchange={handleFieldChangeUpdate}></lightning-input>
+                        <div class="subtextClass slds-p-top_xx-small">If no price is entered, the <span style="font-weight:bold">go green fee</span> will be set to <span style="font-weight:bold">default</span></div>
+                    </template>
+                        <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" label="Go Green Fee" value={readOnlyTextFields.goGreenFee}></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- Blank and Pack Fee -->
+            <lightning-layout class="slds-m-around_x-small">
+                <lightning-layout-item size=6 class="slds-m-right_xx-small">
+                </lightning-layout-item>
+                <lightning-layout-item size=5>
+                    <template if:true={isEditOnly}>
+                        <lightning-input type="number" name="packFee" data-name="packFee" label="Pack Fee" value={thisPrivateLane.packFee} formatter="currency" step="0" onchange={handleFieldChangeUpdate}></lightning-input>
+                        <div class="subtextClass slds-p-top_xx-small">If no price is entered, the <span style="font-weight:bold">pack fee</span> will be set to <span style="font-weight:bold">default</span></div>
+                    </template>
+                        <template if:true={isReadOnly}>
+                        <lightning-input read-only={isReadOnly} type="text" label="Pack Fee" value={readOnlyTextFields.packFee}></lightning-input>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size=1 class="slds-text-align_right">
+                    <lightning-button-icon icon-name="utility:edit" hidden={isEditOnly} onclick={toggleViewStateMode} variant="container" alternative-text="Edit" title="Edit"></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
+    <template if:true={isEditOnly}>
+        <lightning-layout>
+            <div class="slds-align_absolute-center slds-p-top_medium slds-m-bottom_xx-large">
+                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Save" title="Save" onclick={handleSave} class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </lightning-layout>
+    </template>
+</template>

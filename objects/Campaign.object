@@ -155,11 +155,12 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>FullAccess</externalSharingModel>
     <fields>
         <fullName>ActualCost</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>AmountAllOpportunities</fullName>
@@ -169,22 +170,128 @@
     </fields>
     <fields>
         <fullName>BudgetedCost</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>CampaignMemberRecordTypeId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>DB_Campaign_Tactic__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <label>DB Campaign Tactic</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Type</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Print Advertisement</fullName>
+                    <default>false</default>
+                    <label>Print Advertisement</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Employment Seminars</fullName>
+                    <default>false</default>
+                    <label>Employment Seminars</label>
+                </value>
+                <value>
+                    <fullName>Webinars</fullName>
+                    <default>false</default>
+                    <label>Webinars</label>
+                </value>
+                <value>
+                    <fullName>Public Relations</fullName>
+                    <default>false</default>
+                    <label>Public Relations</label>
+                </value>
+                <value>
+                    <fullName>Partners</fullName>
+                    <default>false</default>
+                    <label>Partners</label>
+                </value>
+                <value>
+                    <fullName>Referral Program</fullName>
+                    <default>false</default>
+                    <label>Referral Program</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Lunches</fullName>
+                    <default>false</default>
+                    <label>Lunches</label>
+                </value>
+                <value>
+                    <fullName>Direct Mail</fullName>
+                    <default>false</default>
+                    <label>Direct Mail</label>
+                </value>
+                <value>
+                    <fullName>Sales Call Down</fullName>
+                    <default>false</default>
+                    <label>Sales Call Down</label>
+                </value>
+                <value>
+                    <fullName>Online Banners/Ads</fullName>
+                    <default>false</default>
+                    <label>Online Banners/Ads</label>
+                </value>
+                <value>
+                    <fullName>Internal Website</fullName>
+                    <default>false</default>
+                    <label>Internal Website</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Data_Quality_Score__c =100,&quot;All Campaign Details Captured&quot;, &quot;Missing: &quot;&amp;IF( LEN( Name)&lt;5,&quot;Meaningful Campaign Name, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(ISPICKVAL( Type ,&quot;&quot;), &quot;Type, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( ISPICKVAL( Status ,&quot;&quot;), &quot;Status, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN(TEXT(MONTH( StartDate )))=0, &quot;Start Date, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN(TEXT(MONTH( EndDate )))=0, &quot;End Date, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(NumberOfContacts  +  NumberOfLeads = 0, &quot;No Associated Members, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN(TEXT( ExpectedRevenue ))=0, &quot;Expected Revenue&quot;,&quot;&quot;))</formula>
+        <label>Data Quality Description</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(LEN(  Name  ) &lt; 5, 0,20) + IF(ISPICKVAL(  Type ,&quot;&quot; ), 0,20) + IF(ISPICKVAL( Status ,&quot;&quot; ), 0,20) + IF(LEN( TEXT(MONTH( StartDate )))= 0, 0,10) + IF( LEN(TEXT(MONTH( EndDate ))) = 0, 0,10) + IF(  NumberOfContacts  +  NumberOfLeads = 0, 0,10)  + IF( LEN( TEXT( ExpectedRevenue ) ) = 0, 0,10)</formula>
+        <label>Data Quality Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>EndDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>ExpectedResponse</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>ExpectedRevenue</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>HierarchyActualCost</fullName>
@@ -224,9 +331,11 @@
     </fields>
     <fields>
         <fullName>IsActive</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Name</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>NumberOfContacts</fullName>
@@ -248,25 +357,43 @@
     </fields>
     <fields>
         <fullName>NumberSent</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ParentId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>StartDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Status</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Type</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Alyce_Campaign_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>Alyce Campaign Id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>true</unique>
     </fields>
     <listViews>
         <fullName>AllActiveCampaigns</fullName>
@@ -275,6 +402,7 @@
         <columns>CAMPAIGN.END_DATE</columns>
         <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
         <columns>CAMPAIGN.STATUS</columns>
+        <columns>CAMPAIGN.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CAMPAIGN.ACTIVE</field>
@@ -315,6 +443,18 @@
     </searchLayouts>
     <sharingModel>FullAccess</sharingModel>
     <webLinks>
+        <fullName>Add_to_Pardot_List</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add to Pardot List</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://pi.pardot.com/list/pullCrmCampaign/fid/{!Campaign.Id}/campaignName/ {!URLENCODE(Campaign.Name)}/leadCount/{!Campaign.NumberOfLeads} /contactCount/{!Campaign.NumberOfContacts}?sessionid={!$Api.Session_ID}&amp;serverurl={!$Api.Partner_Server_URL_90}</url>
+    </webLinks>
+    <webLinks>
         <fullName>ViewAllCampaignMembers</fullName>
         <availability>online</availability>
         <displayType>link</displayType>
@@ -352,6 +492,26 @@
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
         <url>/00O?rt=117&amp;break0=CAN&amp;scope=1&amp;scopeid_lkid={!Campaign.Id}&amp;scopeid={!Campaign_Name}&amp;c=CAN&amp;c=MR&amp;c=PCS&amp;c=CFN&amp;c=RN&amp;c=ON&amp;c=OA&amp;c=OS&amp;c=OCD&amp;c=AN&amp;s=OA&amp;duel0=CAN%2CMR%2CCFN%2CRN%2CAN%2CON%2CPCS%2COS%2COCD%2COA&amp;details=yes&amp;format=t</url>
+        <width>500</width>
+    </webLinks>
+    <webLinks>
+        <fullName>alycecom__ViewCampaignInfluenceReport</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>500</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>View Campaign Influence Report</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/00O?rt=117&amp;break0=CAN&amp;scope=1&amp;scopeid_lkid={!Campaign.Id}&amp;scopeid={!Campaign.Name}&amp;c=CAN&amp;c=MR&amp;c=PCS&amp;c=CFN&amp;c=RN&amp;c=ON&amp;c=OA&amp;c=OS&amp;c=OCD&amp;c=AN&amp;s=OA&amp;duel0=CAN%2CMR%2CCFN%2CRN%2CAN%2CON%2CPCS%2COS%2COCD%2COA&amp;details=yes&amp;format=t</url>
         <width>500</width>
     </webLinks>
 </CustomObject>

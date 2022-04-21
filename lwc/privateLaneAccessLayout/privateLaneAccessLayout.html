@@ -1,0 +1,78 @@
+<!-- This is the LWC for Privale Lane Access -->
+<template>
+     <!-- Shoud not be appear if edit mode -->
+    <template if:true={showTitleBar}>
+        <div class="modal-header slds-modal__header slds-size_1-of-1 slds-theme_shade slds-text-heading_large">
+            <h4 class="title slds-text-heading--medium" >New Private Lane Access</h4>
+        </div>
+    </template>
+    <div class="slds-m-top_small slds-box_x-small slds-theme_shade slds-theme_alert-texture slds-text-heading_medium">
+        <b>Information</b>
+    </div>
+    <div class="slds-m-top_small slds-m-left_large">
+        <!-- Spinner -->
+        <template if:true={activeSpinner}>
+            <div class="spinner">
+                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+        <!-- This runs when the page is not from the ParticpiatingDealershipGroupRL -->
+        <template if:false={isfromrl}>
+            <lightning-record-form
+                record-id={recordId}
+                object-api-name={objectApiName}
+                layout-type="Full"
+                columns="2"
+                mode={mode}
+                onsubmit={handleSubmit}
+                oncancel={handleCancel}
+            ></lightning-record-form>
+        </template>
+        <!-- This runs when it is from ParticpatingDealershipGroupRL -->
+        <!-- It's seperated as we want Private Lane to default when its clicked from Related List  -->
+        <!-- and that couldn't be done from lightning-record-form -->
+        <template if:true={isfromrl}>
+            <lightning-record-edit-form object-api-name="Private_Lane_Access__c" onsubmit={handleSubmit}>
+                <lightning-messages></lightning-messages>
+                <lightning-layout>
+                    <lightning-layout-item size=6 class="slds-p-right_small">
+                        <lightning-input-field
+                            field-name="Organization_Group__c"
+                        ></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size=6 class="slds-m-left_small">
+                        <lightning-input-field
+                            field-name="Selling_Power__c"
+                        ></lightning-input-field>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size=6 class="slds-p-right_small">
+                        <lightning-input-field
+                            field-name="Private_Lane__c"
+                            value={privatelane}
+                            disabled=true
+                        ></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size=6 class="slds-m-left_small">
+                        <lightning-input-field
+                            field-name="Buying_Power__c"
+                        ></lightning-input-field>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-m-top_medium slds-align_absolute-center">
+                    <lightning-button
+                        class="slds-m-right_small"
+                        onclick={handleCancel}
+                        label="Cancel">
+                    </lightning-button>
+                    <lightning-button
+                        type="submit"
+                        variant="brand"
+                        label="Save">
+                    </lightning-button>
+                </lightning-layout>
+            </lightning-record-edit-form>
+        </template>
+    </div>
+</template>

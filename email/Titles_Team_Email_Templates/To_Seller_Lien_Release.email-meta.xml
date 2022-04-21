@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inform Seller they need to provide Lien release</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>To Seller - Lien Release</name>
+    <style>freeForm</style>
+    <subject>Title Information Needed:{!Case.Vehicle_Year_Make_Model__c}</subject>
+    <textOnly>Hello,
+
+I am reaching out as we have received the title for the vehicle listed below.  Upon receipt there was an error identified on the front of the title. A lien was recorded with BANK. Please provide a Lien Release from BANK as this is a required portion of this sale in order to transfer the ownership to the purchaser.
+
+Year/Make/Model:{!Case.Vehicle_Year_Make_Model__c}
+VIN: {!Case.VIN__c}
+
+Attached is a copy of the title for your records and an overnight label to expedite this request.
+
+Thank you.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

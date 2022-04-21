@@ -2,9 +2,45 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>On Hold</fullName>
+        <fullName>Awaiting Approval</fullName>
         <default>false</default>
-        <label>On Hold</label>
+        <label>Awaiting Approval</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Unwound</fullName>
+        <default>false</default>
+        <label>Unwound</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Received</fullName>
+        <default>false</default>
+        <label>Received</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Working</fullName>
+        <default>false</default>
+        <label>Working</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Parked</fullName>
+        <default>false</default>
+        <label>Parked</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Problem</fullName>
+        <default>false</default>
+        <label>Problem</label>
         <closed>false</closed>
     </standardValue>
     <standardValue>
@@ -14,15 +50,339 @@
         <closed>false</closed>
     </standardValue>
     <standardValue>
+        <fullName>On Hold</fullName>
+        <default>false</default>
+        <label>On Hold</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Buyer Response</fullName>
+        <default>false</default>
+        <label>Awaiting Buyer Response</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Seller Response</fullName>
+        <default>false</default>
+        <label>Awaiting Seller Response</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Evidence Received</fullName>
+        <default>false</default>
+        <label>Evidence Received</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Diagnostic Results</fullName>
+        <default>false</default>
+        <label>Awaiting Diagnostic Results</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Under Review</fullName>
+        <default>false</default>
+        <label>Under Review</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Reviewed</fullName>
+        <default>false</default>
+        <label>Reviewed</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Offer Made</fullName>
+        <default>false</default>
+        <label>Offer Made</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Unwind Transportation Requested</fullName>
+        <default>false</default>
+        <label>Unwind Transportation Requested</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Payment</fullName>
+        <default>false</default>
+        <label>Awaiting Payment</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Release</fullName>
+        <default>false</default>
+        <label>Awaiting Release</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ready-to-Post</fullName>
+        <default>false</default>
+        <label>Ready-to-Post</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sent to Third-Party</fullName>
+        <default>false</default>
+        <label>Sent to Third-Party</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Failed Post</fullName>
+        <default>false</default>
+        <label>Failed Post</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Posted</fullName>
+        <default>false</default>
+        <label>Posted</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Pending-Offer</fullName>
+        <default>false</default>
+        <label>Pending-Offer</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Inspection</fullName>
+        <default>false</default>
+        <label>Inspection</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Transportation Arranged</fullName>
+        <default>false</default>
+        <label>Transportation Arranged</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Accepted</fullName>
+        <default>false</default>
+        <label>Accepted</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Picked-Up</fullName>
+        <default>false</default>
+        <label>Picked-Up</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Delivered</fullName>
+        <default>false</default>
+        <label>Delivered</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Internal 48 Hour Notice</fullName>
+        <default>false</default>
+        <label>Internal 48 Hour Notice</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>48 Hour Notice</fullName>
+        <default>false</default>
+        <label>48 Hour Notice</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Return to Seller</fullName>
+        <default>false</default>
+        <label>Return to Seller</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sent</fullName>
+        <default>false</default>
+        <label>Sent</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Rewound</fullName>
+        <default>false</default>
+        <label>Rewound</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ready for Relaunch</fullName>
+        <default>false</default>
+        <label>Ready for Relaunch</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Title at ACV Unwound</fullName>
+        <default>false</default>
+        <label>Title at ACV Unwound</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Returned to Seller Unwound</fullName>
+        <default>false</default>
+        <label>Returned to Seller Unwound</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ready for Response</fullName>
+        <default>false</default>
+        <label>Ready for Response</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Arb Unwind Requested</fullName>
+        <default>false</default>
+        <label>Arb Unwind Requested</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (Buyer Problem)</fullName>
+        <default>false</default>
+        <label>Closed (Buyer Problem)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (No Title)</fullName>
+        <default>false</default>
+        <label>Closed (No Title)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (Not Approved)</fullName>
+        <default>false</default>
+        <label>Closed (Not Approved)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
         <fullName>Closed</fullName>
         <default>false</default>
         <label>Closed</label>
         <closed>true</closed>
     </standardValue>
     <standardValue>
-        <fullName>New</fullName>
-        <default>true</default>
-        <label>New</label>
+        <fullName>Sold</fullName>
+        <default>false</default>
+        <label>Sold</label>
         <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (Rewound)</fullName>
+        <default>false</default>
+        <label>Closed (Rewound)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (Resold)</fullName>
+        <default>false</default>
+        <label>Closed (Resold)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Unwound</fullName>
+        <default>false</default>
+        <label>Closed Unwound</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed (Ready to Launch)</fullName>
+        <default>false</default>
+        <label>Closed (Ready to Launch)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Final Rejection</fullName>
+        <default>false</default>
+        <label>Final Rejection</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>IST Review</fullName>
+        <default>false</default>
+        <label>IST Review</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Compliance Review</fullName>
+        <default>false</default>
+        <label>Compliance Review</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed(compliant)</fullName>
+        <default>false</default>
+        <label>Closed(compliant)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed(non-compliant)</fullName>
+        <default>false</default>
+        <label>Closed(non-compliant)</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Locked</fullName>
+        <default>false</default>
+        <label>Locked</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Staged</fullName>
+        <default>false</default>
+        <label>Staged</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Hold</fullName>
+        <default>false</default>
+        <label>Hold</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Finalized</fullName>
+        <default>false</default>
+        <label>Finalized</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cancelled by Transporter</fullName>
+        <default>false</default>
+        <label>Cancelled by Transporter</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Dry Run</fullName>
+        <default>false</default>
+        <label>Closed Dry Run</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cancelled by ACV</fullName>
+        <default>false</default>
+        <label>Cancelled by ACV</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Non-Responsive-Unpaid</fullName>
+        <default>false</default>
+        <label>Non-Responsive-Unpaid</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ops Hand Off</fullName>
+        <default>false</default>
+        <label>Ops Hand Off</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>IST Follow Up</fullName>
+        <default>false</default>
+        <label>IST Follow Up</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Not Arbitration</fullName>
+        <default>false</default>
+        <label>Not Arbitration</label>
+        <closed>true</closed>
     </standardValue>
 </StandardValueSet>

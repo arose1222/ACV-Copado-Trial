@@ -1,0 +1,2872 @@
+<apex:page docType="html-5.0"
+  tabStyle="Geopointe_Setup__tab"
+  controller="geopointe.s_Main"
+  extensions="geopointe.RemoteAction,geopointe.GlobalVars"
+  sidebar="false"
+  action="{!init}"
+  title="Geopointe - Setup"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+>
+  <apex:slds />
+
+  <!-- CSS -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/ui/1.12.1/jquery-ui.structure.min.css')}"/> jQuery UI CSS -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/ui/1.12.1/jquery-ui.min.css')}"/> jQuery UI CSS -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/ui/1.12.1/jquery-ui.theme.min.css')}"/> jQuery UI CSS -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/fieldSelector/css/fieldselector.css')}"/> FieldSelector plugin CSS -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common.css')}" />
+  <!---Stencil css -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/slds-layout-stencil.css')}" />
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/css/map/map.css')}"/>  -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.jquery, '/css/s_main.css')}"/> CSS for s_Main.page -->
+
+  <!-- Might need in the future -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.geopointeWeb, '/vendor/mapWeb.vendor.css')}"/> App Vendor CSS -->
+  <!-- <apex:stylesheet value="{!URLFOR($Resource.geopointeWeb, '/dist/mapWeb.css')}"/> App CSS -->
+  <!-- Might need in the future -->
+
+  <style type="text/css">
+    .rolodex a.listItemPad {
+      padding: 0 5px;
+    }
+    div.message {
+      margin-bottom: 20px;
+    }
+  </style>
+  <style type="text/css">
+    .actionSortCol {
+      min-width: 100px !important;
+      white-space: nowrap !important;
+      table-layout: fixed;
+    }
+    .headerRow {
+      white-space: normal !important;
+    }
+    .slds-scope .slds-icon.fillGrey {
+      fill: rgb(112, 110, 107) !important;
+    }
+  </style>
+
+  <!-- isolate Lightning CSS adjustments -->
+  <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+    <style>
+      .helpButton .helpOrb {
+        /* background-image: url("/img/help/helpOrbs.gif");  */
+        background-repeat: no-repeat;
+        height: 15px;
+        width: 15px;
+        background-position: 0 0;
+        margin-right: -7px;
+      }
+      .helpButtonOn .helpOrb {
+        /* background-image: url("/img/help/helpOrbs.gif");  */
+        background-repeat: no-repeat;
+        height: 15px;
+        width: 15px;
+        background-position: -21px 0;
+        margin-right: -7px;
+      }
+    </style>
+  </apex:outputPanel>
+  <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+    <style>
+      .pbSubheader > h3 {
+        display: unset;
+      }
+    </style>
+    <style>
+      .dataCell {
+        padding: 5px 4px 5px 5px !important;
+      }
+      .pbSubheader {
+        margin-top: 0px;
+      }
+    </style>
+  </apex:outputPanel>
+  <style>
+    .helpOrb {
+      background-repeat: no-repeat;
+    }
+    .mainTitle {
+      white-space: nowrap;
+    }
+  </style>
+
+  <!-- Bundles -->
+  <c:GlobalVars />
+  <script src="{!URLFOR($Page.translations)}"></script>
+  <!-- Geopointe translations -->
+  <script src="{!URLFOR($Resource.geopointeWeb, '/vendor/mapWeb.vendor.js')}"></script>
+  <script src="{!$Resource.GeopointeJS}"></script>
+  <!-- Geopointe universal functions -->
+  <script src="{!URLFOR($Resource.geopointeWeb, '/dist/mapWeb.js')}"></script>
+  <script src="{!URLFOR($Resource.js_api_v1)}"></script>
+  <!-- Geopointe Javascript api -->
+  <!-- Bundles -->
+
+  <!-- remote action -->
+  <script>
+    var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+    var iconPath = "{!URLFOR($Asset.SLDS, 'assets/icons/')}";
+    var gp_SLDS = {
+      standardSprite: "{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg')}",
+      utilitySprite: "{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg')}",
+      actionSprite: "{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg')}",
+    };
+  </script>
+
+  <!-- Other packages -->
+  <apex:includeScript value="{!$Resource.geopointe__sorttable}" />
+  <!-- Sorttable -->
+  <apex:includeScript value="{!$Page.geopointe__js_GA}" />
+  <!-- Google Analytics -->
+  <!-- event.composedPath() polyfill  -->
+  <script type="text/javascript">
+    function propagationPath(t) {
+      var n = t.target || null,
+        e = [n];
+      if (!n || !n.parentElement) return [];
+      for (; n.parentElement; ) (n = n.parentElement), e.unshift(n);
+      return e;
+    }
+  </script>
+
+  <div class="slds-scope" style="{!IF($User.UIThemeDisplayed != 'Theme3', 'margin-top:-15px;', '')}">
+    <!-- page header -->
+    <div class="slds-page-header">
+      <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+          <div class="slds-media">
+            <div class="slds-media__figure">
+              <img src="{!$Resource.images + '/geopointeLogo.png'}" style="height: 60px !important" />
+              <span class="slds-assistive-text">Geopointe Setup</span>
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-page-header__name">
+                <div class="slds-page-header__name-title">
+                  <h1><span class="slds-page-header__title slds-truncate" title="Geopointe">Geopointe Setup</span></h1>
+                </div>
+              </div>
+              <p class="slds-page-header__name-meta">
+                To learn more, visit <a href="http://help.geopointe.com/" target="_blank"><b>http://help.geopointe.com</b></a
+                >.<br /> For assistance, please contact support at <a href="mailto:help@geopointe.com"><b>help@geopointe.com</b></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Messages -->
+    <apex:outputPanel id="pageMessages">
+      <apex:pageMessages escape="false" />
+    </apex:outputPanel>
+
+    <apex:form >
+      <apex:actionFunction reRender="MapObjectContainer" status="Fetching Configuration" name="fetchMapObjectData" action="{!fetchMapObjectData}" />
+      <apex:actionFunction reRender="recordActionData" status="Fetching Configuration" name="reRenderActionsData" action="{!fetchActionsData}" oncomplete="toggleHideSpinner();" />
+      <script type="text/javascript">
+        window.onload = function () {
+          //fetch map object configuration on load to get more limits
+          fetchMapObjectData();
+        };
+      </script>
+      <apex:outputPanel id="wrapperDIV" layout="block" rendered="{!initSuccess}">
+        <div id="setupTabs" class="slds-vertical-tabs" style="min-height: 800px">
+          <ul class="slds-vertical-tabs__nav" id="setupTabs" role="tablist" aria-orientation="vertical">
+            <li class="slds-vertical-tabs__nav-item" title="Org Settings" role="presentation" id="slds-vertical-tabs-orgsettings">
+              <a class="slds-vertical-tabs__link" href="#tab-org" role="tab" aria-controls="tab-org">
+                <span class="slds-truncate">Org Settings</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Map Objects" role="presentation" id="slds-vertical-tabs-mapObjects">
+              <a class="slds-vertical-tabs__link" href="#tab-mapObjects" role="tab" aria-controls="tab-mapObjects">
+                <span class="slds-truncate">Map Objects</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Actions" role="presentation" id="slds-vertical-tabs-actions">
+              <a class="slds-vertical-tabs__link" href="#tab-actions" role="tab" aria-controls="tab-actions">
+                <span class="slds-truncate">Actions</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Map Styles" role="presentation" id="slds-vertical-map-styles">
+              <a class="slds-vertical-tabs__link" href="#tab-mapStyles" role="tab" aria-controls="tab-mapStyles">
+                <span class="slds-truncate">Map Styles</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" style="display:{!assignmentAccess}" title="Assignment Plans" role="presentation" id="slds-vertical-assignment-plans">
+              <a class="slds-vertical-tabs__link" href="#tab-assignmentPlans" role="tab" aria-controls="tab-assignmentPlans">
+                <span class="slds-truncate">Assignment Plans</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Batch Jobs" role="presentation" id="slds-vertical-batchJobs">
+              <a class="slds-vertical-tabs__link" href="#tab-batchJobs" role="tab" aria-controls="tab-batchJobs">
+                <span class="slds-truncate">Batch Jobs</span>
+              </a>
+            </li>
+            <!-- <li class="slds-vertical-tabs__nav-item" title="Geopointe Data Layer" role="presentation" id="slds-vertical-fieldMapping">
+            <a class="slds-vertical-tabs__link" href="#tab-fieldMapping" role="tab" aria-controls="tab-fieldMapping">
+                <span>Geopointe Data Layer</span>
+            </a>
+        </li> -->
+            <li class="slds-vertical-tabs__nav-item" title="User Settings" role="presentation" id="slds-vertical-userSettings">
+              <a class="slds-vertical-tabs__link" href="#tab-userSettings" role="tab" aria-controls="tab-userSettings">
+                <span>User Settings</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Calendar Configuration" role="presentation" id="slds-vertical-calendarConfiguration">
+              <a class="slds-vertical-tabs__link" href="#tab-calendarConfiguration" role="tab" aria-controls="tab-calendarConfiguration">
+                <span>Calendar Configuration</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Feature Licenses" role="presentation" id="slds-vertical-featureLicenses" style="display: {!showLicensesTab}">
+              <a class="slds-vertical-tabs__link" href="#tab-featureLicenses" role="tab" aria-controls="tab-featureLicenses">
+                <span>Feature Licenses</span>
+              </a>
+            </li>
+            <li class="slds-vertical-tabs__nav-item" title="Route Planner" role="presentation" id="slds-vertical-routePlanner" style="display: {!showLicensesTab}">
+              <a class="slds-vertical-tabs__link" href="#tab-routePlanner" role="tab" aria-controls="tab-routePlanner">
+                <span>Route Planner</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Vertical Tab active handler -->
+          <script type="text/javascript">
+            var removeVerticalTab = (function (propagationPath) {
+              var verticalNavList = document.querySelector('ul#setupTabs'),
+                verticalNavItems = Array.prototype.slice.call(verticalNavList.children);
+
+              function verticalTabToggle(event) {
+                //prevent page from scrolling to top
+                event.preventDefault();
+                window.scrollTo(0, 0);
+
+                //if browser doesnt support composed path, use polyfill
+                var eventPath = !event.composedPath ? propagationPath(event) : event.composedPath();
+                var nodeTree = Array.prototype.slice.call(eventPath);
+
+                if (document.querySelector('#licensesManageWrapper').style.display === 'block') {
+                  gp_events.emit('closeLicenses', event);
+                }
+
+                if (document.querySelector('#routePlannerWrapper').style.display === 'block') {
+                  gp_events.emit('closeRoutePlanner', event);
+                }
+
+                if (document.querySelector('#calendarConfigWrapper').style.display === 'block') {
+                  event.composedPath = function () {
+                    return eventPath;
+                  };
+
+                  gp_events.emit('calendarEditWarn', event);
+
+                  return;
+                }
+
+                if (document.querySelector('#actionEditWrapper') && document.querySelector('#actionEditWrapper').style.display === 'block') {
+                  event.composedPath = function () {
+                    return eventPath;
+                  };
+
+                  gp_events.emit('actionEditWarn', event);
+                  return;
+                }
+
+                //get previous active tab content
+                var verticalContentItems = Array.prototype.slice.call(document.querySelectorAll("div[data-grouping='setupTab'].slds-vertical-tabs__content.slds-show"));
+                //.some to stop iterating up the dom tree
+                nodeTree.some(function (node) {
+                  if (node.tagName === 'LI' && !node.classList.contains('slds-is-active')) {
+                    var anchor = node.querySelector('a.slds-vertical-tabs__link');
+                    window.location.hash = anchor.getAttribute('href');
+                    //history.pushState({}, anchor.getAttribute('href'))
+                    var ariaControls = anchor.getAttribute('aria-controls');
+                    //Add the class to nav list item
+                    node.classList.add('slds-is-active');
+                    //iterate over all items and remove any previous active that are not the current pressed target. if not the tab clicked on, remove the class
+                    verticalNavItems.forEach(function (prev) {
+                      if (prev !== node) prev.classList.remove('slds-is-active');
+                    });
+                    // //show current nav item equivalent content
+                    actionShowHideContent(undefined, ariaControls, 'slds-hide', 'slds-show');
+                    //iterate over all other content active content and remove from view
+                    verticalContentItems.forEach(function (item) {
+                      if (item.id !== ariaControls) actionShowHideContent(item, undefined, 'slds-show', 'slds-hide');
+                    });
+                    return true;
+                  }
+                });
+              }
+
+              gp_events.on('verticalTabToggle', verticalTabToggle);
+
+              gp_events.on('closeActionConfig', function (data) {
+                document.querySelector('[data-id="actionsPageBlock"]').style.display = 'block';
+                document.querySelector('#actionEditWrapper').style.display = 'none';
+                if (data && data.refreshData == true) {
+                  toggleHideSpinner();
+                  window.reRenderActionsData();
+                  window.scrollTo(0, 0);
+                }
+              });
+
+              function actionShowHideContent(content, contentId, removeClass, addClass) {
+                var content = content || document.getElementById(contentId);
+                if (content) {
+                  if (addClass) content.classList.add(addClass);
+                  if (removeClass) content.classList.remove(removeClass);
+                }
+              }
+
+              //Listener on parent so each child LI doesn't need their own listener
+              verticalNavList.addEventListener('click', verticalTabToggle, false);
+              //return reference to callback function if need to remove event listener later
+              return verticalTabToggle;
+            })(propagationPath);
+          </script>
+          <!-- Vertical Tab active handler -->
+
+          <!-- Org Settings -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-org" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-tabs-orgsettings">
+            <table style="width: 100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="vertical-align: top; padding-right: 5px">
+                  <!-- Organization Preferences -->
+                  <apex:outputPanel >
+                    <apex:pageBlock title="{!IF($User.UIThemeDisplayed != 'Theme3', '', 'Organization Settings')}"
+                      helpTitle="Learn more about Organization Settings"
+                      helpUrl="https://customers.geopointe.com/s/article/Organization-Settings"
+                    >
+                      <apex:pageBlockButtons location="top" id="OrgSettingTopButtons" styleClass="pbButtonWalkme">
+                        <apex:commandButton action="{!goToEditOrgSettings}" value="Edit" />
+
+                        <apex:commandButton action="{!updatePermissions}"
+                          value="Get License Information"
+                          rerender="pageMessages"
+                          onclick="if(confirm('This process will obtain information from Geopointe related to your Geopointe license.\n\nContinue?')){geopointeAjaxStart('body','Retrieving Permissions...');}else{return false}"
+                          oncomplete="geopointeAjaxEnd();"
+                        />
+
+                        <apex:commandButton action="{!updateUserPermissions}"
+                          value="Set User Permissions"
+                          rerender="pageMessages"
+                          onclick="if(confirm('This process will assign your users to Permission Sets that come with the Geopointe application.\n\nThis helps to ensure your users have access to core Geopointe functionality.\n\nContinue?')){geopointeAjaxStart('body','Updating Permissions...');}else{return false}"
+                          oncomplete="geopointeAjaxEnd();"
+                        />
+
+                        <apex:commandButton action="{!removeUserPermissions}"
+                          value="Remove User Permissions"
+                          rerender="pageMessages"
+                          onclick="if(confirm('This process will unassign your users from the Permission Sets that come with the Geopointe application.\n\nThis is required prior to uninstalling the application..\n\nContinue?')){geopointeAjaxStart('body','Removing Permissions...');}else{return false}"
+                          oncomplete="geopointeAjaxEnd();"
+                        />
+
+                        <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                          <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                            <div class="slds-media__figure">
+                              <span class="slds-icon_container slds-icon-utility-info" title="information">
+                                <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                                </svg>
+                                <span class="slds-assistive-text">information</span>
+                              </span>
+                            </div>
+                            <div class="slds-media__body">
+                              <p><a href="https://customers.geopointe.com/s/article/Organization-Settings">Learn more</a></p>
+                            </div>
+                          </div>
+                        </apex:outputPanel>
+                      </apex:pageBlockButtons>
+
+                      <!-- Trial Notice / Buy Now -->
+                      <apex:outputPanel rendered="{!orgSettings.licenseStatus == 'Trial'}">
+                        <div class="message infoM4" role="alert">
+                          <table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding: 0px; margin: auto; font-size: 13px">
+                            <tbody>
+                              <tr valign="top">
+                                <td><img alt="info" class="msgIcon" src="/s.gif" title="info" /></td>
+                                <td class="messageCell">
+                                  <div>
+                                    <div class="messageText">
+                                      Thank you for installing Geopointe and we hope you find it to be a great tool for running and growing your business.
+
+                                      <apex:outputPanel rendered="{!NOT(ISNULL(orgSettings.licenseExpirationDate))}">
+                                        It looks like your trial ends on <strong><apex:outputText value="{!orgSettings.licenseExpirationDate}" /></strong>. </apex:outputPanel><br /><br />
+
+                                      If you have any questions or need assistance during the trial please contact
+                                      <a href="mailto:help@geopointe.com" target="_blank">help@geopointe.com</a>.<br /><br />
+
+                                      To purchase Geopointe you can use the Buy It Now button below or contact us at
+                                      <a href="mailto:sales@geopointe.com" target="_blank">sales@geopointe.com</a>.
+
+                                      <div style="text-align: center; padding: 8px 5px 5px 5px">
+                                        <a href="{!checkoutURL}" target="_blank" style="text-decoration: none">
+                                          <input type="button" class="btn btnImportant" value="Buy It Now" />
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </apex:outputPanel>
+
+                      <apex:pageBlockSection title="Organization Information">
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="Organization ID" />
+                          <apex:outputText value="{!$Organization.Id}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Primary_Contact_Name__c.label}" />
+                          <apex:outputText value="{!orgSettings.primaryContactName}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Organization_Name__c.label}" />
+                          <apex:outputText value="{!orgSettings.organizationName}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Primary_Contact_Phone__c.label}" />
+                          <apex:outputText value="{!orgSettings.primaryContactPhone}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="Address" />
+                          <apex:outputText value="{!orgFormattedAddress}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Primary_Contact_Email__c.label}" />
+                          <apex:outputText value="{!orgSettings.primaryContactEmail}" />
+                        </apex:pageBlockSectionItem>
+                      </apex:pageBlockSection>
+                      <apex:pageBlockSection title="Mapping Preferences">
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Minimum_Zoom_search_map_bounds__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Minimum_Zoom_search_map_bounds__c.label}" />
+                          <apex:outputText value="{!orgSettings.minimumZoomsearchmapbounds}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Default_Country_Code__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Default_Country_Code__c.label}" />
+                          <apex:outputText value="{!orgSettings.defaultCountryCode}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!orgSettings.mappingProvider == 'Google'}"
+                          helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Same_Location_Markers__c.inlineHelpText}"
+                        >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Same_Location_Markers__c.label}" />
+                          <apex:outputText value="{!orgSettings.sameLocationMarkers}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Maximum_Search_Nearby_Radius__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Maximum_Search_Nearby_Radius__c.label}" />
+                          <apex:outputText value="{!orgSettings.maximumSearchNearbyRadius}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Enable_Inline_Editing__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Enable_Inline_Editing__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.inlineEditing}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.inlineEditing)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Number_of_Route_Fields__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Number_of_Route_Fields__c.label}" />
+                          <apex:outputText value="{!orgSettings.numberOfRouteFields}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Report_Sourced_Data_Set_Enabled__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Report_Sourced_Data_Set_Enabled__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.reportSourcedDataSetEnabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.reportSourcedDataSetEnabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!orgSettings.permCustomGoogleMapsURL}"
+                          helpText="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Custom_Google_Maps_URL__c.inlineHelpText}"
+                        >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Custom_Google_Maps_URL__c.label}" />
+                          <apex:outputText value="{!orgSettings.customGoogleMapsURL}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Mobile_Search_Result_Limit__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Mobile_Search_Result_Limit__c.label}" />
+                          <apex:outputText value="{!orgSettings.mobileSearchResultLimit}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputLabel value="Thematic Maps" />
+                          <apex:outputPanel id="thematicMapButtons">
+                            <apex:outputPanel rendered="{!orgSettings.thematicMapsEnabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.thematicMapsEnabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                            &nbsp;&nbsp;&nbsp;
+                            <apex:commandButton action="{!goToEnableThematics}" value="Enable Thematic Maps" rendered="{!NOT(orgSettings.thematicMapsEnabled)}" />
+                            <apex:commandButton action="{!disableThematicMaps}"
+                              value="Disable Thematic Maps"
+                              rendered="{!orgSettings.thematicMapsEnabled}"
+                              reRender="thematicMapButtons, batchjob_schedules"
+                            />
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!AND(orgSettings.permPulse, orgSettings.hasPulseApiKey)}">
+                          <apex:outputLabel value="Geopointe Live Tracking" />
+                          <apex:outputPanel id="pulseButtons">
+                            <apex:outputPanel rendered="{!orgSettings.pulseEnabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.pulseEnabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                            &nbsp;&nbsp;&nbsp;
+                            <apex:commandButton action="{!goToEnablePulse}" value="Enable Live Tracking" rendered="{!NOT(orgSettings.pulseEnabled)}" />
+                            <apex:commandButton action="{!disablePulse}"
+                              value="Disable Live Tracking"
+                              rendered="{!orgSettings.pulseEnabled}"
+                              reRender="pulseButtons, batchjob_schedules"
+                            />
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!AND(AND(orgSettings.permPulse, orgSettings.hasPulseApiKey), orgSettings.pulseEnabled)}">
+                          <apex:outputLabel value="Live Tracking Reference Timezone" />
+                          <apex:outputLabel value="{!orgSettings.pulseTimezone}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!orgSettings.permHiPerAP}">
+                          <apex:outputLabel value="High Performance Assignment Plans" />
+                          <apex:outputPanel id="hiPerAssignmentPlanButtons">
+                            <apex:outputPanel rendered="{!orgSettings.hiPerAPEnabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.hiPerAPEnabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                            &nbsp;&nbsp;&nbsp;
+                            <apex:commandButton action="{!goToEnableHiPerAssignmentPlans}"
+                              value="Enable High Performance Assignment Plans"
+                              rendered="{!NOT(orgSettings.hiPerAPEnabled)}"
+                            />
+                            <apex:commandButton action="{!disableHiPerAssignmentPlans}"
+                              value="Disable High Performance Assignment Plans"
+                              rendered="{!orgSettings.hiPerAPEnabled}"
+                              reRender="hiPerAssignmentPlanButtons, batchjob_schedules"
+                            />
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputLabel value="New Route Sharing Model" />
+                          <apex:outputPanel id="newRouteSharingModel">
+                            <apex:outputPanel rendered="{!NOT(orgSettings.useLegacyRouteSharing)}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!orgSettings.useLegacyRouteSharing}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                            &nbsp;&nbsp;&nbsp;
+                            <apex:commandButton rendered="{!orgSettings.useLegacyRouteSharing}" action="{!openRouteShareMigration}" value="Migrate Route Sharing Model" />
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Calendar_Disabled__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.calendarDisabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.calendarDisabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="Allow Same Assignment Field in Multiple Plans" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.allowAssignmentFieldReuse}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.allowAssignmentFieldReuse)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Routes_Disabled__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.routesDisabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.routesDisabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <!-- 92dd3d80-5dd6-11ec-bc57-ffd3a3574b8e - ResourceViewGroups Feature Flag -->
+                        <apex:pageBlockSectionItem rendered="{!isResourceViewGroupsFeatureEnabled}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Resource_View_Groups_Enabled__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.resourceViewGroupsEnabled}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.resourceViewGroupsEnabled)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!orgSettings.googleUseCustomKeys}">
+                          <apex:outputLabel value="Google API Custom Key" />
+                          <apex:outputText value="{!orgSettings.googleApiCustomKey}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!orgSettings.datatableDriveTimeEnabled}">
+                          <apex:outputLabel value="Enable Datatable Drive Time Calculation" />
+                          <apex:outputPanel id="datatableDriveTimeEnabled">
+                            <apex:outputPanel >
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            &nbsp;&nbsp;&nbsp;
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                      </apex:pageBlockSection>
+                      <!-- <apex:pageBlockSection title="Check-In / Check-Out Preferences (Deprecated) => New Home On Action Page">
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_In_Creates_Task__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_In_Creates_Task__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.checkInCreatesTask}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.checkInCreatesTask)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_Out_Creates_Task__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_Out_Creates_Task__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.checkOutCreatesTask}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.checkOutCreatesTask)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem rendered="{!orgSettings.hasTaskRecordTypeOptions}" helpText="{!$ObjectType.Settings__c.fields.Check_In_Task_Record_Type_Name__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_In_Task_Record_Type_Name__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkInTaskRecordTypeName}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem rendered="{!orgSettings.hasTaskRecordTypeOptions}" helpText="{!$ObjectType.Settings__c.fields.Check_Out_Task_Record_Type_Name__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_Out_Task_Record_Type_Name__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkOutTaskRecordTypeName}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_In_Task_Field_Set_Label__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_In_Task_Field_Set_Label__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkInTaskFieldSetLabel}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_Out_Task_Field_Set_Label__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_Out_Task_Field_Set_Label__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkOutTaskFieldSetLabel}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_In_Task_Subject_Prefix__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_In_Task_Subject_Prefix__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkInTaskSubjectPrefix}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Check_Out_Task_Subject_Prefix__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings__c.fields.Check_Out_Task_Subject_Prefix__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkOutTaskSubjectPrefix}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem>
+							<apex:outputLabel value="{!$ObjectType.Settings2__c.fields.Check_In_Field_Set_Name__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkInFieldSetLabel}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem>
+							<apex:outputLabel value="{!$ObjectType.Settings2__c.fields.Check_Out_Field_Set_Name__c.label}"/>
+							<apex:outputText value="{!orgSettings.checkOutFieldSetLabel}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Post_Check_In_Image_to_Feed__c.inlineHelpText}">
+							<apex:outputLabel value="{!$ObjectType.Settings__c.fields.Post_Check_In_Image_to_Feed__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.postCheckInImageToFeed}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.postCheckInImageToFeed)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings__c.fields.Post_Check_Out_Image_to_Feed__c.inlineHelpText}">
+							<apex:outputLabel value="{!$ObjectType.Settings__c.fields.Post_Check_Out_Image_to_Feed__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.postCheckOutImageToFeed}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.postCheckOutImageToFeed)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings2__c.fields.Checkin_Share_on_Feed_Visbility__c.inlineHelpText}">
+							<apex:outputLabel value="{!$ObjectType.Settings2__c.fields.Checkin_Share_on_Feed_Visbility__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputText value="Visible" rendered="{!orgSettings.checkinShareOnFeedVisbility == 'visible'}"/>
+								<apex:outputText value="Hidden (Post to Feed)" rendered="{!orgSettings.checkinShareOnFeedVisbility == 'hidden_post'}"/>
+								<apex:outputText value="Hidden (Do not Post)" rendered="{!orgSettings.checkinShareOnFeedVisbility == 'hidden_no_post'}"/>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings2__c.fields.Checkout_Share_on_Feed_Visbility__c.inlineHelpText}">
+							<apex:outputLabel value="{!$ObjectType.Settings2__c.fields.Checkout_Share_on_Feed_Visbility__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputText value="Visible" rendered="{!orgSettings.checkoutShareOnFeedVisbility == 'visible'}"/>
+								<apex:outputText value="Hidden (Post to Feed)" rendered="{!orgSettings.checkoutShareOnFeedVisbility == 'hidden_post'}"/>
+								<apex:outputText value="Hidden (Do not Post)" rendered="{!orgSettings.checkoutShareOnFeedVisbility == 'hidden_no_post'}"/>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings2__c.fields.Check_In_Hide_Map__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings2__c.fields.Check_In_Hide_Map__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.checkInHideMap}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.checkInHideMap)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem helpText="{!$ObjectType.Settings2__c.fields.Check_Out_Hide_Map__c.inlineHelpText}">
+							<apex:outputText value="{!$ObjectType.Settings2__c.fields.Check_Out_Hide_Map__c.label}"/>
+							<apex:outputPanel>
+								<apex:outputPanel rendered="{!orgSettings.checkOutHideMap}">
+									<img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(orgSettings.checkOutHideMap)}">
+									<img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSectionItem>
+					</apex:pageBlockSection> -->
+                      <apex:pageBlockSection title="Batch Geocode Preferences">
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Log_Batch_Geocode_Results__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Log_Batch_Geocode_Results__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.logBatchGeocodeResults}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.logBatchGeocodeResults)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Email_Batch_Geocode_Results__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Email_Batch_Geocode_Results__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.emailBatchGeocodeResults}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.emailBatchGeocodeResults)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Notify_If_No_Records_To_Process__c.inlineHelpText}">
+                          <apex:outputText value="{!$ObjectType.geopointe__Settings__c.fields.geopointe__Notify_If_No_Records_To_Process__c.label}" />
+                          <apex:outputPanel >
+                            <apex:outputPanel rendered="{!orgSettings.notifyIfNoRecordsToProcess}">
+                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(orgSettings.notifyIfNoRecordsToProcess)}">
+                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+                            </apex:outputPanel>
+                          </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                      </apex:pageBlockSection>
+                    </apex:pageBlock>
+                  </apex:outputPanel>
+                </td>
+                <td style="width: 350px; vertical-align: top" class="gp_setupSidebar">
+                  <!-- License Status -->
+                  <apex:outputPanel styleClass="gp_licenseStatus">
+                    <apex:pageBlock title="License Status">
+                      <apex:pageBlockSection columns="1">
+                        <apex:outputText value="{!orgSettings.licenseStatus}" />
+                        <apex:outputText value="{!orgSettings.licenseExpirationDate}" />
+                      </apex:pageBlockSection>
+
+                      <apex:outputPanel style="text-align: center; padding: 5px" layout="block" rendered="{!orgSettings.licenseStatus == 'Active'}">
+                        <input type="button" class="btn btnImportant" value="Buy More Licenses" onClick="window.open('{!checkoutURL}','_blank');" />
+                      </apex:outputPanel>
+                    </apex:pageBlock>
+                  </apex:outputPanel>
+
+                  <!-- Country Codes -->
+                  <apex:outputPanel >
+                    <apex:pageBlock title="Country Code Mappings">
+                      <apex:outputPanel layout="block" style="padding: 3px">
+                        <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                          <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-info" title="information">
+                              <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                              </svg>
+                              <span class="slds-assistive-text">information</span>
+                            </span>
+                          </div>
+                          <div class="slds-media__body">
+                            <p>Geopointe maintains a mapping of common country values to their 2-character ISO Country Code. This greatly improves Geocoding accuracy.</p>
+                          </div>
+                        </div>
+                      </apex:outputPanel>
+                      <apex:panelGrid columns="2">
+                        <apex:outputPanel >
+                          <apex:outputText value="Country Code Mappings are needed. Press the Download Mappings button to get them."
+                            style="color: #ff1100; font-weight: bold"
+                            rendered="{!ccCount=0}"
+                          />
+                          <apex:outputText value="# of mappings: {!ccCount}" rendered="{!ccCount>0}" />
+                          <br />
+                          <apex:outputText value="# of custom mappings: {!ccCountCustom}" rendered="{!ccCount>0}" />
+                          <br />
+                          <apex:outputLink value="{!$Page.geopointe__s_CountryCodeMapping}">Edit Mappings</apex:outputLink>
+                        </apex:outputPanel>
+                        <apex:outputPanel >
+                          <br />
+                          <apex:commandButton style="white-space: nowrap"
+                            action="{!refreshCCPublisherValues}"
+                            value="Download Mappings"
+                            onclick="geopointeAjaxStart('body','Downloading Mappings, this takes ~1 minute...');"
+                          />
+                          <br />
+                        </apex:outputPanel>
+                      </apex:panelGrid>
+                    </apex:pageBlock>
+                  </apex:outputPanel>
+
+                  <!-- API Credits -->
+                  <apex:outputPanel styleClass="gp_licenseStatus">
+                    <apex:pageBlock title="API Credits">
+                      <apex:pageBlockSection columns="1">
+                        <apex:pageBlockSectionItem helpText="Daily usage will reset at {!DailyAPIResetTime}.">
+                          <apex:outputLabel value="Daily Usage (Free)" />
+                          <apex:outputPanel >{!orgSettings.dailyAPICreditUsage} / {!orgSettings.dailyAPICreditLimit}</apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageBlockSectionItem >
+                          <apex:outputLabel value="Paid Balance" />
+                          <apex:outputPanel >{!orgSettings.paidAPICreditBalance}</apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                      </apex:pageBlockSection>
+                    </apex:pageBlock>
+                  </apex:outputPanel>
+
+                  <!-- Global Businesses and People Credits -->
+                  <!-- <apex:outputPanel styleClass="gp_licenseStatus">
+					<apex:pageBlock title="Global Businesses and People Credits" >
+						<apex:pageBlockSection columns="1">
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Credit Balance"/>
+								<apex:outputPanel >{!orgSettings.globalBusinessAndPeopleCreditsBalance}</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+
+							<apex:pageBlockSectionItem rendered="{!orgSettings.globalBusinessAndPeopleCreditsExpiration != '' && orgSettings.globalBusinessAndPeopleCreditsBalance != 0}">
+								<apex:outputLabel value="Expires On"/>
+								<apex:outputPanel >{!orgSettings.globalBusinessAndPeopleCreditsExpiration}</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel> -->
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Map Objects -->
+          <div
+            class="slds-vertical-tabs__content slds-hide"
+            id="tab-mapObjects"
+            data-grouping="setupTab"
+            role="tabpanel"
+            aria-labelledby="slds-vertical-tabs-mapObjects"
+            style="overflow-x: auto"
+          >
+            <apex:outputPanel id="MapObjectContainer">
+              <apex:outputPanel rendered="{!IF(renderMapObjectTag == true, true, false)}">
+                <apex:pageBlock title="{!IF($User.UIThemeDisplayed == 'Theme3', 'Map Objects', '')}"
+                  id="MapObjects"
+                  helpTitle="Learn more about Map Objects"
+                  helpUrl="https://customers.geopointe.com/s/article/Map-Objects"
+                >
+                  <apex:pageBlockButtons location="top" id="MapObjectTopButtons">
+                    <apex:commandButton value="New Map Object" action="{!object_new}" />
+                    <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                      <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                        <div class="slds-media__figure">
+                          <span class="slds-icon_container slds-icon-utility-info" title="information">
+                            <c:svg styleClass="slds-icon slds-icon_x-small slds-icon-text-default" path="/assets/icons/utility-sprite/svg/symbols.svg#info" />
+                            <span class="slds-assistive-text">information</span>
+                          </span>
+                        </div>
+                        <div class="slds-media__body">
+                          <p><a href="https://customers.geopointe.com/s/article/Map-Objects">Learn more</a></p>
+                        </div>
+                      </div>
+                    </apex:outputPanel>
+                  </apex:pageBlockButtons>
+
+                  <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-utility-info" title="information">
+                        <c:svg styleClass="slds-icon slds-icon_x-small slds-icon-text-default" path="/assets/icons/utility-sprite/svg/symbols.svg#info" />
+                        <span class="slds-assistive-text">information</span>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <p>
+                        Map Objects are the custom or standard objects in your system that can be mapped. For example, if you want to map Accounts you will create an Account Map
+                        Object and setup the address fields that should be used for mapping.
+                      </p>
+                    </div>
+                  </div>
+
+                  <apex:pageblockTable value="{!UberMapObjects}" var="umo" rowClasses="odd,even" styleClass="sortable" style="table-layout: auto">
+                    <apex:column headerValue="Action" style="font-weight: bold" headerClass="sorttable_nosort">
+                      <apex:outputPanel styleClass="slds-scope" rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                        <div class="slds-button-group" role="group">
+                          <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                            <apex:outputPanel >
+                              <apex:commandLink value="Edit" action="{!object_edit}">
+                                <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobj" />
+                              </apex:commandLink>
+                            </apex:outputPanel>
+                          </button>
+                          <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                            <apex:outputPanel rendered="{!OR(umo.mo.IsActive && NOT(umo.isBeingReferenced), NOT(umo.mo.IsActive) && NOT(umo.mo.IsReferenceMapObject && NOT(umo.mo.ReferencedMapObjectIsActive)), NOT(umo.mo.IsActive) && NOT(umo.isBeingReferenced))}"
+                            >
+                              <button
+                                class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                aria-haspopup="true"
+                                title="Show More"
+                                onclick="buttonGrpShowMenu(event);"
+                              >
+                                <c:svg styleClass="slds-button__icon" path="assets/icons/utility-sprite/svg/symbols.svg#down" />
+                                <span class="slds-assistive-text">Show More</span>
+                              </button>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!!OR(umo.mo.IsActive && NOT(umo.isBeingReferenced), NOT(umo.mo.IsActive) && NOT(umo.mo.IsReferenceMapObject && NOT(umo.mo.ReferencedMapObjectIsActive)), NOT(umo.mo.IsActive) && NOT(umo.isBeingReferenced))}"
+                            >
+                              <button
+                                class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                aria-haspopup="true"
+                                title="Show More"
+                                onclick="buttonGrpShowMenu(event);"
+                                disabled="true"
+                              >
+                                <c:svg styleClass="slds-button__icon" path="assets/icons/utility-sprite/svg/symbols.svg#down" />
+                                <span class="slds-assistive-text">Show More</span>
+                              </button>
+                            </apex:outputPanel>
+                            <div class="slds-dropdown slds-dropdown_left">
+                              <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                <apex:outputPanel layout="none" rendered="{! umo.mo.IsActive && NOT(umo.isBeingReferenced) }">
+                                  <li class="slds-dropdown__item" role="presentation">
+                                    <apex:commandLink value="Deactivate"
+                                      action="{!object_statusUpdate}"
+                                      rerender="MapObjects, MapObjectsInvalid"
+                                      onclick="if(confirm('Are you sure you wish to deactivate this record? Deactivating a Map Object will disallow this object from being mapped, but will keep the record in your system in case you wish to activate it later.')){geopointeAjaxStart('body','Deactivating...');}else{return false}"
+                                      oncomplete="geopointeAjaxEnd();"
+                                    >
+                                      <apex:param value="Inactive" assignTo="{!setTo}" name="sobj_inactive" />
+                                      <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="mo" />
+                                    </apex:commandLink>
+                                  </li>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="none" rendered="{! NOT(umo.mo.IsActive) && NOT(umo.mo.IsReferenceMapObject && NOT(umo.mo.ReferencedMapObjectIsActive))}">
+                                  <li class="slds-dropdown__item" role="presentation">
+                                    <apex:commandLink value="Activate"
+                                      action="{!object_statusUpdate}"
+                                      rerender="MapObjects, MapObjectsInvalid"
+                                      onclick="geopointeAjaxStart('body','Activating...');"
+                                      oncomplete="geopointeAjaxEnd();"
+                                    >
+                                      <apex:param value="Active" assignTo="{!setTo}" name="sobj_active" />
+                                      <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="mo" />
+                                    </apex:commandLink>
+                                  </li>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="none" rendered="{! NOT(umo.mo.IsActive) && NOT(umo.isBeingReferenced) }">
+                                  <li class="slds-dropdown__item" role="presentation">
+                                    <apex:commandLink value="Delete"
+                                      action="{!object_delete}"
+                                      rerender="MapObjects, MapObjectsInvalid"
+                                      onclick="if(confirm('Are you sure you wish to delete this record? Deleting a Map Object will disallow this object from being mapped at all. If you think you might wish to map this object again, it is recommended to leave it as Inactive rather than deleting it.')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                      oncomplete="geopointeAjaxEnd();"
+                                    >
+                                      <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobjd" />
+                                    </apex:commandLink>
+                                  </li>
+                                </apex:outputPanel>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                        <apex:outputPanel >
+                          <apex:commandLink value="Edit" action="{!object_edit}">
+                            <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobj" />
+                          </apex:commandLink>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel rendered="{! umo.mo.IsActive && NOT(umo.isBeingReferenced) }">
+                          &nbsp;|&nbsp;
+                          <apex:commandLink value="Deactivate"
+                            action="{!object_statusUpdate}"
+                            rerender="MapObjects, MapObjectsInvalid"
+                            onclick="if(confirm('Are you sure you wish to deactivate this record? Deactivating a Map Object will disallow this object from being mapped, but will keep the record in your system in case you wish to activate it later.')){geopointeAjaxStart('body','Deactivating...');}else{return false}"
+                            oncomplete="geopointeAjaxEnd();"
+                          >
+                            <apex:param value="Inactive" assignTo="{!setTo}" name="sobj_inactive" />
+                            <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="mo" />
+                          </apex:commandLink>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel rendered="{! NOT(umo.mo.IsActive) && NOT(umo.mo.IsReferenceMapObject && NOT(umo.mo.ReferencedMapObjectIsActive))}">
+                          &nbsp;|&nbsp;
+                          <apex:commandLink value="Activate"
+                            action="{!object_statusUpdate}"
+                            rerender="MapObjects, MapObjectsInvalid"
+                            onclick="geopointeAjaxStart('body','Activating...');"
+                            oncomplete="geopointeAjaxEnd();"
+                          >
+                            <apex:param value="Active" assignTo="{!setTo}" name="sobj_active" />
+                            <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="mo" />
+                          </apex:commandLink>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel rendered="{! NOT(umo.mo.IsActive) && NOT(umo.isBeingReferenced) }">
+                          &nbsp;|&nbsp;
+                          <apex:commandLink value="Delete"
+                            action="{!object_delete}"
+                            rerender="MapObjects, MapObjectsInvalid"
+                            onclick="if(confirm('Are you sure you wish to delete this record? Deleting a Map Object will disallow this object from being mapped at all. If you think you might wish to map this object again, it is recommended to leave it as Inactive rather than deleting it.')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                            oncomplete="geopointeAjaxEnd();"
+                          >
+                            <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobjd" />
+                          </apex:commandLink>
+                        </apex:outputPanel>
+                      </apex:outputPanel>
+                    </apex:column>
+
+                    <apex:column headerValue="Name">{!umo.mo.DisplayName}</apex:column>
+                    <!--<apex:column headerValue="API Name">{!SUBSTITUTE(umo.mo.Name,'geopointe__',' ')}</apex:column> Most people will never need this, maybe add back in future-->
+                    <apex:column headerValue="Object">{!SUBSTITUTE(umo.mo.SObjectName,'geopointe__',' ')}</apex:column>
+                    <apex:column headerValue="API Name">{!umo.mo.Name}</apex:column>
+
+                    <apex:column headerValue="Active">
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! umo.mo.IsActive }" />
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(umo.mo.IsActive) }" />
+                    </apex:column>
+
+                    <apex:column headerValue="Street Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['Street'], 'geopointe__',' ')}</apex:column>
+
+                    <apex:column headerValue="City Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['City'], 'geopointe__',' ')}</apex:column>
+
+                    <apex:column headerValue="State/Province Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}"
+                      >{!SUBSTITUTE(umo.fieldData['State'], 'geopointe__',' ')}</apex:column>
+
+                    <apex:column headerValue="Postal Code Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}"
+                      >{!SUBSTITUTE(umo.fieldData['Postal'], 'geopointe__',' ')}</apex:column>
+
+                    <!--<apex:column headerValue="Country Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['Country'], 'geopointe__',' ')}</apex:column>-->
+
+                    <apex:column rendered="{!NOT(umo.mo.IsReferenceMapObject)}">
+                      <apex:facet name="header">On-Record<br />Geocoding</apex:facet>
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! umo.mo.UsesOnRecordGeocoding }" />
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(umo.mo.UsesOnRecordGeocoding) }" />
+                    </apex:column>
+
+                    <apex:column rendered="{!NOT(umo.mo.IsReferenceMapObject)}">
+                      <apex:facet name="header">Custom<br />Lat/Lon Fields</apex:facet>
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! umo.mo.UsesCustomLatLngFields }" />
+                      <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(umo.mo.UsesCustomLatLngFields) }" />
+                    </apex:column>
+
+                    <!--
+                    <apex:column headerValue="Has Filter" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{!umo.mo.MapObjectFilter != ''}" />
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{!umo.mo.MapObjectFilter == ''}" />
+                    </apex:column>
+                    -->
+
+                    <apex:column headerValue="Last Geocode" value=" {!umo.mo.LastGeocodeBatchRun}" rendered="{!NOT(umo.mo.IsReferenceMapObject)}" />
+
+                    <apex:column headerValue="Start Geocode Job" rendered="{!NOT(OR(umo.mo.IsReferenceMapObject, umo.mo.isExternalObject, umo.mo.UsesSalesforceGeocodes))}">
+                      <apex:outputPanel rendered="{!umo.mo.isActive}">
+                        <apex:commandLink value="All" action="{!runBatchGeocode}">
+                          <apex:param name="sobj_batchGeo_All_MO" value="{!umo.mo.Name}" assignTo="{!mapObjectForGeocoding}" />
+                          <apex:param name="sobj_batchGeo_All_delta" value="false" assignTo="{!performDeltaGeocode}" />
+                        </apex:commandLink>
+                        <apex:outputText value=" | " />
+                        <apex:commandLink value="Delta" action="{!runBatchGeocode}">
+                          <apex:param name="sobj_batchGeo_Delta_MO" value="{!umo.mo.Name}" assignTo="{!mapObjectForGeocoding}" />
+                          <apex:param name="sobj_batchGeo_Delta_delta" value="true" assignTo="{!performDeltaGeocode}" />
+                        </apex:commandLink>
+                      </apex:outputPanel>
+                    </apex:column>
+
+                    <apex:column colspan="10" style="padding-left: 50px" rendered="{!umo.mo.IsReferenceMapObject}">
+                      <b>This Map Object references the <u>{!umo.fieldData['ReferencedMapObject']}</u> Map Object</b>
+                    </apex:column>
+                  </apex:pageblockTable>
+                  <div style="height: 70px" />
+                </apex:pageBlock>
+                <apex:outputPanel id="MapObjectsInvalid">
+                  <apex:pageBlock title="Invalid Map Objects"
+                    rendered="{!UberMapObjectsCount > 0}"
+                    helpTitle="Learn more about Map Objects"
+                    helpUrl="http://help.geopointe.com/customer/portal/articles/1811024-map-objects"
+                  >
+                    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                      <apex:panelGrid columns="2" styleClass="setupTabInfo">
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/info32.png')}" height="16px" style="height: 16px" />
+                        <apex:outputPanel > These Map Objects must be edited and have any issues fixed before they can be activated. </apex:outputPanel>
+                      </apex:panelGrid>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                      <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                        <div class="slds-media__figure">
+                          <span class="slds-icon_container slds-icon-utility-info" title="information">
+                            <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                            </svg>
+                            <span class="slds-assistive-text">information</span>
+                          </span>
+                        </div>
+                        <div class="slds-media__body">
+                          <p>These Map Objects must be edited and have any issues fixed before they can be activated.</p>
+                        </div>
+                      </div>
+                    </apex:outputPanel>
+
+                    <apex:pageblockTable value="{!UberMapObjectsInvalid}" var="umo" rowClasses="odd,even" styleClass="sortable" style="table-layout: auto">
+                      <apex:column headerValue="Action" style="font-weight: bold" headerClass="sorttable_nosort">
+                        <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                          <div class="slds-button-group" role="group">
+                            <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                              <apex:outputPanel >
+                                <apex:commandLink value="Edit" action="{!object_edit}">
+                                  <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobj" />
+                                </apex:commandLink>
+                              </apex:outputPanel>
+                            </button>
+                            <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                              <button
+                                class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                aria-haspopup="true"
+                                title="Show More"
+                                onclick="buttonGrpShowMenu(event);"
+                              >
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#down')}"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Show More</span>
+                              </button>
+                              <div class="slds-dropdown slds-dropdown_left">
+                                <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                  <li class="slds-dropdown__item" role="presentation">
+                                    <apex:commandLink value="Delete"
+                                      action="{!object_delete}"
+                                      rerender="MapObjects, MapObjectsInvalid"
+                                      onclick="if(confirm('Are you sure you wish to delete this record? Deleting a Map Object will disallow this object from being mapped at all. If you think you might wish to map this object again, it is recommended to leave it as Inactive rather than deleting it.')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                      oncomplete="geopointeAjaxEnd();"
+                                    >
+                                      <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobjd" />
+                                    </apex:commandLink>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                          <apex:outputPanel >
+                            <apex:commandLink value="Edit" action="{!object_edit}">
+                              <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobj" />
+                            </apex:commandLink>
+                          </apex:outputPanel>
+
+                          <apex:outputPanel >
+                            &nbsp;|&nbsp;
+                            <apex:commandLink value="Delete"
+                              action="{!object_delete}"
+                              rerender="MapObjects, MapObjectsInvalid"
+                              onclick="if(confirm('Are you sure you wish to delete this record? Deleting a Map Object will disallow this object from being mapped at all. If you think you might wish to map this object again, it is recommended to leave it as Inactive rather than deleting it.')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                              oncomplete="geopointeAjaxEnd();"
+                            >
+                              <apex:param value="{!umo.mo.Name}" assignTo="{!SelectedEntity}" name="sobjd" />
+                            </apex:commandLink>
+                          </apex:outputPanel>
+                        </apex:outputPanel>
+                      </apex:column>
+
+                      <apex:column headerValue="Name">{!umo.mo.DisplayName}</apex:column>
+                      <!--<apex:column headerValue="Reason">{!umo.mo.InvalidReason}</apex:column> -->
+                      <!--<apex:column headerValue="API Name">{!SUBSTITUTE(umo.mo.Name,'geopointe__',' ')}</apex:column> Most people will never need this, maybe add back in future-->
+                      <apex:column headerValue="Object">{!SUBSTITUTE(umo.mo.SObjectName,'geopointe__',' ')}</apex:column>
+                      <apex:column headerValue="API Name">{!umo.mo.Name}</apex:column>
+
+                      <apex:column headerValue="Street Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['Street'], 'geopointe__',' ')}</apex:column>
+
+                      <apex:column headerValue="City Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['City'], 'geopointe__',' ')}</apex:column>
+
+                      <apex:column headerValue="State/Province Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}"
+                        >{!SUBSTITUTE(umo.fieldData['State'], 'geopointe__',' ')}</apex:column>
+
+                      <apex:column headerValue="Postal Code Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}"
+                        >{!SUBSTITUTE(umo.fieldData['Postal'], 'geopointe__',' ')}</apex:column>
+
+                      <!--<apex:column headerValue="Country Field" rendered="{!NOT(umo.mo.IsReferenceMapObject)}">{!SUBSTITUTE(umo.fieldData['Country'], 'geopointe__',' ')}</apex:column>-->
+
+                      <apex:column rendered="{!NOT(umo.mo.IsReferenceMapObject)}">
+                        <apex:facet name="header">On-Record<br />Geocoding</apex:facet>
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! umo.mo.UsesOnRecordGeocoding }" />
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(umo.mo.UsesOnRecordGeocoding) }" />
+                      </apex:column>
+
+                      <apex:column rendered="{!NOT(umo.mo.IsReferenceMapObject)}">
+                        <apex:facet name="header">Custom<br />Lat/Lon Fields</apex:facet>
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! umo.mo.UsesCustomLatLngFields }" />
+                        <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(umo.mo.UsesCustomLatLngFields) }" />
+                      </apex:column>
+
+                      <apex:column colspan="10" style="padding-left: 50px" rendered="{!umo.mo.IsReferenceMapObject}">
+                        <b>This Map Object references the <u>{!umo.fieldData['ReferencedMapObject']}</u> Map Object</b>
+                      </apex:column>
+                    </apex:pageblockTable>
+                    <div style="height: 70px" />
+                  </apex:pageBlock>
+                </apex:outputPanel>
+              </apex:outputPanel>
+              <apex:outputPanel rendered="{!IF(renderMapObjectTag == false, true, false)}">
+                <div id="mapObjectsLoadingSpinner" class="slds-scope">
+                  <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                      <span class="slds-assistive-text">Loading</span>
+                      <div class="slds-spinner__dot-a"></div>
+                      <div class="slds-spinner__dot-b"></div>
+                    </div>
+                  </div>
+                </div>
+              </apex:outputPanel>
+            </apex:outputPanel>
+          </div>
+
+          <!-- Actions -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-actions" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-tabs-actions">
+            <apex:pageBlock title="{!IF($User.UIThemeDisplayed == 'Theme3', 'Actions', '')}"
+              helpTitle="Learn more about Actions"
+              helpUrl="https://customers.geopointe.com/s/article/Creating-Actions"
+              id="actionsPageBlock"
+              html-data-id="actionsPageBlock"
+            >
+              <apex:pageBlockButtons location="top">
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                  <apex:outputLink styleClass="btn gpLinkButtonClassic" value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions"
+                    >New Action</apex:outputLink>
+                  <apex:commandLink styleClass="btn gpLinkButtonClassic" action="{!deleteDuplicateActions}" rendered="{!showDedupeActionButton}">Dedupe Actions</apex:commandLink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                    <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions">New Action</apex:outputLink>
+                  </button>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!AND($User.UIThemeDisplayed != 'Theme3', showDedupeActionButton)}">
+                  <button class="slds-button slds-button_neutral" onclick="">
+                    <apex:commandLink action="{!deleteDuplicateActions}" rendered="{!showDedupeActionButton}">Dedupe Actions</apex:commandLink>
+                  </button>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!AND($User.UIThemeDisplayed != 'Theme3', showCreateStandardActionsButton)}">
+                  <button class="slds-button slds-button_neutral" onclick="">
+                    <apex:commandLink action="{!createStandardActions}" rendered="{!showCreateStandardActionsButton}">Create Standard Actions</apex:commandLink>
+                  </button>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-utility-info" title="information">
+                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                        </svg>
+                        <span class="slds-assistive-text">information</span>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <p><a href="https://customers.geopointe.com/s/article/Creating-Actions">Learn more</a></p>
+                    </div>
+                  </div>
+                </apex:outputPanel>
+              </apex:pageBlockButtons>
+
+              <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 0px">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-utility-info" title="information">
+                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                    </svg>
+                    <span class="slds-assistive-text">information</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <p>
+                    Actions allow you to attach custom logic to individual records and points on a map or the results of an entire search. These can be links that open up external
+                    pages, Visualforce pages, or even execute Apex code.
+                  </p>
+                </div>
+              </div>
+
+              <div class="slds-tabs_default slds-tabs_medium slds-m-top_small">
+                <ul id="actionsTabs" class="slds-tabs_default__nav" role="tablist">
+                  <li class="slds-tabs_default__item slds-is-active" title="Point Actions" role="presentation">
+                    <a
+                      class="slds-tabs_default__link"
+                      href="javascript:void(0);"
+                      role="tab"
+                      tabindex="0"
+                      aria-selected="true"
+                      aria-controls="tab-point-content"
+                      id="tab-point-action__item"
+                      >Point Actions</a
+                    >
+                  </li>
+                  <li class="slds-tabs_default__item" title="List Actions" role="presentation">
+                    <a
+                      class="slds-tabs_default__link"
+                      href="javascript:void(0);"
+                      role="tab"
+                      tabindex="-1"
+                      aria-selected="false"
+                      aria-controls="tab-list-content"
+                      id="tab-list-action__item"
+                      >List Actions</a
+                    >
+                  </li>
+                </ul>
+                <div id="tab-point-content" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-point-action__item">
+                  <apex:outputPanel id="recordActionData">
+                    <apex:pageBlockSection title="Point Actions" collapsible="false" columns="1">
+                      <apex:pageBlockSectionItem >
+                        <apex:outputPanel >
+                          On the Map page these are actions that can be applied to an individual point. These points could be a record from a Data Set search, a POI from a places
+                          search, or any location on the map accessed with a right click or hold.<br /><br />
+                          <apex:pageBlockTable value="{!recordActions}" var="a" id="recordActionsTable" style="table-layout: auto">
+                            <apex:column headerValue="Action" style="font-weight: bold" width="{!IF($User.UIThemeDisplayed != 'Theme3', '120px', '285px')}">
+                              <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                                <div class="slds-button-group" role="group">
+                                  <button
+                                    onclick="actionEditLightning(event);"
+                                    data-action="{!a.name}"
+                                    data-standard-name="{!a.geopointe__Standard_Action__c}"
+                                    data-id="{!a.Id}"
+                                    class="slds-button slds-button_neutral"
+                                    data-navigation="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}"
+                                  >
+                                    <a href="javascript:void(0);" data-action="{!a.name}" data-id="{!a.Id}" data-standard-name="{!a.geopointe__Standard_Action__c}">Edit</a>
+                                  </button>
+                                  <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                                    <button
+                                      class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                      aria-haspopup="true"
+                                      title="Show More"
+                                      onclick="buttonGrpShowMenu(event);"
+                                    >
+                                      <svg class="slds-button__icon" aria-hidden="true">
+                                        <use
+                                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                                          xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#down')}"
+                                        ></use>
+                                      </svg>
+                                      <span class="slds-assistive-text">Show More</span>
+                                    </button>
+                                    <div class="slds-dropdown slds-dropdown_left">
+                                      <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                          <apex:outputLink value="{!URLFOR($Action.geopointe__Action__c.Share, a.Id)}">User Access</apex:outputLink>
+                                        </li>
+                                        <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                          <li class="slds-dropdown__item" role="presentation">
+                                            <apex:commandLink value="Delete"
+                                              action="{!deleteAction}"
+                                              rerender="actionsPageBlock"
+                                              onclick="if(confirm('This will permanently DELETE the Action: {!JSENCODE(a.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                              oncomplete="geopointeAjaxEnd();"
+                                            >
+                                              <apex:param value="{!a.Id}" assignTo="{!actionIdForDML}" name="actionIdForDML" />
+                                            </apex:commandLink>
+                                          </li>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                          <li class="slds-dropdown__item" role="presentation">
+                                            <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}&clone=1"
+                                              >Clone</apex:outputLink>
+                                          </li>
+                                        </apex:outputPanel>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </apex:outputPanel>
+                              <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                                <apex:outputLink html-data-action="{!a.name}"
+                                  html-data-id="{!a}"
+                                  html-data-standard-name="{!a.geopointe__Standard_Action__c}"
+                                  onclick="actionEditHandler(event);"
+                                  value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}"
+                                  >Edit</apex:outputLink>
+
+                                <apex:outputPanel rendered="{!showActionUserAccess}">
+                                  &nbsp;|&nbsp;
+                                  <apex:outputLink value="{!URLFOR($Action.geopointe__Action__c.Share, a.Id)}">User Access</apex:outputLink>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                  &nbsp;|&nbsp;
+                                  <apex:commandLink value="Delete"
+                                    action="{!deleteAction}"
+                                    rerender="actionsPageBlock"
+                                    onclick="if(confirm('This will permanently DELETE the Action: {!JSENCODE(a.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                    oncomplete="geopointeAjaxEnd();"
+                                  >
+                                    <apex:param value="{!a.Id}" assignTo="{!actionIdForDML}" name="actionIdForDML" />
+                                  </apex:commandLink>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                  |&nbsp;
+                                  <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}&clone=1"
+                                    >Clone</apex:outputLink>
+                                </apex:outputPanel>
+                              </apex:outputPanel>
+                              <!-- Hidden element used to update sort order -->
+                              <span class="hiddenId" style="display: none" data-id="{!a.Id}" />
+                            </apex:column>
+                            <apex:column headerValue="Order" width="110px" styleClass="actionSortCol">
+                              <a href="#"
+                                ><svg class="slds-icon sldsdoubleArrowUp" title="Top" alt="Top" style="height: 14px; width: 18px; fill: black">
+                                  <use
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#jump_to_top')}"
+                                  ></use></svg
+                              ></a>
+                              <a href="#"
+                                ><svg class="slds-icon sldsupArrowIcon" title="Up" alt="Up" style="height: 14px; width: 18px; fill: black">
+                                  <use
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevronup')}"
+                                  ></use></svg
+                              ></a>
+                              <a href="#"
+                                ><svg class="slds-icon sldsdownArrowIcon" title="Down" alt="Down" style="height: 14px; width: 18px; fill: black">
+                                  <use
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevrondown')}"
+                                  ></use></svg
+                              ></a>
+                              <a href="#"
+                                ><svg class="slds-icon sldsdoubleArrowDwn" title="Bottom" alt="Bottom" style="height: 14px; width: 18px; fill: black">
+                                  <use
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#jump_to_bottom')}"
+                                  ></use></svg
+                              ></a>
+                            </apex:column>
+                            <apex:column value="{!a.Name}" />
+                            <apex:column value="{!a.geopointe__Available_Web__c}" />
+                            <apex:column value="{!a.geopointe__Available_SF1__c}" />
+                            <apex:column value="{!a.geopointe__Point_Type__c}" />
+                            <apex:column value="{!a.geopointe__Action_Type__c}" />
+                            <apex:column value="{!a.geopointe__Behavior__c}" />
+                            <apex:column value="{!a.geopointe__Map_Objects__c}" />
+                            <apex:column value="{!a.geopointe__Apex_Class__c}" />
+                            <apex:column headerValue="Custom">
+                              <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{!a.geopointe__Standard_Action__c == ''}" />
+                              <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{!a.geopointe__Standard_Action__c != ''}" />
+                            </apex:column>
+                          </apex:pageBlockTable>
+                        </apex:outputPanel>
+                      </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                  </apex:outputPanel>
+                </div>
+                <div id="tab-list-content" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-list-action__item">
+                  <apex:pageBlockSection title="List Actions" collapsible="false" columns="1">
+                    <apex:pageBlockSectionItem >
+                      <apex:outputPanel >
+                        On the Map page these List Actions can be accessed with the "Actions" button under the map on the right side. These actions can process all the records
+                        returned in a search.<br /><br />
+
+                        <apex:pageBlockTable value="{!listActions}" var="a" id="listActionsTable" style="table-layout: auto">
+                          <apex:column headerValue="Action" style="font-weight: bold" width="{!IF($User.UIThemeDisplayed != 'Theme3', '120px', '285px')}">
+                            <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                              <div class="slds-button-group" role="group">
+                                <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                                  <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}">Edit</apex:outputLink>
+                                </button>
+                                <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                                  <button
+                                    class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                    aria-haspopup="true"
+                                    title="Show More"
+                                    onclick="buttonGrpShowMenu(event);"
+                                  >
+                                    <svg class="slds-button__icon" aria-hidden="true">
+                                      <use
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#down')}"
+                                      ></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Show More</span>
+                                  </button>
+                                  <div class="slds-dropdown slds-dropdown_left" style="z-index: 999">
+                                    <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                      <apex:outputPanel rendered="{!showActionUserAccess}">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                          <apex:outputLink value="{!URLFOR($Action.geopointe__Action__c.Share, a.Id)}">User Access</apex:outputLink>
+                                        </li>
+                                      </apex:outputPanel>
+                                      <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                          <apex:commandLink value="Delete"
+                                            action="{!deleteAction}"
+                                            rerender="actionsPageBlock"
+                                            onclick="if(confirm('This will permanently DELETE the Action: {!JSENCODE(a.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                            oncomplete="geopointeAjaxEnd();"
+                                          >
+                                            <apex:param value="{!a.Id}" assignTo="{!actionIdForDML}" name="actionIdForDML" />
+                                          </apex:commandLink>
+                                        </li>
+                                      </apex:outputPanel>
+                                      <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                          <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}&clone=1"
+                                            >Clone</apex:outputLink>
+                                        </li>
+                                      </apex:outputPanel>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                              <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}">Edit</apex:outputLink>&nbsp;|&nbsp;
+
+                              <apex:outputPanel rendered="{!showActionUserAccess}">
+                                <apex:outputLink value="{!URLFOR($Action.geopointe__Action__c.Share, a.Id)}">User Access</apex:outputLink>
+                              </apex:outputPanel>
+
+                              <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                &nbsp;|&nbsp;
+                                <apex:commandLink value="Delete"
+                                  action="{!deleteAction}"
+                                  rerender="actionsPageBlock"
+                                  onclick="if(confirm('This will permanently DELETE the Action: {!JSENCODE(a.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                  oncomplete="geopointeAjaxEnd();"
+                                >
+                                  <apex:param value="{!a.Id}" assignTo="{!actionIdForDML}" name="actionIdForDML" />
+                                </apex:commandLink>
+                              </apex:outputPanel>
+
+                              <apex:outputPanel rendered="{!a.geopointe__Standard_Action__c == ''}">
+                                |&nbsp;
+                                <apex:outputLink value="/apex/{!namespacePrefix}s_Action_edit?backURL=%2Fapex%2Fs_Main%3Ftab%3Dtab-actions&id={!a.id}&clone=1"
+                                  >Clone</apex:outputLink>
+                              </apex:outputPanel>
+                            </apex:outputPanel>
+                            <!-- Hidden element used to update sort order -->
+                            <span class="hiddenId" style="display: none" data-id="{!a.Id}" />
+                          </apex:column>
+                          <apex:column headerValue="Order" width="110px" styleClass="actionSortCol keepThis">
+                            <a href="#"
+                              ><svg class="slds-icon sldsdoubleArrowUp" title="Top" alt="Top" style="height: 14px; width: 18px; fill: black">
+                                <use
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#jump_to_top')}"
+                                ></use></svg
+                            ></a>
+                            <a href="#"
+                              ><svg class="slds-icon sldsupArrowIcon" title="Up" alt="Up" style="height: 14px; width: 18px; fill: black">
+                                <use
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevronup')}"
+                                ></use></svg
+                            ></a>
+                            <a href="#"
+                              ><svg class="slds-icon sldsdownArrowIcon" title="Down" alt="Down" style="height: 14px; width: 18px; fill: black">
+                                <use
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevrondown')}"
+                                ></use></svg
+                            ></a>
+                            <a href="#"
+                              ><svg class="slds-icon sldsdoubleArrowDwn" title="Bottom" alt="Bottom" style="height: 14px; width: 18px; fill: black">
+                                <use
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#jump_to_bottom')}"
+                                ></use></svg
+                            ></a>
+                          </apex:column>
+                          <apex:column value="{!a.Name}" />
+                          <apex:column value="{!a.geopointe__Available_Web__c}" />
+                          <apex:column value="{!a.geopointe__Action_Type__c}" />
+                          <apex:column value="{!a.geopointe__Map_Objects__c}" />
+                          <apex:column value="{!a.geopointe__Apex_Class__c}" />
+                          <apex:column headerValue="Custom">
+                            <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{!a.geopointe__Standard_Action__c == ''}" />
+                            <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{!a.geopointe__Standard_Action__c != ''}" />
+                          </apex:column>
+                        </apex:pageBlockTable>
+                      </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <div style="height: 100px" />
+                  </apex:pageBlockSection>
+                </div>
+              </div>
+              <script type="text/javascript">
+                var removeActionTabListener = (function (propagationPath) {
+                  var actionsTabsContainer = document.getElementById('actionsTabs'),
+                    actionTabs = Array.prototype.slice.call(actionsTabsContainer.children);
+
+                  function actionParentListener(event) {
+                    var eventPath = !event.composedPath ? propagationPath(event) : event.composedPath();
+                    var nodePath = Array.prototype.slice.call(eventPath);
+
+                    nodePath.some(function (currentTab) {
+                      if (currentTab.tagName === 'LI' && !currentTab.classList.contains('slds-is-active')) {
+                        currentTab.classList.add('slds-is-active');
+                        removeAllOtherTabs(actionTabs, currentTab, 'slds-is-active');
+                        //skip after we find the element we want
+                        return true;
+                      }
+                    });
+                  }
+
+                  function actionShowHideContent(contentId, removeClass, addClass) {
+                    var content = document.getElementById(contentId);
+                    if (content) {
+                      content.classList.add(addClass);
+                      content.classList.remove(removeClass);
+                    }
+                  }
+
+                  function removeAllOtherTabs(nodeList, currentElement, className) {
+                    nodeList.forEach(function (node) {
+                      var anchor = node.querySelector('a.slds-tabs_default__link');
+                      var ariaControls = anchor.getAttribute('aria-controls');
+                      if (node !== currentElement) {
+                        node.classList.remove(className);
+                        actionShowHideContent(ariaControls, 'slds-show', 'slds-hide');
+                        anchor.setAttribute('aria-selected', false);
+                      } else {
+                        actionShowHideContent(ariaControls, 'slds-hide', 'slds-show');
+                        anchor.setAttribute('aria-selected', true);
+                      }
+                    });
+                  }
+                  //Listen on parent unordered list
+                  actionsTabsContainer.addEventListener('click', actionParentListener, false);
+                  //return reference to function to remove listener later if needed
+                  return actionParentListener;
+                })(propagationPath);
+
+                function toggleHideSpinner() {
+                  var actionTabSpinner = document.getElementById('actionTabSpinner');
+                  if (actionTabSpinner) {
+                    actionTabSpinner.classList.toggle('slds-hide');
+                  }
+                }
+              </script>
+            </apex:pageBlock>
+            <!-- Angular 2 Action Edit - CheckIn/CheckOut -->
+            <div id="actionEditWrapper" style="display: none">
+              <app-action-config></app-action-config>
+            </div>
+            <!-- Angular 2 Action Edit - CheckIn/CheckOut -->
+            <div id="actionTabSpinner" class="slds-scope slds-hide">
+              <div class="slds-spinner_container">
+                <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                  <span class="slds-assistive-text">Loading</span>
+                  <div class="slds-spinner__dot-a"></div>
+                  <div class="slds-spinner__dot-b"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Styles -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-mapStyles" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-map-styles">
+            <apex:pageBlock title="{!IF($User.UIThemeDisplayed == 'Theme3', 'Map Styles', '')}" id="mapStylesPageBlock">
+              <apex:pageBlockButtons location="top">
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                    <a href="/apex/{!namespacePrefix}s_Map_Style_edit?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-actions">New Map Style</a>
+                  </button>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                  <a class="btn gpLinkButtonClassic" href="/apex/{!namespacePrefix}s_Map_Style_edit?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-actions">New Map Style</a>
+                </apex:outputPanel>
+              </apex:pageBlockButtons>
+
+              <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-utility-info" title="information">
+                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                    </svg>
+                    <span class="slds-assistive-text">information</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <p>
+                    Map Styles allow you import custom Google Maps styles in JSON format and apply them to the map. The custom styles can be accesed from the drop down menu on the
+                    map in the top right corner. See examples at&nbsp;<apex:outputLink value="https://snazzymaps.com/" target="_blank">Snazzy Maps</apex:outputLink>.
+                  </p>
+                </div>
+              </div>
+
+              <apex:pageBlockTable value="{!mapStyles}" var="style" id="mapStyleTable">
+                <apex:column headerValue="Style" style="font-weight: bold" width="285px">
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                    <div class="slds-button-group" role="group">
+                      <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                        <apex:outputLink value="/apex/{!namespacePrefix}s_Map_Style_edit?id={!style.id}&backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-actions">Edit</apex:outputLink>
+                      </button>
+                      <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                        <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="Show More" onclick="buttonGrpShowMenu(event);">
+                          <svg class="slds-button__icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#down')}"></use>
+                          </svg>
+                          <span class="slds-assistive-text">Show More</span>
+                        </button>
+                        <div class="slds-dropdown slds-dropdown_left">
+                          <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                            <apex:outputPanel rendered="{!showMapStyleUserAccess}">
+                              <li class="slds-dropdown__item" role="presentation">
+                                <apex:outputLink value="{!URLFOR($Action.geopointe__GP_Map_Style__c.Share, style.Id)}">User Access</apex:outputLink>
+                              </li>
+                            </apex:outputPanel>
+                            <li class="slds-dropdown__item" role="presentation">
+                              <apex:commandLink value="Delete"
+                                action="{!deleteMapStyle}"
+                                rerender="mapStyleTable"
+                                onclick="if(confirm('This will permanently DELETE the Map Style: {!JSENCODE(style.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                oncomplete="geopointeAjaxEnd();"
+                              >
+                                <apex:param value="{!style.Id}" assignTo="{!mapStyleIdForDML}" name="mapStyleIdForDML" />
+                              </apex:commandLink>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </apex:outputPanel>
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                    <apex:outputLink value="/apex/{!namespacePrefix}s_Map_Style_edit?id={!style.id}&backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-actions">Edit</apex:outputLink>
+
+                    <apex:outputPanel rendered="{!showMapStyleUserAccess}">
+                      &nbsp;|&nbsp;
+                      <apex:outputLink value="{!URLFOR($Action.geopointe__GP_Map_Style__c.Share, style.Id)}">User Access</apex:outputLink>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel >
+                      &nbsp;|&nbsp;
+                      <apex:commandLink value="Delete"
+                        action="{!deleteMapStyle}"
+                        rerender="mapStyleTable"
+                        onclick="if(confirm('This will permanently DELETE the Map Style: {!JSENCODE(style.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!style.Id}" assignTo="{!mapStyleIdForDML}" name="mapStyleIdForDML" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+                  </apex:outputPanel>
+                </apex:column>
+
+                <apex:column value="{!style.Name}" />
+              </apex:pageBlockTable>
+              <div style="height: 100px" />
+            </apex:pageBlock>
+          </div>
+
+          <!-- Assignment Plans -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-assignmentPlans" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-assignment-plans">
+            <apex:pageBlock title="{!IF($User.UIThemeDisplayed == 'Theme3', 'Geographic Assignment Plans', '')}"
+              helpTitle="Learn more about Geographic Assignment Plans"
+              helpUrl="https://customers.geopointe.com/s/article/Assignment-Plans"
+              id="apPagBlock"
+            >
+              <apex:pageBlockButtons location="top">
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                    <a href="/apex/{!namespacePrefix}s_AssignmentPlan?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">New Assignment Plan</a>
+                  </button>
+                </apex:outputPanel>
+                <apex:outputPanel >
+                  <app-territory-planner-container></app-territory-planner-container>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                  <a class="btn gpLinkButtonClassic" href="/apex/{!namespacePrefix}s_AssignmentPlan?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">New Assignment Plan</a>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-utility-info" title="information">
+                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                        </svg>
+                        <span class="slds-assistive-text">information</span>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <p><a href="https://customers.geopointe.com/s/article/Assignment-Plans">Learn more</a></p>
+                    </div>
+                  </div>
+                </apex:outputPanel>
+              </apex:pageBlockButtons>
+
+              <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-utility-info" title="information">
+                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                    </svg>
+                    <span class="slds-assistive-text">information</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <p>Assignment Plans define how you want mappable object records to be assigned to geographic areas.</p>
+                </div>
+              </div>
+
+              <div style="font-size: 125%; margin-top: 10px; margin-bottom: 7px">Assignment Area Licenses: {!assignmentAreaLicensesInUse}</div>
+              <apex:pageblockTable value="{!plans}" var="ap" rowClasses="odd,even" rendered="{!plans.size > 0}" styleClass="sortable">
+                <apex:column headerValue="Action" style="font-weight: bold" width="170px">
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                    <div class="slds-button-group" role="group">
+                      <button class="slds-button slds-button_neutral" onclick="editBtnHandler(event);">
+                        <apex:outputLink value="/apex/{!namespacePrefix}s_AssignmentPlan?id={!ap.id}&backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">Edit</apex:outputLink>
+                      </button>
+                      <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+                        <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="Show More" onclick="buttonGrpShowMenu(event);">
+                          <svg class="slds-button__icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#down')}"></use>
+                          </svg>
+                          <span class="slds-assistive-text">Show More</span>
+                        </button>
+                        <div class="slds-dropdown slds-dropdown_left">
+                          <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                            <apex:outputPanel rendered="{!ap.Status!='Active'}">
+                              <li class="slds-dropdown__item" role="presentation">
+                                <apex:commandLink value="Activate"
+                                  action="{!assignmentplan_statusUpdate}"
+                                  rerender="apPagBlock, pageMessages"
+                                  onclick="geopointeAjaxStart('body','Activating...');"
+                                  oncomplete="geopointeAjaxEnd();"
+                                >
+                                  <apex:param value="Active" assignTo="{!apStatusValue}" name="apStatusValue" />
+                                  <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                                </apex:commandLink>
+                              </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!ap.Status=='Active'}">
+                              <li class="slds-dropdown__item" role="presentation">
+                                <apex:commandLink value="Deactivate"
+                                  action="{!assignmentplan_statusUpdate}"
+                                  rerender="apPagBlock, pageMessages"
+                                  onclick="if(confirm('{!$Label.geopointe__assignment_plan_deactive_confirm}')){geopointeAjaxStart('body','Deactivating...');}else{return false}"
+                                  oncomplete="geopointeAjaxEnd();"
+                                >
+                                  <apex:param value="Inactive" assignTo="{!apStatusValue}" name="apStatusValue" />
+                                  <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                                </apex:commandLink>
+                              </li>
+                            </apex:outputPanel>
+                            <li class="slds-dropdown__item" role="presentation">
+                              <apex:commandLink value="Delete"
+                                action="{!assignmentplan_delete}"
+                                rerender="apPagBlock"
+                                onclick="if(confirm('This will permanently DELETE the Assignment Plan: {!JSENCODE(ap.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                                oncomplete="geopointeAjaxEnd();"
+                              >
+                                <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                              </apex:commandLink>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </apex:outputPanel>
+
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                    <apex:outputLink value="/apex/{!namespacePrefix}s_AssignmentPlan?id={!ap.id}&backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">Edit</apex:outputLink>
+
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <apex:commandLink rendered="{!ap.Status!='Active'}"
+                      value="Activate"
+                      action="{!assignmentplan_statusUpdate}"
+                      rerender="apPagBlock, pageMessages"
+                      onclick="geopointeAjaxStart('body','Activating...');"
+                      oncomplete="geopointeAjaxEnd();"
+                    >
+                      <apex:param value="Active" assignTo="{!apStatusValue}" name="apStatusValue" />
+                      <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                    </apex:commandLink>
+
+                    <apex:commandLink rendered="{!ap.Status=='Active'}"
+                      value="Deactivate"
+                      action="{!assignmentplan_statusUpdate}"
+                      rerender="apPagBlock, pageMessages"
+                      onclick="if(confirm('{!$Label.geopointe__assignment_plan_deactive_confirm}')){geopointeAjaxStart('body','Deactivating...');}else{return false}"
+                      oncomplete="geopointeAjaxEnd();"
+                    >
+                      <apex:param value="Inactive" assignTo="{!apStatusValue}" name="apStatusValue" />
+                      <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                    </apex:commandLink>
+
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <apex:commandLink value="Delete"
+                      action="{!assignmentplan_delete}"
+                      rerender="apPagBlock"
+                      onclick="if(confirm('This will permanently DELETE the Assignment Plan: {!JSENCODE(ap.Name)}')){geopointeAjaxStart('body','Deleting...');}else{return false}"
+                      oncomplete="geopointeAjaxEnd();"
+                    >
+                      <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                    </apex:commandLink>
+                  </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Assignment Plan Name" value="{!ap.name}" />
+                <apex:column headerValue="Map Object" value="{!ap.MapObjectLabel}" />
+                <apex:column >
+                  <apex:facet name="header"># Areas</apex:facet>
+                  <apex:outputText rendered="{!ap.Status = 'Active'}" value="{!ap.numAreas}" />
+                  <apex:outputText rendered="{!ap.Status != 'Active'}" value="{!ap.numAreas}" style="color: #999" />
+                </apex:column>
+                <apex:column headerValue="Active">
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.Status = 'Active' }" />
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! ap.Status != 'Active' }" />
+                </apex:column>
+                <apex:column headerValue="Reassign Owner">
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.ReassignOwner }" />
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(ap.ReassignOwner) }" />
+                </apex:column>
+                <apex:column headerValue="Maintained By Territory Planner">
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.managedByTerritoryPlanner }" />
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(ap.managedByTerritoryPlanner) }" />
+                </apex:column>
+                <apex:column headerValue="High Performance" rendered="{!orgSettings.hiPerAPEnabled}">
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.HighPerformance }" />
+                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(ap.HighPerformance) }" />
+                </apex:column>
+                <apex:column headerValue="Custom Assignment Field" value="{!ap.CustomAssignmentFieldLabel}" />
+                <apex:column headerValue="Custom Assignment Object" value="{!ap.CustomAssignmentObjectLabel}" />
+                <apex:column headerValue="Description" value="{!ap.Description}" />
+                <apex:column headerValue="Batch Assign">
+                  <apex:outputPanel rendered="{! ap.Status = 'Active' }">
+                    <apex:commandLink value="All" action="{!runAssignmentPlan}">
+                      <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                      <apex:param value="false" assignTo="{!performDeltaAssignment}" name="performDeltaAssignment" />
+                    </apex:commandLink>
+                    <apex:outputText value=" | " />
+                    <apex:commandLink value="Delta" action="{!runAssignmentPlan}">
+                      <apex:param value="{!ap.Id}" assignTo="{!planId}" name="planId" />
+                      <apex:param value="true" assignTo="{!performDeltaAssignment}" name="performDeltaAssignment" />
+                    </apex:commandLink>
+                  </apex:outputPanel>
+                </apex:column>
+              </apex:pageblockTable>
+              <div style="height: 80px" />
+            </apex:pageBlock>
+          </div>
+
+          <!-- Batch Jobs -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-batchJobs" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-batchJobs">
+            <!-- Batch Job Preferences -->
+            <div style="margin-bottom: 50px; margin-right: 10px">
+              <app-batch-job-preferences></app-batch-job-preferences>
+            </div>
+            <!-- Batch Job Preferences -->
+
+            <!-- Scheduled Jobs -->
+            <apex:pageBlock title="Scheduled Jobs"
+              helpTitle="Learn more about the Geocoder"
+              helpUrl="https://customers.geopointe.com/s/article/The-Geocoder"
+              id="scheduledJobsPageBlock"
+            >
+              <apex:pageBlockButtons location="top">
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                  <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-utility-info" title="information">
+                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                        </svg>
+                        <span class="slds-assistive-text">information</span>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <p><a href="https://customers.geopointe.com/s/article/The-Geocoder">Learn more</a></p>
+                    </div>
+                  </div>
+                </apex:outputPanel>
+              </apex:pageBlockButtons>
+              <apex:outputPanel layout="block" style="/*margin: 3px 30% 3px 30px; */ padding: 3px">
+                <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                  <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-info" title="information">
+                      <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                      </svg>
+                      <span class="slds-assistive-text">information</span>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <p>
+                      <apex:outputText value="Schedule Geopointe jobs to run in the background to improve your experience and to relieve you of manual work. Use the list below to manage Geopointe job schedules."
+                      />
+                    </p>
+                  </div>
+                </div>
+              </apex:outputPanel>
+              <apex:outputPanel id="batchjob_schedules">
+                <apex:pageblockTable value="{!schedules}" var="s" rowClasses="odd,even" styleClass="sortable">
+                  <apex:column headerValue="Action" style="font-weight: bold" width="270px">
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Geocoder'}">
+                      <a href="javascript:void(0)" onclick="fireGeocodeConfigComponent(event);">Edit</a>
+                      &nbsp;&nbsp;|&nbsp;&nbsp;
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Daily Summary'}">
+                      <apex:outputPanel rendered="{!s.isScheduled}">
+                        <a href="javascript:void(0)" onclick="fireDailySummaryComponent(event);">Edit</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!NOT(s.isScheduled)}">
+                        <a href="javascript:void(0)" onclick="fireDailySummaryComponent(event);">Schedule Daily Summary</a>
+                      </apex:outputPanel>
+                    </apex:outputPanel>
+
+                    <apex:commandLink rendered="{!NOT(s.isScheduled) && s.scheduleName != 'Geopointe Thematic Map Sync'
+                        && s.scheduleName != 'Geopointe Assignment Plans' && s.scheduleName != 'Geopointe High Performance Assignment Plans'
+                        && s.scheduleName != 'Geopointe Route Planner' && s.scheduleName != 'Geopointe Daily Summary'}"
+                      value="Schedule {!s.scheduleShortName}"
+                      action="{!rescheduleApexJob}"
+                      rerender="scheduledJobsPageBlock, pageMessages"
+                      onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                      oncomplete="geopointeAjaxEnd();"
+                    >
+                      <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                    </apex:commandLink>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Assignment Plans' && NOT(s.isScheduled)}">
+                      <apex:commandLink value="Schedule AP Daily"
+                        action="{!rescheduleApexJob}"
+                        rerender="scheduledJobsPageBlock, pageMessages"
+                        onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                        <apex:param value="d" assignTo="{!jobFreq}" name="jobFreqWeekly" />
+                      </apex:commandLink>
+                      &nbsp;&nbsp;|&nbsp;&nbsp;
+                      <apex:commandLink value="Schedule AP Hourly"
+                        action="{!rescheduleApexJob}"
+                        rerender="scheduledJobsPageBlock, pageMessages"
+                        onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                        <apex:param value="h" assignTo="{!jobFreq}" name="jobFreqWeekly" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe High Performance Assignment Plans' && NOT(s.isScheduled)}">
+                      <apex:commandLink value="Schedule High Performance AP"
+                        action="{!rescheduleApexJob}"
+                        rerender="scheduledJobsPageBlock, pageMessages"
+                        onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                      </apex:commandLink>
+                      &nbsp;&nbsp;
+                      <apex:selectList value="{!jobFreqSelect}" size="1">
+                        <apex:selectOptions value="{!scheduleOptions}" />
+                      </apex:selectList>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Thematic Map Sync' && orgSettings.thematicMapsEnabled && NOT(s.isScheduled)}">
+                      <apex:commandLink value="Schedule Sync Weekly"
+                        action="{!rescheduleApexJob}"
+                        rerender="scheduledJobsPageBlock, pageMessages"
+                        onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                        <apex:param value="w" assignTo="{!jobFreq}" name="jobFreqWeekly" />
+                      </apex:commandLink>
+                      &nbsp;&nbsp;|&nbsp;&nbsp;
+                      <apex:commandLink value="Schedule Sync Daily"
+                        action="{!rescheduleApexJob}"
+                        rerender="scheduledJobsPageBlock, pageMessages"
+                        onclick="geopointeAjaxStart('body','Scheduling Job...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                        <apex:param value="d" assignTo="{!jobFreq}" name="jobFreqWeekly" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+
+                    <apex:commandLink action="{!goToEnableThematics}"
+                      value="[ Enable Thematic Maps ]"
+                      rendered="{!s.scheduleName == 'Geopointe Thematic Map Sync' && NOT(orgSettings.thematicMapsEnabled)}"
+                    >
+                      <apex:param value="tab-batchJobs" assignTo="{!enableReturn}" name="enableReturn" />
+                    </apex:commandLink>
+
+                    <apex:commandLink rendered="{!s.isScheduled}"
+                      value="Cancel {!s.scheduleShortName}"
+                      action="{!unscheduleApexJob}"
+                      rerender="scheduledJobsPageBlock, pageMessages"
+                      onclick="geopointeAjaxStart('body','Cancelling Job...');"
+                      oncomplete="geopointeAjaxEnd();"
+                    >
+                      <apex:param value="{!s.scheduleID}" assignTo="{!jobIdToCancel}" name="jobIdToCancel" />
+                      <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                    </apex:commandLink>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Geocoder'}">
+                      &nbsp;&nbsp;|&nbsp;&nbsp;
+                      <apex:commandLink value="Run Cleanup"
+                        action="{!runCleanupJob}"
+                        rerender="scheduledJobsPageBlock"
+                        onclick="geopointeAjaxStart('body','Starting Cleanup...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Route Planner'}">
+                      <apex:commandLink value="Run Cleanup"
+                        action="{!runCleanupJob}"
+                        rerender="scheduledJobsPageBlock"
+                        onclick="geopointeAjaxStart('body','Starting Cleanup...');"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!s.scheduleName}" assignTo="{!jobName}" name="jobName" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+                  </apex:column>
+                  <apex:column headerValue="Job Name">
+                    <apex:outputPanel rendered="{!s.scheduleName == 'Geopointe Daily Summary'}"> Geopointe Daily Summary (Beta) </apex:outputPanel>
+                    <apex:outputPanel rendered="{!s.scheduleName != 'Geopointe Daily Summary'}"> {!s.scheduleName} </apex:outputPanel>
+                  </apex:column>
+                  <apex:column headerValue="Job Description" width="37%" value="{!s.scheduleDescription}" />
+                  <!--<apex:column headerValue="Status" value="{!s.scheduleStatus}"/>-->
+                  <apex:column headerValue="Frequency" value="{!s.scheduleFrequency}" />
+                  <apex:column headerValue="Submitted By" value="{!s.submittedBy}" />
+                  <apex:column headerValue="Last Run" value="{!s.lastScheduledRun}" />
+                  <apex:column headerValue="Next Run" value="{!s.nextScheduledRun}" />
+                  <apex:column headerValue="Schedule Id" value="{!s.scheduleID}" rendered="{!NOT(ISNULL($CurrentPage.parameters.debug))}" />
+                </apex:pageblockTable>
+              </apex:outputPanel>
+            </apex:pageBlock>
+
+            <!-- Current & Recently Completed Jobs -->
+            <apex:pageBlock title="Current & Recently Completed Batch Jobs" id="batchJobList">
+              <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Refresh" rerender="batchJobList" onclick="geopointeAjaxStart('body','Refreshing Batch Job List...');" oncomplete="geopointeAjaxEnd();" />
+              </apex:pageBlockButtons>
+
+              <!-- <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+            <apex:panelGrid columns="2" styleClass="setupTabInfo">
+                <apex:image url="{!URLFOR($Resource.geopointe__images, '/info32.png')}" height="16px" style="height: 16px;"/>
+                <apex:outputPanel>
+                    Below is a list of the batch jobs currently running as well as the 10 most recently completed batch jobs (<a href="/apexpages/setup/listAsyncApexJobs.apexp" target="_blank"><em>Monitor All Jobs</em></a>)
+                </apex:outputPanel>
+            </apex:panelGrid>
+            </apex:outputPanel> -->
+              <!-- <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}"> -->
+              <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-utility-info" title="information">
+                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                    </svg>
+                    <span class="slds-assistive-text">information</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  Below is a list of the batch jobs currently running as well as the 10 most recently completed batch jobs (<a
+                    href="/apexpages/setup/listAsyncApexJobs.apexp"
+                    target="_blank"
+                    ><em>Monitor All Jobs</em></a
+                  >)
+                </div>
+              </div>
+              <!-- </apex:outputPanel> -->
+
+              <apex:pageblockTable value="{!apexBatchJobs}" var="job" rowClasses="odd,even" rendered="{!apexBatchJobsCount > 0}" styleClass="sortable">
+                <apex:column headerValue="Job Type" value="{!job.apexClass}" />
+                <apex:column headerValue="Status" value="{!job.Status}" />
+                <apex:column headerValue="Total Items" value="{!job.TotalJobItems}" />
+                <apex:column headerValue="Processed Items" value="{!job.JobItemsProcessed}" />
+                <apex:column headerValue="Errored Items" value="{!job.NumberOfErrors}" />
+                <apex:column headerValue="Submitted" value="{!job.CreatedDate}" />
+                <apex:column headerValue="Completed" value="{!job.CompletedDate}" />
+                <apex:column headerValue="Running User" value="{!job.RunningUser}" />
+                <apex:column headerValue="Job Id" value="{!job.jobId}" rendered="{!NOT(ISNULL($CurrentPage.parameters.debug))}" />
+              </apex:pageblockTable>
+              <apex:outputText rendered="{!apexBatchJobsCount == 0}"> There are no Geopointe jobs currently running nor have any ever been run. </apex:outputText>
+            </apex:pageBlock>
+
+            <div id="dailySummaryConfigContainer">
+              <app-daily-summary-config></app-daily-summary-config>
+            </div>
+            <div id="geocodeBatchConfigContainer">
+              <app-geocode-batch-config></app-geocode-batch-config>
+            </div>
+          </div>
+
+          <!-- Geopointe Data Layer -->
+          <!-- <div class="slds-vertical-tabs__content slds-hide" id="tab-fieldMapping" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-fieldMapping">
+		<apex:pageBlock title="{!IF($User.UIThemeDisplayed == 'Theme3', 'Geopointe Data Layer', '')}" id="fieldMappingView">
+            <apex:pageBlockButtons location="top" rendered="{!selectFieldMapRendered}">
+                <apex:commandButton action="{!newFieldMappingView}" value="New" reRender="fieldMappingView"/>
+            </apex:pageBlockButtons>
+            <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px;">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-info" title="information">
+                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                        </svg>
+                        <span class="slds-assistive-text">information</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <p>Import Field Mapping</p>
+                </div>
+            </div>
+			<apex:outputPanel id="selectFieldMap" rendered="{!selectFieldMapRendered}">
+				<apex:pageBlockTable value="{!objectMaps}" var="objectMap">
+					<apex:column headerValue="Action" style="font-weight: bold">
+						<apex:commandLink value="Edit" action="{!editFieldMappingView}" rerender="fieldMappingView">
+							<apex:param value="{!objectMap.Id}" assignTo="{!fieldMappingSalesforceObjectId}" name="fieldMappingSalesforceObjectId"/>
+						</apex:commandLink>
+						&nbsp;|&nbsp;
+						<apex:commandLink value="Delete" action="{!deleteFieldMapping}" rerender="fieldMappingView">
+							<apex:param value="{!objectMap.Id}" assignTo="{!fieldMappingSalesforceObjectId}" name="fieldMappingSalesforceObjectId"/>
+						</apex:commandLink>
+					</apex:column>
+					<apex:column headerValue="Name" value="{!objectMap.Name}"/>
+					<apex:column headerValue="Geopointe Object" value="{!objectMap.Geopointe_Object__c}"/>
+					<apex:column headerValue="Salesforce Object" value="{!objectMap.Sfdc_Object__c}"/>
+				</apex:pageBlockTable>
+			</apex:outputPanel>
+			<apex:outputPanel id="editFieldMap" rendered="{!editFieldMapRendered}">
+			<div class="pbHeader">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="pbTitle">&nbsp;</td>
+							<td class="pbButton">
+								<apex:commandButton action="{!saveFieldMapping}" value="Save" reRender="fieldMappingView"/>
+								<apex:commandButton action="{!selectFieldMappingView}" value="Cancel" reRender="fieldMappingView"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<table class="detailList" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<th class="labelCol vfLabelColTextWrap first" scope="row" style="border-bottom: none">
+							<label>Name</label>
+						</th>
+						<td class="data2Col first" style="border-bottom: none">
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:inputText value="{!fieldMappingSalesforceObject.Name}"/>
+								<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!fieldMapSaveFailed && fieldMappingSalesforceObject.Name == ''}"><strong>Error:</strong> You must enter a value</apex:outputPanel>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="labelCol vfLabelColTextWrap" scope="row" style="border-bottom: none">
+							<label>Geopointe Object</label>
+						</th>
+						<td class="data2Col" style="border-bottom: none">
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:selectList value="{!fieldMappingSalesforceObject.Geopointe_Object__c}" size="1">
+									<apex:actionSupport event="onchange" action="{!setFieldMappingObjectType}" reRender="fieldMap, fieldMapDefaultValues, fieldMapObjectSelect"/>
+									<apex:selectOption itemValue="" itemLabel="--None--"/>
+									<apex:selectOption itemValue="Global Businesses" itemLabel="Global Businesses"/>
+									<apex:selectOption itemValue="Global People" itemLabel="Global People"/>
+								</apex:selectList>
+								<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!fieldMapSaveFailed && fieldMappingSalesforceObject.Geopointe_Object__c == ''}"><strong>Error:</strong> You must enter a value</apex:outputPanel>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="labelCol vfLabelColTextWrap" scope="row" style="border-bottom: none">
+							<label>Salesforce Object</label>
+						</th>
+						<td class="data2Col" style="border-bottom: none">
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:outputPanel id="fieldMapObjectSelect">
+								<apex:inputText styleClass="salesforceObjectInput" value="{!fieldMappingSalesforceObject.Sfdc_Object__c}" rendered="{!fieldMappingSalesforceObject.Geopointe_Object__c != ''}" style="display: none"/>
+									<apex:actionSupport event="onchange" action="{!setFieldMappingObjectFields}" reRender="fieldMap, fieldMapDefaultValues"/>
+								<apex:outputPanel rendered="{!fieldMappingSalesforceObject.Geopointe_Object__c != ''}">
+								<select class="salesforceObjectSelect" size="1">
+								</select>
+								</apex:outputPanel>
+								<script type="text/javascript">
+									// manually set salesforce object options to bypass 1000 option limit
+									var salesforceObjects = {!salesforceObjects};
+									var selected = '{!JSENCODE(fieldMappingSalesforceObject.Sfdc_Object__c)}';
+
+									var options = salesforceObjects.map(function (salesforceObject) {
+										return gp_DOMPurify.sanitize('<option value="' + salesforceObject[0] + '">' + salesforceObject[1] + '</option>');
+									}).join('\n');
+
+									jQuery('.salesforceObjectSelect').append(options);  // sanitized durring construction
+
+									jQuery('.salesforceObjectSelect').val(selected);
+
+									jQuery('.salesforceObjectSelect').change(function () {
+										jQuery('.salesforceObjectInput').val(jQuery('.salesforceObjectSelect').val());
+									})
+								</script>
+								<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!fieldMapSaveFailed && fieldMappingSalesforceObject.Sfdc_Object__c == ''}"><strong>Error:</strong> You must enter a value</apex:outputPanel>
+								</apex:outputPanel>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<apex:outputPanel id="fieldMap">
+				<apex:pageBlockTable value="{!fieldMappingObjectFields}" var="field" rendered="{!fieldMappingSalesforceObject.Sfdc_Object__c != '' && fieldMappingSalesforceObject.Geopointe_Object__c != ''}">
+					<apex:column headerValue="Geopointe Field" value="{!field.Geopointe_Field_Label__c}"/>
+					<apex:column headerValue="{!fieldMappingSalesforceObject.Sfdc_Object__c} Field">
+						<div class="requiredInput">
+							<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!field.Required__c}"></apex:outputPanel>
+							<apex:selectList value="{!field.Sfdc_Field__c}" size="1" rendered="{!field.Geopointe_Field__c != 'id'}">
+								<apex:selectOptions value="{!salesforceObjectFields}"/>
+							</apex:selectList>
+							<apex:selectList value="{!field.Sfdc_Field__c}" size="1" rendered="{!field.Geopointe_Field__c == 'id'}">
+								<apex:selectOptions value="{!salesforceObjectStringFields}"/>
+							</apex:selectList>
+							<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!field.Required__c && fieldMapSaveFailed && field.Sfdc_Field__c == ''}"><strong>Error:</strong> You must enter a value</apex:outputPanel>
+							<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!fieldMapSaveFailed && field.Sfdc_Field__c == fieldMapDuplicate && fieldMapDuplicate != null}"><strong>Error:</strong> Duplicate fields are not allowed</apex:outputPanel>
+						</div>
+					</apex:column>
+				</apex:pageBlockTable>
+			</apex:outputPanel>
+			<apex:outputPanel id="fieldMapDefaultValues">
+				<apex:outputPanel layout="block" style="margin: 5px 0" rendered="{!fieldMappingSalesforceObject.Sfdc_Object__c != '' && fieldMappingSalesforceObject.Geopointe_Object__c != ''}">
+					<b style="margin-right: 5px">Default Fields</b>
+				</apex:outputPanel>
+				<apex:pageBlockTable value="{!fieldMappingDefaultFields}" var="field" rendered="{!fieldMappingSalesforceObject.Sfdc_Object__c != '' && fieldMappingSalesforceObject.Geopointe_Object__c != ''}">
+					<apex:column headerValue="Action" style="font-weight: bold">
+						<apex:commandLink value="Delete" action="{!deleteDefaultField}" reRender="fieldMapDefaultValues">
+							<apex:param value="{!field.Order__c}" assignTo="{!fieldMappingDefaultIndexToDelete}" name="fieldMappingDefaultToDelete"/>
+						</apex:commandLink>
+					</apex:column>
+					<apex:column headerValue="Value">
+						<apex:inputText value="{!field.Value__c}"/>
+					</apex:column>
+					<apex:column headerValue="{!fieldMappingSalesforceObject.Sfdc_Object__c} Field">
+						<apex:selectList value="{!field.Sfdc_Field__c}" size="1">
+							<apex:selectOptions value="{!salesforceObjectFields}"/>
+						</apex:selectList>
+						<apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!fieldMapSaveFailed && field.Sfdc_Field__c == fieldMapDuplicate && fieldMapDuplicate != null}"><strong>Error:</strong> Duplicate fields are not allowed</apex:outputPanel>
+					</apex:column>
+				</apex:pageBlockTable>
+				<apex:commandButton action="{!addDefaultField}" value="Add Default Field" rendered="{!fieldMappingSalesforceObject.Sfdc_Object__c != '' && fieldMappingSalesforceObject.Geopointe_Object__c != ''}" reRender="fieldMapDefaultValues"/>
+			</apex:outputPanel>
+			<div class="pbHeader">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="pbTitle">&nbsp;</td>
+							<td class="pbButton">
+								<apex:commandButton action="{!saveFieldMapping}" value="Save" reRender="fieldMappingView"/>
+								<apex:commandButton action="{!selectFieldMappingView}" value="Cancel" reRender="fieldMappingView"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</div> -->
+
+          <!-- User Settings -->
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-userSettings" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-userSettings">
+            <c:sMainUserSettings rendered="true" theme="{!$User.UIThemeDisplayed}" />
+          </div>
+
+          <!-- Calendar Configuration -->
+          <script>
+            function editCalendar(id) {
+              gp_events.emit('editCalendar', { id: id });
+
+              document.querySelector('#calendarListWrapper').style.display = 'none';
+
+              document.querySelector('#calendarConfigWrapper').style.display = 'block';
+            }
+
+            function removeCalendar(id) {
+              gp_events.emit('removeCalendar', { id: id });
+            }
+
+            function closeEditCalendar() {
+              document.querySelector('#calendarListWrapper').style.display = 'block';
+
+              document.querySelector('#calendarConfigWrapper').style.display = 'none';
+
+              rerenderCalendarTable();
+            }
+
+            gp_events.on('closeCalendar', function () {
+              closeEditCalendar();
+            });
+          </script>
+
+          <apex:actionFunction name="rerenderCalendarTable" rerender="calendarTable" />
+          <div
+            class="slds-vertical-tabs__content slds-hide"
+            id="tab-calendarConfiguration"
+            data-grouping="setupTab"
+            role="tabpanel"
+            aria-labelledby="slds-vertical-calendarConfiguration"
+          >
+            <div id="calendarListWrapper">
+              <apex:pageBlock title="Calendars"
+                id="calendarPageBlock"
+                helpTitle="Learn more about calendar"
+                helpUrl="https://customers.geopointe.com/s/article/Set-Up-Calendar-Scheduling"
+              >
+                <apex:pageBlockButtons location="top">
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                    <button class="slds-button slds-button_neutral" onclick="javascript:editCalendar(null)">
+                      <a href="javascript:void(0);">New Calendar</a>
+                    </button>
+                  </apex:outputPanel>
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+                    <a class="btn gpLinkButtonClassic" href="javascript:void(0);" onclick="javascript:editCalendar(null)">New Calendar</a>
+                  </apex:outputPanel>
+                  <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme3'}">
+                    <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="float: right; padding-top: 7px">
+                      <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-utility-info" title="information">
+                          <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                          </svg>
+                          <span class="slds-assistive-text">information</span>
+                        </span>
+                      </div>
+                      <div class="slds-media__body">
+                        <p><a href="https://customers.geopointe.com/s/article/Set-Up-Calendar-Scheduling">Learn more</a></p>
+                      </div>
+                    </div>
+                  </apex:outputPanel>
+                </apex:pageBlockButtons>
+
+                <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                  <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-info" title="information">
+                      <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                      </svg>
+                      <span class="slds-assistive-text">information</span>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <p>Calendars allow you to pick objects and generate calendars inside of Geopointe as well as show related objects on the map with routing functionality.</p>
+                  </div>
+                </div>
+
+                <apex:pageBlockTable value="{!calendarObjects}" var="calendar" id="calendarTable">
+                  <apex:column headerValue="Action" style="font-weight: bold" width="285px">
+                    <apex:outputLink value="javascript:void(0);" onclick="javascript:editCalendar('{!calendar.Id}')">Edit</apex:outputLink>
+
+                    <apex:outputPanel >
+                      &nbsp;|&nbsp;
+                      <apex:commandLink value="Delete"
+                        action="{!deleteCalendar}"
+                        rerender="calendarTable"
+                        onclick="if(confirm('This will permanently DELETE the Calendar: {!JSENCODE(calendar.Name)}')){geopointeAjaxStart('body','Deleting...'); removeCalendar('{!calendar.Id}');}else{return false}"
+                        oncomplete="geopointeAjaxEnd();"
+                      >
+                        <apex:param value="{!calendar.Id}" assignTo="{!calendarIdForDML}" name="calendarIdForDML" />
+                      </apex:commandLink>
+                    </apex:outputPanel>
+                  </apex:column>
+
+                  <apex:column value="{!calendar.Name}" />
+
+                  <apex:column value="{!calendar.geopointe__SObject_Name__c}" />
+                </apex:pageBlockTable>
+              </apex:pageBlock>
+            </div>
+            <div id="calendarConfigWrapper" style="display: none">
+              <app-calendar-config></app-calendar-config>
+            </div>
+
+            <app-resource-view-groups-table></app-resource-view-groups-table>
+          </div>
+
+          <!-- Feature Licenses -->
+          <script>
+            function manageLicense(id, name) {
+              gp_events.emit('manageLicenses', { id: id, name: name });
+
+              document.querySelector('#licensesListWrapper').style.display = 'none';
+
+              document.querySelector('#licensesManageWrapper').style.display = 'block';
+            }
+
+            function closeManageLicenses() {
+              document.querySelector('#licensesListWrapper').style.display = 'block';
+
+              document.querySelector('#licensesManageWrapper').style.display = 'none';
+
+              rerenderLicensesTable();
+            }
+
+            gp_events.on('closeLicenses', function () {
+              closeManageLicenses();
+            });
+          </script>
+
+          <apex:actionFunction name="rerenderLicensesTable" rerender="licensesTable" />
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-featureLicenses" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-featureLicenses">
+            <div id="licensesListWrapper">
+              <apex:pageBlock title="Feature Licenses" id="licensePageBlock">
+                <div class="slds-scoped-notification slds-media slds-media_center" role="status" style="padding-top: 4px; padding-bottom: 4px">
+                  <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-info" title="information">
+                      <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}" />
+                      </svg>
+                      <span class="slds-assistive-text">information</span>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <p>Feature licenses allow you to designate users allowed to access features that require an additional license.</p>
+                  </div>
+                </div>
+
+                <apex:pageBlockTable value="{!licensedFeatures}" var="lf" id="licensesTable">
+                  <apex:column headerValue="Action" style="font-weight: bold" width="285px">
+                    <apex:outputLink value="javascript:void(0);" onclick="javascript:manageLicense('{!lf['id']}', '{!lf['name']}')">Manage</apex:outputLink>
+                  </apex:column>
+                  <apex:column headerValue="Feature" value="{!lf['name']}" />
+                  <apex:column headerValue="Number of Licenses" value="{!lf['num']}" />
+                  <apex:column headerValue="Licenses Used" value="{!lf['used']}" />
+                </apex:pageBlockTable>
+              </apex:pageBlock>
+            </div>
+            <div id="licensesManageWrapper" style="display: none">
+              <app-feature-licenses></app-feature-licenses>
+            </div>
+          </div>
+
+          <!-- Route Planner Configuration -->
+          <script>
+            function closeRoutePlanner() {
+              document.querySelector('#routePlannerWrapper').style.display = 'block';
+            }
+
+            gp_events.on('closeRoutePlanner', function () {
+              closeRoutePlanner();
+            });
+          </script>
+
+          <app-route-plan-schedule-modal></app-route-plan-schedule-modal>
+          <app-route-plan-auth-modal></app-route-plan-auth-modal>
+
+          <div class="slds-vertical-tabs__content slds-hide" id="tab-routePlanner" data-grouping="setupTab" role="tabpanel" aria-labelledby="slds-vertical-routePlanner">
+            <div id="routePlannerWrapper" style="display: block">
+              <app-route-plan-setup-tab></app-route-plan-setup-tab>
+            </div>
+          </div>
+        </div>
+      </apex:outputPanel>
+    </apex:form>
+  </div>
+
+  <apex:outputPanel id="dummyPanel" />
+
+  <apex:form >
+    <!--Action function that updates acton order -->
+    <apex:actionFunction name="updateActionOrder" action="{!updateActionOrder}" rerender="dummyPanel">
+      <apex:param name="actionJSON" assignTo="{!actionJSON}" value="" />
+    </apex:actionFunction>
+
+    <!-- Update org settings on load -->
+    <apex:actionFunction name="updateOrgSettings" action="{!updateOrgSettings}" rerender="dummyPanel" />
+
+    <apex:actionFunction name="refreshBatchJobSchedules" reRender="batchjob_schedules" />
+  </apex:form>
+
+  <script type="text/javascript">
+
+    var j$ = jQuery.noConflict();
+
+    j$(document).ready(function(){
+           //Set default active nav content or previous navigated from tab
+           (function(){
+               //Autoload the correct tab based on tab url param
+               var tabParam = '{!JSENCODE($CurrentPage.parameters.tab)}';
+                   setupTabsContainer = document.querySelector('ul#setupTabs'),
+                   verticalNavItems = Array.prototype.slice.call(setupTabsContainer.querySelectorAll('li.slds-vertical-tabs__nav-item'));
+                   activeNavItems = Array.prototype.slice.call(setupTabsContainer.querySelectorAll('li.slds-vertical-tabs__nav-item.slds-is-active'));
+
+               if(tabParam || location.hash){
+
+                   var hashHref = (location.hash) ? location.hash : '#' + tabParam;
+                   var tabAnchor = setupTabsContainer.querySelector('a[href="'+hashHref+'"]'),
+                       tabContent = document.getElementById(tabAnchor.getAttribute('aria-controls'));
+
+                   activeNavItems.forEach(function(item){
+                       if(item !== tabAnchor.parentNode){
+                           item.classList.remove('slds-is-active');
+                           var content =  document.getElementById(item.querySelector('a.slds-vertical-tabs__link').getAttribute('aria-controls'));
+                               content.classList.add('slds-hide');
+                               content.classList.remove('slds-show');
+                       }
+                   });
+
+                   tabAnchor.parentNode.classList.add('slds-is-active');
+                   tabContent.classList.add('slds-show');
+                   tabContent.classList.remove('slds-hide');
+
+               } else {
+                  // else if no tab is set, set the first nav item as default
+                   //grab first element
+                   var defaultNavItem = verticalNavItems[0],
+                       defaultNavContent = document.getElementById( defaultNavItem.querySelector('a.slds-vertical-tabs__link').getAttribute('aria-controls') );
+                   //add active flag to nav list item
+                   defaultNavItem.classList.add('slds-is-active');
+                   //add slds-show and remove hide classes to the nav list item contents
+                   defaultNavContent.classList.add('slds-show');
+                   defaultNavContent.classList.remove('slds-hide');
+               }
+           })();
+
+           //Event listeners for sorting action tables
+           j$("body").on('click','.actionSortCol svg',function(e){ //Up
+               var $listElement = j$(this).closest("tr");
+
+               if(j$(this).hasClass('sldsupArrowIcon')){
+                   $listElement.prev().before($listElement);
+
+               }else if(j$(this).hasClass('sldsdownArrowIcon')){
+                   $listElement.next().after($listElement);
+
+               }else if(j$(this).hasClass('sldsdoubleArrowDwn')){
+                   $listElement.appendTo($listElement.closest('tbody'));
+
+               }else if(j$(this).hasClass('sldsdoubleArrowUp')){
+                   $listElement.prependTo($listElement.closest('tbody'));
+               }
+
+               updateSortOrder();
+
+               e.preventDefault();
+           });
+
+           //Remove the standard last row class from the action tables, this messes up sorting styling as last tr has no bottom border
+           jQuery("table[id$='recordActionsTable'] tr.last").removeClass('last');
+           jQuery("table[id$='listActionsTable'] tr.last").removeClass('last');
+
+           //Assign Geopointe Admin Permission set
+           updateOrgSettings();
+    });
+
+       function updateSortOrder(){
+           var actionsToUpdate = []; //Array of Action__c objects
+
+           //Loop through record actions
+           jQuery("table[id$='recordActionsTable'] .hiddenId").each(function(i){
+               actionsToUpdate.push({
+                   Id: jQuery(this).attr('data-id'),
+                   {!fieldPrefix}Order__c: i + 1
+               });
+           });
+
+           //Loop through list actions
+           jQuery("table[id$='listActionsTable'] .hiddenId").each(function(i){
+               actionsToUpdate.push({
+                   Id: jQuery(this).attr('data-id'),
+                   {!fieldPrefix}Order__c: i + 1
+               });
+           });
+
+           //Call action function that will update order
+           updateActionOrder(JSON.stringify(actionsToUpdate));
+       }
+
+       var newActionExperience = ['check in', 'check out'];
+
+       function actionEditLightning(event) {
+           var actionDetails = getActionDetails(event);
+           if (actionDetails.action && newActionExperience.includes(actionDetails.action)) {
+               event.stopPropagation();
+               event.preventDefault();
+               actionHandler(actionDetails.action, actionDetails.actionId);
+               return false;
+           } else {
+               var navLink = event.target.dataset.navigation;
+               if(!navLink) {
+                   navLink = event.target.parentElement.dataset.navigation;
+               }
+               var anchor = event.target.tagName == 'A' ? event.target : event.target.querySelector('a');
+               anchor.href = navLink;
+               anchor.click();
+           }
+       }
+
+       function actionEditHandler(event) {
+           var actionDetails = getActionDetails(event);
+           if (actionDetails.action && newActionExperience.includes(actionDetails.action)) {
+               event.preventDefault();
+               event.stopPropagation();
+               actionHandler(actionDetails.action, actionDetails.actionId);
+               return false;
+           } else {
+               return true;
+           }
+       }
+
+       function getActionDetails(event) {
+           var elem, action, actionId, dataset;
+           if(event) {
+               elem = event.currentTarget ? event.currentTarget : event.target;
+           }
+           if(elem) {
+               dataset = elem.dataset;
+               action = dataset.standardName ? dataset.standardName.toLowerCase() : null;
+               actionId = dataset.id ? dataset.id : null;
+           }
+           return {
+               action,
+               actionId,
+           }
+       }
+
+       function actionHandler(action, actionId) {
+           document.querySelector('[data-id="actionsPageBlock"]').style.display = 'none';
+    	document.querySelector('#actionEditWrapper').style.display = 'block';
+           gp_events.emit('actionConfigData', {
+               actionName: action,
+               actionId, actionId
+           });
+       }
+
+       /* SLDS Overflow Menu Code */
+       /**
+        * Element.closest() polyfill
+        * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+        */
+       if (!Element.prototype.closest) {
+           if (!Element.prototype.matches) {
+               Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+           }
+           Element.prototype.closest = function (s) {
+               var el = this;
+               var ancestor = this;
+               if (!document.documentElement.contains(el)) return null;
+               do {
+                   if (ancestor.matches(s)) return ancestor;
+                   ancestor = ancestor.parentElement;
+               } while (ancestor !== null);
+               return null;
+           };
+       }
+
+       var menuSelector = "div.slds-dropdown-trigger.slds-dropdown-trigger_click.slds-button_last.slds-is-open";
+
+       function removeSelector(selector, currentTarget, className){
+           var menus = document.querySelectorAll(selector);
+               menus = Array.prototype.slice.call(menus);
+           if(menus) {
+               menus.forEach(function(menu){
+                   //prevent early removal if same button menu was pressed twice
+                   if(menu !== currentTarget){
+                       menu.classList.remove(className);
+                   }
+               })
+           }
+       }
+
+       function buttonGrpShowMenu(event){
+           //prevent form submit
+           event.preventDefault();
+
+           var bttn = event.currentTarget,
+               menu = bttn.parentNode;
+
+           if(menu.tagName != 'DIV' && !menu.classList.contains('slds-dropdown-trigger')) {
+               menu = menu.parentNode;
+           }
+           //remove previous open menu if there is one
+           removeSelector(menuSelector, menu, "slds-is-open");
+
+           if (menu.classList.contains("slds-is-open")){
+               menu.classList.remove("slds-is-open");
+           } else {
+               menu.classList.add("slds-is-open");
+               buttonGroupHideMenu();
+           }
+       }
+
+       function buttonGroupHideMenu(){
+           document.addEventListener("click", function(event){
+               //If click fired outside of menu
+               if(!event.target.closest(menuSelector)){
+                   //remove current menu
+                   removeSelector(menuSelector, event.currentTarget, 'slds-is-open');
+                   //remove listener
+                   document.removeEventListener(event.type, arguments.callee);
+               }
+           }, false);
+       }
+        /* SLDS Overflow Menu Code */
+
+       gp_events.on('geopointe__setup', function(event) {
+           if (!event) return;
+           var data = event.data;
+           var action = event.action;
+           if (action == 'refresh:batchjoblist') {
+               refreshBatchJobSchedules();
+           }
+       })
+
+       function fireDailySummaryComponent(event) {
+           event.preventDefault();
+           gp_events.emit('dailySummaryConfig', {});
+       }
+
+       function fireGeocodeConfigComponent(event) {
+           gp_events.emit('geocodeBatchConfig', {});
+       }
+  </script>
+
+  <script src="{!URLFOR($Resource.angular, 'angular/runtime.js')}"></script>
+  <script src="{!URLFOR($Resource.angular, 'angular/polyfills.js')}"></script>
+  <script src="{!URLFOR($Resource.angular, 'angular/main.js')}"></script>
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__angular, 'angular/styles.css')}" />
+</apex:page>

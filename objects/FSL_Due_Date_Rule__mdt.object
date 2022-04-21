@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Applicable_Work_Types__c</fullName>
+        <description>A comma separated list of worktype external id names to indicate a rule applies to these specific work types only. If left blank, all work types apply.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>A comma separated list of worktype external id names to indicate a rule applies to these specific work types only. If left blank, all work types apply.</inlineHelpText>
+        <label>Applicable Work Types</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dealer_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Dealer Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Represents the Account&apos;s Dealer Type picklist, a rule listed here would apply to all accounts that have this dealer type</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Represents the Account&apos;s Dealer Type picklist, a rule listed here would apply to all accounts that have this dealer type</inlineHelpText>
+        <label>Dealer Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Due_Date_Setting__c</fullName>
+        <description># of Business Days in which a Due Date should be after the Earliest Start Date</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText># of Business Days in which a Due Date should be after the Earliest Start Date</inlineHelpText>
+        <label>Due Date Setting</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>This is referencing the SF User Id</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is referencing the SF User Id</inlineHelpText>
+        <label>User Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>FSL Due Date Rule</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Dealer_Id__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>User_Id__c</columns>
+        <columns>Due_Date_Setting__c</columns>
+        <columns>Applicable_Work_Types__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All (Main)</label>
+    </listViews>
+    <pluralLabel>FSL Due Date Rules</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

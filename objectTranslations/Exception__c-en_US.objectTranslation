@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Exception</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Exceptions</value>
+    </caseValues>
+    <fields>
+        <label><!-- AL Sales Tax --></label>
+        <name>AL_Sales_Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch Id --></label>
+        <name>Batch_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Issues --></label>
+        <name>Compliance_Issues__c</name>
+        <picklistValues>
+            <masterLabel>ACV Listed As Seller</masterLabel>
+            <translation><!-- ACV Listed As Seller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Did not specify reason for exemption on MTC</masterLabel>
+            <translation><!-- Did not specify reason for exemption on MTC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Document expired</masterLabel>
+            <translation><!-- Document expired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Document illegible</masterLabel>
+            <translation><!-- Document illegible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect State</masterLabel>
+            <translation><!-- Incorrect State --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect document</masterLabel>
+            <translation><!-- Incorrect document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Resale/Tax ID #</masterLabel>
+            <translation><!-- Missing Resale/Tax ID # --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Signature</masterLabel>
+            <translation><!-- Missing Signature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resale box not checked</masterLabel>
+            <translation><!-- Resale box not checked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resale not specified</masterLabel>
+            <translation><!-- Resale not specified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State doesn&apos;t allow MTC for resale purpose</masterLabel>
+            <translation><!-- State doesn&apos;t allow MTC for resale purpose --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Compliant --></label>
+        <name>Compliant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Signed --></label>
+        <name>Date_Signed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer ID --></label>
+        <name>Dealer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Created By Id --></label>
+        <name>Document_Created_By_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Notes --></label>
+        <name>Document_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document State Dealer Entered --></label>
+        <name>Document_State_Dealer_Entered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document State ML --></label>
+        <name>Document_State_ML__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document State --></label>
+        <name>Document_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Subject --></label>
+        <name>Email_Subject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exceptions Found --></label>
+        <name>Exceptions_Found__c</name>
+    </fields>
+    <fields>
+        <help><!-- You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23. --></help>
+        <label><!-- Expiration Date Dealer Entered --></label>
+        <name>Expiration_Date_Dealer_Entered__c</name>
+    </fields>
+    <fields>
+        <help><!-- You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23. --></help>
+        <label><!-- Expiration Date ML --></label>
+        <name>Expiration_Date_ML__c</name>
+    </fields>
+    <fields>
+        <help><!-- You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23. --></help>
+        <label><!-- Expiration Date --></label>
+        <name>Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Extension Granted --></label>
+        <name>Extension_Granted__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Manager Email --></label>
+        <name>IST_Account_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Images Location --></label>
+        <name>Images_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insurance Company Name --></label>
+        <name>Insurance_Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inventory Coverage Amount --></label>
+        <name>Inventory_Coverage_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number Dealer Entered --></label>
+        <name>License_Number_Dealer_Entered__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number ML --></label>
+        <name>License_Number_ML__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number --></label>
+        <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Mark this box as checked/true, if dealer has supplied an MTC instead of a state-specific resale doc. You should still indicate which state the MTC is being submitted for in the Document State field. --></help>
+        <label><!-- MTC --></label>
+        <name>MTC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manual Validation Required --></label>
+        <name>Manual_Validation_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- If a resale certificate does not have an expiration date (all states except AZ, MI, NE, WA and FL), you must check this box. --></help>
+        <label><!-- No Expiration --></label>
+        <name>No_Expiration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outbound Batch Id --></label>
+        <name>Outbound_Batch_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit/Resale Number --></label>
+        <name>Permit_Resale_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact Email --></label>
+        <name>Primary_Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Account Name --></label>
+        <name>Related_Account_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Auction --></label>
+        <name>Related_Auction__c</name>
+        <relationshipLabel><!-- Exceptions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Related Case --></label>
+        <name>Related_Case__c</name>
+        <relationshipLabel><!-- Exceptions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reply To Email --></label>
+        <name>Reply_To_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Review Decision --></label>
+        <name>Review_Decision__c</name>
+        <picklistValues>
+            <masterLabel>Auto-Converted</masterLabel>
+            <translation><!-- Auto-Converted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current and Compliant Document</masterLabel>
+            <translation><!-- Current and Compliant Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duplicate Document</masterLabel>
+            <translation><!-- Duplicate Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Historical Document</masterLabel>
+            <translation><!-- Historical Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete/Adjustment Needed</masterLabel>
+            <translation><!-- Incomplete/Adjustment Needed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invalid Document</masterLabel>
+            <translation><!-- Invalid Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poor Document Quality</masterLabel>
+            <translation><!-- Poor Document Quality --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Review Status --></label>
+        <name>Review_Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processed by IST</masterLabel>
+            <translation><!-- Processed by IST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ready for Review</masterLabel>
+            <translation><!-- Ready for Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requires IST</masterLabel>
+            <translation><!-- Requires IST --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Scanner Model Name --></label>
+        <name>Scanner_Model_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TM Email --></label>
+        <name>TM_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Scanned By --></label>
+        <name>Title_Scanned_By__c</name>
+        <relationshipLabel><!-- Exceptions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Populated by call to TitlesReceived REST API. The ML api is used to discern the State of the Title. --></help>
+        <label><!-- Title State --></label>
+        <name>Title_State__c</name>
+        <picklistValues>
+            <masterLabel>Alabama</masterLabel>
+            <translation><!-- Alabama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alaska</masterLabel>
+            <translation><!-- Alaska --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arizona</masterLabel>
+            <translation><!-- Arizona --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arkansas</masterLabel>
+            <translation><!-- Arkansas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>California</masterLabel>
+            <translation><!-- California --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colorado</masterLabel>
+            <translation><!-- Colorado --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Connecticut</masterLabel>
+            <translation><!-- Connecticut --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delaware</masterLabel>
+            <translation><!-- Delaware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>District of Columbia</masterLabel>
+            <translation><!-- District of Columbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Florida</masterLabel>
+            <translation><!-- Florida --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Georgia</masterLabel>
+            <translation><!-- Georgia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hawaii</masterLabel>
+            <translation><!-- Hawaii --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Idaho</masterLabel>
+            <translation><!-- Idaho --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Illinois</masterLabel>
+            <translation><!-- Illinois --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indiana</masterLabel>
+            <translation><!-- Indiana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iowa</masterLabel>
+            <translation><!-- Iowa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kansas</masterLabel>
+            <translation><!-- Kansas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kentucky</masterLabel>
+            <translation><!-- Kentucky --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Louisiana</masterLabel>
+            <translation><!-- Louisiana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maine</masterLabel>
+            <translation><!-- Maine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maryland</masterLabel>
+            <translation><!-- Maryland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Massachusetts</masterLabel>
+            <translation><!-- Massachusetts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Michigan</masterLabel>
+            <translation><!-- Michigan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Minnesota</masterLabel>
+            <translation><!-- Minnesota --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mississippi</masterLabel>
+            <translation><!-- Mississippi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missouri</masterLabel>
+            <translation><!-- Missouri --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Montana</masterLabel>
+            <translation><!-- Montana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nebraska</masterLabel>
+            <translation><!-- Nebraska --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nevada</masterLabel>
+            <translation><!-- Nevada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Hampshire</masterLabel>
+            <translation><!-- New Hampshire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Jersey</masterLabel>
+            <translation><!-- New Jersey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Mexico</masterLabel>
+            <translation><!-- New Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New York</masterLabel>
+            <translation><!-- New York --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North Carolina</masterLabel>
+            <translation><!-- North Carolina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North Dakota</masterLabel>
+            <translation><!-- North Dakota --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ohio</masterLabel>
+            <translation><!-- Ohio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oklahoma</masterLabel>
+            <translation><!-- Oklahoma --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oregon</masterLabel>
+            <translation><!-- Oregon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pennsylvania</masterLabel>
+            <translation><!-- Pennsylvania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rhode Island</masterLabel>
+            <translation><!-- Rhode Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Carolina</masterLabel>
+            <translation><!-- South Carolina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Dakota</masterLabel>
+            <translation><!-- South Dakota --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tennessee</masterLabel>
+            <translation><!-- Tennessee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Texas</masterLabel>
+            <translation><!-- Texas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utah</masterLabel>
+            <translation><!-- Utah --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vermont</masterLabel>
+            <translation><!-- Vermont --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virginia</masterLabel>
+            <translation><!-- Virginia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Washington</masterLabel>
+            <translation><!-- Washington --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>West Virginia</masterLabel>
+            <translation><!-- West Virginia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wisconsin</masterLabel>
+            <translation><!-- Wisconsin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wyoming</masterLabel>
+            <translation><!-- Wyoming --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <description><!-- Used by ACV Capital to capture information around the Dealer&apos;s Insurance Documents --></description>
+        <label><!-- Certificate of Insurance --></label>
+        <name>Certificate_of_Insurance</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Dealer Licenses passed in from ML --></description>
+        <label><!-- Dealer License --></label>
+        <name>Dealer_License</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- ML Titles --></label>
+        <name>ML_Titles</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Resale Certificates passed in from ML --></description>
+        <label><!-- Resale Certificate --></label>
+        <name>Resale_Certificate</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Titles --></label>
+        <name>Titles</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Can only select AL Sales Tax if the Document State is AL and the Document Type is a Resale Certificate. --></errorMessage>
+        <name>AL_Sales_Tax_must_have_AL_and_Resale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot have both AL Sales Tax and MTC selected. --></errorMessage>
+        <name>Cannot_have_AL_Sales_Tax_AND_MTC_true</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not input an Expiration Date if the No Expiration Date field is set to true. --></errorMessage>
+        <name>Cannot_mark_No_Expiration_with_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot have an expiration date in the past if the document is compliant. Please enter the correct expiration date or do not mark this record as compliant. --></errorMessage>
+        <name>ExpDate_Cannot_be_in_Past_if_Compliant</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter an expiration date. If no expiration date is listed, it is this far out: AL/FL = 1yr, AZ/MI/WA = 4yrs, ME/LA/NE/IA/IL = 3yrs. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23. --></errorMessage>
+        <name>Expiration_Date_Validation_for_Resale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter an expiration date for this document. --></errorMessage>
+        <name>Fill_out_Expiration_Field_for_License</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please mark the &apos;No Expiration&apos; field as true for this record. --></errorMessage>
+        <name>Fill_out_No_Expiration_Field_for_License</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please mark the &apos;No Expiration&apos; field as true for this record. --></errorMessage>
+        <name>Fill_out_No_Expiration_Field_for_Resale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Error message: A document cannot be marked as compliant and contain compliance issues. Please check your work and re-save. If you have any questions, please contact Sue Engasser. --></errorMessage>
+        <name>If_Compliant_True_no_Compliance_issue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Dealer Doc that&apos;s a Dealer License must have a value in the License Number field and NO values in the Permit/Resale Number. A Dealer Doc that&apos;s a Resale Certificate must have a value in the Permit/Resale Number and NO value in the License Number field. --></errorMessage>
+        <name>License_and_Resale_Numbers_Match_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The state selected does not allow for the use of MTC. Please request a state supplied resale certificate or double check the state selected is correct. --></errorMessage>
+        <name>MTC_True_For_Non_MTC_States</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Use of MTC in this state has expiration: IL and NE = 3 years from signature; MI and WA = 4 years from signature. Please enter an expiration date. --></errorMessage>
+        <name>MTC_True_wo_ExpDate_for_Required_States</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a value for Review Decision in order to close this record. --></errorMessage>
+        <name>Review_Decision_Must_be_Populated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You may not mark this Review Status to complete until this Dealer Doc is marked to compliant. --></errorMessage>
+        <name>Review_Status_Complete</name>
+    </validationRules>
+</CustomObjectTranslation>

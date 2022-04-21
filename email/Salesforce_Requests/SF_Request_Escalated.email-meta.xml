@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies Escalation Contact That a Ticket has not been closed within 24 hours</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>SF Request Escalated</name>
+    <style>formalLetter</style>
+    <subject>Salesforce Request Ticket has Been Escalated</subject>
+    <textOnly>This Salesforce Ticket assigned to {!Salesforce_Request__c.Assigned_To__c}  has been escalated {!Salesforce_Request__c.Id}.
+
+Please visit the record and review details to assist in closing.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

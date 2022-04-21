@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Operations Help Ticket initial Assignment Email notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Operations Help Ticket Assigned</name>
+    <style>freeForm</style>
+    <subject>You Have Been Assigned a Salesforce Request &amp; Inquiry Ticket</subject>
+    <textOnly>You Have Been Assigned a Salesforce Request &amp; Inquiry Ticket
+Requester: {!Salesforce_Request__c.OwnerFullName}
+Related to: {!Salesforce_Request__c.My_Request_Is_Related_To__c}
+Details: You Have Been Assigned a Salesforce Request &amp; Inquiry Ticket
+Take action by visiting the ticket: {!Salesforce_Request__c.Link}
+Keep in mind that any Chatter comments made on the ticket will be visible to the requester. If you would like to communicate with another team member, use the @ mention in the chatter feed.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

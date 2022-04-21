@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Retention &amp; Ignition</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Retentions &amp; Ignitions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Name --></label>
+        <name>AccountName__c</name>
+        <relationshipLabel><!-- Retentions &amp; Ignitions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Account Type --></label>
+        <name>AccountType__c</name>
+        <picklistValues>
+            <masterLabel>Franchise</masterLabel>
+            <translation><!-- Franchise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent</masterLabel>
+            <translation><!-- Independent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the Activity Bucket the related Account fell in at time of Retention call. --></help>
+        <label><!-- Account Activity Status --></label>
+        <name>Account_Activity_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Arb Rate --></label>
+        <name>All_Time_Arb_Rate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Calculated from the All Time Arb Rate field on the Account Level. --></help>
+        <label><!-- All Time Arb Rate --></label>
+        <name>All_Time_Arb_Rate_v2__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Purchases --></label>
+        <name>All_Time_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Call Direction --></label>
+        <name>Call_Direction__c</name>
+        <picklistValues>
+            <masterLabel>Inbound</masterLabel>
+            <translation><!-- Inbound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound</masterLabel>
+            <translation><!-- Outbound --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Contact Name --></label>
+        <name>ContactName__c</name>
+        <relationshipLabel><!-- Retentions &amp; Ignitions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please select all that apply --></help>
+        <label><!-- Customer Experience --></label>
+        <name>Customer_Experience__c</name>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competition</masterLabel>
+            <translation><!-- Competition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>It&apos;s Been A Good Experience</masterLabel>
+            <translation><!-- It&apos;s Been A Good Experience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments</masterLabel>
+            <translation><!-- Payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Titles</masterLabel>
+            <translation><!-- Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind</masterLabel>
+            <translation><!-- Unwind --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date of First Purchase --></label>
+        <name>Date_of_First_Purchase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Last Purchase --></label>
+        <name>Date_of_Last_Purchase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Call --></label>
+        <name>DateofCall__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Comments --></label>
+        <name>Dealer_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Type --></label>
+        <name>Dealer_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- What additional information do you have about the status of the business --></help>
+        <label><!-- Details Related to Status of Business --></label>
+        <name>Details_Related_to_Status_of_Business__c</name>
+    </fields>
+    <fields>
+        <label><!-- Follow Up Notes --></label>
+        <name>Follow_Up_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Same as the Potential Monthly Buy Volume listed on the Account. --></help>
+        <label><!-- Forecasted Cars This Month --></label>
+        <name>Forecasted_Cars_This_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Rep --></label>
+        <name>ISTRep__c</name>
+        <relationshipLabel><!-- Retentions &amp; Ignitions (IST Rep) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IST Account Owner --></label>
+        <name>IST_Account_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last 90 Days Purchases --></label>
+        <name>Last_90_Days_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Month Purchases --></label>
+        <name>Last_Month_Purchase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest ACV Experience --></label>
+        <name>Latest_ACV_Experience__c</name>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buy Fee</masterLabel>
+            <translation><!-- Buy Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competition</masterLabel>
+            <translation><!-- Competition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disagree with ACV Policy</masterLabel>
+            <translation><!-- Disagree with ACV Policy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forgot About ACV</masterLabel>
+            <translation><!-- Forgot About ACV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Good experience with ACV</masterLabel>
+            <translation><!-- Good experience with ACV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lack of Inventory in Area</masterLabel>
+            <translation><!-- Lack of Inventory in Area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Time to Bid</masterLabel>
+            <translation><!-- No Time to Bid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments</masterLabel>
+            <translation><!-- Payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pricing Too High</masterLabel>
+            <translation><!-- Pricing Too High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Titles</masterLabel>
+            <translation><!-- Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind</masterLabel>
+            <translation><!-- Unwind --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Valid Business Reason</masterLabel>
+            <translation><!-- Valid Business Reason --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Leadership Sponsor --></label>
+        <name>LeadershipSponsor__c</name>
+        <relationshipLabel><!-- Retentions &amp; Ignitions (Leadership Sponsor) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- MTD Purchases --></label>
+        <name>MTD_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Steps --></label>
+        <name>Next_Steps__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Answer --></label>
+        <name>No_Answer__c</name>
+        <picklistValues>
+            <masterLabel>Declined call</masterLabel>
+            <translation><!-- Declined call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Left voicemail</masterLabel>
+            <translation><!-- Left voicemail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No answer</masterLabel>
+            <translation><!-- No answer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Number Disconnected</masterLabel>
+            <translation><!-- Number Disconnected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- No Purchase Comments --></label>
+        <name>No_Purchase_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason For No Purchase --></label>
+        <name>No_Purchase_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Already Bought This Month</masterLabel>
+            <translation><!-- Already Bought This Month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Called - No Answer</masterLabel>
+            <translation><!-- Called - No Answer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competition</masterLabel>
+            <translation><!-- Competition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Does not want to buy cars online</masterLabel>
+            <translation><!-- Does not want to buy cars online --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feels that cars on ACV are overpriced</masterLabel>
+            <translation><!-- Feels that cars on ACV are overpriced --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forgot about ACV, will revisit</masterLabel>
+            <translation><!-- Forgot about ACV, will revisit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not enough inventory in their area</masterLabel>
+            <translation><!-- Not enough inventory in their area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments</masterLabel>
+            <translation><!-- Payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Titles</masterLabel>
+            <translation><!-- Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport</masterLabel>
+            <translation><!-- Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind</masterLabel>
+            <translation><!-- Unwind --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Using other auction</masterLabel>
+            <translation><!-- Using other auction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Valid Business Reason</masterLabel>
+            <translation><!-- Valid Business Reason --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Organization Group --></label>
+        <name>Organization_Group__c</name>
+        <relationshipLabel><!-- Retentions &amp; Ignitions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ReportCounter --></label>
+        <name>ReportCounter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Result --></label>
+        <name>Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Per Month --></label>
+        <name>Sales_Per_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Bought this month</masterLabel>
+            <translation><!-- Bought this month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Has not bought this month</masterLabel>
+            <translation><!-- Has not bought this month --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What is the status of the dealership&apos;s business? --></help>
+        <label><!-- Status of Business --></label>
+        <name>Status_of_Business__c</name>
+        <picklistValues>
+            <masterLabel>Business has slowed</masterLabel>
+            <translation><!-- Business has slowed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>May close permanently</masterLabel>
+            <translation><!-- May close permanently --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Answer</masterLabel>
+            <translation><!-- No Answer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No change</masterLabel>
+            <translation><!-- No change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporarily closing down</masterLabel>
+            <translation><!-- Temporarily closing down --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Territory --></label>
+        <name>Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Call --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Ignition</masterLabel>
+            <translation><!-- Ignition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Introduction</masterLabel>
+            <translation><!-- Introduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NPS</masterLabel>
+            <translation><!-- NPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retention</masterLabel>
+            <translation><!-- Retention --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the number of used cars this dealer sold Retail on their lot last month --></help>
+        <label><!-- Used Cars Retailed Last Month --></label>
+        <name>Used_Cars_Retailed_Last_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- What are concerns and obstacles? --></label>
+        <name>What_are_concerns_and_obstacles__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please select a Customer Experience --></errorMessage>
+        <name>Already_Bought_This_Month_Needs_Cust_Exp</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reason For No Purchase Field must be completed to save the record --></errorMessage>
+        <name>No_purchases_last_month_needs_No_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must fill in the details section about the Status of the Business to save record. --></errorMessage>
+        <name>Status_of_Business_Other</name>
+    </validationRules>
+</CustomObjectTranslation>

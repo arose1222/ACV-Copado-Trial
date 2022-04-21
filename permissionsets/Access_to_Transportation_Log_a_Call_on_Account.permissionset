@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows ability to see log a call transportation record type on account page layout for transporter accounts</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.Related_Case__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.Related_Case__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Access to Transportation Log a Call on Account</label>
+    <recordTypeVisibilities>
+        <recordType>Task.Transportation</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

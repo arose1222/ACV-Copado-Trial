@@ -1,0 +1,79 @@
+<template>
+    <!-- Update Vehicle Count template -->
+    <template if:true={showUpdateVehicleCount}>
+
+        <div>
+            <template if:true={appointmentData.saSchedStartTime}>
+                <h1>
+                    <b>Scheduled Date : <lightning-formatted-date-time value={appointmentData.saSchedStartTime}></lightning-formatted-date-time></b>
+                </h1>
+            </template>
+
+            <h1>
+                You are updating a Service Appointment with an inspection type of <b>{appointmentData.saWorkType}</b>.
+                <br/>
+                If you need to perform a different inspection type, please create a new Service Appointment.
+            </h1>
+        </div>
+
+        <div class="slds-align_absolute-center slds-var-m-top_small">
+            <h1>
+                Duration: <b>{appointmentData.duration}</b> minutes
+            </h1>
+        </div>
+
+        <div class="slds-align_absolute-center slds-var-m-bottom_large">
+            <lightning-button label="-" title="Decrement" name="decrement" onclick={handleCount} variant="brand" disabled={decrementDisabled}> </lightning-button>
+            <lightning-input type="number" variant="label-hidden" value={appointmentData.numberOfVehicles} onkeyup={handleInputChange}></lightning-input>
+            <lightning-button label="+" title="Increment" name="increment" onclick={handleCount} variant="brand" disabled={incrementDisabled}> </lightning-button>
+        </div>
+
+        <div class="slds-align_absolute-center slds-var-m-top_large">
+            <lightning-button label="Save" title="Save" onclick={updateNumberOfVehicles} variant="brand" disabled={saveDisabled}> </lightning-button>
+        </div>
+
+    </template>
+
+    <template if:true={showSuccessForGantt}>
+
+        <div class="slds-align_absolute-center slds-var-m-top_large">
+            <b><p style="color:green">Success!  The appointment has been updated.</p></b>
+        </div>
+
+        <div class="slds-align_absolute-center slds-var-m-top_large">
+            Use "X" in upper-right corner to Close this screen.
+        </div>
+
+    </template>
+
+    <!-- Error Templates -->
+    <template if:true={showWorkTypeNotAllowed}>
+        In order to update the vehicle count, the service appointment must have a work type of Standard Inspection, True 360, or Sirius XM.
+        <br/>
+        <br/>
+        This service appointment has a work type of "{appointmentData.saWorkType}".
+    </template>
+    <template if:true={showStatusNotAllowed}>
+        In order to update the vehicle count, the service appointment must be in a Status of New, Scheduled, Dispatched, or Acknowledged.
+        <br/>
+        <br/>
+        This service appointment has a status of "{appointmentData.saStatus}".
+    </template>
+    <template if:true={showPastDueDateNotAllowed}>
+        The service appointment has a due date in the past and is not eligible for vehicle count update.
+    </template>
+    <template if:true={showFutureDueDateNotAllowed}>
+        This service appointment has a due date of more than four days from now and is not eligible for vehicle count update.
+    </template>
+
+    <!-- Spinner -->
+    <template if:true={showLoadingSpinner}>
+        <div class="slds-var-m-top_medium slds-var-m-bottom_x-large slds-var-p-around_x-large">
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Processing Request...">
+                </lightning-spinner>
+            </div>
+        </div>
+    </template>
+
+</template>

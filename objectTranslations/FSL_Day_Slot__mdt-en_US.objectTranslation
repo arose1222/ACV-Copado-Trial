@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FSL Day Slot</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FSL Day Slots</value>
+    </caseValues>
+    <fields>
+        <label><!-- Day of Week --></label>
+        <name>Day_of_Week__c</name>
+        <picklistValues>
+            <masterLabel>Fri</masterLabel>
+            <translation><!-- Fri --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mon</masterLabel>
+            <translation><!-- Mon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sat</masterLabel>
+            <translation><!-- Sat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sun</masterLabel>
+            <translation><!-- Sun --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thu</masterLabel>
+            <translation><!-- Thu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tue</masterLabel>
+            <translation><!-- Tue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wed</masterLabel>
+            <translation><!-- Wed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the Hour in the local timezone --></help>
+        <label><!-- Ending Hour --></label>
+        <name>Ending_Hour__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Minutes in the local timezone --></help>
+        <label><!-- Ending Minute --></label>
+        <name>Ending_Minute__c</name>
+    </fields>
+    <fields>
+        <label><!-- FSL Time Range --></label>
+        <name>FSL_Time_Range__c</name>
+        <relationshipLabel><!-- FSL Day Slots --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the Hour in the local timezone --></help>
+        <label><!-- Starting Hour --></label>
+        <name>Starting_Hour__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Minutes in the local timezone --></help>
+        <label><!-- Starting Minute --></label>
+        <name>Starting_Minute__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

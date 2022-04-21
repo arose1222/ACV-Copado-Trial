@@ -1,0 +1,64 @@
+<template>
+    <lightning-card if:true={availableRows} icon-name="utility:custom_apps" title={title}>
+        <div class="slds-p-horizontal_small">
+
+            <lightning-spinner if:true={isLoading} alternative-text="Loading" size="small"></lightning-spinner>
+
+            <lightning-layout multiple-rows="true">
+                
+                <lightning-layout-item size="3" class="slds-p-vertical_x-small">
+                    <div class="slds-badge">Arbitration Category 
+                        <lightning-button-icon data-field="category" onclick={handleSort} class="slds-p-left_xx-small" icon-name="utility:sort" variant="bare" size="small" alternative-text="Sort" title="Sort"></lightning-button-icon>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" class="slds-p-vertical_x-small">
+                    <div class="slds-badge">Arbitration Odds
+                        <lightning-button-icon data-field="odds" onclick={handleSort} class="slds-p-left_xx-small" icon-name="utility:sort" variant="bare" size="small" alternative-text="Sort" title="Sort"></lightning-button-icon>
+                    </div>
+                </lightning-layout-item>
+                
+                <lightning-layout-item size="3" class="slds-p-vertical_x-small">
+                    <div class="slds-badge">Arbitration Risk
+                        <lightning-button-icon data-field="dollarRisk" onclick={handleSort} class="slds-p-left_xx-small" icon-name="utility:sort" variant="bare" size="small" alternative-text="Sort" title="Sort"></lightning-button-icon>
+                    </div>
+                </lightning-layout-item>
+                
+                <lightning-layout-item size="3" class="slds-p-vertical_x-small">
+                    <div class="slds-badge">Note
+                    </div>
+                </lightning-layout-item>
+                
+            </lightning-layout>
+
+            <template for:each={rows} for:item="row" for:index="index">
+                <lightning-layout vertical-align="center"  class="tableRow slds-m-bottom_x-small" key={row.category} multiple-rows="true">
+
+                    <lightning-layout-item size="3" class="slds-p-around_x-small">
+                        <div class="slds-text-title bold">{row.category}</div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3" class="slds-p-around_x-small">
+                        <div class="slds-text-title">{row.odds}</div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3" class="slds-p-around_x-small">
+                        <lightning-formatted-number value={row.dollarRisk} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3" class="slds-p-around_x-small">
+                        <div class="slds-text-title">{row.note}</div>
+                    </lightning-layout-item>
+
+                </lightning-layout>
+            </template>
+
+            <lightning-layout horizontal-align="center">
+                <lightning-layout-item class="slds-p-around_x-small">
+                    <div class="slds-badge slds-badge_inverse">Total:&nbsp;<lightning-formatted-number value={totalDollarRisk} format-style="currency" currency-code="USD"></lightning-formatted-number></div>
+                </lightning-layout-item>
+            </lightning-layout>
+
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Platform Event Channel used for Group related published events. This includes organization-group-create, organization-group-update.</description>
+    <eventType>HighVolume</eventType>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Active Status of the Organization Group record</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Bid_Visibility__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check to true to disable bid visiblity.</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Disable Bid Visibility</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Group_Name__c</fullName>
+        <description>Field indicating the Group Name</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Group Name</label>
+        <length>80</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Group_Salesforce_Id__c</fullName>
+        <description>Salesforce Record Id for the Group</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Group Salesforce Id</label>
+        <length>128</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organization_Group_Id__c</fullName>
+        <description>Unique external id field for the Group, this field is generated upon creation of the record and used to identify the Group record across multiple data systems</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Organization Group Id</label>
+        <length>36</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>event_type__c</fullName>
+        <description>Field indicating the Type event this Platform Event is. This can include create-organization-group, or update-organization-group</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>event type</label>
+        <length>50</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Organization Group</label>
+    <pluralLabel>Organization Groups</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>

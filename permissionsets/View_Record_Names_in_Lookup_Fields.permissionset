@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Adds profile permission allowing users to view record names in lookup fields regardless of their access to the record itself. Lookup fields include system fields, such as Created By and Last Modified By.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>View Record Names in Lookup Fields</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewAllForeignKeyNames</name>
+    </userPermissions>
+</PermissionSet>

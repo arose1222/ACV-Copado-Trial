@@ -1,0 +1,80 @@
+@keyframes slideInDown {
+    from {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideOutUp {
+    from {
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+}
+  
+.slideOutUp {
+    animation-duration: 0.5s;
+    animation-name: slideOutUp;
+    display: none;
+}
+
+.slideInDown {
+    animation-duration: 0.5s;
+    animation-name: slideInDown;
+    border: 2px solid black;
+}
+.container{
+    display: none;
+}
+.trapezoid {
+    display: inline-block;
+    position: relative;
+    height: 25px;
+    width: 175px;
+    color: black;
+    /*border-top: 2px solid black;*/
+    /*border-bottom: 2px solid black;*/
+    line-height: 25px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+  }
+  .trapezoid:after,
+  .trapezoid:before {
+    position: absolute;
+    content: '';
+    top: -2px;
+    height: 100%;
+    width: 50%;
+    z-index: -1;
+  }
+  .trapezoid:before {
+    left: 0px;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    transform-origin: left bottom;
+    transform: skew(12deg);
+  }
+  .trapezoid:after {
+    right: 0px;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    transform-origin: right bottom;
+    transform: skew(-12deg);
+  }
+  .trapezoid:hover,
+  .trapezoid:hover:after,
+  .trapezoid:hover:before {
+    background: black;
+    color: white;
+  }

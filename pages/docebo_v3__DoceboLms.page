@@ -1,0 +1,43 @@
+<apex:page sidebar="false" standardController="docebo_v3__Course__c" extensions="docebo_v3.CtrlPackageSetup" tabstyle="DoceboLms__tab" standardStylesheets="false">
+    <apex:includeScript value="https://docebov3dev03-dev-ed.my.salesforce.com/canvas/sdk/js/43.0/controller.js"/>
+    <style>
+         .noSidebarCell {
+            padding: 0!important;
+        }
+        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+    <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed != 'Theme4d'}">
+    <div style="display: flex; width: calc(100vw - 20px); height: calc(100vh - 185px); flex-direction: row;">
+      <div id="theCanvas" style="display: flex; flex-direction: column; flex-grow: 1"></div>
+    </div>
+    </apex:outputPanel>
+    <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+    <div style="display: flex; width: 100vw; height: 99vh; flex-direction: row;">
+      <div id="theCanvas" style="display: flex; flex-direction: column; flex-grow: 1"></div>
+    </div>
+    </apex:outputPanel>
+    <script>
+        Sfdc.canvas(function() {
+            // Actions to execute once the lms is ready
+            Sfdc.canvas.controller.subscribe({
+                name : 'docebov3.lmsReady',
+                onData : function(status) {
+                    // Deeplinking is currently handled by Anubi instead
+                    // propagateDeeplink();
+                }
+            });
+        });
+    </script>
+    <apex:canvasApp containerId="theCanvas"
+      parameters="{!generateJSON}"
+      applicationName="Docebo"
+      namespacePrefix="docebo_v3"
+      scrolling="no"
+      width="100%"
+    />
+</apex:page>

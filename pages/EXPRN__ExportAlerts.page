@@ -1,0 +1,155 @@
+<apex:page controller="EXPRN.AlertsViewController"            
+           contentType="application/vnd.ms-excel#Alerts.xls"            
+           showHeader="false" 
+           sidebar="false" 
+           standardStylesheets="true">
+    
+    <head>
+        <style>
+            table, th, td
+            {
+                border: 1px solid black;
+                border-collapse: collapse;
+                font-size: 10px;
+                cell-spacing:1px;
+            }
+            
+            th,td 
+            {
+                padding: 2px;
+            }
+                                    
+            @page
+            {
+              size:landscape!important;
+            }
+            
+        </style>
+    </head>
+    
+         
+    
+    <table style="width=100%; height:100%; page-break-inside:avoid;">
+        
+        <tr style="width:100%; font-weight:bold;">
+            <td>Alert Date</td>
+            <td>Business Name</td>
+            <td>Account Number</td>
+            <td>BIN</td>            
+            <td>AMS Master Subcode</td>                                                            
+            <td>Alerts Monitored Set Subcode</td>            
+            <td>Alerts Monitored Set Name</td>                    
+            <td>Trigger Type</td>
+            <td>Trigger Description</td>
+            <td>Priority</td>
+            <td>Status</td>            
+        </tr>
+        
+        <apex:outputPanel rendered="{!exportOption=='All'}" layout="none">              
+            <apex:repeat value="{!mapPageToAlerts}" var="key">
+                <apex:repeat value="{!mapPageToAlerts[key]}" var="a">
+                    <tr> 
+                        <td>
+                            <apex:outputText value="{0,date,MM'-'dd'-'yyyy}">
+                                <apex:param value="{!a.alert.Alert_Date__c}" /> 
+                            </apex:outputText>                                
+                        </td>
+                                                    
+                        <!-- <td>{!a.alert.Business_Name__r.Name}</td> -->
+                        <td>{!a.alert.Business_Name__r.Exp_Business_Name__c}</td>
+                        
+                        <td>
+                            <apex:repeat value="{!a.accounts}" var="acc">
+                                <!--{!acc.Account__r.AccountNumber}<BR/>   -->
+                                {!acc.Account__r.EXPRN__Account_Number__c}<BR/> 
+                            </apex:repeat>
+                        </td>
+                        
+                        <td>{!a.alert.Business_Name__r.bin_formula__c}</td>                    
+                        <td>{!a.alert.Alert_Monitored_Set__r.ClientSubcodeID__r.Name}</td>
+                        <td>{!a.alert.Alert_Monitored_Set__r.Subscriber_Code__r.Name}</td>
+                        <td>{!a.alert.Alert_Monitored_Set__r.Name}</td>
+                        <td>{!a.alert.Trigger_Code__c}</td>
+                        <td>{!a.alert.Trigger_Description__c}</td>
+                        <td>{!a.alert.Priority__c}</td>
+                        <td>{!a.alert.Status__c}</td>
+                    </tr>
+                    
+                </apex:repeat>
+            </apex:repeat>
+        </apex:outputPanel>
+        
+        
+        
+        <apex:outputPanel rendered="{!exportOption=='Checked'}" layout="none">        
+            <apex:repeat value="{!mapPageToAlerts}" var="key">
+                <apex:repeat value="{!mapPageToAlerts[key]}" var="a">
+                    <apex:outputPanel rendered="{!a.isChecked}" layout="none">
+                
+                        <tr> 
+                            <td>
+                                <apex:outputText value="{0,date,MM'-'dd'-'yyyy}">
+                                    <apex:param value="{!a.alert.Alert_Date__c}" /> 
+                                </apex:outputText>                                
+                            </td>
+                                                        
+                            <!--<td>{!a.alert.Business_Name__r.Name}</td>-->
+                            <td>{!a.alert.Business_Name__r.Exp_Business_Name__c}</td>
+                            
+                            <td>
+                                <apex:repeat value="{!a.accounts}" var="acc">
+                                    <!--{!acc.Account__r.AccountNumber}<BR/> -->
+                                    {!acc.Account__r.EXPRN__Account_Number__c}<BR/>
+                                </apex:repeat>
+                            </td>
+                            
+                            <td>{!a.alert.Business_Name__r.BIN_formula__c}</td>                    
+                            <td>{!a.alert.Alert_Monitored_Set__r.ClientSubcodeID__r.Name}</td>
+                            <td>{!a.alert.Alert_Monitored_Set__r.Subscriber_Code__r.Name}</td>
+                            <td>{!a.alert.Alert_Monitored_Set__r.Name}</td>
+                            <td>{!a.alert.Trigger_Code__c}</td>
+                            <td>{!a.alert.Trigger_Description__c}</td>
+                            <td>{!a.alert.Priority__c}</td>
+                            <td>{!a.alert.Status__c}</td>
+                        </tr>
+                        
+                    </apex:outputPanel>                             
+                </apex:repeat>
+            </apex:repeat>          
+        </apex:outputPanel>      
+        
+
+        <apex:outputPanel rendered="{!exportOption=='Options'}" layout="none">        
+            <apex:repeat value="{!exportList}" var="a">                
+                <tr> 
+                    <td>
+                        <apex:outputText value="{0,date,MM'-'dd'-'yyyy}">
+                            <apex:param value="{!a.EXPRN__Alert_Date__c}" /> 
+                        </apex:outputText>                                
+                    </td>
+                                                
+                    <!--<td>{!a.Business_Name__r.Name}</td>-->
+                    <td>{!a.Business_Name__r.Exp_Business_Name__c}</td>
+                    
+                    <td>
+                        <apex:repeat value="{!a.Alerts_View_Accounts__r}" var="acc">
+                            <!--{!acc.Account__r.AccountNumber}<BR/>                  -->
+                            {!acc.Account__r.EXPRN__Account_Number__c}<BR/>
+                        </apex:repeat>
+                    </td>
+                    
+                    <td>{!a.Business_Name__r.EXPRN__BIN_formula__c}</td>                    
+                    <td>{!a.Alert_Monitored_Set__r.ClientSubcodeID__r.Name}</td>
+                    <td>{!a.Alert_Monitored_Set__r.Subscriber_Code__r.Name}</td>
+                    <td>{!a.Alert_Monitored_Set__r.Name}</td>
+                    <td>{!a.EXPRN__Trigger_Code__c}</td>
+                    <td>{!a.EXPRN__Trigger_Description__c}</td>
+                    <td>{!a.EXPRN__Priority__c}</td>
+                    <td>{!a.EXPRN__Status__c}</td>
+                </tr>
+                
+            </apex:repeat>                   
+        </apex:outputPanel>      
+                           
+    </table>                
+</apex:page>

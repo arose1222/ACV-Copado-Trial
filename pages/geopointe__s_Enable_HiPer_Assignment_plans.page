@@ -1,0 +1,44 @@
+<apex:page controller="geopointe.s_Enable_HiPer_Assignment_Plans" showHeader="true" sidebar="false" tabStyle="Geopointe_Setup__tab" title="Geopointe - High Performance Assignment Plans Terms">
+	<apex:sectionHeader title="Geopointe" subtitle="High Performance Assignment Plans Terms" rendered="{! orgAccess = true }"/>
+	<apex:pageMessages id="pageMessages"></apex:pageMessages>
+	<apex:form >
+		<apex:outputPanel id="wrapperDIV" layout="block" style="margin: 0 10px;">
+			<apex:outputPanel id="breadcrumbDIV" layout="block" style="font-size: 8pt; margin: 0 0 3px 0;" >
+				<apex:commandLink value="« Back to Geopointe Setup" action="{!goToMainSetup}" />
+			</apex:outputPanel>
+			<apex:outputPanel id="noPerm" layout="block" rendered="{! orgAccess = false }">
+				<p>High Performance Assignment Plans have been disabled for your org.  Please contact Geopointe Support.</p>
+			</apex:outputPanel>
+			<apex:outputPanel id="hasPerm" layout="block" rendered="{! orgAccess = true }">
+				<apex:pageBlock >
+					<table style="margin: 0 auto;"><tr><td>
+						<div style="font-size: 16pt; font-weight: bold;">Approve Use of High Performance Assignment Plans</div>
+						<div style="width: 600px; font-size: 12pt; margin: 10px 0;">
+							<p>
+							To use Geopointe High Performance Assignment Plans, a very small amount of your Salesforce data needs to be 
+							securely sent to Geopointe's servers:
+							</p>
+							<ul>
+								<li>Shape data: Record Ids and coordinates. This information will be temporarily stored in a database table 
+								for the length of the currently running job.</li>
+								<li>Record latitude and longitude. The latitude and longitude for each record to be assigned will also be transmitted 
+								to Geopointe’s API. This information will not be stored in a database. It will only exist in memory for the duration of the request.</li>
+							</ul>
+							<p>All data is communicated over an HTTPS connection and the data encrypted at rest in our database. The shape data will be deleted from Geopointe 
+								servers at the completion of each job. You can read more about Geopointe's security practices on our
+							<a href="http://help.geopointe.com/customer/en/portal/articles/1811020-data-security-practices" target="_blank">data security page</a>.
+							</p>
+							<p>
+							If you understand the above and wish to utilize Geopointe High Performance Assignment Plans, check the box below and click the Enable button.
+							</p> 
+						</div>
+						<div><apex:inputCheckbox value="{!acceptTerms}"/> I understand the above and wish to use Geopointe High Performance Assignment Plans.</div>
+						<div>
+							<apex:commandButton action="{!acceptTerms}" value="Enable"/>
+						</div>
+					</td></tr></table>
+				</apex:pageBlock>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

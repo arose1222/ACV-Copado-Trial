@@ -1,0 +1,8 @@
+<!-- This is the LWC for the Generic Badge component managed through the Badge Custom metadata -->
+<template>
+    <template if:false={noBadges}>
+        <template for:each={badgeList} for:item="badge">
+            <div key={badge.Id} style={badge.styleName} class={badge.className}>{badge.Label}</div>
+        </template>
+    </template>
+</template>

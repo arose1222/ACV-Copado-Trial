@@ -1,0 +1,12 @@
+<apex:page controller="geopointe.RemoteAction">
+	<script>
+		var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+	</script>
+	<app-root></app-root>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/runtime.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/es2015-polyfills.js')}" nomodule="true"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/polyfills.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/styles.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/vendor.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.angular, 'angular/main.js')}"></script>
+</apex:page>

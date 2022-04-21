@@ -1,0 +1,35 @@
+<apex:page controller="geopointe.RemoteAction">
+	<apex:slds />
+	<script>
+		var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+
+		/**
+		 * promisified salesforce remoting function
+		 * @param  {String} gpRemoteAction remote action class and function
+		 * @param  {String} method         class and function to call
+		 * @param  {Object} options        json object that contains parameters to apply to the called function
+		 * @param  {Object} configuration  remoting config (escape/timeout)
+		 * @return {Promise}               promise that resolves with the string result from calling the apex function or rejects with the event.message error
+		 */
+		Visualforce.remoting.Manager.invokeActionAsync = function (gpRemoteAction, method, options, configuration) {
+			return new Promise(function (resolve, reject) {
+				Visualforce.remoting.Manager.invokeAction(gpRemoteAction, method, options, function (result, event) {
+					if (event.status) {
+						resolve(result);
+						return;
+					}
+					reject(event.message);
+				}, configuration);
+			});
+		};
+	</script>
+
+	<app-calendar-config></app-calendar-config>
+
+	<script src="{!URLFOR($Resource.angular, 'angular/runtime.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/es2015-polyfills.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/polyfills.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/styles.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/vendor.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/main.js')}"></script>
+</apex:page>

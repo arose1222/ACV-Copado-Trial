@@ -1,0 +1,311 @@
+<template>
+    <template if:true={isRecordLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template> 
+    <template if:true={isSubmitting}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>    
+    <template if:true={isLinkExpired}>
+        <div>
+            <div class="slds-align_absolute-center" style="margin-top:80px; ">
+                <img src={group12Resourceurl} style="height: 100px;">
+            </div>
+            <!--<div class="slds-align_absolute-center slds-text-heading_large slds-m-top_large height: 56px; width: 660px; left: 390px; top: 440px; 
+            font-family: Roboto; font-size: 48px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center;">
+                Sorry, the link has expired.
+            </div>-->
+            <div class="slds-align_absolute-center" style="margin-top:60px; height: 56px; width: 660px; left: 390px; top: 440px; 
+             font-size: 38px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center; color: #000000;">
+                Sorry, the link has expired.
+            </div>
+            <!--<div class="slds-align_absolute-center slds-text-heading_small slds-m-top_large">
+                The link was set to expire after 15 days.</br> 
+                Please contact {programEnrollmentRecord.Account_Manager_First_Name__c} at </br>
+                {programEnrollmentRecord.Account_Manager_Email__c} or call </br>
+                1-800-553-4070 for more information</br>
+            </div>-->
+            <div style="display: inherit; margin-top:40px; height: 175px; width: 660px; left: 390px; top: 528px; border-radius: nullpx; font-size: 20px; font-style: normal; font-weight: 400; line-height: 35px; letter-spacing: 0em; text-align: center; color: #000000;" class="slds-align_absolute-center">
+                The link was set to expire after 15 days.</br> 
+                Please contact {programEnrollmentRecord.Account_Manager_First_Name__c} at </br>
+                <a>{programEnrollmentRecord.Account_Manager_Email__c}</a> or call </br>
+                <a>1-800-553-4070</a> for more information</br>
+            </div>
+        </div>
+    </template>
+    <template if:false={isLinkExpired}> 
+        <template if:true={isRecordLoaded} class="slds-align_absolute-center">
+            <!--<lightning-record-form
+                object-api-name="Contact"
+                layout-type="Full"
+                mode="edit">
+            </lightning-record-form>-->
+            <template if:true={programEnrollmentRecord.Has_Customer_Applied__c}>
+                <div>
+                    <div class="slds-align_absolute-center" style="margin-top:80px; ">
+                        <img src={group12Resourceurl} style="height: 100px;">
+                    </div>
+                    <!--<div class="slds-align_absolute-center slds-text-heading_large slds-m-top_large height: 56px; width: 660px; left: 390px; top: 440px; 
+                    font-family: Roboto; font-size: 48px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center;">
+                        Sorry, the link has expired.
+                    </div>-->
+                    <div class="slds-align_absolute-center" style="margin-top:60px; height: 56px; width: 660px; left: 390px; top: 440px; 
+                     font-size: 38px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center; color: #000000;">
+                     Thank you for your recent </br>
+                     application. 
+                    </div>
+                    <!--<div class="slds-align_absolute-center slds-text-heading_small slds-m-top_large">
+                        The link was set to expire after 15 days.</br> 
+                        Please contact {programEnrollmentRecord.Account_Manager_First_Name__c} at </br>
+                        {programEnrollmentRecord.Account_Manager_Email__c} or call </br>
+                        1-800-553-4070 for more information</br>
+                    </div>-->
+                    <div style="display: inherit; margin-top:40px; height: 175px; width: 660px; left: 390px; top: 528px; border-radius: nullpx; font-size: 20px; font-style: normal; font-weight: 400; line-height: 35px; letter-spacing: 0em; text-align: center; color: #000000;" class="slds-align_absolute-center">
+                        We’re in the process of reviewing your </br>
+                        application. Please contact </br>
+                        {programEnrollmentRecord.Account_Manager_First_Name__c} at <a>{programEnrollmentRecord.Account_Manager_Email__c}</a> </br> 
+                        or call <a>1-800-553-4070</a> for more information.
+                    </div>
+                </div>
+            </template>
+            <template if:false={programEnrollmentRecord.Has_Customer_Applied__c}>
+
+                <div style="max-width: 660px;margin: auto;" >
+
+                <div style="width:100%;">
+                <c-acv-cmmunity-header></c-acv-cmmunity-header>
+                </div>
+                <!--<lightning-card title="Contact Information" icon-name="custom:custom63" style="width:660px;">-->
+                    <div style="font-size: 18px;line-height: 25px; margin-bottom: 50px;">
+                        <h2>ACV Certified Independent Program</h2>
+                        <p>ACV Certified Independent Program is ut enim ad minim veniam, duis aute irure
+                            dolor in reprehenderit quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat. ut enim ad minim veniam, duis aute irure dolor in 
+                            reprehenderit quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                            commodo consequat.</p>
+                    </div>
+                    <h2>Contact Information</h2>
+                    <div title="Contact Information" style="align-content:center;margin: auto;">
+                        <div class="inputDiv">
+                            <div class="inputTitle">Dealership Name</div>
+                            <div class="inputResult">{contactRecord.Account.Name}</div>
+                        </div>
+                        <div  class="inputDiv">
+                            <div class="inputTitle">Name</div>
+                            <div class="inputResult">{programRecord.Name}</div>
+                        </div>
+                        <div  class="inputDiv">
+                            <div class="inputTitle">Phone</div>
+                            <div class="inputResult">{contactRecord.Phone}</div>
+                        </div>
+                        <div  class="inputDiv">
+                            <div class="inputTitle">Email</div>
+                            <div class="inputResult">{contactRecord.Email}</div>
+                        </div>
+                        <div  class="inputDiv">
+                            <div class="inputTitle">Website</div>
+                            <div class="inputResult">{contactRecord.Account.Website}</div>
+                        </div>                        
+                    </div>
+                    <!--<lightning-layout-item size="6"> 
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Program Name" name="accountName" value={programRecord.Name}
+                            ></lightning-input>
+                            <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Account Name" name="accountName" value={contactRecord.Account.Name}
+                            ></lightning-input>
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Name" name="accountName" value={contactRecord.Name}
+                            ></lightning-input>    
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Title" name="accountName" value={contactRecord.Title}
+                            ></lightning-input>
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Phone" type="phone" name="contactPhone" value={contactRecord.Phone}
+                            ></lightning-input>
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Email" type="Email" name="contactEmail" value={contactRecord.Email}
+                            ></lightning-input>
+                        <lightning-input style="width: 660px;" class="slds-p-around_medium" disabled="true" label="Website" name="accountName" value={contactRecord.Account.Website}
+                            ></lightning-input>    
+                        <br/>
+                    </lightning-layout-item>-->
+                    <div style="margin-bottom: 35px;font-family: Roboto;font-style: normal;font-weight: normal;font-size: 16px;line-height: 25px;color: rgba(0, 0, 0, 0.87);padding-top: 15px;">
+                    <p>* Please contact <a href='mailto:info@acvauctions.com'>info@acvauctions.com</a> or <a href="tel:18005534070">1-800-553-4070</a> to change your contact information</p>
+                    </div>
+                    <h2>Program Terms  &  Conditions</h2>
+                    <div class="scrollDiv">
+                        <ol type="1" start="1" >
+                        <template for:each={programRuleAssignments} for:item="ruleAssignment">
+                           
+                                <li key={ruleAssignment.programRuleAssignment.Id}>    
+                                    <!--<a  href={ruleAssignment.programRuleAssignment.Id} data-name={ruleAssignment.programRuleAssignment.Program_Rule__r.Name} key={ruleAssignment.programRuleAssignment.Id} onclick={handleRuleSelection}> 
+                                        <div>{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                                    </a>-->
+                                    <div style="cursor: pointer;
+                                    color: #135f90;" id={ruleAssignment.programRuleAssignment.Id} data-name={ruleAssignment.programRuleAssignment.Program_Rule__r.Name} key={ruleAssignment.programRuleAssignment.Id} onclick={handleRuleSelection}/> 
+                                        <div  class="listCounter">{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                                    </div>
+                                </li>
+                            
+                            <!--
+                            <div id={ruleAssignment.programRuleAssignment.Id} key={ruleAssignment.programRuleAssignment.Id} style="display:block">{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                            
+                            <template if:true={isRuleSelected}>
+                                <div key={ruleAssignment.programRuleAssignment.Id} style="display:block">{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                            </template>-->
+                        </template>
+                    </ol>
+                        <template for:each={programRuleAssignments} for:item="ruleAssignment" style="margin-bottom: 30px">
+                            <div class={ruleAssignment.programRuleAssignment.Id} key={ruleAssignment.programRuleAssignment.Id} style="display:block; margin-top: 30px;">{ruleAssignment.programRuleAssignment.Program_Rule__r.Description__c}</div>
+                            <!--
+                            <template if:true={isRuleSelected}>
+                                <div key={ruleAssignment.programRuleAssignment.Id} style="display:block">{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                            </template>-->
+                        </template>
+                    </div>
+                <br>
+                    <div style="margin-top: 5px; font-size: 14px; line-height: 16px; color: rgba(0, 0, 0, 0.87); "> <lightning-input  label="I agree to the Terms and Conditions" class="rulecondition" data-id="checkbox" type="checkbox" ></lightning-input><template if:true={isError} ><p style="color:#FD4E4C; margin-left:20px;">{error}</p></template></div>
+                <br><br>
+                    <!--</lightning-card>-->
+                <!--   
+                <template if:true={isRecordLoaded}>
+                    <lightning-card title="Program Rules" icon-name="custom:custom14" >
+                        <template if:true={isError}>
+                            Error2 - {error}
+                        </template>             
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div title="Key">Accept condition?</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div title="Value">Program Condition</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={programRuleAssignments} for:item="ruleAssignment">
+                                    <tr key={ruleAssignment.programRuleAssignment.Id}>
+                                        <th>
+                                            <div><lightning-input  class="rulecondition" data-id="checkbox" type="checkbox" >
+                                            </lightning-input></div>
+                                        </th>
+                                        <th scope="col">
+                                            <div>{ruleAssignment.programRuleAssignment.Program_Rule__r.Name}</div>
+                                        </th>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </lightning-card>
+                </template>-->
+                <!--<c-terms-acceptance-signature parent-id={programEnrollmentId}></c-terms-acceptance-signature>-->
+                <div>
+                    <h2>Power of Attorney</h2>
+                   <!-- <p style="width: 199px; height: 28px; left: 391px; top: 1305px; /*font-family: Roboto;*/ font-style: normal; font-weight: bold; font-size: 24px; line-height: 28px; display: inline; align-items: center; color: rgba(0, 0, 0, 0.87);">Power of Attorney</p>-->
+                    <p style="height: 25px; /*font-family: Roboto;*/ font-style: normal; font-weight: normal; font-size: 18px; line-height: 25px; display: flex; align-items: center; color: rgba(0, 0, 0, 0.87);padding-bottom: 10px;">Please upload your copy of the Power of Attorney document.</p>
+                </div>
+                <!--<div>
+                    <form action="/action_page.php">
+                        <input type="file" id="myFile" name="filename">
+                        <input type="submit">
+                    </form>
+                </div>-->
+                <!--<lightning-card title="Files/Documents Section" icon-name="custom:custom63" >-->
+                    <lightning-file-upload
+                            label="Please Upload Documents"
+                            name="fileUploader"
+                            accept={acceptedFormats}
+                            record-id={programEnrollmentId}
+                            file-field-name="Test"
+                            file-field-value={encryptedToken}
+                            onuploadfinished={handleUploadFinished}
+                            multiple>
+                    </lightning-file-upload>
+                    <!--<div class="slds-var-p-around_small slds-border_left slds-border_bottom slds-border_top slds-border_right" title="Uploaded Files">
+                        <template if:false={isRecordLoaded}>
+                            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                        </template>
+                        <lightning-datatable title="Uploaded Files" 
+                            key-field="id"
+                            data={dataList}
+                            hide-checkbox-column
+                            columns={columnsList}
+                            onrowaction={handleRowAction}>
+                        </lightning-datatable>
+                    </div>-->
+                <!--</lightning-card>-->
+                <!--<c-terms-acceptance-signature parent-id={programEnrollmentId}></c-terms-acceptance-signature>-->
+           <!--<div id="buttonurl" class="slds-float_right" style="margin-top: 13px; height: 47px; width: 90px; border-radius: 0px;">
+            
+            <a href="#" onclick={handleSubmitClick}> 
+                <img src={submitBtn1Url}  />
+            </a>
+           </div>-->
+           
+            </br>
+            <button class={submitButtonClass} type="button"  onclick={handleSubmitClick}><p class="unclickedSubmitButtonsText">SUBMIT</p></button>
+           
+        </div>
+            <!--             <div class="lower-third">    
+                            <h1 class="slds-truncate">Sample Text</h1>
+                        </div>        
+                    </div>
+                    <lightning-button  label="Submit Application 2" title="Submit Application 2" style="background-image:url('/programapplication/resource/1616916595000/SubmitButton') no-repeat" onclick={handleSubmitClick} class="slds-align_absolute-center">
+         
+                </lightning-button></div>-->
+                <!--<div style="background-image: url(/programapplication/resource/1616916595000/SubmitButton);background-repeat: no-repeat;">   
+                          
+                    <lightning-button  label="Submit Application 2" title="Submit Application 2" style="background-image:url('/programapplication/resource/1616916595000/SubmitButton') no-repeat" onclick={handleSubmitClick} class="slds-align_absolute-center"></lightning-button>       
+                </div>
+                <lightning-button variant="brand" label="Submit Application" title="Submit Application" onclick={handleSubmitClick} class="slds-align_absolute-center"></lightning-button>
+                -->
+            </template>
+            <!--<template if:true={isModalVisible}>
+                <lightning-card title="Modal Container Test" icon-name="custom:custom1">            
+                        <c-modal modal-header="Test Modal Header" 
+                        modal-content="Here goes the entire content" primary-button-label="OK"
+                        secondary-button-label="Cancel" onsecondarybtnclick={handlePrimaryButtonClick}
+                        onprimarybtnclick={handleSecondaryButtonClick}></c-modal>            
+                </lightning-card>
+            </template>-->
+        </template>
+        <template if:true={isApplicationSubmitted}>
+            <div>
+                <div class="slds-align_absolute-center" style="margin-bottom: 80px;">
+                    <img src={group11Resourceurl} style="height: 100px;">
+                </div>
+                <!--<div class="slds-align_absolute-center slds-text-heading_large slds-m-top_large height: 56px; width: 660px; left: 390px; top: 440px; 
+                font-family: Roboto; font-size: 48px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center;">
+                    Sorry, the link has expired.
+                </div>-->
+                <div class="slds-align_absolute-center" style="margin-bottom: 60px; height: 56px; width: 660px; left: 390px; top: 440px; 
+                 font-size: 38px; font-style: normal; font-weight: 700; line-height: 56px; letter-spacing: 0em; text-align: center; color: #000000;">
+                 Thank you for completing </br>
+                 your application! 
+                </div>
+                <!--<div class="slds-align_absolute-center slds-text-heading_small slds-m-top_large">
+                    The link was set to expire after 15 days.</br> 
+                    Please contact {programEnrollmentRecord.Account_Manager_First_Name__c} at </br>
+                    {programEnrollmentRecord.Account_Manager_Email__c} or call </br>
+                    1-800-553-4070 for more information</br>
+                </div>-->
+                <div style="margin-bottom: 40px; height: 175px; width: 660px; left: 390px; top: 528px; border-radius: nullpx; font-size: 20px; font-style: normal; font-weight: 400; line-height: 35px; letter-spacing: 0em; text-align: center; color: #000000;" class="slds-align_absolute-center">
+                    You may now close your browser window.
+                </div>
+            </div>
+        </template>
+    </template>
+     <!--{contactRecord.data.fields.Id.value}-->
+    <!--<div class="slds-p-bottom_large slds-p-left_large" style="width:500px"> 
+        <lightning-record-edit-form record-id={contactRecord.data.fields.Id.value}
+                object-api-name="Contact">
+            <lightning-messages></lightning-messages>
+            <lightning-input-field field-name="Id">
+                </lightning-input-field>
+            <lightning-input-field field-name="Name">
+                </lightning-input-field>
+            <lightning-input-field field-name="Email">
+                </lightning-input-field>
+            <lightning-button type="submit"
+                            name="submit"
+                            label="Create Contact">
+            </lightning-button>
+        </lightning-record-edit-form>
+    </div>-->
+</template>

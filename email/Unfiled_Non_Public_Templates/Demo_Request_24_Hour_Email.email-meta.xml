@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Demo Request 24 Hour Email</name>
+    <style>none</style>
+    <subject>Demo Request out of SLA: Lead Company: {!Lead.Company}, Lead Name: {!Lead.Name}</subject>
+    <textOnly>A demo request in your queue was not assigned to a member of the team within 24 hours.
+The request is for {!Lead.Name} with {!Lead.Company}. The link is below:
+https://acvauctions.lightning.force.com/lightning/r/Lead/{!Lead.Id}/view
+
+
+Thank You!</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,51 @@
+<!--
+ - @description A component to display related fields specified in the Display_Related_Fields__mdt custom metadata.
+ - 
+ - @configuration
+ - panelTitle -   Set the title of this LWC.
+ - metadataTypeRecName - Multiple instances of this component could be configured on the same page and we need a mechanism to display 
+ -                       different related fields on each LWC. Each configuration is specified in the Display_Related_Fields__mdt custom metadata
+ -                       record. This field uses the record's DeveloperName field in the custom metadata to configure the LWC i.e. it specifies which configuration 
+ -                       in the custom metadata will be used to display the list of related fields in the LWC.
+ - 
+ -
+ - @name DisplayRelatedFields
+ - @author Manmeet Vaseer
+ - @date 09/24/2021
+ -->
+ <template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            {panelTitle}
+        </h3>
+        <div slot="footer">
+                
+        </div>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered slds-table_striped">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        
+                        <th scope="col">
+                            <div title="Key">Field Label</div>
+                        </th>
+                        <th scope="col">
+                            <div title="Value">Field Value</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={fieldLabelValuePair} for:item="pair">
+                        <tr key={pair.label}>
+                            <th scope="col">
+                                <div title={pair.label}>{pair.label}</div>
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning-formatted-rich-text value={pair.value}></lightning-formatted-rich-text>
+                            </th>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+    </lightning-card>
+</template>

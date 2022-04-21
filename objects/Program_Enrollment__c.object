@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Program_Enrollment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Program_Enrollment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account_Manager_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Field_Account_Manager__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Manager Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Manager_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Field_Account_Manager__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Manager First Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>To indicate status of Approval</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To indicate status of Approval</inlineHelpText>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Started</fullName>
+                    <default>true</default>
+                    <label>Not Started</label>
+                </value>
+                <value>
+                    <fullName>Pending TM Approval</fullName>
+                    <default>false</default>
+                    <label>Pending TM Approval</label>
+                </value>
+                <value>
+                    <fullName>TM Approved</fullName>
+                    <default>false</default>
+                    <label>TM Approved</label>
+                </value>
+                <value>
+                    <fullName>TM Rejected</fullName>
+                    <default>false</default>
+                    <label>TM Rejected</label>
+                </value>
+                <value>
+                    <fullName>RSD Approved</fullName>
+                    <default>false</default>
+                    <label>RSD Approved</label>
+                </value>
+                <value>
+                    <fullName>RSD Rejected</fullName>
+                    <default>false</default>
+                    <label>RSD Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>To capture notes / comments related to the enrollment record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To capture notes / comments related to the enrollment record</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Enrollment_End_Date__c</fullName>
+        <description>Used to capture program enrollment end date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to capture program enrollment end date</inlineHelpText>
+        <label>Enrollment End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Enrollment_Expiration_Date__c</fullName>
+        <description>Used to capture program enrollment expiration date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to capture program enrollment expiration date</inlineHelpText>
+        <label>Enrollment Expiration Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Enrollment_Invitation_Status__c</fullName>
+        <description>Used to indicate enrolment invitation email is sent to the primary contact or not.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to indicate enrolment invitation email is sent to the primary contact or not.</inlineHelpText>
+        <label>Enrollment Invitation Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Eligible</fullName>
+                    <default>true</default>
+                    <label>Not Eligible</label>
+                </value>
+                <value>
+                    <fullName>Eligible</fullName>
+                    <default>false</default>
+                    <label>Eligible</label>
+                </value>
+                <value>
+                    <fullName>Sent</fullName>
+                    <default>false</default>
+                    <label>Sent</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Enrollment_Start_Date__c</fullName>
+        <description>Used to capture program enrollment start date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to capture program enrollment start date</inlineHelpText>
+        <label>Enrollment Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Has_Customer_Applied__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Has Customer Applied?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IST_Sales_Rep_Email__c</fullName>
+        <description>To store IST Sales Rep Email used for communication</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To store IST Sales Rep Email used for communication</inlineHelpText>
+        <label>IST Sales Rep Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invitation_Link_Expired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Invitation Link Expired?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Invitation_Sent_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Invitation Sent Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>No_Of_Days_Since_Invitation_Sent__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() -  Invitation_Sent_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No. Of Days Since Invitation Sent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Dealership_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to store the primary contact of the dealer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to store the primary contact of the dealer.</inlineHelpText>
+        <label>Primary Dealership Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Program_Name__c</fullName>
+        <description>Used to display program name in flow</description>
+        <externalId>false</externalId>
+        <formula>Program__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Used to display program name in flow</inlineHelpText>
+        <label>Program Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program__c</fullName>
+        <externalId>false</externalId>
+        <label>Program</label>
+        <referenceTo>Program__c</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Recommended_for_Program__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To indicate if dealer is recommended to be approved or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To indicate if dealer is recommended to be approved or not</inlineHelpText>
+        <label>Recommended for Program</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Regional_Sales_Director__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to store the user who is the regional sales director of the dealer / account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to store the user who is the regional sales director of the dealer / account</inlineHelpText>
+        <label>Regional Sales Director</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RSD_Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to store the user who is the manager of the dealer / account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to store the user who is the manager of the dealer / account</inlineHelpText>
+        <label>Sales Contact</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Eligible</fullName>
+                    <default>false</default>
+                    <label>Eligible</label>
+                </value>
+                <value>
+                    <fullName>Not eligible</fullName>
+                    <default>false</default>
+                    <label>Not eligible</label>
+                </value>
+                <value>
+                    <fullName>In/under review by IST (use pre and post pending customer response)</fullName>
+                    <default>false</default>
+                    <label>In/under review by IST (use pre and post pending customer response)</label>
+                </value>
+                <value>
+                    <fullName>Pending customer response (pending app completion) -In/under review by IST</fullName>
+                    <default>false</default>
+                    <label>Pending customer response (pending app completion) -In/under review by IST</label>
+                </value>
+                <value>
+                    <fullName>Waiting on POA (manually updated by IST)</fullName>
+                    <default>false</default>
+                    <label>Waiting on POA (manually updated by IST)</label>
+                </value>
+                <value>
+                    <fullName>Verified by IST (manually updated by IST)</fullName>
+                    <default>false</default>
+                    <label>Verified by IST (manually updated by IST)</label>
+                </value>
+                <value>
+                    <fullName>Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility)</fullName>
+                    <default>false</default>
+                    <label>Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility)</label>
+                </value>
+                <value>
+                    <fullName>TM will be reaching out to you soon Enrolled (start date)</fullName>
+                    <default>false</default>
+                    <label>TM will be reaching out to you soon Enrolled (start date)</label>
+                </value>
+                <value>
+                    <fullName>Active (initiated at first sale)</fullName>
+                    <default>false</default>
+                    <label>Active (initiated at first sale)</label>
+                </value>
+                <value>
+                    <fullName>Remove (for performance)</fullName>
+                    <default>false</default>
+                    <label>Remove (for performance)</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to store the user who is the territory manager of the dealer / account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to store the user who is the territory manager of the dealer / account</inlineHelpText>
+        <label>Territory Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TM_Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UniqueProgAcc__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>UniqueProgAcc</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Valid_POA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To indicate if dealer has given power of attorney or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To indicate if dealer has given power of attorney or not</inlineHelpText>
+        <label>Valid POA</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Program Enrollment</label>
+    <nameField>
+        <label>Program Enrollment Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Program Enrollments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

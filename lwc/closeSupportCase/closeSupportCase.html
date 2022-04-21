@@ -1,0 +1,52 @@
+<template>
+    <button class="slds-button slds-button_destructive slds-button_stretch" onclick={openModal}>Close Support Case</button>
+
+    <template if:true={modalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Support Case Has Open Customer Inquiries</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div if:false={isSaving} class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-text-heading_medium slds-text-align_center slds-text-color_destructive">Closing this support case will automatically close the following Customer Inquiries.</div>
+                    <br>
+                    <div>
+                        <lightning-datatable
+                                class="slds-table_striped"
+                                key-field="id"
+                                data={data}
+                                columns={columns}
+                                hide-checkbox-column
+                                show-row-number-column>
+                        </lightning-datatable>
+                    </div>
+                    <br>
+                    <div class="slds-float_right slds-text-heading_medium"><b>Are you sure you want to proceed?</b></div>
+                </div>
+
+                <div if:true={isSaving} class="slds-theme_default" style="position:relative; height:90px">
+                    <lightning-spinner
+                      variant="brand"
+                      size="medium">
+                    </lightning-spinner>
+                  </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel" disabled={isSaving}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={closeAll} title="Close All" disabled={isSaving}>Close All</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="arial" style="font-size: 12pt;">ALERT:</font><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;"><font face="arial">{!Account.Name}, Dealer ID #{!Account.Dealership_ID__c}, has just been Blacklisted.</font></div><div style="font-size: 12pt;"><font face="arial"><br></font></div><div style="font-size: 12pt;"><font face="arial"><b>Dealer:&nbsp;</b>&nbsp;</font>{!Account.Name}</div><div style="font-size: 12pt;"><font face="arial"><b>Dealer ID:&nbsp;</b></font>{!Account.Dealership_ID__c}</div><div style="font-size: 12pt;"><font face="arial"><b>Account Owner:&nbsp;</b>{!Account.OwnerFullName}</font></div><div><font face="arial" style="font-size: 12pt;"><b>Status Notes:</b>&nbsp;</font><font face="arial">{!Account.Inactive_Sub_Status__c}</font></div><div style="font-size: 12pt;">{!Account.Status_Notes__c}</div><div style="font-size: 12pt;"><i><a href="{!Account.Link}">Dealer Record</a></i></div><div><br></div>]]></td>
+</tr>
+</table>

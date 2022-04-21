@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used by ACV Capital with workflow to alert internal team when an account has been blacklisted</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>ACV Capital Account Blacklisted Alert</name>
+    <style>freeForm</style>
+    <subject>ALERT: New Blacklisted Account</subject>
+    <textOnly>ALERT:
+
+{!Account.Name}, Dealer ID #{!Account.Dealership_ID__c}, has just been Blacklisted.
+
+Dealer:  {!Account.Name}
+Dealer ID: {!Account.Dealership_ID__c}
+Account Owner: {!Account.OwnerFullName}
+Status Notes: {!Account.Inactive_Sub_Status__c}
+{!Account.Status_Notes__c}
+Dealer Record:  {!Account.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

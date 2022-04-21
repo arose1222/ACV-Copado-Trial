@@ -1,0 +1,12 @@
+<template>
+    <lightning-card variant="Narrow" title="Engine Audio" icon-name="action:announcement">
+        <template if:true={audioLink.data}>
+            <audio controls="true" src={audioLink.data} type="audio/wav">
+                Your Browser Does Not Support This Audio, Please Use Chrome
+            </audio>
+        </template>
+        <template if:true={audioLink.error}>
+            <p style="text-align: center">No Audio Found for the Related VIN</p>
+        </template>
+    </lightning-card>
+</template>

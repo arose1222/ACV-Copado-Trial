@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Export Decision --></label>
+        <name>EXPRN__Export_Decision</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Application ID --></label>
+        <name>EXPRN__Application_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIN --></label>
+        <name>EXPRN__BIN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Name --></label>
+        <name>EXPRN__Business__c</name>
+        <relationshipLabel><!-- Experian Decisioning --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Changed Decision --></label>
+        <name>EXPRN__Change_Decision__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decision --></label>
+        <name>EXPRN__Credit_Decision_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recomended Credit Limit --></label>
+        <name>EXPRN__Credit_Limit1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override Credit Limit --></label>
+        <name>EXPRN__Credit_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Policy --></label>
+        <name>EXPRN__Credit_Policy1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Policy --></label>
+        <name>EXPRN__Credit_Policy__c</name>
+        <relationshipLabel><!-- Experian Decisioning --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Prior Decision Date --></label>
+        <name>EXPRN__Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decision Action --></label>
+        <name>EXPRN__Decision_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decision Date --></label>
+        <name>EXPRN__Decision_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decision Override --></label>
+        <name>EXPRN__Decision_Override__c</name>
+        <picklistValues>
+            <masterLabel>Approve</masterLabel>
+            <translation><!-- Approve --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Decline</masterLabel>
+            <translation><!-- Decline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual Review</masterLabel>
+            <translation><!-- Manual Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>EXPRN__Decision_Reason__c</name>
+        <picklistValues>
+            <masterLabel>IP score is high</masterLabel>
+            <translation><!-- IP score is high --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IP score is low</masterLabel>
+            <translation><!-- IP score is low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Letter of credit provided</masterLabel>
+            <translation><!-- Letter of credit provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment trend declining</masterLabel>
+            <translation><!-- Payment trend declining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment trend improving</masterLabel>
+            <translation><!-- Payment trend improving --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal guarantee</masterLabel>
+            <translation><!-- Personal guarantee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Decision --></label>
+        <name>EXPRN__Decision__c</name>
+        <picklistValues>
+            <masterLabel>Approve</masterLabel>
+            <translation><!-- Approve --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Decline</masterLabel>
+            <translation><!-- Decline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual Review</masterLabel>
+            <translation><!-- Manual Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Decision changed --></label>
+        <name>EXPRN__Decision_changed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override Reason --></label>
+        <name>EXPRN__Override_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override? --></label>
+        <name>EXPRN__Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overridden By --></label>
+        <name>EXPRN__Overwritten_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prior Decision --></label>
+        <name>EXPRN__Previous_Decision__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recomended Credit Limit --></label>
+        <name>EXPRN__Recomended_Credit_Line__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rule --></label>
+        <name>EXPRN__Rule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percentile Score --></label>
+        <name>EXPRN__Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Name --></label>
+        <name>EXPRN__User_Name__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- Old decision Record Type for Old Decision PageLayout --></description>
+        <label><!-- Previous Decision --></label>
+        <name>EXPRN__Old_Decision</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Most Recent decision for account --></description>
+        <label><!-- Recent Decision --></label>
+        <name>EXPRN__Recent_Decision</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please specify a reason for reason equals other --></errorMessage>
+        <name>EXPRN__For_Other_Override_Reason_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Select Override Decision --></errorMessage>
+        <name>EXPRN__Override_Decision_is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Reason --></errorMessage>
+        <name>EXPRN__Reason_is_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to edit override credit limit when Decision is decline --></errorMessage>
+        <name>EXPRN__Revoke_Editing_Recommended_credit_line</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Export --></label>
+        <name>EXPRN__Export</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Export_LTNG --></label>
+        <name>EXPRN__Export_LTNG</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Initiate_Decision --></label>
+        <name>EXPRN__Initiate_Decision</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Initiate_Decision1 --></label>
+        <name>EXPRN__Initiate_Decision1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Override_Decision --></label>
+        <name>EXPRN__Override_Decision</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Override_Decision1 --></label>
+        <name>EXPRN__Override_Decision1</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>xArbitrations_and_Complaints__c</baseObject>
+    <category>accounts</category>
+    <deployed>false</deployed>
+    <description>Arbitration by Account</description>
+    <label>Arbitration by Account</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>xArbitrations_and_Complaints__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Avoidable__c</field>
+            <table>xArbitrations_and_Complaints__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c</field>
+            <table>xArbitrations_and_Complaints__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Vehicle__c</field>
+            <table>xArbitrations_and_Complaints__c</table>
+        </columns>
+        <masterLabel>Arbitrations</masterLabel>
+    </sections>
+</ReportType>

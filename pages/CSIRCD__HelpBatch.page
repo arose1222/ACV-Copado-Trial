@@ -1,0 +1,126 @@
+<apex:page showHeader="true" sidebar="true" controller="CSIRCD.HelpBatchController">
+    <style type="text/css">
+        li, dd { margin-bottom: 1em; margin-left: 0em;}
+        body .bPageBlock .pbBody .CSIorange .pbSubheader{
+            background-color:#F8971D;
+        }
+        .wt-Help {
+            background-color:#F8971D;
+        }
+        .Custom99Tab .brdPalette {
+            border-top-color:#F8971D;
+        }
+        .Custom99Tab .listViewport .subNav .linkBar, .Custom99Tab .mComponent .cHeader, .Custom99Tab .genericTable, .Custom99Tab .bSubBlock, .Custom99Tab .bPageBlock {
+            border-top-color:#F8971D;
+        }
+        .Custom99Tab .primaryPalette, .individualPalette .Custom99Block .primaryPalette {
+            border-top-color:#F8971D;
+            background-color:#F8971D;
+        }
+    </style>
+
+    <apex:pageMessages id="messages"></apex:pageMessages>
+
+    <apex:pageBlock title="General Information">
+        <apex:outputPanel styleClass="CSIorange">
+            <apex:pageBlockSection title="Welcome to CSI Watch List Checking!" columns="1" collapsible="false">
+                <p>CSI Watch List Checking enables you to verify your client base against subscribed watch lists, including OFAC, BIS, FBI, Interpol, and many others.</p>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Watch List Checking Searching" columns="1" collapsible="false">
+                <p>Your Salesforce administrator can adjust the searches to meet you business needs:</p>
+                <ul>
+                    <li>Tolerance setting (threshold) ranges from 80-100%. The default is set to 85% The lower the threshold level, the greater the possibility of a high number of search results. A higher threshold level returns fewer matches where the input data is more similar
+                 to the watch list data.</li>
+                    <li>Ability to disqualify matches based on Address</li>
+                    <li>Optional capability to search address information</li>
+                    <li>CSI's search algorithm facilitates "fuzzy logic"</li>
+                    <li>Misspellings (typos) are considered</li>
+                    <li>Phonetics are considered when factoring of the match score</li>
+                    <li>Abbreviations are considered</li>
+                    <li>Nicknames (alternate names) will be utilized</li>
+                    <li>Accommodates initial and abbreviations</li>
+                    <li>Noise word elimination</li>
+                    <li>Country data (if supplied) will be checked against the OFAC list Sanctioned Country list.</li>
+                </ul>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="WatchDOG Elite" columns="1" collapsible="false">
+                <p>CSI also offers a fully featured browser based watch list checking solution, WatchDOG&reg; Elite.</p>
+
+                <dl>
+                    <dt>Single Lookups</dt>
+                    <dd>Integrate web services for Denied Party List Screening from your system, or enable your users to access the WatchDOG&reg; Elite site to manually input and review matches.</dd>
+
+                    <dt>Flat File Batch Processing</dt>
+                    <dd>Upload your file via a web browser or automate your file runs by sending them to us via secure means (FTPS, SFTP, etc).</dd>
+
+                    <dt>Automated List Updates</dt>
+                    <dd>CSI handles the burden of monitoring, gathering, cleansing and deploying the list for you.</dd>
+
+                    <dt>Auditing &amp; Reporting</dt>
+                    <dd>Previously scanned data can be reported on for documentation and auditing purposes.</dd>
+
+                    <dt>Other Features</dt>
+                    <dd>Good Customer List, Block Customer List, Client controlled administrative functions, Workflow Functionality, IAT Module, Customer Data Management and more...</dd>
+                </dl>
+
+                <p>For other compliance products and services offered by CSI, please visit the <a href="http://www.csiweb.com" target="_blank" id="csi">www.csiweb.com</a> website or contact our Sales department at <a href="tel:8884948449,2">888-494-8449 option 2.</a></p>
+            </apex:pageBlockSection>
+        </apex:outputPanel>
+    </apex:pageBlock>
+
+    <apex:form >
+        <apex:pageBlock title="App Configuration" mode="inlineEdit" id="config">
+            <apex:pageBlockButtons >
+                <apex:commandButton title="Save" id="Save" action="{!save}" value="Save" reRender="config,messages" />
+                <apex:commandButton title="Cancel" id="Cancel" action="{!cancel}" value="Cancel" reRender="config,messages" />
+            </apex:pageBlockButtons>
+
+                <apex:outputPanel styleClass="CSIorange">
+                <apex:pageBlockSection columns="2">
+                    <apex:outputField value="{!config.CSIRCD__Corp_Name__c}" title="Corp Name" />
+                    <apex:outputField value="{!config.CSIRCD__ATTUS_GUID__c}" title="CSI GUID" />
+
+                    <apex:outputField value="{!config.CSIRCD__Host_Name__c}" title="Host Name" />
+                    <apex:outputField value="{!config.CSIRCD__URL__c}" title="URL" />
+
+                    <apex:outputField value="{!config.CSIRCD__List_Codes__c}" title="List Codes" />
+                    <apex:outputField value="{!config.CSIRCD__Tolerance__c}" title="Tolerance" />
+
+                    <apex:outputField value="{!config.CSIRCD__Address_DQ__c}" title="Address DQ" />
+                    <apex:outputField value="{!config.CSIRCD__Save_Data_at_ATTUS__c}" title="Save Data at CSI" />
+
+                    <apex:outputField value="{!config.CSIRCD__Address_Match__c}" title="Street Address Match" />                
+                    <apex:outputField value="{!config.CSIRCD__MasterDBUpdate__c}" title="Master DB Update" />
+
+                    <apex:outputField value="{!config.CSIRCD__RecordTypestoSend__c}" title="Account Record Types to Send" />
+                    <apex:outputField value="{!config.CSIRCD__Client_Defined_3__c}" title="Client Defined 3" />
+
+                    <apex:outputField value="{!config.CSIRCD__Success_Email__c}" title="Success Email" />
+                    <apex:outputField value="{!config.CSIRCD__Error_Email__c}" title="Error Email" />
+
+                    <apex:outputField value="{!config.CSIRCD__Country_Field_Type__c}" title="Country Field Type" />
+                    <apex:outputField value="{!config.CSIRCD__Sandbox_Send__c}" title="Sandbox Send" />
+
+                    <apex:outputField value="{!config.CSIRCD__BatchName__c}" title="Batch Name" />
+                    <apex:outputField value="{!config.CSIRCD__ATTUS_Batch_Size__c}" title="CSI Batch Size" />
+
+                    <apex:outputField value="{!config.CSIRCD__Send_All_Accounts__c}" title="Send Accounts" />
+                    <apex:outputField value="{!config.CSIRCD__Send_All_Contacts__c}" title="Send Contacts" />
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+
+    <apex:pageBlock title="Additional Links">
+        <apex:outputPanel styleClass="CSIorange">
+            <apex:pageBlockSection >
+                <apex:outputLink value="http://www.csiweb.com/solutions/regulatory-compliance" >Computer Services Inc.</apex:outputLink>
+                <apex:outputLink value="https://watchdogelite.csiweb.com/" >WatchDOG Elite Login</apex:outputLink>
+                <apex:outputLink value="http://www.csiweb.com/contact-us/customer-support" >Support (Regulatory Compliance)</apex:outputLink>
+                <apex:outputLink value="https://www.treasury.gov/resource-center/sanctions/OFAC-Enforcement/Pages/OFAC-Recent-Actions.aspx" >OFAC List Dates and Recent Actions</apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:outputPanel>
+    </apex:pageBlock>
+</apex:page>

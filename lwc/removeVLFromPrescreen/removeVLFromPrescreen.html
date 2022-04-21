@@ -1,0 +1,22 @@
+<template>
+    <center><lightning-button label="Remove Virtual Lift" title="Remove Virtual Lift" onclick={openDialog} class="slds-m-left_x-small"></lightning-button></center>
+    <template if:true={openmodel}>
+        <div class="demo-only" style="height: 100%;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" >
+                <div class="slds-modal__container">
+                    <lightning-card  variant="Narrow"  title="Confirm Virtual Life Removal" icon-name="action:google_news">
+                        <lightning-button-icon  icon-name="standard:first_non_empty" variant="border-filled" alternative-text="Show More" slot="actions" onclick={closeDialog}></lightning-button-icon>
+                        <p class="slds-p-horizontal_small"></p>
+                            <center>Are you sure you want to continue?</center>
+                            <br/>
+                            <center><lightning-button variant="destructive" label="Remove Virtual Lift Image" title="Remove Virtual Lift Image" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={closeDialog} class="slds-m-left_x-small"></lightning-button></center>
+                            <br/>
+                            <br/>
+                    </lightning-card>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" onclick={closeDialog}></div>
+        </div>
+        </template>
+</template>

@@ -1,0 +1,3239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>Arb_Auction_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Arb_Auction_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>status__c</fields>
+        <fields>buyer_dealership__c</fields>
+        <fields>Seller_Dealership__c</fields>
+        <fields>Auction_Lights__c</fields>
+        <fields>Year_Make_Model__c</fields>
+        <label>Arb Auction Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_Condition_Report__c</fullName>
+        <description>Links out to ACV Auction Manager.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://app.acvauctions.com/auction/&quot; &amp; id__c,&quot;View VCR for Auction &quot; &amp; id__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Links out to ACV Auction Manager.</inlineHelpText>
+        <label>ACV Condition Report</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Creator_VCI_id__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV Creator VCI id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Transportation_Requested__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ACV Transportation Requested</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACV_VCI_id__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV VCI id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Vehicle_id__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV Vehicle id</label>
+        <length>11</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_inop__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Integrated from Condition report answers when question #43 (Vehicle Inop - Does not move) is selected as TRUE</description>
+        <externalId>false</externalId>
+        <label>ACV inop</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Plan__c</fullName>
+        <description>Holds the number of days of the default or purchased arbitration plan for this auction.</description>
+        <externalId>false</externalId>
+        <label>Arbitration Plan</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Resolution_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Arbitration Resolution Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Auction_Lights_Concatenation__c</fullName>
+        <description>Populated via a workflow rule that generates a string based upon the independent auction light checkboxes. This field is then evaluated in the Auction Lights formula to return a user-friendly image showing the Auction Lights for an Auction.</description>
+        <externalId>false</externalId>
+        <label>Auction Lights Concatenation</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Lights__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(Auction_Lights_Concatenation__c,
+ &quot;b&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yN6&quot;, &quot;b&quot;,30,117),
+ &quot;g&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yN7&quot;, &quot;g&quot;,30,117),
+ &quot;gb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yN8&quot;, &quot;gb&quot;,30,117),
+ &quot;gr&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yN9&quot;, &quot;gr&quot;,30,117),
+ &quot;gy&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNA&quot;, &quot;gy&quot;,30,117),
+ &quot;gyb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNB&quot;, &quot;gy&quot;,30,117),
+ &quot;gyr&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNC&quot;, &quot;gyr&quot;,30,117),
+ &quot;gyrb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yND&quot;, &quot;gyrb&quot;,30,117),
+ &quot;r&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNE&quot;, &quot;r&quot;,30,117),
+ &quot;rb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNF&quot;, &quot;rb&quot;,30,117),
+ &quot;y&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNG&quot;, &quot;y&quot;,30,117),
+ &quot;yb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNH&quot;, &quot;yb&quot;,30,117),
+ &quot;yr&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNI&quot;, &quot;yr&quot;,30,117),
+ &quot;yrb&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=0150a0000034yNJ&quot;, &quot;yrb&quot;,30,117),null
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction Lights</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Notes__c</fullName>
+        <description>A place for IST to track an issue with the auction process once marked as accepted, from payment to delivery.  This is a Covid field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is to be used to note issues in process after Auction is Ended Accepted</inlineHelpText>
+        <label>Auction Notes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bid__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bid</label>
+        <referenceTo>Bid__c</referenceTo>
+        <relationshipLabel>Auctions</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Business_Days_Since_Ended__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Business_Hours_Since_Ended__c*60)/480</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Business Days Since Auction Ended</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Business_Hours_Since_Ended__c</fullName>
+        <externalId>false</externalId>
+        <formula>(ROUND( 
+8 * 
+( 
+( 5 * FLOOR( ( DATEVALUE(NOW()) - DATE( 2017,1,2) ) / 7) + 
+MIN(5, 
+MOD( DATEVALUE(NOW()) - DATE( 2017,1,2), 7) + 
+MIN( 1, 24 / 8 * ( MOD( NOW() - DATETIMEVALUE( &apos;2017-01-02 14:00:00&apos; ), 1 ) ) ) 
+) 
+) 
+- 
+( 5 * FLOOR( ( DATEVALUE(end_time__c) - DATE( 2017,1,2) ) / 7) + 
+MIN( 5, 
+MOD( DATEVALUE( end_time__c) - DATE( 2017,1,2), 7 ) + 
+MIN( 1, 24 / 8 * ( MOD( end_time__c- DATETIMEVALUE( &apos;2017-01-02 14:00:00&apos; ), 1) ) ) 
+) 
+) 
+), 
+MOD((NOW() - DATETIMEVALUE(&apos;2017-01-02 14:00:00&apos;))*1440,1440)/60))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Business Hours Since Auction Ended</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Buyer Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Auctions as Buyer</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_Dealer_ID__c</fullName>
+        <description>Pulling Buyer ID form Account</description>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Dealer ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Doc_Compliance__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(buyer_dealership__r.Dealer_Doc_Compliance__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Doc Compliance</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Has_License__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Compliant_Dealer_License__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Has License</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_Has_Resale__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Compliant_Resale_Certificate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Has Resale</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_IST_Account_Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.IST_Account_Owner__r.FirstName + &quot; &quot; + buyer_dealership__r.IST_Account_Owner__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer IST Account Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_IST_Email__c</fullName>
+        <description>This field auto populates to show the buying contact&apos;s IST Account Manager&apos;s email address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field auto populates to show the buying contact&apos;s IST Account Manager&apos;s email address.</inlineHelpText>
+        <label>Buyer IST Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_IST_Rep__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.IST_Account_Owner__r.Full_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer IST Rep</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_License_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.License_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer License Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Main_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Dealer_Phone__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Main Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Region__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Maps_Sales_Region_Name__c</formula>
+        <label>Buyer Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.BillingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Territory__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Maps_Sales_Territory_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer Territory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_s_Assurance_Upsell__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(buyer_dealership__r.Buyer_s_Assurance_Exceptions__c)</formula>
+        <inlineHelpText>First time offense = &quot;Goodwill&quot; 
+Second time offense = &quot;Retro Charge&quot; 
+Third time offense = &quot;Deny&quot;</inlineHelpText>
+        <label>Buyer&apos;s Assurance Upsell</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_Days_Since_Auction_End__c</fullName>
+        <externalId>false</externalId>
+        <formula>now()-end_time__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Calendar Days Since Auction End</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Closed_Arbitration_Cases__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Closed Arbitration Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition_Report_ID__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Condition Report ID
+This field is populated through the integration. It looks up to the condition report using the unique external Saved Auction Id</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup Field to Condition Report object.</inlineHelpText>
+        <label>Condition Report ID</label>
+        <referenceTo>Condition_Report__c</referenceTo>
+        <relationshipLabel>Auctions</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Active_Pricing_Recommendations__c</fullName>
+        <description>Pulls down the count of active pricing recommendations from the Vehicle Object.</description>
+        <externalId>false</externalId>
+        <formula>vehicle_id__r.Count_of_Active_Pricing_Recommendations__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Count of Active Pricing Recommendations</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Pricing_Recommendations__c</fullName>
+        <description>Pulls down the count of total pricing recommendations associated with this vehicle from the vehicle object.</description>
+        <externalId>false</externalId>
+        <formula>vehicle_id__r.Count_of_Pricing_Recommendations__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Count of Pricing Recommendations</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Counted_for_Account_Logistics__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Counted for Account Logistics</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Current_Transportation_Request_Status__c</fullName>
+        <description>Set by the integration to indicate current Transportation Request status.</description>
+        <externalId>false</externalId>
+        <label>Current Transportation Request Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Delivered</fullName>
+                    <default>false</default>
+                    <label>Delivered</label>
+                </value>
+                <value>
+                    <fullName>in_transit</fullName>
+                    <default>false</default>
+                    <label>In-Transit</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>Requested</fullName>
+                    <default>false</default>
+                    <label>Requested</label>
+                </value>
+                <value>
+                    <fullName>Posted</fullName>
+                    <default>false</default>
+                    <label>Posted</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Date_Delivered__c</fullName>
+        <description>Duplicate of &quot;Transportation Date Delivered&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date vehicle delivered when transported by ACV</inlineHelpText>
+        <label>XDate Delivered</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Picked_Up__c</fullName>
+        <description>Date picked up when transported by ACV - Covid Field - Associated with process builder</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the date the vehicle was picked up by transporter if ACV transport was used</inlineHelpText>
+        <label>Date Picked Up</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Dealer_ID__c</fullName>
+        <description>Pulls down the Dealer ID from Accounts for List view criteria on Auction Obj</description>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;1&apos; ,&apos;Franchise&apos;,
+IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;2&apos; ,&apos;Independent&apos;,
+IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;4&apos; ,&apos;Independent - ACV Certified&apos;,
+IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;3&apos; ,&apos;Wholesaler&apos;,
+IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;Dealer Group (Parent Account)&apos;,&apos;Dealer Group (Parent Account)&apos;,
+IF(TEXT( Seller_Dealership__r.Dealer_Type__c )==&apos;5&apos; ,&apos;Commercial&apos;,
+ &apos;&apos;) 
+
+)))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Difference_Between_Recommended_and_Floor__c</fullName>
+        <description>Difference between Recommended Ceiling Price and Seller&apos;s Floor price</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISBLANK(vehicle_id__r.Recommended_Price_Ceiling__c), 
+ISBLANK(floor_price__c)),
+NULL, 
+vehicle_id__r.Recommended_Price_Ceiling__c - floor_price__c)</formula>
+        <label>Difference Between Recommended and Floor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Escalated_to_Collections__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Escalated to Collections</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Floor_Price_and_Highest_Bid_Gap__c</fullName>
+        <description>Difference between winning Floor Price and Winning Bid Price</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISBLANK(Winning_Bid_Price__c), 
+ISBLANK(floor_price__c)), 
+NULL, 
+floor_price__c - Winning_Bid_Price__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Floor Price and Highest Bid Gap</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Image_Stop_Light__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  green_light__c =true, 
+IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 30, 30),
+IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Green Light</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_Life_Cycle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Populated with the Inventory Life Cycle the Auction is related to</description>
+        <externalId>false</externalId>
+        <label>Inventory Life Cycle</label>
+        <referenceTo>Inventory_Life_Cycle__c</referenceTo>
+        <relationshipLabel>Auctions</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Is_Gross_Sold__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(CONTAINS(TEXT(status__c), &apos;accepted&apos;), CONTAINS(TEXT(status__c), &apos;unwound&apos;)), TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Gross Sold</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Net_Sold__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(TEXT(status__c), &apos;accepted&apos;), TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Net Sold</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Unwound__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(TEXT(status__c), &apos;unwound&apos;), TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Unwound</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MMR_AutoCheck_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://m.manheim.com/mobile/vin/summary?vin=&quot; &amp; vehicle_id__r.vin__c &amp; &quot;&amp;mileage=&quot; &amp; TEXT(vehicle_id__r.odometer__c) , &quot;AutoCheck URL&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MMR AutoCheck URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMR_Link__c</fullName>
+        <description>Populates field with the MMR link associated with the vehicle.</description>
+        <externalId>false</externalId>
+        <formula>vehicle_id__r.MMR__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MMR Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <description>Set by Process Builder automation.</description>
+        <externalId>false</externalId>
+        <label>Make</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Vehicle_Make</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Auction__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field is used to mark the auction as being the most recent auction for a specific VIN.</description>
+        <externalId>false</externalId>
+        <label>Most Recent Auction</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Arbitrations__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Arbitrations</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Open_Arbitration_Cases__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Open Arbitration Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Cleared__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Payment Cleared</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Selected__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Payment Selected</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Status_Timestamp__c</fullName>
+        <externalId>false</externalId>
+        <label>Buyer Payment Status Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Prior_payment_Method__c</fullName>
+        <description>used to show the original payment method selected at auction- pushed to case for the arbitration team to see if this was ever edited</description>
+        <externalId>false</externalId>
+        <label>Prior Payment Method</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Private_Lane_Id__c</fullName>
+        <description>This field holds the Private Lane uuid that is populated via the data dump. It will be deprecated once we have all Private Lane&apos;s in Salesforce via producer/consumer.</description>
+        <externalId>true</externalId>
+        <label>Private Lane Id</label>
+        <length>36</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Private_Lane__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Private Lane this Auction ran under</description>
+        <externalId>false</externalId>
+        <label>Private Lane</label>
+        <referenceTo>Private_Lane__c</referenceTo>
+        <relationshipLabel>Auctions</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RecPrice_Avail_to_Accept__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF((auto_sell__c = TRUE) &amp;&amp; (Relevant_Recommended_Floor_Price__c &lt;&gt; 0) &amp;&amp; (Relevant_Recommended_Ceiling_Price__c &lt;&gt; 0) &amp;&amp; (Relevant_Recommended_Price_Date__c &lt; start_time__c), 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RecPrice Avail to Accept</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recent_Seller_s_Failed_Runs__c</fullName>
+        <description>Pulls down the count of the recent sellers failed runs from the Vehicle Obj.</description>
+        <externalId>false</externalId>
+        <formula>vehicle_id__r.Recent_Seller_s_Failed_Runs__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Recent Seller&apos;s Failed Runs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release_Available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>checkbox indicating whether release slip is available. Used in setting status of Cases to &quot;Ready-to-Post&quot;</description>
+        <externalId>false</externalId>
+        <label>Release Available</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Release_DateTime__c</fullName>
+        <description>The datetime stamp from acv_prod.auction_files for the release file.</description>
+        <externalId>false</externalId>
+        <label>Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Release_Pickup_Phrase__c</fullName>
+        <description>Pickup_Phrase from auctions_attribute table</description>
+        <externalId>false</externalId>
+        <label>Release Pickup Phrase</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relevant_Recommended_Ceiling_Price__c</fullName>
+        <description>Stamps the relevant recommended ceiling price for this auction</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A ceiling price recommendation is not always given.</inlineHelpText>
+        <label>Relevant Recommended Ceiling Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Relevant_Recommended_Floor_Price__c</fullName>
+        <description>Stamps the Relevant Recommended Floor Price for this auction</description>
+        <externalId>false</externalId>
+        <label>Relevant Recommended Floor Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Relevant_Recommended_Price_Created_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Links the user that created the relevant RP</description>
+        <externalId>false</externalId>
+        <label>Relevant Recommended Price Created By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Relevant_Recommended_Price_Date__c</fullName>
+        <description>Populated via workflow to stamp the Auction record with the date where the relevant pricing record was created by the pricing manager.</description>
+        <externalId>false</externalId>
+        <label>Relevant Recommended Price Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Saved_Auction_ID__c</fullName>
+        <description>Field used to bring in the saved auction ID through integration</description>
+        <externalId>false</externalId>
+        <label>Saved Auction ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sell_fee_item_pack_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Fee Item Pack Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Seller_90_Day_Sell_Thru_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.X90_Day_Sell_Thru_Rate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller 90 Day Sell-Thru Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Accepted_RecPrice_1or0__c</fullName>
+        <description>Seller Accepted Recommended Price 1 or 0 (Numeric representation of the Seller_Accepted_Recommended_Price__c checkbox)</description>
+        <externalId>false</externalId>
+        <formula>IF((auto_sell__c = TRUE &amp;&amp; Relevant_Recommended_Floor_Price__c &lt;&gt; 0 &amp;&amp; Relevant_Recommended_Ceiling_Price__c &lt;&gt; 0) 
+   &amp;&amp; (
+         ((floor_price__c &gt;= Relevant_Recommended_Floor_Price__c) &amp;&amp; (floor_price__c &lt;= Relevant_Recommended_Ceiling_Price__c) &amp;&amp; (Relevant_Recommended_Price_Date__c &lt; start_time__c ))
+         ||  
+         (floor_price__c &lt;= Relevant_Recommended_Floor_Price__c)
+       )
+, 
+1, 
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Accepted RecPrice 1or0</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Accepted_Recommended_Price__c</fullName>
+        <description>Checkbox that is marked as True if the Seller listed the vehicle up for Auction using the price recommended to them by the Pricing Manager, 
+Added auto_sell__c = TRUE , which will ignore auctions that are Live Appraisals</description>
+        <externalId>false</externalId>
+        <formula>AND((auto_sell__c = TRUE), 
+OR( 
+AND( 
+floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= Relevant_Recommended_Ceiling_Price__c , Relevant_Recommended_Price_Date__c &lt; start_time__c 
+),(floor_price__c &lt;= Relevant_Recommended_Floor_Price__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Accepted Recommended Price?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealer_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Dealer ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealership_SFDC_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Seller_Dealership__r.Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Dealership SFDC Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Populated by Integration to indicate who provided the vehicle for the auction</description>
+        <externalId>false</externalId>
+        <label>Seller Dealership</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Launched at Auction</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Inventory_Id__c</fullName>
+        <description>Field populated through Inbound integration from the seller_inventory_id field found on the saved_auctions table in acv_prod</description>
+        <externalId>false</externalId>
+        <label>Seller Inventory Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_License_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.License_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller License Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Payment_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Payment Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Payment_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Payment Method</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ach</fullName>
+                    <default>false</default>
+                    <label>ach</label>
+                </value>
+                <value>
+                    <fullName>check</fullName>
+                    <default>false</default>
+                    <label>check</label>
+                </value>
+                <value>
+                    <fullName>none</fullName>
+                    <default>false</default>
+                    <label>none</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Seller_Payment_Tracking_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Payment Tracking Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.BillingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Tracking_Number_For_Titles__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Tracking Number For Titles</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Tracking_URL_for_Titles__c</fullName>
+        <description>stores the tracking number for title shipments from seller to acv</description>
+        <externalId>false</externalId>
+        <label>Seller Tracking URL for Titles</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Created_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Source Created Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager_Buyer__c</fullName>
+        <externalId>false</externalId>
+        <formula>buyer_dealership__r.Owner.FirstName &amp; &quot; &quot; &amp;  buyer_dealership__r.Owner.LastName</formula>
+        <label>Territory Manager - Buyer</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager_Seller__c</fullName>
+        <externalId>false</externalId>
+        <formula>Seller_Dealership__r.Owner.FirstName &amp; &quot; &quot; &amp; Seller_Dealership__r.Owner.LastName</formula>
+        <label>Territory Manager - Seller</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_Since_Auction_End__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( (NOW()-end_time__c) &gt; 0,
+TEXT(FLOOR( (NOW()-end_time__c))) &amp; &quot; days &quot; &amp;
+TEXT( FLOOR( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ))) &amp; &quot; hours &quot; &amp; 
+TEXT( ROUND(60 * (ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8) - FLOOR(
+ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp; &quot; mins &quot;
+, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Time Since Auction Ended</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Cases__c</fullName>
+        <description>Populated by DLRS</description>
+        <externalId>false</externalId>
+        <label>Title Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Shipping_Status_Seller_To_ACV__c</fullName>
+        <description>Shipping status updated from easypost and pulled down into title case</description>
+        <externalId>false</externalId>
+        <label>Title Shipping Status Seller To ACV</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Status_1__c</fullName>
+        <description>Stores the title status information. this is being pushed up from the titles case and pulled down into unwind cases</description>
+        <externalId>false</externalId>
+        <label>Title Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Arbitration_Cases__c</fullName>
+        <externalId>false</externalId>
+        <formula>Closed_Arbitration_Cases__c + Open_Arbitration_Cases__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Arbitration Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Date_Delivered__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Date Delivered</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Transportation_Price_to_Customer__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Price to Customer</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Transportation_Requested_In_App__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Transportation Requested In-App</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VCI_Creator__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Set by data integration.</description>
+        <externalId>false</externalId>
+        <label>VCI_Creator</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Auctions (VCI_Creator)</relationshipLabel>
+        <relationshipName>Auctions3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>VCI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Set by integration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Vehicle Condition Inspector for this Auction&apos;s Condition Report.</inlineHelpText>
+        <label>VCI</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Auctions (VCI)</relationshipLabel>
+        <relationshipName>Auctions2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <externalId>false</externalId>
+        <label>VIN</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_ID_formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>vehicle_id__r.id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Make__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Trim__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Trim</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Year</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Waived_by_Pricing_Manager__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Waived by Pricing Manager</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Winning_Bid_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>High Bid Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>X4_Hours_No_Buyer__c</fullName>
+        <externalId>false</externalId>
+        <formula>AND (CONTAINS(Time_Since_Auction_End__c, &quot;4 hours&quot;), 
+CONTAINS(TEXT(status__c), &quot;accepted&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>4 Hours No Buyer</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>XDate_Vehicle_Delivered__c</fullName>
+        <externalId>false</externalId>
+        <label>XDate Vehicle Delivered</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>XDate_Vehicle_Picked_Up__c</fullName>
+        <externalId>false</externalId>
+        <label>XDate Vehicle Picked Up</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Year_Make_Model__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(vehicle_id__r.Year__c) &amp; &quot; &quot; &amp; vehicle_id__r.make__c &amp; &quot; &quot; &amp; vehicle_id__r.model__c &amp; &quot; &quot; &amp;  vehicle_id__r.trim__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year/Make/Model/Trim</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>address_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Integrated field. Stores a reference to the address of the vehicle&apos;s pickup location.</description>
+        <externalId>false</externalId>
+        <label>Pick-up Address</label>
+        <referenceTo>Transportation_Address__c</referenceTo>
+        <relationshipLabel>Auction Pick-ups</relationshipLabel>
+        <relationshipName>Auctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>auto_sell__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>False = Live Appraisal
+True = Auction
+Populated via Tools data</description>
+        <externalId>false</externalId>
+        <inlineHelpText>False = Live Appraisal
+True = Auction</inlineHelpText>
+        <label>Auto-sell</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>blue_light__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Blue Light</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>buy_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Buy Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>buyer_credit__c</fullName>
+        <externalId>false</externalId>
+        <label>Buyer Credit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>buyer_dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Populated by Integration to indicate the buying dealer at auction.</description>
+        <externalId>false</externalId>
+        <label>Buyer Dealership</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>High Bid at Auction</relationshipLabel>
+        <relationshipName>BuyerAuctions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>buyer_total__c</fullName>
+        <externalId>false</externalId>
+        <label>Buyer Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>category__c</fullName>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>Compact Car</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Mid-Size Car</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Full-Size Car</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>Luxury Car</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>Sporty Car</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>Pickup</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>Mid-Size SUV</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>Full-Size SUV</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>Cargo Van</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>Passenger Van</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>Crossover Van</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>Small Car</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>Commercial Truck</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>Crossover</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>Compact Van</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>Crossover SUV</label>
+                </value>
+                <value>
+                    <fullName>17</fullName>
+                    <default>false</default>
+                    <label>ATV</label>
+                </value>
+                <value>
+                    <fullName>18</fullName>
+                    <default>false</default>
+                    <label>Cruiser</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>Jet Boats</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>On/Off Road</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>Off Road</label>
+                </value>
+                <value>
+                    <fullName>22</fullName>
+                    <default>false</default>
+                    <label>Powersports</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>Scooter</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>Snowmobile</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>Street</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>Utility</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>Watercraft</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>Recreational Vehicle</label>
+                </value>
+                <value>
+                    <fullName>29</fullName>
+                    <default>false</default>
+                    <label>Trailer</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>Medium Duty Truck</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>Heavy Duty Truck</label>
+                </value>
+                <value>
+                    <fullName>32</fullName>
+                    <default>false</default>
+                    <label>Compact</label>
+                </value>
+                <value>
+                    <fullName>34</fullName>
+                    <default>false</default>
+                    <label>Small Crossover/SUV</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>Large Crossover/SUV</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>SUV</label>
+                </value>
+                <value>
+                    <fullName>37</fullName>
+                    <default>false</default>
+                    <label>Minivan</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>Full-Size Van</label>
+                </value>
+                <value>
+                    <fullName>39</fullName>
+                    <default>false</default>
+                    <label>Luxury Crossover</label>
+                </value>
+                <value>
+                    <fullName>40</fullName>
+                    <default>false</default>
+                    <label>Small Luxury Crossover/SUV</label>
+                </value>
+                <value>
+                    <fullName>41</fullName>
+                    <default>false</default>
+                    <label>Large Luxury Crossover/SUV</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>Luxury Crossover SUV</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>Large Truck</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>condition_rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Condition Rating</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>created__c</fullName>
+        <externalId>false</externalId>
+        <label>Source Created Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>end_time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>exterior_condition__c</fullName>
+        <externalId>false</externalId>
+        <label>Exterior Condition</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>floor_price__c</fullName>
+        <externalId>false</externalId>
+        <label>Floor Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>green_light__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Green Light</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This will be the same as Auction Number (Name), but is marked as an external ID for integration purposes.</description>
+        <externalId>true</externalId>
+        <label>Auction ID</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>interior_condition__c</fullName>
+        <externalId>false</externalId>
+        <label>Interior Condition</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>mechanical_condition__c</fullName>
+        <externalId>false</externalId>
+        <label>Mechanical Condition</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>100000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>odometer__c</fullName>
+        <externalId>false</externalId>
+        <label>Odometer</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>payment_method__c</fullName>
+        <description>Integrated field.</description>
+        <externalId>false</externalId>
+        <label>Buyer Payment Method</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>payment_status__c</fullName>
+        <description>Integrated field.</description>
+        <externalId>false</externalId>
+        <label>Buyer Payment Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Cleared</fullName>
+                    <default>false</default>
+                    <label>Cleared</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Declined</fullName>
+                    <default>false</default>
+                    <label>Declined</label>
+                </value>
+                <value>
+                    <fullName>Deposited</fullName>
+                    <default>false</default>
+                    <label>Deposited</label>
+                </value>
+                <value>
+                    <fullName>Error</fullName>
+                    <default>false</default>
+                    <label>Error</label>
+                </value>
+                <value>
+                    <fullName>hold_on_file</fullName>
+                    <default>false</default>
+                    <label>Hold On File</label>
+                </value>
+                <value>
+                    <fullName>Paid</fullName>
+                    <default>false</default>
+                    <label>Paid</label>
+                </value>
+                <value>
+                    <fullName>payment_pending</fullName>
+                    <default>false</default>
+                    <label>Payment Pending</label>
+                </value>
+                <value>
+                    <fullName>payment_returned</fullName>
+                    <default>false</default>
+                    <label>Payment Returned</label>
+                </value>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Recorded</fullName>
+                    <default>false</default>
+                    <label>Recorded</label>
+                </value>
+                <value>
+                    <fullName>Refunded</fullName>
+                    <default>false</default>
+                    <label>Refunded</label>
+                </value>
+                <value>
+                    <fullName>refund_pending</fullName>
+                    <default>false</default>
+                    <label>Refund Pending</label>
+                </value>
+                <value>
+                    <fullName>Success</fullName>
+                    <default>false</default>
+                    <label>Success</label>
+                </value>
+                <value>
+                    <fullName>ta_hold</fullName>
+                    <default>false</default>
+                    <label>TA Hold</label>
+                </value>
+                <value>
+                    <fullName>ta_on_file</fullName>
+                    <default>false</default>
+                    <label>TA On File</label>
+                </value>
+                <value>
+                    <fullName>to_be_floored</fullName>
+                    <default>false</default>
+                    <label>To Be Floored</label>
+                </value>
+                <value>
+                    <fullName>to_be_picked_up</fullName>
+                    <default>false</default>
+                    <label>To Be Picked Up</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sell_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>sell_fee_item_base_sell_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Fee Item Base Sell Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>sell_fee_item_gl_insurance_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Fee Item GL Insurance Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>sell_fee_item_vci_fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Fee Item VCI Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>sellable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sellable</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>seller__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Seller Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Auctions as Seller</relationshipLabel>
+        <relationshipName>Auctions1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>seller_credit__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Credit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>seller_total__c</fullName>
+        <externalId>false</externalId>
+        <label>Seller Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>start_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>awaiting_acceptance</fullName>
+                    <default>false</default>
+                    <label>Awaiting Acceptance</label>
+                </value>
+                <value>
+                    <fullName>counter_accepted</fullName>
+                    <default>false</default>
+                    <label>Counter Accepted</label>
+                </value>
+                <value>
+                    <fullName>counter_original_accepted</fullName>
+                    <default>false</default>
+                    <label>Counter Original Accepted</label>
+                </value>
+                <value>
+                    <fullName>counter_original_declined</fullName>
+                    <default>false</default>
+                    <label>Counter Original Declined</label>
+                </value>
+                <value>
+                    <fullName>counter_sent</fullName>
+                    <default>false</default>
+                    <label>Counter Sent</label>
+                </value>
+                <value>
+                    <fullName>ended_accepted</fullName>
+                    <default>false</default>
+                    <label>Ended Accepted</label>
+                </value>
+                <value>
+                    <fullName>ended_declined</fullName>
+                    <default>false</default>
+                    <label>Ended Declined</label>
+                </value>
+                <value>
+                    <fullName>ended_killed</fullName>
+                    <default>false</default>
+                    <label>Ended Killed</label>
+                </value>
+                <value>
+                    <fullName>ended_nobid</fullName>
+                    <default>false</default>
+                    <label>Ended No Bid</label>
+                </value>
+                <value>
+                    <fullName>ended_unwound</fullName>
+                    <default>false</default>
+                    <label>Ended Unwound</label>
+                </value>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>staging</fullName>
+                    <default>false</default>
+                    <label>staging</label>
+                </value>
+                <value>
+                    <fullName>Preview</fullName>
+                    <default>false</default>
+                    <label>Preview</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>updated__c</fullName>
+        <externalId>false</externalId>
+        <label>Source Updated Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>vehicle_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>VIN</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Vehicle Auctions</relationshipLabel>
+        <relationshipName>VehicleAuction</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>yellow_light__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Yellow Light</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Auction</label>
+    <listViews>
+        <fullName>Accepted_Auctions</fullName>
+        <columns>NAME</columns>
+        <columns>id__c</columns>
+        <columns>status__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>end_time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <label>Accepted Auctions</label>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>payment_method__c</columns>
+        <columns>id__c</columns>
+        <columns>NAME</columns>
+        <columns>floor_price__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Release_DateTime__c</columns>
+        <columns>odometer__c</columns>
+        <columns>Seller_Payment_Date__c</columns>
+        <columns>condition_rating__c</columns>
+        <columns>Open_Arbitration_Cases__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>status__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>end_time__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Active_Auctions</fullName>
+        <columns>Territory_Manager_Seller__c</columns>
+        <columns>id__c</columns>
+        <columns>NAME</columns>
+        <columns>floor_price__c</columns>
+        <columns>odometer__c</columns>
+        <columns>condition_rating__c</columns>
+        <columns>Open_Arbitration_Cases__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>status__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>end_time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_sent,Counter Sent</value>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>All Active Auctions</label>
+    </listViews>
+    <listViews>
+        <fullName>All_With_Territories_and_Seller</fullName>
+        <columns>id__c</columns>
+        <columns>NAME</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>floor_price__c</columns>
+        <columns>odometer__c</columns>
+        <columns>condition_rating__c</columns>
+        <columns>Open_Arbitration_Cases__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>status__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>end_time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>ended_accepted,ended_declined,ended_killed,ended_nobid,ended_unwound</value>
+        </filters>
+        <label>All With Seller and Buyer</label>
+    </listViews>
+    <listViews>
+        <fullName>Auction_Consumer_listview</fullName>
+        <columns>NAME</columns>
+        <columns>id__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Auction Consumer listview</label>
+    </listViews>
+    <listViews>
+        <fullName>Failed_Auctions</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>Time_Since_Auction_End__c</columns>
+        <columns>NAME</columns>
+        <columns>MMR_Link__c</columns>
+        <columns>ACV_Condition_Report__c</columns>
+        <columns>Recent_Seller_s_Failed_Runs__c</columns>
+        <columns>Year_Make_Model__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>floor_price__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>status__c</columns>
+        <columns>Waived_by_Pricing_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_original_declined,ended_declined,ended_nobid</value>
+        </filters>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Count_of_Active_Pricing_Recommendations__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Recent_Seller_s_Failed_Runs__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </filters>
+        <label>Failed Auctions</label>
+    </listViews>
+    <listViews>
+        <fullName>IST_Sold_Auctions_2_0</fullName>
+        <booleanFilter>1 AND 6 AND 7 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>status__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>payment_method__c</columns>
+        <columns>payment_status__c</columns>
+        <columns>ACV_Transportation_Requested__c</columns>
+        <columns>Date_Picked_Up__c</columns>
+        <columns>Date_Delivered__c</columns>
+        <columns>Auction_Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST_Rep__c</field>
+            <operation>equals</operation>
+            <value>Tim Olsen</value>
+        </filters>
+        <label>IST Sold Auctions 2.0</label>
+    </listViews>
+    <listViews>
+        <fullName>IST_Sold_Auctions_View_Daniel_Erbacher</fullName>
+        <booleanFilter>1 AND 6 AND 7 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>XDate_Vehicle_Picked_Up__c</columns>
+        <columns>XDate_Vehicle_Delivered__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST_Rep__c</field>
+            <operation>equals</operation>
+            <value>Daniel Erbacher</value>
+        </filters>
+        <label>IST Sold Auctions View - Daniel Erbacher</label>
+    </listViews>
+    <listViews>
+        <fullName>IST_Sold_Auctions_View_Elisa_Galante</fullName>
+        <booleanFilter>1 AND 6 AND 7 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>XDate_Vehicle_Picked_Up__c</columns>
+        <columns>XDate_Vehicle_Delivered__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST_Rep__c</field>
+            <operation>equals</operation>
+            <value>Elisa Galante</value>
+        </filters>
+        <label>IST Sold Auctions View - Elisa Galante</label>
+    </listViews>
+    <listViews>
+        <fullName>IST_Sold_Auctions_View_Master_View</fullName>
+        <booleanFilter>1 AND 6 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>XDate_Vehicle_Picked_Up__c</columns>
+        <columns>XDate_Vehicle_Delivered__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <label>IST Sold Auctions View - Master View</label>
+    </listViews>
+    <listViews>
+        <fullName>IST_Sold_Auctions_View_Tim_Olsen</fullName>
+        <booleanFilter>1 AND 6 AND 7 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>XDate_Vehicle_Picked_Up__c</columns>
+        <columns>XDate_Vehicle_Delivered__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST_Rep__c</field>
+            <operation>equals</operation>
+            <value>Tim Olsen</value>
+        </filters>
+        <label>IST Sold Auctions View - Tim Olsen</label>
+    </listViews>
+    <listViews>
+        <fullName>Inside_Sales_Sold_Auctions_View</fullName>
+        <booleanFilter>1 AND 6 AND 7 AND (2 OR 3 OR 4 OR 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>end_time__c</columns>
+        <columns>Buyer_IST_Rep__c</columns>
+        <columns>Payment_Selected__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>payment_status__c</columns>
+        <columns>Transportation_Date_Delivered__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>buyer_dealership__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Payment_Selected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Delivered__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>XDate_Vehicle_Picked_Up__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterThan</operation>
+            <value>3/12/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST_Rep__c</field>
+            <operation>equals</operation>
+            <value>Kaley Doyle</value>
+        </filters>
+        <label>IST Sold Auctions View - Joe Naylor</label>
+    </listViews>
+    <listViews>
+        <fullName>Nick_s_View_Backup</fullName>
+        <columns>Seller_Dealership__c</columns>
+        <columns>VCI__c</columns>
+        <columns>Year_Make_Model__c</columns>
+        <columns>MMR_AutoCheck_URL__c</columns>
+        <columns>ACV_Condition_Report__c</columns>
+        <columns>MMR_Link__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>Seller_90_Day_Sell_Thru_Rate__c</columns>
+        <columns>odometer__c</columns>
+        <columns>end_time__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>Territory_Manager_Seller__c</columns>
+        <columns>Count__c</columns>
+        <columns>Time_Since_Auction_End__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_original_declined,ended_declined,ended_killed,ended_nobid</value>
+        </filters>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>start_time__c</field>
+            <operation>equals</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <filters>
+            <field>Most_Recent_Auction__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Recent_Seller_s_Failed_Runs__c</field>
+            <operation>equals</operation>
+            <value>2</value>
+        </filters>
+        <filters>
+            <field>Seller_90_Day_Sell_Thru_Rate__c</field>
+            <operation>lessOrEqual</operation>
+            <value>51</value>
+        </filters>
+        <filters>
+            <field>Count_of_Active_Pricing_Recommendations__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Is_Net_Sold__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Dealer_Type__c</field>
+            <operation>notContain</operation>
+            <value>commercial</value>
+        </filters>
+        <label>Voyage</label>
+    </listViews>
+    <listViews>
+        <fullName>Possible_Unwinds</fullName>
+        <columns>NAME</columns>
+        <columns>status__c</columns>
+        <columns>payment_status__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>payment_status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_accepted,counter_original_accepted,ended_accepted</value>
+        </filters>
+        <filters>
+            <field>Business_Days_Since_Ended__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>15</value>
+        </filters>
+        <label>Possible Unwinds</label>
+    </listViews>
+    <listViews>
+        <fullName>Recommended_Price_Waived</fullName>
+        <columns>NAME</columns>
+        <columns>MMR_Link__c</columns>
+        <columns>ACV_Condition_Report__c</columns>
+        <columns>floor_price__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>status__c</columns>
+        <columns>Recent_Seller_s_Failed_Runs__c</columns>
+        <columns>Waived_by_Pricing_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_original_declined,ended_declined,ended_nobid</value>
+        </filters>
+        <filters>
+            <field>Count_of_Active_Pricing_Recommendations__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </filters>
+        <label>Recommended Price Waived</label>
+    </listViews>
+    <listViews>
+        <fullName>Resolutions_Queue_Auction</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Resolutions Queue</label>
+        <queue>Resolutions_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Run_2</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9</booleanFilter>
+        <columns>Condition_Report_ID__c</columns>
+        <columns>Time_Since_Auction_End__c</columns>
+        <columns>Territory_Manager_Seller__c</columns>
+        <columns>Seller_90_Day_Sell_Thru_Rate__c</columns>
+        <columns>Year_Make_Model__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>Recent_Seller_s_Failed_Runs__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>contains</operation>
+            <value>Counter Original Declined,Ended Declined,Ended Killed,Ended No Bid</value>
+        </filters>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Count_of_Pricing_Recommendations__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Recent_Seller_s_Failed_Runs__c</field>
+            <operation>equals</operation>
+            <value>2</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <filters>
+            <field>Most_Recent_Auction__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_90_Day_Sell_Thru_Rate__c</field>
+            <operation>lessOrEqual</operation>
+            <value>50</value>
+        </filters>
+        <filters>
+            <field>Dealer_Type__c</field>
+            <operation>notContain</operation>
+            <value>Commercial</value>
+        </filters>
+        <filters>
+            <field>Seller_Dealership__c</field>
+            <operation>notContain</operation>
+            <value>Paul Miller Ford,crown motors</value>
+        </filters>
+        <label>Run 2</label>
+        <sharedTo>
+            <role>Pricing_Manager</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Run_41</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9 AND 10</booleanFilter>
+        <columns>Time_Since_Auction_End__c</columns>
+        <columns>Recent_Seller_s_Failed_Runs__c</columns>
+        <columns>NAME</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>Year_Make_Model__c</columns>
+        <columns>Seller_90_Day_Sell_Thru_Rate__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>Condition_Report_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>contains</operation>
+            <value>Counter Original Declined,Ended Declined,Ended Killed,Ended No Bid</value>
+        </filters>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Count_of_Pricing_Recommendations__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Recent_Seller_s_Failed_Runs__c</field>
+            <operation>equals</operation>
+            <value>4</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>5/25/2020 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Most_Recent_Auction__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Dealer_Type__c</field>
+            <operation>notContain</operation>
+            <value>Commercial</value>
+        </filters>
+        <filters>
+            <field>Seller_Dealership__c</field>
+            <operation>notContain</operation>
+            <value>ACV Auctions</value>
+        </filters>
+        <filters>
+            <field>Seller_Dealership__c</field>
+            <operation>notContain</operation>
+            <value>Paddock Chevrolet</value>
+        </filters>
+        <filters>
+            <field>Dealer_Type__c</field>
+            <operation>notContain</operation>
+            <value>Independent - ACV Certified</value>
+        </filters>
+        <label>Run 4</label>
+        <sharedTo>
+            <role>Pricing_Manager</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Vehicles_Needing_Pricing</fullName>
+        <columns>Seller_90_Day_Sell_Thru_Rate__c</columns>
+        <columns>Time_Since_Auction_End__c</columns>
+        <columns>end_time__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>NAME</columns>
+        <columns>MMR_Link__c</columns>
+        <columns>ACV_Condition_Report__c</columns>
+        <columns>Recent_Seller_s_Failed_Runs__c</columns>
+        <columns>Year_Make_Model__c</columns>
+        <columns>Seller_Dealership__c</columns>
+        <columns>floor_price__c</columns>
+        <columns>Winning_Bid_Price__c</columns>
+        <columns>status__c</columns>
+        <columns>Waived_by_Pricing_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>status__c</field>
+            <operation>equals</operation>
+            <value>counter_original_declined,ended_declined,ended_nobid</value>
+        </filters>
+        <filters>
+            <field>Count_of_Active_Pricing_Recommendations__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Recent_Seller_s_Failed_Runs__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>4</value>
+        </filters>
+        <filters>
+            <field>end_time__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>N_DAYS_AGO:10</value>
+        </filters>
+        <filters>
+            <field>Waived_by_Pricing_Manager__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Most_Recent_Auction__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Failed Auctions Awaiting Pricing (&gt;=4)</label>
+    </listViews>
+    <listViews>
+        <fullName>Vehicles_in_ACV_s_Possession</fullName>
+        <columns>NAME</columns>
+        <columns>MMR_Link__c</columns>
+        <columns>ACV_Condition_Report__c</columns>
+        <columns>vehicle_id__c</columns>
+        <columns>Dealer_ID__c</columns>
+        <columns>status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Dealer_ID__c</field>
+            <operation>equals</operation>
+            <value>4308</value>
+        </filters>
+        <label>Vehicles in ACV&apos;s Possession</label>
+    </listViews>
+    <nameField>
+        <label>Auction Number</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Auctions</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Buyer_Contact__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>buyer_dealership__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>green_light__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Seller_Dealership__c</lookupDialogsAdditionalFields>
+        <massQuickActions>Waived_by_Pricing_Manager</massQuickActions>
+        <searchResultsAdditionalFields>Buyer_Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>buyer_dealership__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Seller_Dealership__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>green_light__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>end_time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Winning_Bid_Price__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Only_One_Arb_Case_Allowed</fullName>
+        <active>false</active>
+        <description>This validation rule enforces the 1-to-1 model for Arb Cases to Auctions that is imposed by the ACV data model that we integrate with.</description>
+        <errorConditionFormula>Total_Arbitration_Cases__c &gt; 1</errorConditionFormula>
+        <errorMessage>There appears to be an Arbitration Case already associated with this Auction ID. An Auction can only have a single Arbitration against it, so please work off the existing Case. Contact your System Administrator for additional assistance.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

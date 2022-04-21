@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>48 Hour Unwind to Seller</name>
+    <style>freeForm</style>
+    <subject>Subject: 48 Hour Notice {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Hello,
+
+
+You were previously notified that the purchasing customer of {!Case.Vehicle_Year__c} {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c} {!Case.VIN__c} opted to place their 48 hour notice to void the sale due to no title effective {!Case.Date_Time_of_48_Hour_Notice__c}.
+
+
+Unfortunately, the buyer has opted to invoke his right to unwind the sale.
+
+
+ACV will arrange transportation to have the vehicle removed from the purchaser’s location back to your lot and you will be invoiced for this cost.  If you opt to handle the transportation yourself, please advise ACV immediately to avoid us dispatching transport and incurring unnecessary fees.
+
+
+Please reach out to titles@acvauctions.com with any questions.
+
+
+Thank you,
+
+
+Titles Team
+
+ACV Auctions</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

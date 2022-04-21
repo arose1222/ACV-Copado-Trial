@@ -1,0 +1,15 @@
+<apex:page standardController="Campaign" sidebar="false" extensions="alycecom.CampaignSettingsController" showHeader="false">
+    <apex:form id="MainForm">
+        <apex:inputHidden value="{!Campaign.alycecom__Alyce_Campaign_Id__c}"/>
+        <apex:outputPanel >
+            <apex:iframe src="{!$Setup.alycecom__Alyce_Endpoints__c.alycecom__AlyceBase__c}/salesforce/v2/iframe/open/campaign-settings?sf_id={!SFId}&sf_version={!SFVersion}&token={!AccessToken}&payload={!URLENCODE(PayloadJson)}&cb_success={!BaseURL}/apex/alycecom__CampaignSettingsRedirect&cb_error={!BaseURL}/apex/alycecom__CampaignSettingsRedirect" Id="CampaignSettingsIframe"/>
+        </apex:outputPanel>
+    </apex:form>
+    <script>
+        function setHeight(){
+            var height = window.innerHeight;
+            document.getElementById("CampaignSettingsIframe").style.height = height+"px";
+        }
+        setHeight();
+    </script>
+</apex:page>

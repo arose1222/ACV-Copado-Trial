@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vendor Services</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vendor Services</value>
+    </caseValues>
+    <fields>
+        <label><!-- Cost Per Service --></label>
+        <name>Cost_Per_Service__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service --></label>
+        <name>Service__c</name>
+        <picklistValues>
+            <masterLabel>Duplicate</masterLabel>
+            <translation><!-- Duplicate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lien Release</masterLabel>
+            <translation><!-- Lien Release --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- State-Based Service Coverage --></label>
+        <name>State_Based_Service_Coverage__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preferred</masterLabel>
+            <translation><!-- Preferred --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Vendor Name --></label>
+        <name>Vendor_Name__c</name>
+        <relationshipLabel><!-- Vendor Services --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

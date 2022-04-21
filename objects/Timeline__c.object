@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>tracRecurringEventWrapper</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>tracRecurringEventWrapper</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Revolving_Appointment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object for defining a time period for creating recurring records</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Timelines</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Average_Number_Cars__c</fullName>
+        <description>Field for user to capture average number of cars for the visit</description>
+        <externalId>false</externalId>
+        <label>Average Number of Cars</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deactivated_by_Halt_True360_Checkbox__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This Revolving Appointment was deactivated by the Halt True360 Checkbox on the Account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This Revolving Appointment was deactivated by the Halt True360 Checkbox on the Account.</inlineHelpText>
+        <label>Deactivated by Halt True360 Checkbox</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>Date that the timeline ends. This can be left null for an indefinite timeline</description>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Farthest_Date_Generated__c</fullName>
+        <description>This is the date farthest in the future that any work order or service appointment generated by this revolving appointment has been scheduled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Farthest date in the future a work order or service appointment has been scheduled from this revolving appointment.</inlineHelpText>
+        <label>Farthest Date Generated</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Is this Timeline Currently Active</description>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Modified_Since_Last_Batch__c</fullName>
+        <externalId>false</externalId>
+        <formula>LastModifiedDate &gt;  Run_Date_of_Previous_Batch__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Modified Since Last Batch</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Postal_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Postal Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Run_Date_of_Previous_Batch__c</fullName>
+        <description>Past date of the last time the batch ran</description>
+        <externalId>false</externalId>
+        <label>Run Date of Previous Batch</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Service_Resource_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Resource__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Resource Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Resource__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Service resource to be assigned to the generated service appointments/work orders</description>
+        <externalId>false</externalId>
+        <label>Service Resource</label>
+        <referenceTo>ServiceResource</referenceTo>
+        <relationshipLabel>Revolving Appointments</relationshipLabel>
+        <relationshipName>Revolving_Appointments</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Service_Territory__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Service_Territory__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Territory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <description>Day that the timeline begins</description>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Street__c</fullName>
+        <description>Street Address for all Service Appointments and Work Orders.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Street Address for all Service Appointments and Work Orders.</inlineHelpText>
+        <label>Street</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>User who&apos;s data will be generated</description>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Timelines</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Type__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>This field is part of new implementation for Revolving Appointment where Revolving appointment UI will have field work type to get selected</description>
+        <externalId>false</externalId>
+        <label>Work Type</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Revolving Appointments can only be assigned to select Work Types. Please ensure you are selecting an appropriate Work Type.</errorMessage>
+            <filterItems>
+                <field>WorkType.Allow_for_Revolving_Appointments__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>WorkType</referenceTo>
+        <relationshipLabel>Revolving Appointments</relationshipLabel>
+        <relationshipName>Revolving_Appointments</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Revolving Appointment</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Service_Resource__c</columns>
+        <columns>Average_Number_Cars__c</columns>
+        <columns>Is_Active__c</columns>
+        <columns>Service_Territory__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RA-{00000}</displayFormat>
+        <label>Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Revolving Appointments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Account_with_billing_address_required</fullName>
+        <active>true</active>
+        <description>Do not allow Revolving Appointments to be created unless the related Account has a billing address.</description>
+        <errorConditionFormula>ISBLANK(Account__r.BillingAddress)</errorConditionFormula>
+        <errorMessage>An account with a billing address is required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Average_Number_of_Cars_is_Required</fullName>
+        <active>true</active>
+        <description>You must fill in the Average Number of Cars for a Revolving Appointment. Allows for historical records to ignore this, due to lack of backfill</description>
+        <errorConditionFormula>ISBLANK(Average_Number_Cars__c) &amp;&amp;
+OR( 
+ISBLANK( CreatedDate ), 
+!ISBLANK( CreatedDate ) &amp;&amp; DateValue(CreatedDate) &gt; DATE( 2021, 01, 22 ) )</errorConditionFormula>
+        <errorMessage>You must fill in the Average Number of Cars for a Revolving Appointment</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Prevent_True360_appointments</fullName>
+        <active>true</active>
+        <description>Prevents the creation of True360 Revolving Appointments based on the Account&apos;s &quot;Halt True360 Appointments&quot; field.</description>
+        <errorConditionFormula>And( Work_Type__r.Work_Type_Unique_ID__c = &apos;true360&apos;,  Account__r.Halt_True360_Appointments__c,  ISNEW())</errorConditionFormula>
+        <errorMessage>This dealership is not approved for any True 360 inspections at this time.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

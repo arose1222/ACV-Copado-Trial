@@ -1,0 +1,113 @@
+<!--
+ - @description A single rule (or rule collection) that governs the repetition
+ - @name tracRecurringEventRule
+ - @author Daniel Labonte, Traction on Demand
+ - @date 2019-08-22
+ -->
+
+<!-- Recurring Event Rule -->
+<template>
+    <lightning-accordion-section if:true={isActive} name={recordId} label="Repeats" class="slds-border_top slds-border_bottom">
+        <lightning-record-edit-form record-id={recordId} object-api-name="Occurrence__c">
+            <lightning-messages></lightning-messages>
+        </lightning-record-edit-form>
+
+        <!-- Removed Due to Lack of a need to 'Delete' an Occurrence, since there will only be 1 going forward -->
+        <!--<div style="position: relative;">
+            <button class="slds-button_destructive top-right" onclick={handleDeleteClick}>Delete</button>
+        </div>-->
+        <span style="font-size: 8pt;">{message}</span>
+        <c-trac-mobile-picklist
+                options={optionsEvery}
+                onvaluechange={handleEverySelect}>
+        </c-trac-mobile-picklist>
+
+        <div class="slds-m-vertical_small">
+            <c-trac-mobile-picklist
+                    options={optionsFrequency}
+                    onvaluechange={handleFrequencyChange}>
+            </c-trac-mobile-picklist>
+        </div>
+
+
+        <!--WEEK VIEW-->
+        <template if:true={isWeekly}>
+            <template for:each={days} for:item="day">
+                <div key={day}>
+                    <c-trac-button-stateful
+                            identifier={day.label}
+                            button-class="slds-text-align_left"
+                            is-dynamic="true"
+                            label-when-off={day.label}
+                            label-when-on={day.label}
+                            selected={day.selected}
+                            ontoggle={handleDayClick}>
+                    </c-trac-button-stateful>
+                </div>
+            </template>
+        </template>
+
+
+        <!--MONTH VIEW-->
+        <template if:true={isMonthly}>
+            <c-trac-button-stateful
+                    identifier="repeat"
+                    label-when-off="On the"
+                    label-when-on="Each"
+                    selected={isCalendar}
+                    ontoggle={handleMonthOptionClick}>
+            </c-trac-button-stateful>
+
+            <div if:false={isCalendar} class="slds-grid slds-wrap" style="margin-top: 5px;">
+                <div key={date} class="slds-col slds-size_1-of-2">
+                    <c-trac-mobile-picklist options={getMonthOccurOptions} onvaluechange={handleOccurSelect}></c-trac-mobile-picklist>
+                </div>
+                <div key={date} class="slds-col slds-size_1-of-2">
+                    <c-trac-mobile-picklist options={getMonthlyDayOptions} onvaluechange={handleDayOptSelect}></c-trac-mobile-picklist>
+                </div>
+            </div>
+
+            <div if:true={isCalendar} class="slds-grid slds-wrap">
+                <template for:each={dates} for:item="date">
+                    <div key={date} class="slds-col slds-size_1-of-7">
+                        <c-trac-button-stateful
+                                identifier={date.label}
+                                is-dynamic="true"
+                                label-when-off={date.label}
+                                label-when-on={date.label}
+                                selected={date.selected}
+                                ontoggle={handleDateClick}>
+                        </c-trac-button-stateful>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <button class="custom-button" onclick={handleTimeOptionClick}>{timeLabel}</button>
+
+        <div if:true={timeOption} class="slds-grid slds-m-bottom--small">
+            <div class="slds-col">
+                <lightning-input
+                        type="time"
+                        class="startTime"
+                        name="startTime"
+                        label="Arrival Window Start"
+                        value={startTime}
+                        placeholder="Start Time"
+                        onchange={handleStartTimeChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col">
+                <lightning-input
+                        type="time"
+                        class="endTime"
+                        name="endTime"
+                        label="Arrival Window End"
+                        value={endTime}
+                        placeholder="End Time"
+                        onchange={handleEndTimeChange}>
+                </lightning-input>
+            </div>
+        </div>
+    </lightning-accordion-section>
+</template>

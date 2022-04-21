@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Affiliation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Affiliations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- ACV Users --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Use this field to indicate whether the Affiliation is still active. It is best practice to not delete Affiliations, but mark them as Active or not appropriately. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Associated Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If applicable, enter the date when the Affiliation ended. --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- From Historical Load --></label>
+        <name>From_Historical_Load__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receive Email --></label>
+        <name>Receive_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receive Push --></label>
+        <name>Receive_Push__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the date that the Affiliation began. --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>admin</masterLabel>
+            <translation><!-- admin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>backoffice</masterLabel>
+            <translation><!-- backoffice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>rep</masterLabel>
+            <translation><!-- rep --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dealership Member Id --></label>
+        <name>id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact --></label>
+        <name>primary_contact__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Cannot change the Account or Contact lookups on an affiliation record after is been created. If this record contains a mistake, please delete and recreate the record with the correct lookups. --></errorMessage>
+        <name>Cannot_change_Affiliation_lookups</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Contact affiliation must be an ACV User contact Record Type --></errorMessage>
+        <name>Contact_Record_Must_be_ACV_User</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Affiliation to a Standard Account type must have a Dealership Id --></errorMessage>
+        <name>Standard_Account_must_have_dealerId</name>
+    </validationRules>
+</CustomObjectTranslation>

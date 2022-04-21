@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to notify dealer about approval of the enrollment</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Program Enrollment Approved Notification</name>
+    <style>none</style>
+    <subject>Enrollment approved for {!Program_Enrollment__c.Program__c}</subject>
+    <textOnly>Hi {!Program_Enrollment__c.Primary_Dealership_Contact__c},
+
+ACV is happy to inform you that your enrollment in {!Program_Enrollment__c.Program__c} is approved.
+
+Thanks,
+ACV Admin</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

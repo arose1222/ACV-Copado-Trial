@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Contact --></label>
+        <name>docebo_v3__Contact__c</name>
+        <relationshipLabel><!-- Docebo Users --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User Id --></label>
+        <name>docebo_v3__UserId__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>docebo_v3__User__c</name>
+        <relationshipLabel><!-- Docebo Users --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Who --></label>
+        <name>docebo_v3__Who__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Docebo Users cannot have multiple related entities, they must be associated with either a User, a Contact or a custom object. --></errorMessage>
+        <name>docebo_v3__CannotReferenceMultipleObjects</name>
+    </validationRules>
+</CustomObjectTranslation>

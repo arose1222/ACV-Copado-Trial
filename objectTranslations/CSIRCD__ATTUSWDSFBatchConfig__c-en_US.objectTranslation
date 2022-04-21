@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Number of records to send in a batch to CSI. If you get too many script statement errors from the batch process, set this number lower. --></help>
+        <label><!-- CSI Batch Size --></label>
+        <name>CSIRCD__ATTUS_Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contact CSI Customer Service for this information. --></help>
+        <label><!-- CSI GUID --></label>
+        <name>CSIRCD__ATTUS_GUID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag indicating whether or not to use available address information to disqualify a name. --></help>
+        <label><!-- Address DQ --></label>
+        <name>CSIRCD__Address_DQ__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag indicating whether or not to consider the address information when reporting a match. --></help>
+        <label><!-- Street Address Match --></label>
+        <name>CSIRCD__Address_Match__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to prefix the batch name and file name in WatchDOG Elite batch system. --></help>
+        <label><!-- Batch Name --></label>
+        <name>CSIRCD__BatchName__c</name>
+    </fields>
+    <fields>
+        <help><!-- Your Salesforce instance name, or any other data to appear within WatchDOG Elite. --></help>
+        <label><!-- Client Defined 3 --></label>
+        <name>CSIRCD__Client_Defined_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- Company Name used when logging into WatchDOG Elite web application. --></help>
+        <label><!-- Corp Name --></label>
+        <name>CSIRCD__Corp_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Use &quot;Name&quot; for spelled out name, ISO2, or ISO3 for standardized codes. --></help>
+        <label><!-- Country Field Type --></label>
+        <name>CSIRCD__Country_Field_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email address to send error reports to. --></help>
+        <label><!-- Error Email --></label>
+        <name>CSIRCD__Error_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- The hostname portion of the URL. --></help>
+        <label><!-- Host Name --></label>
+        <name>CSIRCD__Host_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Place for additional List Codes (if needed).  Separate multiple list codes by commas. --></help>
+        <label><!-- List Codes (Extended) --></label>
+        <name>CSIRCD__List_Codes_Extended__c</name>
+    </fields>
+    <fields>
+        <help><!-- Separate multiple list codes by commas. --></help>
+        <label><!-- List Codes --></label>
+        <name>CSIRCD__List_Codes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag indicating whether or not to update your Customer Master database within WatchDOG Elite. --></help>
+        <label><!-- Update Master DB --></label>
+        <name>CSIRCD__MasterDBUpdate__c</name>
+    </fields>
+    <fields>
+        <help><!-- A comma separated list of Account Record Types. Only accounts and contacts with this account record type will be sent for screening. If this is left blank, all accounts and contacts will be sent for screening. --></help>
+        <label><!-- Account Record Types to Send --></label>
+        <name>CSIRCD__RecordTypestoSend__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to allow data to be sent from a sandbox environment. --></help>
+        <label><!-- Sandbox Send --></label>
+        <name>CSIRCD__Sandbox_Send__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag indicating whether or not to save data in WatchDOG Elite database. --></help>
+        <label><!-- Save Data at CSI --></label>
+        <name>CSIRCD__Save_Data_at_ATTUS__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to have all accounts sent to CSI for watch list screening. --></help>
+        <label><!-- Send Accounts --></label>
+        <name>CSIRCD__Send_All_Accounts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to have all contacts sent to CSI for watch list screening. --></help>
+        <label><!-- Send Contacts --></label>
+        <name>CSIRCD__Send_All_Contacts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email address for person receiving batch reports from WatchDOG Elite. If blank, will default to settings within WatchDOG Elite batch system. --></help>
+        <label><!-- Batch Notification Email --></label>
+        <name>CSIRCD__Success_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Minimum match score for reporting. --></help>
+        <label><!-- Tolerance --></label>
+        <name>CSIRCD__Tolerance__c</name>
+    </fields>
+    <fields>
+        <help><!-- URL used to access CSI Batch Upload service. --></help>
+        <label><!-- URL --></label>
+        <name>CSIRCD__URL__c</name>
+    </fields>
+</CustomObjectTranslation>

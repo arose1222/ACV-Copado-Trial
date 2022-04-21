@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Additional Info --></label>
+        <name>jiffle__Additional_Info__c</name>
+    </fields>
+    <fields>
+        <label><!-- Briefing Center --></label>
+        <name>jiffle__Briefing_Center__c</name>
+        <relationshipLabel><!-- Briefings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Briefing ID --></label>
+        <name>jiffle__Briefing_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Briefing Requestor --></label>
+        <name>jiffle__Briefing_Requestor__c</name>
+        <relationshipLabel><!-- Briefings Requested --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Briefing Room --></label>
+        <name>jiffle__Briefing_Room__c</name>
+    </fields>
+    <fields>
+        <label><!-- Briefing UUID --></label>
+        <name>jiffle__Briefing_UUID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Briefing With --></label>
+        <name>jiffle__Briefing_With__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign --></label>
+        <name>jiffle__Campaign__c</name>
+        <relationshipLabel><!-- Briefings --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- In-person = Normal Briefing without Vcon.
+Virtual = These briefings will only have Vcon but no rooms
+Hybrid = If a briefings has both room and vCon. --></help>
+        <label><!-- Category --></label>
+        <name>jiffle__Category__c</name>
+        <picklistValues>
+            <masterLabel>Hybrid</masterLabel>
+            <translation><!-- Hybrid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-Person</masterLabel>
+            <translation><!-- In-Person --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual</masterLabel>
+            <translation><!-- Virtual --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Number of minutes the briefing lasted. --></help>
+        <label><!-- Duration (In Minutes) --></label>
+        <name>jiffle__Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>jiffle__End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- JN Briefing Information --></label>
+        <name>jiffle__JN_Custom_fields__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Status --></label>
+        <name>jiffle__Request_Status__c</name>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Confirmed</masterLabel>
+            <translation><!-- Confirmed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requested</masterLabel>
+            <translation><!-- Requested --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Requestor --></label>
+        <name>jiffle__Requestor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>jiffle__Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vcon Description --></label>
+        <name>jiffle__Vcon_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vcon Link - DO NOT USE --></label>
+        <name>jiffle__Vcon_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vcon Link --></label>
+        <name>jiffle__Vcon_Links__c</name>
+    </fields>
+</CustomObjectTranslation>

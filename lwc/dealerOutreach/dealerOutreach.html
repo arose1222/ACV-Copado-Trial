@@ -1,0 +1,78 @@
+<template>
+    <div if:true={retentionAccess} style="background-color: #F5F5F5;">
+
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Processing" size="medium"></lightning-spinner>
+        </template>
+
+        <div class="slds-grid">
+            <div class='slds-col slds-large-size_7-of-12 slds-p-left_medium'>
+                <div class="slds-grid slds-gutters_direct">
+                    <c-lookup data-id='accountInput' errors={errors} onsearch={handleAccountLookup} label="* Account Name" name='Find Account' placeholder='Find Account' class='accountLookup slds-col' onselectionchange={handleAccountChange}></c-lookup>
+                    <c-lookup data-id='contactInput' errors={errors} onsearch={handleContactLookup} label="* Contact Name" name="Find Contact" placeholder="Find Contact" class='slds-col' onselectionchange={handleContactChange}></c-lookup>
+                </div>
+            </div>
+            <div class='slds-col slds-large-size_5-of-12'>
+                <div class='slds-var-p-top_large slds-var-p-left_small'>
+                    <lightning-button variant="brand-outline" name="new-with-defaults" label="New Dealer Contact" class="slds-var-m-left_medium" onclick={navigateToNewDealershipContactPage}></lightning-button>
+                    <lightning-helptext content="Contact related to account for informational purposes - e.g. Titles Clerk"></lightning-helptext>
+                    <lightning-button if:true={acvUserAccess} variant="brand-outline" name="new-with-defaults" label="New ACV User Contact" class="slds-var-m-left_medium" onclick={navigateToAffiliationCreatePage}></lightning-button>
+                    <lightning-helptext if:true={acvUserAccess} content="User that logs into the app"></lightning-helptext>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <lightning-record-edit-form object-api-name="Retention_Ignition__c">
+            <div class='slds-grid'>
+                <div class="slds-col slds-size_6-of-12 slds-p-left_medium">
+                    <div class='slds-grid slds-gutters'>
+                        <lightning-input-field data-id='directionInput' field-name="Call_Direction__c" class="slds-col slds-size_1-of-3" onchange={handleDirectionChange} value={direction} required></lightning-input-field>
+                        <lightning-input-field data-id='typeInput' field-name="Type__c" class="slds-col slds-size_1-of-3" onchange={handleCallTypeChange} value={callType} required></lightning-input-field>
+                        <lightning-input-field data-id='answerInput' field-name="No_Answer__c" class="slds-col slds-size_1-of-3" onchange={handleAnswerChange} value={noAnswerSelection} ></lightning-input-field>
+                    </div>
+                    <lightning-textarea data-id='commentsInput' name="dealerComments" label="Dealer Comments" onchange={handleCommentChange} required={callAnswered}></lightning-textarea>
+                    <lightning-textarea data-id='nextSteps' name="nextSteps" label="Next Steps" onchange={handleNextStepsChange} required={callAnswered}></lightning-textarea>
+                </div>
+            
+                <div class="slds-col slds-size_6-of-12 slds-p-left_large">
+                    <lightning-input-field data-id='latest' field-name="Latest_ACV_Experience__c" required={callAnswered} onchange={handleLatestChange} value={latestSelectionsList}></lightning-input-field>
+                    <br>
+                    <div class="slds-grid slds-wrap">
+                        <lightning-button label="Schedule Follow-Up Task" variant="brand-outline" title="scheduleFollowUp" onclick={navigateToTaskPage} class='slds-col slds-large-size_5-of-12 slds-p-left_medium'></lightning-button>
+                        <div class='slds-col slds-large-size_3-of-12'></div>
+                        <div class='slds-col slds-large-size_4-of-12'>
+                            <lightning-button variant="destructive" label="Cancel" title="cancel" onclick={checkCancel}></lightning-button>
+                            <lightning-button variant="success" label="Submit" title="submit" onclick={handleSubmit} class="slds-var-p-left_x-small" disabled={lockedAccount}></lightning-button>
+                        </div>
+                    </div>
+                    <span if:true={answeredErrors} class='slds-float_right slds-p-right_x-small slds-text-color_error'>All fields are required when call is answered <br></span>
+                    <span if:true={noAnswerErrors} class='slds-float_right slds-p-right_x-small slds-text-color_error'>The following fields are required when there is no answer: Account Name, Contact Name, Call Direction & Type of Call <br><br></span>
+                </div>
+            </div>
+        </lightning-record-edit-form>
+        <span if:false={hasErrors}>
+            <br>
+            <br>
+        </span>
+        <template if:true={cancelCheck}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <!-- display if they select cancel -->
+                <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1" style="background:#c70438">
+                        <p><b>Are you sure you want to cancel?</b></p>
+                        <p>This will clear the widget and delete all of your work.</p>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeCancelModal} title="Cancel">No</button>
+                        <button class="slds-button slds-button_brand" onclick={handleCancel} title="OK">Yes</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <br>
+    </div>
+</template>

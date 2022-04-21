@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Do_Not_Set_Old_Value__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, do not set the value in the Old Value field.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If checked, do not set the value in the Old Value field.</inlineHelpText>
+        <label>Do Not Set Old Value</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Field Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Object Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Type_Dev_Name__c</fullName>
+        <description>The value will be used to set the field tracking for only specified Record Type.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Record Type Dev Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sort_Order__c</fullName>
+        <description>If multiple tracked fields are inserted/updated in a single transaction then we want to add the fields in the history table in the specified order.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If multiple tracked fields are inserted/updated in a single transaction then we want to add the fields in the history table in the specified order.</inlineHelpText>
+        <label>Sort Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Field Tracking</label>
+    <pluralLabel>Field Trackings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

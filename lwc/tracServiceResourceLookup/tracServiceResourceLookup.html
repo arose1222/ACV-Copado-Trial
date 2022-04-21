@@ -1,0 +1,18 @@
+<!--
+ - @description Lookup for service resource
+ - @name tracServiceResourceLookup
+ - @author Daniel Labonte, Traction on Demand
+ - @date 2019-10-17
+ -->
+
+<!-- Service Resource Lookup -->
+<template>
+    <c-lookup
+            selection={initialSelection}
+            errors={errors}
+            onsearch={handleResourceLookup}
+            onselectionchange={handleResourceChange}
+            label=""
+            placeholder="Search for a Resource (Optional)">
+    </c-lookup>
+</template>

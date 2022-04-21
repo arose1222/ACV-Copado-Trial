@@ -1,0 +1,17 @@
+<!-- downloadTableButton html -->
+<template>
+    <template if:false={buttonHide}>
+        <lightning-button 
+            variant={buttonVariant}
+            label={buttonLabel}
+            title={buttonTitle}
+            name={buttonName}
+            icon-name={buttonIconName}
+            icon-position={buttonIconPosition}
+            class={buttonIconClass}
+            disabled={buttonDisabled}
+            type={buttonType}
+            onclick={handleDownloadTableClick}
+        ></lightning-button>
+    </template>
+</template>

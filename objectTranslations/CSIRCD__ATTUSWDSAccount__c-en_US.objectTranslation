@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Account --></label>
+        <name>CSIRCD__Account__c</name>
+        <relationshipLabel><!-- CSI Watch List Check on Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Address Type --></label>
+        <name>CSIRCD__Address_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>CSIRCD__Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Reviewed --></label>
+        <name>CSIRCD__Last_Reviewed__c</name>
+    </fields>
+    <fields>
+        <label><!-- List Date --></label>
+        <name>CSIRCD__List_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- List Description --></label>
+        <name>CSIRCD__List_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lookup By --></label>
+        <name>CSIRCD__Lookup_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Searched --></label>
+        <name>CSIRCD__Name_Searched__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Hits --></label>
+        <name>CSIRCD__Number_of_Hits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Result Node --></label>
+        <name>CSIRCD__Result_Node__c</name>
+    </fields>
+    <fields>
+        <label><!-- Review Status --></label>
+        <name>CSIRCD__Review_Status__c</name>
+        <picklistValues>
+            <masterLabel>False Positive</masterLabel>
+            <translation><!-- False Positive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Reviewed</masterLabel>
+            <translation><!-- Not Reviewed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>True Match</masterLabel>
+            <translation><!-- True Match --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Search City --></label>
+        <name>CSIRCD__Search_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Country --></label>
+        <name>CSIRCD__Search_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Postal Code --></label>
+        <name>CSIRCD__Search_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search State --></label>
+        <name>CSIRCD__Search_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Street --></label>
+        <name>CSIRCD__Search_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Value --></label>
+        <name>CSIRCD__Status_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>CSIRCD__Status__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Changes to Review Status field aren&apos;t allowed if number of hits is 0. Review Status must be No Match if number of hits is 0. --></errorMessage>
+        <name>CSIRCD__Review_status_is_No_Match_if_Hits_Are_0</name>
+    </validationRules>
+</CustomObjectTranslation>

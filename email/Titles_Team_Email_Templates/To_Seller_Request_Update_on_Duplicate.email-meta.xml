@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Request update on Duplicate Title from the Seller</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>To Seller - Request Update on Duplicate</name>
+    <style>freeForm</style>
+    <subject>Title Information Needed:{!Case.Vehicle_Year_Make_Model__c}</subject>
+    <textOnly>Hello,
+
+Please provide an update on the duplicate title requested (DATE), for the vehicle listed below.  Any type of ETA is greatly appreciated.
+
+Auction Number: {!Case.Auction_Number_Case__c}
+Year/Make/Model:{!Case.Vehicle_Year_Make_Model__c}
+VIN: {!Case.VIN__c}
+
+Thank you!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

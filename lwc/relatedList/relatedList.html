@@ -1,1 +1,45 @@
-(hidden)
+<template>  
+    <lightning-card title={strTitle} icon-name="standard:record">  
+        <div class="slds-var-m-around_medium">  
+            <div if:true={records}>  
+                <template for:each={records} for:item="rec">    
+                    <div key={rec.Id} class="slds-box">  
+                        <lightning-record-form record-id={rec.Id}   
+                                               object-api-name={objectName}   
+                                               layout-type={layoutType}   
+                                               mode={modeType}
+                                               columns={columnNumber}>  
+                        </lightning-record-form>  
+                    </div>  
+                    <br key={rec.Id}>
+                </template>  
+            </div>   
+            <!-- <div if:true={records}>  
+                <template for:each={records} for:item="rec">    
+                    <div key={rec.Id} class="slds-box">  
+                        <lightning-record-edit-form 
+                                                record-id={rec.Id}   
+                                                object-api-name={objectName}    
+                                                >  
+
+                            <lightning-output-field field-name="Call_Bucket__c">
+                            </lightning-output-field>
+                            <lightning-input-field field-name="Call_Type__c">
+                            </lightning-input-field>
+                            <lightning-input-field field-name="Status__c">
+                            </lightning-input-field>
+                            <lightning-button
+                                class="slds-m-top_small"
+                                variant="brand"
+                                type="submit"
+                                name="update"
+                                label="Update">
+                            </lightning-button>                     
+                        </lightning-record-edit-form>  
+                    </div>  
+                    <br key={rec.Id}> 
+                </template>  
+            </div>    -->
+        </div>  
+    </lightning-card>     
+</template>

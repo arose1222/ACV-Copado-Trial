@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Notifying Buyer TM that Payment Failed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Buyer Payment Issue  Notification</name>
+    <style>freeForm</style>
+    <subject>Buyer Payment Issue Identified</subject>
+    <textOnly>A payment issue has been identified for your Buying Dealer {!Collections_Auctions__c.Buyer_Account__c} on Auction {!Collections_Auctions__c.Auction_To_Collections__c}
+
+The payment issue is related to: {!Collections_Auctions__c.Case_Reason__c}
+
+Additional Details of issue described by payments: {!Collections_Auctions__c.Additional_Details__c}
+
+Please reach out to the Buyer to resolve this issue. Payments has already made a first attempt at resolving. It is important to record the outreach by logging a call on the associated collections case,{!Collections_Auctions__c.Collections_Case_Reord__c}
+
+If you have questions related to this issue, please contact the owner of this collections effort, {!Collections_Auctions__c.OwnerFullName}.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

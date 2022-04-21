@@ -1,0 +1,155 @@
+<!--
+ - @description Main component for the recurring appointment module
+ - @name tracRecurringEvent
+ - @author Daniel Labonte, Traction on Demand
+ - @date 2019-08-22
+ -->
+
+<!-- Recurring Event -->
+<template>
+    <!-- QUICK ACTION CREATE -->
+    <section if:false={isEditMode} class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container" style="margin: 0; padding: 0;">
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height:100%">
+
+                <div class="slds-m-top_small slds-m-bottom_medium">
+                    <h3><b>New Revolving Appointment</b></h3>
+                </div>
+
+                <lightning-record-edit-form object-api-name="Timeline__c" record-id={timelineId} onsuccess={handleFormSuccess} onerror={handleFormError}>
+                    <lightning-messages></lightning-messages>
+                </lightning-record-edit-form>
+                <!-- 31st March Added Work Type Lookup -->
+                <c-lookup-field
+                        label="Service Resource"
+                        fields-to-return="Name"
+                        sobject-api-name="ServiceResource"
+                        icon-name="standard:account"
+                        field-name="Service_Resource__c"
+                        onlookupchange={handleServiceResourceLookUpChange}
+                        component-id={timeline.Id}
+                        parent-record-id={accountId}
+                        class="validValue"
+                        >
+                 </c-lookup-field>
+                <!-- if there is a need to make any lookup field as required on component just add required-flag attribute in
+                c-lookup-field component called from parent for eg:
+                <c-lookup-field
+                        required-flag>
+                </c-lookup-field>-->
+                <c-lookup-field
+                        label="Search Work Type"
+                        fields-to-return="Name"
+                        sobject-api-name="WorkType"
+                        icon-name="standard:account"
+                        field-name="Work_Type__c"
+                        onlookupchange={handleLookupChange}
+                        component-id={timeline.Id}
+                        class="validValue workType"
+                        >
+                </c-lookup-field>
+                <!-- Ends -->
+                <label class="slds-form-element__label slds-no-flex">Average Number of Cars</label>
+                <c-trac-mobile-picklist
+                        options={optionsCars}
+                        onvaluechange={handleCarsSelect}>
+                </c-trac-mobile-picklist>
+
+                <div class="slds-grid slds-m-bottom--small">
+                    <div class="slds-col">
+                        <lightning-input type="date" class="startDate" name="startDate" label="Start" value={timeline.Start_Date__c} placeholder="Start" onchange={handleStartDateChange}></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input type="date" class="endDate" name="endDate" label="End (Optional)" value={timeline.End_Date__c} placeholder="End" onchange={handleEndDateChange}></lightning-input>
+                    </div>
+                </div>
+                
+                <div class="slds-m-top_x-large slds-m-bottom_medium">
+                    <lightning-input-address
+                        address-label="Address:"
+                        street-label="Street"
+                        street={account.BillingStreet}
+                        city-label="City"
+                        city={account.BillingCity}
+                        country-label="Country"
+                        country={account.BillingCountry}
+                        province-label="State"
+                        province={account.BillingState}
+                        postal-code-label="Zip Code"
+                        postal-code={account.BillingPostalCode}
+                        show-address-lookup
+                        onchange={handleAddress}>
+                    </lightning-input-address>
+                </div>
+
+                <lightning-accordion allow-multiple-sections-open active-section-name="Event">
+                    <template for:each={occurrenceIds} for:item="thisId">
+                        <c-trac-recurring-event-rule
+                                key={thisId}
+                                record-id={thisId}
+                                parent-id={recordId}
+                                class={thisId}
+                                acct-start-time={acctStartTime}
+                                acct-end-time={acctEndTime}>
+                        </c-trac-recurring-event-rule>
+                    </template>
+                </lightning-accordion>
+
+                <!--<button class="custom-button" onclick={handleRepeatClick}>Add Repetition</button>-->
+                <!-- Removed due to be unnecessary for our employees -->
+            </div>
+
+            <footer class="slds-modal__footer" style="padding:0;">
+                <button class="slds-p-around_medium slds-button_brand custom-button" name="save" onclick={handleSaveClick}><b>Save</b></button>
+                <button class="slds-button_neutral custom-button" name="cancel" onclick={handleCancelClick}><b>Cancel</b></button>
+            </footer>
+        </div>
+    </section>
+
+    <!--RELATED LIST EDIT-->
+    <!--<template if:true={isEditMode}>
+        <div class="slds-p-around_medium" >
+            <h1>Edit Revolving Appointment</h1>
+            <lightning-record-edit-form object-api-name="Timeline__c" record-id={timelineId} onsuccess={handleFormSuccess} onerror={handleFormError}>
+                <lightning-messages></lightning-messages>
+            </lightning-record-edit-form>
+
+            <c-trac-service-resource-lookup
+                    if:true={timeline.Id}
+                    timeline={timeline}
+                    onchange={handleResourceChange}>
+            </c-trac-service-resource-lookup>
+
+            <label class="slds-form-element__label slds-no-flex">Average Number of Cars</label>
+            <c-trac-mobile-picklist
+                    options={optionsCars}
+                    onvaluechange={handleCarsSelect}>
+            </c-trac-mobile-picklist>
+
+            <div class="slds-grid slds-m-bottom--small">
+                <div class="slds-col">
+                    <lightning-input type="date" class="startDate" name="startDate" label="Start" value={timeline.Start_Date__c} placeholder="Start" onchange={handleStartDateChange}></lightning-input>
+                </div>
+                <div class="slds-col">
+                    <lightning-input type="date" class="endDate" name="endDate" label="End (Optional)" value={timeline.End_Date__c} placeholder="End" onchange={handleEndDateChange}></lightning-input>
+                </div>
+            </div>
+
+            <lightning-accordion allow-multiple-sections-open active-section-name="Event">
+                <template for:each={occurrenceIds} for:item="thisId">
+                    <c-trac-recurring-event-rule
+                            key={thisId}
+                            record-id={thisId}
+                            parent-id={recordId}
+                            class={thisId}>
+                    </c-trac-recurring-event-rule>
+                </template>
+            </lightning-accordion>
+
+            <button class="custom-button" onclick={handleRepeatClick}>Add Repetition</button>
+        </div>
+
+        <button class="slds-p-around_medium slds-button_brand custom-button" name="save" onclick={handleSaveClick}><b>Save</b></button>
+        <button class="slds-button_destructive custom-button" name="delete" onclick={deactivate}><b>Delete</b></button>
+    </template>-->
+</template>

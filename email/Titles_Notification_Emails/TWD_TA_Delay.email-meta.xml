@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent when a title is delayed, based on TA/TWD receipt conditions.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>TWD/TA Delay</name>
+    <style>freeForm</style>
+    <subject>Title Delay: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Dear {!Case.Contact},
+
+Regarding your recent purchase of:
+{!Case.Vehicle_Year_Make_Model__c}
+VIN: {!Case.Vehicle_VIN__c}
+Auction ID: {!Case.Auction_Number_Case__c}
+
+This communication is to let you know that we have not yet received the title for the above vehicle in our office.  The Titles Team is actively following up with the seller, and we will have the title to you as soon as possible.
+
+If you have any questions, please do not hesitate to contact your Account Manager or call us at 1-800-553-4070.
+
+Did you know you can check the title status on MY ACV? Simply log in to your ACV Account and select My ACV at the top of the page. Select “Won” from the left side of the screen and choose the auction you are looking for.  Within the auction details, you can see the current status of your title on the right hand side.
+
+Thank you!
+
+ACV Auctions
+
+
+This is an automated message. Please do not reply.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

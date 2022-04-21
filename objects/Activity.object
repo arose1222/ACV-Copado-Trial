@@ -113,6 +113,1387 @@
         <type>Default</type>
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ACV_Employees_Involved_in_Visit__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV Employees Involved in Visit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ActivityType__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Activity_Comments__c</fullName>
+        <description>This provides a truncated (255char) view of the standard task description field&apos;s value</description>
+        <externalId>false</externalId>
+        <label>Activity Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_Appraisals__c</fullName>
+        <description>The Actual Appraisals done as a result of the Live Appraisal event</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the actual number of appraisals that were completed during the event.</inlineHelpText>
+        <label>Actual Appraisals at Event</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_Cars_Sold__c</fullName>
+        <description>Total number of cars that actually sold as a result of the live appraisal event.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total number of cars that actually sold as a result of the live appraisal event.</inlineHelpText>
+        <label>Actual Cars Sold at Event</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Appointment_Status__c</fullName>
+        <description>Shows the stage of an appointment set by IST and subsequent acknowledgement and confirmation by OST</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For appointments created by IST for OST</inlineHelpText>
+        <label>Appointment Status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Auction__c</fullName>
+        <externalId>false</externalId>
+        <label>Auction</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_On_Title_Case__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true by Log_a_Call_Title_Case global action</description>
+        <externalId>false</externalId>
+        <label>Call On Title Case</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Call_Script__c</fullName>
+        <externalId>false</externalId>
+        <label>Call Script</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Closed_Lost_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Closed Lost Reason</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pricing</fullName>
+                    <default>false</default>
+                    <label>Pricing</label>
+                </value>
+                <value>
+                    <fullName>Competition - Digital</fullName>
+                    <default>false</default>
+                    <label>Competition - Digital</label>
+                </value>
+                <value>
+                    <fullName>Competition - Physical</fullName>
+                    <default>false</default>
+                    <label>Competition - Physical</label>
+                </value>
+                <value>
+                    <fullName>Competition - Local bid sale</fullName>
+                    <default>false</default>
+                    <label>Competition - Local bid sale</label>
+                </value>
+                <value>
+                    <fullName>Relationship</fullName>
+                    <default>false</default>
+                    <label>Relationship</label>
+                </value>
+                <value>
+                    <fullName>Cannot access Decision Maker</fullName>
+                    <default>false</default>
+                    <label>Cannot access Decision Maker</label>
+                </value>
+                <value>
+                    <fullName>Lot constraints</fullName>
+                    <default>false</default>
+                    <label>Lot constraints</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <description>Date task was completed</description>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Attempt__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Attempt</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Attempt 1</fullName>
+                    <default>false</default>
+                    <label>Attempt 1</label>
+                </value>
+                <value>
+                    <fullName>Attempt 2</fullName>
+                    <default>false</default>
+                    <label>Attempt 2</label>
+                </value>
+                <value>
+                    <fullName>Attempt 3</fullName>
+                    <default>false</default>
+                    <label>Attempt 3</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact_Made__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Made?</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Created_By_Profile__c</fullName>
+        <description>Profile ID of activity creator</description>
+        <externalId>false</externalId>
+        <formula>$User.ProfileId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created By Profile</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DB_Activity_Type__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( Subject , &quot;Email&quot;), &quot;Email&quot;, IF(CONTAINS( Subject , &quot;Cold Call&quot;), &quot;Cold Call&quot;, IF(CONTAINS( Subject , &quot;Call&quot;), &quot;Call&quot;, IF(CONTAINS( Subject , &quot;Meeting&quot;), &quot;Meeting&quot;, IF(CONTAINS( Subject , &quot;On Site Visit&quot;), &quot;Site Visit&quot;, IF(CONTAINS( Subject , &quot;Quote&quot;), &quot;Send Letter/Quote&quot;, &quot;Other&quot;))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DB Activity Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Data_Quality_Score__c =100, &quot;Key Event/Task Details Captured&quot;,&quot;Missing: &quot;&amp;IF( LEN( Subject ) &lt; 3,&quot;Quality Subject Description, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(LEN(WhoId)=0,&quot;Contact/Lead Reference, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(LEN(WhatId)=0,&quot;Account/Opportunity Reference&quot;,&quot;&quot;))</formula>
+        <label>Data Quality Description</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( LEN(  Subject  ) &lt; 3, 0,30) + IF( LEN(  WhoId ) = 0, 0,40) + IF( LEN(  WhatId ) = 0, 0,30)</formula>
+        <label>Data Quality Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Deal Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inbound</fullName>
+                    <default>false</default>
+                    <label>Inbound</label>
+                </value>
+                <value>
+                    <fullName>Outbound</fullName>
+                    <default>false</default>
+                    <label>Outbound</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Dealer_Partners__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Dealer Partners</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Dealer Partners</relationshipLabel>
+        <relationshipName>Dealer_Partners_Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Delta__c</fullName>
+        <externalId>false</externalId>
+        <label>Delta</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Under 500</fullName>
+                    <default>false</default>
+                    <label>Under 500</label>
+                </value>
+                <value>
+                    <fullName>500-1000</fullName>
+                    <default>false</default>
+                    <label>500-1000</label>
+                </value>
+                <value>
+                    <fullName>1000-1500</fullName>
+                    <default>false</default>
+                    <label>1000-1500</label>
+                </value>
+                <value>
+                    <fullName>Over 1500</fullName>
+                    <default>false</default>
+                    <label>Over 1500</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Did_you_offer_an_incentive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Did you offer an incentive?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Did_you_seek_feedback__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Did you seek feedback?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Documents_Items_Needed__c</fullName>
+        <description>Documents that may be needed in order to complete the sale</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Documents that may be needed in order to complete the sale</inlineHelpText>
+        <label>Documents/Items Needed</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Affidavit of Correction</fullName>
+                    <default>false</default>
+                    <label>Affidavit of Correction</label>
+                </value>
+                <value>
+                    <fullName>Dealer Reassignment</fullName>
+                    <default>false</default>
+                    <label>Dealer Reassignment</label>
+                </value>
+                <value>
+                    <fullName>Keys</fullName>
+                    <default>false</default>
+                    <label>Keys</label>
+                </value>
+                <value>
+                    <fullName>License Plates</fullName>
+                    <default>false</default>
+                    <label>License Plates</label>
+                </value>
+                <value>
+                    <fullName>Lien Release</fullName>
+                    <default>false</default>
+                    <label>Lien Release</label>
+                </value>
+                <value>
+                    <fullName>Marriage/Birth/Death Certificate</fullName>
+                    <default>false</default>
+                    <label>Marriage/Birth/Death Certificate</label>
+                </value>
+                <value>
+                    <fullName>Odometer Statement</fullName>
+                    <default>false</default>
+                    <label>Odometer Statement</label>
+                </value>
+                <value>
+                    <fullName>Power of Attorney</fullName>
+                    <default>false</default>
+                    <label>Power of Attorney</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Expected_Appraisals__c</fullName>
+        <description>Filled out buy the field to indicate the expected number of appraisals they believe they will bring in from a Live Appraisal event.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many Vehicles do you expect to be Appraised at the event?</inlineHelpText>
+        <label>Expected Appraisals at Event</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__Count_of_Events__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Count of all events</description>
+        <externalId>false</externalId>
+        <formula>IF( IsTask,0,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Count of all events</inlineHelpText>
+        <label>Count of Events</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__Count_of_Tasks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( IsTask,1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Count of Tasks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__Event_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Event Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Service Appointment</fullName>
+                    <default>false</default>
+                    <label>Service Appointment</label>
+                </value>
+                <value>
+                    <fullName>Resource Absence</fullName>
+                    <default>false</default>
+                    <label>Resource Absence</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fee_Waived_Buyer__c</fullName>
+        <externalId>false</externalId>
+        <label>Fee Waived Buyer</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fee_Waived_Seller__c</fullName>
+        <externalId>false</externalId>
+        <label>Fee Waived Seller</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Follow_Up_Date__c</fullName>
+        <description>Used to log the follow up date on the related Title Case</description>
+        <externalId>false</externalId>
+        <label>Follow Up Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>From_Inquiry_Comment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is marked as true when a task is created from an Inquiry Comment</description>
+        <externalId>false</externalId>
+        <label>From Inquiry Comment</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gong__Gong_Selected_Process__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Gong Selected Process</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inbound_Ops_Call_Reason__c</fullName>
+        <description>Tracking the types of Ops issues that get overflowed to the BDR team</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If inbound call and operations related, please select the category of inquiry</inlineHelpText>
+        <label>Inbound Ops Call Reason</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Resolutions</fullName>
+                    <default>false</default>
+                    <label>Resolutions</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Inquiry_Call_Bucket__c</fullName>
+        <description>The Call Bucket of the parent customer inquiry of an inquiry comment. Logged on activity when an inquiry comment is created</description>
+        <externalId>false</externalId>
+        <label>Inquiry Call Bucket</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inquiry_Call_Type__c</fullName>
+        <description>The Call Type of the parent customer inquiry of an inquiry comment. Logged on activity when an inquiry comment is created</description>
+        <externalId>false</externalId>
+        <label>Inquiry Call Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inquiry_Status__c</fullName>
+        <description>The status of the parent customer inquiry of an inquiry comment.  Logged on activity when an inquiry comment is created</description>
+        <externalId>false</externalId>
+        <label>Inquiry Status</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Interested_in_Meeting_at_Conference__c</fullName>
+        <externalId>false</externalId>
+        <label>Interested in Meeting at Conference</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Maybe</fullName>
+                    <default>false</default>
+                    <label>Maybe</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Legacy_Id__c</fullName>
+        <description>Stores the Id of any record from legacy systems that is migrated to SFDC as an Activity.</description>
+        <externalId>true</externalId>
+        <label>Legacy Id</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MAXDigital__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>MAXDigital</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Next_Scheduled_Meeting__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Scheduled Meeting</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Next_Steps__c</fullName>
+        <description>Next steps taken after initial meeting with dealer</description>
+        <externalId>false</externalId>
+        <label>Next Steps</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Follow up needed in future</fullName>
+                    <default>false</default>
+                    <label>Follow up needed in future</label>
+                </value>
+                <value>
+                    <fullName>Follow up with operations</fullName>
+                    <default>false</default>
+                    <label>Follow up with operations</label>
+                </value>
+                <value>
+                    <fullName>Management TO</fullName>
+                    <default>false</default>
+                    <label>Management TO</label>
+                </value>
+                <value>
+                    <fullName>Schedule retail</fullName>
+                    <default>false</default>
+                    <label>Schedule retail</label>
+                </value>
+                <value>
+                    <fullName>Schedule wholesale</fullName>
+                    <default>false</default>
+                    <label>Schedule wholesale</label>
+                </value>
+                <value>
+                    <fullName>No next steps</fullName>
+                    <default>false</default>
+                    <label>No next steps</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <description>Workaround to get comments to show on open activity related lists on case</description>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Other: Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Pitch_Partner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Primary user associated to this activity other than the creating user.</description>
+        <externalId>false</externalId>
+        <label>Primary Pitch Partner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Promotional_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotional Comments</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Purpose__c</fullName>
+        <externalId>false</externalId>
+        <label>Purpose</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sales Pitch</fullName>
+                    <default>false</default>
+                    <label>Sales Pitch</label>
+                </value>
+                <value>
+                    <fullName>Prospecting Stop</fullName>
+                    <default>false</default>
+                    <label>Prospecting Stop</label>
+                </value>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>Customer Service</fullName>
+                    <default>false</default>
+                    <label>Customer Service</label>
+                </value>
+                <value>
+                    <fullName>RSD Ride-along</fullName>
+                    <default>false</default>
+                    <label>RSD Ride-along</label>
+                </value>
+                <value>
+                    <fullName>Marketing Campaign</fullName>
+                    <default>false</default>
+                    <label>Marketing Campaign</label>
+                </value>
+                <value>
+                    <fullName>Live Appraisal event</fullName>
+                    <default>false</default>
+                    <label>Live Appraisal event</label>
+                </value>
+                <value>
+                    <fullName>Blitz</fullName>
+                    <default>false</default>
+                    <label>Blitz</label>
+                </value>
+                <value>
+                    <fullName>Seller Launch</fullName>
+                    <default>false</default>
+                    <label>Seller Launch</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reason_For_Title_Delay__c</fullName>
+        <description>Field used to capture reason for delay of a title on log a call</description>
+        <externalId>false</externalId>
+        <label>Reason For Title Delay</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Customer Delay</fullName>
+                    <default>false</default>
+                    <label>Customer Delay</label>
+                </value>
+                <value>
+                    <fullName>DMV Delay</fullName>
+                    <default>false</default>
+                    <label>DMV Delay</label>
+                </value>
+                <value>
+                    <fullName>Lack of Capital</fullName>
+                    <default>false</default>
+                    <label>Lack of Capital</label>
+                </value>
+                <value>
+                    <fullName>Unable to Reach</fullName>
+                    <default>false</default>
+                    <label>Unable to Reach</label>
+                </value>
+                <value>
+                    <fullName>Need Lien Release</fullName>
+                    <default>false</default>
+                    <label>Need Lien Release</label>
+                </value>
+                <value>
+                    <fullName>Other (please specify in comments)</fullName>
+                    <default>false</default>
+                    <label>Other (please specify in comments)</label>
+                </value>
+                <value>
+                    <fullName>Incorrect Contact</fullName>
+                    <default>false</default>
+                    <label>Incorrect Contact</label>
+                </value>
+                <value>
+                    <fullName>Incorrect Paperwork</fullName>
+                    <default>false</default>
+                    <label>Incorrect Paperwork</label>
+                </value>
+                <value>
+                    <fullName>Payoff Delay</fullName>
+                    <default>false</default>
+                    <label>Payoff Delay</label>
+                </value>
+                <value>
+                    <fullName>Closed/Limited in Office</fullName>
+                    <default>false</default>
+                    <label>Closed/Limited in Office</label>
+                </value>
+                <value>
+                    <fullName>Resolved</fullName>
+                    <default>false</default>
+                    <label>Resolved</label>
+                </value>
+                <value>
+                    <fullName>Unwind</fullName>
+                    <default>false</default>
+                    <label>Unwind</label>
+                </value>
+                <value>
+                    <fullName>2nd lien on title. waiting to get released</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>2nd lien on title. waiting to get released</label>
+                </value>
+                <value>
+                    <fullName>ACV Issue</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>ACV Issue</label>
+                </value>
+                <value>
+                    <fullName>Customer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Customer</label>
+                </value>
+                <value>
+                    <fullName>Customer/DMV Delay</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Customer/DMV Delay</label>
+                </value>
+                <value>
+                    <fullName>Error</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Error</label>
+                </value>
+                <value>
+                    <fullName>Had titles, was waiting for guys to put a deal # on it</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Had titles, was waiting for guys to put a deal # on it</label>
+                </value>
+                <value>
+                    <fullName>Limited in office</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Limited in office</label>
+                </value>
+                <value>
+                    <fullName>Never got BOS</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Never got BOS</label>
+                </value>
+                <value>
+                    <fullName>Ordered duplicate</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Ordered duplicate</label>
+                </value>
+                <value>
+                    <fullName>Paid lien off on 5/6</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Paid lien off on 5/6</label>
+                </value>
+                <value>
+                    <fullName>Paid of 5/6 - waiting to receive</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Paid of 5/6 - waiting to receive</label>
+                </value>
+                <value>
+                    <fullName>Paid of Veros credit 4/28 - still waiting to receive</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Paid of Veros credit 4/28 - still waiting to receive</label>
+                </value>
+                <value>
+                    <fullName>Paid off lien but bank went out of business. they are trying to reach new bank.</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Paid off lien but bank went out of business. they are trying to reach new bank.</label>
+                </value>
+                <value>
+                    <fullName>Should&apos;ve been TA</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Should&apos;ve been TA</label>
+                </value>
+                <value>
+                    <fullName>Title cler on vacation</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Title cler on vacation</label>
+                </value>
+                <value>
+                    <fullName>Title sent to VIP by Mistake</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Title sent to VIP by Mistake</label>
+                </value>
+                <value>
+                    <fullName>Was Missing signature for lien sale paperwork</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Was Missing signature for lien sale paperwork</label>
+                </value>
+                <value>
+                    <fullName>Was waiting for bank</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Was waiting for bank</label>
+                </value>
+                <value>
+                    <fullName>bank released title on 5/6. should be receiving any day now.</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>bank released title on 5/6. should be receiving any day now.</label>
+                </value>
+                <value>
+                    <fullName>had titles was waiting on guys to put deal # on it</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>had titles was waiting on guys to put deal # on it</label>
+                </value>
+                <value>
+                    <fullName>just received title today and mailing today</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>just received title today and mailing today</label>
+                </value>
+                <value>
+                    <fullName>paid off 5/12</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>paid off 5/12</label>
+                </value>
+                <value>
+                    <fullName>payoff sent 05/07/2020/ waiting for title</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>payoff sent 05/07/2020/ waiting for title</label>
+                </value>
+                <value>
+                    <fullName>sent 5/14</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>sent 5/14</label>
+                </value>
+                <value>
+                    <fullName>sent out dup title 5/5</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>sent out dup title 5/5</label>
+                </value>
+                <value>
+                    <fullName>sent out dup title on 5/8</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>sent out dup title on 5/8</label>
+                </value>
+                <value>
+                    <fullName>sent out today</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>sent out today</label>
+                </value>
+                <value>
+                    <fullName>waiting for notarized Lien release to apply for title</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>waiting for notarized Lien release to apply for title</label>
+                </value>
+                <value>
+                    <fullName>waiting on lien to be released 5/5</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>waiting on lien to be released 5/5</label>
+                </value>
+                <value>
+                    <fullName>waiting onlien to be released 5/8</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>waiting onlien to be released 5/8</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Outreach__c</fullName>
+        <description>This field is to classify the reason for a call being logged on account, manually populated by users</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is to classify the reason for a call</inlineHelpText>
+        <label>Reason for Outreach</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Aged Title</fullName>
+                    <default>false</default>
+                    <label>Aged Title</label>
+                </value>
+                <value>
+                    <fullName>Dealer Documents</fullName>
+                    <default>false</default>
+                    <label>Dealer Documents</label>
+                </value>
+                <value>
+                    <fullName>High Arbitration Status</fullName>
+                    <default>false</default>
+                    <label>High Arbitration Status</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Onboarding</fullName>
+                    <default>false</default>
+                    <label>Onboarding</label>
+                </value>
+                <value>
+                    <fullName>Cancellation</fullName>
+                    <default>false</default>
+                    <label>Cancellation</label>
+                </value>
+                <value>
+                    <fullName>Pick Up</fullName>
+                    <default>false</default>
+                    <label>Pick Up</label>
+                </value>
+                <value>
+                    <fullName>Late Load</fullName>
+                    <default>false</default>
+                    <label>Late Load</label>
+                </value>
+                <value>
+                    <fullName>Escalation</fullName>
+                    <default>false</default>
+                    <label>Escalation</label>
+                </value>
+                <value>
+                    <fullName>Titles Update</fullName>
+                    <default>false</default>
+                    <label>Titles Update</label>
+                </value>
+                <value>
+                    <fullName>Call Campaign</fullName>
+                    <default>false</default>
+                    <label>Call Campaign</label>
+                </value>
+                <value>
+                    <fullName>Vendor Engagement</fullName>
+                    <default>false</default>
+                    <label>Vendor Engagement</label>
+                </value>
+                <value>
+                    <fullName>Ops NPS Follow Up</fullName>
+                    <default>false</default>
+                    <label>Ops NPS Follow Up</label>
+                </value>
+                <value>
+                    <fullName>Customer Service</fullName>
+                    <default>false</default>
+                    <label>Customer Service</label>
+                </value>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>Sales Pitch</fullName>
+                    <default>false</default>
+                    <label>Sales Pitch</label>
+                </value>
+                <value>
+                    <fullName>Prospecting Stop</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Prospecting Stop</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Received_Date__c</fullName>
+        <description>Date the Document was received</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date the Document was received</inlineHelpText>
+        <label>Received Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Received_License__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates that the license was received as a result of the call</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that the license was received as a result of the call</inlineHelpText>
+        <label>Received License</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Received_Resale_Certificate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates that the resale certificate was received as a result of the call</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that the resale certificate was received as a result of the call</inlineHelpText>
+        <label>Received Resale Certificate</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Refused_to_Provide_Documents__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Dealer refused to return documents as a result of the call</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Dealer refused to return documents as a result of the call</inlineHelpText>
+        <label>Refused to Provide Documents</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Related_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Allows user to relate a case to log a call on account</description>
+        <externalId>false</externalId>
+        <label>Related Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Result__c</fullName>
+        <description>CAP-408 - used by Capital for Activity Management</description>
+        <externalId>false</externalId>
+        <label>Result</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Status</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Left Message</fullName>
+                    <default>false</default>
+                    <label>Left Message</label>
+                </value>
+                <value>
+                    <fullName>Sent Email/Text</fullName>
+                    <default>false</default>
+                    <label>Sent Email/Text</label>
+                </value>
+                <value>
+                    <fullName>No Answer</fullName>
+                    <default>false</default>
+                    <label>No Answer</label>
+                </value>
+                <value>
+                    <fullName>Conversation</fullName>
+                    <default>false</default>
+                    <label>Conversation</label>
+                </value>
+                <value>
+                    <fullName>Interested in Application</fullName>
+                    <default>false</default>
+                    <label>Interested in Application</label>
+                </value>
+                <value>
+                    <fullName>No Interest</fullName>
+                    <default>false</default>
+                    <label>No Interest</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Needs Follow-up</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Needs Follow-up</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>Left Message</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>Sent Email/Text</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>No Answer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>Conversation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>Interested in Application</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Completed</controllingFieldValue>
+                <valueName>No Interest</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used in the Assignment Manager code to show VCIs where to go</description>
+        <externalId>false</externalId>
+        <label>Seller Dealership</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Title_ETA__c</fullName>
+        <description>Estimated date for when title should be received</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimated date for when title should be received</inlineHelpText>
+        <label>Title ETA</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>TrueFrame__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>TrueFrame Opportunity</description>
+        <externalId>false</externalId>
+        <label>True360</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_Outreach__c</fullName>
+        <description>Filled out by the users when entering log a call.</description>
+        <externalId>false</externalId>
+        <label>Type of Outreach</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Wholesale_Buy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Wholesale - Buy Opportunity</description>
+        <externalId>false</externalId>
+        <label>Wholesale - Buy</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Wholesale_Sell__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Wholesale - Sell Opportunity</description>
+        <externalId>false</externalId>
+        <label>Wholesale - Sell</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>maps__BaseObjectId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Base Object</label>
+        <referenceTo>maps__BaseObject__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>BaseObjectIds</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>maps__LayerId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Layer Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__WA_AdvRouteWaypoint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the default lookup to associate the Advanced Route Waypoint</description>
+        <externalId>false</externalId>
+        <label>Maps Advanced Route Waypoint</label>
+        <referenceTo>maps__AdvRouteWaypoint__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <listViews>
+        <fullName>Activities_completed_this_week</fullName>
+        <columns>TASK.SUBJECT</columns>
+        <columns>TASK.WHO_NAME</columns>
+        <columns>TASK.WHAT_NAME</columns>
+        <columns>TASK.DUE_DATE</columns>
+        <columns>TASK.STATUS</columns>
+        <columns>TASK.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>TASK.LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>Completed_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TASK.STATUS</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>COMPLETED_DATE_TIME</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>Activities completed this week</label>
+    </listViews>
     <listViews>
         <fullName>MyActivities</fullName>
         <filterScope>Mine</filterScope>
@@ -163,12 +1544,78 @@
         </filters>
         <label>Upcoming Events</label>
     </listViews>
+    <listViews>
+        <fullName>geopointe__Geopointe_Activities_Last_7_Days</fullName>
+        <columns>TASK.SUBJECT</columns>
+        <columns>TASK.DUE_DATE</columns>
+        <columns>TASK.STATUS</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <columns>TASK.LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TASK.SUBJECT</field>
+            <operation>startsWith</operation>
+            <value>Geopointe:</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <label>Geopointe Activities (Last 7 Days)</label>
+    </listViews>
+    <listViews>
+        <fullName>geopointe__Geopointe_Activities_all</fullName>
+        <columns>TASK.SUBJECT</columns>
+        <columns>TASK.DUE_DATE</columns>
+        <columns>TASK.STATUS</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <columns>TASK.LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TASK.SUBJECT</field>
+            <operation>startsWith</operation>
+            <value>Geopointe:</value>
+        </filters>
+        <label>Geopointe Activities (all)</label>
+    </listViews>
+    <listViews>
+        <fullName>geopointe__Geopointe_Activities_today</fullName>
+        <columns>TASK.SUBJECT</columns>
+        <columns>TASK.DUE_DATE</columns>
+        <columns>TASK.STATUS</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <columns>TASK.LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TASK.SUBJECT</field>
+            <operation>startsWith</operation>
+            <value>Geopointe:</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Geopointe Activities (today)</label>
+    </listViews>
     <searchLayouts>
+        <searchFilterFields>TASK.SUBJECT</searchFilterFields>
+        <searchFilterFields>TASK.TYPE</searchFilterFields>
+        <searchFilterFields>TASK.WHO_NAME</searchFilterFields>
+        <searchFilterFields>CORE.USERS.FULL_NAME</searchFilterFields>
+        <searchFilterFields>TASK.DUE_DATE</searchFilterFields>
+        <searchFilterFields>TASK.CREATED_DATE</searchFilterFields>
         <searchResultsAdditionalFields>TASK.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Activity_Comments__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.WHO_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.WHAT_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.DUE_DATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.CREATED_DATE</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionOnInsert>Allow</actionOnInsert>
+    <actionOnUpdate>Allow</actionOnUpdate>
+    <alertText>Use one of these records?</alertText>
+    <description>NOTE:  This rule is used in test class and should not be deactivated or have the actions changed.</description>
+    <duplicateRuleFilter>
+        <booleanFilter>(1 AND 2 AND 3)</booleanFilter>
+        <duplicateRuleFilterItems>
+            <field>Username</field>
+            <operation>notEqual</operation>
+            <value>jhonsberger@acvauctions.com</value>
+            <sortOrder>1</sortOrder>
+            <table>User</table>
+        </duplicateRuleFilterItems>
+        <duplicateRuleFilterItems>
+            <field>Username</field>
+            <operation>notEqual</operation>
+            <value>integration@acvauctions.com</value>
+            <sortOrder>2</sortOrder>
+            <table>User</table>
+        </duplicateRuleFilterItems>
+        <duplicateRuleFilterItems>
+            <field>Username</field>
+            <operation>notEqual</operation>
+            <value>FormAssembly@acvauctions.com</value>
+            <sortOrder>3</sortOrder>
+            <table>User</table>
+        </duplicateRuleFilterItems>
+    </duplicateRuleFilter>
+    <duplicateRuleMatchRules>
+        <matchRuleSObjectType>Lead</matchRuleSObjectType>
+        <matchingRule>Standard_Lead_Match_Rule_v1_0</matchingRule>
+        <objectMapping xsi:nil="true"/>
+    </duplicateRuleMatchRules>
+    <isActive>true</isActive>
+    <masterLabel>Duplicate Lead</masterLabel>
+    <operationsOnInsert>Alert</operationsOnInsert>
+    <operationsOnInsert>Report</operationsOnInsert>
+    <securityOption>BypassSharingRules</securityOption>
+    <sortOrder>2</sortOrder>
+</DuplicateRule>

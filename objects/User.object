@@ -199,134 +199,620 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
-    <fieldSets>
-        <fullName>copado__License_Manager</fullName>
-        <availableFields>
-            <field>City</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>CommunityNickname</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>CompanyName</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>Country</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>Department</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>Division</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>ProfileId</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>State</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>Title</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>UserRoleId</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>UserType</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>Username</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <description>License Manager page</description>
-        <displayedFields>
-            <field>Name</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>IsActive</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>Copado License Manager</label>
-    </fieldSets>
+    <fields>
+        <fullName>Auction_Kill_Permission__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, the User will have the ability to kill auctions in the counter sent status. It uses a flow and and hits the auction kill endpoint on the Auction Record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, the User will have the ability to kill auctions in the counter sent status. It uses a flow and and hits the auction kill endpoint on the Auction Record.</inlineHelpText>
+        <label>Auction Kill Permission</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Calendly_Link__c</fullName>
+        <description>Used for BDR&apos;s</description>
+        <externalId>false</externalId>
+        <label>Calendly Link</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Can_Unwind__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Field to determine if a user can directly unwind</description>
+        <externalId>false</externalId>
+        <label>Can Unwind</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CaseSafe_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CaseSafe_Id</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Changed_By_Sf_User_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Changed By Sf User Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Changed_By_Username__c</fullName>
+        <externalId>false</externalId>
+        <label>Changed By Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_CR_Count__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Current CR Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DB_Region__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <label>DB Region</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NA</fullName>
+                    <color>#009900</color>
+                    <default>false</default>
+                    <label>NA</label>
+                </value>
+                <value>
+                    <fullName>EMEA</fullName>
+                    <color>#3333FF</color>
+                    <default>false</default>
+                    <label>EMEA</label>
+                </value>
+                <value>
+                    <fullName>APAC</fullName>
+                    <color>#CC6600</color>
+                    <default>false</default>
+                    <label>APAC</label>
+                </value>
+                <value>
+                    <fullName>LA</fullName>
+                    <color>#990000</color>
+                    <default>false</default>
+                    <label>LA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Deactivated_Date__c</fullName>
+        <description>Set by workflow &amp; field update when the user record is set active = false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date use was deactivated in Salesforce</inlineHelpText>
+        <label>Deactivated Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deal_Maker_Filter_Save__c</fullName>
+        <description>Saves the filters into a field from the deal maker page, so when the user refreshes the page or goes back to it later the same filters are saved. This field updates when the user makes a filter change on the page.</description>
+        <externalId>false</externalId>
+        <label>Deal Maker Filter Save</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Default_Priorities__c</fullName>
+        <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected Priorities &apos;,&apos; comma-separated.</description>
+        <externalId>false</externalId>
+        <label>Default Priorities</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Default_Revolving__c</fullName>
+        <description>Work order queue default settigns for users</description>
+        <externalId>false</externalId>
+        <label>Default Revolving</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Include</fullName>
+                    <default>false</default>
+                    <label>Include</label>
+                </value>
+                <value>
+                    <fullName>Exclude</fullName>
+                    <default>true</default>
+                    <label>Exclude</label>
+                </value>
+                <value>
+                    <fullName>Filter</fullName>
+                    <default>false</default>
+                    <label>Filter</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Default_Service_Territories__c</fullName>
+        <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected service territories (Record IDs), comma-separated.</description>
+        <externalId>false</externalId>
+        <label>Default Service Territories</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Default_Status_Values__c</fullName>
+        <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected status values, comma-separated.</description>
+        <externalId>false</externalId>
+        <label>Default Status Values</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Work_Types__c</fullName>
+        <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected work types (Record IDs), comma-separated.</description>
+        <externalId>false</externalId>
+        <label>Default Work Types</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Director__c</fullName>
+        <externalId>false</externalId>
+        <label>Director</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Docebo_User__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if this user should be synced to Docebo LMS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if this user should be synced to Docebo LMS</inlineHelpText>
+        <label>Docebo User</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EXPRN__Allow_Decisioning__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Determines whether user have permission to pull decision records from BIQ</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determine whether user have permission to pull decision records from BIQ</inlineHelpText>
+        <label>Allow Decisioning</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FSL_Beta__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>FSL Beta</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Field_Operations_Rep__c</fullName>
+        <externalId>false</externalId>
+        <label>Field Operations Rep</label>
+        <relationshipName>ops_rep</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>Full_Name__c</fullName>
+        <description>Concatenates first and last name on the User record level, allows for referencing in other formula fields and avoiding having to go multiple layers twice to get the full name of a user exposed on related records.</description>
+        <externalId>false</externalId>
+        <formula>FirstName + &quot; &quot; + LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Full Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hover_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>Hover Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>acv_prod id found on the users table used to identify internal users</description>
+        <externalId>true</externalId>
+        <inlineHelpText>This corresponds to the User&apos;s ACV Tools ID</inlineHelpText>
+        <label>ACV User Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Inside_Territory_Manager__c</fullName>
+        <description>Inside Sales or Territory Manager</description>
+        <externalId>false</externalId>
+        <label>Inside/Territory Manager</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>ManagerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <type>Hierarchy</type>
     </fields>
     <fields>
-        <fullName>copado__API_URL__c</fullName>
-        <deprecated>false</deprecated>
+        <fullName>Manager_for_Reporting__c</fullName>
         <externalId>false</externalId>
-        <formula>$Api.Partner_Server_URL_290</formula>
+        <formula>Manager.FirstName + &quot; &quot; + Manager.LastName</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>API_URL</label>
+        <label>Manager for Reporting</label>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>copado__Hide_Copado_feedback__c</fullName>
+        <fullName>Sales_Leader__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Leader</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__AllowMapsExports__c</fullName>
         <defaultValue>false</defaultValue>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <inlineHelpText>The visibility of the message asking users to rate &amp; feedback Copado on the AppExchange is controlled here.</inlineHelpText>
-        <label>Hide Copado feedback</label>
+        <label>Allow Maps Exports</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>copado__Show_Copado_Tips__c</fullName>
-        <defaultValue>true</defaultValue>
+        <fullName>maps__BetaTester__c</fullName>
+        <defaultValue>false</defaultValue>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <label>Show Copado Tips</label>
+        <label>Maps Beta Tester</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>copado__Work_Manager_Panels__c</fullName>
+        <fullName>maps__DefaultLatitude__c</fullName>
         <deprecated>false</deprecated>
-        <description>JSON containing current user panels on the Backlog</description>
         <externalId>false</externalId>
-        <label>Work Manager Panels</label>
-        <length>131072</length>
+        <label>Maps Default Latitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>15</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DefaultLongitude__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Default Longitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>15</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DefaultProximityRadius__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Default Proximity Radius</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DefaultType__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>DefaultType</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DefaultZoomLevel__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Default Zoom Level</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DeviceId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>&quot;MALiveAvail-&quot; + LEFT($Organization.Id, 15) + &quot;-&quot; + LEFT(Id, 15)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Device Id</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__DeviceVendor__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>&quot;MapAnything&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Device Vendor</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__EditMapsOrgWideQueries__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Edit Maps Org Wide Queries</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>maps__FinishedAdvRouteSetup__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Finished Maps Advanced Route Setup</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>maps__MapsSetting__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Map Settings</label>
+        <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <type>LongTextArea</type>
         <visibleLines>2</visibleLines>
     </fields>
+    <fields>
+        <fullName>maps__MaxExportSize__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Max Export Size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__MaxQuerySize__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Max Query Size</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>maps__PreferredTypeOfMeasurement__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Preferred Type of Measurement</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Miles</fullName>
+                    <default>false</default>
+                    <label>Miles</label>
+                </value>
+                <value>
+                    <fullName>Km</fullName>
+                    <default>false</default>
+                    <label>Km</label>
+                </value>
+                <value>
+                    <fullName>Meters</fullName>
+                    <default>false</default>
+                    <label>Meters</label>
+                </value>
+                <value>
+                    <fullName>Yards</fullName>
+                    <default>false</default>
+                    <label>Yards</label>
+                </value>
+                <value>
+                    <fullName>Feet</fullName>
+                    <default>false</default>
+                    <label>Feet</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>maps__ReceiveBatchExceptionEmails__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Receive Batch Exception Emails</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>maps__TPApprover__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Territory Planning Approver</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>maps__TestUserLookup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For blueline bug.</description>
+        <externalId>false</externalId>
+        <label>TestUserLookup</label>
+        <relationshipName>TestChildLookup</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>maps__Version__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Maps Version</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Previous</fullName>
+                    <default>false</default>
+                    <label>Previous</label>
+                </value>
+                <value>
+                    <fullName>Current</fullName>
+                    <default>false</default>
+                    <label>Current</label>
+                </value>
+                <value>
+                    <fullName>Beta</fullName>
+                    <default>false</default>
+                    <label>Beta</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <listViews>
+        <fullName>API_Only_users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>equals</operation>
+            <value>API Only User</value>
+        </filters>
+        <label>API Only users</label>
+    </listViews>
+    <listViews>
+        <fullName>ActiveAdminUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.TITLE</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATED_BY_NAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>equals</operation>
+            <value>System Administrator</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Active Admin Users</label>
+    </listViews>
     <listViews>
         <fullName>ActiveUsers</fullName>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.PROFILE.NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -337,12 +823,34 @@
         <label>Active Users</label>
     </listViews>
     <listViews>
-        <fullName>AdminUsers</fullName>
+        <fullName>Active_Users_with_True360_Emails</fullName>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>contains</operation>
+            <value>360</value>
+        </filters>
+        <label>Active Users with True360 Emails</label>
+    </listViews>
+    <listViews>
+        <fullName>AdminUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USERS.ACTIVE</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -358,11 +866,140 @@
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.USERTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Users</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Active_Users_for_Docebo</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.USERS.ACTIVE</columns>
         <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
-        <label>All Users</label>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Docebo_User__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Docebo Users</label>
+    </listViews>
+    <listViews>
+        <fullName>Capital_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.EMAIL</columns>
+        <columns>CORE.USERS.TITLE</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.PHONE</columns>
+        <columns>CORE.USERS.CELL</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>contains</operation>
+            <value>Capital</value>
+        </filters>
+        <label>Capital Users</label>
+    </listViews>
+    <listViews>
+        <fullName>FSL_Inspector_Dispatch_User</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>startsWith</operation>
+            <value>inspector-dispatch@acvauctions.com</value>
+        </filters>
+        <label>FSL - Inspector Dispatch User</label>
+    </listViews>
+    <listViews>
+        <fullName>Inactive_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Inactive Users</label>
+    </listViews>
+    <listViews>
+        <fullName>Integration_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FULL_NAME</field>
+            <operation>contains</operation>
+            <value>Integration</value>
+        </filters>
+        <label>Integration Users</label>
+    </listViews>
+    <listViews>
+        <fullName>Non_ACV_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.EMAIL</field>
+            <operation>notContain</operation>
+            <value>acvauctions.com</value>
+        </filters>
+        <label>Non-ACV Users</label>
     </listViews>
     <searchLayouts>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
@@ -378,4 +1015,22 @@
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Admin_Profile_Assignment_Validation</fullName>
+        <active>true</active>
+        <description>This validation rule prevents users from granting other users the System Administrator profile without having the Admin Profile Assignment permission.</description>
+        <errorConditionFormula>AND(OR(ISCHANGED(ProfileId), ISNEW()), Profile.Name == &quot;System Administrator&quot;, !$Permission.Admin_Profile_Assignment,  !$Setup.Validation_Bypass__c.System_Admin_Assignment__c)</errorConditionFormula>
+        <errorDisplayField>ProfileId</errorDisplayField>
+        <errorMessage>You cannot grant a user the System Administrator profile without permission.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>ctu__Clone</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Clone</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;/apex/ctu__CloneThisUser?Id={!User.Id}&amp;Desktop=true&apos;, &apos;_self&apos;);</url>
+    </webLinks>
 </CustomObject>

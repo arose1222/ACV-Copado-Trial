@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Recommend_Price_Compact</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Recommend_Price_Compact</fullName>
+        <fields>Name</fields>
+        <fields>Auction_Where_Vehicle_Launched__c</fields>
+        <fields>Vehicle__c</fields>
+        <fields>MMR_Price__c</fields>
+        <fields>Most_Recent_Recommended_Price__c</fields>
+        <fields>Pricing_Status__c</fields>
+        <fields>Runs_When_Priced__c</fields>
+        <label>Recommend Price Compact</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A child object of Vehicles, to be used as a tool for repricing vehicles that have failed an auction.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Auction_Where_Vehicle_Launched__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the auction where the vehicle was originally launched from.</description>
+        <externalId>false</externalId>
+        <label>Auction Where Vehicle Launched</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Recommended Prices</relationshipLabel>
+        <relationshipName>Recommended_Prices</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Casesafe_Id__c</fullName>
+        <description>Creates Salesforce Id</description>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <label>Casesafe Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition_Rating__c</fullName>
+        <description>Pricing Manager can enter the condition rating of the vehicle, on a scale of 0-5.0</description>
+        <externalId>false</externalId>
+        <label>Condition Rating</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition_Report__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to Condition Report object. This field is populated by the Flow called Recommend a Price!</description>
+        <externalId>false</externalId>
+        <label>Condition Report</label>
+        <referenceTo>Condition_Report__c</referenceTo>
+        <relationshipLabel>Recommended Prices</relationshipLabel>
+        <relationshipName>Recommended_Prices</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Expiration_Date__c</fullName>
+        <description>Date set 30 days out from creation of record for when the price will expire.</description>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>External_Notes_to_Seller__c</fullName>
+        <description>The notes that are to be made available publicly and to be surfaced to the ACV App user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Input notes that are essential for the ACV App User, as these notes will be made available publicly.</inlineHelpText>
+        <label>External Notes to Seller</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Notes__c</fullName>
+        <description>Internal notes regarding the pricing adjustment/recommendation.</description>
+        <externalId>false</externalId>
+        <label>Internal Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>MMR_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>MMR Price</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Recommended_Price__c</fullName>
+        <description>Displays the most recent price recommended for the Vehicle. If a ceiling is recommended than that is selected for the most recent recommendation, otherwise the floor is displayed.</description>
+        <externalId>false</externalId>
+        <formula>IF(
+ ISBLANK(Price_Ceiling__c),Price_Floor__c,Price_Ceiling__c)</formula>
+        <label>Most Recent Recommended Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Price_Ceiling__c</fullName>
+        <description>The highest accepted price recommended for a vehicle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>In order to recommend a Ceiling, a Floor must be recommended first.</inlineHelpText>
+        <label>Recommended Ceiling Price</label>
+        <precision>11</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Price_Floor__c</fullName>
+        <description>The lowest accepted price recommended for a vehicle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A value must be input in order to save this record.</inlineHelpText>
+        <label>Recommended Floor Price</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Reason__c</fullName>
+        <description>A reason must be selected anytime a recommended price is input.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select a reason for the price(s) you have recommended.</inlineHelpText>
+        <label>Pricing Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bid History</fullName>
+                    <default>false</default>
+                    <label>Bid History</label>
+                </value>
+                <value>
+                    <fullName>Car History</fullName>
+                    <default>false</default>
+                    <label>Car History</label>
+                </value>
+                <value>
+                    <fullName>Condition</fullName>
+                    <default>false</default>
+                    <label>Condition</label>
+                </value>
+                <value>
+                    <fullName>MMR</fullName>
+                    <default>false</default>
+                    <label>MMR</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pricing_Status__c</fullName>
+        <description>Defines whether a Recommended Price is active or expired.</description>
+        <externalId>false</externalId>
+        <label>Pricing Status</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>true</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                    <label>Expired</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Recommended_Price_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox field that gets marked as &apos;True&apos;, when the &quot;Pricing Status&quot; field is set to &apos;Active&apos;. Set via workflow rule.</description>
+        <externalId>false</externalId>
+        <label>Recommended Price Active?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Runs_When_Priced__c</fullName>
+        <description>Counts the total number of runs that occurred before the vehicle received a recommended price.</description>
+        <externalId>false</externalId>
+        <label>Runs When Priced</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saved_Auction_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Saved Auction Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Send_to_ACV__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked by workflow rule to identify record that is eligible for integration.</description>
+        <externalId>false</externalId>
+        <label>Send to ACV</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Validate_Price_Ceiling__c</fullName>
+        <description>Validate the Price Ceiling you entered above.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please validate the Price Ceiling you entered above to prevent any keying errors.</inlineHelpText>
+        <label>Validate Ceiling</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Validate_Price_Floor__c</fullName>
+        <description>Validate the Price Floor you entered above.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please validate the Price Floor you entered above to prevent any keying errors.</inlineHelpText>
+        <label>Validate Floor</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <description>Lookup to the Vehicle that needs a recommended price.</description>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Recommended Prices</relationshipLabel>
+        <relationshipName>Recommended_Prices</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>id__c</fullName>
+        <description>External Id used for integrations</description>
+        <externalId>true</externalId>
+        <label>id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Recommended Price</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Vehicle__c</columns>
+        <columns>Price_Floor__c</columns>
+        <columns>Price_Ceiling__c</columns>
+        <columns>Pricing_Status__c</columns>
+        <columns>Auction_Where_Vehicle_Launched__c</columns>
+        <columns>Runs_When_Priced__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RP-{0000}</displayFormat>
+        <label>Recommended Price Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Recommended Prices</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Vehicle__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Auction_Where_Vehicle_Launched__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Most_Recent_Recommended_Price__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Floor_can_not_be_greater_than_ceiling</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(Validate_Price_Ceiling__c &lt;= Validate_Price_Floor__c, TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>The Pricing Ceiling can not be less than the Pricing Floor!</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Price_Floor_Recommendation_Already_Exist</fullName>
+        <active>true</active>
+        <description>If there a prior value existed in the Price Floor field, then the record cannot be saved.</description>
+        <errorConditionFormula>PRIORVALUE( Price_Floor__c)!= Null</errorConditionFormula>
+        <errorMessage>Whoops. It looks like someone already has already recommended a price, therefor double entry is prohibited.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

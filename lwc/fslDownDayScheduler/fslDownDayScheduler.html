@@ -1,0 +1,51 @@
+<template>
+    <c-calendar-component
+        object-name="Down_Day__c"
+        start-field="Start__c"
+        end-field="End__c"
+        title-field="Title__c"
+        color-field="Work_Type_Color__c"
+        all-day-field="Is_All_Day__c"
+    ></c-calendar-component>
+
+    <template if:true={showEventCreationScreen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Down Day</h2>
+                </header>
+                
+                <div class="slds-modal__content slds-p-around_x-large" id="modal-content-id-1">
+                    <lightning-input type="date" name="dateInput" label="Date" value={selectedDate} onchange={handleDate}></lightning-input>
+
+                    <c-lookup errors={errors}
+                        onsearch={handleWorkTypeLookup} onselectionchange={handleUploaderSelectionChangeforWorkType}
+                        label="Select Work Type" name="Find WorkType" placeholder="Select Work Type">
+                    </c-lookup>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={saveEvent} title="Save">Save</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={showLoadingSpinner}>
+        <div class="slds-m-top_medium slds-m-bottom_x-large slds-p-around_x-large">
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Processing Request...">
+                </lightning-spinner>
+            </div>
+        </div>
+    </template>
+</template>

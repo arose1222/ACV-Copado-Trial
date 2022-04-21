@@ -1,0 +1,211 @@
+<apex:page showheader="false" 
+           sidebar="false" 
+           standardController="Opportunity" 
+           extensions="Gong.OppRelatedCallsController" 
+           standardStylesheets="false">
+
+    <apex:stylesheet value="{!URLFOR($Resource.Gong__SLDS080, 'SLDS080/assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Gong__ResponsiveDesign, '/css/main.css')}"/>
+
+    <apex:includeScript value="{!URLFOR($Resource.Gong__ResponsiveDesign, '/js/jquery/jquery.min.js')}"/>
+
+    <div class="slds slds-container--large slds-container--center">
+        <div id="main-content" class="main" role="main">
+            <apex:outputPanel id="callsTable" layout="block">
+                <table class="slds-table slds-table--bordered slds-m-top--medium table">
+                    <thead>
+                        <tr class="slds-text-heading--label">
+                            <th scope="col">
+                                <span class="slds-truncate">Title</span>
+                            </th>
+                            <th scope="col" class="hide-on-small-device">
+                                <span class="slds-truncate">Call Start</span>
+                            </th>
+                            <th scope="col" class="hide-on-small-device">
+                                <span class="slds-truncate">Duration</span>
+                            </th>
+                            <apex:repeat value="{!fields}" var="f">
+                                <th scope="col" class="hide-on-small-device">
+                                    <span class="slds-truncate">{!f.Label}</span>
+                                </th>
+                            </apex:repeat>
+                            <th scope="col" class="hide-on-small-device">
+                                <span class="slds-truncate">Attendees</span>
+                            </th>
+                            <th scope="col">
+                                <span class="slds-truncate"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!relatedWrappers}" var="callWrapper">
+                            <tr class="slds-hint-parent">
+                                <td>
+                                    <span class="slds-truncate"><a href="javascript:window.open('https://app.gong.io/call?id={!callWrapper.gongCall.Gong__Call_ID__c}&G4SF={!gongVersion}');">{!callWrapper.gongCall.Name}</a></span>
+                                </td>
+                                <td class="hide-on-small-device">
+                                    <span class="slds-truncate datetime">
+                                        <apex:outputText value="{!callWrapper.formattedCallTime}"/>
+                                        <!-- <apex:outputText value="{0,date,MM'/'dd'/'yy h:MM a}">
+                                            <apex:param value="{!callWrapper.gongCall.Gong__Call_Start__c}" /> 
+                                        </apex:outputText> -->
+                                    </span>
+                                </td>
+                                <td class="hide-on-small-device">
+                                    <span class="slds-truncate">{!callWrapper.gongCall.Gong__Call_Duration__c}</span>
+                                </td>
+                                <apex:repeat value="{!fields}" var="f">
+                                    <td class="hide-on-small-device">
+                                        <apex:outputPanel styleClass="slds-truncate" rendered="{!IF(f.type == 'reference',true, false)}">
+                                            <a href="javascript:" onclick="navigateToSObjectId('{!callWrapper.gongCall[f.fieldPath]}')">{!callWrapper.gongCall[SUBSTITUTE(f.fieldPath ,'__c','__r')].Name}</a>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel styleClass="slds-truncate datetime" rendered="{!IF(f.type == 'datetime' ,true, false)}">
+                                            <apex:outputText value="{0,date,MM'/'dd'/'yy h:MM a}">
+                                                <apex:param value="{!callWrapper.gongCall[f.fieldPath]}" />
+                                            </apex:outputText>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel styleClass="slds-truncate" rendered="{!IF(f.type != 'reference' && f.type != 'datetime',true, false)}">
+                                            <apex:outputField value="{!callWrapper.gongCall[f.fieldPath]}" />
+                                        </apex:outputPanel>
+                                    </td>
+                                </apex:repeat>
+                                <td  class="hide-on-small-device">
+                                    <span class="slds-truncate comma-between-children">
+                                        <apex:repeat value="{! callWrapper.allCallParticipants }" var="allCallParticipant">
+                                            <apex:outputPanel rendered="{! allCallParticipant.Participant_Type__c = 'Contact' }">
+                                                <span class="slds-truncate"><a href="javascript:" onclick="navigateToSObjectId('{!allCallParticipant.Contact_Participant__c}')">
+                                                    {!allCallParticipant.Contact_Participant__r.FirstName}&nbsp;{!allCallParticipant.Contact_Participant__r.LastName}</a>
+                                                </span>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{! allCallParticipant.Participant_Type__c = 'Lead' }">
+                                                <span class="slds-truncate"><a href="javascript:" onclick="navigateToSObjectId('{!allCallParticipant.Lead_Participant__c}')">
+                                                    {!allCallParticipant.Lead_Participant__r.FirstName}&nbsp;{!allCallParticipant.Lead_Participant__r.LastName}</a>
+                                                </span>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </span>
+                                </td>
+                                <td class="editCell">
+                                    <span style="text-decoration: underline;" class="slds-truncate"><a href="javascript:" onclick="navigateToSObjectId('{!callWrapper.gongCall.Id}')">Edit</a></span>
+                                </td>
+                            </tr>
+                            <tr class="show-on-small-device detail-row">
+                                <td colspan="2"><table class="table"><tbody>
+                                <tr>
+                                    <th>
+                                        Call Start:
+                                    </th>
+                                    <td>
+                                            <span class="datetime">
+                                                <apex:outputText escape="false" value="{0,date,MM'/'dd'/'yy'&nbsp;'h:MM'&nbsp;'a}">
+                                                    <apex:param value="{!callWrapper.gongCall.Gong__Call_Start__c}" />
+                                                </apex:outputText>
+                                                &nbsp; &nbsp;
+                                                <apex:outputText escape="false" value="
+                                                    {!IF(ISBLANK(callWrapper.gongCall.Gong__Call_Duration_sec__c),
+                                                            '00:00&nbsp;min',
+                                                            IF(callWrapper.gongCall.Gong__Call_Duration_sec__c >= 3600,
+                                                                    TEXT(FLOOR(callWrapper.gongCall.Gong__Call_Duration_sec__c / 3600)) +
+                                                                            ':' +
+                                                                            TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,3600)/600)) +
+                                                                            TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,600) / 60)) +
+                                                                            '&nbsp;hr',
+                                                                    TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,3600)/600)) +
+                                                                            TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,600) / 60)) +
+                                                                            ':' +
+                                                                            TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,60)/10)) +
+                                                                            TEXT(FLOOR(MOD(callWrapper.gongCall.Gong__Call_Duration_sec__c,10))) +
+                                                                            '&nbsp;min'
+                                                                    )
+                                                            )}" />
+                                            </span>
+                                    </td>
+                                </tr>
+                                <apex:repeat value="{!fields}" var="f">
+                                    <tr>
+                                        <th>
+                                        {!f.label}:
+                                        </th>
+                                        <td>
+                                            <apex:outputPanel styleClass="slds-truncate" rendered="{!IF(f.type == 'reference',true, false)}">
+                                                <a href="javascript:" onclick="navigateToSObjectId('{!callWrapper.gongCall[f.fieldPath]}')">{!callWrapper.gongCall[SUBSTITUTE(f.fieldPath ,'__c','__r')].Name}</a>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel styleClass="slds-truncate datetime" rendered="{!IF(f.type == 'datetime' ,true, false)}">
+                                                <apex:outputText value="{0,date,MM'/'dd'/'yy h:MM a}">
+                                                    <apex:param value="{!callWrapper.gongCall[f.fieldPath]}" />
+                                                </apex:outputText>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel styleClass="slds-truncate" rendered="{!IF(f.type != 'reference' && f.type != 'datetime',true, false)}">
+                                                <apex:outputField value="{!callWrapper.gongCall[f.fieldPath]}" />
+                                            </apex:outputPanel>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                                <tr>
+                                    <th>
+                                        Attendees:
+                                    </th>
+                                    <td>
+                                            <span class="slds-truncate comma-between-children">
+                                                <apex:repeat value="{! callWrapper.allCallParticipants }" var="allCallParticipant">
+                                                    <apex:outputPanel rendered="{! allCallParticipant.Participant_Type__c = 'Contact' }">
+                                                        <span class="slds-truncate "><a href="javascript:" onclick="navigateToSObjectId('{!allCallParticipant.Contact_Participant__c}')">
+                                                            {!allCallParticipant.Contact_Participant__r.FirstName}&nbsp;{!allCallParticipant.Contact_Participant__r.LastName}</a>
+                                                        </span>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{! allCallParticipant.Participant_Type__c = 'Lead' }">
+                                                        <span class="slds-truncate"><a href="javascript:" onclick="navigateToSObjectId('{!allCallParticipant.Lead_Participant__c}')">
+                                                            {!allCallParticipant.Lead_Participant__r.FirstName}&nbsp;{!allCallParticipant.Lead_Participant__r.LastName}</a>
+                                                        </span>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </span>
+                                    </td>
+                                </tr>
+                                </tbody></table></td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </apex:outputPanel>
+        </div>
+    </div>
+
+    <script>
+        function resize() {
+            width = Math.min(window.innerWidth || Infinity, $(window).width() || Infinity, screen.width);
+            if ( width <= 800) {
+                $("#main-content").addClass('small-device');
+            }
+            else {
+                $("#main-content").removeClass('small-device');
+            }
+            if ( width <= 500) {
+                $("#main-content").addClass('mini-small-device');
+            }
+            else {
+                $("#main-content").removeClass('mini-small-device');
+            }
+        }
+        $(window).on("resize", resize);
+        resize();
+
+        $( "tr.detail-row" )
+            .mouseover(function() {
+                $( this ).prev().css('background-color', '#f4f6f9');
+            })
+            .mouseout(function() {
+                $( this ).prev().css('background-color', 'transparent');
+        });
+
+        function navigateToSObjectId(Id) {
+            if(Id) {
+                if({!$User.UIThemeDisplayed  == 'Theme4t' || $User.UIThemeDisplayed == 'Theme4d'}) { // Salesforce1 and Lightning
+                    sforce.one.navigateToSObject(Id);
+                } else {
+                    window.parent.location.href = '/' + Id;
+                }
+            }
+        }
+    </script>
+</apex:page>

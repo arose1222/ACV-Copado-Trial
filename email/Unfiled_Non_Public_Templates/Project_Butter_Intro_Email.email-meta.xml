@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>intro email when ist butter rep is assigned and compliant date over 9/1/2020</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Project Butter - Intro Email</name>
+    <style>none</style>
+    <subject>New ACV Account Manager</subject>
+    <textOnly>Hello There,
+I wanted to reach out and introduce myself as your new ACV account manager. I&apos;ll be your main point of contact here and will be giving you a call in the next couple of days to learn more about how I can support you and your dealership. Let me know if you have any questions in the meantime or if there is a preferred number at which I can reach you.
+
+Thanks,
+{!Account.IST_Account_Owner__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

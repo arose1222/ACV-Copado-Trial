@@ -1,0 +1,179 @@
+<apex:page showHeader="true" sidebar="false" controller="geopointe.RouteShareMigration_Controller" extensions="geopointe.RemoteAction" title="Standard Route Sharing Migration Helper">
+
+	<script src="{!URLFOR($Resource.jquery, '/jquery-3.5.1.min.js')}"></script> <!-- core jQuery -->
+	<script src="{!URLFOR($Resource.jquery, '/jquery-migrate-3.3.1.min.js')}"></script>
+	<script src="{!URLFOR($Resource.jquery, '/js/jqueryInit.js')}"></script>
+	<script src="{!URLFOR($Resource.jquery, 'js/common.js')}"></script>
+
+	<apex:slds />
+
+	<script type="text/javascript">
+		var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+		var batchInterval;
+
+		function getBatchInfo(id) {
+			Visualforce.remoting.Manager.invokeActionAsync(gpRemoteAction, 'RouteShareMigration_Controller.getBatchJobInfo', { id: id }, { escape: false, timeout: 120000, buffer: false })
+			.then(function (result) {
+				var batchInfo = JSON.parse(result);
+				
+				document.querySelector('.loadingBar').style.width = batchInfo.percentComplete + '%';
+
+				if (batchInfo.status === 'Error') {
+					clearInterval(batchInterval);
+
+					document.querySelector('#migrationProgress').style.display = 'none';
+
+					document.querySelector('#migrationFailed').style.display = 'block';
+
+					document.querySelector('#migrateButton').style.display = 'block';
+
+					return;
+				}
+				if (batchInfo.status === 'Completed') {
+					clearInterval(batchInterval);
+
+					return removeLegacyRouteSharing();
+				}
+			});
+		}
+		
+		function startBatch() {
+			document.querySelector('#migrateButton').style.display = 'none';
+
+			document.querySelector('#migrationProgress').style.display = 'block';
+
+			document.querySelector('#migrationFailed').style.display = 'none';
+
+			document.querySelector('.loadingBar').style.width = '0%';
+
+			Visualforce.remoting.Manager.invokeActionAsync(gpRemoteAction, 'RouteShareMigration_Controller.migrateSharedRoutes', {}, {escape: false, timeout: 120000, buffer: false })
+			.then(function (result) {
+				batchInterval = setInterval(function () {
+					getBatchInfo(result);
+				}, 1000);
+			});
+		}
+		
+		function removeLegacyRouteSharing() {
+			return Visualforce.remoting.Manager.invokeActionAsync(gpRemoteAction, 'RouteShareMigration_Controller.removeLegacyRouteSharing', {}, { escape: false, timeout: 120000, buffer: false })
+			.then(function (result) {
+				rerenderPage();
+			});
+		}
+	</script>
+	<style>
+		.loadingBarContainer {
+			width: 75%;
+			background: gray;
+			height: 8px;
+			margin-top: 5px;
+			border-radius: 2px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.loadingBar {
+			background-color: #07b107;
+			height: 8px;
+			border-radius: 2px;
+			width: 50%;
+		}
+	</style>
+
+	<div class="slds-m-left_x-large slds-m-top_x-large">
+		<div class="slds-m-left_x-small">
+			<div class="slds-text-heading_medium" style="font-weight: 700">Standard Route Sharing Migration Helper</div>
+			<p>
+				This page will assist in migrating Geopointe Routes from existing sharing rules to the Salesforce sharing model.
+			</p>
+		</div>
+		<br />
+	</div>
+	<apex:form >
+		<apex:actionFunction name="rerenderPage" rerender="main" />
+		<apex:outputPanel id="main">
+			<div class="slds-box slds-m-left_large">
+	
+				<apex:outputPanel rendered="{!NOT(migrationComplete)}">
+					<apex:outputPanel rendered="{!routeShareExists}">
+						<div class="slds-section slds-is-open">
+							<h3 class="slds-section__title slds-theme_shade">
+								<span class="slds-truncate slds-p-horizontal_small" title="Good News!" style="padding: 0">Good News!</span>
+							</h3>
+							<div aria-hidden="false" class="slds-section__content">
+								<p>
+									Your routes are set to Private! Next, Geopointe recommends migrating your sharing rules over to the Salesforce sharing model.
+									<br />
+									<br /> Migrate your existing sharing rules over to the Salesforce sharing model?
+									<br />
+									<br />
+									<!-- <apex:commandButton onclick="startBatch()" value="Migrate Route Shares" reRender="main" /></p> -->
+									<button id="migrateButton" type="button" onclick="startBatch()" class="slds-button slds-button_brand">Migrate Route Shares</button>
+									<div id="migrationProgress" style="display: none">
+										<center>Migrating Route Shares...</center>
+										<div class="loadingBarContainer">
+											<div class="loadingBar" style="width: 0%"></div>
+										</div>
+									</div>
+									<div id="migrationFailed" style="display: none">
+										<center style="color:rgb(194, 57, 52)">Migration failed...</center>
+									</div>
+								</p>
+							</div>
+						</div>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!NOT(routeShareExists)}">
+						<script type="text/javascript">
+							var routeShareCheckInterval = setInterval(function () {
+								Visualforce.remoting.Manager.invokeActionAsync(gpRemoteAction, 'RouteShareMigration_Controller.routeShareExists', {}, { escape: false, timeout: 120000, buffer: false })
+								.then(function (result) {
+									if (result === 'true') {
+										clearInterval(routeShareCheckInterval);
+	
+										rerenderPage();
+									}
+								});
+							}, 1000);
+						</script>
+						<div class="slds-section slds-is-open">
+							<h3 class="slds-section__title slds-theme_shade">
+								<span class="slds-truncate slds-p-horizontal_small" title="Routes are Public Read/Write" style="padding: 0">Routes are Public Read/Write</span>
+							</h3>
+							<div aria-hidden="false" class="slds-section__content">
+								<p>
+									The Organization-Wide Sharing Defaults for Routes are currently set to Public Read/Write. Geopointe highly suggests changing
+									this to Private before moving to the Salesforce sharing model.
+									<br />
+									<br />
+									Instructions here:
+									<a href="https://help.salesforce.com/articleView?id=admin_sharing.htm&type=5">Set Your Organization-Wide Sharing Defaults</a>
+									<br />
+									<br />
+									<span style="color:rgb(194, 57, 52); font-weight: 700">
+										WARNING: IF ROUTES ARE KEPT PUBLIC READ/WRITE, ALL ROUTES CAN BE SEEN AND MODIFIED BY ALL USERS!
+									</span>
+									<br />
+									<br />
+									<button type="button" onclick="removeLegacyRouteSharing()" class="slds-button slds-button_destructive">Migrate Route Shares</button>
+								</p>
+							</div>
+						</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+	
+				<apex:outputPanel rendered="{!migrationComplete}">
+					<div class="slds-section slds-is-open">
+						<h3 class="slds-section__title slds-theme_shade">
+							<span class="slds-truncate slds-p-horizontal_small" title="Done!" style="padding: 0">Done!</span>
+						</h3>
+						<div aria-hidden="false" class="slds-section__content">
+							<p>
+								Route sharing migration complete.
+							</p>
+						</div>
+					</div>
+				</apex:outputPanel>
+			</div>
+		</apex:outputPanel>
+	</apex:form>
+
+</apex:page>

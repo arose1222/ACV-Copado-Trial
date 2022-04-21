@@ -1,0 +1,406 @@
+<apex:page controller="EXPRN.UnRegisterAccountsController" sidebar="false" tabStyle="Deregister_Accounts__tab">
+   <head>
+      <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" /> 
+   </head>
+   <script>
+         j$ = jQuery.noConflict();
+         j$(document).ready(function(){  
+            j$('.clsCheckLength9').keypress( function(event){              
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(j$(this).val().length > 8 && keycode != '13'){                 
+                   event.preventDefault();                
+                }                               
+            });
+            
+            //************
+            j$(".clsCheckNumeric").keydown(function (e){
+                // Allow: backspace, delete, tab, escape, enter and .
+                if (j$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 17, 86]) !== -1 ||
+                     // Allow: Ctrl+A
+                    (e.keyCode == 65 && e.ctrlKey === true) || 
+                     // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                         // let it happen, don't do anything
+                         return;
+                    }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            }); 
+             
+             
+         }); 
+        
+        //*** Function is called when user clicks on "Go" button.
+        function viewAccounts()
+        {           
+            j$('#spnSlAMSMsg').hide(); 
+             j$('#spnBusinessSpclChaMsg').hide();
+             j$('#spnCountrySpclChaMsg').hide();
+             
+             j$('#spnSlAMSMsg').hide();
+             if(j$('select[id$="slAMS"]').val() == ''){
+                 j$('#spnSlAMSMsg').show();
+                 return false;
+             }                 
+             if(j$('input[id$="txtBusiness"]').val().trim() != '' && checkSpecialChars(j$('input[id$="txtBusiness"]').val().trim())){                    
+                  j$('#spnBusinessSpclChaMsg').show();  
+                  return false;
+             }
+             if(j$('input[id$="txtBusinessCountry"]').val().trim() != '' && checkAllSpclChars(j$('input[id$="txtBusinessCountry"]').val().trim())){                    
+                  j$('#spnCountrySpclChaMsg').show();                       
+                  return false;
+             }
+            afFetchingAccounts();
+            return false;
+        }
+        
+        //*** Function is called when user clicks on "Delete Selected Accounts" button.
+        function deleteSelectedAccounts()
+        {           
+            afDeleteAccounts();
+            j$('#hdnIsCheckedAccts').val('0');
+            return false;
+        }
+        
+        function updatePageNumDisplay(pgNumber)
+        {          
+            afUpdatePageNumDisplay(pgNumber);
+            return false;
+        }  
+        
+        //**********
+        function checkSpecialChars(text)
+        {
+            //alert(text);
+            //var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";  
+            var specialChars = "<>@%[]{}|\\\~`=";   
+            for(i = 0; i < specialChars.length;i++){
+               if(text.indexOf(specialChars[i]) > -1){
+                   return true
+                }
+            }
+            return false;           
+        }
+        
+        //**********
+        function checkAllSpclChars(text)
+        {
+            //alert(text);
+            var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";                
+            for(i = 0; i < specialChars.length;i++){
+               if(text.indexOf(specialChars[i]) > -1){
+                   return true
+                }
+            }
+            return false;           
+        } 
+        
+        function checkAll()
+        {   
+            if(j$('input[id$="selectAll"]').is(":checked")){
+                j$('.clsCheckBox input:checkbox').each(function(){                        
+                     j$(this).attr('checked', true);  
+                });
+            }   
+            else{
+                j$('.clsCheckBox input:checkbox').each(function(){                        
+                     j$(this).attr('checked', false);  
+                });
+            }               
+        }       
+   </script> 
+   
+   <style>
+        .reqClass{
+          color:red;
+          font-weight:bold;
+          font-size: 11px;
+        }
+        .Processing
+        {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+        } 
+        .pageLink 
+        {
+           color:#1c94c4!Important;
+           font-size:12px!Important; 
+        }
+        .headerRow
+        {
+            color:#666!Important;
+        }
+        .pageText 
+        {
+            color:#666!Important;
+            font-size:12px!Important;
+        } 
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        }
+       .btn{ 
+            padding: 3px 3px !important;
+            font-weight:100!Important; 
+            color: #0193DC !important; 
+            }
+        .btn:active{
+            color: #01679A!Important; border-color: #01679A !Important;
+            background:#fff;
+        }
+        .btnDisabled{
+             padding: 3px 3px !important;  
+             color: #666 !important;   
+             margin-left: 0px!Important;
+             font-weight:100!Important;
+         }
+        .clsRadiusDivAccts{
+            border-color: rgb(211, 201, 201) !important;
+            border-radius: 5px;            
+            border-width:1px;
+            border-style:solid;           
+            background-color:white;
+            width:940px;
+            padding:15px;
+        .bPageBlock{
+            width:98%;
+        }
+   </style>
+   <apex:pagemessages /> 
+   <apex:form id="form1" rendered="{!isAuthorized}" > 
+       <apex:actionFunction action="{!fetchAccounts}" name="afFetchingAccounts" reRender="otpnlResults, otpnlPrintLink" status="Processing"/>
+       <apex:actionFunction action="{!deleteSelectedAccounts}" name="afDeleteAccounts" reRender="otpnlResults" status="Processing"/>
+       <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb1" status="Processing">
+            <apex:param name="selectedPageNum" value="" />     
+        </apex:actionFunction>
+       
+       <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+            </div>
+       </div>
+       <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />        
+    
+       <apex:pageblock id="pb1" title="Deregister Accounts" mode="maindetail">
+            <div id="divSelectedAMS" style="display:none;">Alerts Monitored Set : </div>
+            <table style="width: 95%;">
+                <tr>
+                    <td style="width: 95%;">
+                        <div class="clsRadiusDivAccts" style="width: 92%;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="pageText">Alerts Monitored Set Name</td>
+                                    <td class="pageText">Account Number</td>
+                                    <td class="pageText">BIN</td>
+                                    <td class="pageText">
+                                        Account
+                                    </td>
+                                    <td class="pageText">
+                                        Account Country
+                                    </td>
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td style="width: 22%;" >                                         
+                                        <apex:selectList id="slAMS" size="1" value="{!sSlectedAMS}" style="width: 93%;" styleClass="pageText">
+                                            <apex:selectOption itemLabel="Select" itemValue="" />
+                                            <apex:selectOptions value="{!lstAMS}"/>
+                                        </apex:selectList>&nbsp;
+                                    </td>
+                                    <td style="width: 18%;">                                         
+                                        <apex:inputText id="txtAccountNumber" value="{!sAccountNumber}" style="width: 89%;" styleClass="pageText"/>
+                                    </td>
+                                    <td style="width: 18%;">                                         
+                                        <apex:inputText id="txtBIN" value="{!sBIN}" style="width: 89%;" styleClass="clsCheckNumeric clsCheckLength9 pageText"/>
+                                    </td>
+                                    <td style="width: 18%;">                                         
+                                        <apex:inputText id="txtBusiness" value="{!sBusinessName}" style="width: 86%;" styleClass="pageText" /><br />
+                                        <span id="spnBusinessSpclChaMsg" class="reqClass" style="display:none;">Business has invalid characters.</span>
+                                    </td>
+                                    <td style="width: 18%;">                                         
+                                        <apex:inputText id="txtBusinessCountry" value="{!sBusinessCountry}" style="width: 88%;" styleClass="pageText"/>
+                                        <span id="spnCountrySpclChaMsg" class="reqClass" style="display:none;">Country has invalid characters.</span>
+                                    </td>
+                                    <td style="width: 3%;"><apex:commandButton id="btnGo" onclick="return viewAccounts();" value="Go" /></td>                                   
+                                </tr>
+                            </table>
+                            <span id="spnSlAMSMsg" class="reqClass" style="display:none;">Alerts Monitored Set Name is required.</span>
+                        </div>
+                    </td>
+                    <td style="padding-top: 28px; width:5%;">
+                        <apex:commandButton id="btnDeleteSelAccts" value="Delete Selected Accounts" onclick="return deleteSelectedAccounts();" /> <br /><br />
+                        <apex:outputPanel id="otpnlPrintLink">
+                            <apex:commandLink id="cmdLnkPrint" value="Print" action="{!PrintSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;" styleClass="btn" rendered="{!if(iAccountMapSize != 0, true, false)}" />&nbsp;&nbsp;
+                            <apex:commandLink id="cmdLnkExport" value="Export" action="{!ExportSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;" styleClass="btn" rendered="{!if(iAccountMapSize != 0, true, false)}" />
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+            <br /><br />
+            <apex:outputPanel id="otpnlResults" style="width:95%;">
+                <!--<apex:pageMessage summary="The Selected Accounts has been deregistered successfully." severity="confirm" strength="3" rendered="{!bIsDeleted}"  />-->
+                <apex:pageMessage summary="No Account is found for the Selected Alert Monitored Set Name." severity="info" strength="3" rendered="{!bIsNoRecords}"  />
+                <apex:pageMessage summary="{!sWSError}" severity="ERROR" strength="3" rendered="{!bIsShowError}"  />
+                
+                <apex:pageMessage summary="{!sDeletedAccts}" severity="confirm" strength="3" rendered="{!bIsDeleted}"  />
+                <apex:pageMessages />
+                
+                <apex:pageBlock id="pbAcountsResult" title="Account List" rendered="{!if(iAccountMapSize != 0, true, false)}" >
+                    <apex:pageBlockButtons rendered="{!iWrapListSize > iPageSize}" >                
+                        <apex:outputPanel >
+                            <apex:outputPanel >
+                                <apex:outputText value="<< First" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                <apex:commandLink value="<< First" status="Processing" styleClass="pageLink" action="{!first}" rerender="pb1" rendered="{!iCurrentPage > 1}"/>                            
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>
+                         </apex:outputPanel>
+                         
+                        <apex:outputPanel >
+                            <apex:outputText value="< Previous" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                            <apex:commandLink value="< Previous" status="Processing" styleClass="pageLink" action="{!previous}" rerender="pb1" rendered="{!iCurrentPage > 1}"/>                            
+                           &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!iAccountMapSize>1}" >                    
+                            <apex:outputPanel rendered="{!pg<=iAccountMapSize && pg>=1}" >
+                                <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=iCurrentPage }" >                               
+                                                                
+                                </apex:commandLink>                       
+                                <apex:outputText value="{!pg}" rendered="{!pg==iCurrentPage}">                                                
+                                </apex:outputText>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>                        
+                        </apex:repeat>
+                        
+                        <apex:outputPanel >           
+                             <apex:outputText value="Next >" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                             <apex:commandLink value="Next >" status="Processing" styleClass="pageLink" action="{!next}" rerender="pb1" rendered="{!iCurrentPage < iAccountMapSize}"/>                              
+                             &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel >
+                            <apex:commandLink value="Last >>" status="Processing" styleClass="pageLink" action="{!last}" rerender="pb1" rendered="{!iCurrentPage < iAccountMapSize}"/>                            
+                            <apex:outputText value="Last >>" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                        </apex:outputPanel>                        
+                    </apex:pageBlockButtons>
+                    
+                    <div class="clsCheckBox">
+                        <apex:pageblockTable value="{!mapPageToAccounts[iCurrentPage]}" var="ams" >
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <input type="checkbox" id="selectAll" onclick="checkAll()"/>                                   
+                                </apex:facet>
+                                <apex:inputCheckbox value="{!ams.isCheck}" />
+                            </apex:column>
+                            
+                            <apex:column headerValue="Account Number" value="{!ams.amset.Account__r.Account_Number__c}" styleClass="pageText " />
+                            <apex:column headerValue="BIN" value="{!ams.amset.Account__r.BIN_formula__c}" rendered="{!ams.amset.Account__r.Name != NULL}" styleClass="pageText"/>
+                            <apex:column headerValue="BIN" value="{!ams.amset.Account__r.BIN_formula__c}" rendered="{!ams.amset.Account__r.Name == NULL}" styleClass="pageText"/>
+                            
+                            <apex:column headerValue="Business" value="{!ams.amset.Account__r.Exp_Business__c}" rendered="{!ams.amset.Account__r.Exp_Business__c != NULL}" styleClass="pageText " />
+                            <apex:column headerValue="Business" value="{!ams.amset.Account__r.Exp_Business__c}" rendered="{!ams.amset.Account__r.Exp_Business__c == NULL}" styleClass="pageText " />
+                            
+                            <apex:column headerValue="Address" value="{!ams.amset.Account__r.Exp_Business__r.Exp_Street_Address1__c}" styleClass="pageText "/>                    
+                            <apex:column headerValue="City" value="{!ams.amset.Account__r.Exp_Business__r.Exp_City_Name__c}" styleClass="pageText"  />
+                            <apex:column headerValue="State" value="{!ams.amset.Account__r.Exp_Business__r.Exp_STATE__c}" styleClass="pageText "/>
+                            <apex:column headerValue="ZIP" value="{!ams.amset.Account__r.Exp_Business__r.Exp_ZIP__c}" styleClass="pageText "/>
+                            <apex:column headerValue="Phone" value="{!ams.amset.Account__r.Exp_Business__r.Exp_Business_Phone_No__c}" styleClass="pageText "/>
+                            <apex:column headerValue="Source" value="{!ams.amset.Account__r.Source__c}" styleClass="pageText "/>
+                            <apex:column headerValue="Date Added" value="{!ams.amset.Account__r.Date_Added__c}" styleClass="pageText "/>
+                            
+                            
+                        </apex:pageblockTable> 
+                    </div>
+                    <script>
+                         j$ = jQuery.noConflict();
+                         j$(document).ready(function(){
+                            //*******
+                            j$('.clsCheckLength9').keypress( function(event){              
+                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                if(j$(this).val().length > 8 && keycode != '13'){                 
+                                   event.preventDefault();                
+                                }                               
+                            });
+                            
+                            //************
+                            j$(".clsCheckNumeric").keydown(function (e){
+                                // Allow: backspace, delete, tab, escape, enter and .
+                                if (j$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 17, 86]) !== -1 ||
+                                     // Allow: Ctrl+A
+                                    (e.keyCode == 65 && e.ctrlKey === true) || 
+                                     // Allow: home, end, left, right, down, up
+                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                                         // let it happen, don't do anything
+                                         return;
+                                    }
+                                // Ensure that it is a number and stop the keypress
+                                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                    e.preventDefault();
+                                }
+                            }); 
+                         
+                             //*** Function checking the checkboxes value, if any checkbox is checked then Delete
+                             // button will be enable otherwise button should be always disabled. 
+                             /*j$('input[type="checkbox"]').on('click', function() {
+                                 if(j$('#hdnIsCheckedAccts').val() == '0')
+                                 {
+                                     var isCheck = false;                                
+                                     j$('.clsCheckBox input:checkbox').each(function() {                                                              
+                                          if(j$(this).is(":checked")){                                          
+                                              isCheck = true;                                          
+                                          }
+                                     });
+                                                      
+                                     if(isCheck){                                    
+                                         j$('#hdnIsCheckedAccts').val('1');
+                                         j$('input[id$="btnDeleteSelAccts"]')
+                                                                        .removeAttr("disabled")
+                                                                        .addClass("btn")
+                                                                        .removeClass("btnDisabled"); 
+                                     }
+                                     else{
+                                         j$('#hdnIsCheckedAccts').val('0');
+                                         j$('input[id$="btnDeleteSelAccts"]')
+                                                                        .attr("disabled", "disabled")
+                                                                        .removeClass("btn")
+                                                                        .addClass("btnDisabled");
+                                     } 
+                                 }                               
+                             });*/
+                             
+                             //***
+                             //alert(j$('#hdnIsCheckedAccts').val());
+                             /*if(j$('#hdnIsCheckedAccts').val() == 1){
+                                j$('input[id$="btnDeleteSelAccts"]')
+                                                                    .removeAttr("disabled")
+                                                                    .addClass("btn")
+                                                                    .removeClass("btnDisabled");
+                             }
+                             else{
+                                 j$('input[id$="btnDeleteSelAccts"]')
+                                                                    .attr("disabled", "disabled")
+                                                                    .removeClass("btn")
+                                                                    .addClass("btnDisabled");
+                             }*/                             
+                         });
+                    </script>
+                </apex:pageBlock>               
+            </apex:outputPanel>         
+       </apex:pageblock>
+       <!--<input type="hidden" id="hdnIsCheckedAccts" value="0" />-->
+   </apex:form>
+</apex:page>

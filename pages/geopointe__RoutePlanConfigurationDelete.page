@@ -1,0 +1,155 @@
+<apex:page standardController="geopointe__GP_Route_Plan_Configuration__c" tabStyle="geopointe__GP_Route_Plan_Configuration__c" extensions="geopointe.RoutePlanConfigurationDeleteExtension,geopointe.Localization,geopointe.RemoteAction,geopointe.OrgSettings" sidebar="true" lightningStylesheets="false" standardStylesheets="false">
+	
+	<apex:slds />
+
+	<script src="{!URLFOR($Page.translations)}"></script> <!-- Geopointe translations -->
+	<script src="{!URLFOR($Resource.jquery, '/mixpanel/mixpanel.js')}"></script><!-- Mix Panel -->
+
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common.css')}"/> <!-- Common geopointe CSS -->
+	
+
+	<!-- Lightning -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+		<style type="text/css">
+			body{
+				margin: -1px !important;
+				background: #b0c4df !important;
+			}
+		</style>
+	</apex:outputPanel>
+
+	<!-- Classic -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+		<style type="text/css">
+			.slds-scope .slds-table td {
+				display: table-cell;
+				vertical-align: inherit;
+			}
+		</style>
+	</apex:outputPanel>
+
+	<div class="slds-scope">
+	<apex:form >
+	<apex:outputPanel rendered="{!rpc == null}">
+		<div class="slds-brand-band slds-brand-band_medium"/>
+		<div class="slds-page-header slds-m-around_small">
+			<div class="slds-grid">
+				<div class="slds-col slds-has-flexi-truncate">
+					<div class="slds-media slds-no-space slds-grow">
+						<div class="slds-media__figure">
+							<span class="slds-icon_container slds-icon-standard-business-hours">
+								<svg class="slds-icon" aria-hidden="true">
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#business_hours')}" />
+								</svg>
+							</span>
+						</div>
+						<div class="slds-media__body">
+							<nav>
+								<ol class="slds-breadcrumb slds-line-height_reset">
+									<li class="slds-breadcrumb__item">
+										<span>Geopointe Route Plan Configuration</span>
+									</li>
+								</ol>
+							</nav>
+							<h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="slds-card slds-m-around_small slds-p-around_medium">Record not found</div>
+	</apex:outputPanel>
+
+	<apex:outputPanel rendered="{!rpc != null}">
+		<div class="slds-brand-band slds-brand-band_medium"/>
+
+		<div class="slds-page-header slds-m-around_small">
+			<div class="slds-grid">
+				<div class="slds-col slds-has-flexi-truncate">
+					<div class="slds-media slds-no-space slds-grow">
+						<div class="slds-media__figure">
+							<span class="slds-icon_container slds-icon-standard-business-hours">
+								<svg class="slds-icon" aria-hidden="true">
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#business_hours')}" />
+								</svg>
+							</span>
+						</div>
+						<div class="slds-media__body">
+							<nav>
+								<ol class="slds-breadcrumb slds-line-height_reset">
+									<li class="slds-breadcrumb__item">
+										<span>Geopointe Route Plan Configuration</span>
+									</li>
+								</ol>
+							</nav>
+							<h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">
+								<span>{!rpc.name}</span>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<ul class="slds-grid slds-page-header__detail-row">
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small">Status</p>
+					<p class="slds-text-body_regular slds-truncate">
+						{!status}
+					</p>
+				</li>
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small">Start Date</p>
+					<p class="slds-text-body_regular slds-truncate">
+						{!startDate}
+					</p>
+				</li>
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3">End Date</p>
+					<p class="slds-text-body_regular slds-truncate">
+						<span>{!endDate}</span>
+					</p>
+				</li>
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3">Map Object</p>
+					<p class="slds-text-body_regular slds-truncate">
+						<span>{!rpc.mapObjectName}</span>
+					</p>
+				</li>
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3">Scheduled Visit Object</p>
+					<p class="slds-text-body_regular slds-truncate">
+						<span>{!rpc.scheduledSobjectName}</span>
+					</p>
+				</li>
+				<li class="slds-page-header__detail-block">
+					<p class="slds-text-title slds-truncate slds-m-bottom_xx-small" title="Field 3"># Route Plan Users</p>
+					<p class="slds-text-body_regular slds-truncate">
+						{!rpc.numUsers}
+					</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="slds-card slds-m-around_small slds-p-around_medium">
+			<h2>
+				<span class="slds-icon_container ">
+					<svg class="slds-icon slds-icon-text-warning slds-m-right--x-small" aria-hidden="true">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}" />
+					</svg>
+
+				</span>
+				Deleting this Route Plan Configuration will cause all Route Plan Users, Route Plans, and any associated future Geopointe Routes and/or future Scheduled Visits to be deleted. 
+			</h2>
+			<p class="slds-align_absolute-center slds-p-top_medium">Are you sure you want to delete this?</p>
+			<p class="slds-align_absolute-center slds-p-vertical_large">
+				<apex:commandButton styleClass="slds-button slds-button_neutral" value="Cancel" action="{!cancel}" />
+				<apex:commandButton styleClass="slds-button slds-button_destructive" value="Delete" action="{!markForDelete}" />
+			</p>
+		</div>
+
+	</apex:outputPanel>
+	</apex:form>
+	</div>
+</apex:page>

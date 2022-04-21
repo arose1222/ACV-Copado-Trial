@@ -1,0 +1,1298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>CR_Prescreen_Primary</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>CR_Prescreen_Primary</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Condition_Report_Review</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>After_Hours_Testing__c</fullName>
+        <externalId>false</externalId>
+        <formula>(TimeValue(CreatedDate) &gt; TimeValue(&apos;18:00:00.000&apos;)) || (TimeValue(CreatedDate) &lt; TimeValue(&apos;12:00:00.000&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>After Hours (Testing)</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>After_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(WEEKDAY(DATEVALUE(CreatedDate))!= 1 &amp;&amp; WEEKDAY(DATEVALUE(CreatedDate))!=7,(TimeValue(CreatedDate) &gt; TimeValue(&apos;00:00:00.000&apos;)) &amp;&amp; (TimeValue(CreatedDate) &lt; TimeValue(&apos;12:00:00.000&apos;)),
+    if(WEEKDAY(DATEVALUE(CreatedDate)) = 7, 
+        (TimeValue(CreatedDate) &gt; TimeValue(&apos;14:00:00.000&apos;)) &amp;&amp; (TimeValue(CreatedDate) &lt; TimeValue(&apos;18:00:00.000&apos;)), FALSE)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>After Hours</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( NOT(ISPICKVAL(Status__c, &apos;CLOSED&apos;)), (NOW()-CreatedDate)*24*60 , (Closed_Date__c - CreatedDate)*24*60)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Age_in_Minutes__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) , 
+if((NOW() - CreatedDate)*24*60 &lt;= 10, IMAGE(&quot;/resource/Green_Status_light&quot;,TEXT(NOW() - CreatedDate),32,32), 
+if((NOW() - CreatedDate)*24*60 &gt; 10 &amp;&amp; (NOW() - CreatedDate)*24*60 &lt;= 15, IMAGE(&quot;/resource/Yellow_Status_Light&quot;,TEXT(NOW() - CreatedDate),32,32), 
+if((NOW() - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Status_Light&quot;,TEXT(NOW() - CreatedDate),32,32),null))), 
+
+if(( Closed_Date__c - CreatedDate)*24*60 &lt;= 10, IMAGE(&quot;/resource/Green_Status_light&quot;,TEXT(Closed_Date__c - CreatedDate),32,32), 
+if((Closed_Date__c - CreatedDate)*24*60 &gt; 10 &amp;&amp; (Closed_Date__c - CreatedDate)*24*60 &lt;= 15, IMAGE(&quot;/resource/Yellow_Status_Light&quot;,TEXT(Closed_Date__c - CreatedDate),32,32), 
+if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Status_Light&quot;,TEXT(Closed_Date__c - CreatedDate),32,32),null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age in Minutes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Arb_Risk_Categories__c</fullName>
+        <externalId>false</externalId>
+        <label>Arb Risk Categories</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Aux_Prescreen_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Aux Prescreen Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Under Review</fullName>
+                    <default>false</default>
+                    <label>Under Review</label>
+                </value>
+                <value>
+                    <fullName>Reviewed - No Issues</fullName>
+                    <default>false</default>
+                    <label>Reviewed - No Issues</label>
+                </value>
+                <value>
+                    <fullName>Reviewed - Sent to Prescreen</fullName>
+                    <default>false</default>
+                    <label>Reviewed - Sent to Prescreen</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Aux_Queue__c</fullName>
+        <description>Checking for Aux Queue Ownership</description>
+        <externalId>false</externalId>
+        <formula>OR(
+     CONTAINS( Owner:Queue.QueueName , &apos;Auxiliary Prescreen&apos;),
+     AND(
+         NOT( ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - No Issues&apos;) ),
+         NOT( ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - Sent to Prescreen&apos;) )
+     )
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Aux Queue</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Aux_Reviewed_Time_Stamp__c</fullName>
+        <externalId>false</externalId>
+        <label>Aux Reviewed Time Stamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Aux_Time_to_Reviewed__c</fullName>
+        <description>Time to get to a Aux Reviewed Status</description>
+        <externalId>false</externalId>
+        <formula>(Aux_Reviewed_Time_Stamp__c -  CreatedDate) * 24 * 60</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Aux Time to Reviewed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Aux_Time_to_Under_Review__c</fullName>
+        <description>Determining time from Created Date to Aux Under Review Status</description>
+        <externalId>false</externalId>
+        <formula>(Aux_Under_Review_Time_Stamp__c -  CreatedDate) * 24 * 60</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Aux Time to Under Review</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Aux_Under_Review_Time_Stamp__c</fullName>
+        <description>Time to be stamped when Auxiliary Status reaches Under Review</description>
+        <externalId>false</externalId>
+        <label>Aux Under Review Time Stamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Aux_Under_Review_to_Reviewed_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Aux_Reviewed_Time_Stamp__c -  Aux_Under_Review_Time_Stamp__c ) * 24 * 60</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Aux Under Review to Reviewed Time</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auxiliary_Team_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Auxiliary Team Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Condition_Report_Prescreen</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CR_Pre_Screen_Created_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CR Pre-Screen Created Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_Review_Created_Time_Minus_30__c</fullName>
+        <description>Created time minus 30 minutes</description>
+        <externalId>false</externalId>
+        <formula>CreatedDate - 30 * 0.00069</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CR Review Created Time Minus 30</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CR_Review_Timeout__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is checked if 30 minutes has elapsed since creation and no review has been completed.</description>
+        <externalId>false</externalId>
+        <label>CR Review Timeout</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CR_Spot_Checked__c</fullName>
+        <externalId>false</externalId>
+        <label>CR Spot Checked</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No Corrections Made</fullName>
+                    <default>false</default>
+                    <label>No Corrections Made</label>
+                </value>
+                <value>
+                    <fullName>Some Corrections Made</fullName>
+                    <default>false</default>
+                    <label>Some Corrections Made</label>
+                </value>
+                <value>
+                    <fullName>All Corrections Made</fullName>
+                    <default>false</default>
+                    <label>All Corrections Made</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CR_Update_by_pre_Screener__c</fullName>
+        <description>Changes made to the CR by Pre-Screener field needs to be filled out to close the case. There is also a validation rule to verify this is filled in before closing the record.</description>
+        <externalId>false</externalId>
+        <label>CR Update by pre-Screener</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Closed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Closed Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Condition_Report__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Condition Report</label>
+        <referenceTo>Condition_Report__c</referenceTo>
+        <relationshipName>Condition_Report_Review</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Escalated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Escalated</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Escalation_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Escalation Date/Time</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Incomplete_Missing_Photos__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Incomplete/Missing Photos</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_Make__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_Trim__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data Trim</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_VIN__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data VIN</label>
+        <length>17</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_Vehicle_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data Vehicle ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Data_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Data Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Id__c</fullName>
+        <description>Inspection GUID</description>
+        <externalId>true</externalId>
+        <label>Inspection Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Launched_Before_Prescreen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Launched Before Prescreen</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Link_To_CR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( Inspection_Id__c ),
+HYPERLINK(&apos;https://app.acvauctions.com/saved/&apos;+Condition_Report__r.ACV_Saved_Auction_Id__c, Condition_Report__r.ACV_Saved_Auction_Id__c),
+HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&apos;+Inspection_Id__c, Inspection_Id__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Link To CR</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(Vehicle__c), ISBLANK(Vehicle__r.make__c)),  Inspection_Data_Make__c , Vehicle__r.make__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Make</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(Vehicle__c), ISBLANK(Vehicle__r.model__c)),  Inspection_Data_Model__c , Vehicle__r.model__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prescreen_GUID__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>Prescreen GUID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Prescreen_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Prescreen Type</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Previous_Auction_Run__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether the current VIN has been sold in an auction on our platform before.</description>
+        <externalId>false</externalId>
+        <label>Previous Auction Run</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Previously_Arbitrated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether the current VIN has been arbitrated on our platform before.</description>
+        <externalId>false</externalId>
+        <label>Previously Arbitrated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Question_Count__c</fullName>
+        <description>Counts the number of questions related to a pre-screen - used to trigger the workflow to inform TMs when there are errors</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll up of related questions</inlineHelpText>
+        <label>Question Count</label>
+        <summaryForeignKey>CR_Question__c.Condition_Report_Prescreen__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Question_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Review_Classification__c</fullName>
+        <externalId>false</externalId>
+        <label>Review Classification</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very Likely Avoidable</fullName>
+                    <default>false</default>
+                    <label>Very Likely Avoidable</label>
+                </value>
+                <value>
+                    <fullName>Likely Avoidable</fullName>
+                    <default>false</default>
+                    <label>Likely Avoidable</label>
+                </value>
+                <value>
+                    <fullName>Unlikely Avoidable</fullName>
+                    <default>false</default>
+                    <label>Unlikely Avoidable</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Seller Dealership</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Seller Condition Report Prescreen</relationshipLabel>
+        <relationshipName>Condition_Report_Prescreen</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status_Last_Updated__c</fullName>
+        <externalId>false</externalId>
+        <label>Status Last Updated</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Under Review</fullName>
+                    <default>false</default>
+                    <label>Under Review</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TM_Email__c</fullName>
+        <description>This field is populated by a workflow - meant to only be filled in when the pre-screen has related questions(aka errors) - This email field allows the tm to be added to the CRR Closed emial template</description>
+        <externalId>false</externalId>
+        <inlineHelpText>TM for the Account - only filled in when these are related questions</inlineHelpText>
+        <label>TM Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Timed_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Timed Out - void</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Training_Only__c</fullName>
+        <description>Manually add dates for Training timeframes provided this is worked by an Aux team member</description>
+        <externalId>false</externalId>
+        <formula>OR(
+  AND( 
+  NOT(ISNULL(Auxiliary_Team_Owner__c)),
+    DATEVALUE(CreatedDate) &lt;  DATE(2021,08,06)),
+
+  AND( OR(
+  CONTAINS( Reason__c , &apos;Automatic/Manual&apos;),
+  CONTAINS( Reason__c , &apos;Glass&apos;)), 
+  DATEVALUE(CreatedDate) &lt;  DATE(2021,08,16)
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Training Only</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Trim__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(Vehicle__c),ISBLANK(Vehicle__r.trim__c)),  Inspection_Data_Trim__c , Vehicle__r.trim__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Trim</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI_Creator_Email__c</fullName>
+        <description>Email address of the VCI Creator</description>
+        <externalId>false</externalId>
+        <label>VCI Creator Email</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>VCI__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VCI Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI_Mobile__c</fullName>
+        <externalId>false</externalId>
+        <formula>VCI__r.MobilePhone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VCI Mobile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>VCI__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VCI Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI_Submitter_Email__c</fullName>
+        <description>Represents the email address of the VCI field on the CR object.</description>
+        <externalId>false</externalId>
+        <label>VCI Submitter Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VCI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>VCI</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Condition_Report_Review</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Information__c</fullName>
+        <externalId>false</externalId>
+        <formula>&apos;Selling Dealership Name: &apos; &amp; Vehicle__r.Most_Recent_Seller__r.Name &amp;
+BR() &amp;
+&apos;Year: &apos; &amp; TEXT( Vehicle__r.Year__c ) &amp;
+BR() &amp;
+&apos;Make: &apos; &amp; Vehicle__r.make__c &amp;
+BR() &amp;
+&apos;Model: &apos; &amp; Vehicle__r.model__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle Information</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Condition Report Prescreen</relationshipLabel>
+        <relationshipName>Condition_Report_Prescreen</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Vin__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(Condition_Report__c),ISBLANK(Condition_Report__r.VIN__c)),  Inspection_Data_VIN__c , Condition_Report__r.VIN__c)</formula>
+        <label>Vin #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Virtual_Lift_Image_URL__c</fullName>
+        <description>Used for displaying VL Image to Prescreeners</description>
+        <externalId>false</externalId>
+        <label>Virtual Lift Image URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Virtual_Lift__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Virtual_Lift_Image_URL__c) , &apos;&apos;, HYPERLINK( Virtual_Lift_Image_URL__c ,&apos;Link&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Virtual Lift</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(Vehicle__c)),  Inspection_Data_Year__c , Text(Vehicle__r.Year__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Condition Report Prescreen</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <label>All</label>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Aux_Further_Review</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Reviewed - Sent to Prescreen</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>Aux Further Review</label>
+    </listViews>
+    <listViews>
+        <fullName>Auxiliary_Prescreen_Bumper_Lights_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Inspection_Data_Year__c</columns>
+        <columns>Inspection_Data_Make__c</columns>
+        <columns>Inspection_Data_Model__c</columns>
+        <columns>Link_To_CR__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Under Review,Reviewed - No Issues,Reviewed - Sent to Prescreen</value>
+        </filters>
+        <label>Auxiliary Prescreen: Bumper/Lights</label>
+        <queue>Auxiliary_Prescreen_Bumper_Lights</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Auxiliary_Prescreen_Exterior_Cosmetic_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Inspection_Data_Year__c</columns>
+        <columns>Inspection_Data_Make__c</columns>
+        <columns>Inspection_Data_Model__c</columns>
+        <columns>Link_To_CR__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Under Review,Reviewed - No Issues,Reviewed - Sent to Prescreen</value>
+        </filters>
+        <label>Auxiliary Prescreen: Exterior Cosmetic</label>
+        <queue>Auxiliary_Prescreen_Exterior_Cosmetic</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Queue_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <label>CR Queue</label>
+        <queue>CR_Queue</queue>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Prescreen_CRs</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Vin__c</columns>
+        <columns>VCI__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>notContain</operation>
+            <value>Aux</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>CRs to be screened</label>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Open_Prescreen_CRs</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Vin__c</columns>
+        <columns>VCI__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Under Review</value>
+        </filters>
+        <label>CRs Under Review</label>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>SIA_Aux_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <label>SIA Aux Queue</label>
+        <queue>SIA_Aux_Queue</queue>
+    </listViews>
+    <listViews>
+        <fullName>SIA_CRs_to_be_screened</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Vin__c</columns>
+        <columns>VCI__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>SIA Prescreen</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>SIA CRs to be screened</label>
+    </listViews>
+    <listViews>
+        <fullName>SIA_Prescreen_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>SIA Prescreen</label>
+        <queue>SIA_Prescreen</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Specialized_Prescreen_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Status__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Specialized Prescreen</label>
+        <queue>Specialized_Prescreen</queue>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CRR-{0000000}</displayFormat>
+        <label>Condition Report Prescreen Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Condition Report Prescreen</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Missing_Photos_True_when_No_Issues</fullName>
+        <active>false</active>
+        <description>Incomplete/Missing Photos can only be true when Aux Prescreen status is set to Reviewed - No Issues</description>
+        <errorConditionFormula>AND( 
+Incomplete_Missing_Photos__c = TRUE,
+NOT(ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - No Issues&apos;)),
+OR ($Profile.Name  &lt;&gt;  &quot;Arbitration&quot;))</errorConditionFormula>
+        <errorMessage>Incomplete/Missing Photos can only be checked when Aux Prescreen status is set to Reviewed - No Issues or when Arbitration profiles is editing.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Must_have_Question_for_Aux_and</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND (  
+   ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - Sent to Prescreen&apos;),
+    Question_Count__c &lt; 1)</errorConditionFormula>
+        <errorMessage>You must Report an Issue before updating the Aux Prescreen Status to &quot;Reviewed - Sent to Prescreen&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Must_identify_if_changes_made_to_CR</fullName>
+        <active>true</active>
+        <description>used to verify if the Changes made to CR by pre-screener field is populated</description>
+        <errorConditionFormula>Aux_Queue__c = FALSE &amp;&amp;
+ISCHANGED(Status__c) &amp;&amp;
+ISPICKVAL( Status__c ,&apos;Closed&apos;)&amp;&amp;
+ISBLANK(TEXT(  CR_Update_by_pre_Screener__c  ))</errorConditionFormula>
+        <errorMessage>You must indicate if changes were made to the CR in order to mark as Closed.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

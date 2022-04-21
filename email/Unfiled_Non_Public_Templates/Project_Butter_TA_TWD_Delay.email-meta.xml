@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>TA and TWD Delay email for project Butter accounts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Project Butter - TA/TWD Delay</name>
+    <style>none</style>
+    <subject>Title Delay: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Dear {!Case.Contact},
+I&apos;m reaching out to let you know that your title for the below auction seems to be running a bit behind. We&apos;re hoping to have it by the time promised but wanted to keep you updated. If the title officially becomes late, we&apos;ll send you another note letting you know that you can submit a 48 hour cancellation notice.  
+
+{!Case.Vehicle_Year_Make_Model__c} VIN: {!Case.Vehicle_VIN__c} Auction ID: {!Case.Auction_Number_Case__c}  I&apos;ve escalated this with the titles team and they are actively following up with the seller. We will have the title to you as soon as possible.  If you have any questions, please do not hesitate to give me a call or reply to this email.  
+
+Thanks, 
+{!Contact.IST_Account_Manager__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

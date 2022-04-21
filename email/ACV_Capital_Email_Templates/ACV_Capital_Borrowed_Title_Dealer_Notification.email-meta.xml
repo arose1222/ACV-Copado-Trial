@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used in Workflow to remind dealer that borrowed title is expires today</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>ACV Capital - Borrowed Title Dealer Notification</name>
+    <style>freeForm</style>
+    <subject>Action Needed: Borrowed Title</subject>
+    <textOnly>Hello {!Case.Account},
+
+
+The borrowed title for the following vehicle will be automatically paid via ACH today.
+
+Year: {!Case.Vehicle_Year__c}
+Make/Model:  {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c}
+VIN: {!Case.VIN__c}
+Auction Number: {!Case.Auction_Number_Case__c}
+
+Do not hesitate to contact us with any questions:  Call - (716)235-3883, Email - acvadvance@acvauctions.com
+
+
+Thank you!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

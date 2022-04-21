@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email informs the selling dealership that the 48 hour notice placed by the buyer has expired and the auction may now be unwound.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>48 Hour Notice Expired</name>
+    <style>freeForm</style>
+    <subject>48 Hour Notice Expired: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Please be advised that the previously communicated 48 hour notice on the following vehicle has expired.  The buyer may now opt to void the deal.  We will make you aware of the buyer&apos;s final decision as soon as possible.
+
+{!Case.Vehicle_Year_Make_Model__c}
+VIN: {!Case.Vehicle_VIN__c}
+Auction ID: {!Case.Auction_Number__c}
+
+Please reach out to titles@acvauctions.com with any questions.
+
+If you have already been in contact with your ACV Title Clerk and have a previously agreed upon arrangement for the delivery of this title, please disregard.
+
+Thank you,
+ACV Auctions
+
+
+This is an automated message. Please do not reply.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

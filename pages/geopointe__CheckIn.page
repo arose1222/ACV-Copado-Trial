@@ -1,0 +1,871 @@
+<apex:page controller="geopointe.CheckIn_Controller"
+  extensions="geopointe.RemoteAction"
+  action="{!init}"
+  showHeader="false"
+  sidebar="false"
+  title="Check In - {!SobjectName}"
+  standardstylesheets="true"
+  lightningStylesheets="true"
+  docType="html-5.0"
+>
+  <head>
+    <title>Check In - {!SobjectName}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  </head>
+
+  <c:GlobalVars />
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/slds-vf-scope.css')}" />
+  <apex:slds />
+  <apex:stylesheet value="https://fonts.googleapis.com/css?family=Montserrat" /><!-- Custom font to match sf1 style -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/sf1/css/sf1.css')}" /><!-- Geopointe sf1 css -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/sf1/css/checkin.css')}" /><!-- Geopointe sf1 check in css -->
+  <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+  <!-- Interact with sf1 wrapper -->
+  <apex:includeScript value="{!URLFOR($Resource.geopointe__js_api_v1)}" />
+  <!-- Geopointe Javascript api -->
+  <script src="{!URLFOR($Resource.geopointeMobile, '/vendor/mapMobile.vendor.js')}"></script>
+  <script type="text/javascript">
+    var $ = jQuery;
+  </script>
+  <!-- export jQuery as $ -->
+  <script src="{!URLFOR($Resource.geopointeMobile, '/dist/mapMobile.js')}"></script>
+
+  <!-- Scripts for Translation -->
+  <script src="{!URLFOR($Resource.jquery, '/js/lib/localize.9.17.2018.js')}" />
+  <script>
+    !(function (a) {
+      if (!a.Localize) {
+        a.Localize = {};
+        for (
+          var e = [
+              'translate',
+              'untranslate',
+              'phrase',
+              'initialize',
+              'translatePage',
+              'setLanguage',
+              'getLanguage',
+              'detectLanguage',
+              'untranslatePage',
+              'bootstrap',
+              'prefetch',
+              'on',
+              'off',
+            ],
+            t = 0;
+          t < e.length;
+          t++
+        )
+          a.Localize[e[t]] = function () {};
+      }
+    })(window);
+  </script>
+  <script>
+    Localize.initialize({
+      key: window.localizeKey,
+      rememberLanguage: false,
+      saveNewPhrases: false,
+      translateBody: true,
+    });
+    Localize.setLanguage('{!userLanguage}');
+  </script>
+
+  <!-- only load this if inside the geopointe map page
+	<apex:outputPanel rendered="{!$CurrentPage.parameters.sfdcIframeHost == ''}">
+		<link rel="stylesheet" href="{!URLFOR($Resource.jquery, 'sf1/css/androidSelect.css')}"/>
+   		<script src="{!URLFOR($Resource.jquery, 'sf1/js/androidSelect.js')}"></script>
+	</apex:outputPanel>
+	-->
+  <!-- Apex template style fixes -->
+  <style type="text/css">
+    div.slds-form__item > span,
+    div.slds-form-element__control > span {
+      width: 100% !important;
+    }
+    span.lookupInput,
+    span.lookupInput > input {
+      width: 100%;
+    }
+    span.dateInput,
+    span.dateInput > input {
+      width: 100%;
+    }
+    span > select {
+      width: 100%;
+    }
+    div.requiredBlock {
+      display: none;
+    }
+  </style>
+  <!-- Apex template style fixes -->
+  <style type="text/css">
+    span.dateInput,
+    span.dateInput > input {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    /* Fix error messages in apex:pageMessages to be white when in classic */
+    table.messageTable > tbody > tr > td > span > ul > li {
+      color: white;
+    }
+    td.messageCell > div.messageText {
+      color: white;
+    }
+  </style>
+
+  <style type="text/css">
+    .modalIndicatorContainer {
+      box-sizing: content-box !important;
+    }
+    .modalIndicatorContainer img.modalSpinner {
+      height: 35px;
+    }
+  </style>
+
+  <style type="text/css">
+    body input[type='checkbox'] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      display: inline-block;
+      position: relative;
+      width: 1rem !important;
+      height: 1rem !important;
+      vertical-align: middle;
+      outline: none;
+      box-sizing: border-box;
+      padding: 0;
+    }
+    body input[type='checkbox']:checked:after,
+    .slds-vf-scope input[type='checkbox']:checked:after {
+      display: block;
+      content: '';
+      height: 0.25rem !important;
+      width: 0.5rem !important;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+      border-bottom: 2px solid #0070d2;
+      border-left: 2px solid #0070d2;
+    }
+    input[type='checkbox'] {
+      border: 0;
+    }
+    input {
+      min-height: unset;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+    var isQuickAction = {!isQuickAction};
+  </script>
+
+  <apex:form >
+    <div class="slds-scope container" style="max-width: 100%">
+      <apex:outputPanel id="checkinForm">
+        <apex:outputPanel layout="block" styleClass="checkinHeader" rendered="{!AND($CurrentPage.parameters.inline != '1', gpUserTheme == 'Theme4t', SobjectName != null)}">
+          <div class="slds-page-header">
+            <div class="slds-page-header__row">
+              <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                  <div class="slds-media__body">
+                    <div class="slds-page-header__name">
+                      <div class="slds-page-header__name-title">
+                        <h1><span class="slds-page-header__title slds-truncate" title="{!SobjectName}">{!SobjectName}</span></h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </apex:outputPanel>
+        <!-- Layout Items -->
+        <div class="slds-form slds-m-horizontal_small">
+          <apex:outputPanel id="inputForm">
+            <apex:pageMessages />
+
+            <div id="layoutItemWrapper">
+              <apex:repeat value="{!actionLayoutItems}" var="item">
+                <!-- Notes -->
+                <apex:outputPanel styleClass="slds-m-vertical_small" rendered="{!item.apiName == 'checkin__note'}">
+                  <div class="slds-form slds-m-vertical_x-small">
+                    <fieldset class="slds-form-element slds-form-element_compound slds-form-element_address">
+                      <legend class="slds-form-element__legend slds-form-element__label">{!$Label.Notes}</legend>
+                      <div class="slds-form-element__control">
+                        <div class="slds-form__row slds-m-vertical_small">
+                          <div class="slds-form__item" role="listitem">
+                            <div class="slds-form-element slds-form-element_stacked">
+                              <label class="slds-form-element__legend slds-form-element__label"></label>
+                              <textarea id="checkinInput" class="slds-textarea size-full" type="text"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </apex:outputPanel>
+                <!-- Notes -->
+
+                <!-- Share to Feed -->
+                <apex:outputPanel rendered="{!item.apiName == 'checkin__sharetofeed'}">
+                  <div class="slds-form__row slds-m-vertical_small">
+                    <div class="slds-form__item" role="listitem">
+                      <div class="slds-form-element">
+                        <label class="slds-checkbox_toggle slds-grid">
+                          <span class="slds-form-element__legend slds-form-element__label slds-m-bottom_none">{!$Label.Share_on_Feed}</span>
+                          <input id="shareOnChatter" type="checkbox" name="checkbox-toggle-16" value="checkbox-toggle-16" aria-describedby="checkbox-toggle-16" />
+                          <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-checkbox_on">{!$Label.Enabled}</span>
+                            <span class="slds-checkbox_off">{!$Label.Disabled}</span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </apex:outputPanel>
+                <!-- ShareCheckInOnFeed -->
+                <!-- Share to Feed -->
+
+                <!-- CheckIn Field Set -->
+                <apex:outputPanel rendered="{!AND(item.apiName == 'checkin__fieldset', checkInFieldSetName != null)}">
+                  <div class="slds-form slds-m-vertical_x-small">
+                    <fieldset class="slds-form-element slds-form-element_compound slds-form-element_address">
+                      <legend class="slds-form-element__legend slds-form-element__label">{!$Label.geopointe__check_in}</legend>
+                      <div class="slds-form-element__control">
+                        <apex:repeat value="{!fieldSetToUse}" var="f">
+                          <apex:outputPanel rendered="{!AND(f.fieldPath != 'RecordTypeId', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Createable)}"
+                          >
+                            <div class="slds-form__item slds-p-bottom_xx-small" role="listitem">
+                              <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                <apex:outputPanel styleClass="slds-form-element__label" layout="block" rendered="{!CONTAINS(f.fieldPath, '.')}"
+                                  >{!f.fieldPath}: {!$Label.geopointe__check_in} {!$Label.geopointe__field_set_cannot_support_lookup_fields}</apex:outputPanel>
+
+                                <label style="" class="slds-form-element__label">
+                                  <abbr style="{!IF(f.required, '','display: none;')}" class="slds-required" title="required">*</abbr>
+                                  {!IF(f.fieldPath == 'geopointe__Why_Text__c','Notes',f.label)}
+                                </label>
+                                <div class="slds-form-element__control">
+                                  <apex:outputPanel rendered="{!AND(NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Type != 'multipicklist')}">
+                                    <apex:inputField styleClass="{!IF(AND(f.type <> 'reference', f.type <> 'boolean' ), 'slds-input', '')} {!IF(OR(f.type == 'datetime', f.type == 'date', f.type == 'reference'), 'slds-grid slds-grow', '')}"
+                                      style="{!IF(AND(f.type <> 'datetime',f.type <> 'boolean'), 'width: 100%;', '')}"
+                                      type="{!IF(OR(f.type == 'boolean', f.type == 'date', f.type == 'datetime'), '', 'auto')}"
+                                      value="{!checkInFields[f.fieldPath]}"
+                                      required="{!OR(f.required, f.dbrequired)}"
+                                      rendered="{!AND(f.fieldPath != 'RecordTypeId',f.fieldPath != 'geopointe__Why_Text__c', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Createable)}"
+                                    />
+
+                                    <apex:inputTextArea styleClass="slds-textarea"
+                                      value="{!checkInFields[f.fieldPath]}"
+                                      required="{!OR(f.required, f.dbrequired)}"
+                                      rendered="{!AND(f.fieldPath = 'geopointe__Why_Text__c', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Createable)}"
+                                    />
+                                  </apex:outputPanel>
+
+                                  <apex:outputPanel rendered="{!AND(NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Type == 'multipicklist')}"
+                                    styleClass="multiSelectWrapper"
+                                  >
+                                    <apex:inputField styleClass="slds-input"
+                                      style="width: 100%"
+                                      id="gpMulti"
+                                      value="{!checkInFields[f.fieldPath]}"
+                                      required="{!OR(f.required, f.dbrequired)}"
+                                      rendered="{!AND(f.fieldPath != 'RecordTypeId', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.geopointe__Check_In__c.Fields[f.fieldPath].Createable)}"
+                                    />
+                                  </apex:outputPanel>
+                                </div>
+                              </div>
+                            </div>
+                          </apex:outputPanel>
+                        </apex:repeat>
+                      </div>
+                    </fieldset>
+                  </div>
+                </apex:outputPanel>
+                <!-- CheckIn Field Set -->
+
+                <!-- Task Field Set -->
+                <apex:outputPanel rendered="{!AND(item.apiName == 'checkin__task_fieldset', CheckInTaskFieldSetName != null)}">
+                  <div id="taskFieldSet" class="slds-form slds-m-vertical_x-small" style="display:{!IF(doQuickCheckIn, 'none', 'block')};">
+                    <fieldset class="slds-form-element slds-form-element_compound slds-form-element_address">
+                      <legend class="slds-form-element__legend slds-form-element__label">{!$ObjectType.Task.label}</legend>
+                      <div class="slds-form-element__control">
+                        <apex:outputPanel rendered="{!checkInTaskFieldSetName != ''}">
+                          <apex:repeat value="{!taskFieldSetToUse}" var="f">
+                            <apex:outputPanel rendered="{!AND(f.fieldPath != 'RecordTypeId', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.Task.Fields[f.fieldPath].Createable)}">
+                              <div class="slds-form__item slds-p-bottom_xx-small" role="listitem">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                  <apex:outputPanel styleClass="slds-form-element__label" layout="block" rendered="{!CONTAINS(f.fieldPath, '.')}"
+                                    >{!f.fieldPath}: {!$Label.geopointe__check_in} {!$Label.geopointe__task_cannot_support_lookup_fields}</apex:outputPanel>
+
+                                  <label style="" class="slds-form-element__label">
+                                    <abbr style="{!IF(f.required, '','display: none;')}" class="slds-required" title="required">*</abbr>
+                                    {!f.label}
+                                  </label>
+                                  <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="{!IF(f.fieldPath == 'Subject', 'lookupInput', '')}"
+                                      rendered="{!AND(NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.Task.Fields[f.fieldPath].Type != 'multipicklist')}"
+                                    >
+                                      <apex:inputField style="{!IF(AND(f.type <> 'datetime',f.type <> 'boolean'), 'width: 100%;', '')}"
+                                        styleClass="{!IF(AND(f.type <> 'reference', f.fieldPath <> 'Subject', f.type <> 'boolean'), 'slds-input', '')}
+																		{!IF(OR(f.type == 'datetime', f.type == 'date', f.type == 'reference'), 'slds-grid slds-grow', '')}
+																		{!IF(f.fieldPath == 'Subject', 'customCSS', '')}"
+                                        value="{!fieldBag[f.fieldPath]}"
+                                        required="{!OR(f.required, f.dbrequired)}"
+                                        rendered="{!AND(f.fieldPath != 'RecordTypeId', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.Task.Fields[f.fieldPath].Createable)}"
+                                      />
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel rendered="{!AND(NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.Task.Fields[f.fieldPath].Type == 'multipicklist')}"
+                                      styleClass="multiSelectWrapper"
+                                    >
+                                      <apex:inputField styleClass="input"
+                                        id="gpMulti"
+                                        value="{!fieldBag[f.fieldPath]}"
+                                        required="{!OR(f.required, f.dbrequired)}"
+                                        rendered="{!AND(f.fieldPath != 'RecordTypeId', NOT(CONTAINS(f.fieldPath, '.')), $ObjectType.Task.Fields[f.fieldPath].Createable)}"
+                                      />
+                                    </apex:outputPanel>
+                                  </div>
+                                </div>
+                              </div>
+                            </apex:outputPanel>
+                          </apex:repeat>
+                        </apex:outputPanel>
+                      </div>
+                    </fieldset>
+                  </div>
+                </apex:outputPanel>
+                <!-- Task Field Set -->
+
+                <!-- Map -->
+                <apex:outputPanel rendered="{!item.apiName == 'checkin__map'}">
+                  <article id="hideMapChecked" style="min-height: 180px" class="slds-card slds-m-vertical_small">
+                    <div class="slds-card__body slds-is-relative" style="max-width: 100%">
+                      <div style="top: 0px" id="retryGetPositionButton" onclick="retryGetPosition();" />
+                      <div style="border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; overflow: hidden">
+                        <img id="userLocationImg" class="checkinMap" style="width: 100%;position: relative; !IF($CurrentPage.parameters.inline == '1',' width: 90%','')}" src="" />
+                      </div>
+                      <div id="placeholderWrapper" style="border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; overflow: hidden">
+                        <img
+                          id="placeholder"
+                          class="checkinMap"
+                          style="{!IF($CurrentPage.parameters.inline == '1','width: 90%','')}; object-fit: contain;width: 100%;position: relative;"
+                          src="{!URLFOR($Resource.jquery, '/sf1/img/checkInBaseImg.png')}"
+                        />
+                      </div>
+                      <div id="mapLoadingSpinner" class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_medium">
+                          <span class="slds-assistive-text">Loading</span>
+                          <div class="slds-spinner__dot-a"></div>
+                          <div class="slds-spinner__dot-b"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </apex:outputPanel>
+                <!-- Map -->
+              </apex:repeat>
+            </div>
+          </apex:outputPanel>
+
+          <!-- SF1/Web map action -->
+          <apex:outputPanel layout="block"
+            style="{!IF(actionLayoutItems.size == 0, 'position: absolute; bottom: 10px; width: 90%; margin-left: .5rem; mergin-right: .5rem;', ' margin-bottom: 10px;')}"
+            rendered="{!OR($CurrentPage.parameters.inline != '1', mockSf1)}"
+          >
+            <!-- <div style="{!IF(actionLayoutItems.size > 0, 'margin-top: 25px;', '')}"> -->
+            <button id="desktopCheckInBtn" class="slds-button slds-button_brand btn size-full" onclick="doCheckin();return false;" disabled="disabled">{!$Label.Check_In}</button>
+            <!-- </div> -->
+          </apex:outputPanel>
+
+          <!--Desktop chatter publisher action -->
+          <apex:outputPanel layout="block"
+            style="{!IF(actionLayoutItems.size > 0, 'bottom: 10px; width: 90%; margin-left: .5rem; mergin-right: .5rem;', ' margin-bottom: 10px;')}"
+            rendered="{!$CurrentPage.parameters.inline == '1'}"
+          >
+            <!-- <div style="{!IF(actionLayoutItems.size == 0, 'margin-top: 25px;', '')}"> -->
+            <button id="desktopLocateMeBtn" class="slds-button slds-button_neutral btn size-full" onclick="getLatLng();return false;">{!$Label.Locate_Me}</button>
+            <!-- TODO translation -->
+            <button id="desktopCheckInBtn" class="slds-button slds-button_brand btn size-full" onclick="doCheckin();return false;" style="display: none" disabled="disabled">
+              {!$Label.Check_In}
+            </button>
+            <!-- </div> -->
+          </apex:outputPanel>
+        </div>
+        <!-- Layout Items -->
+        <canvas id="mapCanvas" style="width: 100%; height: 100%; display: none" width="640" height="300"></canvas>
+      </apex:outputPanel>
+    </div>
+    <apex:actionFunction name="doCheckinAction" reRender="checkinCompleteScript,inputForm" action="{!doCheckin}">
+      <apex:param name="checkInJSON" value="" assignTo="{!checkInJSON}" />
+    </apex:actionFunction>
+  </apex:form>
+
+  <script type="text/javascript">
+    function addLightningImgToSubject() {
+      var myImage = document.querySelector("img.comboboxIcon[alt='Subject Combo (New Window)']");
+      if (myImage) {
+        var newImage = document.createElement('img');
+        newImage.setAttribute('class', 'lookupIcon');
+        newImage.setAttribute('src', '/img/s.gif');
+        newImage.setAttribute('title', 'Subject Combo (New Window)');
+
+        myImage.parentNode.appendChild(newImage);
+        myImage.remove();
+      }
+    }
+    addLightningImgToSubject();
+  </script>
+  <apex:outputPanel id="checkinCompleteScript">
+    <script type="text/javascript">
+      var cirJSON = '{!JSENCODE(checkInResultJSON)}';
+
+      sf1.hideModalStatus();
+
+      if (cirJSON && cirJSON != '') {
+        var checkInResult = JSON.parse(cirJSON);
+
+        if (checkInResult.success) {
+          var hideForm = document.getElementById('layoutItemWrapper');
+          hideForm.style.display = 'none';
+
+          var checkInBtn = document.getElementById('desktopCheckInBtn');
+          checkInBtn.style.display = 'none';
+
+          //Hide the modal
+          sf1.hideModalStatus();
+          sf1.disableSf1Submit(); //Make sure button stays disabled after success to prevent double checkin
+
+          //Clear existing error messages before adding success message
+          sf1.clearPageMessages();
+
+          //Show success message, TODO
+          sf1.addPageMessage({
+            prependTo: 'body',
+            title: gp_translations.Check_In_Successful,
+            severity: 'success',
+            centerInWindow: true,
+          });
+
+          //Emit the JS_API event for the check in complete
+          parent.postMessage({ messageType: 'gpAction', action: 'checkInComplete', args: checkInResult }, '*');
+
+          //Hide the checkin form
+          jQuery('#checkinForm').hide();
+          jQuery('#taskFieldSet').hide();
+
+          //Auto close checkin page, after 2-3 seconds
+          setTimeout(function () {
+            sf1.closeWindow();
+          }, 1300);
+
+          if (retURL) {
+            setTimeout(function () {
+              window.location.href = retURL;
+            }, 1000);
+          } else {
+            //Try to close the current window, this will only work for popups
+            setTimeout(function () {
+              try {
+                window.close();
+                geopointe.api.closeAction();
+              } catch (e) {}
+            }, 1200);
+          }
+        } else {
+          sf1.hideModalStatus();
+
+          //Show error message
+          var errorMsg = checkInResult.message;
+          if (checkInResult.messageShort) {
+            errorMsg = checkInResult.messageShort;
+          }
+
+          //Clear existing error messages before adding new error message
+          sf1.clearPageMessages();
+
+          sf1.addPageMessage({
+            prependTo: '.container',
+            title: gp_translations.Unable_to_Check_In,
+            message: errorMsg,
+            severity: 'error',
+          });
+        }
+      }
+    </script>
+  </apex:outputPanel>
+
+  <apex:outputPanel id="setUserLocationImage">
+    <script type="text/javascript">
+      var doQuickCheckIn = {!doQuickCheckIn};
+      var hideMapChecked = {!checkInHideMap};
+      var isIOS = {!isIOS};
+      /**
+       * set the location image if necessary and enable the check in button or auto check in
+       * @param {String} signedImageURL signed image url to use for the location image
+       * @return {void}
+       */
+      function setLocationImage(signedImageURL) {
+      	if (signedImageURL.indexOf('Error') === 0) {
+      		sf1.addPageMessage({
+      			prependTo: '.container',
+      			title: 'An error occurred',
+      			message: signedImageURL,
+      			severity: 'error'
+      		});
+      		jQuery('.spinner').hide();
+      		hideMapSpinner();
+      		jQuery('#checkinForm').hide();
+      		jQuery('#taskFieldSet').hide();
+      	}
+      	else if (signedImageURL != '') {
+      		//Hide the locate me button and show the checkin button
+      		$("#desktopLocateMeBtn").hide();
+      		$("#desktopCheckInBtn").show();
+
+      		img = new Image();
+      		img.crossOrigin = "Anonymous";
+
+      		var enableCheckInUI = function() {
+      			if({!PostCheckInImagetoFeed}){
+      				if (hideMapChecked) {
+      					base64image = null;
+      				} else {
+      					ctx.drawImage( img, 0, 0 );
+      					var dataURL = cvs.toDataURL('image/jpeg',0.75);
+      					base64image = dataURL.substring(23, dataURL.length);
+      					//cvs.style.display = 'block';
+      					hideMapSpinner();
+      				}
+      			}
+
+      			//Show the image of current location, enable the checkin button
+      			if (!hideMapChecked && signedImageURL) {
+      				setTimeout(function(){
+      					jQuery("#userLocationImg").attr('src',gp_DOMPurify.sanitize(signedImageURL).replace(/\amp;/g, '')).show();
+      					$('#retryGetPositionButton').show();
+      				},500);
+      			}
+      			hideMapPlaceHolder(); // jQuery("#placeholderWrapper").addClass("transparent");
+      			hideMapSpinner();
+      			jQuery("#checkinBtn,#desktopCheckInBtn").prop("disabled",false);
+
+      			try{
+      				Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"true"});
+      			}catch(e){}
+
+      			//If quick checkin is enabled do the check in
+      			if(doQuickCheckIn){
+      				doCheckin();
+      			}
+      		}
+
+      		if (!hideMapChecked && signedImageURL) {
+      			img.onload = enableCheckInUI;
+      			img.src = signedImageURL;
+      		}
+      		else {
+      			enableCheckInUI();
+      		}
+      	}
+      }
+    </script>
+  </apex:outputPanel>
+
+  <script type="text/javascript">
+    var lat, lng, userLocationImgSrc, accuracy;
+
+    var gpRouteId = '{!JSENCODE($CurrentPage.parameters.gpRouteId)}';
+    var gpRouteStopId = '{!JSENCODE($CurrentPage.parameters.gpRouteStopId)}';
+    var placeId = '{!JSENCODE($CurrentPage.parameters.placeId)}';
+
+    var gp_translations = {
+    	Checking_In: "{!JSENCODE($Label.Checking_In)}",
+    	Check_In_Successful: "{!JSENCODE($Label.Check_In_Successful)}",
+    	Please_ensure_GPS_functionality: "{!JSENCODE($Label.Please_ensure_GPS_functionality)}",
+    	Unable_to_access_GPS: "{!JSENCODE($Label.Unable_to_access_GPS)}",
+    	Unable_to_Check_In: "{!JSENCODE($Label.Unable_to_Check_In)}",
+    	Unable_to_locate_position: "{!JSENCODE($Label.Unable_to_locate_position)}",
+    	Unable_to_locate_position_due_to_timeout: "{!JSENCODE($Label.Unable_to_locate_position_due_to_timeout)}"
+    }
+
+    var mockSf1 = {!mockSf1};
+    var retURL = '{!JSENCODE($CurrentPage.parameters.retURL)}';
+
+    //Vars to create base64 image
+    var img = new Image;
+    img.crossOrigin = "Anonymous";
+    var cvs = document.getElementById('mapCanvas');
+    var mapSpinner = document.getElementById('mapLoadingSpinner');
+
+    var ctx = cvs.getContext('2d');
+    var base64image;
+    var isInline = '{!JSENCODE($CurrentPage.parameters.inline)}';
+
+    var shareOnChatter = document.getElementById('shareOnChatter');
+    if ({!ShareCheckInOnFeed} && shareOnChatter) {
+    	shareOnChatter.checked = true;
+    }
+
+    function setupMultiSelectMobile(){
+    	jQuery(".multiSelectWrapper").each(function(){
+    		//Find select lists that end with 'unseleted'
+    		jQuery(this).find("select[id$='gpMulti']").show();
+    		jQuery(this).find('.multiSelectPicklistTable').hide();
+
+    		//Add empty select option to resolve this issue http://stackoverflow.com/questions/34660500/mobile-safari-multi-select-bug, again iOS acting strange
+    		if(isIOS){
+    			jQuery(this).find("select[id$='gpMulti']").prepend('<option disabled="disabled"></option>');
+    		}
+    	});
+    }
+
+    jQuery(document).ready(function(){
+
+    	//Set height of parent container window
+    	geopointe.api.setActionHeight({height: jQuery("body").height()});
+
+    	//Set width of images to size of screen so there is no weird horizontal scrolling, only do this if not on desktop
+    	if('{!JSENCODE($CurrentPage.parameters.inline)}' != '1'){
+    		var mapImgWidth = 320;
+    		var pageWidth = jQuery('body').width();
+    		if(pageWidth < mapImgWidth){
+    			mapImgWidth = pageWidth;
+    			jQuery(".checkinMap").width(mapImgWidth);
+    		}
+    		// jQuery(".checkinMap").width(mapImgWidth);
+    	}
+
+    	//Create event listener for sf1 submit button
+    	try{
+    		Sfdc.canvas.publisher.subscribe({name: "publisher.post", onData:function(e){
+       			doCheckin();
+    		}});
+    	}catch(e){}
+
+    	if(mockSf1) setupMultiSelectMobile();
+
+    	//Get the users position onload only if this is not inline (web version)
+    	if(isInline != '1' || mockSf1 == true || hideMapChecked){
+    		getLatLng();
+    	}
+
+    	function setHeight(){
+    		var height = jQuery(window).height();
+
+    		if(height == 0){
+    			setTimeout(function(){ //Ensures the page conent has loaded, else height sometimes gets set to 0
+    				setHeight();
+    			},250);
+    		}else{
+    			jQuery('.container').parent().height(jQuery(window).height()).addClass('overflowScroll');
+    		}
+    	}
+
+    	//If inline set max height and overflow
+    	if(isInline == '1'){
+    		setHeight();
+    	}
+
+    });
+
+    //Keep track of how many times we attempt to get lat lng
+    var getLatLngAttempts = 0;
+
+    function retryGetPosition(event){
+    	//Remove existing error messages
+    	sf1.clearPageMessages();
+
+    	if(event) event.preventDefault();
+
+    	//Attempt to get location again
+    	getLatLng();
+    }
+
+    /**
+     * sign the user location image
+     * @param  {String} url url for the location image to sign
+     * @return {Promise}    promise that resolves with the signed url
+     */
+    function signGoogleURL(url) {
+    	return new Promise(function (resolve, reject) {
+    		Visualforce.remoting.Manager.invokeAction(gpRemoteAction, 'CheckIn_Controller.signGoogleURL', {url: url}, function (result, event) {
+    			if (event.status) {
+    				resolve(result);
+    			} else {
+    				reject(event.message);
+    			}
+    		}, {escape: false, timeout: 120000, buffer: false});
+    	});
+    }
+
+    function getLatLng(){
+    	getLatLngAttempts++;
+
+    	showMapSpinner();
+    	//Disable the check in buttons
+    	$("#desktopLocateMeBtn").prop("disabled",true);
+    	$("#checkinBtn,#desktopCheckInBtn").prop("disabled",true);
+    	try{ Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"false"}); }catch(e){}
+    	$('#retryGetPositionButton').hide();
+
+
+    	//Show the loading image and spinner
+    	$('#userLocationImg').hide();
+    	showMapPlaceHolder(); // $("#placeholderWrapper").removeClass("transparent");
+    	$(".spinnerWrapper").show();
+
+    	if(navigator.geolocation) {
+    		//Get user position
+    		navigator.geolocation.getCurrentPosition(
+
+    			function(position){//Sucess
+    				console.log({position});
+    				//If this is the first for getting user location, stop and try again, nasty iOS bug where first request does not always work correctly
+    				if(isIOS && getLatLngAttempts == 1){
+    					getLatLng();
+    					return false;
+    				}
+
+    				lat = position.coords.latitude;
+    				lng = position.coords.longitude;
+    				accuracy = position.coords.accuracy;
+
+    				userLocationImgSrc = 'https://{!JSENCODE(baseGoogleURL)}/maps/api/staticmap?center='+position.coords.latitude+','+position.coords.longitude+
+    									'&markers='+position.coords.latitude+','+position.coords.longitude+'&zoom=13&size=320x150&scale=2';
+
+    				//Sign the image on the server and in response set the image on the page by rerendering script
+    				signGoogleURL(userLocationImgSrc)
+    				.then(setLocationImage)
+    				.catch(function (err) {
+    					sf1.addPageMessage({
+    						prependTo: '.container',
+    						title: gp_translations.Unable_to_locate_position,
+    						message: err,
+    						severity: 'error'
+    					});
+    					// jQuery('.spinner').hide();
+    					hideMapSpinner();
+    				});
+    			},
+    			function(error){//Error
+    				console.log({error});
+    				var message = '';
+    				if(error.code == 1){
+    					message = gp_translations.Unable_to_access_GPS;
+    				}else if(error.code == 2){
+    					message = gp_translations.Unable_to_locate_position;
+    				}else if(error.code == 3){
+    					message = gp_translations.Unable_to_locate_position_due_to_timeout;
+    				}
+
+    				var tryAgain = ' <a id="retryPositionAnchor" href="#">Try again.</a>';
+
+    				sf1.addPageMessage({
+    					prependTo: '.container',
+    					title: gp_translations.Unable_to_locate_position,
+    					message: message + tryAgain,
+    					severity: 'error'
+    				});
+
+    				var retryAnchor = document.getElementById('retryPositionAnchor');
+    				retryAnchor.addEventListener('click', retryEvtListener);
+
+    				function retryEvtListener(event) {
+    					retryGetPosition(event);
+    					retryAnchor.removeEventListener('click', retryEvtListener);
+    				}
+
+    				jQuery('.spinner').hide();
+    				hideMapSpinner();
+    				$('#retryGetPositionButton').show();
+    			},
+    			{ //Geolocation options
+    				enableHighAccuracy: true,
+    				maximumAge        : 0,
+    				timeout           : 30000
+    			}
+    		);
+    	}else{
+    		//Doesn't have geolocation capabilities
+    		sf1.addPageMessage({
+    			prependTo: '.container',
+    			title: gp_translations.Unable_to_locate_position,
+    			message: gp_translations.Please_ensure_GPS_functionality,
+    			severity: 'error'
+    		});
+    		$('#retryGetPositionButton').show();
+    		// jQuery('.spinner').hide();
+    		hideMapSpinner();
+    	}
+    }
+
+    function doCheckin(){
+    	//Show ajax status
+    	sf1.showModalStatus({message:gp_translations.Checking_In});
+
+    	var chatterThis = jQuery("#shareOnChatter").is(':checked');
+
+    	//Create a CheckIn object (CheckIn.cls)
+    	var CheckIn = {
+    		whatId: '{!JSENCODE(recordId)}',
+    		whatText: '{!JSENCODE(SobjectName)}',
+    		whereLat: lat,
+    		whereLng: lng,
+    		accuracy: accuracy,
+    		whyText: jQuery("#checkinInput").val(),
+    		chatterThis: chatterThis,
+    		base64image: base64image,
+    		routeId: gpRouteId,
+    		routeStopId: gpRouteStopId,
+    		placeId: placeId
+    	};
+
+    	//Call action function to do check in
+    	doCheckinAction(JSON.stringify(CheckIn));
+    }
+
+    var isIE = (function() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if(msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+            return true
+        }
+
+        return false;
+    })()
+
+    function showMapPlaceHolder(){
+    	jQuery("#placeholderWrapper").show();
+    	jQuery("#placeholderWrapper").removeClass("transparent");
+    }
+
+    function hideMapPlaceHolder(){
+    	jQuery("#placeholderWrapper").addClass("transparent");
+    	setTimeout(function(){
+    		jQuery("#placeholderWrapper").hide();
+    	},500)
+    }
+
+    function hideMapSpinner() {
+    	var mapSpinner = document.getElementById('mapLoadingSpinner');
+    	if(mapSpinner) {
+    		mapSpinner.classList.add('slds-hide');
+    	}
+    }
+
+    function showMapSpinner() {
+    	var mapSpinner = document.getElementById('mapLoadingSpinner');
+    	if(mapSpinner) {
+    		mapSpinner.classList.remove('slds-hide');
+    	}
+    }
+
+    //Workaround for input area issue https://success.salesforce.com/issues_view?id=a1p30000000T5l1AAC
+    if(!isIE) window.onkeydown=function(){window.focus();}
+  </script>
+</apex:page>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Ability to add Skills to Service Resource</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ServiceResourceSkill.EffectiveEndDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ServiceResourceSkill.SkillLevel</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Edit Service Resource Skills</label>
+</PermissionSet>

@@ -1,0 +1,24 @@
+<template>
+
+    <template if:true={showUpdateVehicleCount}>
+        <c-update-vehicle-count record-id={serviceAppointmentId} onclose={handleClose}></c-update-vehicle-count>
+    </template>
+
+    <template if:true={showAppointmentList}>
+        <div>
+            <lightning-datatable
+                class="slds-max-medium-table_stacked slds-table_striped slds-table_bordered slds-table_col-bordered"
+                key-field="id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column="true"
+                onrowaction={callRowAction}>
+            </lightning-datatable>
+        </div>
+    </template>
+
+    <template if:true={showNoAvailAppointments}>
+        <h1>This account does not have any Service Appointments that are eligible to have vehicle count updated.</h1>
+    </template>
+
+</template>

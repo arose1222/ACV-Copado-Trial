@@ -1,0 +1,939 @@
+<apex:page controller="geopointe.CreateRecord_Controller"
+  extensions="geopointe.RemoteAction"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  showHeader="false"
+  sidebar="false"
+  action="{!initMain}"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+>
+  <script src="{!URLFOR($Resource.jquery, '/js/purify.min.js')}"></script>
+  <script src="{!URLFOR($Resource.jquery, '/jquery-3.5.1.min.js')}"></script>
+  <!-- core jQuery -->
+  <script src="{!URLFOR($Resource.jquery, '/jquery-migrate-3.3.1.min.js')}"></script>
+  <script src="{!URLFOR($Resource.jquery, '/js/jqueryInit.js')}"></script>
+  <script src="{!URLFOR($Resource.jquery, '/js/common.js')}"></script>
+  <!-- Generic JS use across entire app -->
+  <script src="{!$Resource.GeopointeJS}"></script>
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common.css')}" />
+  <!-- Common geopointe CSS -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common-lightning.css')}" />
+  <!-- Common geopointe CSS for lightning styled pages-->
+  <apex:slds />
+  <style>
+    .slds td.pbButton,
+    .slds td.pbButtonb {
+      text-align: center;
+    }
+
+    .uiInput--input input.input,
+    .uiInput--input textarea {
+      width: 350px;
+    }
+  </style>
+  <!-- Lightning StyleSheets for Classic Users -->
+  <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+    <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/slds-vf-scope.css')}" />
+  </apex:outputPanel>
+
+  <!-- localize.js -->
+  <script src="{!URLFOR($Resource.jquery, '/js/lib/localize.9.17.2018.js')}" />
+  <script>
+    !(function (a) {
+      if (!a.Localize) {
+        a.Localize = {};
+        for (
+          var e = [
+              'translate',
+              'untranslate',
+              'phrase',
+              'initialize',
+              'translatePage',
+              'setLanguage',
+              'getLanguage',
+              'detectLanguage',
+              'untranslatePage',
+              'bootstrap',
+              'prefetch',
+              'on',
+              'off',
+            ],
+            t = 0;
+          t < e.length;
+          t++
+        )
+          a.Localize[e[t]] = function () {};
+      }
+    })(window);
+  </script>
+  <script>
+    Localize.initialize({
+      key: '1SeX6sYAXWLng',
+      rememberLanguage: false,
+      saveNewPhrases: false,
+      translateBody: true,
+    });
+    Localize.setLanguage('{!userLanguage}');
+  </script>
+  <apex:includeScript value="/support/console/45.0/integration.js" />
+
+  <!-- global Variables && Functions -->
+  <script type="text/javascript">
+    var uLat;
+    var uLng;
+    var SObjectDefaults = JSON.parse('{!JSENCODE(stringObj)}');
+
+    function dispatchMessage(actionConfig) {
+      var action = actionConfig.action;
+      var removeListener = actionConfig.removeEventListener || false;
+      var config = { action: action, removeEventListener: removeListener };
+      for (var prop in actionConfig) {
+        if (!config.hasOwnProperty(prop)) {
+          config[prop] = actionConfig[prop];
+        }
+      }
+      window.parent.postMessage(config, '*');
+    }
+
+    function hideSpinner() {
+      var spinner = document.getElementById('loadingSpinner');
+      if (spinner) {
+        setTimeout(function () {
+          spinner.classList.add('slds-hide');
+        }, 100);
+      }
+    }
+
+    function showSpinner() {
+      var spinner = document.getElementById('loadingSpinner');
+      if (spinner) {
+        spinner.classList.remove('slds-hide');
+      }
+    }
+
+    function getElementSectionRect(elementId) {
+      setTimeout(function () {
+        var el = document.getElementById(elementId);
+        if (el) {
+          var dimensions = el.getBoundingClientRect();
+          var myHeight = new Object();
+          myHeight.height = dimensions.height;
+          try {
+            dispatchMessage({ action: 'resizeHeight', removeEventListener: false, height: myHeight });
+          } catch (e) {
+            dispatchMessage({ action: 'resizeHeight', removeEventListener: false, height: myHeight });
+          }
+        }
+      }, 100);
+    }
+
+    function ltng_Alert() {
+      var message =
+        'Unable to perform action. Required user location data is not available. Please ensure GPS functionality is enabled for this device, or contact your Geopointe Administrator.';
+      parent.toastr.error(message);
+      var container = document.getElementById('errorMessageContainer');
+      var messageContainer = document.getElementById('fieldSetError');
+      messageContainer.innerText = message;
+      container.style.display = 'block';
+      getElementSectionRect('errorMessageContainer');
+    }
+
+    function toastrInfo() {
+      parent.toastr.info('Unable to determine location of User');
+    }
+
+    function closeLtngTab() {
+      //prevent native form event bubbling/propagation
+      event.preventDefault();
+      parent.window.close();
+    }
+  </script>
+  <!-- global Variables && Functions -->
+
+  <style type="text/css">
+    .labelCol {
+      white-space: nowrap !important;
+    }
+
+    .data2Col input {
+      min-width: 200px !important;
+    }
+
+    .data2Col textarea {
+      min-width: 200px !important;
+      min-height: 42px !important;
+    }
+  </style>
+
+  <!-- Radio button Styling -->
+  <style type="text/css">
+    .strongError strong {
+      color: red;
+    }
+
+    .ltngRadio {
+    }
+
+    .ltngRadio fieldset {
+    }
+
+    .ltngRadio table {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .ltngRadio tr:first-child {
+      padding-top: 0.8rem;
+    }
+
+    .ltngRadio tr {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-direction: column;
+    }
+
+    .ltngRadio td {
+      padding-bottom: 1rem;
+    }
+
+    /* for IE11  */
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      .ltngRadio td {
+        padding-bottom: 1rem;
+        display: flex;
+      }
+    }
+
+    /* for IE11  */
+
+    .ltngRadio td label {
+      padding-left: 0.5rem;
+    }
+
+    a {
+      color: -webkit-link;
+    }
+
+    .requiredBlock {
+      background-color: #c00;
+      position: absolute;
+      left: -4px;
+      width: 3px;
+      top: 1px;
+      bottom: 1px;
+    }
+
+    .requiredInput {
+      position: relative;
+      height: 100%;
+    }
+  </style>
+  <!-- Radio button Styling -->
+
+  <!-- Bring Lightning Record Type Radio Button Syling to Classic Experience -->
+  <apex:outputPanel rendered="{!$User.UITheme == 'Theme3'}">
+    <style type="text/css">
+      body input[type="radio"]::after,
+            /* body input[type="checkbox"]::after  */ {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        content: '';
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-style: solid;
+        border-color: rgb(27, 82, 151);
+        width: 0.5rem;
+        height: 0.5rem;
+        transform: translate3d(-50%, -50%, 0px);
+        border-width: 0.25rem;
+      }
+
+      body input[type='radio']:after,
+      body input[type='radio']:after {
+        width: 0.5rem;
+        height: 0.5rem;
+        transform: translate3d(-50%, -50%, 0);
+        border-radius: 50%;
+        border-width: 0.25rem;
+      }
+
+      body input[type='radio']:before,
+      .slds-vf-scope input[type='radio']:before {
+        border-radius: 50%;
+      }
+
+      body input[type="radio"]:before,
+            /* body input[type="checkbox"]:before  */ {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(221, 219, 218);
+        border-image: initial;
+        background: rgb(255, 255, 255);
+        transition: border 0.1s linear 0s, background-color 0.1s linear 0s;
+      }
+
+      body input[type='radio'],
+      body input[type='checkbox'] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        display: inline-block;
+        position: relative;
+        width: 1rem !important;
+        height: 1rem !important;
+        vertical-align: middle;
+        outline: none;
+        box-sizing: border-box;
+        padding: 0;
+      }
+
+      /* body input[type="radio"]:checked:after,  */
+
+      body input[type="checkbox"]:checked:after,
+            /* .slds-vf-scope input[type="radio"]:checked:after,  */
+
+            .slds-vf-scope input[type="checkbox"]:checked:after {
+        display: block;
+        content: '';
+        height: 0.25rem;
+        width: 0.5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+        border-bottom: 2px solid #0070d2;
+        border-left: 2px solid #0070d2;
+      }
+    </style>
+  </apex:outputPanel>
+  <!-- Bring Lightning Radio Button Syling to Classic experience -->
+
+  <style>
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      .ie-input {
+        min-height: 32px !important;
+      }
+    }
+  </style>
+
+  <div class="slds-scope">
+    <div id="loadingSpinner" role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+      <span class="slds-assistive-text">Loading</span>
+      <div class="slds-spinner__dot-a"></div>
+      <div class="slds-spinner__dot-b"></div>
+    </div>
+  </div>
+
+  <div id="pageContainer" class="slds-p-around--xx-large slds-container--large slds-container--center">
+    <div id="errorMessageContainer" style="display: none" class="slds-scope">
+      <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+        <span class="slds-assistive-text">Error</span>
+        <h2 id="fieldSetError"></h2>
+      </div>
+    </div>
+
+    <apex:form onkeyup="if ('Enter' === event.key) updateSavedLocation('JSENCODE({!entityName})')">
+      <div id="fieldSetFormContainer">
+        <apex:outputPanel rendered="{!OR(showPageMessages, hideForm)}">
+          <script type="text/javascript">
+            getElementSectionRect('fieldSetFormContainer');
+            hideSpinner();
+          </script>
+        </apex:outputPanel>
+        <apex:outputPanel id="pageBlocksWrapper">
+          <div id="messageWrap">
+            <apex:pageMessages rendered="{!showPageMessages}" />
+          </div>
+
+          <!-- Step 1, select record type if necessary -->
+          <apex:outputPanel rendered="{!AND(renderSection == 'recordType')}">
+            <div class="slds-scope slds-m-bottom--medium">
+              <section
+                id="recTypeRadio"
+                class="slds-card__body slds-text-body--regular slds-p-horizontal--medium"
+                style="display: flex; justify-content: start; flex-driection: row"
+              >
+                <apex:outputLabel value="Select a record type" style="margin-left: 60px" />
+                <div class="ltngRadio" style="margin-left: 1rem; margin-top: 0.5rem">
+                  <apex:selectRadio value="{!selectedRecordTypId}" styleClass="ltngRadio">
+                    <apex:selectOptions value="{!recordTypeSelectOptions}" />
+                  </apex:selectRadio>
+                </div>
+              </section>
+            </div>
+            <script type="text/javascript">
+              getElementSectionRect('fieldSetFormContainer');
+              hideSpinner();
+            </script>
+          </apex:outputPanel>
+
+          <!-- Step 2, enter fields -->
+          <apex:outputPanel id="fieldSection" rendered="{!AND(renderSection == 'fields', hideForm == false, OR(formType == '', formType == 'Field Set') )}">
+            <!--  slds-card slds-m-vertical--medium slds-p-bottom--medium -->
+            <div id="fieldSectionSizing" class="slds-scope slds-card slds-m-vertical--medium slds-p-bottom--medium" style="display: none">
+              <apex:outputPanel id="fieldValues">
+                <section class="slds-form uiInput--input strongError" style="width: 100%; margin-left: 5px">
+                  <apex:repeat value="{!fieldSetToUse}" var="f">
+                    <div class="slds-form-element">
+                      <div class="slds-form-element__label">
+                        <apex:outputLabel value="{!f.label}"
+                          rendered="{!AND(f.fieldPath != 'RecordTypeId',$ObjectType[action.geopointe__Create_Record_SObject__c].Fields[f.fieldPath].Createable)}"
+                        />
+                      </div>
+                      <div class="slds-form-element__control">
+                        <apex:inputField styleClass="input ie-input"
+                          value="{!obj[f.fieldPath]}"
+                          required="{!OR(f.required, f.dbrequired)}"
+                          rendered="{!AND(f.fieldPath != 'RecordTypeId',$ObjectType[action.geopointe__Create_Record_SObject__c].Fields[f.fieldPath].Createable)}"
+                          html-autocomplete="{!IF( OR(f.type == 'datetime',  f.type == 'date'), 'OFF', 'ON' ) }"
+                        />
+                      </div>
+                    </div>
+                  </apex:repeat>
+                </section>
+
+                <apex:commandButton id="mySaveBttn"
+                  status="saveStatus1"
+                  style="visibility: hidden"
+                  styleClass="slds-button slds-button--neutral gpSaveBtn heyYouNoPeeking"
+                  value="Save"
+                  action="{!save}"
+                  reRender="pageBlocksWrapper"
+                  onClick="disableSaveButtons();"
+                  oncomplete="enableSaveButtons(); parent.gp_scrollActionIframeToTop(); resetIFrameHeight();"
+                />
+              </apex:outputPanel>
+            </div>
+
+            <apex:outputPanel >
+              <script type="text/javascript">
+                hideSpinner();
+                var uLocFieldsMapped = {!userLocationFieldsMapped};
+                var uLocRequired = {!userLocationRequiredForAction};
+                var showMessages = {!ShowPageMessages};
+                var uLocAvailable = false;
+
+                if (uLocFieldsMapped && (uLat === undefined && uLng === undefined)) {
+                    dispatchMessage({ action: 'hideButtons', style: 'hidden' });
+                } else {
+                    showFieldSetForm();
+                }
+
+                jQuery(document).ready(function () {
+                    parent.gp_setActionIframeAutoHeight(jQuery("html").height());
+                    if (uLocFieldsMapped && (uLat === undefined && uLng === undefined)) {
+                        getLatLng();
+                    }
+                });
+
+                function showFieldSetForm() {
+                    document.getElementById('fieldSectionSizing').style.display = 'block';
+                    dispatchMessage({ action: 'showButtons', style: 'visible' });
+                }
+
+                function setSaveButtonState(required, available) {
+                    geopointeAjaxEnd();
+                    if (required && !available) {
+                        ltng_Alert();
+                        // gp_alert('Unable to perform action. Required user location data is not available. Please ensure GPS functionality is enabled for this device, or contact your Geopointe Administrator.');
+                        dispatchMessage({ action: 'successButtons', removeEventListener: true });
+                        //window.parent.postMessage('disableButtons', '*');
+                    }
+                    else {
+                        jQuery("input[id$='saveButton']").prop('disabled', false);
+                    }
+                }
+
+                function getLatLng() {
+                    //jQuery("input[id$='saveButton']").prop('disabled', true);
+                    geopointeAjaxStart('body', 'Getting User Location...');
+                    if (navigator.geolocation) {
+                        //Get user position
+                        navigator.geolocation.getCurrentPosition(
+                            function (position) { //Success
+                                uLat = position.coords.latitude;
+                                uLng = position.coords.longitude;
+                                uLocAvailable = true;
+                                refreshMappedFields(uLat, uLng);
+                                setSaveButtonState(uLocRequired, uLocAvailable);
+                                showFieldSetForm();
+                            },
+                            function (error) { //Error
+                                uLocAvailable = false;
+                                uLat = '0.00';
+                                uLng = '0.00';
+                                setSaveButtonState(uLocRequired, uLocAvailable);
+                                //If not required allow user to proceed
+                                if (!uLocRequired) {
+                                    showFieldSetForm();
+                                    toastrInfo();
+                                }
+                            },
+                            { //Geolocation options
+                                enableHighAccuracy: true,
+                                maximumAge: 30000,
+                                timeout: 30000
+                            }
+                        );
+                    } else {
+                        //Doesn't have geolocation capabilities
+                        uLocAvailable = false;
+                        setSaveButtonState(uLocRequired, uLocAvailable);
+                    }
+                }
+                getElementSectionRect("fieldSetFormContainer");
+              </script>
+            </apex:outputPanel>
+            <apex:actionFunction name="refreshMappedFields" action="{!fieldSetAppendLocation}" rerender="fieldValues" immediate="true">
+              <apex:param name="uLat" value="0.0" assignTo="{!userLat}" />
+              <apex:param name="uLng" value="0.0" assignTo="{!userLng}" />
+            </apex:actionFunction>
+          </apex:outputPanel>
+
+          <!-- Save Error -->
+          <apex:outputPanel rendered="{!renderSection == 'error'}">
+            <apex:pageMessage title="Error" severity="Error" strength="1">
+              <div>
+                <apex:outputPanel rendered="{!renderErrorStatusCode}">
+                  <strong> Status Code: {!errorStatusCode} </strong>
+                </apex:outputPanel>
+              </div>
+              <strong> {!errorDescription} </strong>
+            </apex:pageMessage>
+          </apex:outputPanel>
+
+          <!-- Save complete -->
+          <apex:outputPanel rendered="{!renderSection == 'complete'}">
+            <apex:pageMessage title="Record Created Successfully!" severity="confirm" strength="1">
+              <div id="successMessage" style="margin-left: 8px">
+                <strong>
+                  <a
+                    href="{!URLFOR($Action[action.Create_Record_SObject__c].View, obj['id'])}"
+                    onclick="goToRecord('{!URLFOR($Action[action.Create_Record_SObject__c].View, obj['id'])}',event);"
+                    >{!newRecordName}</a
+                  >
+                </strong>
+                &nbsp;
+                <a
+                  href="{!URLFOR($Action[action.Create_Record_SObject__c].View, obj['id'])}"
+                  onclick="window.open('{!URLFOR($Action[action.Create_Record_SObject__c].View, obj['id'])}'); return false;"
+                  >(open in new window)</a
+                >
+              </div>
+            </apex:pageMessage>
+            <script>
+              dispatchMessage({ action: 'successButtons', removeEventListener: true });
+            </script>
+          </apex:outputPanel>
+        </apex:outputPanel>
+
+        <!-- called from event listener to listen from modal footer button -->
+        <apex:actionFunction action="{!selectRecordType}"
+          name="continueModal"
+          onbeforedomupdate="showSpinner();"
+          oncomplete="resetIFrameHeight();getFormSectionRect();hideSpinner();"
+          reRender="pageBlocksWrapper"
+        />
+        <apex:actionFunction action="{!save}"
+          name="saveEvent"
+          reRender="pageBlocksWrapper"
+          onbeforedomupdate="showSpinner();"
+          oncomplete="hideSpinner();updateSavedLocation('{!entityName}');"
+        />
+        <!-- called from event listener to listen from modal footer button -->
+
+        <!-- Lightning Create Record -->
+        <apex:outputPanel rendered="{!AND(renderSection == 'fields', formType == 'Lightning Page Layout', hideForm == false)}">
+          <script type="text/javascript">
+            hideSpinner();
+            var actionId = '{!JSENCODE(action.Id)}';
+            var pointType = '{!JSENCODE(pointType)}';
+            var userLocRequired = {!userLocationRequiredForAction};
+            var userLocMapped = {!userLocationFieldsMapped};
+            var recTypeEncoded = '{!JSENCODE(selectedRecordTypId)}';
+            //If master record type set to null otherwise assign encoded value
+            var selectedRecordTypId = recTypeEncoded == '012000000000000AAA' ? null : recTypeEncoded;
+            var sObjectEntityName = '{!JSENCODE(entityName)}';
+
+            var gpLtng = (function (userLocRequired, userLocMapped, sObjectEntityName, selectedRecordTypId, SObjectDefaults) {
+
+                var preventRecordModal = false;
+
+                function ltngShowModal(message, error) {
+                    var modal = document.getElementById('modalParentContainer');
+                    var contents = document.getElementById('modalContents');
+                    var alertBar = document.createElement('div');
+                    alertBar.setAttribute('class', 'slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error');
+                    alertBar.setAttribute('role', 'alert');
+
+                    var span = document.createElement('span');
+                    span.setAttribute('class', 'slds-assistive-text');
+                    span.innerText = message;
+
+                    var h2 = document.createElement('h2');
+                    h2.innerText = message;
+
+                    alertBar.appendChild(span);
+                    alertBar.appendChild(h2);
+                    contents.appendChild(alertBar);
+                    modal.style.display = 'block';
+                }
+
+                function showIllustration() {
+                    document.getElementById('illest').style.visibility = 'visible';
+                }
+
+                function deleteEmptyProps(defaults) {
+                    //remove attributes prop and any empty properties
+                    if (defaults && defaults.attributes) delete defaults.attributes;
+                    Object.keys(defaults).forEach(function (item) {
+                        if (defaults[item] == '') delete defaults[item];
+                        if (!isNaN(Date.parse(defaults[item])) && typeof defaults[item] == 'string' &&
+                            defaults[item].includes(':') && defaults[item].includes('T')) {
+                            defaults[item] = new Date(defaults[item]).toISOString();
+                        }
+                    });
+                    return defaults;
+                }
+
+                function ltngCreateRecord(fieldDefaults) {
+                    if (sforce && sforce.one && !preventRecordModal) {
+                        preventRecordModal = true;
+                        var defaults = deleteEmptyProps(fieldDefaults);
+                        sforce.one.createRecord(sObjectEntityName, selectedRecordTypId, defaults);
+                        setTimeout(function () {
+                            showIllustration();
+                            sforce.console.getEnclosingTabId(function (result) {
+                                var tabId = result.id;
+                                sforce.console.closeTab(tabId, function () { });
+                            })
+                        }, 250);
+                    }
+                }
+
+                function addUserCoordMapping(actionId, pointType, obj, recordType, userLat, userLong) {
+                    return new Promise(function (resolve, reject) {
+                        Visualforce.remoting.Manager.invokeAction(
+                            'geopointe.RemoteAction.doRemoteAction',
+                            "CreateRecord_Controller.appendUserLocation",
+                            {
+                                actionId: actionId,
+                                pointType: pointType,
+                                jsonObj: JSON.stringify(obj),
+                                userLat: JSON.stringify(userLat),
+                                userLong: JSON.stringify(userLong)
+                            },
+                            function (result, event) {
+                                resolve(JSON.parse(result));
+                            }, { escape: false, timeout: 60000 }
+                        );
+                    });
+                }
+
+                function createRecordPromise(data) {
+                    return new Promise(function (resolve, reject) {
+                        try {
+                            ltngCreateRecord(data)
+                            resolve();
+                        } catch (err) {
+                            reject(err);
+                        }
+                    });
+                }
+
+                function grabUserLocation(options) {
+                    return new Promise(function (resolve, reject) {
+                        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+                    });
+                }
+
+                //if successful append lat and long values to sobject
+                function positionSuccessHandler(position) {
+                    geopointeAjaxEnd();
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    return addUserCoordMapping(actionId, pointType, SObjectDefaults, selectedRecordTypId, lat, lng);
+                }
+
+                //if failed check if they're required, if not proceed to launching the form || else prevent form and show message that location is required
+                function positionErrHandler(err) {
+                    geopointeAjaxEnd();
+                    if (err.message != undefined && userLocRequired == false || userLocMapped == false && userLocRequired == true) {
+                        ltngCreateRecord(SObjectDefaults);
+                    } else {
+                        var message = 'Unable to perform action. Required user location data is not available. Please ensure GPS functionality is enabled for this device, or contact your Geopointe Administrator.';
+                        preventRecordModal = true;
+                        ltngShowModal(message, true);
+                        console.error(err);
+                    }
+                }
+
+                // Public method grab user location chain
+                function getLocationChain() {
+                    geopointeAjaxStart('body', 'Getting User Location...');
+                    grabUserLocation({ enableHighAccuracy: true, maximumAge: 30000, timeout: 30000 })
+                        .then(positionSuccessHandler)
+                        .then(createRecordPromise)
+                        .catch(positionErrHandler)
+                };
+
+                // Public method launch form with existing sobject config from server
+                function defaultRecordChain() {
+                    createRecordPromise(SObjectDefaults)
+                        .catch(function (err) {
+                            console.error(err);
+                        })
+                }
+
+                //revealing mobule pattern
+                return {
+                    getUserLocationFirst: getLocationChain,
+                    defaultCreateRecord: defaultRecordChain
+                };
+
+            })(userLocRequired, userLocMapped, sObjectEntityName, selectedRecordTypId, SObjectDefaults);
+
+            //Decide which promise chain to kick off based on user location is mapped
+            (userLocMapped) ? gpLtng.getUserLocationFirst() : gpLtng.defaultCreateRecord();
+          </script>
+        </apex:outputPanel>
+        <!-- Lightning Create Record -->
+      </div>
+    </apex:form>
+
+    <!-- HIDDEN MODAL IN BACKGROUND -->
+    <div class="slds-scope">
+      <div id="modalParentContainer" style="height: 640px; display: none">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+            <header class="slds-modal__header">
+              <button onclick="closeLtngTab();" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                </svg>
+                <span class="slds-assistive-text">Close</span>
+              </button>
+              <h2 id="modal-heading-h2" class="slds-text-heading_medium slds-hyphenate">Geopointe Action</h2>
+            </header>
+            <div id="modalContents" class="slds-modal__content slds-p-around_medium"></div>
+            <footer id="modalFooter" class="slds-modal__footer">
+              <button onclick="closeLtngTab();" class="slds-button slds-button_neutral">Close Tab</button>
+            </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>
+    </div>
+    <!-- HIDDEN MODAL IN BACKGROUND -->
+
+    <!-- Illustration Close -->
+    <div class="slds-scope" style="margin-top: 200px">
+      <div id="illest" class="slds-illustration slds-illustration_small" style="visibility: hidden">
+        <svg class="slds-illustration__svg" viewBox="0 0 468 194" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g transform="translate(-67.000000, -112.000000)">
+              <g>
+                <g transform="translate(245.000000, 200.000000)" class="slds-illustration__stroke-secondary" stroke-linecap="round" stroke-width="3">
+                  <path
+                    vector-effect="non-scaling-stroke"
+                    d="M44,17.5 L63,17.5 C62.2789714,12.0723971 64.081543,7.53186978 68.4077148,3.87841797 C73.3754883,-0.195556641 79.2734375,0.717773438 82.440918,2.12353516 C85.6083984,3.52929687 87.9606934,5.46069336 89.5913086,9.10524041 C90.2822266,10.6397351 90.7517904,11.9379883 91,13"
+                  ></path>
+                  <path
+                    vector-effect="non-scaling-stroke"
+                    d="M83,20.5 C84.0558268,16.8461914 86.2227376,14.4572754 89.5007324,13.333252 C94.4177246,11.6472168 99.0800781,13.8925781 100.942383,16.1518555 C102.804687,18.4111328 103.39502,20.2260742 103.746582,22.1201172 C103.980957,23.3828125 104.06543,24.8427734 104,26.5 C108.141764,26.3313802 110.918945,27.1647135 112.331543,29 C114.040039,31.1936035 114.215332,33.817627 113.593018,35.75 C112.970703,37.682373 110.894531,40.5 107,40.5 L28,40.5"
+                  ></path>
+                  <path vector-effect="non-scaling-stroke" d="M18,27.5 L83.0004985,27.5"></path>
+                  <path vector-effect="non-scaling-stroke" d="M0,27.5 L8,27.5"></path>
+                </g>
+                <g transform="translate(135.000000, 152.000000)" class="slds-illustration__stroke-secondary" stroke-linecap="round" stroke-width="3">
+                  <path
+                    vector-effect="non-scaling-stroke"
+                    d="M44,17.5 L63,17.5 C62.2789714,12.0723971 64.081543,7.53186978 68.4077148,3.87841797 C73.3754883,-0.195556641 79.2734375,0.717773438 82.440918,2.12353516 C85.6083984,3.52929687 87.9606934,5.46069336 89.5913086,9.10524041 C90.2822266,10.6397351 90.7517904,11.9379883 91,13"
+                  ></path>
+                  <path
+                    vector-effect="non-scaling-stroke"
+                    d="M83,20.5 C84.0558268,16.8461914 86.2227376,14.4572754 89.5007324,13.333252 C94.4177246,11.6472168 99.0800781,13.8925781 100.942383,16.1518555 C102.804687,18.4111328 103.39502,20.2260742 103.746582,22.1201172 C103.980957,23.3828125 104.06543,24.8427734 104,26.5 C108.141764,26.3313802 110.918945,27.1647135 112.331543,29 C114.040039,31.1936035 114.215332,33.817627 113.593018,35.75 C112.970703,37.682373 110.894531,40.5 107,40.5 L28,40.5"
+                  ></path>
+                  <path vector-effect="non-scaling-stroke" d="M18,27.5 L83.0004985,27.5"></path>
+                  <path vector-effect="non-scaling-stroke" d="M0,27.5 L8,27.5"></path>
+                </g>
+                <g transform="translate(69.000000, 256.000000)" class="slds-illustration__stroke-secondary" stroke-linecap="round" stroke-width="3">
+                  <path vector-effect="non-scaling-stroke" d="M14,36.5 L464,36.5"></path>
+                  <path vector-effect="non-scaling-stroke" d="M0,36.5 L6,36.5"></path>
+                  <polyline vector-effect="non-scaling-stroke" stroke-linejoin="round" points="234.5 36 279.5 0 313.5 26"></polyline>
+                  <path vector-effect="non-scaling-stroke" d="M279.5,1 L279.5,35" stroke-linejoin="round"></path>
+                  <path
+                    vector-effect="non-scaling-stroke"
+                    d="M313.5,11 C313.5,20.7437888 313.5,25.7437888 313.5,26 C313.5,25.7437888 313.5,20.7437888 313.5,11 Z"
+                    stroke-linejoin="round"
+                  ></path>
+                  <polyline vector-effect="non-scaling-stroke" stroke-linejoin="round" points="303.5 17 313.5 9 347.5 36"></polyline>
+                </g>
+                <g transform="translate(113.000000, 178.000000)">
+                  <g transform="translate(30.000000, 8.000000)" class="slds-illustration__fill-secondary">
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M29.5,60.5 L29.5,12 C29.5,5.372583 34.872583,0 41.5,0 C48.127417,0 53.5,5.372583 53.5,12 L53.5,40.5 L70.5,40.5 L70.5,27 C70.5,23.1340068 73.6340068,20 77.5,20 C81.3659932,20 84.5,23.1340068 84.5,27 L84.5,48.5 C84.5,51.8137085 81.8137085,54.5 78.5,54.5 L53.5,54.5 L53.5,118.5 L29.5,118.5 L29.5,74.5 L6.5,74.5 C3.1862915,74.5 0.5,71.8137085 0.5,68.5 L0.5,39 C0.5,35.1340068 3.63400675,32 7.5,32 C11.3659932,32 14.5,35.1340068 14.5,39 L14.5,60.5 L29.5,60.5 Z"
+                    ></path>
+                  </g>
+                  <g transform="translate(59.000000, 7.000000)" fill="#FFFFFF">
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M2,11 C3.65332031,8.49145508 5.65181478,6.77364095 7.9954834,5.84655762 C11.5109863,4.45593262 15.2684326,4.95605469 17.8156738,6.2824707 C20.362915,7.60888672 22.3626709,9.64978027 23.2602539,11.81604 C23.8586426,13.2602132 23.8586426,11.7547201 23.2602539,7.29956055 L19.612793,3.56494141 L13.7923584,0.564331055 L8.765625,1.42663574 L4.67321777,3.19787598 C2.69893392,5.13902708 1.69559733,6.16722532 1.66320801,6.2824707 C1.61462402,6.45533878 0.856079102,9.49145508 0.813964844,9.66003418 C0.785888672,9.77242025 1.18123372,10.2190755 2,11 Z"
+                    ></path>
+                  </g>
+                  <g class="slds-illustration__stroke-primary" stroke-width="3">
+                    <path vector-effect="non-scaling-stroke" d="M0,126.5 L356,126.5" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M362.5,126.5 L372.013149,126.5" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M107.5,20 L107.5,28" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M113,30.6568542 L118.656854,25" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M37.5,32 L37.5,40" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M44,42.6568542 L49.6568542,37" stroke-linecap="round"></path>
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M25,42.6568542 L30.6568542,37"
+                      stroke-linecap="round"
+                      transform="translate(27.828427, 39.828427) scale(-1, 1) translate(-27.828427, -39.828427) "
+                    ></path>
+                    <path vector-effect="non-scaling-stroke" d="M71.5,0 L71.5,8" stroke-linecap="round"></path>
+                    <path vector-effect="non-scaling-stroke" d="M79,10.6568542 L84.6568542,5" stroke-linecap="round"></path>
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M58,10.6568542 L63.6568542,5"
+                      stroke-linecap="round"
+                      transform="translate(60.828427, 7.828427) scale(-1, 1) translate(-60.828427, -7.828427) "
+                    ></path>
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M59.5,68.5 L59.5,20 C59.5,13.372583 64.872583,8 71.5,8 C78.127417,8 83.5,13.372583 83.5,20 L83.5,48.5 L100.5,48.5 L100.5,35 C100.5,31.1340068 103.634007,28 107.5,28 C111.365993,28 114.5,31.1340068 114.5,35 L114.5,56.5 C114.5,59.8137085 111.813708,62.5 108.5,62.5 L83.5,62.5 L83.5,126.5 L59.5,126.5 L59.5,82.5 L36.5,82.5 C33.1862915,82.5 30.5,79.8137085 30.5,76.5 L30.5,47 C30.5,43.1340068 33.6340068,40 37.5,40 C41.3659932,40 44.5,43.1340068 44.5,47 L44.5,68.5 L59.5,68.5 Z"
+                    ></path>
+                    <path
+                      vector-effect="non-scaling-stroke"
+                      d="M77,88.5 L92.5,88.5 L92.5,81 C92.5,77.1340068 95.6340068,74 99.5,74 L99.5,74 C103.365993,74 106.5,77.1340068 106.5,81 L106.5,96.5 C106.5,99.8137085 103.813708,102.5 100.5,102.5 L77,102.5"
+                      class="slds-illustration__fill-secondary"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </g>
+                </g>
+                <g transform="translate(429.000000, 242.000000)" class="slds-illustration__stroke-secondary" stroke-linecap="round" stroke-width="3">
+                  <g>
+                    <path vector-effect="non-scaling-stroke" d="M12.5,4 L12.5,50"></path>
+                    <polyline vector-effect="non-scaling-stroke" stroke-linejoin="round" points="11 18.5 0.5 18.5 0.5 0"></polyline>
+                    <polyline vector-effect="non-scaling-stroke" stroke-linejoin="round" points="14 25.5 24.5 25.5 24.5 8"></polyline>
+                    <polyline vector-effect="non-scaling-stroke" stroke-linejoin="round" points="2.5 31 2.5 38.5 11 38.5"></polyline>
+                  </g>
+                </g>
+                <g transform="translate(327.000000, 95.000000)">
+                  <g>
+                    <circle vector-effect="non-scaling-stroke" class="slds-illustration__fill-secondary" cx="64" cy="64" r="23"></circle>
+                    <circle
+                      vector-effect="non-scaling-stroke"
+                      class="slds-illustration__stroke-secondary"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-dasharray="135,1,1,18"
+                      transform="translate(64.000000, 64.000000) rotate(230.000000) translate(-64.000000, -64.000000) "
+                      cx="64"
+                      cy="64"
+                      r="45"
+                    ></circle>
+                    <circle
+                      vector-effect="non-scaling-stroke"
+                      class="slds-illustration__stroke-secondary"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-dasharray="107,10"
+                      transform="translate(64.000000, 64.000000) rotate(150.000000) translate(-64.000000, -64.000000) "
+                      cx="64"
+                      cy="64"
+                      r="33"
+                    ></circle>
+                  </g>
+                  <g transform="translate(41.000000, 41.000000)" class="slds-illustration__stroke-primary" stroke-width="3">
+                    <circle vector-effect="non-scaling-stroke" cx="23" cy="23" r="23"></circle>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div class="slds-text-longform">
+          <h3 class="slds-text-heading_medium">You may now close the browser Tab</h3>
+        </div>
+        <div class="slds-is-relative" style="height: 180px">
+          <button type="button" class="slds-button slds-button_neutral" onclick="closeLtngTab();">Close Tab</button>
+        </div>
+      </div>
+      <!-- Illustration Close -->
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function disableSaveButtons() {
+      //Set timeout as we need to wait for DOM changes that sfdc does first
+      setTimeout(function () {
+        //Check to see if the start facet is displayed anywhere, salesforces only shows this was form has actually been submitted after required fields are entered
+        var disabledSaveBtns = jQuery('.gpDisabledSaveBtn:visible');
+
+        //Ajax form as actually been submitted, disable other buttons.
+        if (disabledSaveBtns.length > 0) {
+          jQuery('.gpSaveBtn').val('Saving...').prop('disabled', true);
+        }
+      }, 1);
+    }
+
+    function enableSaveButtons() {
+      jQuery('.gpSaveBtn').val('Save').prop('disabled', false);
+    }
+
+    function resetIFrameHeight() {
+      parent.gp_setActionIframeAutoHeight(jQuery('html').height());
+    }
+
+    function goToRecord(url, event) {
+      if (event.which == 2) {
+        window.open(url);
+      } else {
+        window.top.location.href = url;
+      }
+      event.preventDefault();
+      return false;
+    }
+
+    function updateSavedLocation(entityName) {
+      // if Create Record results in a Location, update folder
+      if (!entityName || !entityName.toLowerCase().includes('geo_location__c')) return;
+
+      parent.gp_updateSavedLocations();
+    }
+
+    window.addEventListener('message', function (event) {
+      if (event.data == 'saveMe') {
+        saveEvent();
+      } else if (event.data == 'continueModal') {
+        continueModal();
+      }
+    });
+
+    if ('{!renderSection}' == 'fields' && '{!hideForm}' == 'false') {
+      dispatchMessage({ action: 'skipButtons', removeEventListener: false });
+    } else if ('{!hideForm}' == 'true') {
+      dispatchMessage({ action: 'disableButtons', removeEventListener: true });
+    }
+  </script>
+</apex:page>

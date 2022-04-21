@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Organization Group Affiliation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Organization Group Affiliations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Organization Group Affiliations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field indicates if the Affiliation between the Dealership and Group is live. By unchecking this box you will remove the Dealership from the Group. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer ID --></label>
+        <name>Dealer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>Group__c</name>
+        <relationshipLabel><!-- Organization Group Affiliations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Lead Id Text --></label>
+        <name>Lead_Id_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead --></label>
+        <name>Lead__c</name>
+        <relationshipLabel><!-- Organization Group Affiliations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Major Account --></label>
+        <name>Major_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Affiliation --></label>
+        <name>Unique_Affiliation__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Group affiliation to a Standard Account type must have a Dealership Id --></errorMessage>
+        <name>Standard_Account_must_have_Org_ID</name>
+    </validationRules>
+</CustomObjectTranslation>

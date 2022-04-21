@@ -1,0 +1,177 @@
+<template>
+    <div if:false={displayLogAnInteraction}>
+        <p style="text-align: center; color: #c70438; font-size: xx-large; margin-top: 50px;">You do not have access to this process.</p>
+    </div>
+    <div if:true={displayLogAnInteraction} style="background-color: #F5F5F5;">
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Processing" size="medium"></lightning-spinner>
+        </template>
+        <div class="slds-grid">
+            <div class='slds-col slds-large-size_1-of-12'></div>
+            <div class='slds-col slds-large-size_7-of-12'>
+                <div class="slds-grid slds-gutters_direct">
+                    <c-lookup errors={errors} onsearch={handleAccountLookup} label="Account Name" name='Find Account' placeholder='Find Account' class='accountLookup slds-col' onselectionchange={handleAccountChange}></c-lookup>
+                    <c-lookup errors={errors} onsearch={handleContactLookup} label="Contact Name" name="Find Contact" placeholder="Find Contact" class='slds-col' onselectionchange={handleContactChange}></c-lookup>
+                </div>
+            </div>
+            <div class='slds-col slds-large-size_4-of-12'>
+                <div class='slds-var-p-top_large slds-var-p-left_small'>
+                    <lightning-button variant="brand-outline" name="new-with-defaults" label="New Dealer Contact" class="slds-var-m-left_medium" onclick={navigateToNewDealershipContactPage}></lightning-button>
+                    <lightning-helptext content="Contact related to account for informational purposes - e.g. Titles Clerk"></lightning-helptext>
+                    <lightning-button if:true={acvUserAccess} variant="brand-outline" name="new-with-defaults" label="New ACV User Contact" class="slds-var-m-left_medium" onclick={navigateToAffiliationCreatePage}></lightning-button>
+                    <lightning-helptext if:true={acvUserAccess} content="User that logs into the app"></lightning-helptext>
+                </div>
+                
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped" style="margin-top: 20px; margin-bottom: 10px;">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>Auction</th>
+                    <th>Call Bucket</th>
+                    <th>Call Type</th>
+                    <th>Call Notes</th>
+                    <th>Resolved</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <template for:each={rows} for:item='row' for:index="index">
+                <tr key={row.uuid} data-tr-id={row.uuid}>
+                    <td style="padding-left: 12px;">
+                        <lightning-record-edit-form object-api-name={caseAPI}>
+                            <lightning-input-field key={row.uuid} data-key={row.uuid} value={row.auctionId} field-name={auctionId} class="slds-align_absolute-center" onchange={handleAuctionChange}></lightning-input-field>
+                        </lightning-record-edit-form>
+                    </td>
+                    <td>
+                        <lightning-combobox key={row.uuid} data-key={row.uuid} label="Call Bucket" value={row.callBucket} options={row.callBucketOptions} name='bucket' onchange={handleBucketChange} class="slds-align_absolute-center" required></lightning-combobox>
+                    </td>
+                    <td>
+                        <lightning-combobox key={row.uuid} data-key={row.uuid} label="Call Type" value={row.callType} options={row.callTypeOptions} name='type' onopen={onTypeOpen} onchange={handleTypeChange} class="slds-align_absolute-center callTypeClass" required></lightning-combobox>
+                    </td>
+                    <td style="width: 560px;">
+                        <lightning-textarea key={row.uuid} data-key={row.uuid} name="callNotes" label="Call Notes" class="slds-align_absolute-center" placeholder="Call Notes" onchange={handleNotesChange}></lightning-textarea>
+                    </td> <!-- call notes will be a text field -->
+                    <td style="padding-right: 12px; width: 90px;">
+                        <lightning-input key={row.uuid} data-key={row.uuid} data-id={row.uuid} type="checkbox" name="resolved" label="Resolved" value={row.resolved} style="width: 22px;" onchange={handleResolvedChange}></lightning-input>
+                    </td> <!-- resolved will be a checkbox -->
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete" value={index} variant="bare" onclick={checkDeleteRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+        </table>
+
+        <div class="slds-grid slds-wrap">
+            <lightning-button label="Add Inquiry" title="addRow" onclick={addRow} class='slds-col slds-large-size_1-of-12 slds-var-p-left_x-small'></lightning-button>
+            <div class='slds-col slds-large-size_9-of-12 slds-text-align_center slds-text-color_error'>
+                <span if:true={duplicateRows}>
+                    <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"></lightning-icon>
+                    &nbsp; Duplicate Inquiry Rows - Please adjust auction, call bucket or call type.
+                </span>
+            </div>
+            <div class='slds-col slds-large-size_2-of-12'>
+                <lightning-button variant="destructive" label="Cancel" title="cancel" onclick={checkCancel}></lightning-button>
+                <lightning-button variant="success" label="Submit" title="submit" onclick={checkSubmit} class="slds-var-p-left_x-small" disabled={duplicateRows}></lightning-button>
+            </div>
+        </div>
+
+        <template if:true={cancelCheck}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <!-- display if they select cancel -->
+                <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1" style="background:#c70438">
+                        <p><b>Are you sure you want to cancel?</b></p>
+                        <p>This will clear the widget and delete all of your work.</p>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeCancelModal} title="Cancel">No</button>
+                        <button class="slds-button slds-button_brand" onclick={handleCancel} title="OK">Yes</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={deleteRowCheck}>
+            <!-- display if they want to delete a row -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <!-- display if they select cancel -->
+                    <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC body starts here -->
+                        <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-2">
+                            <p><b>Are you sure you want to delete this row?</b></p>
+                            <p>This will remove the row and delete anything inside of it.</p>
+                        </div>
+                        <!-- Modal/Popup Box LWC footer starts here -->
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" onclick={closeDelRowModal} title="Cancel">No</button>
+                            <button class="slds-button slds-button_brand" onclick={removeRow} title="OK">Yes</button>
+                        </footer>
+                    </div>
+                </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={submitCheck}>
+            <!-- display if they select submit -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <!-- display if they select cancel -->
+                    <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC body starts here -->
+                        <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-3">
+                            <p><b>Are you ready to save your Case and all Inquiries?</b></p>
+                            <p>No additional rows can be added to the call record after saving.</p>
+                        </div>
+                        <!-- Modal/Popup Box LWC footer starts here -->
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" onclick={closeSubmitModal} title="Cancel">No</button>
+                            <button class="slds-button slds-button_brand" onclick={checkRequiredFields} title="OK">Yes</button>
+                        </footer>
+                    </div>
+                </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        
+        <template if:true={showReqCheck}>
+            <!-- display if they select submit -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <!-- display if they select cancel -->
+                <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                    <div if:true={showISTAlert} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-4" style="text-align:center">
+                        <p><b>The Account referenced does not have an assigned Account Manager (IST Account Rep).</b></p>
+                        <p><b>Please work with your manager to get someone assigned.</b></p> 
+                        <p><b>Until then, these records will list you as Owner.</b></p>
+                    </div>
+                    <div if:true={accountPop} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-5" style="text-align:center">
+                        <p><b>Error: Please select an account to associate this interaction with.</b></p>
+                        <p><b>You can search by Dealer ID or Account Name.</b></p> 
+                        <p><b>Once you have selected the correct dealership, re-submit for save.</b></p> 
+                    </div>
+                    <div if:true={emptyBucketOrType} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-6" style="text-align:center">
+                        <p><b>Please select a Call Bucket and Call Type for each row.</b></p>
+                    </div>
+                    <div if:true={missingAuction} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-7" style="text-align:center">
+                        <p><b>Please update auction in highlighted row(s).</b></p>
+                    </div>
+                    <div if:true={emptyNotes} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-8" style="text-align:center">
+                        <p><b>Please enter notes for each row where the Call Bucket is Titles.</b></p>
+                    </div>
+                    <div if:true={show48HourError} class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-9" style="text-align:center">
+                        <p><b>The following Auction(s) aren't eligible to submit 48 Hr Notice.</b></p>
+                        <p><b>The auction is either ineligible or not enough time has passed.</b></p>
+                        <p>{invalid48HrAuctions}</p>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_brand" onclick={checkOK} title="OK">OK</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inactive, no documents, Lead template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ACV Auctions - Almost Done! Lead</name>
+    <style>none</style>
+    <subject>ACV Auctions - Almost Done!</subject>
+    <textOnly>You&apos;re almost done!
+
+
+Hey {!Contact.FirstName},
+
+I’ve had trouble reaching you on the phone. I’ve been calling because you started signing up with us recently, and you&apos;re almost done! I can help you finish up, all that’s needed are the following:
+
+
+A copy of your dealership license
+
+A copy of your state resale certificate
+
+Your federal tax ID number (EIN)
+
+Simply take a photo of these documents and send them to me by either replying to this email or texting me at the number below.  Once I get those I will activate your account and give you a quick demo of the platform.
+
+Thanks,
+{!Lead.IST_Rep__c}
+Business Development Representative
+{!Lead.IST_Rep_Phone__c}
+
+Log in Now!
+
+
+640 Ellicott St #108
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Day_of_Week__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Day of Week</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mon</fullName>
+                    <default>true</default>
+                    <label>Mon</label>
+                </value>
+                <value>
+                    <fullName>Tue</fullName>
+                    <default>false</default>
+                    <label>Tue</label>
+                </value>
+                <value>
+                    <fullName>Wed</fullName>
+                    <default>false</default>
+                    <label>Wed</label>
+                </value>
+                <value>
+                    <fullName>Thu</fullName>
+                    <default>false</default>
+                    <label>Thu</label>
+                </value>
+                <value>
+                    <fullName>Fri</fullName>
+                    <default>false</default>
+                    <label>Fri</label>
+                </value>
+                <value>
+                    <fullName>Sat</fullName>
+                    <default>false</default>
+                    <label>Sat</label>
+                </value>
+                <value>
+                    <fullName>Sun</fullName>
+                    <default>false</default>
+                    <label>Sun</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Ending_Hour__c</fullName>
+        <description>This is the Hour in the local timezone</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is the Hour in the local timezone</inlineHelpText>
+        <label>Ending Hour</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ending_Minute__c</fullName>
+        <description>This is the Minutes in the local timezone</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is the Minutes in the local timezone</inlineHelpText>
+        <label>Ending Minute</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSL_Time_Range__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>FSL Time Range</label>
+        <referenceTo>FSL_Work_Type_Data__mdt</referenceTo>
+        <relationshipLabel>FSL Day Slots</relationshipLabel>
+        <relationshipName>FSL_Day_Slots</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Starting_Hour__c</fullName>
+        <description>This is the Hour in the local timezone</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is the Hour in the local timezone</inlineHelpText>
+        <label>Starting Hour</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Starting_Minute__c</fullName>
+        <description>This is the Minutes in the local timezone</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is the Minutes in the local timezone</inlineHelpText>
+        <label>Starting Minute</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>FSL Day Slot</label>
+    <listViews>
+        <fullName>All_Main</fullName>
+        <columns>FSL_Time_Range__c</columns>
+        <columns>DeveloperName</columns>
+        <columns>Day_of_Week__c</columns>
+        <columns>Starting_Hour__c</columns>
+        <columns>Starting_Minute__c</columns>
+        <columns>Ending_Hour__c</columns>
+        <columns>Ending_Minute__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All (Main)</label>
+    </listViews>
+    <pluralLabel>FSL Day Slots</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

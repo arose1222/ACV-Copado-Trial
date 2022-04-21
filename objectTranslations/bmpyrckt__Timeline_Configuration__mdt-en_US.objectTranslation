@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Inactivate records to hide them from the timeline lwc --></help>
+        <label><!-- Active --></label>
+        <name>bmpyrckt__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- The field to use to show against each record on the timeline lwc as a short description (30 chars shown) --></help>
+        <label><!-- Detail Field --></label>
+        <name>bmpyrckt__Detail_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Override the record shown when a user clicks on a record. The Id field to use when navigating goes here. --></help>
+        <label><!-- Drilldown Id Field --></label>
+        <name>bmpyrckt__Drilldown_Id_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- The API Name of the field to use in tooltips when the object is not supported by the UI API --></help>
+        <label><!-- Fallback Tooltip Field --></label>
+        <name>bmpyrckt__Fallback_Tooltip_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- The background colour to use for the icon --></help>
+        <label><!-- Icon Background Colour --></label>
+        <name>bmpyrckt__Icon_Background_Colour__c</name>
+    </fields>
+    <fields>
+        <help><!-- The icon to use for this object type --></help>
+        <label><!-- Icon --></label>
+        <name>bmpyrckt__Icon__c</name>
+    </fields>
+    <fields>
+        <help><!-- The sObject API Name that defines the child record --></help>
+        <label><!-- Object Name --></label>
+        <name>bmpyrckt__Object_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Parent Objects API Name that the child record applies to --></help>
+        <label><!-- Parent Object --></label>
+        <name>bmpyrckt__Parent_Object__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date fields API name used to determine where on the timeline to plot the record --></help>
+        <label><!-- Position Date Field --></label>
+        <name>bmpyrckt__Position_Date_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- The API name corresponding to the relationship between the objects. Note that custom relationships end with __r. --></help>
+        <label><!-- Relationship Name --></label>
+        <name>bmpyrckt__Relationship_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The order the object appears in the filter panel on the right hand side of the timeline --></help>
+        <label><!-- Sequence --></label>
+        <name>bmpyrckt__Sequence__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used as test data only. Ignored for production operations. --></help>
+        <label><!-- Test --></label>
+        <name>bmpyrckt__Test__c</name>
+    </fields>
+    <fields>
+        <help><!-- If the UI API is supported but you want a related record shown specify the Id field to use when hovering here. --></help>
+        <label><!-- Tooltip Id Field --></label>
+        <name>bmpyrckt__Tooltip_Id_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- If the UI API is supported but you want a related record shown specify the sObject API name to use when hovering here. --></help>
+        <label><!-- Tooltip Object Name --></label>
+        <name>bmpyrckt__Tooltip_Object_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The field used for Task sObject type only --></help>
+        <label><!-- Type Field --></label>
+        <name>bmpyrckt__Type_Field__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Big Objects cannot be used in the timeline. Timeline supports standard and custom objects only. --></errorMessage>
+        <name>bmpyrckt__No_Big_Objects_Allowed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- External Objects cannot be used in the timeline. Timeline supports standard and custom objects only. --></errorMessage>
+        <name>bmpyrckt__No_External_Objects_Allowed</name>
+    </validationRules>
+</CustomObjectTranslation>

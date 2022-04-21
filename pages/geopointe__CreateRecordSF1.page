@@ -1,0 +1,483 @@
+<apex:page controller="geopointe.CreateRecord_Controller"
+  extensions="geopointe.RemoteAction"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  showHeader="false"
+  sidebar="true"
+  docType="html-5.0"
+  action="{!initSF1}"
+>
+  <link rel="stylesheet" href="{!URLFOR($Resource.jquery, 'sf1/css/mapMobile.css')}" />
+  <!-- Page / app styles -->
+  <link rel="stylesheet" href="{!URLFOR($Resource.jquery, 'sf1/lib/jquery/css/jquery-ui.min.css')}" />
+  <!-- Page / app styles -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+  <!-- Custom font to match sf1 style -->
+  <link rel="stylesheet" href="{!URLFOR($Resource.jquery, 'sf1/css/sf1.css')}" />
+  <!-- SF1 Styling -->
+
+  <script src="{!URLFOR($Resource.jquery, '/jquery-3.5.1.min.js')}"></script>
+  <!-- core jQuery -->
+  <script src="{!URLFOR($Resource.jquery, '/jquery-migrate-3.3.1.min.js')}"></script>
+  <script src="{!URLFOR($Resource.jquery, '/js/jqueryInit.js')}"></script>
+  <script src="{!URLFOR($Resource.jquery, '/ui/1.12.1/jquery-ui.min.js')}"></script>
+  <!-- jQuery UI -->
+  <script src="{!URLFOR($Resource.jquery, 'sf1/js/sf1.js')}"></script>
+  <!-- Geopointe sf1 functions -->
+
+  <!-- localize.js -->
+  <script src="{!URLFOR($Resource.jquery, '/js/lib/localize.9.17.2018.js')}" />
+  <script>
+    !(function (a) {
+      if (!a.Localize) {
+        a.Localize = {};
+        for (
+          var e = [
+              'translate',
+              'untranslate',
+              'phrase',
+              'initialize',
+              'translatePage',
+              'setLanguage',
+              'getLanguage',
+              'detectLanguage',
+              'untranslatePage',
+              'bootstrap',
+              'prefetch',
+              'on',
+              'off',
+            ],
+            t = 0;
+          t < e.length;
+          t++
+        )
+          a.Localize[e[t]] = function () {};
+      }
+    })(window);
+  </script>
+
+  <link rel="stylesheet" href="{!URLFOR($Resource.jquery, 'sf1/css/androidSelect.css')}" />
+  <!-- SF1 Styling -->
+  <script src="{!URLFOR($Resource.jquery, 'sf1/js/androidSelect.js')}"></script>
+  <!-- jQuery -->
+  <script src="{!URLFOR($Resource.js_api_v1)}"></script>
+  <apex:slds />
+  <script>
+    var uLat;
+    var uLng;
+    var runOnce = runOnce || false;
+
+    Localize.initialize({
+        key: '1SeX6sYAXWLng',
+        rememberLanguage: true,
+        saveNewPhrases: false,
+        translateBody: true
+    });
+
+    sf1.remoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+    var isIOS = {!isIOS};
+
+    //Set scrollable height and assume a header height of 44px
+    var windowHeight = jQuery(window).height();
+    var windowWidth = jQuery(window).width();
+
+    function setSrollableHeightWidth() {
+        var headerHeight = jQuery('.header').height();
+        jQuery('.scrollableContent').height(windowHeight - headerHeight).width(windowWidth);
+    }
+
+    //Set this var right away before anything else loads, very important
+    jQuery(document).ready(function () {
+        setSrollableHeightWidth();
+
+        //Create lookup field functionality
+        sf1.createAutoCompleteLookupFields();
+
+        setupMultiSelectMobile();
+    });
+
+    function selectRecordTypeJS(recordTypeId, event) {
+        //Prevent button from submit apex:form
+        event.preventDefault();
+
+        //Call the action function
+        selectRecordType(recordTypeId);
+        return false;
+    }
+
+    function selectRecordTypeComplete() {
+        sf1.createAutoCompleteLookupFields();
+        setSrollableHeightWidth();
+    }
+
+    function setupMultiSelectMobile() {
+        jQuery(".multiSelectWrapper").each(function () {
+            //Find select lists that end with 'unseleted'
+            jQuery(this).find("select[id$='gpMulti']").show();
+            jQuery(this).find('.multiSelectPicklistTable').hide();
+
+            //Add empty select option to resolve this issue http://stackoverflow.com/questions/34660500/mobile-safari-multi-select-bug, again iOS acting strange
+            if (isIOS) {
+                jQuery(this).find("select[id$='gpMulti']").prepend('<option disabled="disabled"></option>');
+            }
+        });
+    }
+
+    function adjustSuccessBtn() {
+        var btn = document.getElementById('cancelBack');
+        if (btn) {
+            btn.setAttribute("style", "margin-top:10px;margin-left:15px;");
+            btn.innerText = 'Back';
+        }
+    }
+
+    function domHideForm() {
+        var form = document.querySelector('div .main');
+        if (form) {
+            form.style.display = 'none';
+        }
+    }
+
+    function showError(msg) {
+        var alertbox = document.getElementById('alertNotification');
+        var alertMsg = document.getElementById('alertMessage');
+        alertMsg.innerText = msg; //xss safe
+        alertbox.style.display = 'block';
+    }
+
+    function updateSavedLocation(entityName) {
+        // if Create Record results in a Location, update folder
+        if (!entityName || !entityName.toLowerCase().includes('geo_location__c'))
+            return;
+
+        parent.gp_updateSavedLocations();
+    }
+  </script>
+
+  <style type="text/css">
+    .fieldList {
+      margin: 50px 20px 10px 20px;
+    }
+
+    .main input {
+      width: 300px;
+    }
+
+    .main {
+      margin: 14px 14px 14px 14px;
+    }
+
+    .scrollableContent {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .dropdown {
+      padding: 10px;
+      padding-right: 0px;
+      border: 1px solid #ccc;
+      width: 190px;
+      cursor: pointer;
+    }
+
+    .dropdown span {
+      float: right;
+      margin-right: 10px;
+    }
+
+    .option {
+      display: none;
+      list-style: none;
+      margin-top: -1px;
+      border: 1px solid #ccc;
+      border-bottom: 0px;
+      width: 200px;
+      padding: 0px;
+      max-height: 300px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .option li {
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      padding: 10px;
+      margin: 0;
+    }
+
+    li a {
+      text-decoration: none;
+      color: #000 !important;
+    }
+
+    li:hover,
+    a:hover {
+      background: #bbb;
+    }
+
+    /* Fix SLDS conflicts with spinner */
+
+    .modalIndicatorContainer {
+      height: 90px;
+    }
+
+    .modalSpinner {
+      height: 35px !important;
+      width: auto !important;
+      box-sizing: content-box !important;
+    }
+
+    .modalMessage {
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+  </style>
+
+  <apex:outputPanel layout="block" id="header" styleClass="slds-scope header light">
+    <div class="panel-header" style="display: flex; align-items: center; justify-content: flex-start">
+      <button id="cancelBack" style="margin-left: 15px" class="slds-button slds-button_neutral" onclick="event.preventDefault();geopointe.api.closeAction();">Cancel</button>
+
+      <div style="margin-left: auto; margin-right: auto">
+        <apex:outputPanel rendered="{!renderSection == 'recordType'}">
+          <h2 class="slds-text-heading_medium slds-truncate">Select Record Type</h2>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!renderSection == 'fields'}">
+          <h2 class="slds-text-heading_medium slds-truncate">{!action.name}</h2>
+        </apex:outputPanel>
+      </div>
+
+      <apex:actionStatus id="saveStatus">
+        <apex:facet name="start">
+          <button
+            class="slds-button slds-button_neutral"
+            disabled="true"
+            style="float: right; margin-right:15px; visibility: {!IF(AND(renderSection == 'fields', hideForm == false),'visible','hidden')}"
+          >
+            Saving...
+          </button>
+        </apex:facet>
+        <apex:facet name="stop">
+          <button
+            class="slds-button slds-button_brand"
+            onclick="save();updateSavedLocation('{!action.geopointe__Create_Record_SObject__c}');"
+            style="float: right; margin-right:15px; visibility: {!IF(AND(renderSection == 'fields', hideForm == false),'visible','hidden')}"
+          >
+            {!$Label.Site.Save}
+          </button>
+        </apex:facet>
+      </apex:actionStatus>
+    </div>
+
+    <div class="clear" />
+  </apex:outputPanel>
+
+  <!-- Error Message Display -->
+  <div class="slds-scope">
+    <div id="alertNotification" style="display: none" class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+      <span class="slds-assistive-text">error</span>
+      <h2 id="alertMessage"></h2>
+    </div>
+  </div>
+  <!-- Error Message Display -->
+
+  <div class="scrollableContent scrollableContentTouch" style="height: 0px; background: #fff">
+    <!-- this height will be reset on load with script above -->
+    <apex:form >
+      <!-- Actions to server -->
+      <apex:actionFunction name="selectRecordType" action="{!selectRecordType}" reRender="pageBlocksWrapper,header" oncomplete="selectRecordTypeComplete();">
+        <apex:param name="selectedRecordTypId" value="test" assignTo="{!selectedRecordTypId}" />
+      </apex:actionFunction>
+      <apex:actionFunction name="save" action="{!save}" status="saveStatus" reRender="pageBlocksWrapper,header" />
+
+      <apex:actionFunction name="refreshMappedFields" action="{!fieldSetAppendLocation}" immediate="true" reRender="fieldValues, ltng" oncomplete="ltngCreateRecord();">
+        <apex:param name="uLat" value="0.0" assignTo="{!userLat}" />
+        <apex:param name="uLng" value="0.0" assignTo="{!userLng}" />
+      </apex:actionFunction>
+
+      <apex:actionFunction name="preventForm" action="{!blockForm}" immediate="true" reRender="header,fieldValues" />
+      <!-- Actions to server -->
+
+      <apex:outputPanel id="pageBlocksWrapper">
+        <apex:outputPanel layout="block" rendered="{!showPageMessages}">
+          <apex:pageMessages />
+        </apex:outputPanel>
+        <!-- Step 1, select record type if necessary -->
+        <apex:outputPanel rendered="{!renderSection == 'recordType'}">
+          <div class="main">
+            <div class="recordDetailActions" notranslate="notranslate">
+              <apex:repeat value="{!availableRecordTypes}" var="rt">
+                <button
+                  style="
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                    border-color: #dfe0e1;
+                    background: white;
+                    color: #5c7995 !important;
+                    box-shadow: 1px 2px 4px 0px rgba(8, 7, 7, 0.11);
+                  "
+                  class="btn btn-secondary"
+                  onclick="selectRecordTypeJS('{!rt.id}',event)"
+                >
+                  {!rt.name}
+                </button>
+              </apex:repeat>
+            </div>
+          </div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!AND(renderSection == 'fields', hideForm == false)}">
+          <script type="text/javascript">
+            var uLocFieldsMapped = {!userLocationFieldsMapped};
+            var uLocRequired = {!userLocationRequiredForAction};
+            var uLocAvailable = false;
+            var formType = '{!JSENCODE(formType)}';
+            var pointType = '{!JSENCODE(pointType)}';
+
+            function getLatLng() {
+
+                sf1.showModalStatus({ message: 'Getting User Location....', isiOS: isIOS });
+
+                if (runOnce === false) {
+
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            uLat = position.coords.latitude;
+                            uLng = position.coords.longitude;
+                            uLocAvailable = true;
+                            refreshMappedFields(uLat, uLng);
+                            sf1.hideModalStatus();
+                            runOnce = true;
+                        },
+                        function (error) {
+                            console.log({ error });
+                            uLocAvailable = false;
+                            runOnce = true;
+                            sf1.hideModalStatus();
+
+                            if (uLocRequired == false && uLocAvailable == false)
+                                if (formType == 'Lightning Page Layout') {
+                                    ltngPageCreate(0);
+                                }
+
+                            if (uLocRequired == true && !uLocAvailable) {
+                                var errorMsg = 'Unable to perform action. Required user location data is not available. Please ensure GPS functionality is enabled for this device, or contact your Geopointe Administrator.';
+                                showError(errorMsg);
+                                preventForm();
+                                domHideForm();
+                            }
+                        },
+                        {
+                            enableHighAccuracy: true,
+                            maximumAge: 30000,
+                            timeout: 30000
+                        }
+                    );
+                } else {
+                    uLocAvailable = false;
+                }
+            }
+
+            if (uLocFieldsMapped && (uLat === undefined && uLng === undefined)) {
+                getLatLng();
+            } else {
+                //execute when all synchronous code has run
+                if (formType == 'Lightning Page Layout') ltngPageCreate(0);
+            }
+
+            function ltngPageCreate(timeout) {
+                var duration = timeout || 0;
+                setTimeout(function () {
+                    ltngCreateRecord();
+                }, duration);
+            }
+          </script>
+        </apex:outputPanel>
+
+        <!-- Step 2: (Page Layout) -->
+        <apex:outputPanel id="ltng" rendered="{!AND(renderSection == 'fields', formType == 'Lightning Page Layout', hideForm == false)}">
+          <script>
+            function deleteEmptyProps(defaults) {
+              //remove attributes prop and any empty properties
+              if (defaults && defaults.attributes) delete defaults.attributes;
+              Object.keys(defaults).forEach(function (item) {
+                if (defaults[item] == '') delete defaults[item];
+                //modify date/time values
+                if (!isNaN(Date.parse(defaults[item])) && defaults[item].includes(':') && defaults[item].includes('T')) {
+                  defaults[item] = new Date(defaults[item]).toISOString();
+                }
+              });
+              return defaults;
+            }
+
+            function ltngCreateRecord() {
+              if (parent.sforce && parent.sforce.one && (!(uLocRequired && !uLocAvailable) || (uLocRequired && !uLocFieldsMapped))) {
+                var sObjectName = '{!JSENCODE(entityName)}';
+                var recTypeEncoded = '{!JSENCODE(selectedRecordTypId)}';
+                //If master record type set to null otherwise assign encoded value
+                var recordTypeId = recTypeEncoded == '012000000000000AAA' ? null : recTypeEncoded;
+                var SObjectDefaults = JSON.parse('{!JSENCODE(stringObj)}');
+                var defaults = deleteEmptyProps(SObjectDefaults);
+                parent.sforce.one.createRecord(sObjectName, recordTypeId, defaults);
+                //close vf page once we launch sforce.one page
+                setTimeout(function () {
+                  try {
+                    geopointe.api.closeAction();
+                  } catch (e) {}
+                }, 700);
+              }
+            }
+          </script>
+        </apex:outputPanel>
+        <!-- Step 2: (Page Layout) -->
+
+        <!-- Step 2, enter fields -->
+        <apex:outputPanel id="fieldValues" rendered="{!AND(renderSection == 'fields', hideForm == false, OR(formType == '', formType == 'Field Set') )}">
+          <div class="main">
+            <apex:repeat value="{!fieldSetToUse}" var="f">
+              <apex:outputPanel layout="block"
+                styleClass="recordDetailField"
+                style="border-top: none"
+                rendered="{!AND(f.fieldPath != 'RecordTypeId',$ObjectType[action.geopointe__Create_Record_SObject__c].Fields[f.fieldPath].Createable)}"
+              >
+                <div class="recordDetailFieldLabel" notranslate="notranslate">
+                  {!f.label}
+                  <apex:outputPanel styleClass="slds-required" rendered="{!OR(f.required, f.dbrequired)}">*</apex:outputPanel>
+                </div>
+                <div class="recordDetailFieldValue" notranslate="notranslate">
+                  <apex:inputField value="{!obj[f.fieldPath]}" required="{!OR(f.required, f.dbrequired)}" rendered="{!AND(f.type != 'reference',f.type != 'multipicklist')}" />
+                  <apex:inputField value="{!obj[f.fieldPath]}"
+                    styleClass="sf1LookupField"
+                    html-objectName="{!action.geopointe__Create_Record_SObject__c}"
+                    html-fieldName="{!f.fieldPath}"
+                    required="{!OR(f.required, f.dbrequired)}"
+                    rendered="{!f.type == 'reference'}"
+                  />
+                  <apex:outputPanel rendered="{!f.type == 'multipicklist'}" styleClass="multiSelectWrapper">
+                    <apex:inputField styleClass="input" id="gpMulti" value="{!obj[f.fieldPath]}" required="{!OR(f.required, f.dbrequired)}" />
+                  </apex:outputPanel>
+                </div>
+              </apex:outputPanel>
+            </apex:repeat>
+          </div>
+        </apex:outputPanel>
+
+        <!-- Step 3: Save complete -->
+        <apex:outputPanel rendered="{!renderSection == 'complete'}">
+          <div class="infoBox" style="margin-top: 30px">
+            <div class="infoBoxHeader">
+              <div class="infoBoxHeaderIconWrapper">
+                <span class="infoBoxHeaderIcon success">!</span>
+              </div>
+              <div class="infoBoxHeaderMessage">Record Created Successfully!</div>
+            </div>
+            <div class="infoBoxMessage" style="display: flex; justify-content: center">
+              <a onclick="parent.sf1.navigateToSObject('{!obj.id}')" style="font-size: 14px; font-weight: bold">{!newRecordName}</a>
+            </div>
+          </div>
+          <script>
+            adjustSuccessBtn();
+          </script>
+        </apex:outputPanel>
+      </apex:outputPanel>
+    </apex:form>
+  </div>
+</apex:page>

@@ -1,0 +1,276 @@
+<apex:page standardController="EXPRN__Portfolio__c" extensions="EXPRN.AddAccountsWithPortfolioController" sidebar="false" showHeader="false" standardStylesheets="true">
+
+    <head>
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-postmessage.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-bbq-min.js')}" />
+            
+        <script type="text/javaScript">
+    
+            j$ = jQuery.noConflict();
+            j$(document).ready(function(){ 
+                 j$('input[id$="btnSave"]').click(function(){                    
+                     //alert('hi');
+                     afAddAcounts();
+                     return false;
+                 });
+                 
+                 //j$('.ui-icon ui-icon-closethick').innerHtml = 'Close';
+                 
+                 //*** Function checking the checkboxes value, if any checkbox is checked then Delete
+                 // button will be enable otherwise button should be always disabled. 
+                 j$('input[type="checkbox"]').on('click', function(){                 
+                     var isCheck = false;
+                     j$('.clsCheckBox input:checkbox').each(function() {                        
+                          //alert('hi2');  
+                          if(j$(this).is(":checked")){
+                              //alert('hello');
+                              isCheck = true;
+                              return false; // For exit from each function
+                          }
+                     });
+                                      
+                     if(isCheck){
+                         j$('input[id$="btnSave"]')
+                                                .removeAttr("disabled")
+                                                .addClass("btn")
+                                                .removeClass("btnDisabled"); 
+                     }
+                     else{
+                         j$('input[id$="btnSave"]')
+                                                .attr("disabled", "disabled")
+                                                .removeClass("btn")
+                                                .addClass("btnDisabled");
+                     }                    
+                 });
+                 
+            });            
+                             
+            function checkAll()
+            {   
+                if(j$('input[id$="selectAll"]').is(":checked")){
+                    j$('.clsCheckBox input:checkbox').each(function(){                        
+                         j$(this).attr('checked', true);  
+                    });
+                }   
+                else{
+                    j$('.clsCheckBox input:checkbox').each(function(){                        
+                         j$(this).attr('checked', false);  
+                    });
+                }               
+            }           
+                        
+            var parent_domain = '{!JSENCODE($CurrentPage.parameters.parent_domain)}'; 
+            j$(document).ready(function() {
+                j$('input[id$=btnCloseModalDialog]').click(function(event) {          
+                    event.preventDefault();                        
+                    closeModalDialog();                                                    
+                });
+            });
+            
+            function closeModalDialog() {
+                var cross_result = new Object();
+                cross_result.action = 'close_modal_dialog';
+                
+                j$.postMessage(
+                    cross_result,
+                    parent_domain,
+                    parent
+                );                    
+            }
+            
+            
+            function updatePageNumDisplay(pgNumber)
+            {          
+                afUpdatePageNumDisplay(pgNumber);
+                return false;
+            } 
+        </script>
+        
+        <style>
+            .headerText {text-align:center; color:#666 !important; }
+            .pbBody{margin-left: 3%!important; margin-right: 3%!important;}
+            .btn { padding: 2px 2px !important; font-weight: bold !important; color: #0193dc !important;   margin-left: 0px!Important;} 
+            .body , td { color:#666 !important; font-size: 11px; }     
+            .btnDisabled{ padding: 2px 2px !important; font-weight: bold!important; color: #666 !important;   margin-left: 0px!Important;}
+            
+            .Processing
+            {
+               z-index: 9997;
+               left: 50%;
+               top: 50%;
+               text-align: center;
+               position: fixed;
+            } 
+            .ProcessingBackground
+            {
+                background-color: black;
+                opacity: 0.50;
+                filter: alpha(opacity = 50);
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                z-index: 9997;
+                top:0;
+                left:0;
+            } 
+            .clsCheckBox
+            {
+                overflow-y:auto!important;
+                height:225px;
+            } 
+            .pageLink {
+                font-weight:bold; 
+                color:#1c94c4!Important;
+                font-size:11px!Important; 
+            }
+            .pageText {
+                font-weight:bold;
+                color:grey;
+                font-size:11px;
+             }  
+        </style>
+    </head> 
+    <apex:pageMessages />
+    <apex:form id="form1">    
+        <apex:actionFunction name="afAddAcounts" action="{!addAccountsWithPortfolio}" rerender="optpnlViewResult" status="Processing" />
+        <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="optpnlViewResult" status="Processing">
+            <apex:param name="selectedPageNum" value="" />     
+        </apex:actionFunction>
+        
+        <div id="divProcessing" style="display:none;overflow:scroll;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+            </div>
+       </div>
+       <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />
+        
+        <apex:pageBlock id="pb1" title="" mode="maindetail">        
+            <!--<apex:pageMessages escape="false"/>-->
+            <div style="width:55%;float: right;">
+                <apex:commandButton id="btnSave" value="Save" disabled="true" style="margin-top:-1%;margin-bottom: 4%;"/>
+            </div>
+            <br /><br />
+            <apex:outputPanel id="optpnlViewResult" >
+                <apex:pageMessage summary="The Selected Business has been added to the Portfolio." severity="confirm" strength="3" rendered="{!bIsAdded}"/>    
+                
+                <apex:pageBlock id="pb2" rendered="{!if(iAccountMapSize != 0, true, false)}">
+                    <apex:pageBlockButtons rendered="{!iWrapListSize > iPageSize}" style="float:left; margin-left: -27%;">                
+                        <apex:outputPanel >
+                            <apex:outputPanel >
+                                <apex:outputText value="<< First" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                <apex:commandLink value="<< First" status="Processing" styleClass="pageLink" action="{!first}" rerender="optpnlViewResult" rendered="{!iCurrentPage > 1}"/>                            
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>
+                         </apex:outputPanel>
+                         
+                        <apex:outputPanel >
+                            <apex:outputText value="< Previous" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                            <apex:commandLink value="< Previous" status="Processing" styleClass="pageLink" action="{!previous}" rerender="optpnlViewResult" rendered="{!iCurrentPage > 1}"/>                            
+                           &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!iAccountMapSize>1}" >                    
+                            <apex:outputPanel rendered="{!pg<=iAccountMapSize && pg>=1}" >
+                                <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=iCurrentPage }" >                               
+                                                                
+                                </apex:commandLink>                       
+                                <apex:outputText value="{!pg}" rendered="{!pg==iCurrentPage}">                                                
+                                </apex:outputText>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>                        
+                        </apex:repeat>
+                        
+                        <apex:outputPanel >           
+                             <apex:outputText value="Next >" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                             <apex:commandLink value="Next >" status="Processing" styleClass="pageLink" action="{!next}" rerender="optpnlViewResult" rendered="{!iCurrentPage < iAccountMapSize}"/>                              
+                             &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel >
+                            <apex:commandLink value="Last >>" status="Processing" styleClass="pageLink" action="{!last}" rerender="optpnlViewResult" rendered="{!iCurrentPage < iAccountMapSize}"/>                            
+                            <apex:outputText value="Last >>" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                        </apex:outputPanel>
+                    </apex:pageBlockButtons>
+                    <div class="clsCheckBox">
+                        <apex:pageBlockTable value="{!mapPageToAccounts[iCurrentPage]}" var="aw" rendered="{!if(iAccountMapSize != 0, true, false)}">                
+                            <apex:column > 
+                                <apex:facet name="header">
+                                    <input type="checkbox" id="selectAll" onclick="checkAll()"/>                                   
+                                </apex:facet>                   
+                                <apex:inputCheckbox value="{!aw.isCheck}" />                                                                                                                                                                         
+                            </apex:column>                                    
+                            <apex:column headervalue="BIN" value="{!aw.objAcct.BIN_formula__c}"/>
+                            <apex:column headervalue="Account Name" value="{!aw.objAcct.Name}"/>
+                        </apex:pageBlockTable> 
+                    </div>
+                </apex:pageBlock>
+                
+                <script>
+                     j$ = jQuery.noConflict();
+                     j$(document).ready(function(){
+                         /*j$('input[id$="btnSave"]').click(function(){                    
+                             //alert('hi');
+                             afAddAcounts();
+                             return false;
+                         });*/
+                         
+                         //*** Function checking the checkboxes value, if any checkbox is checked then Delete
+                         // button will be enable otherwise button should be always disabled. 
+                         j$('input[type="checkbox"]').on('click', function(){                     
+                             //alert('hello');
+                             var isCheck = false;                         
+                             j$('.clsCheckBox input:checkbox').each(function() {                        
+                                  //alert('hi2');  
+                                  if(j$(this).is(":checked")){
+                                      //alert('hello');
+                                      isCheck = true;
+                                      return false; // For exit from each function
+                                  }
+                             });
+                                              
+                             if(isCheck){
+                                 j$('input[id$="btnSave"]')
+                                                        .removeAttr("disabled")
+                                                        .addClass("btn")
+                                                        .removeClass("btnDisabled"); 
+                             }
+                             else{
+                                 j$('input[id$="btnSave"]')
+                                                        .attr("disabled", "disabled")
+                                                        .removeClass("btn")
+                                                        .addClass("btnDisabled");
+                             }                       
+                         });
+                     });
+                     
+                     //***
+                     j$('.clsCheckBox input:checkbox').each(function(){                        
+                             j$(this).attr('checked', false);  
+                     });
+                     
+                     //***
+                     j$('input[id$="btnSave"]')
+                                            .attr("disabled", "disabled")
+                                            .removeClass("btn")
+                                            .addClass("btnDisabled");
+                     
+                </script>
+            </apex:outputPanel>
+            
+            <apex:pageblockButtons location="top"> 
+                <!--<apex:commandButton id="btnSave" onclick="return addAccounts();" value="Save" />-->                
+                <!--<apex:commandButton id="btnCloseModalDialog" value="Cancel" rerender="pb" immediate="true" />--> 
+                
+                <apex:outputPanel >
+                    <apex:actionStatus id="SaveStatus">
+                        <apex:facet name="start" >
+                            <apex:image url="/img/loading32.gif" height="20px"/>                       
+                        </apex:facet>
+                    </apex:actionStatus>
+                </apex:outputPanel>
+            </apex:pageblockButtons>
+        </apex:pageBlock> 
+    </apex:form>
+</apex:page>

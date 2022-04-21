@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Credit &amp; Check - Rejected Credit Notification</name>
+    <style>none</style>
+    <subject>Your {!Credits_Checks__c.Reason__c} Credit to {!Credits_Checks__c.Dealer__c} has been Rejected</subject>
+    <textOnly>Hi {!Credits_Checks__c.CreatedBy},
+
+Your {!Credits_Checks__c.Amount_Requested__c} credit to {!Credits_Checks__c.Dealer__c} has been rejected. The budget approver provided the following explanation:
+
+{!ApprovalRequest.Comments}
+
+Related Case: {!Credits_Checks__c.Case__c}
+Related Auction: {!Credits_Checks__c.Auction__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

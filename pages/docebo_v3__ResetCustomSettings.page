@@ -1,0 +1,37 @@
+<apex:page controller="docebo_v3.ResetCustomSettingsController">
+    <apex:form id="mainForm">
+        <apex:sectionHeader title="Manage Docebo Custom Settings" />
+        <apex:pageMessages />
+        
+        
+        <apex:pageBlock title="Edit Custom Settings" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Edit Custom Settings" action="{!editCustomSettings}" />
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="1">
+            
+            <apex:inputHidden value="{!doceboConfig.docebo_v3__PlatformUrl__c}"></apex:inputHidden>
+             <apex:pageBlockSectionItem >
+
+                    <apex:outputLabel value="Platform Url"/>
+                    <apex:outputPanel >
+                        <apex:inputText value="{!inputPlatformUrl}" size="50" />
+                        <apex:outputText value=" Current value: {!doceboConfig.docebo_v3__PlatformUrl__c}"/>
+                    </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+     
+                  <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Client Secret"/>
+                    <apex:outputPanel >
+                        <apex:inputText value="{!inputClientSecret}" size="50" />
+                        <apex:outputText value=" Current value: {!doceboConfig.docebo_v3__ClientSecret__c}"/>
+                    </apex:outputPanel>
+
+                  </apex:pageBlockSectionItem>
+            
+                  
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

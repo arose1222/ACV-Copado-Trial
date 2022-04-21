@@ -1,3 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Deal_Maker_Notes_Setting</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Allows IST and people to update notes in Deal Maker
+Allows A-Team members and TM&apos;s to make updates to T360 Opportunities</description>
+        <label>Deal Maker Notes Setting &amp; T360 Access</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>True360,Deal Maker</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>ACV_Capital_Finance_Role_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing of opportunities for ACV Capital</description>
+        <label>ACV Capital Finance Role Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CFO</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CEO</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

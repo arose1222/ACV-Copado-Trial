@@ -1,0 +1,137 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternativetext="Loading" size="medium"></lightning-spinner>
+    </template>
+    <lightning-card> <!-- class="bold acvHeader" title="Create New Dealer Doc" icon-name='standard:file' -->
+        <!-- HEADER -->
+        <h1 slot="title" class="bold bottomBorder">Create New Dealer Doc</h1>
+
+        <!-- BODIES -->
+
+        <div if:true={selectType} class="padding">
+            <p class="bottomPadding">Please select the document type:</p>
+            <p if:true={typeError} class="bottomPadding errorText">You must select a document type to continue.</p>
+            <lightning-combobox name="recordTypeSelect" label="Document Type" value={recordTypeName} placeholder="Select Document Type" options={recordTypeNames} onchange={setRecordTypeName}></lightning-combobox>
+        </div>
+
+        <div if:true={uploadDoc} class="padding">
+            <p class="bottomPadding">Please upload the document:</p>
+            <p if:true={fileError} class="bottomPadding errorText">You must upload a document to continue.</p>
+            <!-- <lightning-input id="uploader" type="file" label="Compliance Document File Uploader" accept=".png, .jpg, .jpeg, .gif, .pdf, .txt" onchange={handleFileSelection}></lightning-input> -->
+            <lightning-file-upload label="Compliance Document File Uploader" accept=".png, .jpg, .jpeg, .gif, .pdf" record-id={recordId} onuploadfinished={handleFileSelection}></lightning-file-upload>
+            <p if:true={fileAttachedMessage} id="progress" class="topPadding positiveText">File attached successfully.</p>
+            <img id="preview" src=""></img>
+            <!-- i have seen allllll of those file types for dealer docs (and there are probably more) -->
+        </div>
+
+        <div if:true={enterLicenseInfos} class="padding">
+            <p class="bottomPadding">Please enter the Dealer License information:</p>
+            <lightning-record-edit-form object-api-name={dealerDocs} record-type-id={recordType} onsubmit={handleSubmit} onerror={handleError} onsuccess={handleSuccess} class="licenseForm">
+                <lightning-input-field field-name={accountId} value={recordId}></lightning-input-field>
+
+                <lightning-input-field field-name={stateField}></lightning-input-field>
+                <lightning-input-field field-name={licNumField}></lightning-input-field>
+                <lightning-input-field field-name={expDateField}></lightning-input-field>
+                <lightning-input-field field-name={noExpField}></lightning-input-field>
+                <lightning-input-field field-name={reviewField}></lightning-input-field>
+                <lightning-input-field field-name={compliantField}></lightning-input-field>
+                <lightning-input-field field-name={compIssuesField}></lightning-input-field>
+                <lightning-input-field field-name={notesField}></lightning-input-field>
+
+                <lightning-messages></lightning-messages>
+                
+                <div style="display: flex">
+                    <p class="positionOneRightButton"></p>
+                    <button class="buttonRight ACVaccentedButton" title="submit" onclick={submitDoc}>Submit</button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <div if:true={enterResaleInfos} class="padding">
+            <p class="bottomPadding">Please enter the Resale Certificate information:</p>
+            <lightning-record-edit-form object-api-name={dealerDocs} record-type-id={recordType} onsubmit={handleSubmit} onerror={handleError} onsuccess={handleSuccess} class="resaleForm">
+                <lightning-input-field field-name={accountId} value={recordId}></lightning-input-field>
+                <!-- <lightning-input-field field-name={recordTypeField} value={recordTypeId} readonly></lightning-input-field> -->
+
+                <lightning-input-field field-name={stateField}></lightning-input-field>
+                <lightning-input-field field-name={resNumField}></lightning-input-field>
+                <lightning-input-field field-name={expDateField}></lightning-input-field>
+                <lightning-input-field field-name={noExpField}></lightning-input-field>
+                <lightning-input-field field-name={mtcField}></lightning-input-field>
+                <lightning-input-field field-name={alSalesTaxField}></lightning-input-field>
+                <lightning-input-field field-name={reviewField}></lightning-input-field>
+                <lightning-input-field field-name={compliantField}></lightning-input-field>
+                <lightning-input-field field-name={compIssuesField}></lightning-input-field>
+                <lightning-input-field field-name={notesField}></lightning-input-field>
+
+                <lightning-messages></lightning-messages>
+                
+                <div style="display: flex">
+                    <p class="positionOneRightButton"></p>
+                    <button class="buttonRight ACVaccentedButton" title="submit" onclick={submitDoc}>Submit</button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <div if:true={enterCertInsuranceInfo} class="padding">
+            <p class="bottomPadding">Please enter the Certificate Of Insurance information:</p>
+            <lightning-record-edit-form object-api-name={dealerDocs} record-type-id={recordType} onsubmit={handleSubmit} onerror={handleError} onsuccess={handleSuccess} class="certInsuranceForm">
+                <lightning-input-field field-name={accountId} value={recordId}></lightning-input-field>
+                <lightning-input-field field-name={insuranceCompanyField}></lightning-input-field>
+                <lightning-input-field field-name={inventoryAmountField}></lightning-input-field>
+                <lightning-input-field field-name={expDateField}></lightning-input-field>
+                <lightning-input-field field-name={compliantField}></lightning-input-field>
+                <lightning-input-field field-name={compIssuesField}></lightning-input-field>
+
+                <lightning-messages></lightning-messages>
+                
+                <div style="display: flex">
+                    <p class="positionOneRightButton"></p>
+                    <button class="buttonRight ACVaccentedButton" title="submit" onclick={submitDoc}>Submit</button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <div if:true={enterConfirmationInfos} class="padding">
+            <p class="bottomPadding">Please enter the License Renewal Confirmation info:</p>
+            <lightning-record-edit-form object-api-name={dealerDocs} record-type-id={recordType} onsubmit={handleConfirmationSubmit} onerror={handleError} onsuccess={handleSuccess} class="confirmationDocForm">
+                <lightning-messages>
+                </lightning-messages>
+
+                <lightning-input-field field-name={accountId} value={recordId}></lightning-input-field>
+                <lightning-input-field field-name={expDateField}></lightning-input-field>
+                <c-lookup selection={initialSelection} errors={errors} onsearch={handleDealerDocLookup} onselectionchange={handleUploaderSelectionChangeforDealerDocs} label="Related Dealer License" name="Find Dealer Docs" placeholder="Find Dealer Docs"></c-lookup>
+                <!-- <lightning-input-field field-name={licNumField}></lightning-input-field> -->
+
+                <div style="display: flex" class="topPadding">
+                    <p class="positionOneRightButton"></p>
+                    <button class="buttonRight ACVaccentedButton" title="submit" onclick={submitDoc}>Submit</button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <div if:true={finishPage} class="padding">
+            <p class="bottomPadding finishText bold">Your Dealer Document has been created!</p>
+        </div>
+
+        <!-- FOOTERS -->
+
+        <div if:true={nextOnly} slot="footer" style="display: flex">
+            <p class="positionOneRightButton"></p>
+            <button class="buttonRight ACVaccentedButton" title="next" onclick={handleNext}>Next</button> <!-- variant="base" label="Next" -->
+        </div>
+        <div if:true={nextAndPrev} slot="footer" style="display: flex">
+            <button class="buttonLeft ACVmutedButton" title="previous" onclick={handlePrevious}>Previous</button> <!-- variant="base" label="Previous" -->
+            <p class="positionTwoButtons"></p>
+            <button class="buttonRight ACVaccentedButton" type="button" title="next" onclick={handleFileUpload}>Next</button>
+        </div>
+        <div if:true={cancelOnly} slot="footer" style="display: flex">
+            <button class="buttonLeft ACVmutedButton" title="cancel" onclick={handlePrevious}>Previous</button>
+            <p class="positionOneLeftButton"></p>
+        </div>
+        <div if:true={finishOnly} slot="footer" style="display: flex">
+            <p class="positionOneRightButton"></p>
+            <button class="buttonRight ACVaccentedButton" title="finish" onclick={handleFinish}>Finish</button>
+        </div>
+    </lightning-card>
+</template>

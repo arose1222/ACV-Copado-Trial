@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify Seller and TM that there are 2 days until late fee start</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Title Late Fee  2 days until Start</name>
+    <style>freeForm</style>
+    <subject>Approaching Title Late Fee</subject>
+    <textOnly>Hello,
+
+Our office has yet to receive the title paperwork for {!Case.Vehicle_Year_Make_Model__c} {!Case.Vehicle_VIN_Last_6__c}, sold on {!Case.Auction_End__c}.
+
+The title and any paperwork are due by {!Case.Title_Due_Date__c} to avoid a late fee. If ACV does not receive the title by {!Case.Title_Due_Date__c}, you will begin incurring a late fee of $25 for each calendar day late up to a maximum of $250.
+
+If you have any questions, please reach out to {!Case.Seller_Territory_Manager__c} your Territory Manager.
+
+Thank you,
+
+Titles Team
+ACV Auctions
+716-796-6976</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <description>This flow is used primarily in Lightning for Gmail to allow an arbiter to start an arbitration directly from within Gmail.</description>
+    <interviewLabel>Arb Lookup Auction to Arbitrate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Arb Lookup Auction to Arbitrate</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Lookup_Auction_Screen</name>
+        <label>Lookup Auction Screen</label>
+        <locationX>224</locationX>
+        <locationY>148</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Launch_Arb_Case_Flow</targetReference>
+        </connector>
+        <fields>
+            <name>lookupInstructions</name>
+            <fieldText>Use the lookup below to locate an Auction that you&apos;d like to open an arbitration claim on.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>lookupAuction</name>
+            <extensionName>c:lookupFSC</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectName</name>
+                <value>
+                    <stringValue>Auction__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>displayFieldName</name>
+                <value>
+                    <stringValue>Name</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Lookup Auction Number</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>valueFieldName</name>
+                <value>
+                    <stringValue>Id</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>recordId</assignToReference>
+                <name>selectedValue</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Lookup_Auction_Screen</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <name>Launch_Arb_Case_Flow</name>
+        <label>Launch Arb Case Flow</label>
+        <locationX>220</locationX>
+        <locationY>245</locationY>
+        <flowName>Arb_Case_Flow</flowName>
+        <inputAssignments>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

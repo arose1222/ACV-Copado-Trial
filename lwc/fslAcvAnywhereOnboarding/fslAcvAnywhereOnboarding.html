@@ -1,0 +1,44 @@
+<template>
+
+    <template if:true={isModalOpen}>
+        <lightning-quick-action-panel header="ACV Anywhere Registration">
+
+            <template if:true={isAlreadyRegistered}>
+                This account has already been registered for ACV Anywhere.
+            </template>
+
+            <template if:false={isActiveDealer}>
+                Dealer must be active, and have a dealer Id.
+            </template>
+
+            <template if:true={isShowRegistration}>
+                Would you like to Register this Account for ACV Anywhere?
+            </template>
+
+            <div slot="footer">
+                <lightning-button
+                    variant="neutral"
+                    label="Cancel"
+                    onclick={closeModal}
+                ></lightning-button>
+                <lightning-button
+                    variant="brand"
+                    label="Register"
+                    class="slds-m-left_x-small"
+                    onclick={submitRegister}
+                    disabled={isRegistrationDisabled}
+                ></lightning-button>
+            </div>
+        </lightning-quick-action-panel>
+    </template>
+
+    <template if:true={showLoadingSpinner}>
+        <div class="slds-m-top_medium slds-m-bottom_x-large slds-p-around_x-large">
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Processing Request...">
+                </lightning-spinner>
+            </div>
+        </div>
+    </template>
+
+</template>

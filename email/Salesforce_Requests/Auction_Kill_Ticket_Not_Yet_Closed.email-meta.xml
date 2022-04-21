@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Auction Kill Not Yet Closed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Auction Kill Ticket Not Yet Closed</name>
+    <style>freeForm</style>
+    <subject>URGENT: Auction Kill Ticket Not Yet Closed!</subject>
+    <textOnly>Auction Kill Ticket Not Yet Closed!
+Requester: {!Salesforce_Request__c.OwnerFullName}
+Related to: {!Salesforce_Request__c.My_Request_Is_Related_To__c}
+Details: {!Salesforce_Request__c.Additional_Details_Regarding_My_Request__c}
+Take action by visiting the ticket: {!Salesforce_Request__c.Link}
+Keep in mind that any Chatter comments made on the ticket will be visible to the requester. If you would like to communicate with another team member, use the @ mention feature in chatter to loop them in.
+If this request has been resolved please close the ticket.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

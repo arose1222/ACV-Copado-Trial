@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Summary_Bid__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>See Label</description>
+    <label>Summary Bids - Custom</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>All_Time_Bids__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Bid__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Latest_Bid__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MTD_Bids__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Summary_Bid_Id__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <masterLabel>Summary Bids</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account: Last Call Logged</displayNameOverride>
+            <field>Account__c.Last_Call_Logged__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account Name</displayNameOverride>
+            <field>Account__c.Name</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Dealer ID</displayNameOverride>
+            <field>Account__c.Dealership_ID__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>All Time Purchases</displayNameOverride>
+            <field>Account__c.Purchases_All_Time__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Territory Manager</displayNameOverride>
+            <field>Account__c.Owner</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account: Active</displayNameOverride>
+            <field>Account__c.Active__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Discovery Comments</displayNameOverride>
+            <field>Account__c.Discovery_Comments__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.Demo_Type__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing State/Province</displayNameOverride>
+            <field>Account__c.BillingState</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account: Date of Demo</displayNameOverride>
+            <field>Account__c.Date_of_Demo__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>AM / BDR Rep: Profile</displayNameOverride>
+            <field>Account__c.IST_Account_Owner__c.Profile</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>AM / BDR Rep</displayNameOverride>
+            <field>Account__c.IST_Account_Owner__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Date of First Purchase</displayNameOverride>
+            <field>Account__c.Date_of_First_Buy__c</field>
+            <table>Summary_Bid__c</table>
+        </columns>
+        <masterLabel>Account</masterLabel>
+    </sections>
+</ReportType>

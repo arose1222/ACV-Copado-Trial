@@ -1,0 +1,25 @@
+<!-- 
+@description - This page is a wrapper page for the Auction Kill LWC.
+    LWC's can't be launched from a button yet so they need to be wrapped in a VF Page 
+    if we wish to use them on a list view
+@Author - James Andre LaCour 
+-->
+<apex:page standardController="Inventory_Life_Cycle__c" recordSetVar="InventoryLifeCycles" tabStyle="Inventory_Life_Cycle__c" extensions="AuctionKillController" showHeader="false" sidebar="false" readOnly="false">
+    <!-- Tag needed to embed a LWC -->
+    <apex:includeLightning />  
+    <div id="AuctionKillLWC" />
+    <!-- selectedRecordsJSON are the records that were selected in the List view. -->
+    <script>
+        $Lightning.use("c:LightningOutApp", function(){
+            $Lightning.createComponent("c:AuctionKill",
+                {
+                    ilcRecordsJSON : JSON.stringify({!selectedRecordsJSON})
+                },
+                "AuctionKillLWC",
+                function(cmp){
+                    console.log('Successfully Created');
+                }
+            );
+        });
+    </script>
+</apex:page>

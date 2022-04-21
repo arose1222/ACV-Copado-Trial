@@ -1,0 +1,12 @@
+<apex:page showHeader="false" standardStylesheets="false" showChat="false" showQuickActionVfHeader="false">
+
+    <script src="{!$Resource.js_api_v1}" ></script>
+    <script>
+        try {
+            geopointe.api.closeAction();
+            sforce.one.back(false);
+        } catch (err){
+            console.log(err);
+        }
+    </script> 
+</apex:page>

@@ -1,0 +1,172 @@
+<apex:page standardController="EXPRN__Credit_Application__c" extensions="EXPRN.InlineCreditAppAttachController" showHeader="false" >
+    
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-1.6.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+    <apex:includeScript value="/soap/ajax/21.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/21.0/apex.js"/>
+
+    
+    <style>                               
+        .pageLink {font-weight:540 !important; color:#0193dc !important; font-size: 11px !important;}
+        .pageText {color:#666 !important; font-size: 11px !important;}
+        
+        .Processing
+        {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+        } 
+        
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        }
+                
+        .comLink {color: #015ba7 !important;} 
+         
+    </style>  
+    
+    <script>        
+        $j = jQuery.noConflict();
+                       
+        $j(document).ready(function()
+        {                                                                                                                                                                                                      
+        })
+        ;
+        /*                                                      
+        function BlockPg()
+        {
+            $j('div.searchDiv').block({
+                message: '<img src="/img/loading32.gif">' ,
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    opacity: 1,
+                    '-webkit-border-radius': '40px', 
+                    '-moz-border-radius': '40px'                     
+                }
+            });
+        }
+                
+        function UnblockPg()
+        {
+            $j('div.searchDiv').unblock();
+        }*/ 
+        
+        function updatePageNumDisplay(pgNumber)
+        {          
+            afUpdatePageNumDisplay(pgNumber);
+            return false;
+        }
+        
+        function jsConfirmDelete(alertId)
+        {            
+            var r = confirm("Are you sure?");
+            
+            if (r == true) 
+            {
+                afConfirmDelete(alertId);
+                return false;
+            } 
+            else 
+            {
+                return false;
+            }            
+        }
+
+   </script>
+   <apex:form >
+        <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb" status="modal">
+            <apex:param name="selectedPageNum" value="" />     
+        </apex:actionFunction>
+        
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />                
+            </div>
+       </div>
+       <apex:actionStatus id="modal" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" /> 
+   
+        <apex:pageBlock title="Attachments" id="pb">
+            <apex:pagemessages />
+            <apex:outputPanel rendered="{!alertMapSize == 0}" style="margin-left: 1%;">
+                <apex:outputText value="No records to display" styleClass="noRowsHeader"/>
+            </apex:outputPanel>
+            <!-- Code for Attach File Button and New Note Button
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="New Note" action="{!URLFOR('/002/e?parent_id=' + $CurrentPage.parameters.Id + '&retURL=%2F' + $CurrentPage.parameters.Id)}"/>
+                <apex:commandButton value="Attach File" action="{!attachOpen}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection collapsible="false" columns="1" rendered="{!AttachDetail == true}">
+            <apex:inputFile value="{!bl}" filename="{!fileName}"/>
+            <apex:commandButton value="Upload" action="{!save}"/>
+            </apex:pageBlockSection>
+             -->
+            <!--<apex:pageBlockTable value="{!attachmentList}" var="a" headerClass="headerText" >-->
+            <apex:pageBlockTable value="{!mapPageToAlerts[currentAlertPage]}" var="a" rendered="{!alertMapSize > 0}">
+                <!-- Code for Delete action
+                <apex:column headerValue="Action" >
+                    <apex:commandLink action="{!deleteDeal}" onclick="if(!confirm('Are you sure?')) return false;">Delete
+                        <apex:param value="{!a.Id}" name="idToDel" assignTo="{!delId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                -->
+                <apex:column >
+                    <apex:facet name="header">
+                         Name
+                    </apex:facet>
+                    <apex:commandLink value="{!a['Name']}" onclick="window.open('/apex/CreditAppAttachView?attachId={!a.Id}')" rendered="{!a.contentType == 'text/html'}"/>
+                    <apex:outputLink value="{!URLFOR($Action.Attachment.Download, a.id)}" target="_blank" rendered="{!a.contentType != 'text/html'}">{!a.name}</apex:outputLink>
+                </apex:column>
+                <apex:column value="{!a.lastModifiedDate}" />
+                <apex:column headerValue="Created By" value="{!a.createdby.Name}" />
+            </apex:pageBlockTable>
+            <!-- Code for pagination -->
+            <apex:pageBlockButtons rendered="{!AlertMapKeySetSize > 1}">                
+                <apex:outputPanel >
+                    <apex:outputPanel >
+                        <apex:outputText value="<< First" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                        <apex:commandLink value="<< First" status="modal" styleClass="pageLink" action="{!first}" rerender="pb" rendered="{!currentAlertPage > 1}"/>                            
+                        &nbsp;&nbsp;
+                    </apex:outputPanel>
+                 </apex:outputPanel>
+                <apex:outputPanel >
+                    <apex:outputText value="< Previous" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                    <apex:commandLink value="< Previous" status="modal" styleClass="pageLink" action="{!previous}" rerender="pb" rendered="{!currentAlertPage > 1}"/>                            
+                   &nbsp;&nbsp;
+                </apex:outputPanel>
+                <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!alertMapSize>1}" >                    
+                    <apex:outputPanel rendered="{!pg<=alertMapSize && pg>=1}" >
+                        <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=currentAlertPage }" >                               
+                        </apex:commandLink>                       
+                        <apex:outputText value="{!pg}" rendered="{!pg==currentAlertPage}">                                                
+                        </apex:outputText>
+                        &nbsp;&nbsp;
+                    </apex:outputPanel>                        
+                </apex:repeat>
+                <apex:outputPanel >                                     
+                     <apex:outputText value="Next >" styleClass="pageText" rendered="{!currentAlertPage >=alertMapSize}"></apex:outputText> 
+                     <apex:commandLink value="Next >" status="modal" styleClass="pageLink" action="{!next}" rerender="pb" rendered="{!currentAlertPage < alertMapSize}"/>                              
+                     &nbsp;&nbsp;
+                </apex:outputPanel>
+                <apex:outputPanel >
+                    <apex:commandLink value="Last >>" status="modal" styleClass="pageLink" action="{!last}" rerender="pb" rendered="{!currentAlertPage < alertMapSize}"/>                            
+                    <apex:outputText value="Last >>" styleClass="pageText" rendered="{!currentAlertPage >=alertMapSize}"></apex:outputText> 
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,36 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CaseSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAutoProcUser>true</caseAutoProcUser>
     <caseFeedItemSettings>
-        <characterLimit>400</characterLimit>
-        <displayFormat>Default</displayFormat>
+        <characterLimit>1200</characterLimit>
+        <displayFormat>HideBlankLines</displayFormat>
         <feedItemType>EmailMessageEvent</feedItemType>
     </caseFeedItemSettings>
     <caseFeedReadUnreadLtng>false</caseFeedReadUnreadLtng>
     <caseMergeInLightning>false</caseMergeInLightning>
-    <closeCaseThroughStatusChange>false</closeCaseThroughStatusChange>
-    <defaultCaseFeedLayoutOn>true</defaultCaseFeedLayoutOn>
+    <closeCaseThroughStatusChange>true</closeCaseThroughStatusChange>
+    <defaultCaseFeedLayoutOn>false</defaultCaseFeedLayoutOn>
+    <defaultCaseOwner>sfadmin@acvauctions.com</defaultCaseOwner>
+    <defaultCaseOwnerType>User</defaultCaseOwnerType>
+    <defaultCaseUser>sfadmin@acvauctions.com</defaultCaseUser>
     <emailToCase>
-        <enableEmailToCase>false</enableEmailToCase>
+        <enableE2CAttachmentAsFile>true</enableE2CAttachmentAsFile>
+        <enableE2CSourceTracking>true</enableE2CSourceTracking>
+        <enableEmailToCase>true</enableEmailToCase>
+        <enableHtmlEmail>true</enableHtmlEmail>
+        <enableOnDemandEmailToCase>true</enableOnDemandEmailToCase>
+        <enableThreadIDInBody>true</enableThreadIDInBody>
+        <enableThreadIDInSubject>true</enableThreadIDInSubject>
+        <notifyOwnerOnNewCaseEmail>true</notifyOwnerOnNewCaseEmail>
+        <overEmailLimitAction>Bounce</overEmailLimitAction>
+        <preQuoteSignature>false</preQuoteSignature>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email-to-Case</caseOrigin>
+            <caseOwner>Arbitration_Queue</caseOwner>
+            <caseOwnerType>Queue</caseOwnerType>
+            <casePriority>Medium</casePriority>
+            <createTask>false</createTask>
+            <emailAddress>arb-system@acvauctions.com</emailAddress>
+            <isVerified>true</isVerified>
+            <routingName>Arb-System</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email-to-Case</caseOrigin>
+            <caseOwner>Commercial_Assignments</caseOwner>
+            <caseOwnerType>Queue</caseOwnerType>
+            <casePriority>Medium</casePriority>
+            <createTask>false</createTask>
+            <emailAddress>assignments@acvauctions.com</emailAddress>
+            <isVerified>true</isVerified>
+            <routingName>Commercial Assignment</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email-to-Case</caseOrigin>
+            <casePriority>Medium</casePriority>
+            <createTask>false</createTask>
+            <emailAddress>sf-cdtrans@acvauctions.com</emailAddress>
+            <isVerified>true</isVerified>
+            <routingName>Trans-System</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+        </routingAddresses>
+        <unauthorizedSenderAction>Discard</unauthorizedSenderAction>
     </emailToCase>
     <enableCaseFeed>true</enableCaseFeed>
+    <enableCaseSwarming>false</enableCaseSwarming>
     <enableCollapseEmailThread>true</enableCollapseEmailThread>
+    <enableDraftEmails>true</enableDraftEmails>
     <enableEarlyEscalationRuleTriggers>false</enableEarlyEscalationRuleTriggers>
+    <enableEmailActionDefaultsHandler>false</enableEmailActionDefaultsHandler>
     <enableEscalateQfiToCaseInternal>false</enableEscalateQfiToCaseInternal>
+    <enableEscalateQfiToCaseNetworks>false</enableEscalateQfiToCaseNetworks>
     <enableMultiLangSolnSrchCSS>false</enableMultiLangSolnSrchCSS>
     <enableMultiLangSolnSrchPKB>false</enableMultiLangSolnSrchPKB>
     <enableMultiLangSolution>false</enableMultiLangSolution>
     <enableSolutionCategory>false</enableSolutionCategory>
     <enableSolutionInlineCategory>true</enableSolutionInlineCategory>
     <enableSolutionShortSummary>true</enableSolutionShortSummary>
-    <enableSuggestedSolutions>true</enableSuggestedSolutions>
+    <enableSuggestedSolutions>false</enableSuggestedSolutions>
     <escalateCaseBefore>false</escalateCaseBefore>
+    <keepRecordTypeOnAssignmentRule>true</keepRecordTypeOnAssignmentRule>
     <notifyContactOnCaseComment>false</notifyContactOnCaseComment>
     <notifyDefaultCaseOwner>false</notifyDefaultCaseOwner>
     <notifyOwnerOnCaseComment>false</notifyOwnerOnCaseComment>
-    <notifyOwnerOnCaseOwnerChange>false</notifyOwnerOnCaseOwnerChange>
+    <notifyOwnerOnCaseOwnerChange>true</notifyOwnerOnCaseOwnerChange>
     <showEmailAttachmentsInCaseAttachmentsRL>true</showEmailAttachmentsInCaseAttachmentsRL>
-    <useSystemEmailAddress>true</useSystemEmailAddress>
-    <visibleInCssCheckbox>false</visibleInCssCheckbox>
+    <showFewerCloseActions>false</showFewerCloseActions>
+    <systemUserEmail>automatedcase@00dj0000001rtrheai.ext</systemUserEmail>
+    <useSystemEmailAddress>false</useSystemEmailAddress>
+    <useSystemUserAsDefaultCaseUser>false</useSystemUserAsDefaultCaseUser>
+    <visibleInCssCheckbox>true</visibleInCssCheckbox>
     <webToCase>
         <enableWebToCase>false</enableWebToCase>
     </webToCase>

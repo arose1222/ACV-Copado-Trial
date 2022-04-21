@@ -155,33 +155,39 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <fields>
         <fullName>ActivityDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>ActivityDateTime</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Attendees</fullName>
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>DurationInMinutes</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Email</fullName>
     </fields>
     <fields>
         <fullName>EndDateTime</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>EventSubtype</fullName>
     </fields>
     <fields>
         <fullName>IsAllDayEvent</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>IsPrivate</fullName>
@@ -194,9 +200,11 @@
     </fields>
     <fields>
         <fullName>Location</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -204,16 +212,20 @@
     </fields>
     <fields>
         <fullName>ShowAs</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>StartDateTime</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Type</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -314,6 +326,951 @@
         </filters>
         <label>Today&apos;s Agenda</label>
     </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypes>
+        <fullName>Sales_Meeting</fullName>
+        <active>true</active>
+        <label>Sales Meeting</label>
+        <picklistValues>
+            <picklist>Appointment_Status__c</picklist>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Closed_Lost_Reason__c</picklist>
+            <values>
+                <fullName>Cannot access Decision Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Local bid sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lot constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contact_Attempt__c</picklist>
+            <values>
+                <fullName>Attempt 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Attempt 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Attempt 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contact_Made__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Delta__c</picklist>
+            <values>
+                <fullName>1000-1500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500-1000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over 1500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under 500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Documents_Items_Needed__c</picklist>
+            <values>
+                <fullName>Affidavit of Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Reassignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Plates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lien Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marriage%2FBirth%2FDeath Certificate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Statement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power of Attorney</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FSL__Event_Type__c</picklist>
+            <values>
+                <fullName>Resource Absence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Appointment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Inbound_Ops_Call_Reason__c</picklist>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Titles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Interested_in_Meeting_at_Conference__c</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Next_Steps__c</picklist>
+            <values>
+                <fullName>Follow up needed in future</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow up with operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management TO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No next steps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule wholesale</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purpose__c</picklist>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Appraisal event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Stop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD Ride-along</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Launch</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_For_Title_Delay__c</picklist>
+            <values>
+                <fullName>Closed%2FLimited in Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Paperwork</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lack of Capital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need Lien Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other %28please specify in comments%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payoff Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unable to Reach</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_Outreach__c</picklist>
+            <values>
+                <fullName>Aged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancellation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Documents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Escalation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Arbitration Status</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Load</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Titles Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Engagement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Result__c</picklist>
+            <values>
+                <fullName>Conversation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interested in Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Answer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent Email%2FText</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Opportunity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-person</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Outreach__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>True360</fullName>
+        <active>true</active>
+        <label>True360</label>
+        <picklistValues>
+            <picklist>Appointment_Status__c</picklist>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Closed_Lost_Reason__c</picklist>
+            <values>
+                <fullName>Cannot access Decision Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Local bid sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competition - Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lot constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contact_Attempt__c</picklist>
+            <values>
+                <fullName>Attempt 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Attempt 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Attempt 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contact_Made__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Delta__c</picklist>
+            <values>
+                <fullName>1000-1500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500-1000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over 1500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under 500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Documents_Items_Needed__c</picklist>
+            <values>
+                <fullName>Affidavit of Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Reassignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Plates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lien Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marriage%2FBirth%2FDeath Certificate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Statement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power of Attorney</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FSL__Event_Type__c</picklist>
+            <values>
+                <fullName>Resource Absence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Appointment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Inbound_Ops_Call_Reason__c</picklist>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Titles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Interested_in_Meeting_at_Conference__c</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Next_Steps__c</picklist>
+            <values>
+                <fullName>Follow up needed in future</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow up with operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management TO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule wholesale</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purpose__c</picklist>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Appraisal event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Stop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD Ride-along</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Pitch</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_For_Title_Delay__c</picklist>
+            <values>
+                <fullName>Closed%2FLimited in Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Paperwork</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lack of Capital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need Lien Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other %28please specify in comments%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payoff Delay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unable to Reach</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwind</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_Outreach__c</picklist>
+            <values>
+                <fullName>Aged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancellation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Documents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Escalation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Arbitration Status</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Load</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Titles Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Engagement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Result__c</picklist>
+            <values>
+                <fullName>Conversation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interested in Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Answer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent Email%2FText</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Cars</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Appraisal Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA Followup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Stop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD Ride-Along</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True360</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Outreach__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Live_Appraisal_Required_Info</fullName>
+        <active>true</active>
+        <description>Live Appraisal needs date &amp; Expected Apprarials in order to save when type is Live Appraisal.</description>
+        <errorConditionFormula>IF(AND(ISPICKVAL(Type,&quot;Live Appraisal Event&quot;), ISBLANK(Expected_Appraisals__c)), TRUE, False)</errorConditionFormula>
+        <errorMessage>Be sure Expected Appraisal field is completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Must_populate_Other_Reason</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Closed_Lost_Reason__c,&quot;Other&quot;),
+ISBLANK(Other_Reason__c))</errorConditionFormula>
+        <errorMessage>When &quot;Other&quot; is selected, you must enter a reason into this field.</errorMessage>
+    </validationRules>
 </CustomObject>

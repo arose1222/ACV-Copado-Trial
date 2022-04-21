@@ -1,0 +1,1689 @@
+<apex:page DocType="html-5.0" standardController="EXPRN__Experian_Business__c" tabStyle="Expanded_Search__tab" extensions="EXPRN.ExpandedSearch_LeadController" sidebar="false" title="Expanded Search" id="pg"> 
+  <head>
+      <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" /> 
+  </head>
+  <script>      
+      j$ = jQuery.noConflict();
+      j$(document).ready(function(){
+          j$('#divProfileInternationalDeveloped').hide();
+          j$('#searchResultDiv').hide();
+          j$('#divResultLinks').hide();
+          j$('#divPrintExport').hide();
+          j$('.clsOutputPanelResult').hide(); 
+          
+          //alert(j$('#hdnCheckInterProfile').val());
+          var browserIndex = navigator.userAgent.indexOf('Chrome'); 
+          var vFocusBody = '';
+          if(browserIndex > -1){              
+              vFocusBody = 'body';
+          }
+          else{
+              vFocusBody = 'body,html';           
+          }  
+          j$('#hdnBody').val(vFocusBody); 
+          
+          //alert(navigator.userAgent.indexOf('Chrome'));
+          if(j$('#hdnNumberOfBO').val() == '2')
+          {
+              j$('#divSecondBusinessOwner').show(); 
+          }
+          else{
+              j$('#divSecondBusinessOwner').hide(); 
+          }          
+          
+          if(j$('#hdnBinNotInSFDC').val() == '1'){
+              if(confirm('The selected Experian Business does not exist in Salesforce. Do you want to create an Experian Business?')){
+                  navigateToSelectReport();               
+              }                       
+          } 
+          j$('#spnDeleteOwner').attr('disabled','disabled');
+          
+          var isShowConfComp = '';
+          var interCode = j$('#hdnInterCountryCode').val(); 
+          //alert(interCode);   
+          if(interCode == ''){
+               usPageLayout();
+               j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');
+               j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+          }
+          else{
+              j$('select[id$="slsTab1SearchCountry"]').val(interCode);
+              internationalPageLayout(interCode);
+              j$('input[id$="txtTab1GlobalBIN"]').attr('disabled','disabled');
+              j$('input[id$="txtRegionalBusID"]').attr('disabled','disabled');
+          }
+          //j$('select[id$="slsTab1SearchCountry"]').val('FRA');
+          
+          
+          //****
+          j$('input[id$="btnSearchBI"]').click(function(){
+              try
+              {   
+                  HideTab1SearchMessage();
+                  HideTab1BO1Message();
+                  HideTab1BO2Message();                  
+                  j$('#searchResultDiv').hide();
+                  j$('#divResultLinks').hide();
+                  j$('#divPrintExport').hide();
+                  j$('.clsOutputPanelResult').hide(); 
+                  var flag = false; 
+                  //var focusId = '';         
+                  var country = j$('select[id$="slsTab1SearchCountry"]').val();               
+                  
+                  //*** Below Validation for International Search****//
+                  if(country != j$('#hdnUSCountryName').val()){
+                      var isValidBI = true;                  
+                      
+                      if(j$('input[id$="txtTab1GlobalBIN"]').val().trim() != ''){                           
+                          if(j$('input[id$="txtTab1GlobalBIN"]').val().trim().length < 9){
+                              j$('#spnGBINLengthMsg').show();                       
+                              isValidBI = false;
+                          }                       
+                      }
+                      else if(j$('input[id$="txtRegionalBusID"]').val().trim() != ''){                                                
+                          //    
+                      }                   
+                      else {
+                          if(j$('input[id$="txtBusinessName"]').val().trim() == ''){
+                              j$('#spnBusinessNameMsg').show();                       
+                              isValidBI = false;               
+                          } 
+                          else if(checkSpecialChars(j$('input[id$="txtBusinessName"]').val().trim())){                    
+                              j$('#spnBusNameSpclChaMsg').show();                       
+                              isValidBI = false; 
+                          } 
+                          /*if(j$('input[id$="txtCity"]').val().trim() == ''){
+                              j$('#spnCityMsg').show();                       
+                              isValidBI = false;                 
+                          }*/
+                          if(j$('input[id$="txtCity"]').val().trim() != '' && checkSpecialChars(j$('input[id$="txtCity"]').val().trim())){                    
+                              j$('#spnCitySpclChaMsg').show();                    
+                              isValidBI = false; 
+                          }
+                      }
+                      
+                      if(isShowConfComp == "1" && j$('input[id$="chkboxConfComp"]').is(":checked") == false){
+                          j$('#spnConfCompMsg').show();                       
+                          isValidBI = false;                 
+                      }
+                      
+                      if(isValidBI == true){ 
+                          //alert('International Search');
+                          j$('#imgTopColExp').attr('src','{!URLFOR($Resource.EXPRN__BusinessIQ, 'SRC/images/setup_plus.png')}');
+                          j$('#imgTopColExp').addClass('collapsestory');
+                          j$('#imgTopColExp').removeClass('expandstory');
+                          j$('#tblTopContent').hide();
+                          
+                          fetchBussinessAccounts();
+                          
+                          return false;
+                      } 
+                      else{
+                          return false;
+                      }
+                  }
+                  //***End Validation for International Search****//                  
+                  //alert('Hi USA');
+                  if(j$('input[id$="chkboxPullBOProfile"]').is(":checked"))
+                  {                 
+                        //System validate only Business Owner Informations.
+                        if(j$('input[id$="chkboxFCRA"]').is(":checked") == false)
+                        {
+                             j$('#spnBOFCRAPermissibleMsg').show();
+                             flag = true;
+                        }
+                        if(ValidateBusinessOwner() == false)
+                        {
+                            flag = true;
+                        }
+                  }
+                  else if(ValidateBusinessInformation() == false)
+                  {
+                       //System validate only Business Informations.
+                       flag = true;
+                  }
+                  //alert('step1');
+                  if(j$('input[id$="chkboxFCRA"]').is(":checked") && ValidateBusinessOwner() == false)
+                  {
+                       flag = true;
+                  }
+                  
+                  if(flag == false)
+                  {
+                      j$('#imgTopColExp').attr('src','{!URLFOR($Resource.EXPRN__BusinessIQ, 'SRC/images/setup_plus.png')}');
+                      j$('#imgTopColExp').addClass('collapsestory');
+                      j$('#imgTopColExp').removeClass('expandstory');
+                      j$('#tblTopContent').hide();
+                                            
+                      if(j$('input[id$="chkboxPullBOProfile"]').is(":checked"))
+                      { 
+                         //alert('step2');
+                         fetchBussinessOwnerProfile();
+                      }
+                      else{                          
+                          fetchBussinessAccounts();                         
+                      }
+                      
+                                                
+                      return false;
+                  } 
+                  else{
+                      return false;
+                  } 
+              }
+              catch(err){
+              }           
+          });
+          
+          //****
+          function ValidateBusinessInformation()
+          {
+              var isValidBI = true; 
+              if(j$('input[id$="txtBIN"]').val().trim() == '')
+              {    
+                  if(j$('[id$=slsTab1SearchCountry]').val() == ''){
+                      j$('#spnTab1SearchCountryMsg').show();                      
+                      isValidBI = false;               
+                  }                     
+                  if(j$('input[id$="txtBusinessName"]').val().trim() == ''){
+                      j$('#spnBusinessNameMsg').show(); 
+                      //focusId = 'input[id$="txtBusinessName"]';
+                      isValidBI = false;               
+                  }                   
+                  else if(checkSpecialChars(j$('input[id$="txtBusinessName"]').val().trim())){                    
+                      j$('#spnBusNameSpclChaMsg').show();                       
+                      isValidBI = false; 
+                  }
+                  if(j$('input[id$="txtCity"]').val().trim() == ''){
+                      j$('#spnCityMsg').show(); 
+                      //focusId = 'input[id$="txtCity"]';
+                      isValidBI = false;                 
+                  }
+                  else if(checkSpecialChars(j$('input[id$="txtCity"]').val().trim())){                    
+                      j$('#spnCitySpclChaMsg').show();                    
+                      isValidBI = false; 
+                  } 
+                  if(j$('[id$=slstState]').val() == ''){
+                      j$('#spnStateMsg').show(); 
+                      //focusId = '[id$=slstState]';
+                      isValidBI = false;                 
+                  }
+                  if(j$('input[id$="txtZipPart1"]').val().trim() == '' && j$('input[id$="txtZipPart2"]').val().trim() != ''){
+                      j$('#spnZipPart1Msg').show(); 
+                      isValidBI = false;                 
+                  } 
+                  if(j$('input[id$="txtZipPart1"]').val().trim() != '' && j$('input[id$="txtZipPart1"]').val().trim().length != 5){
+                      j$('#spnZipPart1LengthMsg').show(); 
+                      isValidBI = false;                 
+                  } 
+                  var taxIdLength = j$('input[id$="txtTaxPart1"]').val().trim().length + j$('input[id$="txtTaxPart2"]').val().trim().length;
+                  if(j$('input[id$="txtTaxPart1"]').val().trim() != '' && taxIdLength != 9){ 
+                      j$('#spnTaxLengthMsg').show();                       
+                      isValidBI = false;                 
+                  }                                      
+                  if(j$('input[id$="txtTelephone"]').val().trim() != '' && j$('input[id$="txtTelephone"]').val().trim().length > 12){ 
+                      j$('#spnTelephoneLengthMsg').show();                       
+                      isValidBI = false;                 
+                  }     
+              }              
+              else if(j$('input[id$="txtBIN"]').val().trim().length != 9)
+              {
+                  j$('#spnBINLengthMsg').show();                       
+                  isValidBI = false;
+              }
+              return isValidBI;
+          }
+          
+          //****
+          function ValidateBusinessOwner()
+          {              
+              var isValidBO = true;                                      
+              if(j$('input[id$="txtBO1FirstName"]').val().trim() == ''){
+                  j$('#spnBO1FirstNameMsg').show();                   
+                  isValidBO = false;                 
+              } 
+              if(j$('input[id$="txtBO1LastName"]').val().trim() == ''){
+                  j$('#spnBO1LastNameMsg').show();                   
+                  isValidBO = false;                
+              } 
+              if(j$('input[id$="txtBO1Address"]').val().trim() == ''){
+                  j$('#spnBO1AddressMsg').show();                   
+                  isValidBO = false;               
+              } 
+              if(j$('input[id$="txtBO1City"]').val().trim() == ''){
+                  j$('#spnBO1CityMsg').show();                   
+                  isValidBO = false;                
+              } 
+             /* if(j$('input[id$="txtBO1State"]').val().trim() == ''){
+                  j$('#spnBO1StateMsg').show();                   
+                  isValidBO = false;              
+              }*/
+              if(j$('[id$=slstBO1State]').val() == ''){
+                  j$('#spnBO1StateMsg').show();                   
+                  isValidBO = false;                  
+              }
+              if(j$('input[id$="txtBO1ZipPart1"]').val().trim() == ''){
+                  j$('#spnBO1ZipCodeMsg').show();                   
+                  isValidBO = false;                 
+              }             
+              if(j$('input[id$="txtBO1YearOfBirth"]').val().trim() != '' && j$('input[id$="txtBO1YearOfBirth"]').val().trim().length != 4){ 
+                  j$('#spnBO1YearOfBirthLengthMsg').show();                       
+                  isValidBO = false;                 
+              }          
+              if(j$('input[id$="txtBO1Age"]').val().trim() != '' && j$('input[id$="txtBO1Age"]').val().trim().length != 2){ 
+                  j$('#spnBO1AgeLengthMsg').show();                       
+                  isValidBO = false;                 
+              }
+              if(j$('input[id$="txtBO1PhoneNumber"]').val().trim() != '' && j$('input[id$="txtBO1PhoneNumber"]').val().trim().length > 12){ 
+                  j$('#spnBO1PhoneLengthMsg').show();                       
+                  isValidBO = false;                 
+              }
+              
+              if(j$('#hdnNumberOfBO').val() == '2')
+              {
+                  if(j$('input[id$="txtBO2FirstName"]').val().trim() == ''){
+                      j$('#spnBO2FirstNameMsg').show();                   
+                      isValidBO = false;                 
+                  } 
+                  if(j$('input[id$="txtBO2LastName"]').val().trim() == ''){
+                      j$('#spnBO2LastNameMsg').show();                   
+                      isValidBO = false;                
+                  } 
+                  if(j$('input[id$="txtBO2Address"]').val().trim() == ''){
+                      j$('#spnBO2AddressMsg').show();                   
+                      isValidBO = false;               
+                  } 
+                  if(j$('input[id$="txtBO2City"]').val().trim() == ''){
+                      j$('#spnBO2CityMsg').show();                   
+                      isValidBO = false;                
+                  } 
+                  if(j$('[id$=slstBO2State]').val() == ''){
+                      j$('#spnBO2StateMsg').show();                   
+                      isValidBO = false;                  
+                  }
+                  if(j$('input[id$="txtBO2ZipPart1"]').val().trim() == ''){
+                      j$('#spnBO2ZipCodeMsg').show();                   
+                      isValidBO = false;                 
+                  }                  
+                  if(j$('input[id$="txtBO2YearOfBirth"]').val().trim() != '' && j$('input[id$="txtBO2YearOfBirth"]').val().trim().length != 4)
+                  { 
+                      j$('#spnBO2YearOfBirthLengthMsg').show();                       
+                      isValidBO = false;                 
+                  }              
+                  if(j$('input[id$="txtBO2Age"]').val().trim() != '' && j$('input[id$="txtBO2Age"]').val().trim().length != 2){ 
+                      j$('#spnBO2AgeLengthMsg').show();                       
+                      isValidBO = false;                 
+                  }     
+                  if(j$('input[id$="txtBO2PhoneNumber"]').val().trim() != '' && j$('input[id$="txtBO2PhoneNumber"]').val().trim().length > 12){ 
+                      j$('#spnBO2PhoneLengthMsg').show();                       
+                      isValidBO = false;                 
+                  } 
+              }
+              return isValidBO;
+          }
+                  
+          //******This Event cleared all business and owner informations.
+          j$('input[id$="btnClearFieldsBI"]').click(function(){
+              ClearBusinessInformation();
+              j$('input[id$="chkboxFCRA"]').attr('checked', false);
+              j$('input[id$="chkboxPullBOProfile"]').attr('checked', false);
+              j$('input[id$="chkboxConfComp"]').attr('checked', false);
+              ClearBusinessOwner1();
+              if(j$('#hdnNumberOfBO').val() == '2')
+              {
+                  ClearBusinessOwner2();
+              }
+              return false;
+          });
+          
+          //*******         
+          j$('select[id$="slsTab1SearchCountry"]').change(function(){               
+               HideTab1SearchMessage();  
+               //alert('step1');
+               j$('#divBusinessOwner').hide();  
+               j$('#divTab1InternationalProfile').hide();
+               //j$('#divProfileSec1').hide();
+               j$('#divProfileSec2').hide();
+               //j$('#divProfileSec3').hide();    
+               j$('#trRegionalBusID').hide();  
+               j$('#spnCountryStar').hide(); 
+               j$('#spnCityStar').show();
+                //alert('step2');            
+               removeAttrDisable();
+               isShowConfComp = '';
+               j$('input[id$="chkboxConfComp"]').attr('checked', false);
+               
+               var selCountry = j$('select[id$="slsTab1SearchCountry"]').val();  
+               //alert(selCountry); 
+               if(selCountry != j$('#hdnUSCountryName').val() && selCountry != ''){    
+                    //alert('step3');
+                    internationalPageLayout(selCountry);   
+                }
+                else{          
+                     usPageLayout();                         
+                }            
+          });
+          
+          //********
+          j$('#spnAddOwner').click(function(){
+              ClearBusinessOwner2(); 
+              j$('#divSecondBusinessOwner').show(); 
+              j$('#spnAddOwner').attr('disabled','disabled');    
+              j$('#spnDeleteOwner').removeAttr('disabled');  
+              
+              j$('#spnAddOwner').removeClass('enableLink'); 
+              j$('#spnAddOwner').addClass('disableLink');
+              
+              j$('#spnDeleteOwner').removeClass('disableLink'); 
+              j$('#spnDeleteOwner').addClass('enableLink');   
+              j$('#hdnNumberOfBO').val('2');              
+          });
+          
+          //********
+          j$('#spnDeleteOwner').click(function(){
+              j$('#divSecondBusinessOwner').hide();  
+              j$('#spnDeleteOwner').attr('disabled','disabled');    
+              j$('#spnAddOwner').removeAttr('disabled'); 
+              
+              j$('#spnDeleteOwner').removeClass('enableLink'); 
+              j$('#spnDeleteOwner').addClass('disableLink');
+              
+              j$('#spnAddOwner').removeClass('disableLink'); 
+              j$('#spnAddOwner').addClass('enableLink');    
+              j$('#hdnNumberOfBO').val('1');     
+          });  
+          
+          //************
+          j$(".clsCheckNumeric").keydown(function (e) {
+            if (j$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 17, 86]) !== -1 ||
+                 // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) || 
+                 // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                     // let it happen, don't do anything
+                     return;
+                }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+          });
+          
+          //++++++++++++++++++++++++++++++++++++++++++++++++          
+          //*******
+          j$('.clsCheckLength2').keypress( function(event){  
+              var keycode = (event.keyCode ? event.keyCode : event.which);      
+              if(j$(this).val().length > 1 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          });   
+          //*******
+          j$('.clsCheckLength3').keypress( function(event){ 
+              var keycode = (event.keyCode ? event.keyCode : event.which);  
+              if(j$(this).val().length > 2 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          });             
+          //*******
+          j$('.clsCheckLength4').keypress( function(event){
+              var keycode = (event.keyCode ? event.keyCode : event.which);
+              if(j$(this).val().length > 3 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          });
+          //*******
+          j$('.clsCheckLength5').keypress( function(event){   
+              var keycode = (event.keyCode ? event.keyCode : event.which);  
+              if(j$(this).val().length > 4 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          });         
+          //*******
+          j$('.clsCheckLength7').keypress( function(event){
+              var keycode = (event.keyCode ? event.keyCode : event.which);
+              if(j$(this).val().length > 6 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          });
+          //*******
+          j$('.clsCheckLength9').keypress( function(event){  
+              var keycode = (event.keyCode ? event.keyCode : event.which);
+              if(j$(this).val().length > 8 && keycode != '13'){               
+                  event.preventDefault();                 
+              }                              
+          });
+          //*******
+          j$('.clsCheckLength12').keypress( function(event){  
+              var keycode = (event.keyCode ? event.keyCode : event.which);
+              if(j$(this).val().length > 11 && keycode != '13'){
+                  event.preventDefault();
+              }                              
+          }); 
+          
+          //****
+          j$('input[id$="txtTab1GlobalBIN"]').keyup( function(e){ 
+               j$('input[id$="txtBusinessName"]').val('');
+               j$('input[id$="txtRegionalBusID"]').val('');
+               j$('input[id$="txtAddress"]').val('');
+               j$('input[id$="txtCity"]').val('');
+               j$('input[id$="txtTab1Province"]').val('');
+               j$('input[id$="txtTab1Postalcode"]').val('');
+               j$('input[id$="txtTelephone"]').val('');
+               
+               if(j$(this).val().length > 0){
+                  j$('input[id$="txtBusinessName"]').attr('disabled','disabled');
+                  j$('input[id$="txtRegionalBusID"]').attr('disabled','disabled');
+                  j$('input[id$="txtAddress"]').attr('disabled','disabled');
+                  j$('input[id$="txtCity"]').attr('disabled','disabled');
+                  j$('input[id$="txtTab1Province"]').attr('disabled','disabled');
+                  j$('input[id$="txtTab1Postalcode"]').attr('disabled','disabled');
+                  j$('input[id$="txtTelephone"]').attr('disabled','disabled');
+               } 
+               else{                  
+                  j$('input[id$="txtBusinessName"]').removeAttr('disabled');
+                  j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+                  j$('input[id$="txtAddress"]').removeAttr('disabled');
+                  j$('input[id$="txtCity"]').removeAttr('disabled');
+                  j$('input[id$="txtTab1Province"]').removeAttr('disabled');
+                  j$('input[id$="txtTab1Postalcode"]').removeAttr('disabled');
+                  j$('input[id$="txtTelephone"]').removeAttr('disabled');
+               }
+          });
+          
+          //****
+          j$('input[id$="txtRegionalBusID"]').keyup( function(e){ 
+               j$('input[id$="txtBusinessName"]').val('');
+               j$('input[id$="txtTab1GlobalBIN"]').val('');
+               j$('input[id$="txtAddress"]').val('');
+               j$('input[id$="txtCity"]').val('');
+               j$('input[id$="txtTab1Province"]').val('');
+               j$('input[id$="txtTab1Postalcode"]').val('');
+               j$('input[id$="txtTelephone"]').val('');               
+               
+               if(j$(this).val().length > 0){
+                  j$('input[id$="txtBusinessName"]').attr('disabled','disabled');
+                  j$('input[id$="txtTab1GlobalBIN"]').attr('disabled','disabled');
+                  j$('input[id$="txtAddress"]').attr('disabled','disabled');
+                  j$('input[id$="txtCity"]').attr('disabled','disabled');
+                  j$('input[id$="txtTab1Province"]').attr('disabled','disabled');
+                  j$('input[id$="txtTab1Postalcode"]').attr('disabled','disabled');
+                  j$('input[id$="txtTelephone"]').attr('disabled','disabled');
+               } 
+               else{                  
+                   removeAttrDisable();
+               }
+          });
+          
+          //****
+          j$('.clsDisableGlobalBIN').keyup( function(e){               
+               //var code = e.keyCode ? e.keyCode : e.which;                
+               //alert(code);
+               var flag = false;
+               if(j$('input[id$="txtBusinessName"]').val().trim() != '' || j$('input[id$="txtAddress"]').val().trim() != '' || j$('input[id$="txtCity"]').val().trim() != '' || j$('input[id$="txtTab1Province"]').val().trim() != '' || j$('input[id$="txtTab1Postalcode"]').val().trim() != '' || j$('input[id$="txtTelephone"]').val().trim() != ''){
+                    flag = true;    
+               }
+               if(j$(this).val().length > 0){     
+                  j$('input[id$="txtTab1GlobalBIN"]').val('');  
+                  j$('input[id$="txtRegionalBusID"]').val('');  
+                  j$('input[id$="txtTab1GlobalBIN"]').attr('disabled','disabled');   
+                  j$('input[id$="txtRegionalBusID"]').attr('disabled','disabled');  
+               } 
+               else if(flag == false){
+                  j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');  
+                  j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');       
+               }
+          }); 
+          
+          j$('#imgTopColExp').click(function(){
+              //alert('hi');
+              if(j$(this).attr('class')=='expandstory'){                
+                   //j$(this).attr('src','/img/setup_plus.gif'); 
+                   j$(this).attr('src','{!URLFOR($Resource.EXPRN__BusinessIQ, 'SRC/images/setup_plus.png')}'); 
+                   j$(this).addClass('collapsestory');
+                   j$(this).removeClass('expandstory');
+                   j$('#tblTopContent').hide();
+               }
+               else{                   
+                   //j$(this).attr('src','/img/setup_minus.gif'); 
+                   j$(this).attr('src','{!URLFOR($Resource.EXPRN__BusinessIQ, 'SRC/images/setup_minus.png')}'); 
+                   j$(this).addClass('expandstory');
+                   j$(this).removeClass('collapsestory');
+                   j$('#tblTopContent').show();
+               }
+          });
+          
+          
+           //*****Function is used for hiding the error messages of Tab1.
+          function HideTab1SearchMessage()
+          {
+              j$('#spnBusinessNameMsg').hide(); 
+              j$('#spnBusNameSpclChaMsg').hide();
+              j$('#spnCityMsg').hide(); 
+              j$('#spnCitySpclChaMsg').hide();
+              j$('#spnStateMsg').hide();
+              j$('#spnZipPart1Msg').hide(); 
+              j$('#spnZipPart1LengthMsg').hide();
+              j$('#spnBINLengthMsg').hide();
+              j$('#spnTaxLengthMsg').hide();             
+              j$('#spnTab1SearchCountryMsg').hide(); 
+              j$('#spnGBINLengthMsg').hide(); 
+          }
+          
+          //*****Function is used for hiding the error messages for Business Owner1 of Tab1.
+          function HideTab1BO1Message()
+          {
+              j$('#spnBOFCRAPermissibleMsg').hide();
+              j$('#spnBO1FirstNameMsg').hide();
+              j$('#spnBO1LastNameMsg').hide();
+              j$('#spnBO1AddressMsg').hide();
+              j$('#spnBO1CityMsg').hide();
+              j$('#spnBO1StateMsg').hide();
+              j$('#spnBO1ZipCodeMsg').hide();             
+              j$('#spnBO1YearOfBirthLengthMsg').hide();          
+              j$('#spnBO1AgeLengthMsg').hide();   
+              j$('#spnConfCompMsg').hide();     
+          }
+          
+          //*****Function is used for hiding the error messages for Business Owner2 of Tab1.
+          function HideTab1BO2Message()
+          {              
+              j$('#spnBO2FirstNameMsg').hide();
+              j$('#spnBO2LastNameMsg').hide();
+              j$('#spnBO2AddressMsg').hide();
+              j$('#spnBO2CityMsg').hide();
+              j$('#spnBO2StateMsg').hide();
+              j$('#spnBO2ZipCodeMsg').hide();             
+              j$('#spnBO2YearOfBirthLengthMsg').hide();           
+              j$('#spnBO2AgeLengthMsg').hide();           
+          }
+          
+          //******Function is used for hiding the error messages of Tab1.
+          function HideTab2SearchMessage()
+          {
+              j$('#spnTab2SearchBusinessNameMsg').hide();
+              j$('#spnTab2SearchCountryMsg').hide();
+              j$('#spnGlobalBINMsg').hide();
+          }
+          
+          //*****
+          function usPageLayout()
+          {
+              j$('#trRegionalBusID').hide();
+              j$('#trGlobalBIN').hide(); 
+              j$('#trProvince').hide();                    
+              j$('#trPostalcode').hide();
+                                
+              j$('#trState').show();
+              j$('#trZipCode').show();
+              j$('#trRefInfor').show();
+              j$('#trTaxId').show();  
+              j$('#trBIN').show(); 
+
+              j$('#divBusinessOwner').show();
+          }
+          
+          //*****
+          function internationalPageLayout(countryCode)
+          {
+            j$('#trGlobalBIN').show(); 
+            j$('#trProvince').show();
+            j$('#trNonUSCity').show();
+            j$('#trPostalcode').show(); 
+            //alert('step4');           
+            j$('#trState').hide();
+            j$('#trZipCode').hide();
+            j$('#trRefInfor').hide();
+            j$('#trTaxId').hide();  
+            j$('#trBIN').hide(); 
+            j$('#spnCountryStar').show();   
+            j$('#spnCityStar').hide();
+            //alert('step5');
+            if(countryCode == 'NOR'){
+                j$('#divProfileSec2').hide();
+            }
+            else{
+                j$('#divTab1InternationalProfile').show(); 
+                j$('#divProfileSec2').show();
+                isShowConfComp = '1'; 
+            }
+            //alert('step6');
+            if(countryCode == 'AUT' || countryCode == 'BEL' || countryCode == 'DNK' || countryCode == 'FIN' || countryCode == 'FRA' || countryCode == 'DEU' || countryCode == 'IRL' || countryCode == 'NLD'|| countryCode == 'NOR' || countryCode == 'ESP' || countryCode == 'SWE' || countryCode == 'UKR'){                                            
+                j$('#trRegionalBusID').show();                      
+            }
+            //alert('step7');
+          }
+          
+          function removeAttrDisable()
+          {
+              j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');   
+              j$('input[id$="txtBusinessName"]').removeAttr('disabled');
+              j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');
+              j$('input[id$="txtAddress"]').removeAttr('disabled');
+              j$('input[id$="txtCity"]').removeAttr('disabled');
+              j$('input[id$="txtTab1Province"]').removeAttr('disabled');
+              j$('input[id$="txtTab1Postalcode"]').removeAttr('disabled');
+              j$('input[id$="txtTelephone"]').removeAttr('disabled');
+          }
+          
+        });  
+        
+        function NavigateToTop()
+        {  
+          j$('.clsOutputPanelResult').hide(); 
+          j$('input[id$="txtBIN"]').val('');
+          j$('input[id$="txtBusinessName"]').focus();
+          
+          //document.getElementById("j_id0:frm:j_id9:txtBusinessName").focus();
+        }
+
+        function updatePageNumDisplay(pgNumber)
+        {          
+          afUpdatePageNumDisplay(pgNumber);
+          return false;
+        } 
+        
+        
+        function closepopup() {            
+            document.getElementById('pg:form:popUpModal').style.display = 'None';            
+            return false;
+        }  
+        
+        //**********
+        function checkSpecialChars(text)
+        {
+            //alert(text);
+            //var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";  
+            var specialChars = "<>@%[]{}|\\\~`=";   
+            for(i = 0; i < specialChars.length;i++){
+               if(text.indexOf(specialChars[i]) > -1){
+                   return true
+                }
+            }
+            return false;           
+        }    
+  </script>
+  
+  <style>
+      .tableBIColumn1{
+          width:200px!Important;
+          color:#666!Important;
+      }
+      .tableBIColumn2{
+          width:300px;
+      }
+      .reqClass{
+          color:red;
+          font-weight:bold;
+          font-size: 11px;
+      }
+      .errMsg{
+          color:red;
+          font-weight:bold;
+      }
+     .formHeader {
+            color: #005bb0;
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: middle;
+      }
+      .enableLink{
+        color: #0193dc;
+        cursor: pointer;
+        font-size: 11px;
+      }
+      .disableLink{
+        color: #999;
+        background-color: #e6e6e6;
+        cursor: pointer; 
+        font-size: 11px;       
+      }
+      .Processing
+       {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+       } 
+       .ProcessingBackground
+       {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+       }
+       .scoreBI {
+            border-color: rgb(211, 201, 201) !important;
+            border-radius: 5px;            
+            border-width:1px;
+            border-style:solid;           
+            background-color:white;
+            width:330px;
+            padding:15px;            
+        }
+        .scoreBO {
+            border-color: rgb(211, 201, 201) !important;
+            border-radius: 5px;            
+            border-width:1px;
+            border-style:solid;           
+            background-color:white;
+            width:550px;
+            padding:15px;
+            margin-left: 15px;
+        }
+        .noUnderlineLink{
+            text-decoration: none;
+            color:#666!Important;
+        }
+         .clsTableResult{
+             color:#666!Important;
+             font-size:11px!Important;
+         }
+        .clsTableResult a:hover{
+            text-decoration: none;
+            color: #015ba7!Important;
+        }
+        .pbtColClass{
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .fontStyle{
+            font-size:11px;
+            color:#666;
+        }
+        .btn { 
+            font-weight:100!Important; color: #0193DC !important; 
+        }
+        .btn:active{
+            color: #01679A!Important; border-color: #01679A !Important;
+            background:#fff;
+        }
+        .pageLink {
+            font-weight:bold; 
+            color:#1c94c4!Important;
+            font-size:11px!Important; 
+        }
+        .pageText {
+            font-weight:bold;
+            color:grey;
+            font-size:11px;
+         }
+        .headerRow{
+            color:#666!Important;
+            font-size:11px!Important;
+        }
+        .trHeight{
+            height: 23px!Important;
+        }
+        .htmlCSS{overflow:auto;height:100%;}
+        .bodyCSS{overflow:auto;height:100%}
+        
+  </style> 
+  
+  <apex:form id="frm1">     
+    
+    <body>  
+        <div id="dialog" title="Confirm Box" style="display:none; z-index:9997;" >
+          <p>
+              <p>The Searched Business is not present in Salesforce. Do you want to create one?</p><br />
+              <p style="margin-left:80px;"><input type="button" id="btnYes" value="Yes" onclick="clickYesButton();" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="btnNo" value="No" onclick="clickNoButton()" /></p>
+          </p>        
+        </div>
+    </body>
+    
+    
+    <apex:actionFunction action="{!fetchBussinessInfo}" name="fetchBussinessAccounts" reRender="pbViewResult" status="Processing"/>     
+    <apex:actionFunction action="{!fetchBussinessInfo}" name="fetchBussinessOwnerProfile" />
+    <apex:actionFunction action="{!navigateToSelectReportPage}" name="navigateToSelectReport" />
+        
+    <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb2" status="Processing">
+        <apex:param name="selectedPageNum" value="" />     
+    </apex:actionFunction>
+    
+    <div id="divProcessing" style="display:none;">
+        <div class="ProcessingBackground"></div>
+        <div class="Processing">
+            <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+        </div>
+    </div>  
+    
+    <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />                            
+    
+    <apex:actionStatus onStart="BlockPg()" id="modal" onstop="UnblockPg();"/>
+    
+              <apex:pageBlock id="pbSearch" title="Experian Search">
+                <apex:pageBlockButtons location="top">
+                    <div style="float: right; margin-right: -5px;" >
+                        <!--<img src="/img/setup_minus.gif" id="imgTopColExp"  class="expandstory"  />-->
+                        <img src="{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_minus.png')}" id="imgTopColExp" style="width:25px; cursor: pointer;"  class="collapsestory"  /> 
+                    </div>
+                </apex:pageBlockButtons>
+                <table style="width: 939px; " id="tblTopContent">
+                    <tr>
+                        <td id="tdBusinessInfor" style="width: 35%;float: left;">                            
+                            <div class="scoreBI" style="width:292px;">
+                                <div class="formHeader">Business Information</div><br/>
+                                <div style="float:right;width:140px;color:#666;font-size:11px;margin-right: -15px;"><span class="reqClass">*</span> Required for Search</div><br /><br/>
+                                <apex:outputPanel id="optpnlBusinessInfor">
+                                <table style="width:112%; font-size:11px; margin-top: -13%; margin-bottom: -10%;">
+                                  <tr id="trGlobalBIN" style="display:none;" styleClass="trHeight">
+                                      <td class="tableBIColumn1">Global BIN</td>
+                                      <td class="tableBIColumn2">
+                                        <apex:inputText id="txtTab1GlobalBIN" value="{!sGlobalBIN}" styleClass="clsCheckNumeric clsCheckLength9" style="color:
+                                        ;font-size:11px;" /><br />                                      
+                                        <span id="spnGBINLengthMsg" class="reqClass" style="display:none;">Global BIN must be 9 digits long.</span>
+                                      </td>
+                                  </tr> 
+                                  <tr class="trHeight">
+                                      <td class="tableBIColumn1">Country <span id="spnCountryStar" style="display:none;" class="reqClass">*</span></td>
+                                      <td class="tableBIColumn2">
+                                          <apex:SelectList id="slsTab1SearchCountry" size="1" value="{!sCountry}" styleClass="fontStyle">
+                                              <apex:selectoption itemLabel="{!sUSName}" itemValue="{!sUSName}" />                                             
+                                              <apex:selectoptions value="{!lstCountry}" />
+                                          </apex:SelectList><br />
+                                          <span id="spnTab1SearchCountryMsg" class="reqClass" style="display:none;">Country is required.</span>
+                                      </td>
+                                  </tr><br/> 
+                                  <tr id="trRegionalBusID" style="display:none;" class="trHeight">
+                                      <td class="tableBIColumn1">Regional Bus ID</td>
+                                      <td class="tableBIColumn2">                                              
+                                          <apex:inputText id="txtRegionalBusID" value="{!sRegionalID}" style="font-size:11px;color:#666;" />                                          
+                                      </td>
+                                  </tr><br/>
+                                  <tr class="trHeight">
+                                      <td class="tableBIColumn1">Business Name <span class="reqClass">*</span></td>
+                                      <td class="tableBIColumn2">                                              
+                                          <apex:inputText id="txtBusinessName" value="{!expBus.Name}" styleClass="clsDisableControl clsDisableGlobalBIN" style="font-size:11px;color:#666;width:190px;"/><br />
+                                          <span id="spnBusinessNameMsg" class="reqClass" style="display:none;">Business name is required.</span>
+                                          <span id="spnBusNameSpclChaMsg" class="reqClass" style="display:none;">Business name has invalid <br /> characters.</span>
+                                      </td>
+                                  </tr>
+                                  <tr class="trHeight">
+                                      <td class="tableBIColumn1">Address</td>
+                                      <td class="tableBIColumn2"><apex:inputText id="txtAddress" value="{!expBus.EXPRN__Exp_Street_Address1__c}" styleClass="clsDisableControl clsDisableGlobalBIN" style="font-size:11px;color:#666;width:190px;"/></td>
+                                  </tr>
+                                  <tr id="trCity" class="trHeight">
+                                      <td class="tableBIColumn1">City <span id="spnCityStar" class="reqClass" value="{!expBus.EXPRN__Exp_City_Name__c}">*</span></td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtCity" value="{!expBus.EXPRN__Exp_City_Name__c}" styleClass="clsDisableGlobalBIN" style="font-size:11px;color:#666;width:190px;"/><br />
+                                          <span id="spnCityMsg" class="reqClass" style="display:none;">City is required.</span>
+                                          <span id="spnCitySpclChaMsg" class="reqClass" style="display:none;">City has invalid characters.</span>
+                                      </td>
+                                  </tr>  
+                                  <tr id="trProvince" style="display:none;" class="trHeight">
+                                      <td class="tableBIColumn1">Province</td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtTab1Province" value="{!sProvince}" styleClass="clsDisableGlobalBIN" style="font-size:11px;color:#666;"/>                                         
+                                      </td>
+                                  </tr>     
+                                  <tr id="trState" class="trHeight">
+                                      <td class="tableBIColumn1">State <span class="reqClass">*</span></td>
+                                      <td class="tableBIColumn2">
+                                          <!--<apex:inputField id="slstState" value="{!expBus.BillingStateCode}"/>-->
+                                          
+                                          <apex:SelectList id="slstState" size="1" value="{!expBus.EXPRN__Exp_STATE__c}" style="font-size:11px;color:#666;">
+                                              <apex:selectoption itemLabel="--" itemValue="" />
+                                              <apex:selectoptions value="{!lstUSStates}" />                                             
+                                          </apex:SelectList>                                                                                     
+                                          <br />
+                                          <span id="spnStateMsg" class="reqClass" style="display:none;">State is required.</span>
+                                      </td>
+                                  </tr>
+                                  <tr id="trZipCode" class="trHeight">
+                                      <td class="tableBIColumn1">Zip Code</td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtZipPart1" value="{!sZipCodePart1}" styleClass="clsCheckNumeric clsCheckLength5" style="width:50px;font-size:11px;color:#666;"/>&nbsp;&nbsp;
+                                          <apex:inputText id="txtZipPart2" value="{!sZipCodePart2}" styleClass="clsCheckNumeric clsCheckLength4" style="width:50px;font-size:11px;color:#666;"/><br />                                              
+                                          <span id="spnZipPart1Msg" class="reqClass" style="display:none;">Zip Code is required.</span>                                                                                        
+                                          <span id="spnZipPart1LengthMsg" class="reqClass" style="display:none;">Zip Code must be 5 digits long.</span>
+                                      </td>
+                                  </tr>
+                                  <tr id="trPostalcode" style="display:none;" class="trHeight">
+                                      <td class="tableBIColumn1">Postal code</td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtTab1Postalcode" value="{!expBus.EXPRN__Exp_ZIP__c}" styleClass="clsCheckNumeric clsCheckLength9 clsDisableGlobalBIN" style="font-size:11px;color:#666;"/>                                         
+                                      </td>
+                                  </tr>                                  
+                                  <tr class="trHeight">
+                                      <td class="tableBIColumn1">Telephone</td>
+                                      <td class="tableBIColumn2">
+                                        <apex:inputText id="txtTelephone" value="{!expBus.EXPRN__Exp_Business_Phone_No__c}" styleClass="clsCheckNumeric clsCheckLength12 clsDisableGlobalBIN" style="font-size:11px;color:#666;"/><br />
+                                        <span id="spnTelephoneLengthMsg" class="reqClass" style="display:none;">Telephone must be 12 digits long.</span>
+                                      </td>
+                                  </tr>
+                                  <tr id="trBIN" class="trHeight">
+                                      <td class="tableBIColumn1">BIN</td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtBIN" value="{!expBus.EXPRN__BIN__c}" styleClass="clsCheckNumeric clsCheckLength9" style="font-size:11px;color:#666;"/><br />
+                                          <span id="spnBINLengthMsg" class="reqClass" style="display:none;">BIN must be 9 digits long.</span>                                              
+                                       </td>
+                                  </tr>
+                                  <tr id="trTaxId" class="trHeight">
+                                      <td class="tableBIColumn1">Tax ID</td>
+                                      <td class="tableBIColumn2">
+                                          <apex:inputText id="txtTaxPart1" value="{!sTaxIdPart1}" styleClass="clsCheckNumeric clsCheckLength2" style="width:30px;font-size:11px;color:#666;"/>&nbsp;&nbsp;
+                                          <apex:inputText id="txtTaxPart2" value="{!sTaxIdPart2}" styleClass="clsCheckNumeric clsCheckLength7" style="width:50px;font-size:11px;color:#666;"/><br />
+                                          <span id="spnTaxLengthMsg" class="reqClass" style="display:none;">Tax ID must be 9 digits long.</span> 
+                                          <span id="spnTaxPart1LengthMsg" class="reqClass" style="display:none;">Tax ID Part1 must be 2 digits long.</span>
+                                          <span id="spnTaxPart2LengthMsg" class="reqClass" style="display:none;">Tax ID Part2 must be 7 digits long.</span>
+                                      </td>
+                                  </tr>
+                                  <tr id="trRefInfor" class="trHeight">
+                                      <td class="tableBIColumn1">Reference Information</td>
+                                      <td class="tableBIColumn2"><apex:inputText id="txtRefInfor" value="{!expBus.EXPRN__Reference_Information__c}" style="font-size:11px;color:#666;width:190px;"/></td>
+                                  </tr>
+                                  <tr class="trHeight">
+                                      <td class="tableBIColumn1"></td><td class="tableBIColumn2">                          
+                                      </td>
+                                  </tr> 
+                                </table>
+                                </apex:outputPanel>
+                            </div><br /> 
+                            <div style="margin-left:22%;">
+                                <apex:commandButton styleClass="btn" value="Search" id="btnSearchBI"/>&nbsp;&nbsp;
+                                <apex:commandButton value="Clear Fields" id="btnClearFieldsBI"/>&nbsp;&nbsp;
+                                <apex:commandButton value="Cancel" id="btnCalcelBI" action="{!cancel}" />
+                            </div>  
+                        </td>
+                        <td id="tdBusinessOwner" style="float: left;width: 64%;"> 
+                            <apex:outputPanel id="optpnlBusinessOwner" rendered="{!bIsShowBOBackground}" >
+                                <div id="divBusinessOwner" class="scoreBO">
+                                    <div class="formHeader">Business Owner</div><br />
+                                    <div style="float:right;width:150px;color:#666;font-size:11px;"><span class="reqClass">*</span> Required for Search</div><br />                                
+                                    <table>                                    
+                                        <tr>
+                                            <td colspan="2" style="color:#666;font-size:11px;font-weight: bold;">
+                                            <table><tr><td>
+                                                <apex:inputCheckbox id="chkboxFCRA" value="{!bFCRAReport}" style="margin-left:0px; margin-top:0px;margin-right: 6px;" /></td><td style="color:#666;font-size:11px;font-weight: bold;">When ordering FCRA reports, check box to acknowledge you have FCRA Permissible Purpose for 
+                                                   this transaction<span class="reqClass">*</span></td></tr></table> 
+                                                <span id="spnBOFCRAPermissibleMsg" class="reqClass" style="display:none;">Please check FCRA Permissible checkbox.</span>
+                                            </td>
+                                           
+                                        </tr>
+                                        <tr style="">
+                                            <td colspan="2">                                                
+                                                <div style="width: 520px;height:40px; overflow-y: scroll;border: 1px solid rgb(173, 168, 168); margin-top:5px;">
+                                                    <div style="margin:5px; font-size:11px;color:#666;">
+                                                        <p style="font-size:12px;margin-top:0px;color:#666;"><strong>FCRA Permissible Purpose Certification </strong></p>
+                                                        <p style="color:#666;font-size:11px;"><strong>1. BIS Blended Services</strong></p>
+                                                        
+                                                        <p style="color:#666;font-size:11px;">Under the Fair Credit Reporting Act (FCRA), businesses that do not have a credit relationship with their
+                                                        customer may request consumer credit information based upon receipt of the consumer's written instructions.
+                                                        BIS Blended Services (which include Business Owner Profile, Small Business Intelliscore (SBI), Decision 
+                                                        Insight using SBI, Business Owner Background Report - Comprehensive and IntelliscorePlus) obtained for the
+                                                        purpose of mitigation of financial risk will be used solely in connection with a current commercial 
+                                                        (i.e. not for personal, family or household purposes) financial risk assessment involving the individual 
+                                                        on whom such information is sought, and only if the individual:</p>
+                                                        
+                                                        <p style="color:#666;font-size:11px;">&nbsp;&nbsp;° has provided written authorization to access his or her personal consumer report</p>
+                                                        <p style="color:#666;font-size:11px;">Each request for one of the above products will appear on the subject's individual Experian consumer 
+                                                        report and the name and address of your business will be available to such individual.</p>
+                                                        
+                                                       <p style="color:#666;font-size:11px;"><strong> 2. OFAC Name Matching</strong></p>
+                                                        
+                                                        <p style="color:#666;font-size:11px;">The United States Treasury Department, Office of Foreign Asset Control ("OFAC") periodically makes 
+                                                        available to Experian a file of specially designated nationals and blocked persons. Matching of names to
+                                                        the OFAC list is based on very limited identification information. A match does not necessarily indicate 
+                                                        that the individual whom the Client inquired is the same person referenced by OFAC. Accordingly, if the
+                                                        Client chooses to use OFAC data, the Client about acknowledges that any adverse action taken by the
+                                                        Client against an individual must be taken based on the Client's complete investigation of the individual 
+                                                        and not based solely on the OFAC information.</p>
+                                                        
+                                                        <p style="color:#666;font-size:11px;">By checking the box, you are certifying to Experian that:</p>
+                                                        
+                                                        <p style="color:#666;font-size:11px;">(1) you understand the foregoing and </p>
+                                                        <p style="color:#666;font-size:11px;">(2) you agree to use the <strong>OFAC Name Matching</strong> andor the <strong>Blended Services</strong> only in accordance with this certificate</p>
+                                                        <p style="color:#666;font-size:11px;">Submitting your request signifies agreement to these terms and conditions.</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="margin-top:15px;">
+                                            <td colspan="2" ><apex:outputLink value="/apex/FcraAgreementNote" target="_blank" style="color: #0193DC; font-size:9px;text-decoration:none;">Print FCRA agreement</apex:outputLink><apex:outputLabel style="font-size:9px;color:#8D8D8D;"> Note: You must repeat this certification for each sign on session</apex:outputLabel></td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td style="width:50%;">                                               
+                                                <table style="font-size:11px;color:#666; width:100%;">                                    
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">First Name <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1FirstName" value="{!owner1.EXPRN__First_Name__c}" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1FirstNameMsg" class="reqClass" style="display:none;">Fisrt Name is required.</span>
+                                                        </td>
+                                                    </tr>                                                    
+                                                   <tr class="trHeight">
+                                                        <td style="color:#666;">Middle Initial </td>
+                                                        <td><apex:inputText id="txtBO1MiddleName" value="{!owner1.EXPRN__Middle_Initial__c}" style="color:#666;font-size:11px;"/></td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Last Name <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1LastName" value="{!owner1.EXPRN__Last_Name__c}" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1LastNameMsg" class="reqClass" style="display:none;">Last Name is required.</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Social Sec No.</td>
+                                                        <td><apex:inputText id="txtBO1SocialSecNo" value="{!owner1.EXPRN__Social_Sec_No__c}" styleClass="clsCheckLength9" style="color:#666;font-size:11px;"/></td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Generation code</td>
+                                                        <td>
+                                                            <apex:SelectList id="slstBO1GenerationCode" size="1" value="{!owner1.EXPRN__Generation_code__c}" style="color:#666;font-size:11px;">
+                                                              <apex:selectoption itemLabel="Select" itemValue="Select"></apex:selectoption>
+                                                              <apex:selectoption itemLabel="SR" itemValue="SR"></apex:selectoption>
+                                                              <apex:selectoption itemLabel="JR" itemValue="JR"></apex:selectoption>
+                                                              <apex:selectoption itemLabel="II" itemValue="II"></apex:selectoption>
+                                                              <apex:selectoption itemLabel="III" itemValue="III"></apex:selectoption>
+                                                              <apex:selectoption itemLabel="IV" itemValue="IV"></apex:selectoption>
+                                                            </apex:SelectList>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Address <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1Address" value="{!owner1.EXPRN__Address__c}" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1AddressMsg" class="reqClass" style="display:none;">Address is required.</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">City <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1City" value="{!owner1.EXPRN__City__c}" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1CityMsg" class="reqClass" style="display:none;">City is required.</span>                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">State <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <!--<apex:inputText id="txtBO1State" value="{!owner1.EXPRN__State__c}" style="color:#666;font-size:11px;"/><br />-->
+                                                            <apex:SelectList id="slstBO1State" size="1" value="{!owner1.EXPRN__State__c}" style="font-size:11px;color:#666;">
+                                                                <apex:selectoption itemLabel="--" itemValue="" />
+                                                                <apex:selectoptions value="{!lstUSStates}" />                                             
+                                                             </apex:SelectList><br />
+                                                            <span id="spnBO1StateMsg" class="reqClass" style="display:none;">State is required.</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Zip Code <span class="reqClass">*</span></td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1ZipPart1" value="{!sBO1ZipCodePart1}" styleClass="clsCheckNumeric clsCheckLength5"  style="width:50px;color:#666;font-size:11px;"/>&nbsp;&nbsp;
+                                                            <apex:inputText id="txtBO1ZipPart2" value="{!sBO1ZipCodePart2}" styleClass="clsCheckNumeric clsCheckLength4"  style="width:50px;color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1ZipCodeMsg" class="reqClass" style="display:none;">Zip Code is required.</span>                                                         
+                                                        </td>
+                                                    </tr>
+                                                   <tr class="trHeight">
+                                                        <td style="color:#666;">Driver's License</td>
+                                                        <td><apex:inputText id="txtBO1DriverLicense" value="{!owner1.EXPRN__Driver_s_License__c}" style="color:#666;font-size:11px;"/></td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Year of birth</td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1YearOfBirth" value="{!owner1.EXPRN__Year_of_birth__c}" styleClass="clsCheckNumeric clsCheckLength4" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1YearOfBirthLengthMsg" class="reqClass" style="display:none;">Year of birth must be 4 digits long.</span>                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Age</td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1Age" value="{!owner1.EXPRN__Age__c}" styleClass="clsCheckNumeric clsCheckLength3" style="color:#666;font-size:11px;"/><br />
+                                                            <span id="spnBO1AgeLengthMsg" class="reqClass" style="display:none;">Age must be 2 digits long.</span>                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHeight">
+                                                        <td style="color:#666;">Phone Number</td>
+                                                        <td>
+                                                            <apex:inputText id="txtBO1PhoneNumber" value="{!owner1.EXPRN__Phone_Number__c}" styleClass="clsCheckNumeric clsCheckLength12" style="color:#666;font-size:11px;"/><br />                                                         
+                                                            <span id="spnBO1PhoneLengthMsg" class="reqClass" style="display:none;">Phone Number must be 12 digits long.</span>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </table>                                                                                            
+                                            </td>
+                                            <td>
+                                                <div id="divSecondBusinessOwner" style="display:none;">
+                                                    <table style="width:100%;">                                    
+                                                        <tr class="trHeight">
+                                                            <td style="font-size:11px; color:#666;">First Name <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2FirstName" value="{!owner2.EXPRN__First_Name__c}" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2FirstNameMsg" class="reqClass" style="display:none;">Fisrt Name is required.</span>
+                                                            </td>
+                                                        </tr>                                                    
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666; font-size:11px;">Middle Initial </td>
+                                                            <td><apex:inputText id="txtBO2MiddleName" value="{!owner2.EXPRN__Middle_Initial__c}" style="color:#666;font-size:11px;"/></td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666; font-size:11px;">Last Name <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2LastName" value="{!owner2.EXPRN__Last_Name__c}" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2LastNameMsg" class="reqClass" style="display:none;">Last Name is required.</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Social Sec No.</td>
+                                                            <td><apex:inputText id="txtBO2SocialSecNo" value="{!owner2.EXPRN__Social_Sec_No__c}" styleClass="clsCheckLength9" style="color:#666;font-size:11px;"/></td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666; font-size:11px;">Generation code</td>
+                                                            <td>
+                                                                <apex:SelectList id="slstBO2GenerationCode" size="1" value="{!owner2.EXPRN__Generation_code__c}" style="color:#666;font-size:11px;">
+                                                                  <apex:selectoption itemLabel="Select" itemValue="Select"></apex:selectoption>
+                                                                  <apex:selectoption itemLabel="SR" itemValue="SR"></apex:selectoption>
+                                                                  <apex:selectoption itemLabel="JR" itemValue="JR"></apex:selectoption>
+                                                                  <apex:selectoption itemLabel="II" itemValue="II"></apex:selectoption>
+                                                                  <apex:selectoption itemLabel="III" itemValue="III"></apex:selectoption>
+                                                                  <apex:selectoption itemLabel="IV" itemValue="IV"></apex:selectoption>
+                                                                </apex:SelectList>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Address <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2Address" value="{!owner2.EXPRN__Address__c}" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2AddressMsg" class="reqClass" style="display:none;">Address is required.</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">City <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2City" value="{!owner2.EXPRN__City__c}" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2CityMsg" class="reqClass" style="display:none;">City is required.</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">State <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <!--<apex:inputText id="txtBO2State" value="{!owner2.EXPRN__State__c}" style="color:#666;font-size:11px;"/><br />-->
+                                                                <apex:SelectList id="slstBO2State" size="1" value="{!owner2.EXPRN__State__c}" style="font-size:11px;color:#666;">
+                                                                    <apex:selectoption itemLabel="--" itemValue="" />
+                                                                    <apex:selectoptions value="{!lstUSStates}" />                                             
+                                                                 </apex:SelectList><br />
+                                                                <span id="spnBO2StateMsg" class="reqClass" style="display:none;">State is required.</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Zip Code <span class="reqClass">*</span></td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2ZipPart1" value="{!sBO2ZipCodePart1}" styleClass="clsCheckNumeric clsCheckLength5" style="width:50px;color:#666;font-size:11px;"/>&nbsp;&nbsp;
+                                                                <apex:inputText id="txtBO2ZipPart2" value="{!sBO2ZipCodePart2}" styleClass="clsCheckNumeric clsCheckLength4" style="width:50px;color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2ZipCodeMsg" class="reqClass" style="display:none;">Zip Code is required.</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Driver's License</td>
+                                                            <td><apex:inputText id="txtBO2DriverLicense" value="{!owner2.EXPRN__Driver_s_License__c}" style="color:#666;font-size:11px;"/></td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Year of birth</td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2YearOfBirth" value="{!owner2.EXPRN__Year_of_birth__c}" styleClass="clsCheckNumeric clsCheckLength4" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2YearOfBirthLengthMsg" class="reqClass" style="display:none;">Year of birth must be 4 digits long.</span>                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Age</td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2Age" value="{!owner2.EXPRN__Age__c}" styleClass="clsCheckNumeric clsCheckLength3" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2AgeLengthMsg" class="reqClass" style="display:none;">Age must be 2 digits long.</span>                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="trHeight">
+                                                            <td style="color:#666;font-size:11px;">Phone Number</td>
+                                                            <td>
+                                                                <apex:inputText id="txtBO2PhoneNumber" value="{!owner2.EXPRN__Phone_Number__c}" styleClass="clsCheckNumeric clsCheckLength12" style="color:#666;font-size:11px;"/><br />
+                                                                <span id="spnBO2PhoneLengthMsg" class="reqClass" style="display:none;">Phone Number must be 12 digits long.</span>
+                                                            </td>
+                                                        </tr> 
+                                                    </table>  
+                                                </div>                                             
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span id="spnAddOwner" class="enableLink">&nbsp;Add Owner</span>  | <span id="spnDeleteOwner" class="disableLink">Delete Owner</span></td><td></td>                                                        
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="width:100%;font-size:11px;color:#666;">
+                                                <apex:inputCheckbox id="chkboxPullBOProfile" value="{!bPullBusinessOwner}" style="margin-top:0px;" /> Pull a Business Owner Profile without searching Experian for the business.
+                                            </td>                                            
+                                        </tr>
+                                    </table>
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <div id="divTab1InternationalProfile" class="scoreBO" style="border-width:1px;border-style:solid;border-color:grey; background-color:white; width:91%; margin-left: 15px; display:none;">
+                                <div style="padding:0px;">   
+                                    <div id="divProfileSec2" style="padding:0px;">
+                                        <div class="formHeader">
+                                            <input type="checkbox" id="chkboxConfComp" /> Check box to confirm compliance with the European Data Regulation <span class="reqClass">*</span>
+                                        </div>
+                                        <span id="spnConfCompMsg" class="reqClass" style="display:none;">&nbsp;EU Privacy Law Compliance must be checked.</span><br />                                        
+                                        <div style="margin-top:10px;color: #666;font-size: 11px;padding-left: 5%;">
+                                            European Data Regulation 
+                                        </div><br />
+                                        <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                            Business information from countries located in the European Economic Area ("EEA") may
+                                            contain information about individuals that is governed by national and/or European Union
+                                            legislation or regulation. Client hereby certifies that when requesting business 
+                                            information on a business located in the EEA that Client has obtained consent from a 
+                                            representative (or where the business is unincorporated from the owner) of that business
+                                            to the transfer of any personal data contained in the business report into the U.S. or 
+                                            other countries outside of the EEA. 
+                                        </div><br />
+                                        <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                            Disclosures 
+                                        </div><br />
+                                        <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                            Client agrees that Experian may disclose Client's name and address to the business that 
+                                            is the subject of a business report provided to Client upon request of the subject 
+                                            business. Client also agrees that it will provide to Experian upon request, and that 
+                                            Experian may disclose to the subject business, the reason why the business report was
+                                            requested by Client.  
+                                        </div><br />
+                                        <div>
+                                            <apex:outputLink value="/apex/PrintEUPrivacyStatement" target="_blank" style="color: #0193DC;text-decoration:none;font-size:10px;padding-left:5%;">Print EU Privacy Statement</apex:outputLink>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>                                  
+                            </div>  
+                        </td>
+                    </tr>
+                </table>
+              </apex:pageBlock>
+
+      <div id="divBottom" style="">
+          <apex:pageBlock title="View Results" id="pbViewResult">
+              <apex:pageBlockButtons location="top">
+                  <!--<div id="divResultLinks" style="float: right; margin-right: 5%;" > -->
+                  <table style="float: right; width:400px"> 
+                       <tr>
+                            <td>
+                               <div id="divResultLinks">    
+                                 <span id="spnRefineSearch" class="enableLink clsHideViewResult" >Refine this search</span>
+                                 <span style="color: #0193dc;"> | </span>
+                                 <span id="spnNewSearch" class="enableLink " >New Search</span>&nbsp;&nbsp;&nbsp;
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </div>  
+                           </td>
+                           <td>
+                                <div id="divPrintExport">   
+                                   <apex:outputPanel rendered="{!if(lstWrapAcc.size != 0, true, false)}">               
+                                      <apex:commandLink value="Export" action="{!ExportSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;"/>
+                                      <span style="color: #0193dc;"> | </span>   
+                                      <apex:commandLink value="Print" action="{!PrintSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;" />
+                                   </apex:outputPanel> 
+                                </div>
+                          </td>
+                          <td style="float: right; margin-right: -5px;">
+                            <img src="{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_plus.png')}" id="imgBottomColExp" style="width:25px; cursor: pointer;"  class="collapsestory"  />
+                          </td>
+                      </tr>
+                  </table>
+              </apex:pageBlockButtons>  
+               
+            
+              <apex:outputPanel id="optpnlViewResult" styleClass="clsOutputPanelResult">                
+                  
+                  <div id="searchResultDiv">
+                     <table>
+                          <tr>                              
+                              <td style="color:#666; float:left;">
+                                <b>Search Results for: </b>
+                              </td>
+                              <td style="color:#666;font-size:11px;">
+                                 <apex:outputpanel rendered="{!IsCreditRiskSearch && expBus.EXPRN__BIN__c ==''}">
+                                     <apex:outputpanel >{!expBus.Name}<br/></apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Street_Address1__c != '',true,false)}" >{!expBus.EXPRN__Exp_Street_Address1__c}<br/></apex:outputpanel>
+                                     <apex:outputpanel >{!expBus.EXPRN__Exp_City_Name__c}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_STATE__c != '',true,false)}">, {!expBus.EXPRN__Exp_STATE__c}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sZipCodePart1 != '',true,false)}"> {!sZipCodePart1}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sZipCodePart2 != '',true,false)}">-{!sZipCodePart2}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Country__c != '',true,false)}">, {!expBus.EXPRN__Exp_Country__c}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sPhoneSearchString != '',true,false)}" ><br/>{!sPhoneSearchString}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__BIN__c != '',true,false)}" ><br/>BIN: {!expBus.EXPRN__BIN__c}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sTaxIdPart1 != '',true,false)}" ><br/>Tax ID: {!sTaxIdPart1}{!sTaxIdPart2}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Reference_Information__c != '',true,false)}" ><br/>Reference Information: {!expBus.EXPRN__Reference_Information__c}</apex:outputpanel>
+                                 </apex:outputpanel>
+                                 <apex:outputpanel rendered="{! expBus.BIN__c !=''}">      
+                                     BIN: {!expBus.EXPRN__BIN__c} <br/>                             
+                                     {!expBus.EXPRN__Exp_Country__c}             
+                                 </apex:outputpanel>
+                                 <apex:outputpanel rendered="{!IsBusSearchString}">
+                                     <apex:outputpanel >{!expBus.Name}<br/></apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Street_Address1__c != '',true,false)}" >{!expBus.EXPRN__Exp_Street_Address1__c}<br/></apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_City_Name__c != '',true,false)}" >{!expBus.EXPRN__Exp_City_Name__c}, </apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sProvince != '',true,false)}">{!sProvince}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_ZIP__c != '',true,false)}"> {!expBus.EXPRN__Exp_ZIP__c}</apex:outputpanel>                                   
+                                     <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Country__c != '',true,false)}"><br/>{!sCountry}</apex:outputpanel>
+                                     <apex:outputpanel rendered="{!IF(sPhoneSearchString != '',true,false)}" ><br/>{!sPhoneSearchString}</apex:outputpanel>
+                                 </apex:outputpanel>
+                                 <apex:outputpanel rendered="{!IsGBINSearchString}">
+                                     GBIN: {!sGlobalBIN}<br/>
+                                     {!sCountry}
+                                 </apex:outputpanel>
+                                 <apex:outputpanel rendered="{!IsRegIDSearchString}">
+                                         {!sCountry}<br/>
+                                         Reg Number: {!sRegionalID}                                      
+                                 </apex:outputpanel>
+                              </td>
+                              <td></td>
+                          </tr>                         
+                     </table>          
+                  </div><br /> 
+                  <apex:outputPanel rendered="{!bBusinessSize}">
+                      <table>
+                          <tr>
+                              <td>Experian's extensive database does not show any records that match your inquiry.</td>
+                          </tr>
+                          <tr>
+                              <td>Experian updates its database on a daily basis from thousands of private and governmental sources. The absence of a match can be valuable information.</td>
+                          </tr>                          
+                          <tr>
+                              <td><span id="spnClickRefineSearch" class="enableLink clsHideViewResult" onclick="NavigateToTop();">Please click here to refine your search and search again.</span></td>
+                          </tr>
+                      </table>         
+                  </apex:outputPanel>
+                  <apex:outputPanel rendered="{!bNoInteBusiness}">
+                      <table>
+                          <tr>
+                              <td>No matching businesses were identified for the input Name/Country.</td>
+                          </tr>
+                          <tr>
+                              <td>Please verify the Name/Country or input additional information for the requested business and <span id="spnClickRefineSearch" style="color:red; text-decoration: underline;" class="enableLink clsHideViewResult" >search again.</span></td>
+                          </tr>                          
+                          <!--<tr>
+                              <td>If an online report is unavailable, you can order a developed profile on this business by <span id="spnClickRefineSearch" style="color:red; text-decoration: underline;" class="enableLink clsHideViewResult" onclick="NavigateToTop();">clicking here.</span></td>
+                          </tr>-->
+                      </table>         
+                  </apex:outputPanel>
+                  
+                 <!--<apex:panelGrid rendered="{!bExistBIN}"> 
+                      <table>                          
+                          <tr>
+                              <td>Your BIN number is not present in Salesforce.</td>
+                          </tr>
+                          <tr>
+                              <td><span id="spnClickRefineSearch" class="enableLink clsHideViewResult" onclick="NavigateToTop();">Please click here to refine your search and search again except BIN.</span></td>
+                          </tr>
+                      </table> 
+                  </apex:panelGrid>-->
+                  <apex:panelGrid rendered="{!bIsShowError}"> 
+                      <table>                          
+                          <tr>
+                              <!--<td>Backend Server is not available.</td>-->
+                              <td>{!sWSErrorMessage}</td>
+                          </tr>                          
+                      </table> 
+                  </apex:panelGrid>     
+                    
+                 <!-- <apex:outputLabel id="optlblNoRecordMsg" value="No record is found." rendered="{!bBusinessSize}" styleClass="errMsg"></apex:outputLabel>-->           
+                 
+                 <apex:outputPanel rendered="{!if(lstWrapAcc.size>0, true, false)}" style="color:#666; font-size:11px;"> ({!lstWrapAcc.size} results found)</apex:outputPanel>
+                 <apex:pageBlock id="pb2" rendered="{!if(iAccountMapSize != 0, true, false)}">
+                    <apex:pageBlockButtons rendered="{!lstWrapAcc.size > iPageSize}" >         
+                        <apex:outputPanel >
+                            <apex:outputPanel >
+                                <apex:outputText value="<< First" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                <apex:commandLink value="<< First" status="Processing" styleClass="pageLink" action="{!first}" rerender="pb2" rendered="{!iCurrentPage > 1}"/>                            
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>
+                         </apex:outputPanel>
+                         
+                        <apex:outputPanel >
+                            <apex:outputText value="< Previous" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                            <apex:commandLink value="< Previous" status="Processing" styleClass="pageLink" action="{!previous}" rerender="pb2" rendered="{!iCurrentPage > 1}"/>                            
+                           &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!iAccountMapSize>1}" >                    
+                            <apex:outputPanel rendered="{!pg<=iAccountMapSize && pg>=1}" >
+                                <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=iCurrentPage }" >                               
+                                                                
+                                </apex:commandLink>                       
+                                <apex:outputText value="{!pg}" rendered="{!pg==iCurrentPage}">                                                
+                                </apex:outputText>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>                        
+                        </apex:repeat>
+                        
+                        <apex:outputPanel >           
+                             <apex:outputText value="Next >" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                             <apex:commandLink value="Next >" status="Processing" styleClass="pageLink" action="{!next}" rerender="pb2" rendered="{!iCurrentPage < iAccountMapSize}"/>                              
+                             &nbsp;&nbsp;&nbsp;&nbsp;
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel >
+                            <apex:commandLink value="Last >>" status="Processing" styleClass="pageLink" action="{!last}" rerender="pb2" rendered="{!iCurrentPage < iAccountMapSize}"/>                            
+                            <apex:outputText value="Last >>" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText> 
+                        </apex:outputPanel>
+                       
+                     </apex:pageBlockButtons>                    
+                     <apex:pageBlockTable id="pbtViewResult" styleClass="clsTableResult" value="{!mapPageToAccounts[iCurrentPage]}" var="acc" rendered="{!if(iAccountMapSize != 0, true, false)}">
+                          <apex:column headerValue="Business" rendered="{!IsCreditRiskSearch}">  
+                               <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink" >
+                                   <apex:param name="binNumber" value="{!acc.sBIN}"/>
+                                   <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->                                   
+                                   {!acc.sBusinessName}<br/>
+                                   <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}">{!acc.sStreetAddress}<br/></apex:outputpanel>
+                                   <apex:outputpanel >{!acc.sCity}</apex:outputpanel>   
+                                   <apex:outputpanel rendered="{!IF(acc.sState != '',true,false)}">, {!acc.sState}</apex:outputpanel>
+                                   <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}" > {!acc.sZip}</apex:outputpanel>
+                                   <apex:outputpanel rendered="{!IF(acc.sPhone != '',true,false)}"><br/>{!acc.sPhone}</apex:outputpanel>
+                               </apex:commandLink>
+                          </apex:column>
+                          <apex:column headerValue="Matching Name & Address" rendered="{!IsCreditRiskSearch}">
+                              <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                  <apex:param name="binNumber" value="{!acc.sBIN}"/>  
+                                  <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                  <apex:outputpanel rendered="{!IF(acc.sMatchingBusinessName != '',true,false)}" >{!acc.sMatchingBusinessName}<br/></apex:outputpanel>  
+                                  <apex:outputpanel rendered="{!IF(acc.sMatchingStreetAddress != '',true,false)}" >{!acc.sMatchingStreetAddress}<br/></apex:outputpanel>
+                                  <apex:outputpanel rendered="{!IF(acc.sMatchingCity != '',true,false)}" >{!acc.sMatchingCity}</apex:outputpanel> 
+                                  <apex:outputpanel rendered="{!IF(acc.sMatchingState != '',true,false)}">{!acc.sMatchingState}</apex:outputpanel>                                                                  
+                                  <apex:outputpanel rendered="{!IF(acc.sMatchingZip != '',true,false)}"> {!acc.sMatchingZip}</apex:outputpanel>
+                              </apex:commandLink>
+                          </apex:column>                 
+                          <apex:column rendered="{!IsCreditRiskSearch}" style="color:#666;">
+                                <apex:facet name="header">Business<br /> Identification No.</apex:facet>
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                  <apex:param name="binNumber" value="{!acc.sBIN}"/>      
+                                  <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                  {!acc.sBIN}
+                                </apex:commandLink>
+                          </apex:column>
+                          <apex:column rendered="{!IsCreditRiskSearch}" style="color:#666;">
+                                <apex:facet name="header">Tradelines<br /> Public Records,<br />Collections</apex:facet>
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">    
+                                  <apex:param name="binNumber" value="{!acc.sBIN}"/>  
+                                  <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->                                  
+                                  {!acc.sNumberOfTradeLines}
+                                </apex:commandLink>
+                          </apex:column>  
+                          
+                          <apex:column headerValue="Business" rendered="{!IsInternationalSearch}">  
+                               <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">                                   
+                                   <apex:param name="gBin" value="{!acc.sGlobalBIN}"/>
+                                   <span style="color: #0193DC;">{!acc.sBusinessName}</span><br/>
+                                   <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}" >{!acc.sStreetAddress}<br/></apex:outputpanel>
+                                   <apex:outputpanel rendered="{!IF(acc.sCity != '',true,false)}">{!acc.sCity}<br/></apex:outputpanel>
+                                   <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}<br/></apex:outputpanel>
+                                   <apex:outputpanel rendered="{!IF(acc.sCountryName != '',true,false)}">{!acc.sCountryName}</apex:outputpanel>     
+                               </apex:commandLink>
+                          </apex:column>    
+                          <apex:column headerValue="Regional Bus ID" rendered="{!IsInternationalSearch}">
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}"/>
+                                    {!acc.sRegiBusID}
+                                </apex:commandLink>
+                          </apex:column>
+                          <apex:column headerValue="Global BIN" rendered="{!IsInternationalSearch}" >         
+                              <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}"/>
+                                    {!acc.sGlobalBIN}
+                                </apex:commandLink>
+                          </apex:column>
+                          <apex:column headerValue="Phone Number" rendered="{!IsInternationalSearch}" >
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}"/>
+                                    {!acc.sPhoneNumber}
+                                </apex:commandLink>
+                          </apex:column>
+                     </apex:pageBlockTable>
+                 </apex:pageBlock>
+                 <script>
+                      j$(document).ready(function(){
+                          if(j$('#hdnIsClickSearch').val() == '1'){
+                               j$('#imgBottomColExp').attr('src','{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_minus.png')}'); 
+                               j$('#imgBottomColExp').addClass('expandstory');
+                               j$('#imgBottomColExp').removeClass('collapsestory');
+                               
+                               j$('#searchResultDiv').show();
+                               j$('#divResultLinks').show();
+                               j$('#divPrintExport').show();
+                               j$('.clsOutputPanelResult').show();
+                          }
+                          //********
+                          j$('#imgBottomColExp').click(function(){
+                              if(j$('#hdnIsClickSearch').val() == '0'){
+                                  return false;
+                              }
+                              if(j$(this).attr('class')=='collapsestory'){  
+                                   j$(this).attr('src','{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_minus.png')}'); 
+                                   j$(this).addClass('expandstory');
+                                   j$(this).removeClass('collapsestory');
+                                   j$('.clsOutputPanelResult').show();  
+                                   
+                                   j$('#divResultLinks').show();
+                                   j$('#divPrintExport').show();
+                               }
+                               else{                   
+                                   j$(this).attr('src','{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_plus.png')}'); 
+                                   j$(this).addClass('collapsestory');
+                                   j$(this).removeClass('expandstory');
+                                   j$('.clsOutputPanelResult').hide();
+                                   
+                                   j$('#divResultLinks').hide();
+                                   j$('#divPrintExport').hide();
+                               }
+                          });
+                          
+                      });
+                      
+                      //********
+                      j$('#spnNewSearch').click(function(){                             
+                            //j$('#divBottom').hide();
+                            hideBottomAndShowTop();                         
+                            ClearBusinessInformation();
+                            ClearBusinessOwner1();
+                            ClearBusinessOwner2()   
+                            j$('#hdnIsClickSearch').val('0')    
+                            j$('input[id$="txtBusinessName"]').focus();
+                      });
+                      
+                      //*********
+                      j$('.clsHideViewResult').click(function(){ 
+                           //j$('#divBottom').hide(); 
+                           hideBottomAndShowTop();
+                           j$('input[id$="txtBusinessName"]').focus(); 
+                      });
+                      
+                      function hideBottomAndShowTop()
+                      {
+                           j$('#imgBottomColExp').attr('src','{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_plus.png')}'); 
+                            j$('#imgBottomColExp').addClass('collapsestory');
+                            j$('#imgBottomColExp').removeClass('expandstory');
+                            j$('.clsOutputPanelResult').hide(); 
+                            j$('#divResultLinks').hide();
+                            j$('#divPrintExport').hide();   
+
+                            j$('#imgTopColExp').attr('src','{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_minus.png')}'); 
+                            j$('#imgTopColExp').addClass('expandstory');
+                            j$('#imgTopColExp').removeClass('collapsestory');
+                            j$('#tblTopContent').show();
+                      }
+                      
+                      //*****
+                      function ClearBusinessInformation()
+                      {
+                          j$('input[id$="txtBusinessName"]').val('');
+                          j$('input[id$="txtAddress"]').val('');
+                          j$('input[id$="txtCity"]').val('');
+                          j$('select[id$="slstState"]').val('');
+                          j$('input[id$="txtZipPart1"]').val('');
+                          j$('input[id$="txtZipPart2"]').val('');
+                          j$('input[id$="txtTelephone"]').val('');
+                          j$('input[id$="txtBIN"]').val(''); 
+                          j$('input[id$="txtTaxPart1"]').val('');
+                          j$('input[id$="txtTaxPart2"]').val('');
+                          j$('input[id$="txtRefInfor"]').val(''); 
+                          
+                          j$('input[id$="txtTab1GlobalBIN"]').val('');
+                          j$('input[id$="txtRegionalBusID"]').val('');
+                      }       
+                    
+                      //*****
+                      function ClearBusinessOwner1()
+                      {  
+                          j$('input[id$="txtBO1FirstName"]').val('');
+                          j$('input[id$="txtBO1MiddleName"]').val('');
+                          j$('input[id$="txtBO1LastName"]').val('');
+                          j$('input[id$="txtBO1SocialSecNo"]').val('');
+                          j$('select[id$="slstBO1GenerationCode"]').val('Select');
+                          j$('input[id$="txtBO1Address"]').val('');
+                          j$('input[id$="txtBO1City"]').val('');                          
+                          j$('select[id$="slstBO1State"]').val('--');
+                          j$('input[id$="txtBO1ZipPart1"]').val('');
+                          j$('input[id$="txtBO1ZipPart2"]').val('');
+                          j$('input[id$="txtBO1DriverLicense"]').val('');
+                          j$('input[id$="txtBO1YearOfBirth"]').val('');
+                          j$('input[id$="txtBO1Age"]').val('');
+                          j$('input[id$="txtBO1PhoneNumber"]').val('');
+                          
+                          j$('input[id$="txtTab1GlobalBIN"]').val('');
+                          j$('input[id$="txtRegionalBusID"]').val('');
+                          j$('input[id$="txtTab1Province"]').val('');
+                          j$('input[id$="txtTab1Postalcode"]').val('');
+                      }
+                      
+                      //*****
+                      function ClearBusinessOwner2()
+                      {
+                          j$('input[id$="txtBO2FirstName"]').val('');
+                          j$('input[id$="txtBO2MiddleName"]').val('');
+                          j$('input[id$="txtBO2LastName"]').val('');
+                          j$('input[id$="txtBO2SocialSecNo"]').val('');
+                          j$('select[id$="slstBO2GenerationCode"]').val('Select');            
+                          j$('input[id$="txtBO2Address"]').val('');
+                          j$('input[id$="txtBO2City"]').val('');                          
+                          j$('select[id$="slstBO2State"]').val('--');
+                          j$('input[id$="txtBO2ZipPart1"]').val('');
+                          j$('input[id$="txtBO2ZipPart2"]').val('');
+                          j$('input[id$="txtBO2DriverLicense"]').val('');
+                          j$('input[id$="txtBO2YearOfBirth"]').val('');
+                          j$('input[id$="txtBO2Age"]').val('');
+                          j$('input[id$="txtBO2PhoneNumber"]').val('');
+                      }
+                  </script>
+                  <input type="hidden" id="hdnResultSize" value="{!lstWrapAcc.size}" />    
+                  <input type="hidden" id="hdnBinNotInSFDC" value="{!sBinNotInSFDC}" /> 
+                  <input type="hidden" id="hdnNavigateToAcctPage" value="{!sNaviToAcctCreatPage}" />
+                  <input type="hidden" id="hdnIsInterCountry" value="{!sIsInterCountry}" />
+                  <input type="hidden" id="hdnBody" />
+                  <input type="hidden" id="hdnIsClickSearch" value="{!sIsClickSearchBtn}" />
+             </apex:outputPanel>                       
+          </apex:pageBlock> 
+      </div>     
+      <div id="divDummy">
+            <input type="hidden" id="hdnUSCountryName" value="{!sUSName}" />
+            <input type="hidden" id="hdnNumberOfBO" value="{!sNumberOfBO}" />                
+            <input type="hidden" id="hdnInterCountryCode" value="{!sInterCountryCode}" />         
+      </div>      
+  </apex:form> 
+</apex:page>

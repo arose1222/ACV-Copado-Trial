@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <assignments>
+        <name>Set_triggered_Record_Inop_Value</name>
+        <label>Set triggered Record Inop Value</label>
+        <locationX>421</locationX>
+        <locationY>561</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ACV_inop__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Vehicle_Records.ACV_inop__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Sets the ACV Inop field based on the vehicle when the vehicle is changed</description>
+    <interviewLabel>Auction Vin Update Inop Set {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Auction Vin Update Inop Set</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Vehicle_Records</name>
+        <label>Get Vehicle Records</label>
+        <locationX>423</locationX>
+        <locationY>399</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_triggered_Record_Inop_Value</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.vehicle_id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Vehicle__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>297</locationX>
+        <locationY>43</locationY>
+        <connector>
+            <targetReference>Get_Vehicle_Records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>vehicle_id__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>vehicle_id__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Auction__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,1020 @@
+<apex:page controller="alycecom.AdministrationPage_ctrl" showHeader="true" sidebar="false" tabStyle="Alyce_Administration_Page__tab" action="{!setOrgAuhorization}" setup="true">
+    <apex:stylesheet value="{!URLFOR($Resource.alycecom__fontastic, 'fontastic/fontastic.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alycecom__AlyceCSS)}"  />
+
+    <style type="text/css">
+        @font-face {
+            font-family: effra;
+            src: url('{!URLFOR($Resource.fontastic, 'fontastic/fonts/effra-regular.otf')}');
+        }
+        @font-face {
+            font-family: effra-bold;
+            src: url('{!URLFOR($Resource.fontastic, 'fontastic/fonts/effra-bold.otf')}');
+        }
+        #AlycePage{
+            font-family: effra;
+            font-size: 16px;
+            line-height: 22px;
+            padding-left: 5px;
+        }
+        .top-header {
+            margin-left: 0;
+            background-image: linear-gradient(90deg,#302B27,rgba(160,160,120,.93) 100%), url("{!URLFOR($Resource.fontastic, 'fontastic/bg-pattern-new.jpg')}");
+            margin-bottom: 12px;
+        }
+        #AlycePage td {
+            border-bottom: none;
+        }
+        #AlycePage th {
+            border-bottom: none;
+            padding-left: 10px
+        }
+        #AlycePage .alyce-button{
+            float: left;
+        }
+        #AlycePage .headerRow.TableTitle{
+          background: white;
+          border:none;
+        }
+        #AlycePage td .dataCell{
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+        .pbSubheader h3{
+            font-family: effra;
+            font-size: 20px !important;
+            line-height: 24px;
+            color: #464646;
+        }
+        #AlycePage .pbSubheader {
+            border: none;
+            font-family: effra;
+            padding-left: 19px;
+        }
+        #AlycePage .pbSubheader {
+            margin-top: 0px;
+        }
+        #AlyceLogoWrapper {
+            padding: 20px 10px 20px 9px;
+        }
+        #AlycePage .data2Col{
+            padding-left: 19px;
+        }
+
+        #AlycePage .input-picker{
+            font-family: effra;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 29px;
+            color: #818181;
+            font-size: 17px;
+            line-height: 41px;
+            border: 1px solid #DDDDDD;
+        }
+
+        #AlycePage .authorization-input-picker{
+            font-family: effra;
+            font-size: 17px;
+            padding: 14.5px 14px;
+            width: 500px;
+            height: 1.1875em;
+            margin: 0;
+            display: block;
+            background-color: white;
+            border-radius: 5px;
+            align-items: center;
+            line-height: 1.1875em;
+            border: 1px solid #9b9b9b;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        #AlycePage .auth-field-label{
+            margin-left: 25px;
+            margin-right: 10px;
+            font-weight: 700;
+            position: relative;
+            top: 6px;
+            z-index: 1000;
+            background: white;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 12px;
+            line-height: 1;
+            color: #4a4a4a;
+            width: fit-content;
+        }
+
+        #AlycePage .input-field{
+            height:32px;
+        }
+
+        #AlycePage a.input-picker{
+            border-style: none;
+        }
+        html body.sfdcBody {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        #AlycePage .hideListButton{
+            display: none;
+        }
+
+        .admin-panel-header{
+            background: white;
+            font-family: effra;
+            font-size: 16px;
+            line-height: 22px;
+            padding-left: 5px;
+            height:71px;
+            box-shadow: 0 1px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        .admin-panel-body{
+            box-shadow: inset 0 7px 7px -7px rgba(0,0,0,0.2);
+            background-color: #F2F2F3;
+            padding: 24px;
+        }
+
+        .admin-panel-logo{
+            display: inline;
+            position: relative;
+            top: -4px;
+            font-family: Lato;
+            font-size: 19px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.33;
+            letter-spacing: normal;
+            margin-left: 16px;
+            color: #9b9b9b;
+        }
+
+        .admin-panel-info{
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            color: #9b9b9b;
+        }
+
+        .admin-panel-info-h{
+            font-size: 24px;
+            line-height: 1.33;
+            color: black;
+        }
+        .package-version{
+            text-align: right;
+            margin-top: -22px;
+        }
+
+        .package-version-date{
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            padding-left: 5px; 
+        }
+        .admin-panel-settings{
+            background: white;
+            box-shadow: 0 1px 6px 0px rgba(0,0,0,0.1);
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+        .admin-panel-section{
+            border-bottom: 1px solid #DDDDDD;
+            padding-left:24px;
+            padding-bottom:24px;
+            display: flex;
+        }
+        .colored-button{
+            background: #15998c !important;
+            border-radius: 5px !important;
+            color: white !important;
+            font-size: 16px !important;
+            font-stretch: normal!important;
+            font-style: normal!important;
+            line-height: 1.5!important;
+            letter-spacing: normal!important;
+            text-align: center!important;
+            padding: 8px 18px!important;
+            font-family: effra !important;
+            font-weight: 400 !important;
+            border-width: 0px!important;
+            box-shadow: none!important;
+            background-clip: padding-box!important;
+            display: inline-block!important;
+            margin-top: 8px!important;
+            margin-bottom: 0!important;
+            text-align: center!important;
+            vertical-align: middle!important;
+            touch-action: manipulation!important;
+            cursor: pointer!important;
+            background-image: none!important;
+            border: 1px solid transparent!important;
+            white-space: nowrap!important;
+            user-select: none!important;
+            padding-left: 38px!important;
+        }
+
+        .colored-button-not-over{
+            background: #15998c;
+            border-radius: 5px !important;
+            color: white;
+            font-size: 16px !important;
+            font-stretch: normal!important;
+            font-style: normal!important;
+            line-height: 1.5!important;
+            letter-spacing: normal!important;
+            text-align: center!important;
+            padding: 8px 18px!important;
+            font-family: effra !important;
+            font-weight: 400 !important;
+            border-width: 0px!important;
+            box-shadow: none!important;
+            background-clip: padding-box!important;
+            display: inline-block!important;
+            margin-top: 8px!important;
+            margin-bottom: 0!important;
+            text-align: center!important;
+            vertical-align: middle!important;
+            touch-action: manipulation!important;
+            cursor: pointer!important;
+            background-image: none!important;
+            border: 1px solid transparent!important;
+            white-space: nowrap!important;
+            user-select: none!important;
+            padding-left: 38px!important;
+        }
+        .gear-icon{
+            margin-top: 21px;
+            margin-left: 15px;
+            position: absolute;
+            height: 16px;
+            width: 16px;
+        }
+        .button-white{
+            border: solid 1px #dddddd !important;
+            color: #029cef !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            text-transform: none !important;
+            background: white !important;
+            padding-left: 18px!important;
+        }
+        .section-buttons{
+            position: absolute;
+            right: 70px;
+        }
+        .section-container{
+            width: 100%;
+            margin-top: 10px;
+        }
+        .subheader-container{
+            margin-top:7px;
+        }
+
+        .popup-background {
+            background-color: rgba(255, 255, 255, 0.75);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 49;
+        }
+
+        .custom-popup{
+            background-color: white;
+            border-radius: 5px;
+            z-index: 49;
+            left: 50%;
+            position: absolute;
+            width: 420px;
+            margin-left: -250px;
+            top: 30%;
+            transition: transform 0.6s, opacity 0.6s;
+            transition-delay: 0.5s;
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-popup-header{
+            border-top: 4px solid #e1813d;
+            height: 60px;
+            border-radius: 5px;
+            font-family: Lato;
+            font-size: 24px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.33;
+            letter-spacing: normal;
+            color: var(--Tundora-100);
+        }
+        .popup-header-text{
+            top: 33px;
+            position: absolute;
+            left: 76px;
+        }
+        .popup-body-text{
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            color: var(--Tundora-100);
+            padding: 16px;
+        }
+        .popup-buttons-wrapper{
+            text-align: right;
+            padding: 16px;
+            padding-top: 0px;
+        }
+        .sync-option{
+            padding-top: 20px;
+        }
+        .popup-input-picker{
+            margin-left: 25px;
+        }
+        .options-text{
+            position: absolute;
+            margin-top: 50px;
+            padding-left: 40px;
+            font-size: 14px;
+        }
+     
+        .radioOpt td, .radioOptinput, .radioOpt label{
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }     
+    </style>
+    
+    <div Id = "AlycePage">
+        <apex:form id="AdminMainForm" style="padding:10px;">
+            <apex:pageMessages />
+            <apex:pageBlock Id="AlyceAdminPanel" mode="maindetail">
+                <div class="admin-panel-header">
+                    <apex:image style="display: inline-block; margin-top: 20px; margin-left: 16px;"  url="{!URLFOR($Resource.alycecom__images, 'images/AlyceNameLogo.svg')}"/>
+                    <div class="admin-panel-logo">Admin panel</div>
+                </div>
+                <div class="admin-panel-body">
+                    <div class="admin-panel-info">
+                        <div class="admin-panel-info-h">Welcome to the Alyce Admin Panel.</div>
+                        <div>
+                            Below is a step by step setup for the Alyce gifting integration.
+                        </div>
+                    </div>
+                    <div class="admin-panel-settings">
+                        <div class="admin-panel-section">
+                            <div class="section-container">
+                                <apex:pageBlockSection title="Step 1: Security Settings" columns="1">
+                                    <div class="subheader-container">
+                                        <div class = "admin-pane-text">You can automatically provide access to Alyce for all users with Salesforce license using Add Alyce Permission Set For All Users or provide access for groups of users using Custom Setup</div>
+                                        <apex:outputPanel rendered="{!ShowSecuritySettings}">
+                                            <apex:pageBlockSectionItem rendered="{!IsCurrentUserAdmin}">
+                                                <apex:outputPanel >
+                                                    <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                    <apex:commandButton styleClass="btn colored-button" action="{!assignPermissionSetForAllUsers}" value="Add Alyce Permission Set For All Users" reRender="AdminMainForm"/>
+                                                    <apex:outputPanel style="margin-left: 20px;">
+                                                        <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                        <apex:commandButton styleClass="btn colored-button" action="{!goToIntegrationPermissionSetSetup}" value="Assign Alyce Integration User Permission Set" reRender="AdminMainForm"/>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                                <apex:commandButton styleClass="btn colored-button button-white" action="{!goToPermissionSetSetup}" style="margin-left: 20px;" value="Custom Setup"/>
+                                            </apex:pageBlockSectionItem>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!Not(IsPermissionSetAssignedForCurrentUser)}">
+                                            <div style="color: #f45642; font-weight: 700; padding-top: 20px;">
+                                                You don't have a permission to modify package settings. Please assign Alyce permission set to the current user
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </apex:pageBlockSection>
+                            </div>
+                            <div class="section-buttons">
+                                <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowSecuritySettings}" value="Modify" rendered="{!NOT(ShowSecuritySettings)}" reRender="AdminMainForm"/>
+                                <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowSecuritySettings}" value="Close" rendered="{!ShowSecuritySettings}" reRender="AdminMainForm"/>
+                            </div>
+                        </div>
+                        <apex:outputPanel rendered="{!IsPermissionSetAssignedForCurrentUser}">
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 2: Alyce Authorization" columns="1" Id="AuthorizationSetting">
+                                        <div  class="subheader-container">
+                                            <div class = "admin-pane-text">Authorization for the Alyce to Salesforce integration is located in the organization settings. You will need to be an Alyce organization administrator to access these settings.</div>
+                                            <apex:outputPanel rendered="{!IsOrgAuthorized}">
+                                                <div class = "admin-pane-text" style="padding-top: 15px;">
+                                                    <span>Current status:</span>
+                                                    <span style="color: #4a974a; font-weight: 700;">Authorized</span>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!NOT(IsOrgAuthorized)}">
+                                                <div class = "admin-pane-text" style="padding-top: 15px;">
+                                                    <span>Current status:</span>
+                                                    <span style="color: #f45642; font-weight: 700;">Unauthorized</span>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!ShowAuthorizationSettings}">
+                                                <apex:actionStatus id="AuthorizationSettingsStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel styleClass="loading-spinner">
+                                                            <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                        </apex:outputPanel>            
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <apex:outputPanel >
+                                                            <apex:outputPanel rendered="{!ShowAuthorizationSettingsMessage}">
+                                                                <div style="max-width: 50%; padding: 10px;">
+                                                                    <apex:pageMessages />
+                                                                </div>
+                                                            </apex:outputPanel>
+                                                            <div style="color: #818181;">
+                                                                <apex:outputPanel rendered="{!AuthorizationSettingsEditable}">
+                                                                    <div style="padding-left: 1px;">
+                                                                        <div class="auth-field-label">Client ID</div>
+                                                                        <apex:inputText styleClass="authorization-input-picker" value="{!ClientId}" />
+                                                                    </div>
+                                                                    <div  style="padding-left: 1px;">
+                                                                        <div class="auth-field-label">Client Secret</div>
+                                                                        <apex:inputSecret styleClass="authorization-input-picker" value="{!ClientSecret}" redisplay="true"/>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!NOT(AuthorizationSettingsEditable)}">
+                                                                    <div  style="padding-left: 1px;">
+                                                                        <div class="auth-field-label">Client ID</div>
+                                                                        <apex:inputText disabled="true" styleClass="authorization-input-picker"  value="{!ClientId}"/>
+                                                                    </div>
+                                                                    <div  style="padding-left: 1px;">
+                                                                        <div class="auth-field-label">Client Secret</div>
+                                                                        <apex:inputSecret disabled="true" styleClass="authorization-input-picker" value="{!ClientSecret}" redisplay="true"/>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                            </div>
+                                                            <apex:pageBlockSection >
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,NOT(AuthorizationSettingsEditable))}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AuthorizationSetting" style="margin:-9px;" styleClass="btn colored-button" value="Edit Authorization Setting" action="{!editAuthorizationSetting}" status="AuthorizationSettingsStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,AuthorizationSettingsEditable)}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AuthorizationSetting" style="margin:-9px;" styleClass="btn colored-button" value="Save Authorization Setting" action="{!saveAuthorizationSetting}" status="AuthorizationSettingsStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                            </apex:pageBlockSection>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAuthorizationSettings}" value="Modify" rendered="{!NOT(ShowAuthorizationSettings)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAuthorizationSettings}" value="Close" rendered="{!ShowAuthorizationSettings}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 3: Job Schedule" id="JobSchedule" columns="1">
+                                        <div class="subheader-container">
+                                            <apex:actionStatus id="JobScheduleStatus">
+                                                <apex:facet name="start">
+                                                    <apex:outputPanel styleClass="loading-spinner">
+                                                        <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                    </apex:outputPanel>            
+                                                </apex:facet>
+                                                <apex:facet name="stop">
+                                                    <apex:outputPanel >
+                                                        <apex:outputPanel rendered="{!ShowJobScheduleMessage}">
+                                                            <apex:pageMessages />
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!AlyceBatchJobScheduleList.size > 0}">
+                                                            <div style="color: #818181;">
+                                                                Alyce Batch jobs schedule settings:
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!AlyceBatchJobScheduleList.size == 0}">
+                                                            <div style="color: #818181;">
+                                                                Synchronize all historical gifts from Alyce to your Salesforce organization.
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        <apex:pageBlockTable styleClass="admin-pane-table" value="{!AlyceBatchJobScheduleList}" headerClass="TableTitle" cellpadding="5px" var="record" rendered="{!AlyceBatchJobScheduleList.size > 0}">
+                                                            <apex:column headerValue="Action" rendered="{!ShowJobSchedule}">
+                                                                <apex:commandLink style="margin-left: 15px; text-decoration: none;" reRender="JobSchedule" value="" immediate="true" action="{!deleteJobSchedule}">&#10006;
+                                                                    <apex:param name="SelectedJobScheduleId" value="{!record.JobSchedule.alycecom__Schedule_Id__c}" assignTo="{!SelectedJobScheduleId}"/>
+                                                                </apex:commandLink>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Job Name" >
+                                                                <apex:outputField value="{!record.JobSchedule.Name}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Next Fire At">
+                                                                <apex:outputText value="{!record.NextRunDate}" rendered="{!record.NextRunDate != null}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Status">
+                                                                <apex:outputPanel rendered="{!NOT(record.JobsExists)}">
+                                                                    <span style="color: #dc3545">Stopped</span>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!record.JobsExists}">
+                                                                    <apex:outputPanel rendered="{!NOT(record.JobSchedule.alycecom__Synchronize_All__c)}">
+                                                                        <span style="color: #28a745">Ok</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{!record.JobSchedule.alycecom__Synchronize_All__c}">
+                                                                        <span style="color: #28a745">Processing {!record.SyncAllProgressPersents}%</span>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                            </apex:column>
+                                                        </apex:pageBlockTable>
+                                                        <apex:outputPanel rendered="{!ShowJobSchedule}">
+                                                            <apex:pageBlockSectionItem >
+                                                                <apex:outputPanel rendered="{!NOT(DisplaySynchronizeAllGiftsConfirmation)}">
+                                                                    <apex:outputPanel rendered="{!NOT(IsCurrentUserIntegrationUser)}">
+                                                                        <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton disabled="true" reRender="JobSchedule"  styleClass="btn colored-button-not-over" value="Synchronize Gifts" action="{!showSynchronizeAllGiftsConfirmation}" status="JobScheduleStatus"/>
+                                                                    </apex:outputPanel>
+
+                                                                    <apex:outputPanel rendered="{!IsCurrentUserIntegrationUser}">
+                                                                        <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="JobSchedule"  styleClass="btn colored-button" value="Synchronize Gifts" action="{!showSynchronizeAllGiftsConfirmation}" status="JobScheduleStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!DisplaySynchronizeAllGiftsConfirmation}" id="SynchronizeAllGiftsConfirmation">
+                                                                    <apex:outputPanel styleClass="popup-background" layout="block" />
+                                                                    <apex:outputPanel styleClass="custom-popup" layout="block">
+                                                                        <div class="custom-popup-header">
+                                                                            <apex:image style="display: inline-block; margin-top: 20px; margin-left: 16px; width: 48px; height: 48px;"  url="{!URLFOR($Resource.alycecom__images, 'images/eye-hide.jpg')}"/>
+                                                                            <span class="popup-header-text">Synchronize Gifts</span>
+                                                                        </div>
+                                                                        <apex:selectRadio styleClass="radioOpt" layout="pageDirection" value="{!SelectedSyncOption}">
+                                                                            <apex:actionSupport event="onchange" rerender="SynchronizeAllGiftsConfirmation" />
+                                                                            <div class="sync-option">
+                                                                                <apex:selectOptions value="{!SyncOptions}"/>
+                                                                            </div>
+                                                                            <div class="options-text">Depending on the size of the sync, this may take a few days.</div>
+                                                                        </apex:selectRadio>
+                                                                        <div id = "PppupInputPicker">
+                                                                            <apex:inputfield value="{!SchedulePlaseholder.alycecom__Synchronize_From_Date__c}" styleClass="input-picker popup-input-picker" rendered="{!SelectedSyncOption == 'Date'}">
+                                                                                <apex:actionSupport event="onchange" rerender="SynchronizeAllGiftsConfirmation" />
+                                                                            </apex:inputfield>
+                                                                        </div>
+                                                                        <div class = "popup-buttons-wrapper">
+                                                                            <apex:outputPanel >
+                                                                                <apex:commandButton reRender="JobSchedule" style="margin-right: 12px;"  styleClass="btn colored-button button-white" value="Cancel" action="{!cancelSyncAllGifts}"/>
+                                                                            </apex:outputPanel>
+                                                                            <apex:outputPanel >
+                                                                                <apex:commandButton rendered="{!OR(SelectedSyncOption != 'Date',SchedulePlaseholder.alycecom__Synchronize_From_Date__c != null)}" reRender="JobSchedule" style="padding-left: 16px!important; background: #e1813d !important;" styleClass="btn colored-button" value="Sync gifts" action="{!synchronizeAllGifts}" status="JobScheduleStatus" />
+                                                                                <apex:commandButton rendered="{!AND(SelectedSyncOption == 'Date',SchedulePlaseholder.alycecom__Synchronize_From_Date__c == null)}" reRender="JobSchedule" style="padding-left: 16px!important; background: #818181 !important;" styleClass="btn colored-button" value="Sync gifts" disabled="true"/>
+                                                                            </apex:outputPanel>
+                                                                        </div>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                            </apex:pageBlockSectionItem>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </div>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowJobSchedule}" value="Modify" rendered="{!NOT(ShowJobSchedule)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowJobSchedule}" value="Close" rendered="{!ShowJobSchedule}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 4: Organization  Setting" columns="1" Id="DefaultOrgSetting">
+                                        <apex:outputPanel rendered="{!ShowOrganizationSetting}">
+                                            <div class="subheader-container">
+                                                <apex:actionStatus id="OrganizationSettingsStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel styleClass="loading-spinner">
+                                                            <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                        </apex:outputPanel>            
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <apex:outputPanel >
+                                                            <apex:outputPanel rendered="{!NOT(OrgSettingsEditable)}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsLinkNewGiftsToRecepientsDisabled}" style="position: absolute; margin-top: 5px;"  disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Disable external connection of gift records to Salesforce lead/contact (for Salesforce Shield Encryption Enablement)</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsModifyRelatedRecordsEnabled}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Account, Contact and Lead gift information updates based on gifting flow</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsMigrateGiftsAfterLeadConvertEnabled}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Migrate gifts from lead to contact after lead conversion</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsCreateCampaignMemberStatusesEnabled}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Automatically add Alyce campaign member statuses to new Alyce campaigns</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!OrgSettingsEditable}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsLinkNewGiftsToRecepientsDisabled}" style="position: absolute; margin-top: 5px;">
+                                                                            <apex:actionSupport event="onclick" rerender="DefaultOrgSetting"/>
+                                                                        </apex:inputCheckbox>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Disable external connection of gift records to Salesforce lead/contact (for Salesforce Shield Encryption Enablement)</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsModifyRelatedRecordsEnabled}" style="position: absolute; margin-top: 5px;"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Account, Contact and Lead gift information updates based on gifting flow</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsMigrateGiftsAfterLeadConvertEnabled}" style="position: absolute; margin-top: 5px;"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Migrate gifts from lead to contact after lead conversion</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsCreateCampaignMemberStatusesEnabled}" style="position: absolute; margin-top: 5px;"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Automatically add Alyce campaign member statuses to new Alyce campaigns</span>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:pageBlockSection >
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,NOT(OrgSettingsEditable))}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="DefaultOrgSetting" style="margin:-9px;" styleClass="btn colored-button" value="Edit Organization Setting" action="{!editOrganizationSetting}" status="OrganizationSettingsStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,OrgSettingsEditable)}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="DefaultOrgSetting" style="margin:-9px;" styleClass="btn colored-button" value="Save Organization Setting" action="{!saveOrganizationSetting}" status="OrganizationSettingsStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                            </apex:pageBlockSection>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowOrganizationSetting}" value="Modify" rendered="{!NOT(ShowOrganizationSetting)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowOrganizationSetting}" value="Close" rendered="{!ShowOrganizationSetting}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 5: Automated Campaign Member Statuses" columns="1" Id="AutomatedCampaignMemberStatus">
+                                        <apex:outputPanel rendered="{!ShowAutomatedCampaignMemberStatuses}">
+                                            <div class="subheader-container">
+                                                <apex:actionStatus id="CampaignMemberStatusChangesStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel styleClass="loading-spinner">
+                                                            <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                        </apex:outputPanel>            
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <apex:outputPanel >
+                                                            <apex:outputPanel rendered="{!ShowAutomatedCampaignMemberMessage}">
+                                                                <apex:pageMessages />
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!NOT(AutomatedCampaignMemberEditable)}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!EnableCampaignMemberStatusChanges}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable campaign member status changes based on gifting flow</span>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!CampaignMemberStatusMap}" headerClass="TableTitle" cellpadding="5px" var="record" rendered="{!AND(CampaignMemberStatusMap.size > 0, EnableCampaignMemberStatusChanges)}" Id = "CampaignMemberStatusMappingRead">
+                                                                        <apex:column headerValue="Gift Status">
+                                                                            <apex:outputText value="{!GiftStatusLabelByName[record.alycecom__Gift_Status__c]}"/>
+                                                                        </apex:column>
+                                                                        <apex:column headerValue="Campaign Member Status">
+                                                                            <apex:outputText value="{!record.alycecom__Campaign_Member_Status__c}"/>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!AutomatedCampaignMemberEditable}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!EnableCampaignMemberStatusChanges}" style="position: absolute; margin-top: 5px;">
+                                                                            <apex:actionSupport event="onclick" rerender="AutomatedCampaignMemberStatus" action="{!updateCampaignMemberStatusMap}"/>
+                                                                        </apex:inputCheckbox>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable campaign member status changes based on gifting flow</span>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!CampaignMemberStatusMap}" headerClass="TableTitle" cellpadding="5px" var="record" rendered="{!AND(CampaignMemberStatusMap.size > 0, EnableCampaignMemberStatusChanges)}" Id = "CampaignMemberStatusMapping">
+                                                                        <apex:column headerValue="Action" rendered="{!IsCurrentUserAdmin}">
+                                                                            <apex:commandLink style="margin-left: 15px; text-decoration: none;" reRender="AdminMainForm" value="" action="{!deleteCampaignMemberStatus}">&#10006;
+                                                                                <apex:param name="CampaignMemberStatusToRemove" value="{!record.Name}" assignTo="{!CampaignMemberStatusToRemove}"/>
+                                                                            </apex:commandLink>
+                                                                        </apex:column>
+                                                                        <apex:column headerValue="Gift Status">
+                                                                            <apex:selectList value="{!record.alycecom__Gift_Status__c}" required="true" multiselect="false" size="1" styleClass="input-picker">
+                                                                                <apex:selectOptions value="{!GiftStatusOptions}"/>
+                                                                            </apex:selectList>
+                                                                        </apex:column>
+                                                                        <apex:column headerValue="Campaign Member Status">
+                                                                            <apex:selectList value="{!record.alycecom__Campaign_Member_Status__c}" required="true" multiselect="false" size="1" styleClass="input-picker">
+                                                                                <apex:selectOptions value="{!CampaignMemberStatusOptions}"/>
+                                                                            </apex:selectList>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                    <apex:pageBlockSectionItem rendered="{!AND(EnableCampaignMemberStatusChanges, IsCurrentUserAdmin)}">
+                                                                        <apex:commandButton reRender="AutomatedCampaignMemberStatus" styleClass="btn colored-button button-white" style="margin-left: 11px;" value="Add Status" action="{!addCampaignMemberStatus}" />
+                                                                    </apex:pageBlockSectionItem>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:pageBlockSection >
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,NOT(AutomatedCampaignMemberEditable))}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedCampaignMemberStatus"  style="margin:-9px;" styleClass="btn colored-button" value="Edit Automated Campaign Member Status Setting" action="{!editAutomatedCampaignMemberSetting}" status="CampaignMemberStatusChangesStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,AutomatedCampaignMemberEditable)}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedCampaignMemberStatus" style="margin:-9px;" styleClass="btn colored-button" value="Save Automated Campaign Member Status Setting" action="{!saveAutomatedCampaignMemberSetting}" status="CampaignMemberStatusChangesStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                            </apex:pageBlockSection>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedCampaignMemberStatuses}" value="Modify" rendered="{!NOT(ShowAutomatedCampaignMemberStatuses)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedCampaignMemberStatuses}" value="Close" rendered="{!ShowAutomatedCampaignMemberStatuses}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container" Id="AutomatedLeadCreationDiv">
+                                    <apex:pageBlockSection title="Step 6: Automated Lead Creation" columns="1" Id="AutomatedLeadCreation">
+                                        <apex:outputPanel rendered="{!ShowAutomatedLeadCreation}">
+                                            <div class="subheader-container">
+                                                <apex:actionStatus id="AutomatedLeadCreationStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel styleClass="loading-spinner">
+                                                            <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                        </apex:outputPanel>            
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <apex:outputPanel >
+                                                            <apex:outputPanel rendered="{!ShowAutomatedLeadCreationMessage}">
+                                                                <apex:pageMessages />
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!NOT(AutomatedLeadCreationEditable)}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsAutomatedLeadCreationEnabled}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Alyce to automatically create leads in Salesforce when no lead or contact exists for a gift invitation recipient.</span>
+                                                                        <apex:outputPanel rendered="{!LeadConditions.size > 0}">
+                                                                            <div>
+                                                                                <label style="margin-left: 25px; padding-top: 20px; margin-right: 10px; font-weight: 700;">Required Lead Fields Mapping</label>
+                                                                            </div>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!LeadConditions}" headerClass="TableTitle" cellpadding="5px" var="condition" rendered="{!LeadConditions.size > 0}" Id = "DefaultLeadFieldMappingRead"  title="Required Fields Mapping">
+                                                                        <apex:column headerValue="Field Name">
+                                                                            <apex:outputText value="{!condition.FieldLabel}"/>
+                                                                        </apex:column>  
+                                                                        <apex:column headerValue="Default Value">
+                                                                            <apex:outputPanel >
+                                                                                <apex:outputField value="{!condition.HiddenObject[condition.HiddenObjectField]}" rendered="{!condition.ShowInput}" styleClass="input-picker"  />
+                                                                            </apex:outputPanel>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!AutomatedLeadCreationEditable}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsAutomatedLeadCreationEnabled}" style="position: absolute; margin-top: 5px;"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Alyce to automatically create leads in Salesforce when no lead or contact exists for a gift invitation recipient.</span>
+                                                                        <apex:outputPanel rendered="{!LeadConditions.size > 0}">
+                                                                            <div>
+                                                                                <label style="margin-left: 25px; padding-top: 20px; margin-right: 10px; font-weight: 700;">Required Lead Fields Mapping</label>
+                                                                            </div>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!LeadConditions}" headerClass="TableTitle" cellpadding="5px" var="condition" rendered="{!LeadConditions.size > 0}" Id = "DefaultLeadFieldMapping" title="Required Fields Mapping">
+                                                                        <apex:column headerValue="Action">
+                                                                            <apex:commandLink style="margin-left: 15px; text-decoration: none;" reRender="AutomatedLeadCreation" value="" action="{!deleteDefaultLeadFieldMapping}">&#10006;
+                                                                                <apex:param name="ConditionIdToRemove" value="{!condition.ConditionId}" assignTo="{!RemoveConditionId}"/>
+                                                                            </apex:commandLink>
+                                                                        </apex:column>
+                                                                        <apex:column headerValue="Field Name">
+                                                                            <apex:selectList value="{!condition.SelectedField}" multiselect="false" size="1"  styleClass="input-picker">
+                                                                                <apex:selectOptions value="{!condition.SelectOptionObjectField}"/>
+                                                                                <apex:actionSupport event="onchange" action="{!condition.refreshFieldType}" reRender="AutomatedLeadCreation"/>
+                                                                            </apex:selectList>
+                                                                        </apex:column>  
+                                                                        <apex:column headerValue="Default Value">
+                                                                            <apex:outputPanel >
+                                                                                <apex:inputField value="{!condition.HiddenObject[condition.HiddenObjectField]}" rendered="{!condition.ShowInput}" required="false" styleClass="input-picker"/>
+                                                                            </apex:outputPanel>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                    <apex:pageBlockSectionItem >
+                                                                        <apex:commandButton reRender="AutomatedLeadCreation" styleClass="btn colored-button button-white" style="margin-left: 11px;" value="Add Required Field" action="{!addDefaultLeadFieldMapping}" />
+                                                                    </apex:pageBlockSectionItem>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:pageBlockSection >
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,NOT(AutomatedLeadCreationEditable))}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedLeadCreation"  style="margin:-9px;" styleClass="btn colored-button" value="Edit Automated Lead Creation Setting" action="{!editAutomatedLeadCreationSetting}" status="AutomatedLeadCreationStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,AutomatedLeadCreationEditable)}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedLeadCreation" style="margin:-9px;" styleClass="btn colored-button" value="Save Automated Lead Creation Setting" action="{!saveAutomatedLeadCreationSetting}" status="AutomatedLeadCreationStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                            </apex:pageBlockSection>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedLeadCreation}" value="Modify" rendered="{!NOT(ShowAutomatedLeadCreation)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedLeadCreation}" value="Close" rendered="{!ShowAutomatedLeadCreation}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 7: Automated Campaign Creation" columns="1" Id="AutomatedCampaignCreation">
+                                        <apex:outputPanel rendered="{!ShowAutomatedCampaignCreation}">
+                                            <div class="subheader-container">
+                                                <apex:actionStatus id="AutomatedCampaignCreationStatus">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel styleClass="loading-spinner">
+                                                            <img src="{!URLFOR($Resource.images, 'images/spinner.gif')}" width="65" height="65" />
+                                                        </apex:outputPanel>            
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <apex:outputPanel >
+                                                            <apex:outputPanel rendered="{!ShowAutomatedCampaignCreationMessage}">
+                                                                <apex:pageMessages />
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!NOT(AutomatedCampaignCreationEditable)}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsAutomatedCampaignCreationEnabled}" style="position: absolute; margin-top: 5px;" disabled="true"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Alyce to automatically create campaigns in Salesforce</span>
+                                                                        <apex:outputPanel rendered="{!CampaignConditions.size > 0}">
+                                                                            <div>
+                                                                                <label style="margin-left: 25px; padding-top: 20px; margin-right: 10px; font-weight: 700;">Required Campaign Fields Mapping</label>
+                                                                            </div>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!CampaignConditions}" headerClass="TableTitle" cellpadding="5px" var="condition" rendered="{!CampaignConditions.size > 0}" Id = "DefaultCampaignFieldMappingRead"  title="Required Fields Mapping">
+                                                                        <apex:column headerValue="Field Name">
+                                                                            <apex:outputText value="{!condition.FieldLabel}"/>
+                                                                        </apex:column>  
+                                                                        <apex:column headerValue="Default Value">
+                                                                            <apex:outputPanel >
+                                                                                <apex:outputField value="{!condition.HiddenObject[condition.HiddenObjectField]}" rendered="{!condition.ShowInput}" styleClass="input-picker"  />
+                                                                            </apex:outputPanel>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!AutomatedCampaignCreationEditable}"> 
+                                                                <apex:outputPanel >
+                                                                    <div style="color: #818181;">
+                                                                        <apex:inputCheckbox value="{!IsAutomatedCampaignCreationEnabled}" style="position: absolute; margin-top: 5px;"/>
+                                                                        <span style="padding-left: 25px;" class="admin-pane-text">Enable Alyce to automatically create campaigns in Salesforce</span>
+                                                                        <apex:outputPanel rendered="{!CampaignConditions.size > 0}">
+                                                                            <div>
+                                                                                <label style="margin-left: 25px; padding-top: 20px; margin-right: 10px; font-weight: 700;">Required Campaign Fields Mapping</label>
+                                                                            </div>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <apex:pageBlockTable styleClass="admin-pane-table" value="{!CampaignConditions}" headerClass="TableTitle" cellpadding="5px" var="condition" rendered="{!CampaignConditions.size > 0}" Id = "DefaultCampaignFieldMapping" title="Required Fields Mapping">
+                                                                        <apex:column headerValue="Action">
+                                                                            <apex:commandLink style="margin-left: 15px; text-decoration: none;" reRender="AutomatedCampaignCreation" value="" action="{!deleteDefaultCampaignFieldMapping}">&#10006;
+                                                                                <apex:param name="ConditionIdToRemove" value="{!condition.ConditionId}" assignTo="{!RemoveConditionId}"/>
+                                                                            </apex:commandLink>
+                                                                        </apex:column>
+                                                                        <apex:column headerValue="Field Name">
+                                                                            <apex:selectList value="{!condition.SelectedField}" multiselect="false" size="1"  styleClass="input-picker">
+                                                                                <apex:selectOptions value="{!condition.SelectOptionObjectField}"/>
+                                                                                <apex:actionSupport event="onchange" action="{!condition.refreshFieldType}" reRender="AutomatedCampaignCreation"/>
+                                                                            </apex:selectList>
+                                                                        </apex:column>  
+                                                                        <apex:column headerValue="Default Value">
+                                                                            <apex:outputPanel >
+                                                                                <apex:inputField value="{!condition.HiddenObject[condition.HiddenObjectField]}" rendered="{!condition.ShowInput}" required="false" styleClass="input-picker"/>
+                                                                            </apex:outputPanel>
+                                                                        </apex:column>
+                                                                    </apex:pageBlockTable>
+                                                                    <apex:pageBlockSectionItem >
+                                                                        <apex:commandButton reRender="AutomatedCampaignCreation" styleClass="btn colored-button button-white" style="margin-left: 11px;" value="Add Required Field" action="{!addDefaultCampaignFieldMapping}" />
+                                                                    </apex:pageBlockSectionItem>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            <apex:pageBlockSection >
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,NOT(AutomatedCampaignCreationEditable))}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedCampaignCreation" style="margin-left: -9px;" styleClass="btn colored-button" value="Edit Automated Campaign Creation Setting" action="{!editAutomatedCampaignCreationSetting}" status="AutomatedCampaignCreationStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                                <apex:pageBlockSectionItem rendered="{!AND(IsCurrentUserAdmin,AutomatedCampaignCreationEditable)}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:image styleClass="gear-icon" style="margin-left: 6px;" url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                                        <apex:commandButton reRender="AutomatedCampaignCreation" style="margin:-9px;" styleClass="btn colored-button" value="Save Automated Campaign Creation Setting" action="{!saveAutomatedCampaignCreationSetting}" status="AutomatedCampaignCreationStatus"/>
+                                                                    </apex:outputPanel>
+                                                                </apex:pageBlockSectionItem>
+                                                            </apex:pageBlockSection>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedCampaignCreation}" value="Modify" rendered="{!NOT(ShowAutomatedCampaignCreation)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowAutomatedCampaignCreation}" value="Close" rendered="{!ShowAutomatedCampaignCreation}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section">
+                                <div class="section-container">
+                                    <apex:pageBlockSection title="Step 8: Gift Invitation Object Layout Setup" columns="1">
+                                        <div  class="subheader-container">
+                                            <div style="padding-bottom: 5px; color: #818181;">Here you enable initial setup for the Alyce Gift Invitation Object to store gift records and for updating the layout going forward with fields added by new updates. 
+                                            </div>
+                                            <span style="color: #818181;">Note: Ensure that</span> 
+                                            <a target="_blank" href="/setup/apexsettings.apexp" style="color:#029cef !important; text-decoration:none !important; font-weight: bold;">Deploy Metadata from Non-Certified Package Versions via Apex</a>
+                                            <span style="color: #818181;">is enabled before using Gift Invitation Layout Setup</span>
+                                            <apex:outputPanel rendered="{!ShowGiftInvitationObjectLayoutSetup}">
+                                                <apex:pageBlockSectionItem rendered="{!IsCurrentUserAdmin}">
+                                                    <apex:outputPanel >
+                                                        <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                        <apex:commandLink styleClass="btn colored-button" style="text-decoration: none;" action="{!setupGiftPageLayouts}" value="Gift Invitation Layout Setup" target="_blank"/>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!IsLayoutsSetupEnabled}">
+                                                        <apex:image styleClass="gear-icon"  url="{!URLFOR($Resource.alycecom__images, 'images/settings.png')}"/>
+                                                        <apex:commandLink styleClass="btn colored-button" style="text-decoration: none;" action="{!setupPageLayouts}" value="Quick Layouts Setup" target="_blank"/>
+                                                    </apex:outputPanel>
+                                                </apex:pageBlockSectionItem>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:pageBlockSection>
+                                </div>
+                                <div class="section-buttons">
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowGiftInvitationObjectLayoutSetup}" value="Modify" rendered="{!NOT(ShowGiftInvitationObjectLayoutSetup)}" reRender="AdminMainForm"/>
+                                    <apex:commandButton styleClass="btn colored-button button-white" action="{!togglShowGiftInvitationObjectLayoutSetup}" value="Close" rendered="{!ShowGiftInvitationObjectLayoutSetup}" reRender="AdminMainForm"/>
+                                </div>
+                            </div>
+                            <div class="admin-panel-section" style="border-bottom:none;">
+                                <apex:pageBlockSection title="Step 9: Setting Up Alyce Specific Layouts in Salesforce" columns="1">
+                                    <div class="subheader-container">
+                                        <div style="padding-bottom: 5px; color: #818181;">Alyce recommends adding buttons to the lead and contact objects for creating gift invitations directly from Salesforce. Additionally, customers are recommended to add list views for standard objects.
+                                        </div>
+                                        <div style="color: #818181; padding-top:10px; padding-bottom:10px;">More information on available layout components - check out our support articles below!</div> 
+
+                                        <apex:commandLink styleClass="btn colored-button button-white" style="text-decoration: none;" action="{!goToSupportArticles}" value="View Support articles for layout components" target="_blank"/>
+                                    </div>
+                                </apex:pageBlockSection>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:pageBlock>
+        </apex:form>
+    </div>
+</apex:page>

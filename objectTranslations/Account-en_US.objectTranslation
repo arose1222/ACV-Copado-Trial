@@ -1,0 +1,4918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- PrintAlertFields1 --></label>
+        <name>EXPRN__PrintAlertFields1</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Emergency Account Fields --></label>
+        <name>FSL__Emergency_Account_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Gantt Lightbox --></label>
+        <name>FSL__Gantt_Lightbox</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MA C2C --></label>
+        <name>MA_C2C</name>
+    </fieldSets>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Account Name</value>
+        </caseValues>
+        <name>account_id</name>
+        <startsWith>Vowel</startsWith>
+    </fields>
+    <fields>
+        <label><!-- ACH on File --></label>
+        <name>ACH_on_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Anywhere Registration Date --></label>
+        <name>ACV_Anywhere_Registration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Capital Customer2 --></label>
+        <name>ACV_Capital_Customer2__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Capital Customer --></label>
+        <name>ACV_Capital_Customer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Shows count of opportunities lost due to declined credit --></help>
+        <label><!-- ACV Capital Declined --></label>
+        <name>ACV_Capital_Declined__c</name>
+    </fields>
+    <fields>
+        <help><!-- Shows the Capital Portfolio ID from NetSuite --></help>
+        <label><!-- ACV Capital NS Portfolio ID --></label>
+        <name>ACV_Capital_NS_Portfolio_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Grabs email from &apos;ACV Capital Primary Contact&apos; --></help>
+        <label><!-- ACV Capital Primary Contact Email --></label>
+        <name>ACV_Capital_Primary_Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Capital Primary Contact --></label>
+        <name>ACV_Capital_Primary_Contact__c</name>
+        <relationshipLabel><!-- Accounts (Capital Primary Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ACV Capital Relationship --></label>
+        <name>ACV_Capital_Relationship__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will be equivalent to &apos;capital sales rep&apos; from corresponding capital referral opportunity --></help>
+        <label><!-- ACV Capital Sales Rep --></label>
+        <name>ACV_Capital_Sales_Rep__c</name>
+        <relationshipLabel><!-- Accounts (ACV Capital Sales Rep) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ACV Rank --></label>
+        <name>ACV_Rank__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFC --></label>
+        <name>AFC__c</name>
+    </fields>
+    <fields>
+        <label><!-- ALT PHONE --></label>
+        <name>ALT_PHONE__c</name>
+    </fields>
+    <fields>
+        <help><!-- P0: New Customer = Joined in last 60; 
+P1: Lapsed = no activity last 30; 
+P2: Declining = last 30 activity is less than half average 30 day activity; 
+P3: Churned = no activity last 90; 
+Normal = regular activity based on monthly average --></help>
+        <label><!-- Account Activity Status --></label>
+        <name>Account_Activity_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Count --></label>
+        <name>Account_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Management Next Steps --></label>
+        <name>Account_Management_Next_Steps__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Record type (Conversion) --></label>
+        <name>Account_Record_type_Conversion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Status --></label>
+        <name>Account_Status__c</name>
+        <picklistValues>
+            <masterLabel>Customer</masterLabel>
+            <translation><!-- Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation><!-- Prospect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect Lost</masterLabel>
+            <translation><!-- Prospect Lost --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Acct Owner ID --></label>
+        <name>Acct_Owner_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Acquires Inventory From --></label>
+        <name>Acquires_Inventory_From__c</name>
+        <picklistValues>
+            <masterLabel>Auction</masterLabel>
+            <translation><!-- Auction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Car Direct</masterLabel>
+            <translation><!-- New Car Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesalers</masterLabel>
+            <translation><!-- Wholesalers --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Action Needed --></label>
+        <name>Action_Needed__c</name>
+        <picklistValues>
+            <masterLabel>ACV Call (P8)</masterLabel>
+            <translation><!-- ACV Call (P8) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation><!-- Audit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cimato Call</masterLabel>
+            <translation><!-- Cimato Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deactivate (D90)</masterLabel>
+            <translation><!-- Deactivate (D90) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IST Call</masterLabel>
+            <translation><!-- IST Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New-No Action</masterLabel>
+            <translation><!-- New-No Action --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OST Visit</masterLabel>
+            <translation><!-- OST Visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAI Call</masterLabel>
+            <translation><!-- SAI Call --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Indicates the dealer has an active ACV Capital portfolio in NetSuite --></help>
+        <label><!-- Active ACV Capital Customer --></label>
+        <name>Active_ACV_Capital_Customer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Uncheck the box to have this account deleted --></help>
+        <label><!-- Active Transporter --></label>
+        <name>Active_Transporter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Month Buy Revenue --></label>
+        <name>Actual_Month_Buy_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Month End Selling Revenue --></label>
+        <name>Actual_Month_End_Selling_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Month To Date Selling Revenue --></label>
+        <name>Actual_Month_To_Date_Selling_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Month to Date Buy Revenue --></label>
+        <name>Actual_Month_to_Date_Buy_Revenue__c</name>
+    </fields>
+    <fields>
+        <help><!-- Count of the number of Successful Auctions the last 30 days --></help>
+        <label><!-- Actual Rolling 30 Day Sales Volume --></label>
+        <name>Actual_Rolling_30_Day_Sales_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Auctions Customer --></label>
+        <name>Acv_Auctions_Customer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ad &amp; Syndication Provider --></label>
+        <name>Ad_Syndication_Provider__c</name>
+        <picklistValues>
+            <masterLabel>AutoUpLink Tech</masterLabel>
+            <translation><!-- AutoUpLink Tech --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Specialties</masterLabel>
+            <translation><!-- Dealer Specialties --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer.com</masterLabel>
+            <translation><!-- Dealer.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DealerOn</masterLabel>
+            <translation><!-- DealerOn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DealerSocket</masterLabel>
+            <translation><!-- DealerSocket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HomeNet</masterLabel>
+            <translation><!-- HomeNet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VAuto</masterLabel>
+            <translation><!-- VAuto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VinSolutions</masterLabel>
+            <translation><!-- VinSolutions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Used by Capital to indicate the Advantage Terms --></help>
+        <label><!-- Advantage Terms --></label>
+        <name>Advantage_Terms__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Arb Rate --></label>
+        <name>All_Time_Arb_Rate_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Arb Rate --></label>
+        <name>All_Time_Arb_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Arbs --></label>
+        <name>All_Time_Arbs__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Sales (Gross) --></label>
+        <name>All_Time_Sales_Gross__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ally Customer --></label>
+        <name>Ally_Customer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Bank Account --></label>
+        <name>Alternate_Bank_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Comptroller --></label>
+        <name>Alternate_Comptroller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transport City --></label>
+        <name>Alternate_Transport_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transport Country --></label>
+        <name>Alternate_Transport_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transport State --></label>
+        <name>Alternate_Transport_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transport Street --></label>
+        <name>Alternate_Transport_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transport Zip Code --></label>
+        <name>Alternate_Transport_Zipcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Transporter Address --></label>
+        <name>Alternate_Transporter_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Unit Purchased --></label>
+        <name>Annual_Unit_Purchased__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Unit Sales --></label>
+        <name>Annual_Unit_Sales__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual sales Volume --></label>
+        <name>Annual_sales_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Percent Last 90 Days --></label>
+        <name>Arbitration_Percent_Last_90_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Volume Past 90 Days --></label>
+        <name>Arbitration_Volume_Past_90_Days__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicator for this account if they are an ASI only dealership --></help>
+        <label><!-- ASI Dealership --></label>
+        <name>Asi_Dealership__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the Correct Association Coupon and Year that is being Redeemed --></help>
+        <label><!-- Association Coupon(s) Redeemed --></label>
+        <name>Association_Coupon_s_Redeemed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the name of the Association(s) the Dealer is a member of. i.e. NADA, NIADA, NABD --></help>
+        <label><!-- Association Membership --></label>
+        <name>Association_Membership__c</name>
+    </fields>
+    <fields>
+        <label><!-- Automove Seller --></label>
+        <name>Automove_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Autoship Buyer --></label>
+        <name>Autoship_Buyer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Difference between the Potential Monthly Sell Volume and the Actual Rolling 30 Days Sell Volume --></help>
+        <label><!-- Available Sell Volume --></label>
+        <name>Available_Sell_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blitz/Trade Show Sign Up --></label>
+        <name>Blitz_Trade_Show_Sign_Up__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Hours --></label>
+        <name>Business_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Fee Rate Card Name --></label>
+        <name>Buy_Fee_Rate_Card_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Fee Rate Card --></label>
+        <name>Buy_Fee_Rate_Card__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- xBuyer Compliance Required --></label>
+        <name>Buyer_Compliance_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates the Dealer needs to be reviewed before moving forward with Auction. --></help>
+        <label><!-- Buyer Profile --></label>
+        <name>Buyer_Profile_from_ACV__c</name>
+    </fields>
+    <fields>
+        <help><!-- First time offense = &quot;Goodwill&quot;
+Second time offense = &quot;Retro Charge&quot;
+Third time offense = &quot;Deny&quot; --></help>
+        <label><!-- Buyer&apos;s Assurance Exceptions --></label>
+        <name>Buyer_s_Assurance_Exceptions__c</name>
+        <picklistValues>
+            <masterLabel>Deny</masterLabel>
+            <translation><!-- Deny --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodwill</masterLabel>
+            <translation><!-- Goodwill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retro Charge</masterLabel>
+            <translation><!-- Retro Charge --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Buyer&apos;s Total Auctions --></label>
+        <name>Buyer_s_Total_Auctions__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAM Team --></label>
+        <name>CAM_Team__c</name>
+        <picklistValues>
+            <masterLabel>CAM Great Lakes</masterLabel>
+            <translation><!-- CAM Great Lakes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAM Northeast</masterLabel>
+            <translation><!-- CAM Northeast --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- WatchDOG Result --></label>
+        <name>CSIRCD__WatchDOGResult__c</name>
+        <picklistValues>
+            <masterLabel>No Match</masterLabel>
+            <translation><!-- No Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Match</masterLabel>
+            <translation><!-- Potential Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>True Match</masterLabel>
+            <translation><!-- True Match --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Called Re: Dealer Doc --></label>
+        <name>Called_Re_Dealer_Doc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Can Haul Motorcycles --></label>
+        <name>Can_Haul_Motorcycles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capital Alt Email 1 --></label>
+        <name>Capital_Alt_Email_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capital Alt Email 2 --></label>
+        <name>Capital_Alt_Email_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capital Alt Email 3 --></label>
+        <name>Capital_Alt_Email_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to indicate if this is an Orange Elite Dealer --></help>
+        <label><!-- Capital Dealer Flag --></label>
+        <name>Capital_Dealer_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capital Dealer Type --></label>
+        <name>Capital_Dealer_Type__c</name>
+        <picklistValues>
+            <masterLabel>Capital Orange Elite</masterLabel>
+            <translation><!-- Capital Orange Elite --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cargo Insurance Amount --></label>
+        <name>Cargo_Insurance_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Has Insurance --></label>
+        <name>Carrier_Has_Insurance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Insurance Expiration --></label>
+        <name>Carrier_Insurance_Expiration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Status --></label>
+        <name>Carrier_Status__c</name>
+        <picklistValues>
+            <masterLabel>First Look</masterLabel>
+            <translation><!-- First Look --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preferred</masterLabel>
+            <translation><!-- Preferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cars on Lot --></label>
+        <name>Cars_Stocked__c</name>
+    </fields>
+    <fields>
+        <label><!-- CaseSafe_Id --></label>
+        <name>CaseSafe_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Central Dispatch --></label>
+        <name>Central_Dispatch__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Address Record Type --></label>
+        <name>CloudingoAgent__BAR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Address Status --></label>
+        <name>CloudingoAgent__BAS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Address Vacancy --></label>
+        <name>CloudingoAgent__BAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Residential Delivery Indicator --></label>
+        <name>CloudingoAgent__BRDI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Timezone --></label>
+        <name>CloudingoAgent__BTZ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Address Record Type --></label>
+        <name>CloudingoAgent__SAR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Address Status --></label>
+        <name>CloudingoAgent__SAS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Address Vacancy --></label>
+        <name>CloudingoAgent__SAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Residential Delivery Indicator --></label>
+        <name>CloudingoAgent__SRDI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Timezone --></label>
+        <name>CloudingoAgent__STZ__c</name>
+    </fields>
+    <fields>
+        <help><!-- For commercial client use, only.  Indicates lot number, city, dealership - whatever it is the commercial client uses to identify specific location. --></help>
+        <label><!-- Commercial Acct Location --></label>
+        <name>Commercial_Acct_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial BK --></label>
+        <name>Commercial_BK__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial Sub-Type --></label>
+        <name>Commercial_Sub_Type__c</name>
+        <picklistValues>
+            <masterLabel>Captive Finance Companies</masterLabel>
+            <translation><!-- Captive Finance Companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer based Finance Companies</masterLabel>
+            <translation><!-- Dealer based Finance Companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Institutions (Banks, Credit Unions or Private Lenders)</masterLabel>
+            <translation><!-- Financial Institutions (Banks, Credit Unions or Private Lenders) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleet Management Companies</masterLabel>
+            <translation><!-- Fleet Management Companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OEM&apos;s</masterLabel>
+            <translation><!-- OEM&apos;s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental Car Companies</masterLabel>
+            <translation><!-- Rental Car Companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repossession Forwarder&apos;s</masterLabel>
+            <translation><!-- Repossession Forwarder&apos;s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Third Party Remarketing Companies</masterLabel>
+            <translation><!-- Third Party Remarketing Companies --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter where the Franchise Dealer is sending their Wholesale cars that they are not sending to ACV --></help>
+        <label><!-- Competitors In Play --></label>
+        <name>Competitors_In_Play__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliant Dealer License --></label>
+        <name>Compliant_Dealer_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliant Resale Certificate --></label>
+        <name>Compliant_Resale_Certificate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact Method --></label>
+        <name>Contact_Method__c</name>
+        <picklistValues>
+            <masterLabel>Call</masterLabel>
+            <translation><!-- Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Call N/A Text</masterLabel>
+            <translation><!-- Call N/A Text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Count of Vehicles Listed --></label>
+        <name>Count_of_Vehicles_Listed__c</name>
+    </fields>
+    <fields>
+        <label><!-- County --></label>
+        <name>County__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Account Checkbox --></label>
+        <name>Create_Account_Checkbox__c</name>
+    </fields>
+    <fields>
+        <label><!-- Creation Source --></label>
+        <name>Creation_Source__c</name>
+        <picklistValues>
+            <masterLabel>Bulk Load</masterLabel>
+            <translation><!-- Bulk Load --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registration</masterLabel>
+            <translation><!-- Registration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Current Stage --></label>
+        <name>Current_Stage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Grade --></label>
+        <name>Customer_Grade__c</name>
+        <picklistValues>
+            <masterLabel>Challenged</masterLabel>
+            <translation><!-- Challenged --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Select</masterLabel>
+            <translation><!-- Select --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is used as a rating on the account to reflect the health of the dealer  - Changing this field will change the Health Status image. --></help>
+        <label><!-- Customer Health --></label>
+        <name>Customer_Health__c</name>
+        <picklistValues>
+            <masterLabel>Green</masterLabel>
+            <translation><!-- Green --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red</masterLabel>
+            <translation><!-- Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yellow</masterLabel>
+            <translation><!-- Yellow --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Stage Buy --></label>
+        <name>Customer_Stage_Buy__c</name>
+        <picklistValues>
+            <masterLabel>Idle</masterLabel>
+            <translation><!-- Idle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loyal</masterLabel>
+            <translation><!-- Loyal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registrered</masterLabel>
+            <translation><!-- Registrered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trying</masterLabel>
+            <translation><!-- Trying --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please reach out to the Customer Success Advocate for title statuses of “New” and “48 Hour Notice”. Customer Success Advocate has replaced the Title Consultant field. --></help>
+        <label><!-- Customer Success Advocate --></label>
+        <name>Customer_Success_Advocate__c</name>
+        <relationshipLabel><!-- Accounts (Customer Success Advocate) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer Success Specialist --></label>
+        <name>Customer_Success_Specialist__c</name>
+        <relationshipLabel><!-- Accounts (Customer Success Specialist) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- DBA --></label>
+        <name>DBA__c</name>
+    </fields>
+    <fields>
+        <label><!-- DIST_PHL --></label>
+        <name>DIST_PHL__c</name>
+    </fields>
+    <fields>
+        <label><!-- DL File in Tools --></label>
+        <name>DL_File_In_Tools__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOT Number --></label>
+        <name>DOT_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Dealers Dun &amp; Bradstreet ID --></help>
+        <label><!-- D&amp;B ID --></label>
+        <name>D_B_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Quality Description --></label>
+        <name>Data_Quality_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Quality Score --></label>
+        <name>Data_Quality_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Back in Good Standing --></label>
+        <name>Date_Back_in_Good_Standing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Do Not Send Titles --></label>
+        <name>Date_Do_Not_Send_Titles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Joined --></label>
+        <name>Date_Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date License # Received --></label>
+        <name>Date_License_Received__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Most Recent Arb --></label>
+        <name>Date_Most_Recent_Arb__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Registered --></label>
+        <name>Date_Registered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Submitted --></label>
+        <name>Date_Submitted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Tax ID Received --></label>
+        <name>Date_Tax_ID_Received__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date a dealer becomes document compliant.  If they fall out of compliance, the field goes blank, and will re-populate when/if they become compliant again. --></help>
+        <label><!-- Date Time Compliant --></label>
+        <name>Date_Time_Compliant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Demo --></label>
+        <name>Date_of_Demo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Deny --></label>
+        <name>Date_of_Deny__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of First Purchase --></label>
+        <name>Date_of_First_Buy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of First Sale --></label>
+        <name>Date_of_First_Sale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Goodwill --></label>
+        <name>Date_of_Goodwill__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Last Purchase --></label>
+        <name>Date_of_Last_Purchase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Last Sale --></label>
+        <name>Date_of_Last_Sale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Retro Charge --></label>
+        <name>Date_of_Retro_Charge__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Between Demo and FTB --></label>
+        <name>Days_Between_Demo_and_FTB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Between Ignition and FTB --></label>
+        <name>Days_Between_Ignition_and_FTB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Between Sign Up and Compliance --></label>
+        <name>Days_Between_Sign_Up_and_Compliance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Between Sign Up and FTB --></label>
+        <name>Days_Between_Sign_Up_and_FTB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Auction STR --></label>
+        <name>Dealer_Auction_STR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Bank Account Owner Email --></label>
+        <name>Dealer_Bank_Account_Owner_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Bank Account Owner First Name --></label>
+        <name>Dealer_Bank_Account_Owner_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Bank Account Owner Last Name --></label>
+        <name>Dealer_Bank_Account_Owner_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Doc Compliance --></label>
+        <name>Dealer_Doc_Compliance__c</name>
+        <picklistValues>
+            <masterLabel>Compliant</masterLabel>
+            <translation><!-- Compliant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out Of Compliance</masterLabel>
+            <translation><!-- Out Of Compliance --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dealer Docs Email Wave --></label>
+        <name>Dealer_Docs_Email_Wave__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Phone (main) --></label>
+        <name>Dealer_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Phone (fax) --></label>
+        <name>Dealer_Phone_fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Type --></label>
+        <name>Dealer_Type__c</name>
+        <picklistValues>
+            <masterLabel>Commercial</masterLabel>
+            <translation><!-- Commercial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Group (Parent Account)</masterLabel>
+            <translation><!-- Dealer Group (Parent Account) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Franchise</masterLabel>
+            <translation><!-- Franchise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent</masterLabel>
+            <translation><!-- Independent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent - ACV Certified</masterLabel>
+            <translation><!-- Independent - ACV Certified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dealer Vehicle STR --></label>
+        <name>Dealer_Vehicle_STR__c</name>
+    </fields>
+    <fields>
+        <help><!-- Dealerships Annual Revenue from Dun &amp; Bradstreet --></help>
+        <label><!-- Dealership Annual Revenue --></label>
+        <name>Dealership_Annual_Revenue__c</name>
+    </fields>
+    <fields>
+        <help><!-- Dealer ID from Tools --></help>
+        <label><!-- Dealer ID --></label>
+        <name>Dealership_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealership Notes --></label>
+        <name>Dealership_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Declined Doc Audit --></label>
+        <name>Declined_Doc_Audit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Payment Provider --></label>
+        <name>Default_Payment_Provider__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Seller Fee --></label>
+        <name>Default_Seller_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delighted Detractors --></label>
+        <name>DelightedInc__Detractors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delighted NPS --></label>
+        <name>DelightedInc__NPS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delighted Passives --></label>
+        <name>DelightedInc__Passives__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delighted Promoters --></label>
+        <name>DelightedInc__Promoters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Demo Completed By --></label>
+        <name>Demo_Completed_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Demo Type --></label>
+        <name>Demo_Type__c</name>
+        <picklistValues>
+            <masterLabel>Full Demo</masterLabel>
+            <translation><!-- Full Demo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Post FTB</masterLabel>
+            <translation><!-- Post FTB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quick Hit Demo</masterLabel>
+            <translation><!-- Quick Hit Demo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Discovery Comments --></label>
+        <name>Discovery_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Do you buy online --></label>
+        <name>Do_you_buy_online__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other/See notes</masterLabel>
+            <translation><!-- Other/See notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Titles were held AT SOME POINT, not necessarily actively held. See open/active title cases to know if titles are currently being held. --></help>
+        <label><!-- xDoc Title Hold --></label>
+        <name>Doc_Title_Hold__c</name>
+    </fields>
+    <fields>
+        <label><!-- xDealership Cert Expiration --></label>
+        <name>Document_Dealer_Cert_Expires__c</name>
+    </fields>
+    <fields>
+        <label><!-- xDealership Cert --></label>
+        <name>Document_Dealer_Cert__c</name>
+    </fields>
+    <fields>
+        <label><!-- xResale Cert Expiration --></label>
+        <name>Document_Resale_Cert_Expires__c</name>
+    </fields>
+    <fields>
+        <label><!-- xResale Cert --></label>
+        <name>Document_Resale_Cert__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Status --></label>
+        <name>Document_Status__c</name>
+        <picklistValues>
+            <masterLabel>Attached for Review</masterLabel>
+            <translation><!-- Attached for Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Received</masterLabel>
+            <translation><!-- Not Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reviewed Accepted</masterLabel>
+            <translation><!-- Reviewed Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reviewed Not Accepted</masterLabel>
+            <translation><!-- Reviewed Not Accepted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Drivably Account --></label>
+        <name>Drivably_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duplicate Checker Record Type --></label>
+        <name>Duplicate_Checker_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Account populated here will be the primary account which is kept after duplicate cleanup is completed --></help>
+        <label><!-- Duplicate Of --></label>
+        <name>Duplicate_Of__c</name>
+        <relationshipLabel><!-- Account Duplicates --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- EFT Bill Payment --></label>
+        <name>EFT_Bill_Payment__c</name>
+    </fields>
+    <fields>
+        <label><!-- EIN Number --></label>
+        <name>EIN_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Account Number --></label>
+        <name>EXPRN__Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIN Response Code --></label>
+        <name>EXPRN__BIN_Response_Code__c</name>
+        <picklistValues>
+            <masterLabel>-1</masterLabel>
+            <translation><!-- -1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- BIN Status Code --></label>
+        <name>EXPRN__BIN_Status_Code__c</name>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P</masterLabel>
+            <translation><!-- P --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R</masterLabel>
+            <translation><!-- R --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- BIN --></label>
+        <name>EXPRN__BIN_formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch Scoring Model --></label>
+        <name>EXPRN__Batch_Scoring_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Policy --></label>
+        <name>EXPRN__Credit_Policy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Added --></label>
+        <name>EXPRN__Date_Added__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Business Name --></label>
+        <name>EXPRN__Exp_Business_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Business --></label>
+        <name>EXPRN__Exp_Business__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Experian Business ID --></label>
+        <name>EXPRN__Experian_Business_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Monitored --></label>
+        <name>EXPRN__Is_Monitored__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Decision Status --></label>
+        <name>EXPRN__Most_Recent_Decision_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Decision --></label>
+        <name>EXPRN__Most_Recent_Decision__c</name>
+    </fields>
+    <fields>
+        <label><!-- SFDC Sync Flag --></label>
+        <name>EXPRN__SFDC_Sync_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scoring Model --></label>
+        <name>EXPRN__Scoring_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>EXPRN__Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique ID --></label>
+        <name>EXPRN__Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBatchBusinessUpdate --></label>
+        <name>EXPRN__isBatchBusinessUpdate__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBatchDecisioning --></label>
+        <name>EXPRN__isBatchDecisioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBatchProcessing --></label>
+        <name>EXPRN__isBatchProcessing__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBatchScoring --></label>
+        <name>EXPRN__isBatchScoring__c</name>
+    </fields>
+    <fields>
+        <label><!-- International? --></label>
+        <name>EXPRN__isInternational__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Owner/Guarantor Lookup1 --></label>
+        <name>EXPRN__owner1Lookup__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Experian Owner/Guarantor Lookup2 --></label>
+        <name>EXPRN__owner2Lookup__c</name>
+        <relationshipLabel><!-- Accounts (Experian Owner/Guarantor Lookup2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Does the Transporter Account have enclosed carriers at their disposal? --></help>
+        <label><!-- Enclosed Carrier? --></label>
+        <name>Enclosed_Carrier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Established --></label>
+        <name>Established__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exemp. File in Tools --></label>
+        <name>Exemp_File_in_Tools__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates the Experian Business Intelligence Score --></help>
+        <label><!-- Experian BI Score --></label>
+        <name>Experian_BI_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Business Information --></label>
+        <name>Experian_Business_Information__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Experian FICO --></label>
+        <name>Experian_FICO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Tax Lien --></label>
+        <name>Experian_Tax_Lien__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experian Test --></label>
+        <name>Experian_Test__c</name>
+    </fields>
+    <fields>
+        <label><!-- Extended Arbitration Type --></label>
+        <name>Extended_Arbitration_Type__c</name>
+        <picklistValues>
+            <masterLabel>custom</masterLabel>
+            <translation><!-- custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>default</masterLabel>
+            <translation><!-- default --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>disabled</masterLabel>
+            <translation><!-- disabled --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FP Trigger RS --></label>
+        <name>FP_Trigger_RS__c</name>
+    </fields>
+    <fields>
+        <label><!-- FSL Proactive Work Beta --></label>
+        <name>FSL_Proactive_Work_Beta__c</name>
+    </fields>
+    <fields>
+        <label><!-- FastPass Approval --></label>
+        <name>FastPass_Approval__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error</masterLabel>
+            <translation><!-- Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Reason for selecting no in the FastPass Opt In --></help>
+        <label><!-- FastPass Declined Reason --></label>
+        <name>FastPass_Declined_Reason__c</name>
+        <picklistValues>
+            <masterLabel>No reason given</masterLabel>
+            <translation><!-- No reason given --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment method does not apply</masterLabel>
+            <translation><!-- Payment method does not apply --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Yes = FastPass Offered and accepted
+No = Fast Pass offered and declined
+Blank = FastPass not offered --></help>
+        <label><!-- FastPass Opt-In --></label>
+        <name>FastPass_Opt_In__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FastPass Status Date --></label>
+        <name>FastPass_Status_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Field Account Manager --></label>
+        <name>Field_Account_Manager__c</name>
+        <relationshipLabel><!-- Accounts (Field Account Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Field Operations Rep --></label>
+        <name>Field_Operations_Rep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flagged for Unwind Batch --></label>
+        <name>Flagged_for_Unwind_Batch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floor Plan Provider --></label>
+        <name>Floor_Plan_Provider__c</name>
+        <picklistValues>
+            <masterLabel>AFC</masterLabel>
+            <translation><!-- AFC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Allied</masterLabel>
+            <translation><!-- Allied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Next Gear</masterLabel>
+            <translation><!-- Next Gear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Franchise Brand(s) --></label>
+        <name>Franchise_Brands__c</name>
+        <picklistValues>
+            <masterLabel>Acura</masterLabel>
+            <translation><!-- Acura --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aire</masterLabel>
+            <translation><!-- Aire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alfa Romeo</masterLabel>
+            <translation><!-- Alfa Romeo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aprilia</masterLabel>
+            <translation><!-- Aprilia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arctic Cat</masterLabel>
+            <translation><!-- Arctic Cat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aston Martin</masterLabel>
+            <translation><!-- Aston Martin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Atlas</masterLabel>
+            <translation><!-- Atlas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Audi</masterLabel>
+            <translation><!-- Audi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BMW</masterLabel>
+            <translation><!-- BMW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Baja</masterLabel>
+            <translation><!-- Baja --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bennche</masterLabel>
+            <translation><!-- Bennche --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bentley</masterLabel>
+            <translation><!-- Bentley --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Big Tex</masterLabel>
+            <translation><!-- Big Tex --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bombardier</masterLabel>
+            <translation><!-- Bombardier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bourget</masterLabel>
+            <translation><!-- Bourget --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buell</masterLabel>
+            <translation><!-- Buell --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buick</masterLabel>
+            <translation><!-- Buick --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CF Moto</masterLabel>
+            <translation><!-- CF Moto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cadillac</masterLabel>
+            <translation><!-- Cadillac --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Can Am</masterLabel>
+            <translation><!-- Can Am --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Can-Am</masterLabel>
+            <translation><!-- Can-Am --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chevrolet</masterLabel>
+            <translation><!-- Chevrolet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chevy</masterLabel>
+            <translation><!-- Chevy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chrysler</masterLabel>
+            <translation><!-- Chrysler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clipper</masterLabel>
+            <translation><!-- Clipper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club Car</masterLabel>
+            <translation><!-- Club Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club Cart</masterLabel>
+            <translation><!-- Club Cart --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coachman</masterLabel>
+            <translation><!-- Coachman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cris Craft</masterLabel>
+            <translation><!-- Cris Craft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cruise</masterLabel>
+            <translation><!-- Cruise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom chopper</masterLabel>
+            <translation><!-- Custom chopper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dodge</masterLabel>
+            <translation><!-- Dodge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dodge Ram</masterLabel>
+            <translation><!-- Dodge Ram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ducati</masterLabel>
+            <translation><!-- Ducati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eagle</masterLabel>
+            <translation><!-- Eagle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory 5</masterLabel>
+            <translation><!-- Factory 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ferrari</masterLabel>
+            <translation><!-- Ferrari --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiat</masterLabel>
+            <translation><!-- Fiat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleetwood</masterLabel>
+            <translation><!-- Fleetwood --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ford</masterLabel>
+            <translation><!-- Ford --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forest river</masterLabel>
+            <translation><!-- Forest river --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Four Winds</masterLabel>
+            <translation><!-- Four Winds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Freightliner</masterLabel>
+            <translation><!-- Freightliner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GMC</masterLabel>
+            <translation><!-- GMC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Genesis</masterLabel>
+            <translation><!-- Genesis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geo</masterLabel>
+            <translation><!-- Geo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hammerhead</masterLabel>
+            <translation><!-- Hammerhead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harley Davidson</masterLabel>
+            <translation><!-- Harley Davidson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harley-Davidson</masterLabel>
+            <translation><!-- Harley-Davidson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heartland</masterLabel>
+            <translation><!-- Heartland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hino</masterLabel>
+            <translation><!-- Hino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honda</masterLabel>
+            <translation><!-- Honda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hummer</masterLabel>
+            <translation><!-- Hummer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Humvee</masterLabel>
+            <translation><!-- Humvee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyundai</masterLabel>
+            <translation><!-- Hyundai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INFINITI</masterLabel>
+            <translation><!-- INFINITI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indian</masterLabel>
+            <translation><!-- Indian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indian Motorcycle</masterLabel>
+            <translation><!-- Indian Motorcycle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International</masterLabel>
+            <translation><!-- International --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invader</masterLabel>
+            <translation><!-- Invader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isuzu</masterLabel>
+            <translation><!-- Isuzu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jaguar</masterLabel>
+            <translation><!-- Jaguar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jayco</masterLabel>
+            <translation><!-- Jayco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jeep</masterLabel>
+            <translation><!-- Jeep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KTM</masterLabel>
+            <translation><!-- KTM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Karma</masterLabel>
+            <translation><!-- Karma --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kawasaki</masterLabel>
+            <translation><!-- Kawasaki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kenworth</masterLabel>
+            <translation><!-- Kenworth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keystone</masterLabel>
+            <translation><!-- Keystone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kia</masterLabel>
+            <translation><!-- Kia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kubota</masterLabel>
+            <translation><!-- Kubota --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kymco</masterLabel>
+            <translation><!-- Kymco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lamborghini</masterLabel>
+            <translation><!-- Lamborghini --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land Rover</masterLabel>
+            <translation><!-- Land Rover --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lexus</masterLabel>
+            <translation><!-- Lexus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lincoln</masterLabel>
+            <translation><!-- Lincoln --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Look Trailers</masterLabel>
+            <translation><!-- Look Trailers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lotus</masterLabel>
+            <translation><!-- Lotus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lowe</masterLabel>
+            <translation><!-- Lowe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MG</masterLabel>
+            <translation><!-- MG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mack</masterLabel>
+            <translation><!-- Mack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maserati</masterLabel>
+            <translation><!-- Maserati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Massimo</masterLabel>
+            <translation><!-- Massimo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mazda</masterLabel>
+            <translation><!-- Mazda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>McLaren</masterLabel>
+            <translation><!-- McLaren --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mercedes</masterLabel>
+            <translation><!-- Mercedes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mercedes Benz</masterLabel>
+            <translation><!-- Mercedes Benz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mercedes-Benz</masterLabel>
+            <translation><!-- Mercedes-Benz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mercury</masterLabel>
+            <translation><!-- Mercury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mini</masterLabel>
+            <translation><!-- Mini --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitsubishi</masterLabel>
+            <translation><!-- Mitsubishi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitsubishi Fuso</masterLabel>
+            <translation><!-- Mitsubishi Fuso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nissan</masterLabel>
+            <translation><!-- Nissan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nissan Datsun</masterLabel>
+            <translation><!-- Nissan Datsun --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oldsmobile</masterLabel>
+            <translation><!-- Oldsmobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plymouth</masterLabel>
+            <translation><!-- Plymouth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Polaris</masterLabel>
+            <translation><!-- Polaris --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pontiac</masterLabel>
+            <translation><!-- Pontiac --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Porsche</masterLabel>
+            <translation><!-- Porsche --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ram</masterLabel>
+            <translation><!-- Ram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ranger</masterLabel>
+            <translation><!-- Ranger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rockwood</masterLabel>
+            <translation><!-- Rockwood --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rolls Royce</masterLabel>
+            <translation><!-- Rolls Royce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rolls-Royce</masterLabel>
+            <translation><!-- Rolls-Royce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SSR</masterLabel>
+            <translation><!-- SSR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saab</masterLabel>
+            <translation><!-- Saab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturn</masterLabel>
+            <translation><!-- Saturn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scion</masterLabel>
+            <translation><!-- Scion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sea Ray</masterLabel>
+            <translation><!-- Sea Ray --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ski-Doo</masterLabel>
+            <translation><!-- Ski-Doo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Smart</masterLabel>
+            <translation><!-- Smart --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SnowEx</masterLabel>
+            <translation><!-- SnowEx --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>StarCraft</masterLabel>
+            <translation><!-- StarCraft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Steroid</masterLabel>
+            <translation><!-- Steroid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subaru</masterLabel>
+            <translation><!-- Subaru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suzki</masterLabel>
+            <translation><!-- Suzki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suzuki</masterLabel>
+            <translation><!-- Suzuki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tesla</masterLabel>
+            <translation><!-- Tesla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tiffton motor home</masterLabel>
+            <translation><!-- Tiffton motor home --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toyota</masterLabel>
+            <translation><!-- Toyota --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Triumph</masterLabel>
+            <translation><!-- Triumph --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UD</masterLabel>
+            <translation><!-- UD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vision</masterLabel>
+            <translation><!-- Vision --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volkswagen</masterLabel>
+            <translation><!-- Volkswagen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volkswagon</masterLabel>
+            <translation><!-- Volkswagon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volvo</masterLabel>
+            <translation><!-- Volvo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Winnebago</masterLabel>
+            <translation><!-- Winnebago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workhorse</masterLabel>
+            <translation><!-- Workhorse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yacht club</masterLabel>
+            <translation><!-- Yacht club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yamaha</masterLabel>
+            <translation><!-- Yamaha --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>isusi</masterLabel>
+            <translation><!-- isusi --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- From Historical Load --></label>
+        <name>From_Historical_Load__c</name>
+    </fields>
+    <fields>
+        <label><!-- GCLID --></label>
+        <name>GCLID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Go-Green Seller --></label>
+        <name>Go_Green_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gong Count --></label>
+        <name>Gong__Gong_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Google Place Id --></label>
+        <name>Google_Place_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- HOT NOTES --></label>
+        <name>HOT_NOTES__c</name>
+    </fields>
+    <fields>
+        <help><!-- Manually controlled field to prevent the creation of any more True360 Service Appointments. --></help>
+        <label><!-- Halt True360 Appointments --></label>
+        <name>Halt_True360_Appointments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Logged in &lt;30 Days --></label>
+        <name>Has_Logged_in_30_Days__c</name>
+    </fields>
+    <fields>
+        <help><!-- This image displays based on the selection made on the Customer Health Field --></help>
+        <label><!-- Health Status --></label>
+        <name>Health_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- IST Account Owner Phone and Extension --></help>
+        <label><!-- IST Account Mgr Phone --></label>
+        <name>IST_Account_Owner_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Rep --></label>
+        <name>IST_Account_Owner__c</name>
+        <relationshipLabel><!-- Accounts (IST Account Rep) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IST Owner Name --></label>
+        <name>IST_Owner_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Phone number for IST Rep --></help>
+        <label><!-- IST Rep Phone --></label>
+        <name>IST_Rep_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Rep --></label>
+        <name>IST_Rep__c</name>
+        <picklistValues>
+            <masterLabel>Adam Siedlecki</masterLabel>
+            <translation><!-- Adam Siedlecki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alisha Netto</masterLabel>
+            <translation><!-- Alisha Netto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austin Dorr</masterLabel>
+            <translation><!-- Austin Dorr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Blake Reckley</masterLabel>
+            <translation><!-- Blake Reckley --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAM Great Lakes</masterLabel>
+            <translation><!-- CAM Great Lakes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAM Northeast</masterLabel>
+            <translation><!-- CAM Northeast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chad Dupray</masterLabel>
+            <translation><!-- Chad Dupray --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Christina Caito</masterLabel>
+            <translation><!-- Christina Caito --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cory Bertozzi</masterLabel>
+            <translation><!-- Cory Bertozzi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daniel Erbacher</masterLabel>
+            <translation><!-- Daniel Erbacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>David Farley</masterLabel>
+            <translation><!-- David Farley --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eli Matheny</masterLabel>
+            <translation><!-- Eli Matheny --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Elisa Galante</masterLabel>
+            <translation><!-- Elisa Galante --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emily Germaine</masterLabel>
+            <translation><!-- Emily Germaine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ferdinando Cimato</masterLabel>
+            <translation><!-- Ferdinando Cimato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glenn Wood</masterLabel>
+            <translation><!-- Glenn Wood --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jake Bass</masterLabel>
+            <translation><!-- Jake Bass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jake Murray</masterLabel>
+            <translation><!-- Jake Murray --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jared McHenry</masterLabel>
+            <translation><!-- Jared McHenry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jason Bartz</masterLabel>
+            <translation><!-- Jason Bartz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joe Kostek</masterLabel>
+            <translation><!-- Joe Kostek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joe Naylor</masterLabel>
+            <translation><!-- Joe Naylor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>John Luraschi</masterLabel>
+            <translation><!-- John Luraschi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Josh Bové</masterLabel>
+            <translation><!-- Josh Bové --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Julia Davis</masterLabel>
+            <translation><!-- Julia Davis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kaley Doyle</masterLabel>
+            <translation><!-- Kaley Doyle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Karen Dusky</masterLabel>
+            <translation><!-- Karen Dusky --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kerry Nowicki</masterLabel>
+            <translation><!-- Kerry Nowicki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kevin Ruggerio</masterLabel>
+            <translation><!-- Kevin Ruggerio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kylie Eaton</masterLabel>
+            <translation><!-- Kylie Eaton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lizz Matyas</masterLabel>
+            <translation><!-- Lizz Matyas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Louisa Burnett</masterLabel>
+            <translation><!-- Louisa Burnett --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marirose Brucato</masterLabel>
+            <translation><!-- Marirose Brucato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marisa Borrello</masterLabel>
+            <translation><!-- Marisa Borrello --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Matt Scheff</masterLabel>
+            <translation><!-- Matt Scheff --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Matthew Gelia</masterLabel>
+            <translation><!-- Matthew Gelia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Max Kaplan</masterLabel>
+            <translation><!-- Max Kaplan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Megan Condon</masterLabel>
+            <translation><!-- Megan Condon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Melissa Epolito</masterLabel>
+            <translation><!-- Melissa Epolito --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Michael Wirth</masterLabel>
+            <translation><!-- Michael Wirth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mick Annese</masterLabel>
+            <translation><!-- Mick Annese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paige Cuddihy</masterLabel>
+            <translation><!-- Paige Cuddihy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Patrick Feeley</masterLabel>
+            <translation><!-- Patrick Feeley --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paul Incorvaia</masterLabel>
+            <translation><!-- Paul Incorvaia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phil Schaper</masterLabel>
+            <translation><!-- Phil Schaper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Robert Mattern</masterLabel>
+            <translation><!-- Robert Mattern --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ron Mancinelli</masterLabel>
+            <translation><!-- Ron Mancinelli --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ryan Story</masterLabel>
+            <translation><!-- Ryan Story --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sam Musler</masterLabel>
+            <translation><!-- Sam Musler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sean Rigler</masterLabel>
+            <translation><!-- Sean Rigler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sierra Vielhauer</masterLabel>
+            <translation><!-- Sierra Vielhauer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stephanie Czechowski</masterLabel>
+            <translation><!-- Stephanie Czechowski --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stephanie Shahin</masterLabel>
+            <translation><!-- Stephanie Shahin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Steven Gardner</masterLabel>
+            <translation><!-- Steven Gardner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Susan O&apos;Rourke</masterLabel>
+            <translation><!-- Susan O&apos;Rourke --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tabetha Huling</masterLabel>
+            <translation><!-- Tabetha Huling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Territory Manager</masterLabel>
+            <translation><!-- Territory Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tiffany Mundell</masterLabel>
+            <translation><!-- Tiffany Mundell --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tim Olsen</masterLabel>
+            <translation><!-- Tim Olsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tyler Beresford</masterLabel>
+            <translation><!-- Tyler Beresford --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ignition Count --></label>
+        <name>Ignition_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ignition Max --></label>
+        <name>Ignition_Max__c</name>
+    </fields>
+    <fields>
+        <label><!-- In Business Since --></label>
+        <name>In_Business_Since__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inactive Reason --></label>
+        <name>Inactive_Sub_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incentive --></label>
+        <name>Incentive__c</name>
+        <picklistValues>
+            <masterLabel>Fees</masterLabel>
+            <translation><!-- Fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift Card</masterLabel>
+            <translation><!-- Gift Card --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other/See Notes</masterLabel>
+            <translation><!-- Other/See Notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PMP</masterLabel>
+            <translation><!-- PMP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Referral</masterLabel>
+            <translation><!-- Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport</masterLabel>
+            <translation><!-- Transport --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Industry Association --></label>
+        <name>Industry_Association__c</name>
+        <picklistValues>
+            <masterLabel>NADA</masterLabel>
+            <translation><!-- NADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIADA</masterLabel>
+            <translation><!-- NIADA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ineligible for Marketing Promotions --></label>
+        <name>Ineligible_for_Marketing_Promotions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial Activation Date --></label>
+        <name>Initial_Activation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Notes --></label>
+        <name>Inspection_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insurance Expiration Date --></label>
+        <name>Insurance_Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insured --></label>
+        <name>Insured__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Interests --></label>
+        <name>Interests__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inventory Management System --></label>
+        <name>Inventory_Management_System__c</name>
+        <picklistValues>
+            <masterLabel>Inventory+ (DealerSocket)</masterLabel>
+            <translation><!-- Inventory+ (DealerSocket) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAX Digital / FirstLook</masterLabel>
+            <translation><!-- MAX Digital / FirstLook --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red Bumper (CDK)</masterLabel>
+            <translation><!-- Red Bumper (CDK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>vAuto</masterLabel>
+            <translation><!-- vAuto --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Language Preference --></label>
+        <name>Language_Preference__c</name>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Last 30 Days Bought --></label>
+        <name>Last_30_Days_Bought__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last 30 Days Buy Revenue --></label>
+        <name>Last_30_Days_Buy_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last 30 Days Launched --></label>
+        <name>Last_30_Days_Launched__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last 30 Days Selling Revenue --></label>
+        <name>Last_30_Days_Selling_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last 30 Days Sold --></label>
+        <name>Last_30_Days_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- xLast 90 Days Bought --></label>
+        <name>Last_90_Days_Bought__c</name>
+    </fields>
+    <fields>
+        <label><!-- xLast 90 Days Sold --></label>
+        <name>Last_90_Days_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Activity --></label>
+        <name>Last_Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Bid Date --></label>
+        <name>Last_Bid_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Bought --></label>
+        <name>Last_Bought__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Call Logged --></label>
+        <name>Last_Call_Logged__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Contacted --></label>
+        <name>Last_Contacted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Dealership Activity --></label>
+        <name>Last_Dealership_Activity__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the last time an ignition call was logged in Retention &amp; Ignition --></help>
+        <label><!-- Last Ignition Call --></label>
+        <name>Last_Ignition_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Listed Date --></label>
+        <name>Last_Listed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Listing As Of 11/18/19 --></label>
+        <name>Last_Listing_As_Of_11_18_19__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Retention Call --></label>
+        <name>Last_Retention_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Late Title Fee Eligible --></label>
+        <name>Late_Title_Fee_Eligible__c</name>
+    </fields>
+    <fields>
+        <help><!-- If dealer is charged a late fee, it will only be for auctions that ended on or after this date --></help>
+        <label><!-- Late Title Fee Start Date --></label>
+        <name>Late_Title_Fee_Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Most recent date the Account has been unenrolled in the late fee program --></help>
+        <label><!-- Late Title Fee Unenrollment Date --></label>
+        <name>Late_Title_Fee_Unenrollment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latitude --></label>
+        <name>Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead Convert Status --></label>
+        <name>Lead_Convert_Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Converting</masterLabel>
+            <translation><!-- Converting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eula/Tos Endpoint Failed</masterLabel>
+            <translation><!-- Eula/Tos Endpoint Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Identity Id Endpoint Failed</masterLabel>
+            <translation><!-- Identity Id Endpoint Failed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Legal Address Note --></label>
+        <name>Legal_Address_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal City --></label>
+        <name>Legal_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Country --></label>
+        <name>Legal_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal State --></label>
+        <name>Legal_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Street --></label>
+        <name>Legal_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Zip Code --></label>
+        <name>Legal_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Liability Amount --></label>
+        <name>Liability_Amount__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date License Expires --></help>
+        <label><!-- xLicense Expiration --></label>
+        <name>License_Expiration__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number --></label>
+        <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- License S3 Link --></label>
+        <name>License_S3_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lifetime Arbitration Cost as Buyer --></label>
+        <name>Lifetime_Arbitration_Cost_as_Buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lifetime Arbitration Cost as Seller --></label>
+        <name>Lifetime_Arbitration_Cost_as_Seller__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check if the Account signed the Limited Power of Attorney --></help>
+        <label><!-- Limited Power of Attorney Signed --></label>
+        <name>Limited_Power_of_Attorney_Signed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Listings Last 30 As Of 11/18/19 --></label>
+        <name>Listings_Last_30_As_Of_11_18_19__c</name>
+    </fields>
+    <fields>
+        <label><!-- Live Appraisal Seller --></label>
+        <name>Live_Appraisal_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Longitude --></label>
+        <name>Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lot Sweep Dealer Charge --></label>
+        <name>Lot_Sweep_Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that participation in the Lot Sweep program is ended. --></help>
+        <label><!-- Lot Sweep End Date --></label>
+        <name>Lot_Sweep_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates the date a selling dealership signed up to participate in Lot Sweep. --></help>
+        <label><!-- Lot Sweep Join Date --></label>
+        <name>Lot_Sweep_Join_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates that a selling dealership participates in the Lot Sweep program. --></help>
+        <label><!-- Lot Sweep Participant --></label>
+        <name>Lot_Sweep_Participant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loyal Status --></label>
+        <name>Loyal_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- MC Number --></label>
+        <name>MC_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTD Purchases --></label>
+        <name>MTD_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTD Sales --></label>
+        <name>MTD_Sales__c</name>
+    </fields>
+    <fields>
+        <label><!-- Major Account --></label>
+        <name>Major_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maps Sales Region Name --></label>
+        <name>Maps_Sales_Region_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maps Sales Territory Name --></label>
+        <name>Maps_Sales_Territory_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maps TM Assignment Rule --></label>
+        <name>Maps_TM_Assignment_Rule__c</name>
+        <relationshipLabel><!-- Accounts (Maps TM Assignment Rule) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Maps Territory ID --></label>
+        <name>Maps_Territory_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maps Title Admin Assignment Rule --></label>
+        <name>Maps_Title_Admin_Assignment_Rule__c</name>
+        <relationshipLabel><!-- Accounts (Maps Title Admin Assignment Rule) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Maps Title Consultant Assignment Rule --></label>
+        <name>Maps_Title_Consultant_Assignment_Rule__c</name>
+        <relationshipLabel><!-- Accounts (Maps Title Consultant Assignment Rule) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Maps Title Specialist Assignment Rule --></label>
+        <name>Maps_Title_Specialist_Assignment_Rule__c</name>
+        <relationshipLabel><!-- Accounts (Maps Title Specialist Assignment Rule) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Max Digital Account --></label>
+        <name>Max_Digital_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Digital Business Unit Id --></label>
+        <name>Max_Digital_Business_Unit_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maximum Distance in Miles --></label>
+        <name>Maximum_Miles__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Minimum Distance in Miles from the Dealership to a Physical Independent Auction --></help>
+        <label><!-- Min Dist to Indy Auction Miles --></label>
+        <name>Min_Dist_to_Indy_Auction_Miles__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Minimum Distance in Miles from the Dealership to a Major Physical Auction --></help>
+        <label><!-- Min Dist to Major Auction Miles --></label>
+        <name>Min_Dist_to_Major_Auction_Miles__c</name>
+    </fields>
+    <fields>
+        <help><!-- Difference between last month&apos;s purchases and current month&apos;s purchases --></help>
+        <label><!-- Month over Month Purchase Delta --></label>
+        <name>Month_over_Month_Purchase_Delta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Monthly Buy Opportunity --></label>
+        <name>Monthly_Buy_Opportunity__c</name>
+    </fields>
+    <fields>
+        <label><!-- x_Monthly Buy Percent --></label>
+        <name>Monthly_Buy_Percent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Monthly Sell Opportunity --></label>
+        <name>Monthly_Sell_Opportunity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Months on Platform --></label>
+        <name>Months_on_Platform__c</name>
+    </fields>
+    <fields>
+        <label><!-- My ACV Capital Account --></label>
+        <name>My_ACV_Capital_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- NEXT GEAR --></label>
+        <name>NEXT_GEAR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Netsuite ID --></label>
+        <name>Netsuite_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Action --></label>
+        <name>Next_Action__c</name>
+        <picklistValues>
+            <masterLabel>Duplicate</masterLabel>
+            <translation><!-- Duplicate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executive</masterLabel>
+            <translation><!-- Executive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hold</masterLabel>
+            <translation><!-- Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing</masterLabel>
+            <translation><!-- Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM / RSD</masterLabel>
+            <translation><!-- TM / RSD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- No DOT --></label>
+        <name>No_DOT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non-Compliant Dealer Status --></label>
+        <name>Non_Compliant_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active Bidder</masterLabel>
+            <translation><!-- Active Bidder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dormant Bidder</masterLabel>
+            <translation><!-- Dormant Bidder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Account</masterLabel>
+            <translation><!-- New Account --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Non-Dealer Designation --></label>
+        <name>Non_Dealer_Designation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Not_Active --></label>
+        <name>Not_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- 90 Day RecPrices Seller Accepted --></label>
+        <name>Num_90_Day_RecPrices_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- 90 Day RecPrices Avail to Accept --></label>
+        <name>Num_90_Day_RecPrices_Avail_to_Accept__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Number of Independent Auctions within 100 Miles of the Dealer --></help>
+        <label><!-- Num Indy Auction Within 100 Miles --></label>
+        <name>Num_Indy_Auction_Within_100_Miles__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Number of Major Auctions within 100 Miles of the Dealer --></help>
+        <label><!-- Num Major Auctions Within 100 Miles --></label>
+        <name>Num_Major_Auctions_Within_100_Miles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Num RecPrices Accepted --></label>
+        <name>Num_RecPrices_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Num RecPrices Avail to Accept --></label>
+        <name>Num_RecPrices_Avail_to_Accept__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Times Cancelled by ACV --></label>
+        <name>Number_of_Times_Cancelled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Times Declined --></label>
+        <name>Number_of_Times_Declined__c</name>
+    </fields>
+    <fields>
+        <label><!-- xNumber of Times Failed to Mark PickedUp --></label>
+        <name>Number_of_Times_Failed_to_Mark_Picked_Up__c</name>
+    </fields>
+    <fields>
+        <label><!-- OldTerritory --></label>
+        <name>OldTerritory__c</name>
+        <picklistValues>
+            <masterLabel>Akron, OH</masterLabel>
+            <translation><!-- Akron, OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Albany-Schenectady-Troy, NY</masterLabel>
+            <translation><!-- Albany-Schenectady-Troy, NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Athens, GA</masterLabel>
+            <translation><!-- Athens, GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austin, TX</masterLabel>
+            <translation><!-- Austin, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Baltimore, MD</masterLabel>
+            <translation><!-- Baltimore, MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Binghamton/SW</masterLabel>
+            <translation><!-- Binghamton/SW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Birmingham, AL</masterLabel>
+            <translation><!-- Birmingham, AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Boca Raton, FL</masterLabel>
+            <translation><!-- Boca Raton, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Boston - North, MA</masterLabel>
+            <translation><!-- Boston - North, MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Boston South, MA</masterLabel>
+            <translation><!-- Boston South, MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buffalo, NY</masterLabel>
+            <translation><!-- Buffalo, NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charleston, SC</masterLabel>
+            <translation><!-- Charleston, SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charlotte South, NC</masterLabel>
+            <translation><!-- Charlotte South, NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charlotte, NC</masterLabel>
+            <translation><!-- Charlotte, NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chicago - North, IL</masterLabel>
+            <translation><!-- Chicago - North, IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chicago - South, IL</masterLabel>
+            <translation><!-- Chicago - South, IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cincinnati, OH</masterLabel>
+            <translation><!-- Cincinnati, OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cleveland, OH</masterLabel>
+            <translation><!-- Cleveland, OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colorado Springs, CO</masterLabel>
+            <translation><!-- Colorado Springs, CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Columbus, OH</masterLabel>
+            <translation><!-- Columbus, OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC Metro</masterLabel>
+            <translation><!-- DC Metro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC Metro North</masterLabel>
+            <translation><!-- DC Metro North --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dallas-Fort Worth - East, TX</masterLabel>
+            <translation><!-- Dallas-Fort Worth - East, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dallas-Fort Worth - West, TX</masterLabel>
+            <translation><!-- Dallas-Fort Worth - West, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denver, CO</masterLabel>
+            <translation><!-- Denver, CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Detroit, MI</masterLabel>
+            <translation><!-- Detroit, MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Erie, PA</masterLabel>
+            <translation><!-- Erie, PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fort Collins, CO</masterLabel>
+            <translation><!-- Fort Collins, CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fort Myers, FL</masterLabel>
+            <translation><!-- Fort Myers, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grand Rapids, MI</masterLabel>
+            <translation><!-- Grand Rapids, MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hartford-New Haven, CT</masterLabel>
+            <translation><!-- Hartford-New Haven, CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Houston - North, TX</masterLabel>
+            <translation><!-- Houston - North, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Houston - South, TX</masterLabel>
+            <translation><!-- Houston - South, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indianapolis, IN</masterLabel>
+            <translation><!-- Indianapolis, IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jacksonville, FL</masterLabel>
+            <translation><!-- Jacksonville, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kansas City, MO/KS</masterLabel>
+            <translation><!-- Kansas City, MO/KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Knoxville, TN</masterLabel>
+            <translation><!-- Knoxville, TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Little Rock, AR</masterLabel>
+            <translation><!-- Little Rock, AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Long Island, NY East</masterLabel>
+            <translation><!-- Long Island, NY East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Louisville, KY</masterLabel>
+            <translation><!-- Louisville, KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maine</masterLabel>
+            <translation><!-- Maine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marietta, GA</masterLabel>
+            <translation><!-- Marietta, GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miami North, FL</masterLabel>
+            <translation><!-- Miami North, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ-North</masterLabel>
+            <translation><!-- NJ-North --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ-South</masterLabel>
+            <translation><!-- NJ-South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY- Hudson</masterLabel>
+            <translation><!-- NY- Hudson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY/CT Metro</masterLabel>
+            <translation><!-- NY/CT Metro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nashville, TN</masterLabel>
+            <translation><!-- Nashville, TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Orleans, LA</masterLabel>
+            <translation><!-- New Orleans, LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norfolk-Portsmth-Newpt Nws, VA</masterLabel>
+            <translation><!-- Norfolk-Portsmth-Newpt Nws, VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oklahoma City, OK</masterLabel>
+            <translation><!-- Oklahoma City, OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Orlando, FL</masterLabel>
+            <translation><!-- Orlando, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panhandle</masterLabel>
+            <translation><!-- Panhandle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philadelphia, PA</masterLabel>
+            <translation><!-- Philadelphia, PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pittsburgh, PA</masterLabel>
+            <translation><!-- Pittsburgh, PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Raleigh-Durham, NC</masterLabel>
+            <translation><!-- Raleigh-Durham, NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Richmond-Petersburg, VA</masterLabel>
+            <translation><!-- Richmond-Petersburg, VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Roanoke Valley</masterLabel>
+            <translation><!-- Roanoke Valley --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Roanoke/Lynchburg, VA</masterLabel>
+            <translation><!-- Roanoke/Lynchburg, VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rochester, NY</masterLabel>
+            <translation><!-- Rochester, NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salt Lake City, UT</masterLabel>
+            <translation><!-- Salt Lake City, UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>San Antonio, TX</masterLabel>
+            <translation><!-- San Antonio, TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shreveport, LA</masterLabel>
+            <translation><!-- Shreveport, LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>St Louis, MO</masterLabel>
+            <translation><!-- St Louis, MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Syracuse/Utica/Elmira, NY</masterLabel>
+            <translation><!-- Syracuse/Utica/Elmira, NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tampa-St. Petersburg, FL</masterLabel>
+            <translation><!-- Tampa-St. Petersburg, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toledo, OH</masterLabel>
+            <translation><!-- Toledo, OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tulsa, OK</masterLabel>
+            <translation><!-- Tulsa, OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vermont</masterLabel>
+            <translation><!-- Vermont --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>West Palm Beach, FL</masterLabel>
+            <translation><!-- West Palm Beach, FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wichita, KS</masterLabel>
+            <translation><!-- Wichita, KS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ACV Capital Open Oppty Count --></label>
+        <name>Open_ACV_Capital_Opptys__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization Auto Inc Id --></label>
+        <name>Organization_Auto_Inc_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used in the CreditAPI for account_Id --></help>
+        <label><!-- Organization Credit Id --></label>
+        <name>Organization_Credit_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization Guid --></label>
+        <name>Organization_Guid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Date Joined --></label>
+        <name>Original_Date_Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Ad &amp; Syndication Provider --></label>
+        <name>Other_Ad_Syndication_Provider__c</name>
+    </fields>
+    <fields>
+        <help><!-- If you selected &quot;Other - COVID Related&quot; in the field Reason for Idle, please fill in those details here. --></help>
+        <label><!-- Other COVID Related Idle Reason --></label>
+        <name>Other_COVID__c</name>
+    </fields>
+    <fields>
+        <help><!-- List Other Inventory Management System --></help>
+        <label><!-- Other IMS --></label>
+        <name>Other_IMS__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a text box to describe the current performance status of the account. --></help>
+        <label><!-- Current Performance Status --></label>
+        <name>Other_Idle_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- xOut of Document Compliance --></label>
+        <name>Out_of_Document_Compliance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Providers --></label>
+        <name>Payment_Providers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Type --></label>
+        <name>Payment_Type__c</name>
+        <picklistValues>
+            <masterLabel>ach</masterLabel>
+            <translation><!-- ach --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>check</masterLabel>
+            <translation><!-- check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>none</masterLabel>
+            <translation><!-- none --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Primary Payment Method --></label>
+        <name>Per__c</name>
+        <picklistValues>
+            <masterLabel>ACH</masterLabel>
+            <translation><!-- ACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ADI</masterLabel>
+            <translation><!-- ADI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AFC</masterLabel>
+            <translation><!-- AFC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auto Use</masterLabel>
+            <translation><!-- Auto Use --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AutoBank</masterLabel>
+            <translation><!-- AutoBank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB&amp;T</masterLabel>
+            <translation><!-- BB&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BNC Bank (floor plan)</masterLabel>
+            <translation><!-- BNC Bank (floor plan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOM Harris</masterLabel>
+            <translation><!-- BOM Harris --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank of America</masterLabel>
+            <translation><!-- Bank of America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAR</masterLabel>
+            <translation><!-- CAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carbucks</masterLabel>
+            <translation><!-- Carbucks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chase</masterLabel>
+            <translation><!-- Chase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check</masterLabel>
+            <translation><!-- Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>City Auto Finance</masterLabel>
+            <translation><!-- City Auto Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Preferred</masterLabel>
+            <translation><!-- Dealer Preferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealers Finance</masterLabel>
+            <translation><!-- Dealers Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diamond</masterLabel>
+            <translation><!-- Diamond --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Choice Financial</masterLabel>
+            <translation><!-- First Choice Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flex Plus</masterLabel>
+            <translation><!-- Flex Plus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Xpress</masterLabel>
+            <translation><!-- Floorplan Xpress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greater Kalamazoo Financial Services</masterLabel>
+            <translation><!-- Greater Kalamazoo Financial Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Huntington National Bank</masterLabel>
+            <translation><!-- Huntington National Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyundai Motor Finance</masterLabel>
+            <translation><!-- Hyundai Motor Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCS Floorplan</masterLabel>
+            <translation><!-- KCS Floorplan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keybank</masterLabel>
+            <translation><!-- Keybank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M&amp;T</masterLabel>
+            <translation><!-- M&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macatawa Bank</masterLabel>
+            <translation><!-- Macatawa Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Millennium</masterLabel>
+            <translation><!-- Millennium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NextGear</masterLabel>
+            <translation><!-- NextGear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD Bank</masterLabel>
+            <translation><!-- TD Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Used Car Inc</masterLabel>
+            <translation><!-- Used Car Inc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VAC</masterLabel>
+            <translation><!-- VAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Westlake</masterLabel>
+            <translation><!-- Westlake --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XL Funding</masterLabel>
+            <translation><!-- XL Funding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zipmark</masterLabel>
+            <translation><!-- Zipmark --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- % RecPrices Seller Accepted --></label>
+        <name>Percent_RecPrices_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percentage RecPrices Accepted --></label>
+        <name>Percentage_RecPrices_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit/Resale Number --></label>
+        <name>Permit_Resale_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit Resale S3 Link --></label>
+        <name>Permit_Resale_S3_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pickup Notes --></label>
+        <name>Pickup_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the Stage based on what percentage of the dealer&apos;s monthly potential sell volume they are actually giving to ACV
+50% or higher= Loyal
+30-50% = Trying
+30% or below= At Risk
+Idle if not giving any cars to ACV --></help>
+        <label><!-- Customer Stage Sell --></label>
+        <name>Platform_Status__c</name>
+        <picklistValues>
+            <masterLabel>At Risk</masterLabel>
+            <translation><!-- At Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Idle</masterLabel>
+            <translation><!-- Idle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loyal</masterLabel>
+            <translation><!-- Loyal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registered</masterLabel>
+            <translation><!-- Registered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trying</masterLabel>
+            <translation><!-- Trying --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Currently, it holds the maximum amount of Title late fee we could have potentially charged if there was no cap on the max late fee amount. --></help>
+        <label><!-- Potential Billable Amount --></label>
+        <name>Potential_Billable_Amount__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the total number of cars the Franchise Dealer buys from Wholesale per month (regardless of where they buy them). --></help>
+        <label><!-- Potential Monthly Buy volume --></label>
+        <name>Potential_Monthly_Buy_Volume__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the total number of cars the Franchise Dealer sends to Wholesale per month (regardless of where they send them). --></help>
+        <label><!-- Potential Wholesale Monthly Sell Volume --></label>
+        <name>Potential_Monthly_Sell_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Power of One --></label>
+        <name>Power_of_One__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Run --></label>
+        <name>Preferred_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Seller --></label>
+        <name>Preferred_Seller__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is used to denote transportation account that are preferred acv accounts. If marked true, the transporter will be paid before we receive a BOL. --></help>
+        <label><!-- Preferred Transporter --></label>
+        <name>Preferred_Transporter__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only Payments Managers can edit this field --></help>
+        <label><!-- Preferred Buyer --></label>
+        <name>Preferred_buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact --></label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Vendor Email --></label>
+        <name>Primary_Vendor_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Principal --></label>
+        <name>Principal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prior Action --></label>
+        <name>Prior_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive Work Opt Out --></label>
+        <name>Proactive_Work_Opt_Out__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Close Date Calculation --></label>
+        <name>Proposed_Close_Date_Calculation__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total Purchase Amount Year To Date --></help>
+        <label><!-- Purchase Amount YTD --></label>
+        <name>Purchase_Amount_YTD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Month Purchase --></label>
+        <name>Purchase_Last_Month__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total Purchase Volume Over the last 90 days --></help>
+        <label><!-- Purchase Volume Past 90 Days --></label>
+        <name>Purchase_Volume_Past_90_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Purchases --></label>
+        <name>Purchases_All_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- REFERENCE --></label>
+        <name>REFERENCE__c</name>
+    </fields>
+    <fields>
+        <label><!-- RSD --></label>
+        <name>RSD__c</name>
+        <relationshipLabel><!-- Accounts (RSD) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rate of Travel --></label>
+        <name>Rate_of_Travel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rates Summary --></label>
+        <name>Rates_Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason For Reactivation --></label>
+        <name>Reason_For_Reactivation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Idle --></label>
+        <name>Reason_for_Idle__c</name>
+        <picklistValues>
+            <masterLabel>Business Has Slowed</masterLabel>
+            <translation><!-- Business Has Slowed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealership May Close Permanently</masterLabel>
+            <translation><!-- Dealership May Close Permanently --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Change Whatsoever</masterLabel>
+            <translation><!-- No Change Whatsoever --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other - COVID Related</masterLabel>
+            <translation><!-- Other - COVID Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of Business</masterLabel>
+            <translation><!-- Out of Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporarily Closing Down</masterLabel>
+            <translation><!-- Temporarily Closing Down --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User left company</masterLabel>
+            <translation><!-- User left company --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Recent FTB --></label>
+        <name>Recent_FTB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Referral Code --></label>
+        <name>Referral_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Referral --></label>
+        <name>Referral__c</name>
+        <picklistValues>
+            <masterLabel>Dealer Association</masterLabel>
+            <translation><!-- Dealer Association --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mailer</masterLabel>
+            <translation><!-- Mailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media Coverage</masterLabel>
+            <translation><!-- Media Coverage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone call from ACV representative</masterLabel>
+            <translation><!-- Phone call from ACV representative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Ad</masterLabel>
+            <translation><!-- Print Ad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Referred by Someone</masterLabel>
+            <translation><!-- Referred by Someone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Associate (TM, VCI, Blitz, etc.)</masterLabel>
+            <translation><!-- Sales Associate (TM, VCI, Blitz, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Search engines (Google, Bing, etc.)</masterLabel>
+            <translation><!-- Search engines (Google, Bing, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media Post/Ad (LinkedIn, Facebook)</masterLabel>
+            <translation><!-- Social Media Post/Ad (LinkedIn, Facebook) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tradeshow/Event</masterLabel>
+            <translation><!-- Tradeshow/Event --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Regional Sales Director --></label>
+        <name>Regional_Sales_Director__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered Agent First Name --></label>
+        <name>Registered_Agent_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered Agent Last Name --></label>
+        <name>Registered_Agent_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered Agent --></label>
+        <name>Registered_Agent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered Business Name --></label>
+        <name>Registered_Business_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered --></label>
+        <name>Registered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registration Status --></label>
+        <name>Registration_Status__c</name>
+        <picklistValues>
+            <masterLabel>Client Indicated they Sent Paperwork to ACV</masterLabel>
+            <translation><!-- Client Indicated they Sent Paperwork to ACV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Step 1 – Inactive: Log In Created</masterLabel>
+            <translation><!-- Step 1 – Inactive: Log In Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Step 2 – Inactive: Business Information Complete</masterLabel>
+            <translation><!-- Step 2 – Inactive: Business Information Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Step 3 – Active: Documents Approved</masterLabel>
+            <translation><!-- Step 3 – Active: Documents Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Step 4 – Active: Purchased</masterLabel>
+            <translation><!-- Step 4 – Active: Purchased --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ReportCounter --></label>
+        <name>ReportCounter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Docs Uploaded --></label>
+        <name>Required_Docs_Uploaded__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resale File in Tools --></label>
+        <name>Resale_File_in_Tools__c</name>
+    </fields>
+    <fields>
+        <label><!-- Restrictions --></label>
+        <name>Restrictions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lifetime Retention Count --></label>
+        <name>Retention_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retention Max --></label>
+        <name>Retention_Max__c</name>
+    </fields>
+    <fields>
+        <label><!-- xReviewed By Compliance --></label>
+        <name>Reviewed_By_Compliance__c</name>
+    </fields>
+    <fields>
+        <help><!-- Rolling Average of the past 90 days of Vehicles Sold --></help>
+        <label><!-- Rolling 3 Month Avg --></label>
+        <name>Rolling_3_Month_Avg__c</name>
+    </fields>
+    <fields>
+        <help><!-- Hidden field --></help>
+        <label><!-- RunningUserIsAccountOwner --></label>
+        <name>RunningUserAccount__c</name>
+    </fields>
+    <fields>
+        <label><!-- RunningUserIsISTOwner --></label>
+        <name>RunningUserIsISTOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- SIC --></label>
+        <name>SIC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Last 30 As Of 11/18/19 --></label>
+        <name>Sales_Last_30_As_Of_11_18_19__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Per Month --></label>
+        <name>Sales_Per_Month__c</name>
+        <picklistValues>
+            <masterLabel>Large (200+)</masterLabel>
+            <translation><!-- Large (200+) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium (6-200)</masterLabel>
+            <translation><!-- Medium (6-200) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small (0-5)</masterLabel>
+            <translation><!-- Small (0-5) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Region --></label>
+        <name>Sales_Region_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Territory --></label>
+        <name>Sales_Territory__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Secondary Payment Method --></label>
+        <name>Secondary_Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>ACH</masterLabel>
+            <translation><!-- ACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ADI</masterLabel>
+            <translation><!-- ADI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AFC</masterLabel>
+            <translation><!-- AFC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auto Use</masterLabel>
+            <translation><!-- Auto Use --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AutoBank</masterLabel>
+            <translation><!-- AutoBank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB&amp;T</masterLabel>
+            <translation><!-- BB&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BNC Bank (floor plan)</masterLabel>
+            <translation><!-- BNC Bank (floor plan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOM Harris</masterLabel>
+            <translation><!-- BOM Harris --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank of America</masterLabel>
+            <translation><!-- Bank of America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAR</masterLabel>
+            <translation><!-- CAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carbucks</masterLabel>
+            <translation><!-- Carbucks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chase</masterLabel>
+            <translation><!-- Chase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check</masterLabel>
+            <translation><!-- Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>City Auto Finance</masterLabel>
+            <translation><!-- City Auto Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Preferred</masterLabel>
+            <translation><!-- Dealer Preferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealers Finance</masterLabel>
+            <translation><!-- Dealers Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diamond</masterLabel>
+            <translation><!-- Diamond --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Choice Financial</masterLabel>
+            <translation><!-- First Choice Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flex Plus</masterLabel>
+            <translation><!-- Flex Plus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Xpress</masterLabel>
+            <translation><!-- Floorplan Xpress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greater Kalamazoo Financial Services</masterLabel>
+            <translation><!-- Greater Kalamazoo Financial Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Huntington National Bank</masterLabel>
+            <translation><!-- Huntington National Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyundai Motor Finance</masterLabel>
+            <translation><!-- Hyundai Motor Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCS Floorplan</masterLabel>
+            <translation><!-- KCS Floorplan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keybank</masterLabel>
+            <translation><!-- Keybank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M&amp;T</masterLabel>
+            <translation><!-- M&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macatawa Bank</masterLabel>
+            <translation><!-- Macatawa Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Millennium</masterLabel>
+            <translation><!-- Millennium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NextGear</masterLabel>
+            <translation><!-- NextGear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD Bank</masterLabel>
+            <translation><!-- TD Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Used Car Inc</masterLabel>
+            <translation><!-- Used Car Inc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VAC</masterLabel>
+            <translation><!-- VAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Westlake</masterLabel>
+            <translation><!-- Westlake --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XL Funding</masterLabel>
+            <translation><!-- XL Funding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zipmark</masterLabel>
+            <translation><!-- Zipmark --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Identifies Seller Engagement Level as &quot;Dark&quot;, &quot;Over 15 Units&quot;, &quot;Under 15 Units&quot; within the last 90 days or &quot;Listed Never Sold&quot; --></help>
+        <label><!-- Seller Engagement Level --></label>
+        <name>Seller_Engagement_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller&apos;s Successful Auctions --></label>
+        <name>Seller_s_Successful_Auctions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller&apos;s Total Auctions --></label>
+        <name>Seller_s_Total_Auctions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Territory --></label>
+        <name>Service_Territory__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Set Active Account Check Date --></label>
+        <name>Set_Active_Account_Check_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Set for Deactivation Date --></label>
+        <name>Set_for_Deactivation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Single Titles POC --></label>
+        <name>Single_Titles_POC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sole Proprietorship --></label>
+        <name>Sole_Proprietorship__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Last Activity --></label>
+        <name>Source_Last_Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Specialized States --></label>
+        <name>Specialized_States__c</name>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sq. Footage --></label>
+        <name>Sq_Foot__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sr. Customer Success Advocate --></label>
+        <name>Sr_Customer_Success_Advocate__c</name>
+        <relationshipLabel><!-- Accounts (Sr. Customer Success Advocate) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sr. Title Specialist --></label>
+        <name>Sr_Title_Specialist__c</name>
+        <relationshipLabel><!-- Accounts (Sr. Title Specialist) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standard Rates per Mile --></label>
+        <name>Standard_Rates_per_Mile__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Tax ID Exp Date --></label>
+        <name>State_Tax_ID_Exp_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Tax ID issue Date --></label>
+        <name>State_Tax_ID_issue_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Notes --></label>
+        <name>Status_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>0% complete</masterLabel>
+            <translation><!-- 0% complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100% complete</masterLabel>
+            <translation><!-- 100% complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25% complete</masterLabel>
+            <translation><!-- 25% complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50% complete</masterLabel>
+            <translation><!-- 50% complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75% complete</masterLabel>
+            <translation><!-- 75% complete --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Strategic Account Executive --></label>
+        <name>Strategic_Account_Executive__c</name>
+        <relationshipLabel><!-- Accounts (Strategic Account Executive) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Summary of Operation --></label>
+        <name>Summary_of_Operation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sweetspot distance in miles --></label>
+        <name>Sweetspot_distance_in_miles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sync to Trueframe --></label>
+        <name>Sync_to_Trueframe__c</name>
+    </fields>
+    <fields>
+        <label><!-- Synced to TrueFrame Datetime --></label>
+        <name>Synced_to_TrueFrame_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Synced to TrueFrame --></label>
+        <name>Synced_to_TrueFrame__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only Payments Managers can edit this field, and should also do so in Tools. --></help>
+        <label><!-- T/A Hold Buyer --></label>
+        <name>Ta_hold_buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Federal Tax ID --></label>
+        <name>Tax_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Manager --></label>
+        <name>Territory_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Name --></label>
+        <name>Territory_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory --></label>
+        <name>Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Account --></label>
+        <name>Test_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test_Create_Formula --></label>
+        <name>Test_Create_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Times Delayed Updating Delivery CD --></label>
+        <name>Times_Delayed_Updating_Delivery_CD__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a count of how many times the seller has relisted a vehicle with 4 or more prior failed Auction listings. --></help>
+        <label><!-- Times Seller Has 4 or More Failed Runs --></label>
+        <name>Times_Seller_Has_4_or_More_Failed_Runs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Address --></label>
+        <name>Title_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Hold --></label>
+        <name>Title_Hold__c</name>
+        <picklistValues>
+            <masterLabel>Back in good standing</masterLabel>
+            <translation><!-- Back in good standing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Do Not Send Titles</masterLabel>
+            <translation><!-- Do Not Send Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive, No Hold</masterLabel>
+            <translation><!-- Inactive, No Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Hold</masterLabel>
+            <translation><!-- No Hold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title Mailing Address Note --></label>
+        <name>Title_Mailing_Address_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Mailing City --></label>
+        <name>Title_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Mailing Country --></label>
+        <name>Title_Mailing_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Mailing State --></label>
+        <name>Title_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <help><!-- This address is optional, if it is populated all Titles will be mailed to the Title Mailing address. If it is blank the titles will be mailed to the billing address --></help>
+        <label><!-- Title Mailing Street --></label>
+        <name>Title_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Mailing Zip Code --></label>
+        <name>Title_Mailing_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the Title Specialist Admin that works with the Account --></help>
+        <label><!-- Title Specialist Admin --></label>
+        <name>Title_Specialist_Admin__c</name>
+        <relationshipLabel><!-- Accounts (Title Specialist Admin) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Name of the Title Specialist that works with the Account --></help>
+        <label><!-- Title Specialist --></label>
+        <name>Title_Specialist__c</name>
+        <relationshipLabel><!-- Accounts (Title Specialist) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Titles Priority --></label>
+        <name>Titles_Priority__c</name>
+    </fields>
+    <fields>
+        <help><!-- Top 150 Rank of the dealership, if blank not part of top 150 --></help>
+        <label><!-- Top 150 Rank --></label>
+        <name>Top_150_Rank__c</name>
+    </fields>
+    <fields>
+        <help><!-- It holds the the total amount of unpaid Title late fee. --></help>
+        <label><!-- Total Billable Amount --></label>
+        <name>Total_Billable_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Employees --></label>
+        <name>Total_Employees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Runs the Past 90 Days --></label>
+        <name>Total_Runs_the_Past_90_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Sales --></label>
+        <name>Total_Sales__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Sold the Past 90 Days --></label>
+        <name>Total_Sold_the_Past_90_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Trucks --></label>
+        <name>Total_Trucks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trailer Type --></label>
+        <name>Trailer_Type__c</name>
+        <picklistValues>
+            <masterLabel>1-Car</masterLabel>
+            <translation><!-- 1-Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2-Car</masterLabel>
+            <translation><!-- 2-Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3-Car</masterLabel>
+            <translation><!-- 3-Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4-Car</masterLabel>
+            <translation><!-- 4-Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5+ -Car</masterLabel>
+            <translation><!-- 5+ -Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enclosed</masterLabel>
+            <translation><!-- Enclosed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flatbed</masterLabel>
+            <translation><!-- Flatbed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Winch</masterLabel>
+            <translation><!-- Winch --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Indicates the Primary Dealership Contact that is associated with this account for all transportation related inquiries --></help>
+        <label><!-- Transportation Primary Contact --></label>
+        <lookupFilter>
+            <errorMessage><!-- Please verify that the Contact is a Dealership Contact for this account --></errorMessage>
+        </lookupFilter>
+        <name>Transportation_Primary_Contact__c</name>
+        <relationshipLabel><!-- Accounts (Transportation Primary Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Transporter Run States --></label>
+        <name>Transporter_Run_States__c</name>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PR</masterLabel>
+            <translation><!-- PR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Transporter Type --></label>
+        <name>Transporter_Type__c</name>
+        <picklistValues>
+            <masterLabel>Broker</masterLabel>
+            <translation><!-- Broker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enclosed</masterLabel>
+            <translation><!-- Enclosed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heavy Hauler</masterLabel>
+            <translation><!-- Heavy Hauler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local Transport</masterLabel>
+            <translation><!-- Local Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>National</masterLabel>
+            <translation><!-- National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power Sports</masterLabel>
+            <translation><!-- Power Sports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Route Runner</masterLabel>
+            <translation><!-- Route Runner --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If Checked, the dealership is only using TrueFrame. --></help>
+        <label><!-- TrueFrame Dealership --></label>
+        <name>TrueFrame_Dealership__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Trucks --></label>
+        <name>Type_of_Trucks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website --></label>
+        <name>URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Count of Arb Cases that are both Valid and Unavoidable --></help>
+        <label><!-- Unavoidable &amp; Valid Arb Cases as Seller --></label>
+        <name>Unavoidable_Valid_Arb_Cases_as_Seller__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checked if the Account has unpaid Title Late Fee --></help>
+        <label><!-- Unpaid Title Late Fee --></label>
+        <name>Unpaid_Title_Late_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Locations --></label>
+        <name>Val_Total_Locations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Valid Buyer Arb Cases / Buyer Total Auctions --></help>
+        <label><!-- Valid Arb Rate As Buyer --></label>
+        <name>Valid_Arb_Rate_As_Buyer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Valid Seller Arb Cases / Seller Total Auctions --></help>
+        <label><!-- Valid Arb Rate As Seller --></label>
+        <name>Valid_Arb_Rate_As_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Arbitration Cases as Buyer --></label>
+        <name>Valid_Arbitration_Cases_as_Buyer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Arbitration Cases as Seller --></label>
+        <name>Valid_Arbitration_Cases_as_Seller__c</name>
+    </fields>
+    <fields>
+        <help><!-- Percentage of Cases as Seller that are both Valid and Unavoidable / Total Sold Auctions --></help>
+        <label><!-- Valid &amp; Unavoidable Arb Rate as Seller --></label>
+        <name>Valid_Unavoidable_Arb_Rate_as_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Specialization --></label>
+        <name>Vehicle_Specialization__c</name>
+        <picklistValues>
+            <masterLabel>Car</masterLabel>
+            <translation><!-- Car --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic</masterLabel>
+            <translation><!-- Domestic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign</masterLabel>
+            <translation><!-- Foreign --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other/ See notes</masterLabel>
+            <translation><!-- Other/ See notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Over 20k</masterLabel>
+            <translation><!-- Over 20k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUV</masterLabel>
+            <translation><!-- SUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Truck</masterLabel>
+            <translation><!-- Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under 10k</masterLabel>
+            <translation><!-- Under 10k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under 20k</masterLabel>
+            <translation><!-- Under 20k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under 5k</masterLabel>
+            <translation><!-- Under 5k --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Vehicles Successfully Sold --></label>
+        <name>Vehicles_Successfully_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verified Latitude --></label>
+        <name>Verified_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verified Longitude --></label>
+        <name>Verified_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waive Payment Selection --></label>
+        <name>Waive_Payment_Selection__c</name>
+    </fields>
+    <fields>
+        <label><!-- What value of cars would you like to buy --></label>
+        <name>What_value_of_cars_would_you_like_to_buy__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Sales (Net) --></label>
+        <name>Wholesale_Units_Sold__c</name>
+    </fields>
+    <fields>
+        <help><!-- Reason Dealer Signed up with ACV --></help>
+        <label><!-- Why Did They Sign Up --></label>
+        <name>Why_Did_They_Sign_Up__c</name>
+        <picklistValues>
+            <masterLabel>Association</masterLabel>
+            <translation><!-- Association --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Blitz</masterLabel>
+            <translation><!-- Blitz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>California Dealer Class</masterLabel>
+            <translation><!-- California Dealer Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Referral</masterLabel>
+            <translation><!-- Dealer Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Mailer</masterLabel>
+            <translation><!-- Direct Mailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Referral</masterLabel>
+            <translation><!-- Floorplan Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media Coverage</masterLabel>
+            <translation><!-- Media Coverage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Previous ACV user</masterLabel>
+            <translation><!-- Previous ACV user --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print/Digital Ad</masterLabel>
+            <translation><!-- Print/Digital Ad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Search Engine</masterLabel>
+            <translation><!-- Search Engine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media Post</masterLabel>
+            <translation><!-- Social Media Post --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM</masterLabel>
+            <translation><!-- TM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VCI</masterLabel>
+            <translation><!-- VCI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Website</masterLabel>
+            <translation><!-- Website --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Why Don&apos;t You buy online --></label>
+        <name>Why_Don_t_You_buy_online__c</name>
+    </fields>
+    <fields>
+        <label><!-- 90 Day Sell-Thru Rate --></label>
+        <name>X90_Day_Sell_Thru_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Years at Location --></label>
+        <name>Years_at_Location__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Initial Gift Invitation Create Date --></help>
+        <label><!-- Initial Gift Invitation Create Date --></label>
+        <name>alycecom__Initial_Gift_Invitation_Create_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Initial Gift Invitation Sent Date --></help>
+        <label><!-- Initial Gift Invitation Sent Date --></label>
+        <name>alycecom__Initial_Gift_Invitation_Sent_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Create Date --></help>
+        <label><!-- Most Recent Gift Invitation Create Date --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Create_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Sent Date --></help>
+        <label><!-- Most Recent Gift Invitation Sent Date --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Sent_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Total Gifts Invitations Sent to Account --></help>
+        <label><!-- Total Gifts Invitations Sent to Account --></label>
+        <name>alycecom__Total_Gifts_Invitations_Sent_to_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Phone (cell) --></label>
+        <name>cell__c</name>
+    </fields>
+    <fields>
+        <label><!-- DBA Trade Name --></label>
+        <name>dba_trade_name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Netsuite Email --></label>
+        <name>email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Reference to the Geocode object holding all of mapping information for the record. --></help>
+        <label><!-- Geocode --></label>
+        <name>geopointe__Geocode__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- short-term field for deal doc collection project --></help>
+        <label><!-- Last Buyer Payment Method as of 10.28 --></label>
+        <name>last_buyer_payment_method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Name --></label>
+        <name>legal_name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maps Assignment Rule --></label>
+        <name>maps__AssignmentRule__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- # of Locations --></label>
+        <name>of_Locations__c</name>
+    </fields>
+    <fields>
+        <label><!-- utm_campaign --></label>
+        <name>utm_campaign__c</name>
+    </fields>
+    <fields>
+        <label><!-- utm_content --></label>
+        <name>utm_content__c</name>
+    </fields>
+    <fields>
+        <label><!-- utm_medium --></label>
+        <name>utm_medium__c</name>
+    </fields>
+    <fields>
+        <label><!-- utm_source --></label>
+        <name>utm_source__c</name>
+    </fields>
+    <fields>
+        <label><!-- utm_term --></label>
+        <name>utm_term__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Standard --></label>
+        <name>Standard</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- For Transporter Accounts --></description>
+        <label><!-- Transporters --></label>
+        <name>Transporters</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Third party vendors for use by Titles --></description>
+        <label><!-- Vendor --></label>
+        <name>Vendor</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Watchlist Screening Test --></description>
+        <label><!-- WLS_Test --></label>
+        <name>WLS_Test</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- If Active is changed to true, the Account must have a billing address --></errorMessage>
+        <name>Active_Account_must_have_billing_address</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If Active is set to true, the Account must have a Phone number --></errorMessage>
+        <name>Active_Account_must_have_phone</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Lot Sweep program join date must be entered in the &apos;Lot Sweet Join Date&apos; field. --></errorMessage>
+        <name>Add_Lot_Sweep_Join_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot delete Associated Locations. If you are replacing this with a new address, please use Address Management. If a particular address isn&apos;t being replaced and no longer of use, set the Active to Date/Time. --></errorMessage>
+        <name>Associated_Locations_Deletion_prevention</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be fill. --></errorMessage>
+        <name>Carrier_Insurance_Expiration_Is_Empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Child Account Must have Dealership Id to assign a Parent --></errorMessage>
+        <name>Child_Account_must_be_Dealership</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a DOT number. If the carrier does not have one, you may mark the &quot;No DOT&quot; field as true and make sure the DOT Number field is empty. --></errorMessage>
+        <name>DOT_Number_for_Transporter_Accounts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot create a new Account; pease convert your Lead to an existing one.  If an Account does not already exist, you need to register the Dealer via the app, which will send an Account to Salesforce. --></errorMessage>
+        <name>Disable_Accounts_Allow_Lead_Conversion</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please merge this Lead into an existing Account instead of creating a new Account record --></errorMessage>
+        <name>Disable_Lead_Conversion_to_new_accounts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- EIN Number must be in format of 01-2345678 and must use a valid two digit prefix as described by the IRS, or be a valid SSN number in format of 123-45-6789 --></errorMessage>
+        <name>EIN_Regex</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Since you chose &quot;Other - COVID Related&quot; in the Reason for Idle field, please fill out the field &quot;Other COVID Related Idle Reason&quot;, with those details before saving. --></errorMessage>
+        <name>Fill_In_Covid_Reason_Text_Box</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Insurance is Expired, Carrier Status must be &apos;Inactive.&apos; --></errorMessage>
+        <name>Inactive_If_Insurance_Expired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot deactivate a dealership for this reason. Please reach out to Jason Bodine or Charles Chen to have them validate/process this request --></errorMessage>
+        <name>Inactive_Reason_Selling_Arb_limitations</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In order to mark account inactive, you must select an Inactive reason. --></errorMessage>
+        <name>Inactive_must_have_reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Transporter Accounts can only be created using Lead Conversion. If you are converting a Lead, please check to make sure you have filled out all of the address information, EIN Number, and email. Contact your System Administrator for more help. --></errorMessage>
+        <name>Lead_Conversion_Only_for_Transporter</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill in the FastPass Declined Reason field --></errorMessage>
+        <name>Must_Select_FastPass_Decline_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please list the other Ad &amp; Syndication Provider --></errorMessage>
+        <name>Other_Ad_and_Syndication_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please list the other Inventory Management System used. --></errorMessage>
+        <name>Other_IMS_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Parent Account must be a Valid ACV Dealership with a Dealer ID and be a Standard Account type --></errorMessage>
+        <name>Parent_Account_must_be_Dealership</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Name can not be Updated Manually, please update DBA Trade Name or Legal Name instead --></errorMessage>
+        <name>Prevent_Manual_Change_of_Account_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Saving a Standard Account with a dealership id must have the following fields populated:
+Dealer Type, Legal Name --></errorMessage>
+        <name>Standard_Account_Required_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Federal Tax Id must have a structure of &apos;123456789&apos; or &apos;12-3456789&apos; --></errorMessage>
+        <name>Tax_id_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Active field can only be updated by System Administrators --></errorMessage>
+        <name>Transporter_Account_Deactivation</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Alert_Me --></label>
+        <name>EXPRN__Alert_Me</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Batch_Decisioning --></label>
+        <name>EXPRN__Batch_Decisioning</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Batch_Scoring --></label>
+        <name>EXPRN__Batch_Scoring</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Experian_Search --></label>
+        <name>EXPRN__Experian_Search</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Help --></label>
+        <name>EXPRN__Help</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Linkage --></label>
+        <name>EXPRN__View_Linkage</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Account_in_Gong --></label>
+        <name>Gong__View_Account_in_Gong</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleNews --></label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MA_MapIt_a04j000000Mqzj1AAB --></label>
+        <name>MA_MapIt_a04j000000Mqzj1AAB</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map --></label>
+        <name>geopointe__Map</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_Records_Account --></label>
+        <name>geopointe__Map_Records_Account</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_newWindow --></label>
+        <name>geopointe__Map_newWindow</name>
+    </webLinks>
+    <webLinks>
+        <label>NADA Meeting</label>
+        <name>jiffle__Jifflenow_Meetings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- AdvRouteVisitWindows --></label>
+        <name>maps__AdvRouteVisitWindows</name>
+    </webLinks>
+</CustomObjectTranslation>

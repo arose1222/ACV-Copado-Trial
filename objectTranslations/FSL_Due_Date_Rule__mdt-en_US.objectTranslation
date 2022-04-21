@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FSL Due Date Rule</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FSL Due Date Rules</value>
+    </caseValues>
+    <fields>
+        <help><!-- A comma separated list of worktype external id names to indicate a rule applies to these specific work types only. If left blank, all work types apply. --></help>
+        <label><!-- Applicable Work Types --></label>
+        <name>Applicable_Work_Types__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer Id --></label>
+        <name>Dealer_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Represents the Account&apos;s Dealer Type picklist, a rule listed here would apply to all accounts that have this dealer type --></help>
+        <label><!-- Dealer Type --></label>
+        <name>Dealer_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- # of Business Days in which a Due Date should be after the Earliest Start Date --></help>
+        <label><!-- Due Date Setting --></label>
+        <name>Due_Date_Setting__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is referencing the SF User Id --></help>
+        <label><!-- User Id --></label>
+        <name>User_Id__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

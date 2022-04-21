@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This is the Custom Metadata for Criteria Line Items linking to other Metadata records for conditionality on that record.
+Must be accompanied by a field that indicates the logic equation of the items. (IE - 1 OR 2 AND 3)</description>
+    <fields>
+        <fullName>Badge__c</fullName>
+        <description>Indicates the Badge this criteria is for</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Badge</label>
+        <referenceTo>Badge__mdt</referenceTo>
+        <relationshipLabel>Criteria Line Items</relationshipLabel>
+        <relationshipName>Criteria_Line_Items</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Field_Api_Path__c</fullName>
+        <description>Api path from the Parent object indicated on the Related field</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Api path from the Parent object indicated on the Related field</inlineHelpText>
+        <label>Field Api Path</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <description>Operator to equate</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Operator</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>=</fullName>
+                    <default>true</default>
+                    <label>=</label>
+                </value>
+                <value>
+                    <fullName>!=</fullName>
+                    <default>false</default>
+                    <label>!=</label>
+                </value>
+                <value>
+                    <fullName>&lt;</fullName>
+                    <default>false</default>
+                    <label>&lt;</label>
+                </value>
+                <value>
+                    <fullName>&lt;=</fullName>
+                    <default>false</default>
+                    <label>&lt;=</label>
+                </value>
+                <value>
+                    <fullName>&gt;</fullName>
+                    <default>false</default>
+                    <label>&gt;</label>
+                </value>
+                <value>
+                    <fullName>&gt;=</fullName>
+                    <default>false</default>
+                    <label>&gt;=</label>
+                </value>
+                <value>
+                    <fullName>Contains</fullName>
+                    <default>false</default>
+                    <label>Contains</label>
+                </value>
+                <value>
+                    <fullName>Does Not Contain</fullName>
+                    <default>false</default>
+                    <label>Does Not Contain</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>Value to compare the value in the field to</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Value</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Criteria Line Item</label>
+    <pluralLabel>Criteria Line Items</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Activated, dormant, contact</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ACV Auctions - See What You&apos;ve Been Missing contact</name>
+    <style>none</style>
+    <subject>See What You&apos;ve Been Missing</subject>
+    <textOnly>Come see what you&apos;ve been missing
+
+
+Hey {!Contact.FirstName},
+
+So much has changed with ACV since you first signed up and dealers around the country are starting to notice.   Here’s what has changed:
+
+
+Independent dealerships are buying upwards of 7,000 cars per month
+
+As of May, we are in over 60 markets and growing
+
+Inventory is found from over 1000 miles away on a daily basis
+
+ACV has become the preferred source for independent dealerships across the United States
+
+I will be handling your account, so any questions you may have please don&apos;t hesitate to give me a call and I will be more than happy to help you out. As an incentive to re-introduce you to ACV, we are offering ZERO buy fees on your first purchase.
+
+I look forward to working with you!
+
+Thanks,
+{!Account.IST_Rep__c}
+Business Development Representative
+{!Account.IST_Rep_Phone__c}
+
+Log in Now!
+
+
+640 Ellicott St #108
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Custom Metadata controls the Queue Priority to determine which Queue a Prescreen will go to</description>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <description>Controls the Priority of the Queue. Lower the number, the higher the Priority is</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Lower the number, the higher the Priority is</inlineHelpText>
+        <label>Priority</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>CR Review Queue Priority</label>
+    <listViews>
+        <fullName>All_CR_Review_Queue_s</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Priority__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All CR Review Queue&apos;s</label>
+    </listViews>
+    <pluralLabel>CR Review Queue Priorities</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

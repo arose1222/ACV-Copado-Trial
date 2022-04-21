@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Daily Report to see the progress of the titles team</description>
+    <groupColumn>Case.Number_of_Titles_for_Categories__c</groupColumn>
+    <mappings>
+        <sourceField>RowCount</sourceField>
+        <sourceType>summary</sourceType>
+        <targetField>Snapshot__c.Count__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Case.Number_of_Titles_for_Categories__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Snapshot__c.Titles__c</targetField>
+    </mappings>
+    <name>Titles Daily Report</name>
+    <runningUser>huron@acvauctions.com</runningUser>
+    <sourceReport>Snapshot_Report/SnapshotReportCategories_PeD</sourceReport>
+    <targetObject>Snapshot__c</targetObject>
+</AnalyticSnapshot>

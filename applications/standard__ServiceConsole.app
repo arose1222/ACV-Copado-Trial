@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <consoleConfig>
-        <detailPageRefreshMethod>none</detailPageRefreshMethod>
+        <detailPageRefreshMethod>autoRefresh</detailPageRefreshMethod>
         <keyboardShortcuts>
             <defaultShortcuts>
                 <action>FOCUS_CONSOLE</action>
@@ -157,7 +157,7 @@
         <listPlacement>
             <location>full</location>
         </listPlacement>
-        <listRefreshMethod>none</listRefreshMethod>
+        <listRefreshMethod>refreshList</listRefreshMethod>
     </consoleConfig>
     <defaultLandingTab>standard-home</defaultLandingTab>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
@@ -180,7 +180,67 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
+    <tabs>geopointe__Shape__c</tabs>
+    <tabs>Onboarding__c</tabs>
+    <tabs>Salesforce_Request__c</tabs>
+    <tabs>Hourly_Limit_Log__c</tabs>
+    <tabs>Exception__c</tabs>
+    <tabs>Field_History__c</tabs>
+    <tabs>Email_Notification__c</tabs>
+    <tabs>Email_Notification_Subscription__c</tabs>
+    <tabs>Group__c</tabs>
+    <tabs>Group_Affiliation__c</tabs>
+    <tabs>maps__ShapeLayerGeometry__c</tabs>
+    <tabs>maps__ShapeLayer__c</tabs>
+    <tabs>maps__DebugLog__c</tabs>
+    <tabs>Inventory_Life_Cycle__c</tabs>
+    <tabs>Opportunity_Stage_History__c</tabs>
     <workspaceConfig>
+        <mappings>
+            <tab>Email_Notification_Subscription__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Email_Notification__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Exception__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Field_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Group_Affiliation__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Group__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Hourly_Limit_Log__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Inventory_Life_Cycle__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Onboarding__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Opportunity_Stage_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Salesforce_Request__c</tab>
+        </mappings>
+        <mappings>
+            <tab>geopointe__Shape__c</tab>
+        </mappings>
+        <mappings>
+            <tab>maps__DebugLog__c</tab>
+        </mappings>
+        <mappings>
+            <tab>maps__ShapeLayerGeometry__c</tab>
+        </mappings>
+        <mappings>
+            <tab>maps__ShapeLayer__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

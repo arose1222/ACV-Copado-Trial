@@ -1,0 +1,48 @@
+<template>
+    <article class="slds-card" if:true={uploaderFlag}>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large">
+            <thead>
+                <tr class="slds-text-title_caps"><th colspan="2"><div class="slds-truncate">Assignment Manager Mass Uploader</div></th></tr>
+            </thead>
+            <template if:true={showLoadingSpinner}>
+                <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+            </template>
+            <tr>
+                <td>
+                    <lightning-input style="display:inline;" class="slds-float_left" type="file" label="CSV File Uploader" accept=".csv" onchange={handleFileChange}></lightning-input>
+                    <template if:true={showTemplateDownloadButton}>
+                            <lightning-button style="display:inline;" class="slds-float_right slds-p-top_large" label="Download Template" title="Download action" icon-name="utility:download" onclick={handleDownloadTemplateClick}></lightning-button>
+                    </template>
+                    <br/>
+                    <div data-id="fileNameDiv" style="display:none;">
+                        <lightning-badge label={filename}></lightning-badge>
+                        <br/>
+                        <br/>
+                    </div>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td>
+                    <div>
+                    <c-lookup selection={initialSelection} errors={errors}
+                        onsearch={handleAccountLookup} onselectionchange={handleUploaderSelectionChangeforAccount}
+                        label="" name="Find Account" class="account" placeholder="Find Account">
+                    </c-lookup>
+                    <br/>
+                    </div>
+                </td>
+            </tr> -->
+            <tr>
+                <td>
+                    <div>
+                        <lightning-combobox value={inspectiontype} placeholder='--Inspection Type--' options={options} name='type' onchange={handleTypeChange}></lightning-combobox>
+                        <br/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="slds-card__body slds-card__body_inner">
+            <lightning-button icon-name="utility:add" label="Save" onclick={handleSave} variant="neutral" disabled={isTrue}></lightning-button>
+        </div>
+    </article>
+</template>

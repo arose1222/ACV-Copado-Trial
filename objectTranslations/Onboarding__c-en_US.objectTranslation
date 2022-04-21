@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Onboarding</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Onboarding</value>
+    </caseValues>
+    <fields>
+        <label><!-- ACV Contacts --></label>
+        <name>ACV_Contacts__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Transport --></label>
+        <name>ACV_Transport__c</name>
+    </fields>
+    <fields>
+        <label><!-- AVP/RSD/TM/CSM --></label>
+        <name>AVP_RSD_TM_CSM__c</name>
+        <picklistValues>
+            <masterLabel>AVP</masterLabel>
+            <translation><!-- AVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All CSMs</masterLabel>
+            <translation><!-- All CSMs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSD</masterLabel>
+            <translation><!-- RSD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM</masterLabel>
+            <translation><!-- TM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account Name --></label>
+        <name>Account_Name__c</name>
+        <relationshipLabel><!-- Onboarding --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Account Setup Complete --></label>
+        <name>Account_Setup_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Comments --></label>
+        <name>Additional_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Title Notes --></label>
+        <name>Additional_Title_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Transportation Notes --></label>
+        <name>Additional_Transportation_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Information --></label>
+        <name>Address_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- XAll Time Purchases --></label>
+        <name>All_Time_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- XAll Time Sold --></label>
+        <name>All_Time_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- All time purchases --></label>
+        <name>All_time_purchases_number__c</name>
+    </fields>
+    <fields>
+        <label><!-- All time sold --></label>
+        <name>All_time_sold_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved to Sell Title --></label>
+        <name>Approved_to_Sell_Title__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is populated if an arbitration case was involved during the onboarding process --></help>
+        <label><!-- Arbitration Case --></label>
+        <name>Arbitration_Case__c</name>
+        <relationshipLabel><!-- Onboarding --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Outcome --></label>
+        <name>Arbitration_Outcome__c</name>
+        <picklistValues>
+            <masterLabel>Arb Approved</masterLabel>
+            <translation><!-- Arb Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arb Denied</masterLabel>
+            <translation><!-- Arb Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Handled</masterLabel>
+            <translation><!-- Customer Handled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IST Handled</masterLabel>
+            <translation><!-- IST Handled --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Arbitration Window &amp; Policy Sent --></label>
+        <name>Arbitration_Window_Reminder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assignment Preference --></label>
+        <name>Assignment_Preference__c</name>
+        <picklistValues>
+            <masterLabel>ACV Generated</masterLabel>
+            <translation><!-- ACV Generated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>API</masterLabel>
+            <translation><!-- API --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CSV</masterLabel>
+            <translation><!-- CSV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upload</masterLabel>
+            <translation><!-- Upload --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Auction Create Date Time --></label>
+        <name>Auction_Create_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Email Sent? --></label>
+        <name>Auction_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTB Auction ID --></label>
+        <name>Auction_ID__c</name>
+        <relationshipLabel><!-- Onboarding --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Auction Link --></label>
+        <name>Auction_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Services Offered --></label>
+        <name>Auction_Services_Offered__c</name>
+    </fields>
+    <fields>
+        <label><!-- BDR --></label>
+        <name>BDR__c</name>
+        <relationshipLabel><!-- Onboarding (BDR) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BDR --></label>
+        <name>BDR_owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blue Light Auction --></label>
+        <name>Blue_Light_Auction__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Bought in 30 Days --></label>
+        <name>Bought_in_30_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cell Phone --></label>
+        <name>Cell_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Communication Preference --></label>
+        <name>Communication_Preference__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Contact Information --></label>
+        <name>Contact_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Signed --></label>
+        <name>Contract_Signed__c</name>
+    </fields>
+    <fields>
+        <label><!-- DBA --></label>
+        <name>DBA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Completed --></label>
+        <name>Date_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Customer Received Title --></label>
+        <name>Date_Customer_Received_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Joined --></label>
+        <name>Date_Joined_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- XDate Joined --></label>
+        <name>Date_Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Arbitration Window Reminder --></label>
+        <name>Date_Time_Arbitration_Window_Reminder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Delivered --></label>
+        <name>Date_Time_Delivered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Payment Cleared --></label>
+        <name>Date_Time_Payment_Cleared__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Recommendation --></label>
+        <name>Date_Time_Recommendation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Slips Sent --></label>
+        <name>Date_Time_Slips_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Title Received at ACV --></label>
+        <name>Date_Time_Title_Received_ACV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Title Sent to Customer --></label>
+        <name>Date_Time_Title_Sent_to_Customer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Transportation --></label>
+        <name>Date_Time_Transportation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Vehicle as Expected --></label>
+        <name>Date_Time_Vehicle_as_Expected__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of FTB --></label>
+        <name>Date_of_FTB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Kick Off Meeting --></label>
+        <name>Date_of_Kick_Off_Meeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Hand Off --></label>
+        <name>Date_of_hand_off__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealership ID --></label>
+        <name>Dealership_ID_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- XDealership ID --></label>
+        <name>Dealership_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Received --></label>
+        <name>Delivered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Demo Given --></label>
+        <name>Demo_Given__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fast Pass Opt-in --></label>
+        <name>Fast_Pass_Opt_in_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fast Pass Opt-in --></label>
+        <name>Fast_Pass_Opt_in__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Schedule --></label>
+        <name>Fee_Schedule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floorplan --></label>
+        <name>Floorplan__c</name>
+        <picklistValues>
+            <masterLabel>ADI</masterLabel>
+            <translation><!-- ADI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AFC</masterLabel>
+            <translation><!-- AFC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assembly Pay</masterLabel>
+            <translation><!-- Assembly Pay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auto Use</masterLabel>
+            <translation><!-- Auto Use --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AutoBank</masterLabel>
+            <translation><!-- AutoBank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB&amp;T</masterLabel>
+            <translation><!-- BB&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BMO Harris</masterLabel>
+            <translation><!-- BMO Harris --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BNC Bank (floor plan)</masterLabel>
+            <translation><!-- BNC Bank (floor plan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank of America</masterLabel>
+            <translation><!-- Bank of America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAR</masterLabel>
+            <translation><!-- CAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carbucks</masterLabel>
+            <translation><!-- Carbucks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chase</masterLabel>
+            <translation><!-- Chase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>City Auto Finance</masterLabel>
+            <translation><!-- City Auto Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Preferred</masterLabel>
+            <translation><!-- Dealer Preferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealers Finance</masterLabel>
+            <translation><!-- Dealers Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diamond</masterLabel>
+            <translation><!-- Diamond --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Choice Financial</masterLabel>
+            <translation><!-- First Choice Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flex Plus</masterLabel>
+            <translation><!-- Flex Plus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Xpress</masterLabel>
+            <translation><!-- Floorplan Xpress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greater Kalamazoo Financial Services</masterLabel>
+            <translation><!-- Greater Kalamazoo Financial Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Huntington National Bank</masterLabel>
+            <translation><!-- Huntington National Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyundai Motor Finance</masterLabel>
+            <translation><!-- Hyundai Motor Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCS Floorplan</masterLabel>
+            <translation><!-- KCS Floorplan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KeyBank</masterLabel>
+            <translation><!-- KeyBank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M&amp;T</masterLabel>
+            <translation><!-- M&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macatawa Bank</masterLabel>
+            <translation><!-- Macatawa Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Millennium</masterLabel>
+            <translation><!-- Millennium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NextGear</masterLabel>
+            <translation><!-- NextGear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niagara Car &amp; Truck</masterLabel>
+            <translation><!-- Niagara Car &amp; Truck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD Bank</masterLabel>
+            <translation><!-- TD Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Used Car Inc</masterLabel>
+            <translation><!-- Used Car Inc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VAC</masterLabel>
+            <translation><!-- VAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Westlake</masterLabel>
+            <translation><!-- Westlake --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XL Funding</masterLabel>
+            <translation><!-- XL Funding --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Handoff To --></label>
+        <name>Handoff_To__c</name>
+        <relationshipLabel><!-- Onboarding (Handoff To) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select this box if this account needs greater visibility due to have a high monthly buy or sell potential --></help>
+        <label><!-- High Potential Account --></label>
+        <name>High_Potential_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Manager --></label>
+        <name>IST_Account_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Rep Email --></label>
+        <name>IST_Account_Rep_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inbound ACV Transport --></label>
+        <name>Inbound_ACV_Transport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Launch Preference --></label>
+        <name>Launch_Preference__c</name>
+        <picklistValues>
+            <masterLabel>CSM</masterLabel>
+            <translation><!-- CSM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Client</masterLabel>
+            <translation><!-- Client --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM</masterLabel>
+            <translation><!-- TM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VCI</masterLabel>
+            <translation><!-- VCI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Legal Name --></label>
+        <name>Legal_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lot Contact --></label>
+        <name>Lot_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Onboarding Demo By --></label>
+        <name>Onboarding_Demo_By__c</name>
+        <picklistValues>
+            <masterLabel>BDR</masterLabel>
+            <translation><!-- BDR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer declined: OBS sent key takeaways email</masterLabel>
+            <translation><!-- Customer declined: OBS sent key takeaways email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OBS</masterLabel>
+            <translation><!-- OBS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- When checked, the onboarding team acknowledges that they have received and reviewed documents before they move the account to a final home with an AM or AR. --></help>
+        <label><!-- Registration Docs Reviewed --></label>
+        <name>Onboarding_Docs_Reviewed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Reason Not as Expected --></label>
+        <name>Other_Reason_Not_as_Expected__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Cleared --></label>
+        <name>Payment_Cleared__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Contact --></label>
+        <name>Payment_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>ACH</masterLabel>
+            <translation><!-- ACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check</masterLabel>
+            <translation><!-- Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan</masterLabel>
+            <translation><!-- Floorplan --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pickup Rules --></label>
+        <name>Pickup_Rules__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Payment Method --></label>
+        <name>Preferred_Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>ACH</masterLabel>
+            <translation><!-- ACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check</masterLabel>
+            <translation><!-- Check --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Preferred Seller --></label>
+        <name>Preferred_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pricing Recommendations --></label>
+        <name>Pricing_Recommendations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Projected Launch Date --></label>
+        <name>Projected_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Projected Monthly Volume --></label>
+        <name>Projected_Monthly_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Not as Expected --></label>
+        <name>Reason_Not_as_Expected__c</name>
+        <picklistValues>
+            <masterLabel>Cosmetic</masterLabel>
+            <translation><!-- Cosmetic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Frame &amp; Unibody</masterLabel>
+            <translation><!-- Frame &amp; Unibody --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Recommendation --></label>
+        <name>Recommendation__c</name>
+        <picklistValues>
+            <masterLabel>AD</masterLabel>
+            <translation><!-- AD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AM</masterLabel>
+            <translation><!-- AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactivate</masterLabel>
+            <translation><!-- Inactivate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior AM</masterLabel>
+            <translation><!-- Senior AM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reporting Requirements --></label>
+        <name>Reporting_Requirements__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requirements --></label>
+        <name>Requirements__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run List Approved --></label>
+        <name>Run_List_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLAs --></label>
+        <name>SLAs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pickup Slips Sent --></label>
+        <name>Slips_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Strategic Account Manager --></label>
+        <name>Strategic_Account_Manager__c</name>
+        <relationshipLabel><!-- Onboarding (Strategic Account Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TM Notes --></label>
+        <name>TM_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Manager --></label>
+        <name>Territory_Manager_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- This comes from the Account object Territory Manager field which may not be regularly maintained. The Account Owner field should also hold the Territory Manager. --></help>
+        <label><!-- XTerritory Manager --></label>
+        <name>Territory_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory --></label>
+        <name>Territory_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- This comes from the Account object Territory field which may not be regularly maintained. --></help>
+        <label><!-- XTerritory --></label>
+        <name>Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Contact --></label>
+        <name>Title_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Present to Sell --></label>
+        <name>Title_Present_to_Sell__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Received at ACV --></label>
+        <name>Title_Received_at_ACV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Sent to Customer --></label>
+        <name>Title_Sent_to_Customer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Type --></label>
+        <name>Title_Type__c</name>
+        <picklistValues>
+            <masterLabel>Branded Title</masterLabel>
+            <translation><!-- Branded Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MSO</masterLabel>
+            <translation><!-- MSO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Previous Canadian</masterLabel>
+            <translation><!-- Previous Canadian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repo Papers</masterLabel>
+            <translation><!-- Repo Papers --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Past Due</masterLabel>
+            <translation><!-- Past Due --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Transportation --></label>
+        <name>Transportation__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Type --></label>
+        <name>Vehicle_Type__c</name>
+        <picklistValues>
+            <masterLabel>3rd party remarketers</masterLabel>
+            <translation><!-- 3rd party remarketers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank</masterLabel>
+            <translation><!-- Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleet</masterLabel>
+            <translation><!-- Fleet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Importer</masterLabel>
+            <translation><!-- Importer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent Auction</masterLabel>
+            <translation><!-- Independent Auction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Dealer</masterLabel>
+            <translation><!-- Non-Dealer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OEM</masterLabel>
+            <translation><!-- OEM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off Lease</masterLabel>
+            <translation><!-- Off Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental</masterLabel>
+            <translation><!-- Rental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repo</masterLabel>
+            <translation><!-- Repo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If this is left unchecked Reason not as expected should be populated --></help>
+        <label><!-- Vehicle as Expected --></label>
+        <name>Vehicle_as_Expected__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 3rd Party Grounding Location --></label>
+        <name>X3rd_Party_Grounding_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Days with Onboarding --></label>
+        <name>of_Days_with_Onboarding__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of days from Completed to Hand Off --></label>
+        <name>of_days_from_Completed_to_Hand_Off__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Dealer --></label>
+        <name>Dealer</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Fleet/Lease --></label>
+        <name>Fleet_Lease</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- FTB cannot be modified if  the status is Completed --></errorMessage>
+        <name>Cannot_modify_FTB_Acution</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must review all documents and check off &apos;Registration Docs Reviewed&apos; before marking the record as Completed. --></errorMessage>
+        <name>Docs_must_be_reviewed_to_be_complete</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date of Handoff must be completed.  Contact your Salesforce administrator with any questions. --></errorMessage>
+        <name>Handoff_Date_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reason not as expected of &quot;Other&quot; requires the Other Reason expected field to be populated --></errorMessage>
+        <name>Require_Other_Reason_not_as_expected</name>
+    </validationRules>
+</CustomObjectTranslation>

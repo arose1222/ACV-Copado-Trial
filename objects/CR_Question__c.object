@@ -1,0 +1,1825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Condition_Report_Prescreen__c</fullName>
+        <businessStatus>Active</businessStatus>
+        <externalId>false</externalId>
+        <label>Condition Report Prescreen</label>
+        <referenceTo>Condition_Report_Prescreen__c</referenceTo>
+        <relationshipLabel>CR Questions</relationshipLabel>
+        <relationshipName>CR_Questions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Invalid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For Arbitration team to review of Auxiliary questions</description>
+        <externalId>false</externalId>
+        <label>Invalid</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Question_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Both Fog Lamps</fullName>
+                    <default>false</default>
+                    <label>Both Fog Lamps</label>
+                </value>
+                <value>
+                    <fullName>Both Headlamps</fullName>
+                    <default>false</default>
+                    <label>Both Headlamps</label>
+                </value>
+                <value>
+                    <fullName>Both Tail Lights</fullName>
+                    <default>false</default>
+                    <label>Both Tail Lights</label>
+                </value>
+                <value>
+                    <fullName>Center Front</fullName>
+                    <default>false</default>
+                    <label>Center Front</label>
+                </value>
+                <value>
+                    <fullName>Center Rear</fullName>
+                    <default>false</default>
+                    <label>Center Rear</label>
+                </value>
+                <value>
+                    <fullName>Convertible Top</fullName>
+                    <default>false</default>
+                    <label>Convertible Top</label>
+                </value>
+                <value>
+                    <fullName>Driver Fender</fullName>
+                    <default>false</default>
+                    <label>Driver Fender</label>
+                </value>
+                <value>
+                    <fullName>Driver Fog Lamp</fullName>
+                    <default>false</default>
+                    <label>Driver Fog Lamp</label>
+                </value>
+                <value>
+                    <fullName>Driver Front Door</fullName>
+                    <default>false</default>
+                    <label>Driver Front Door</label>
+                </value>
+                <value>
+                    <fullName>Driver Headlamp</fullName>
+                    <default>false</default>
+                    <label>Driver Headlamp</label>
+                </value>
+                <value>
+                    <fullName>Driver Rear Door</fullName>
+                    <default>false</default>
+                    <label>Driver Rear Door</label>
+                </value>
+                <value>
+                    <fullName>Driver Rear Quarter Panel</fullName>
+                    <default>false</default>
+                    <label>Driver Rear Quarter Panel</label>
+                </value>
+                <value>
+                    <fullName>Driver Rocker</fullName>
+                    <default>false</default>
+                    <label>Driver Rocker</label>
+                </value>
+                <value>
+                    <fullName>Driver Tail Light</fullName>
+                    <default>false</default>
+                    <label>Driver Tail Light</label>
+                </value>
+                <value>
+                    <fullName>Front Bumper</fullName>
+                    <default>false</default>
+                    <label>Front Bumper</label>
+                </value>
+                <value>
+                    <fullName>Front Windshield</fullName>
+                    <default>false</default>
+                    <label>Front Windshield</label>
+                </value>
+                <value>
+                    <fullName>Hood</fullName>
+                    <default>false</default>
+                    <label>Hood</label>
+                </value>
+                <value>
+                    <fullName>Left Fog Light</fullName>
+                    <default>false</default>
+                    <label>Left Fog Light</label>
+                </value>
+                <value>
+                    <fullName>Left Front</fullName>
+                    <default>false</default>
+                    <label>Left Front</label>
+                </value>
+                <value>
+                    <fullName>Left Front Door</fullName>
+                    <default>false</default>
+                    <label>Left Front Door</label>
+                </value>
+                <value>
+                    <fullName>Left Headlight</fullName>
+                    <default>false</default>
+                    <label>Left Headlight</label>
+                </value>
+                <value>
+                    <fullName>Left Rear</fullName>
+                    <default>false</default>
+                    <label>Left Rear</label>
+                </value>
+                <value>
+                    <fullName>Left Rear Door</fullName>
+                    <default>false</default>
+                    <label>Left Rear Door</label>
+                </value>
+                <value>
+                    <fullName>Marker Light</fullName>
+                    <default>false</default>
+                    <label>Marker Light</label>
+                </value>
+                <value>
+                    <fullName>Missing parking sensors</fullName>
+                    <default>false</default>
+                    <label>Missing parking sensors</label>
+                </value>
+                <value>
+                    <fullName>Missing tow hook cover(s)</fullName>
+                    <default>false</default>
+                    <label>Missing tow hook cover(s)</label>
+                </value>
+                <value>
+                    <fullName>Moon Roof</fullName>
+                    <default>false</default>
+                    <label>Moon Roof</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Passenger Fender</fullName>
+                    <default>false</default>
+                    <label>Passenger Fender</label>
+                </value>
+                <value>
+                    <fullName>Passenger Fog Lamp</fullName>
+                    <default>false</default>
+                    <label>Passenger Fog Lamp</label>
+                </value>
+                <value>
+                    <fullName>Passenger Front Door</fullName>
+                    <default>false</default>
+                    <label>Passenger Front Door</label>
+                </value>
+                <value>
+                    <fullName>Passenger Headlamp</fullName>
+                    <default>false</default>
+                    <label>Passenger Headlamp</label>
+                </value>
+                <value>
+                    <fullName>Passenger Rear Door</fullName>
+                    <default>false</default>
+                    <label>Passenger Rear Door</label>
+                </value>
+                <value>
+                    <fullName>Passenger Rear Quarter Panel</fullName>
+                    <default>false</default>
+                    <label>Passenger Rear Quarter Panel</label>
+                </value>
+                <value>
+                    <fullName>Passenger Rocker</fullName>
+                    <default>false</default>
+                    <label>Passenger Rocker</label>
+                </value>
+                <value>
+                    <fullName>Passenger Tail Light</fullName>
+                    <default>false</default>
+                    <label>Passenger Tail Light</label>
+                </value>
+                <value>
+                    <fullName>Rear Bumper</fullName>
+                    <default>false</default>
+                    <label>Rear Bumper</label>
+                </value>
+                <value>
+                    <fullName>Rear Hatch/Trunk</fullName>
+                    <default>false</default>
+                    <label>Rear Hatch/Trunk</label>
+                </value>
+                <value>
+                    <fullName>Rear Windshield</fullName>
+                    <default>false</default>
+                    <label>Rear Windshield</label>
+                </value>
+                <value>
+                    <fullName>Right Fog Light</fullName>
+                    <default>false</default>
+                    <label>Right Fog Light</label>
+                </value>
+                <value>
+                    <fullName>Right Front</fullName>
+                    <default>false</default>
+                    <label>Right Front</label>
+                </value>
+                <value>
+                    <fullName>Right Front Door</fullName>
+                    <default>false</default>
+                    <label>Right Front Door</label>
+                </value>
+                <value>
+                    <fullName>Right Headlight</fullName>
+                    <default>false</default>
+                    <label>Right Headlight</label>
+                </value>
+                <value>
+                    <fullName>Right Rear</fullName>
+                    <default>false</default>
+                    <label>Right Rear</label>
+                </value>
+                <value>
+                    <fullName>Right Rear Door</fullName>
+                    <default>false</default>
+                    <label>Right Rear Door</label>
+                </value>
+                <value>
+                    <fullName>Roof</fullName>
+                    <default>false</default>
+                    <label>Roof</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Both Fog Lamps</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Both Headlamps</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Both Tail Lights</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Fog Lamp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Driver Headlamp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Driver Tail Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Front Bumper</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Marker Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Missing parking sensors</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Missing tow hook cover(s)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Passenger Fog Lamp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Passenger Headlamp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Passenger Tail Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Rear Bumper</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Convertible Top</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Fender</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Front Door</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Rear Door</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Rear Quarter Panel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Driver Rocker</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Hood</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Passenger Fender</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Passenger Front Door</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Passenger Rear Door</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Passenger Rear Quarter Panel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Passenger Rocker</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Rear Hatch/Trunk</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Roof</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Question_Notes_Photos__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Notes</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Question_Sub_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Sub-Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Question_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Question_Sub_Type</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Branded Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>CA DMV Fees</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Front Line Vehicle</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Mobility</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Off Lease Vehicle</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Possible Flood Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Repair Order Attached</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Repossession Papers Without Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Repossession Papers With Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>Title Absent (30 Days)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title &amp; History</controllingFieldValue>
+                <valueName>True Mileage Unknown</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Bad Amp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Mileage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Missing Amp</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Spelling error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Trim</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vehicle</controllingFieldValue>
+                <valueName>Vin</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Categorization Question</controllingFieldValue>
+                <valueName>Incorrect Categorization</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Photo Issue</controllingFieldValue>
+                <valueName>Blurry</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Photo Issue</controllingFieldValue>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Misaligned</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Photo Issue</controllingFieldValue>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Missing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Photo Issue</controllingFieldValue>
+                <valueName>Obstructed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Cracked</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Damaged</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Dented</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Light Out</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Mismatched Colors (Bumpers)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Oxidized</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Rusted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bumpers/Lights</controllingFieldValue>
+                <valueName>Scratched</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Aftermarket Parts - Exterior</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Glass Damaged/Cracked</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Hail Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Lights Damaged/Cracked</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Major Body Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Major Body Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Minor Body Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Minor Body Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Mismatched Paint Colors</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Moderate Body Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Moderate Body Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Paint Meter Readings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Poor Quality Repairs</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Previous Paint Work</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior</controllingFieldValue>
+                <valueName>Scratches</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Frame &amp; Unibody</controllingFieldValue>
+                <valueName>Penetrating Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Frame &amp; Unibody</controllingFieldValue>
+                <valueName>Structural Announcements</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Frame &amp; Unibody</controllingFieldValue>
+                <valueName>Undercarriage Heavy Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Frame &amp; Unibody</controllingFieldValue>
+                <valueName>Undercarriage Surface Rust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Abnormal Smoke from Exhaust</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Aftermarket Parts - Mechanical</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Catalytic Converters Missing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Emissions Modifications</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Accessory Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Cranks, Does Not Start</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Does Not Crank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Does Not Stay Running</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Has Abnormal Noise</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Engine Runs Rough/Hesitation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Exhaust Modifications</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Exhaust Noise</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Fluid Leaks</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Head Gasket Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Jump Start Required</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Oil/Coolant Intermix on Dipstick</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Suspension Modifications</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Mechanicals</controllingFieldValue>
+                <valueName>Timing Chain/Camshaft Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>4x4 / 4WD / Drivetrain Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Brake Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Steering Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Suspension Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Transmission Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Driveability</controllingFieldValue>
+                <valueName>Vehicle INOP (Does Not Move)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Airbag Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Battery/Charging Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Brake/ABS Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Check Engine Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Incomplete Readiness Monitors</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>OBDII Codes</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Other Warning Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>TPMS Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Warning Lights</controllingFieldValue>
+                <valueName>Traction Control Light</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Aftermarket Stereo Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Airbag Deployed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Carpet Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Crank Windows</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Electronics Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Five Digit Odometer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Headliner Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Interior Odor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Interior Trim Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Leather or Leather Type Seats</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Navigation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Not Equipped with Factory A/C</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Seat Damage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Interior</controllingFieldValue>
+                <valueName>Sunroof</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Aftermarket Rims / Tires</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Damaged Tires</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Damaged Wheels</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Incorrectly Sized Tires</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Mismatched Tires</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Missing Spare Tire and / or Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Tire Measurements</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Wheels &amp; Tires</controllingFieldValue>
+                <valueName>Uneven Tread Wear</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Mismatched Colors (Not Bumpers)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Exterior Cosmetic</controllingFieldValue>
+                <valueName>Oxidized/Paint peeling</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Question_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Question_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <label>CR Question</label>
+    <nameField>
+        <displayFormat>CRQ-{0000}</displayFormat>
+        <label>CR Questions Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CR Questions</pluralLabel>
+    <recordTypes>
+        <fullName>Auxiliary</fullName>
+        <active>true</active>
+        <description>Questions strictly for Auxiliary team Action</description>
+        <label>Auxiliary</label>
+        <picklistValues>
+            <picklist>Location__c</picklist>
+            <values>
+                <fullName>Both Fog Lamps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Both Headlamps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Both Tail Lights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Center Front</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Center Rear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convertible Top</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Fender</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Fog Lamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Front Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Headlamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Rear Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Rear Quarter Panel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Rocker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Tail Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Front Bumper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Front Windshield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hood</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Fog Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Front</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Front Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Headlight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Rear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Rear Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marker Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing parking sensors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing tow hook cover%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moon Roof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Fender</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Fog Lamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Front Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Headlamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Rear Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Rear Quarter Panel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Rocker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passenger Tail Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Bumper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Hatch%2FTrunk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Windshield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Fog Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Front</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Front Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Headlight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Rear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Rear Door</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Roof</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Question_Sub_Type__c</picklist>
+            <values>
+                <fullName>Automatic Shifter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blurry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broken</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalytic Converters Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chipped</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cracked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foggy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gouged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hail Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Light Out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual Shifter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Misaligned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mismatched Colors %28Bumpers%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mismatched Colors %28Not Bumpers%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Obstructed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oxidized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oxidized%2FPaint peeling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible Flood Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repossession Papers With Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repossession Papers Without Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rusted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratched</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratches</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scuffed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunroof</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Question_Type__c</picklist>
+            <values>
+                <fullName>Bumpers%2FLights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior Cosmetic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Standard</fullName>
+        <active>true</active>
+        <label>Standard</label>
+        <picklistValues>
+            <picklist>Location__c</picklist>
+            <values>
+                <fullName>Center Rear</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Question_Sub_Type__c</picklist>
+            <values>
+                <fullName>4x4 %2F 4WD %2F Drivetrain Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Abnormal Smoke from Exhaust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Parts - Exterior</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Parts - Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Rims %2F Tires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aftermarket Stereo Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Airbag Deployed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Airbag Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bad Amp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battery%2FCharging Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blurry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brake Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brake%2FABS Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA DMV Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpet Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalytic Converters Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Engine Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Climate Control Not Working</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crank Windows</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Tires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Wheels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dash%2FInstrument Panel Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emissions Modifications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Accessory Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Cranks%2C Does Not Start</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Does Not Crank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Does Not Stay Running</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Has Abnormal Noise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine Runs Rough%2FHesitation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust Modifications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust Noise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Five Digit Odometer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fluid Leaks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Front Line Vehicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Damaged%2FCracked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hail Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Gasket Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Headliner Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete Readiness Monitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Categorization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrectly Sized Tires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Odor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Trim Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jump Start Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leather or Leather Type Seats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lights Damaged%2FCracked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Major Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Major Body Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mileage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minor Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minor Body Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Misaligned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mismatched Paint Colors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mismatched Tires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Amp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Spare Tire and %2F or Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Body Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Body Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Navigation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Equipped with Factory A%2FC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBDII Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Obstructed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Lease Vehicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil%2FCoolant Intermix on Dipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Warning Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paint Meter Readings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penetrating Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poor Quality Repairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible Flood Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Previous Paint Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repair Order Attached</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repossession Papers With Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repossession Papers Without Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratches</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seat Damage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spelling error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunroof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspension Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspension Modifications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TPMS Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timing Chain%2FCamshaft Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tire Measurements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Absent %2830 Days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traction Control Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmission Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trim</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True Mileage Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undercarriage Heavy Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undercarriage Surface Rust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uneven Tread Wear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle INOP %28Does Not Move%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Question_Type__c</picklist>
+            <values>
+                <fullName>Additional Disclosures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bumpers%2FLights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categorization Question</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driveability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exterior Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frame %26 Unibody</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photo Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title %26 History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle Color</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle is Oversized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual Lift Image Issue %28Image Removed%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning Lights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wheels %26 Tires</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

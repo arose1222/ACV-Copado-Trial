@@ -1,0 +1,10 @@
+<apex:page standardController="EXPRN__Decisioning__c" extensions="EXPRN.exportDecisionController" contentType="application/vnd.ms-excel#Decisiondetails.xls" showHeader="false" sidebar="false">
+    <apex:pageBlock > 
+    <apex:pageMessages />  
+        <apex:pageBlockTable value="{!listDecisions}" var="decisions">                                                                                          
+            <apex:repeat var="f" value="{!$ObjectType.EXPRN__Decisioning__c.FieldSets.EXPRN__Export_Decision}">           
+                <apex:column rendered="{!f!= 'Name'}" value="{!decisions[f]}"/>                                                                                                                                                                     
+            </apex:repeat>                                                     
+        </apex:pageBlockTable>  
+    </apex:pageBlock>
+</apex:page>

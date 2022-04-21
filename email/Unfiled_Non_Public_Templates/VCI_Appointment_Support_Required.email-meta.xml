@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email triggered from the &apos;Begin Appointment&apos; flow when a VCI requests additional support. Sent to a TM.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VCI_Appointment_Support_Required</name>
+    <style>none</style>
+    <subject>Support Needed for Appointment: {!ServiceAppointment.AppointmentNumber}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

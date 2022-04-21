@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configures the related records to plot on the timeline lwc.</description>
+    <fields>
+        <fullName>bmpyrckt__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Inactivate records to hide them from the timeline lwc</inlineHelpText>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Detail_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The field to use to show against each record on the timeline lwc as a short description (30 chars shown)</inlineHelpText>
+        <label>Detail Field</label>
+        <length>150</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Drilldown_Id_Field__c</fullName>
+        <businessStatus>Active</businessStatus>
+        <deprecated>false</deprecated>
+        <description>The Id field to use when navigating on click of a record in the timeline. Used to support the ability to show a junction object record but drill into a parent.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Override the record shown when a user clicks on a record. The Id field to use when navigating goes here.</inlineHelpText>
+        <label>Drilldown Id Field</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Fallback_Tooltip_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The API Name of the field to use in tooltips when the object is not supported by the UI API</inlineHelpText>
+        <label>Fallback Tooltip Field</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Icon_Background_Colour__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The background colour to use for the icon</inlineHelpText>
+        <label>Icon Background Colour</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Icon__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The icon to use for this object type</inlineHelpText>
+        <label>Icon</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Object_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The sObject API Name that defines the child record</inlineHelpText>
+        <label>Object Name</label>
+        <length>150</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Parent_Object__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The Parent Objects API Name that the child record applies to</inlineHelpText>
+        <label>Parent Object</label>
+        <length>150</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Position_Date_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The date fields API name used to determine where on the timeline to plot the record</inlineHelpText>
+        <label>Position Date Field</label>
+        <length>150</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Relationship_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name corresponding to the relationship between the objects.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The API name corresponding to the relationship between the objects. Note that custom relationships end with __r.</inlineHelpText>
+        <label>Relationship Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Sequence__c</fullName>
+        <defaultValue>50</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The order the object appears in the filter panel on the right hand side of the timeline</inlineHelpText>
+        <label>Sequence</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Test__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used as test data only</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Used as test data only. Ignored for production operations.</inlineHelpText>
+        <label>Test</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Tooltip_Id_Field__c</fullName>
+        <businessStatus>Active</businessStatus>
+        <deprecated>false</deprecated>
+        <description>The Id field to use when hovering over a record in the timeline. Used to support the ability to show a junction object record but show detail of the parent.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>If the UI API is supported but you want a related record shown specify the Id field to use when hovering here.</inlineHelpText>
+        <label>Tooltip Id Field</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Tooltip_Object_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The sObject API name for the tooltip.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>If the UI API is supported but you want a related record shown specify the sObject API name to use when hovering here.</inlineHelpText>
+        <label>Tooltip Object Name</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bmpyrckt__Type_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The field used for Task sObject type only</inlineHelpText>
+        <label>Type Field</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Timeline Configuration</label>
+    <listViews>
+        <fullName>bmpyrckt__Active_Configurations</fullName>
+        <columns>DeveloperName</columns>
+        <columns>bmpyrckt__Parent_Object__c</columns>
+        <columns>bmpyrckt__Object_Name__c</columns>
+        <columns>bmpyrckt__Relationship_Name__c</columns>
+        <columns>bmpyrckt__Position_Date_Field__c</columns>
+        <columns>bmpyrckt__Detail_Field__c</columns>
+        <columns>bmpyrckt__Icon__c</columns>
+        <columns>bmpyrckt__Icon_Background_Colour__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>bmpyrckt__Test__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>bmpyrckt__Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Active Configurations</label>
+    </listViews>
+    <listViews>
+        <fullName>bmpyrckt__Test_Configurations</fullName>
+        <columns>DeveloperName</columns>
+        <columns>bmpyrckt__Parent_Object__c</columns>
+        <columns>bmpyrckt__Object_Name__c</columns>
+        <columns>bmpyrckt__Relationship_Name__c</columns>
+        <columns>bmpyrckt__Position_Date_Field__c</columns>
+        <columns>bmpyrckt__Detail_Field__c</columns>
+        <columns>bmpyrckt__Icon__c</columns>
+        <columns>bmpyrckt__Icon_Background_Colour__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>bmpyrckt__Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>bmpyrckt__Test__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Test Configurations</label>
+    </listViews>
+    <pluralLabel>Timeline Configurations</pluralLabel>
+    <validationRules>
+        <fullName>bmpyrckt__No_Big_Objects_Allowed</fullName>
+        <active>true</active>
+        <description>Timeline is not a good option for BigObjects</description>
+        <errorConditionFormula>IF (  CONTAINS( bmpyrckt__Object_Name__c, &apos;__b&apos;), true, false)</errorConditionFormula>
+        <errorDisplayField>bmpyrckt__Object_Name__c</errorDisplayField>
+        <errorMessage>Big Objects cannot be used in the timeline. Timeline supports standard and custom objects only.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>bmpyrckt__No_External_Objects_Allowed</fullName>
+        <active>true</active>
+        <description>Timeline is not a good option for External Objects</description>
+        <errorConditionFormula>IF ( CONTAINS( bmpyrckt__Object_Name__c, &apos;__x&apos;), true, false)</errorConditionFormula>
+        <errorDisplayField>bmpyrckt__Object_Name__c</errorDisplayField>
+        <errorMessage>External Objects cannot be used in the timeline. Timeline supports standard and custom objects only.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

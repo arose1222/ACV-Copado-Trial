@@ -1,0 +1,250 @@
+<apex:page controller="geopointe.MapFlowAction_Controller" showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" lightningStylesheets="true" standardStylesheets="true">
+<html>   
+    <head>
+        <!-- Required Javascript to load Lightning Framework -->
+        <apex:includeLightning />
+        <!-- Lightning Design System -->
+        <apex:slds />
+        <!-- For geopointe.api.closeAction() to work -->
+        <script>
+           //s var sf1 = ('{!$User.UIThemeDisplayed}' == 'theme4t') ? true : false;
+        </script>
+        <script src="{!$Resource.js_api_v1}" ></script>
+
+        <!-- CSS Not included with base SLDS but sf loads in flows while in lightning -->
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery, 'css/ltngFlow.css')}"/>
+        <!-- CSS Not included with base SLDS but sf loads in flows while in lightning -->
+
+        <!-- Fix SLDS Flow excess Padding and spacing -->
+        <style>
+            .flowruntimeInputWrapper {
+                padding-bottom: .5rem !important;
+            }
+            .flowruntimeErrorText.errorText {
+                padding-bottom: .5rem !important;
+            }
+            .uiInput--datetime .datePicker-openIcon {
+                bottom: 10px !important;
+            }
+            .uiInput--datetime .timePicker-openIcon {
+                bottom: 9px !important;
+            }
+        </style>
+        <!-- Fix SLDS Flow excess Padding and spacing -->
+
+        <!-- Fix SLDS Buttons -->
+        <style>
+            .uiButton--default {
+                box-shadow: unset !important;
+                text-shadow: unset !important;
+            }
+            .uiButton--default .label {
+                color: rgb(0, 112, 210);
+            }
+            .uiButton--default:hover,
+            .uiButton--default:focus,
+            .uiButton--default.is-selected {
+                background-color: rgb(0, 95, 178);
+                background: rgb(0, 95, 178);
+                text-shadow: unset !important;
+            }
+            .uiButton .label {
+                display: unset !important;
+                white-space: unset !important;
+            }
+            .uiButton--default .label {
+                white-space: unset !important;
+                color: unset !important;
+            }
+
+            .uiButton--default:hover .label,
+            .uiButton--default:focus .label {
+                color: unset !important;
+            }
+
+            .uiButton--default:disabled {
+                cursor: unset !important;
+                background: unset !important;
+                box-shadow: unset !important;
+                text-shadow: unset !important;
+            }
+
+            .uiButton--default:disabled .label {
+                color: unset !important;
+            }
+
+            .uiButton--default:disabled .label:hover {
+                color: unset !important;
+            }
+        </style>
+        <!-- Fix SLDS Buttons -->
+
+        <!-- Fix SLDS DatePicker -->
+        <style>
+            .uiDatePicker.visible {
+                display: block !important;
+            }
+            .uiDatePicker--default {
+                margin-top: .25rem !important;
+                padding: 0 !important;
+                font-size: .75rem !important;
+                font-weight: 400 !important;
+            }
+            .uiDatePicker--default {
+                background: rgb(255, 255, 255) !important;
+                box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16) !important;
+                border: 1px solid rgb(217, 219, 221) !important;
+                border-radius: .25rem !important;
+                z-index: 9999 !important;
+                float: left !important;
+                min-width: 240px !important;
+                max-width: 400px !important;
+                transform: translateX(-50%) !important;
+            }
+
+            .uiDatePicker--default .dateBar {
+                display: flex !important;
+                position: relative !important;
+                padding: .25rem !important;
+                background-color: rgba(0, 0, 0, 0) !important;
+            }
+            .uiDatePicker--default .datepicker__filter--month {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding-right: 10px !important;
+            }
+            .uiDatePicker--default .dateBar select {
+                color: rgb(22, 50, 92) !important;
+                font-family: 'Salesforce Sans',Arial,sans-serif !important;
+                font-size: 12px !important;
+                line-height: 18px !important;
+                padding: 0px 30px 0px 14px !important;
+                /* margin: 0 !important; */
+                width: 100% !important;
+                border-color: rgb(217, 219, 221) !important;
+                border-style: solid !important;
+                border-radius: 4px 4px 4px 4px !important;
+                border-width: 1px 1px 1px 1px !important;
+                background-color: rgb(255, 255, 255) !important;
+                background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI3LjYgMjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI3LjYgMjEiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KICA8Zz4NCiAgICA8ZGVmcz4NCiAgICAgIDxwYXRoIGlkPSJTVkdJRF8xXyIgZD0iTTUuNiA1aDE2LjRjMC40IDAgMC44IDAuNiAwLjQgMWwtOCA5LjhjLTAuMyAwLjMtMC45IDAuMy0xLjIgMGwtOC05LjhDNC44IDUuNiA1LjEgNSA1LjYgNXoiLz4NCiAgICA8L2RlZnM+DQogICAgPGNsaXBQYXRoIGlkPSJTVkdJRF8yXyI+DQogICAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8xXyIgb3ZlcmZsb3c9InZpc2libGUiLz4NCiAgICA8L2NsaXBQYXRoPg0KICAgIDxyZWN0IHg9IjAiIHk9IjAiIGNsaXAtcGF0aD0idXJsKCNTVkdJRF8yXykiIGZpbGw9IiM1NTY5OEQiIHdpZHRoPSIyNy42IiBoZWlnaHQ9IjIxIi8+DQogIDwvZz4NCjwvc3ZnPg0K) !important;
+            }
+            .uiDatePicker--default .picklist__label{
+                font-size: .75rem !important;
+                font-weight: 400 !important;
+            }
+
+            .uiDatePickerGrid--default thead {
+                background-color: rgb(0, 0, 0, 0) !important;
+                border-bottom: inherit !important;
+            }
+
+            .uiDatePickerGrid--default .calGrid .calRow td {
+                border: unset !important; 
+            }
+
+            .uiDayInMonthCell--default {
+                font-size: 12px !important;
+                font-family: "Salesforce Sans", Arial, sans-serif !important;
+            }
+            
+            .uiDatePickerGrid--default .calGrid th {
+                font-size: 12px !important;
+                font-family: "Salesforce Sans", Arial, sans-serif !important;
+            }
+            .uiDayInMonthCell--default.prevMonth,
+            .uiDayInMonthCell--default.nextMonth {
+                background-color: rgb(255, 255, 255) !important;
+                color: rgb(217, 219, 221) !important; 
+            }
+
+            .uiDayInMonthCell--default.todayDate.selectedDate {
+                background: rgb(0, 122, 210) !important;
+                color: rgb(255, 255, 255) !important;
+            }
+            .uiDayInMonthCell--default.todayDate {
+                box-shadow: none !important;
+                text-shadow: none !important;
+                background-color: rgb(233, 234, 236) !important;
+                color: inherit !important;
+            }
+
+            .uiDatePicker--default .dateBar .nextMonth {
+                background: url(/projRes/ui-global-components/img/right.svg) no-repeat !important; 
+            }
+            .uiDatePicker--default .dateBar .nextMonth:hover {
+                box-shadow: none !important;
+            }
+
+            .uiDatePicker--default .dateBar .prevMonth {
+                background: url(/projRes/ui-global-components/img/left.svg) no-repeat !important; 
+            }
+            .uiDatePicker--default .dateBar .prevMonth:hover {
+                box-shadow: none !important;
+            }
+            .uiDatePicker--default .dateBar .navLink {
+                border: none !important;
+            }
+        </style>
+        <!-- Fix SLDS DatePicker -->
+
+    </head>
+    <body class="slds-scope">
+
+        <apex:outputPanel rendered="{!hasError}">
+            <apex:repeat value="{!messages}" var="message">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-bottom_small" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{!message}</h2>
+                </div>
+            </apex:repeat>
+        </apex:outputPanel>
+
+        <div class="slds-scope" id="mapFlowContainer"/>
+        
+        <script type="text/javascript">
+            var flowName = '{!JSENCODE(flowName)}',
+                flowFields = '{!JSENCODE(flowFields)}',
+                idArray = '{!JSENCODE(idArray)}',
+                config = JSON.parse('{!JSENCODE(config)}'),
+                flowObjectVariable = '{!JSENCODE(flowObjectVariable)}',
+                hasError = JSON.parse('{!hasError}'),
+                inputVariables = [];
+
+            //set default flowObjectVariable Name to geopointeRecords if nothing is specified in URL
+            if(flowObjectVariable == '' || flowObjectVariable == undefined) flowObjectVariable = 'geopointeRecords';
+
+            config[flowObjectVariable] = [{}];
+
+            function closeFunction(event){
+                var data = event.data;
+                try {
+                    if(data == 'closeAction')
+                        geopointe.api.closeAction();
+                } catch(err){}
+            }
+
+            window.addEventListener('message', closeFunction);
+
+            if(hasError != true) {
+                /* Load lightning framework/MapFlowAction Container */
+                $Lightning.use("geopointe:MapFlowAction", function(){ 
+                    $Lightning.createComponent("geopointe:flowAction", 
+                        {
+                            "flowName": flowName,
+                            "flowFields": flowFields,
+                            "flowObjectVariable": flowObjectVariable,
+                            "idArray": idArray,
+                            "urlParams": JSON.stringify(config),
+                            "isDesktop": true
+                        },
+                        "mapFlowContainer",
+                        function(component){}
+                    )
+                });
+                /* Load lightning framework/MapFlowAction Container */
+            } 
+        </script>
+    </body>
+</html>
+</apex:page>

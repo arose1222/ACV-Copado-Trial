@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Recommended Price</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Recommended Prices</value>
+    </caseValues>
+    <fields>
+        <label><!-- Auction Where Vehicle Launched --></label>
+        <name>Auction_Where_Vehicle_Launched__c</name>
+        <relationshipLabel><!-- Recommended Prices --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Casesafe Id --></label>
+        <name>Casesafe_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition Rating --></label>
+        <name>Condition_Rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition Report --></label>
+        <name>Condition_Report__c</name>
+        <relationshipLabel><!-- Recommended Prices --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Expiration Date --></label>
+        <name>Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Input notes that are essential for the ACV App User, as these notes will be made available publicly. --></help>
+        <label><!-- External Notes to Seller --></label>
+        <name>External_Notes_to_Seller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Notes --></label>
+        <name>Internal_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- MMR Price --></label>
+        <name>MMR_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Recommended Price --></label>
+        <name>Most_Recent_Recommended_Price__c</name>
+    </fields>
+    <fields>
+        <help><!-- In order to recommend a Ceiling, a Floor must be recommended first. --></help>
+        <label><!-- Recommended Ceiling Price --></label>
+        <name>Price_Ceiling__c</name>
+    </fields>
+    <fields>
+        <help><!-- A value must be input in order to save this record. --></help>
+        <label><!-- Recommended Floor Price --></label>
+        <name>Price_Floor__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please select a reason for the price(s) you have recommended. --></help>
+        <label><!-- Pricing Reason --></label>
+        <name>Pricing_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Bid History</masterLabel>
+            <translation><!-- Bid History --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Car History</masterLabel>
+            <translation><!-- Car History --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Condition</masterLabel>
+            <translation><!-- Condition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MMR</masterLabel>
+            <translation><!-- MMR --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pricing Status --></label>
+        <name>Pricing_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expired</masterLabel>
+            <translation><!-- Expired --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Recommended Price Active? --></label>
+        <name>Recommended_Price_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Runs When Priced --></label>
+        <name>Runs_When_Priced__c</name>
+    </fields>
+    <fields>
+        <label><!-- Saved Auction Id --></label>
+        <name>Saved_Auction_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send to ACV --></label>
+        <name>Send_to_ACV__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please validate the Price Ceiling you entered above to prevent any keying errors. --></help>
+        <label><!-- Validate Ceiling --></label>
+        <name>Validate_Price_Ceiling__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please validate the Price Floor you entered above to prevent any keying errors. --></help>
+        <label><!-- Validate Floor --></label>
+        <name>Validate_Price_Floor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle --></label>
+        <name>Vehicle__c</name>
+        <relationshipLabel><!-- Recommended Prices --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- id --></label>
+        <name>id__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- The Pricing Ceiling can not be less than the Pricing Floor! --></errorMessage>
+        <name>Floor_can_not_be_greater_than_ceiling</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Whoops. It looks like someone already has already recommended a price, therefor double entry is prohibited. --></errorMessage>
+        <name>Price_Floor_Recommendation_Already_Exist</name>
+    </validationRules>
+</CustomObjectTranslation>

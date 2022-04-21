@@ -1,0 +1,3105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used for tracking the successful on-boarding of a new account.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_Contacts__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>ACV Contacts</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Transport__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ACV Transport</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AVP_RSD_TM_CSM__c</fullName>
+        <description>New field added for Fleet/Lease On-boarding Records</description>
+        <externalId>false</externalId>
+        <label>AVP/RSD/TM/CSM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AVP</fullName>
+                    <default>false</default>
+                    <label>AVP</label>
+                </value>
+                <value>
+                    <fullName>RSD</fullName>
+                    <default>false</default>
+                    <label>RSD</label>
+                </value>
+                <value>
+                    <fullName>TM</fullName>
+                    <default>false</default>
+                    <label>TM</label>
+                </value>
+                <value>
+                    <fullName>All CSMs</fullName>
+                    <default>false</default>
+                    <label>All CSMs</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Onboarding</relationshipLabel>
+        <relationshipName>Onboarding</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Setup_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Account Setup Complete</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Comments__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Additional Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Additional_Title_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Title Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Additional_Transportation_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Transportation Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Address_Information__c</fullName>
+        <description>Fleet/Lease field. All applicable address information.</description>
+        <externalId>false</externalId>
+        <label>Address Information</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>All_Time_Purchases__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>All_time_purchases_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>XAll Time Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_Time_Sold__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>All_time_sold_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>XAll Time Sold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_time_purchases_number__c</fullName>
+        <externalId>false</externalId>
+        <label>All time purchases</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_time_sold_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>All time sold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approved_to_Sell_Title__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox for approval to sell on Fleet/lease records.</description>
+        <externalId>false</externalId>
+        <label>Approved to Sell Title</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is populated if an arbitration case was involved during the onboarding process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is populated if an arbitration case was involved during the onboarding process</inlineHelpText>
+        <label>Arbitration Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Onboarding</relationshipLabel>
+        <relationshipName>Onboarding</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <label>Arbitration Outcome</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arb Approved</fullName>
+                    <default>false</default>
+                    <label>Arb Approved</label>
+                </value>
+                <value>
+                    <fullName>Arb Denied</fullName>
+                    <default>false</default>
+                    <label>Arb Denied</label>
+                </value>
+                <value>
+                    <fullName>IST Handled</fullName>
+                    <default>false</default>
+                    <label>IST Handled</label>
+                </value>
+                <value>
+                    <fullName>Customer Handled</fullName>
+                    <default>false</default>
+                    <label>Customer Handled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Arbitration_Window_Reminder__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Arbitration Window &amp; Policy Sent</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Assignment_Preference__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Assignment Preference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CSV</fullName>
+                    <default>false</default>
+                    <label>CSV</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Upload</fullName>
+                    <default>false</default>
+                    <label>Upload</label>
+                </value>
+                <value>
+                    <fullName>API</fullName>
+                    <default>false</default>
+                    <label>API</label>
+                </value>
+                <value>
+                    <fullName>ACV Generated</fullName>
+                    <default>false</default>
+                    <label>ACV Generated</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Auction_Create_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>Auction_ID__r.CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction Create Date Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Auction_Email_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Auction Email Sent?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Auction_ID__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>FTB Auction ID</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Onboarding</relationshipLabel>
+        <relationshipName>Onboarding</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Auction_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) &amp; Auction_ID__r.Id , Auction_ID__r.Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Services_Offered__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Auction Services Offered</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BDR__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the original Business Development Representative</description>
+        <externalId>false</externalId>
+        <label>BDR</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Onboarding1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BDR_owner__c</fullName>
+        <externalId>false</externalId>
+        <label>BDR</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Blue_Light_Auction__c</fullName>
+        <externalId>false</externalId>
+        <formula>Auction_ID__r.blue_light__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Blue Light Auction</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bought_in_30_Days__c</fullName>
+        <externalId>false</externalId>
+        <label># Bought in 30 Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cell_Phone__c</fullName>
+        <description>Cell phone field for the Fleet/Lease on-boarding records.</description>
+        <externalId>false</externalId>
+        <label>Cell Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Communication_Preference__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Communication Preference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact_Information__c</fullName>
+        <description>Fleet/Lease field. All applicable contact info</description>
+        <externalId>false</externalId>
+        <label>Contact Information</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Contract_Signed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox field for if a contract on a fleet/lease record is signed.</description>
+        <externalId>false</externalId>
+        <label>Contract Signed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DBA__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>DBA</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Completed__c</fullName>
+        <description>Date Onboarding Record was moved to completed</description>
+        <externalId>false</externalId>
+        <label>Date Completed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Customer_Received_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Customer Received Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Joined_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Joined</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Joined__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>Date_Joined_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>XDate Joined</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Arbitration_Window_Reminder__c</fullName>
+        <externalId>false</externalId>
+        <label>Date/Time Arbitration Window Reminder</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Delivered__c</fullName>
+        <description>Populated via workflow rule upon setting the delivered field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Delivered</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Payment_Cleared__c</fullName>
+        <description>Populated via workflow rule upon setting the payment cleared field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Payment Cleared</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Recommendation__c</fullName>
+        <externalId>false</externalId>
+        <label>Date/Time Recommendation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Slips_Sent__c</fullName>
+        <description>Populated via workflow rule upon setting the Slips Sent field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Slips Sent</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Title_Received_ACV__c</fullName>
+        <description>Populated via workflow rule upon setting the title field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Title Received at ACV</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Title_Sent_to_Customer__c</fullName>
+        <externalId>false</externalId>
+        <label>Date/Time Title Sent to Customer</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Transportation__c</fullName>
+        <description>Populated via workflow rule upon setting the Transportation field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Transportation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_Vehicle_as_Expected__c</fullName>
+        <description>Populated via workflow rule upon setting the Vehicle as Expected field</description>
+        <externalId>false</externalId>
+        <label>Date/Time Vehicle as Expected</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_FTB__c</fullName>
+        <description>Date of First Time Buy</description>
+        <externalId>false</externalId>
+        <label>Date of FTB</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Kick_Off_Meeting__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of Kick Off Meeting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_hand_off__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of Hand Off</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Dealership_ID_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Dealership ID</label>
+        <length>16</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealership_ID__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>Dealership_ID_Text__c</formula>
+        <label>XDealership ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivered__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Vehicle Received</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Given__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Demo Given</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Fast_Pass_Opt_in_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Fast Pass Opt-in</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fast_Pass_Opt_in__c</fullName>
+        <externalId>false</externalId>
+        <formula>Fast_Pass_Opt_in_Text__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fast Pass Opt-in</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fee_Schedule__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Fee Schedule</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Floorplan__c</fullName>
+        <externalId>false</externalId>
+        <label>Floorplan</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NextGear</fullName>
+                    <default>false</default>
+                    <label>NextGear</label>
+                </value>
+                <value>
+                    <fullName>AFC</fullName>
+                    <default>false</default>
+                    <label>AFC</label>
+                </value>
+                <value>
+                    <fullName>Auto Use</fullName>
+                    <default>false</default>
+                    <label>Auto Use</label>
+                </value>
+                <value>
+                    <fullName>M&amp;T</fullName>
+                    <default>false</default>
+                    <label>M&amp;T</label>
+                </value>
+                <value>
+                    <fullName>KeyBank</fullName>
+                    <default>false</default>
+                    <label>KeyBank</label>
+                </value>
+                <value>
+                    <fullName>Millennium</fullName>
+                    <default>false</default>
+                    <label>Millennium</label>
+                </value>
+                <value>
+                    <fullName>Diamond</fullName>
+                    <default>false</default>
+                    <label>Diamond</label>
+                </value>
+                <value>
+                    <fullName>Bank of America</fullName>
+                    <default>false</default>
+                    <label>Bank of America</label>
+                </value>
+                <value>
+                    <fullName>CAR</fullName>
+                    <default>false</default>
+                    <label>CAR</label>
+                </value>
+                <value>
+                    <fullName>Chase</fullName>
+                    <default>false</default>
+                    <label>Chase</label>
+                </value>
+                <value>
+                    <fullName>TD Bank</fullName>
+                    <default>false</default>
+                    <label>TD Bank</label>
+                </value>
+                <value>
+                    <fullName>Westlake</fullName>
+                    <default>false</default>
+                    <label>Westlake</label>
+                </value>
+                <value>
+                    <fullName>Huntington National Bank</fullName>
+                    <default>false</default>
+                    <label>Huntington National Bank</label>
+                </value>
+                <value>
+                    <fullName>BMO Harris</fullName>
+                    <default>false</default>
+                    <label>BMO Harris</label>
+                </value>
+                <value>
+                    <fullName>VAC</fullName>
+                    <default>false</default>
+                    <label>VAC</label>
+                </value>
+                <value>
+                    <fullName>ADI</fullName>
+                    <default>false</default>
+                    <label>ADI</label>
+                </value>
+                <value>
+                    <fullName>Floorplan Xpress</fullName>
+                    <default>false</default>
+                    <label>Floorplan Xpress</label>
+                </value>
+                <value>
+                    <fullName>Carbucks</fullName>
+                    <default>false</default>
+                    <label>Carbucks</label>
+                </value>
+                <value>
+                    <fullName>Macatawa Bank</fullName>
+                    <default>false</default>
+                    <label>Macatawa Bank</label>
+                </value>
+                <value>
+                    <fullName>BB&amp;T</fullName>
+                    <default>false</default>
+                    <label>BB&amp;T</label>
+                </value>
+                <value>
+                    <fullName>Dealers Finance</fullName>
+                    <default>false</default>
+                    <label>Dealers Finance</label>
+                </value>
+                <value>
+                    <fullName>City Auto Finance</fullName>
+                    <default>false</default>
+                    <label>City Auto Finance</label>
+                </value>
+                <value>
+                    <fullName>Greater Kalamazoo Financial Services</fullName>
+                    <default>false</default>
+                    <label>Greater Kalamazoo Financial Services</label>
+                </value>
+                <value>
+                    <fullName>BNC Bank (floor plan)</fullName>
+                    <default>false</default>
+                    <label>BNC Bank (floor plan)</label>
+                </value>
+                <value>
+                    <fullName>First Choice Financial</fullName>
+                    <default>false</default>
+                    <label>First Choice Financial</label>
+                </value>
+                <value>
+                    <fullName>XL Funding</fullName>
+                    <default>false</default>
+                    <label>XL Funding</label>
+                </value>
+                <value>
+                    <fullName>Dealer Preferred</fullName>
+                    <default>false</default>
+                    <label>Dealer Preferred</label>
+                </value>
+                <value>
+                    <fullName>KCS Floorplan</fullName>
+                    <default>false</default>
+                    <label>KCS Floorplan</label>
+                </value>
+                <value>
+                    <fullName>AutoBank</fullName>
+                    <default>false</default>
+                    <label>AutoBank</label>
+                </value>
+                <value>
+                    <fullName>Used Car Inc</fullName>
+                    <default>false</default>
+                    <label>Used Car Inc</label>
+                </value>
+                <value>
+                    <fullName>Flex Plus</fullName>
+                    <default>false</default>
+                    <label>Flex Plus</label>
+                </value>
+                <value>
+                    <fullName>Hyundai Motor Finance</fullName>
+                    <default>false</default>
+                    <label>Hyundai Motor Finance</label>
+                </value>
+                <value>
+                    <fullName>Niagara Car &amp; Truck</fullName>
+                    <default>false</default>
+                    <label>Niagara Car &amp; Truck</label>
+                </value>
+                <value>
+                    <fullName>Assembly Pay</fullName>
+                    <default>false</default>
+                    <label>Assembly Pay</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Handoff_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Handoff To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Onboarding</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>High_Potential_Account__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Tagging accounts that have a high potential to receive greater visibility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this box if this account needs greater visibility due to have a high monthly buy or sell potential</inlineHelpText>
+        <label>High Potential Account</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IST_Account_Manager__c</fullName>
+        <description>Surfaces the IST Account manager on the onboarding object</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.IST_Account_Owner__r.FirstName + &quot; &quot;+ Account_Name__r.IST_Account_Owner__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IST Account Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IST_Account_Rep_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>IST Account Rep Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inbound_ACV_Transport__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Inbound ACV Transport</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Launch_Preference__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Launch Preference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Client</fullName>
+                    <default>false</default>
+                    <label>Client</label>
+                </value>
+                <value>
+                    <fullName>CSM</fullName>
+                    <default>false</default>
+                    <label>CSM</label>
+                </value>
+                <value>
+                    <fullName>TM</fullName>
+                    <default>false</default>
+                    <label>TM</label>
+                </value>
+                <value>
+                    <fullName>VCI</fullName>
+                    <default>false</default>
+                    <label>VCI</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Legal_Name__c</fullName>
+        <description>Fleet/Lease field for Legal Name of Account</description>
+        <externalId>false</externalId>
+        <label>Legal Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lot_Contact__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Lot Contact</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Demo_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Onboarding Demo By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>BDR</fullName>
+                    <default>false</default>
+                    <label>BDR</label>
+                </value>
+                <value>
+                    <fullName>OBS</fullName>
+                    <default>false</default>
+                    <label>OBS</label>
+                </value>
+                <value>
+                    <fullName>Customer declined: OBS sent key takeaways email</fullName>
+                    <default>false</default>
+                    <label>Customer declined: OBS sent key takeaways email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Docs_Reviewed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the onboarding team acknowledges that they have received and reviewed documents before they move the account to a final home with an AM or AR.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the onboarding team acknowledges that they have received and reviewed documents before they move the account to a final home with an AM or AR.</inlineHelpText>
+        <label>Registration Docs Reviewed</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Other_Reason_Not_as_Expected__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Reason Not as Expected</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Payment_Cleared__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Payment Cleared</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Contact__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Payment Contact</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Method</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACH</fullName>
+                    <default>false</default>
+                    <label>ACH</label>
+                </value>
+                <value>
+                    <fullName>Check</fullName>
+                    <default>false</default>
+                    <label>Check</label>
+                </value>
+                <value>
+                    <fullName>Floorplan</fullName>
+                    <default>false</default>
+                    <label>Floorplan</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pickup_Rules__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Pickup Rules</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Preferred_Payment_Method__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Preferred Payment Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACH</fullName>
+                    <default>false</default>
+                    <label>ACH</label>
+                </value>
+                <value>
+                    <fullName>Check</fullName>
+                    <default>false</default>
+                    <label>Check</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Preferred_Seller__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Preferred Seller</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Recommendations__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Pricing Recommendations</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Launch_Date__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Projected Launch Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Monthly_Volume__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Projected Monthly Volume</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason_Not_as_Expected__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Not as Expected</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Vehicle_as_Expected__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mechanical</fullName>
+                    <default>false</default>
+                    <label>Mechanical</label>
+                </value>
+                <value>
+                    <fullName>Cosmetic</fullName>
+                    <default>false</default>
+                    <label>Cosmetic</label>
+                </value>
+                <value>
+                    <fullName>Frame &amp; Unibody</fullName>
+                    <default>false</default>
+                    <label>Frame &amp; Unibody</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Mechanical</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Cosmetic</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Frame &amp; Unibody</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Recommendation__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommendation</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AR</fullName>
+                    <default>false</default>
+                    <label>AR</label>
+                </value>
+                <value>
+                    <fullName>AM</fullName>
+                    <default>false</default>
+                    <label>AM</label>
+                </value>
+                <value>
+                    <fullName>Senior AM</fullName>
+                    <default>false</default>
+                    <label>Senior AM</label>
+                </value>
+                <value>
+                    <fullName>AD</fullName>
+                    <default>false</default>
+                    <label>AD</label>
+                </value>
+                <value>
+                    <fullName>Inactivate</fullName>
+                    <default>false</default>
+                    <label>Inactivate</label>
+                </value>
+                <value>
+                    <fullName>CAM</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>CAM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reporting_Requirements__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Reporting Requirements</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requirements__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Requirements</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Run_List_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox field for Fleet/Lease on-boarding records.</description>
+        <externalId>false</externalId>
+        <label>Run List Approved</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SLAs__c</fullName>
+        <description>Fleet/Lease fields</description>
+        <externalId>false</externalId>
+        <label>SLAs</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Slips_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Pickup Slips Sent</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Started</fullName>
+                    <default>true</default>
+                    <label>Not Started</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Strategic_Account_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Strategic Account Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Onboarding2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TM_Notes__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>TM Notes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Territory Manager</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>Territory_Manager_Text__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This comes from the Account object Territory Manager field which may not be regularly maintained. The Account Owner field should also hold the Territory Manager.</inlineHelpText>
+        <label>XTerritory Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Territory</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory__c</fullName>
+        <description>We are not using this field anymore.</description>
+        <externalId>false</externalId>
+        <formula>Territory_Text__c</formula>
+        <inlineHelpText>This comes from the Account object Territory field which may not be regularly maintained.</inlineHelpText>
+        <label>XTerritory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Contact__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Title Contact</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Title_Present_to_Sell__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to set if the Title is present or not on Fleet/Lease records</description>
+        <externalId>false</externalId>
+        <label>Title Present to Sell</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title_Received_at_ACV__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Title Received at ACV</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title_Sent_to_Customer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Title Sent to Customer</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title_Type__c</fullName>
+        <description>Title type field for the fleet/lease on-boarding records.</description>
+        <externalId>false</externalId>
+        <label>Title Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Repo Papers</fullName>
+                    <default>false</default>
+                    <label>Repo Papers</label>
+                </value>
+                <value>
+                    <fullName>MSO</fullName>
+                    <default>false</default>
+                    <label>MSO</label>
+                </value>
+                <value>
+                    <fullName>Previous Canadian</fullName>
+                    <default>false</default>
+                    <label>Previous Canadian</label>
+                </value>
+                <value>
+                    <fullName>Branded Title</fullName>
+                    <default>false</default>
+                    <label>Branded Title</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Past Due</fullName>
+                    <default>false</default>
+                    <label>Past Due</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Transportation__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Type__c</fullName>
+        <description>Fleet/Lease field</description>
+        <externalId>false</externalId>
+        <label>Vehicle Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Repo</fullName>
+                    <default>false</default>
+                    <label>Repo</label>
+                </value>
+                <value>
+                    <fullName>Off Lease</fullName>
+                    <default>false</default>
+                    <label>Off Lease</label>
+                </value>
+                <value>
+                    <fullName>Fleet</fullName>
+                    <default>false</default>
+                    <label>Fleet</label>
+                </value>
+                <value>
+                    <fullName>3rd party remarketers</fullName>
+                    <default>false</default>
+                    <label>3rd party remarketers</label>
+                </value>
+                <value>
+                    <fullName>OEM</fullName>
+                    <default>false</default>
+                    <label>OEM</label>
+                </value>
+                <value>
+                    <fullName>Rental</fullName>
+                    <default>false</default>
+                    <label>Rental</label>
+                </value>
+                <value>
+                    <fullName>Independent Auction</fullName>
+                    <default>false</default>
+                    <label>Independent Auction</label>
+                </value>
+                <value>
+                    <fullName>Non-Dealer</fullName>
+                    <default>false</default>
+                    <label>Non-Dealer</label>
+                </value>
+                <value>
+                    <fullName>Wholesaler</fullName>
+                    <default>false</default>
+                    <label>Wholesaler</label>
+                </value>
+                <value>
+                    <fullName>Bank</fullName>
+                    <default>false</default>
+                    <label>Bank</label>
+                </value>
+                <value>
+                    <fullName>Importer</fullName>
+                    <default>false</default>
+                    <label>Importer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Vehicle_as_Expected__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If this is left unchecked Reason not as expected should be populated</inlineHelpText>
+        <label>Vehicle as Expected</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>X3rd_Party_Grounding_Location__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>3rd Party Grounding Location</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>of_Days_with_Onboarding__c</fullName>
+        <externalId>false</externalId>
+        <formula>Date_Completed__c - DATEVALUE (CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label># of Days with Onboarding</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_days_from_Completed_to_Hand_Off__c</fullName>
+        <description>Measures the amount of time it takes a completed Onboarding Case to be assigned an IST Account manager via hand off to field.</description>
+        <externalId>false</externalId>
+        <formula>Date_of_hand_off__c - Date_Completed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label># of days from Completed to Hand Off</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Onboarding</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Status__c</columns>
+        <columns>Account_Name__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Title_Received_at_ACV__c</columns>
+        <columns>Title_Sent_to_Customer__c</columns>
+        <columns>ACV_Transport__c</columns>
+        <columns>Date_Completed__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Onboarding__c.Dealer</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Choose_your_fate</fullName>
+        <columns>NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Recommendation__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>Account_Name__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>BDR__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <label>6) Ready To Move - Needs Reccommendation</label>
+    </listViews>
+    <listViews>
+        <fullName>Copy_of_4_In_Progress_OBS_Queue_Heather</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>High_Potential_Account__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Title_Received_at_ACV__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>Copy of 4) In Progress - OBS Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>Get_it_Started</fullName>
+        <columns>NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Auction_ID__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Not Started</value>
+        </filters>
+        <label>1) Not Started - Landing Zone</label>
+    </listViews>
+    <listViews>
+        <fullName>Help_i_m_stuck_in_OBS</fullName>
+        <columns>Date_Completed__c</columns>
+        <columns>NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Territory__c</columns>
+        <columns>IST_Account_Manager__c</columns>
+        <columns>Date_of_hand_off__c</columns>
+        <columns>Handoff_To__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <columns>of_Days_with_Onboarding__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Handoff_To__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+            <value>Inactivate</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Onboarding__c.Dealer</value>
+        </filters>
+        <label>Help i&apos;m stuck in OBS</label>
+    </listViews>
+    <listViews>
+        <fullName>How_not_to_FTB</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>Date_of_FTB__c</columns>
+        <columns>BDR__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>Payment_Method__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>2) Payment Not Selected - Finalization</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Onboarding_Records</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Status__c</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Date_of_FTB__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Slips_Sent__c</columns>
+        <columns>Title_Received_at_ACV__c</columns>
+        <columns>Title_Sent_to_Customer__c</columns>
+        <columns>Delivered__c</columns>
+        <columns>ACV_Transport__c</columns>
+        <columns>Vehicle_as_Expected__c</columns>
+        <columns>Date_of_hand_off__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Onboarding Records</label>
+    </listViews>
+    <listViews>
+        <fullName>Not_cleared</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>BDR__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>Payment_Method__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>Payment_Cleared__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>3) Payment Not Cleared - Payments Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>OBS_In_Progress</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>ACV_Transport__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Title_Received_at_ACV__c</columns>
+        <columns>Title_Sent_to_Customer__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>OBS In Progress</label>
+    </listViews>
+    <listViews>
+        <fullName>Oregon_Trail</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>High_Potential_Account__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Title_Received_at_ACV__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>4) In Progress - OBS Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>Overall_OBS_moves</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Date_Time_Recommendation__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>Date_of_hand_off__c</columns>
+        <columns>Handoff_To__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Handoff_To__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+            <value>Inactivate</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Onboarding__c.Dealer</value>
+        </filters>
+        <label>9) Overall OBS Accounts Moving</label>
+    </listViews>
+    <listViews>
+        <fullName>Put_the_past_behind_you</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>of_Days_with_Onboarding__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Handoff_To__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>8) My Past Account Moves - Historical</label>
+    </listViews>
+    <listViews>
+        <fullName>Waiting_on_titles</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>BDR__c</columns>
+        <columns>Auction_ID__c</columns>
+        <columns>Payment_Method__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Payment_Cleared__c</columns>
+        <columns>Additional_Comments__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>Title_Received_at_ACV__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>5) Titles not Recieved - Titles Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>You_re_still_here</fullName>
+        <columns>NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Date_Time_Recommendation__c</columns>
+        <columns>Date_of_hand_off__c</columns>
+        <columns>All_Time_Purchases__c</columns>
+        <columns>Recommendation__c</columns>
+        <columns>Territory__c</columns>
+        <columns>IST_Account_Manager__c</columns>
+        <columns>Handoff_To__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Handoff_To__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Recommendation__c</field>
+            <operation>notEqual</operation>
+            <value>Inactivate</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Onboarding__c.Dealer</value>
+        </filters>
+        <label>7) Completed - Accounts Moving</label>
+    </listViews>
+    <listViews>
+        <fullName>moved_yesterday</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Handoff_To__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Handoff_To__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>LAST_UPDATE</field>
+            <operation>equals</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>moved  yesterday</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{YYYY}{MM}-{00000}</displayFormat>
+        <label>Onboarding Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Onboarding</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Dealer</fullName>
+        <active>true</active>
+        <label>Dealer</label>
+        <picklistValues>
+            <picklist>AVP_RSD_TM_CSM__c</picklist>
+            <values>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All CSMs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Arbitration_Outcome__c</picklist>
+            <values>
+                <fullName>Arb Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arb Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Handled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IST Handled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Assignment_Preference__c</picklist>
+            <values>
+                <fullName>CSV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upload</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Communication_Preference__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floorplan__c</picklist>
+            <values>
+                <fullName>ADI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assembly Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Auto Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AutoBank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BB%26T</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMO Harris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BNC Bank %28floor plan%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bank of America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carbucks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City Auto Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Preferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealers Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diamond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Choice Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flex Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floorplan Xpress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greater Kalamazoo Financial Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Huntington National Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyundai Motor Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCS Floorplan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KeyBank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M%26T</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macatawa Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Millennium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NextGear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niagara Car %26 Truck</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Used Car Inc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Westlake</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XL Funding</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Launch_Preference__c</picklist>
+            <values>
+                <fullName>CSM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Client</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Onboarding_Demo_By__c</picklist>
+            <values>
+                <fullName>BDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer declined%3A OBS sent key takeaways email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Method__c</picklist>
+            <values>
+                <fullName>ACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floorplan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Payment_Method__c</picklist>
+            <values>
+                <fullName>ACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_Not_as_Expected__c</picklist>
+            <values>
+                <fullName>Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frame %26 Unibody</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Recommendation__c</picklist>
+            <values>
+                <fullName>AD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactivate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior AM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_Type__c</picklist>
+            <values>
+                <fullName>Branded Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Previous Canadian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repo Papers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Due</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Transportation__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vehicle_Type__c</picklist>
+            <values>
+                <fullName>3rd party remarketers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vehicle_as_Expected__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Fleet_Lease</fullName>
+        <active>true</active>
+        <label>Fleet/Lease</label>
+        <picklistValues>
+            <picklist>AVP_RSD_TM_CSM__c</picklist>
+            <values>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All CSMs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Arbitration_Outcome__c</picklist>
+            <values>
+                <fullName>Arb Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arb Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IST Handled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Assignment_Preference__c</picklist>
+            <values>
+                <fullName>CSV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upload</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Communication_Preference__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floorplan__c</picklist>
+            <values>
+                <fullName>ADI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assembly Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Auto Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AutoBank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BB%26T</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMO Harris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BNC Bank %28floor plan%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bank of America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carbucks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City Auto Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Preferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealers Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diamond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Choice Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flex Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floorplan Xpress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greater Kalamazoo Financial Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Huntington National Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyundai Motor Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCS Floorplan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KeyBank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M%26T</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macatawa Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Millennium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NextGear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niagara Car %26 Truck</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Used Car Inc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Westlake</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XL Funding</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Launch_Preference__c</picklist>
+            <values>
+                <fullName>CSM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VCI</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Onboarding_Demo_By__c</picklist>
+            <values>
+                <fullName>BDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer declined%3A OBS sent key takeaways email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Method__c</picklist>
+            <values>
+                <fullName>ACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floorplan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Payment_Method__c</picklist>
+            <values>
+                <fullName>ACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_Not_as_Expected__c</picklist>
+            <values>
+                <fullName>Cosmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frame %26 Unibody</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Recommendation__c</picklist>
+            <values>
+                <fullName>AD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactivate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior AM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_Type__c</picklist>
+            <values>
+                <fullName>Branded Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Previous Canadian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repo Papers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Due</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Transportation__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vehicle_Type__c</picklist>
+            <values>
+                <fullName>3rd party remarketers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Importer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OEM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vehicle_as_Expected__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Account_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Dealership_ID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Auction_ID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Arbitration_Case__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Date_of_hand_off__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Handoff_To__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Additional_Comments__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Cannot_modify_FTB_Acution</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISCHANGED( Auction_ID__c ) , ISPICKVAL( Status__c , &apos;Completed&apos;) )</errorConditionFormula>
+        <errorMessage>FTB cannot be modified if  the status is Completed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Docs_must_be_reviewed_to_be_complete</fullName>
+        <active>false</active>
+        <description>In order to mark Onboarding as Completed, the Registration Docs Reviewed checkbox must equal true.</description>
+        <errorConditionFormula>AND (ISPICKVAL(Status__c ,&quot;Completed&quot;), Onboarding_Docs_Reviewed__c=false)</errorConditionFormula>
+        <errorMessage>You must review all documents and check off &apos;Registration Docs Reviewed&apos; before marking the record as Completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Handoff_Date_Required</fullName>
+        <active>true</active>
+        <description>Requires that if the hand off to field is filled in the handoff date must be completed</description>
+        <errorConditionFormula>AND(ISBLANK (Date_of_hand_off__c),  Handoff_To__c  &lt;&gt; null)</errorConditionFormula>
+        <errorMessage>Date of Handoff must be completed.  Contact your Salesforce administrator with any questions.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Other_Reason_not_as_expected</fullName>
+        <active>true</active>
+        <description>Reason not as expected of &quot;Other&quot; requires the Other Reason expected field to be populated</description>
+        <errorConditionFormula>AND(
+Ispickval(Reason_Not_as_Expected__c,&quot;Other&quot;),
+ISBLANK(
+Other_Reason_Not_as_Expected__c)
+)</errorConditionFormula>
+        <errorDisplayField>Other_Reason_Not_as_Expected__c</errorDisplayField>
+        <errorMessage>Reason not as expected of &quot;Other&quot; requires the Other Reason expected field to be populated</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

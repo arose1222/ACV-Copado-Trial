@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Crew Managment Lightbox --></label>
+        <name>FSL__CrewManagment_Lightbox</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Deprecated --></label>
+        <name>FSL__Emergency_Current_WorkORder_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Gantt Lightbox --></label>
+        <name>FSL__Gantt_Lightbox</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Account Address --></label>
+        <name>Account_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Arb Rate --></label>
+        <name>All_Time_Arb_Rate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Populate in advance if known - to be validated by VCI on-site. Also updated when Work Order Line Items are added/deleted with the &quot;Asset Verification&quot; Work Type --></help>
+        <label><!-- Asset Verification - Number of Vehicles --></label>
+        <name>Asset_Verification_Number_of_Vehicles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned Date/Time --></label>
+        <name>Assigned_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned To Completed (Hours) --></label>
+        <name>Assigned_To_Completed_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auditor Name --></label>
+        <name>Auditor_Name__c</name>
+        <relationshipLabel><!-- Work Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories). --></help>
+        <label><!-- Beta Flag --></label>
+        <name>Beta_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Date/Time --></label>
+        <name>Completed_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created From Quick Action --></label>
+        <name>Created_From_Quick_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Without Line Items --></label>
+        <name>Created_Without_Line_Items__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Since Creation --></label>
+        <name>Days_Since_Creation__c</name>
+    </fields>
+    <fields>
+        <label><!-- DueDate Adjustment Engine Bypass --></label>
+        <name>DueDate_Adjustment_Engine_Bypass__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration in Minutes --></label>
+        <name>Duration_in_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Record guid --></label>
+        <name>External_Record_guid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Fill In Candidate --></label>
+        <name>FSL__IsFillInCandidate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Geocoding For Chatter Actions --></label>
+        <name>FSL__Prevent_Geocoding_For_Chatter_Actions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduling Priority --></label>
+        <name>FSL__Scheduling_Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visiting Hours --></label>
+        <name>FSL__VisitingHours__c</name>
+        <relationshipLabel><!-- Work Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Final Audit Score --></label>
+        <name>Final_Audit_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Required Resource --></label>
+        <name>Has_Required_Resource__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initiative --></label>
+        <name>Initiative__c</name>
+    </fields>
+    <fields>
+        <help><!-- Populated in advance if known - to be validated by VCI on-site.  Should be updated when Work Order Line Items are added/deleted (for Standard Inspection, Sirius XM, and True 360). --></help>
+        <label><!-- Inspection - Number of Vehicles --></label>
+        <name>Inspection_Number_of_Vehicles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Request --></label>
+        <name>Inspection_Request__c</name>
+        <relationshipLabel><!-- Work Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last 90 Days Sold --></label>
+        <name>Last_90_Days_Sold__c</name>
+    </fields>
+    <fields>
+        <help><!-- Provide additional information on the Vehicle Launch Terms especially when it is set to Future Date/Time, Run List or Other. --></help>
+        <label><!-- Launch Term Details --></label>
+        <name>Launch_Term_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- List View Display --></label>
+        <name>List_View_Display__c</name>
+    </fields>
+    <fields>
+        <label><!-- New To Assigned (Hours) --></label>
+        <name>New_To_Assigned_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- New To Completed (Hours) --></label>
+        <name>New_To_Completed_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Not Beta Territory --></label>
+        <name>Not_Beta_Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence --></label>
+        <name>Occurrence__c</name>
+        <relationshipLabel><!-- Work Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Origin --></label>
+        <name>Origin__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone Call</masterLabel>
+            <translation><!-- Phone Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Revolving Term</masterLabel>
+            <translation><!-- Revolving Term --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Proactive Work --></label>
+        <name>Proactive_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processing Offers --></label>
+        <name>Processing_Offers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotional Work Type --></label>
+        <name>Promotional_Work_Type__c</name>
+        <relationshipLabel><!-- Work Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Revolving Appointment Resource --></label>
+        <name>Revolving_Appointment_Resource__c</name>
+    </fields>
+    <fields>
+        <help><!-- Roll-up Summary field calculating MAX Value of Work Order Line Items --></help>
+        <label><!-- Scoring Logic Summary --></label>
+        <name>Scoring_Logic_Summary__c</name>
+    </fields>
+    <fields>
+        <help><!-- Added formula field for report grouping purposes while Asset Verification 2.0 is being implemented. --></help>
+        <label><!-- Request Account&apos;s Service Territory --></label>
+        <name>Service_Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Special Instructions --></label>
+        <name>Special_Instructions__c</name>
+    </fields>
+    <fields>
+        <help><!-- Captures the launch terms as agreed to with the TM/RSD. If Future Date/Time, Run List or Other is selected, please fill in the Launch Term Details --></help>
+        <label><!-- Vehicle Launch Terms --></label>
+        <name>Vehicle_Launch_Terms__c</name>
+        <picklistValues>
+            <masterLabel>After each vehicle</masterLabel>
+            <translation><!-- After each vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End of Visit/After Prescreen</masterLabel>
+            <translation><!-- End of Visit/After Prescreen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Future Date/Time</masterLabel>
+            <translation><!-- Future Date/Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Reserve</masterLabel>
+            <translation><!-- No Reserve --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Run List</masterLabel>
+            <translation><!-- Run List --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- WOLI Cannot Complete Status Category Cnt --></label>
+        <name>WOLI_Cannot_Complete_Status_Category_Cnt__c</name>
+    </fields>
+    <fields>
+        <label><!-- WOLI Completed Status Category Cnt --></label>
+        <name>WOLI_Completed_Status_Category_Cnt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Order Scheduling Priority --></label>
+        <name>Work_Order_Scheduling_Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- 90 Day Sell-Thru Rate --></label>
+        <name>X90_Day_Sell_Thru_Rate__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- This dealership is not approved for any True 360 inspections at this time. --></errorMessage>
+        <name>Prevent_True360_appointments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI. --></errorMessage>
+        <name>Prevent_VCIs_LCs_from_Canceling_WO_Jobs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Work Type CANNOT be changed. --></errorMessage>
+        <name>Prevent_Work_Type_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill in the Launch Terms Details for Future Date/Time, Run List or Other terms. --></errorMessage>
+        <name>Require_Launch_Term_Details</name>
+    </validationRules>
+</CustomObjectTranslation>

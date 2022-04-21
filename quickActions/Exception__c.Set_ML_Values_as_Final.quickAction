@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Sets the three ML found values as the three Final values for the Dealer Docs review process.</description>
+    <fieldOverrides>
+        <field>Document_State__c</field>
+        <formula>TEXT(Exception__c.Document_State_ML__c)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Expiration_Date__c</field>
+        <formula>Exception__c.Expiration_Date_ML__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>License_Number__c</field>
+        <formula>Exception__c.License_Number_ML__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>Exception__c.Name</formula>
+    </fieldOverrides>
+    <label>Set ML Values as Final</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Document_State__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>License_Number__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Expiration_Date__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <successMessage>ML values successfully converted to Final values.</successMessage>
+    <type>Update</type>
+</QuickAction>

@@ -1,0 +1,205 @@
+<apex:page showHeader="true" sidebar="true">
+	<apex:stylesheet value="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"/> <!-- Common geopointe CSS -->  
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common.css')}"/> <!-- Common geopointe CSS -->  
+
+	<style type="text/css">
+		h4{
+			display: block;
+			margin: 10px 0px;
+		}
+
+		/* default/base */
+		.gp-btn {
+		    padding: .5em 1em;
+		    background: none;
+		    border: 1px solid #ccc;
+		    border-radius: .2em;
+		    margin: 0;
+		    color: #555;
+		    font-weight: 700;
+		    box-shadow: 0px 1px 1px #eee, inset 0px 1px 0px #fff;
+		    font-size: 12px;
+		    font-family: 'Open Sans';
+		    display: inline-block;
+		    background-color: #fafafa;
+		    background-image: -webkit-linear-gradient(top, #fafafa, #f5f5f5);
+		    background-image: -moz-linear-gradient(top, #fafafa, #f5f5f5);
+		    background-image: -ms-linear-gradient(top, #fafafa, #f5f5f5);
+		    background-image: -o-linear-gradient(top, #fafafa, #f5f5f5);
+		    background-image: linear-gradient(top, #fafafa, #f5f5f5);
+		}
+
+		/* colored */
+		.gp-btn.btn-primary {
+		    background-color: #3196c4;
+		    background-image: -webkit-linear-gradient(top, #339bc7, #2f91c1);
+		    background-image: -moz-linear-gradient(top, #339bc7, #2f91c1);
+		    background-image: -ms-linear-gradient(top, #339bc7, #2f91c1);
+		    background-image: -o-linear-gradient(top, #339bc7, #2f91c1);
+		    background-image: linear-gradient(top, #339bc7, #2f91c1);
+		    box-shadow: 0px 1px 1px #eee, inset 0px 1px 0px #3da0ca;
+		    border-color: #2882b9;
+		    color: #fff;
+		}
+		.gp-btn.btn-danger {
+		    background-color: #cf5c60;
+		    background-image: -webkit-linear-gradient(top, #d16065, #cd585b);
+		    background-image: -moz-linear-gradient(top, #d16065, #cd585b);
+		    background-image: -ms-linear-gradient(top, #d16065, #cd585b);
+		    background-image: -o-linear-gradient(top, #d16065, #cd585b);
+		    background-image: linear-gradient(top, #d16065, #cd585b);
+		    box-shadow: 0px 1px 1px #eee, inset 0px 1px 0px #d3696d;
+		    border-color: #c64a4d;
+		    color: #fff;
+		}
+		.gp-btn.btn-success {
+		    background-color: #4AB471;
+		    background-image: -webkit-linear-gradient(top, #4eb876, #46b06c);
+		    background-image: -moz-linear-gradient(top, #4eb876, #46b06c);
+		    background-image: -ms-linear-gradient(top, #4eb876, #46b06c);
+		    background-image: -o-linear-gradient(top, #4eb876, #46b06c);
+		    background-image: linear-gradient(top, #4eb876, #46b06c);
+		    box-shadow: 0px 1px 1px #eee, inset 0px 1px 0px #57bc7e;
+		    border-color: #3ca45b;
+		    color: #fff;
+		}
+
+		.gp-btn.active {
+		    background-color: #999999;
+		    background-image: -webkit-linear-gradient(top, #939393, #9d9d9d);
+		    background-image: -moz-linear-gradient(top, #939393, #9d9d9d);
+		    background-image: -ms-linear-gradient(top, #939393, #9d9d9d);
+		    background-image: -o-linear-gradient(top, #939393, #9d9d9d);
+		    background-image: linear-gradient(top, #939393, #9d9d9d);
+		    box-shadow: 0px 1px 1px #eee, inset 0px 1px 0px #888;
+		    border-color: #777777;
+		    color: #fff;
+		}
+
+		/* Sizes */
+		.gp-btn.btn-sm {
+		    font-size: 11px;
+		}
+		.gp-btn.btn-lg {
+		    font-size: 14px;
+		}
+
+		/* button group */
+		.btn-group {
+		    position: relative;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+
+		.btn-group .gp-btn:first-child {
+		    margin-left: 0px;
+		    border-radius: .2em 0 0 .2em;
+		}
+		.btn-group .gp-btn:last-child {
+		    border-radius: 0 .2em .2em 0;
+		}
+		.btn-group .gp-btn {
+		    margin-left: -1px;
+		    float: left;
+		    position: relative;
+		    border-radius: 0;
+		}
+		.btn-group .gp-btn.active {
+		    z-index: 2;
+		}
+
+		/* Inputs */
+		.gp-input {
+		    padding: .5em;
+		    background: none;
+		    border: 1px solid #ccc;
+		    border-radius: .2em;
+		    margin: 0;
+		    color: #555;
+		    box-shadow: inset 0px 1px 0px #eee;
+		    font-size: 12px;
+		    font-family: 'Open Sans',Arial;
+		    display: inline-block;
+		}
+
+		/* Sizes */
+		.gp-input.input-sm {
+		    font-size: 11px;
+		}
+		.gp-input.input-lg {
+		    font-size: 14px;
+		}
+
+		/* Dropdown button */
+		.caret {
+		    display: inline-block;
+		    width: 0;
+		    height: 0;
+		    margin-left: 2px;
+		    vertical-align: middle;
+		    border-top: 4px solid;
+		    border-right: 4px solid transparent;
+		    border-left: 4px solid transparent;
+		}
+
+
+		body {
+		    font-family: 'Open Sans';
+		    color: #999;
+		}
+	</style>  
+
+	<h4>Sizes</h4>
+	<button class="gp-btn btn-lg">Large</button>
+	<button class="gp-btn">Default</button>
+	<button class="gp-btn btn-sm">Small</button>
+	<input type="button" class="gp-btn btn-sm" value="Small"/>
+
+	<h4>Colors</h4>
+	<button class="gp-btn">Default</button>
+	<button class="gp-btn btn-primary">Primary</button>
+	<button class="gp-btn btn-danger">Danger</button>
+	<button class="gp-btn btn-success">Success</button>
+
+	<h4>Button Group</h4>
+	<div class="btn-group">
+	    <button class="gp-btn">Normal</button>
+	    <button class="gp-btn active">Active</button>
+	    <button class="gp-btn">Normal</button>
+	</div>
+
+	<h4>In a TD </h4>
+	<table cellpadding="0" cellspacing="0">
+	    <tr>
+	        <td>
+	            <div class="btn-group">
+	            	<input type="button" class="gp-btn" value="Normal"/>
+	                <input type="button" class="gp-btn active" value="Active"/>
+	                <input type="button" class="gp-btn" value="Normal"/>
+	            </div>
+	            <input type="button" class="gp-btn" value="Button"/>
+	        </td>
+	    </tr>
+	</table>
+
+	<h4>Input</h4>
+	<input type="text" class="gp-input input-lg" value="Large"/>
+	<input type="text" class="gp-input" value="Default"/>
+	<input type="text" class="gp-input input-sm" value="Small"/>
+
+	<h4>Dropdown</h4>
+	<button class="gp-btn btn-lg dropdown">Dropdown <span class="caret"></span></button>
+	<button class="gp-btn dropdown">Dropdown <span class="caret"></span></button>
+	<button class="gp-btn btn-sm dropdown">Dropdown <span class="caret"></span></button>
+
+
+	<h4>Control Alignment</h4>
+	<input type="text" class="gp-input input-sm" value="Small"/>
+	<button class="gp-btn btn-sm">Go</button>
+	<br/><br/>
+	<input type="text" class="gp-input" value="Default"/> <button class="gp-btn">Go</button>
+	<br/><br/>
+	<input type="text" class="gp-input input-lg" value="Large"/> <button class="gp-btn btn-lg">Go</button>
+	<br/><br/>
+
+</apex:page>

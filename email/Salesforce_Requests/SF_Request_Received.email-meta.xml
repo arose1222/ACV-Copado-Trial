@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email confirms receipt of a Salesforce Request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>SF Request Received</name>
+    <style>freeForm</style>
+    <subject>Your Request &amp; Inquiry Ticket Has Been Received</subject>
+    <textOnly>{!Salesforce_Request__c.OwnerFirstName},
+
+Your Request &amp; Inquiry Ticket has been received and routed to the appropriate team member. As the ticket progresses, you will continue to receive emails to alert you of status updates and comments made on the ticket.
+
+In the meantime, if you would like to edit your request or reach out to the team working on this via Chatter, you can do so by visiting your ticket: {!Salesforce_Request__c.Link}.
+
+We&apos;ll be in touch!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>FSL Flow to set the status to Arrived and update the Actual Start Time. Created as a flow in order to control order of buttons in FSL Mobile UI.</description>
+    <interviewLabel>Arrived {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Arrived</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>FieldServiceMobile</processType>
+    <recordUpdates>
+        <name>Update_Status_to_Arrived_and_update_Actual_Start</name>
+        <label>Update Status to Arrived and update Actual Start</label>
+        <locationX>374</locationX>
+        <locationY>49</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ActualStartTime</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Arrived</stringValue>
+            </value>
+        </inputAssignments>
+        <object>ServiceAppointment</object>
+    </recordUpdates>
+    <screens>
+        <name>Arrival_Confirmation_Screen</name>
+        <label>Arrival Confirmation</label>
+        <locationX>221</locationX>
+        <locationY>51</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_Status_to_Arrived_and_update_Actual_Start</targetReference>
+        </connector>
+        <fields>
+            <name>Arrival_Confirmation_Display</name>
+            <fieldText>&lt;p&gt;Press &quot;Next&quot; to set the following:&lt;/p&gt;&lt;p&gt;Status: Arrived&lt;/p&gt;&lt;p&gt;Actual Start Time: {!$Flow.CurrentDateTime}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Arrival_Confirmation_Screen</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

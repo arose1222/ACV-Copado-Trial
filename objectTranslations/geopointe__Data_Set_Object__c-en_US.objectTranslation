@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- When checked, this Data Set becomes available on the Map tab. --></help>
+        <label><!-- Available (Maps) --></label>
+        <name>geopointe__Available_Maps__c</name>
+    </fields>
+    <fields>
+        <help><!-- When checked, this Data Set becomes available on the Visualize tab. --></help>
+        <label><!-- Available (Visualize) --></label>
+        <name>geopointe__Available_Visualize__c</name>
+    </fields>
+    <fields>
+        <label><!-- Child Filter Logic --></label>
+        <name>geopointe__Child_Filter_Logic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Color Marker Date Bin Size --></label>
+        <name>geopointe__Color_Marker_Date_Bin_Size__c</name>
+        <picklistValues>
+            <masterLabel>day</masterLabel>
+            <translation><!-- day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>month</masterLabel>
+            <translation><!-- month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>quarter</masterLabel>
+            <translation><!-- quarter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>week</masterLabel>
+            <translation><!-- week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>year</masterLabel>
+            <translation><!-- year --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Color Marker Date Rule Generator --></label>
+        <name>geopointe__Color_Marker_Date_Rule_Generator__c</name>
+        <picklistValues>
+            <masterLabel>auto</masterLabel>
+            <translation><!-- auto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>customRange</masterLabel>
+            <translation><!-- customRange --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>dynamicRange</masterLabel>
+            <translation><!-- dynamicRange --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ordinalDayOfWeek</masterLabel>
+            <translation><!-- ordinalDayOfWeek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ordinalMonthOfYear</masterLabel>
+            <translation><!-- ordinalMonthOfYear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ordinalQuarterOfYear</masterLabel>
+            <translation><!-- ordinalQuarterOfYear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ordinalWeekOfMonth</masterLabel>
+            <translation><!-- ordinalWeekOfMonth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Color Markers By --></label>
+        <name>geopointe__Color_Markers_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- The HEX color that the Data Set markers should be in --></help>
+        <label><!-- Color --></label>
+        <name>geopointe__Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Set Identifier --></label>
+        <name>geopointe__Data_Set_Identifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fields --></label>
+        <name>geopointe__Fields__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter Logic --></label>
+        <name>geopointe__Filter_Logic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filters --></label>
+        <name>geopointe__Filters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Folder --></label>
+        <name>geopointe__Folder__c</name>
+        <relationshipLabel><!-- Data Sets --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- When checked, the system will output a formatted address in 1 column of the data table. --></help>
+        <label><!-- Formatted Address for Data Table --></label>
+        <name>geopointe__Formatted_Address_for_Data_Table__c</name>
+    </fields>
+    <fields>
+        <label><!-- Text Source --></label>
+        <name>geopointe__Label_Markers_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Run --></label>
+        <name>geopointe__Last_Run__c</name>
+    </fields>
+    <fields>
+        <help><!-- The name of the map object this Data Set is based upon. The value in this field should match the value in the corresponding Map Object record (including being in lower case). --></help>
+        <label><!-- Map Object --></label>
+        <name>geopointe__Map_Object__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marker Icon --></label>
+        <name>geopointe__Marker_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marker Rules --></label>
+        <name>geopointe__Marker_Rules__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marker Text --></label>
+        <name>geopointe__Marker_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marker Type --></label>
+        <name>geopointe__Marker_Type__c</name>
+        <picklistValues>
+            <masterLabel>dynamic</masterLabel>
+            <translation><!-- dynamic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>label</masterLabel>
+            <translation><!-- label --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>static</masterLabel>
+            <translation><!-- static --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Multiple Rule Fields --></label>
+        <name>geopointe__Multi_Rule_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- This value controls how many of the selected fields are displayed in the search results table under the map. For example, if &apos;5&apos; is selected, the first 5 fields the current user has access to will be displayed in the table. --></help>
+        <label><!-- Number of Fields Displayed in Table --></label>
+        <name>geopointe__Number_of_Fields_Displayed_in_Table__c</name>
+    </fields>
+    <fields>
+        <help><!-- Specifies whether the Order By should be done in an Ascending or Descending manner. --></help>
+        <label><!-- Order By Direction --></label>
+        <name>geopointe__Order_By_Direction__c</name>
+        <picklistValues>
+            <masterLabel>ASC</masterLabel>
+            <translation><!-- ASC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DESC</masterLabel>
+            <translation><!-- DESC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The field that the system should order the query by when performing a query using this Data Set. If a value is not specified, the system defaults to sorting by the field you specified as the &quot;Name Field&quot; above. --></help>
+        <label><!-- Order By Field --></label>
+        <name>geopointe__Order_By_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- When checked, this becomes a personal Data Set available only to the owner. --></help>
+        <label><!-- Personal --></label>
+        <name>geopointe__Personal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Maximum number of records to return. --></help>
+        <label><!-- Limit --></label>
+        <name>geopointe__Query_Limit__c</name>
+    </fields>
+    <fields>
+        <help><!-- This value controls how often (in seconds) the data is automatically refreshed on the map.  Minimum value is 10 secords. --></help>
+        <label><!-- Refresh Interval --></label>
+        <name>geopointe__Refresh_Interval__c</name>
+    </fields>
+    <fields>
+        <help><!-- Holds the DeveloperName of the Salesforce Report used to source the Data Set.  If not blank, the Data Set will use filter and field values derived from the Report. --></help>
+        <label><!-- Report Source DeveloperName --></label>
+        <name>geopointe__Report_Source_DeveloperName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Filter --></label>
+        <name>geopointe__Show_Filter__c</name>
+        <picklistValues>
+            <masterLabel>all</masterLabel>
+            <translation><!-- all --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>my</masterLabel>
+            <translation><!-- my --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Inactive Data Sets cannot be used for mapping. --></help>
+        <label><!-- Status --></label>
+        <name>geopointe__Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

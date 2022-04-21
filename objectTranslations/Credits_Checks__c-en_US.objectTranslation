@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Credit &amp; Check</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Credits &amp; Checks</value>
+    </caseValues>
+    <fields>
+        <label><!-- ACV User Id --></label>
+        <name>ACV_User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Adjustment --></label>
+        <name>Adjustment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount Approved --></label>
+        <name>Amount_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount Requested --></label>
+        <name>Amount_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- Applicable To --></label>
+        <name>Applicable_To__c</name>
+        <picklistValues>
+            <masterLabel>ACV Fees</masterLabel>
+            <translation><!-- ACV Fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assurance</masterLabel>
+            <translation><!-- Assurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval/Denial Date --></label>
+        <name>Approval_Denial_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status of the credit check approval --></help>
+        <label><!-- Approval Status --></label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Done Failed</masterLabel>
+            <translation><!-- Done Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Done Successful</masterLabel>
+            <translation><!-- Done Successful --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approved By --></label>
+        <name>Approved_By__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Sum Resolution + Tow + Diag approved for payout --></help>
+        <label><!-- Total Arb Amount Approved --></label>
+        <name>Arb_Amount_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction --></label>
+        <name>Auction__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Budget Name --></label>
+        <name>Budget_Name__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Prior to approval of this record, this reflects the sum of total payouts previously approved for this Complaint. If this record is approved, that value is immediately included in this field. --></help>
+        <label><!-- Prior Complaint Amount Approved --></label>
+        <name>Complaint_Approved_Credits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Date --></label>
+        <name>Created_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Id --></label>
+        <name>Credit_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer --></label>
+        <name>Dealer__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Dealer ID --></label>
+        <name>Dealership_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debt Forgiveness Notes --></label>
+        <name>Debt_Forgiveness_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Diag refund value, only. Reflects requested amount, and then approved amount, if approved. --></help>
+        <label><!-- Diagnostic Amount --></label>
+        <name>Diagnostic_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expiration Date --></label>
+        <name>Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Additional note on the reason for issuing the credit/check --></help>
+        <label><!-- Explanation --></label>
+        <name>Explanation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Name --></label>
+        <name>Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Netsuite ID --></label>
+        <name>Netsuite_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization Credit Id --></label>
+        <name>Organization_Credit_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Credit record an Adjustment is related to --></help>
+        <label><!-- Parent Credit --></label>
+        <name>Parent_Credit__c</name>
+        <relationshipLabel><!-- Parent Credit --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payment Type --></label>
+        <name>Payment_Type__c</name>
+        <picklistValues>
+            <masterLabel>ACV Credit Assigned</masterLabel>
+            <translation><!-- ACV Credit Assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV Credit Deduction</masterLabel>
+            <translation><!-- ACV Credit Deduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV Issue Check</masterLabel>
+            <translation><!-- ACV Issue Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV to Re-List</masterLabel>
+            <translation><!-- ACV to Re-List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Debt Forgiveness</masterLabel>
+            <translation><!-- Debt Forgiveness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller Issue Check</masterLabel>
+            <translation><!-- Seller Issue Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwound Back to Seller</masterLabel>
+            <translation><!-- Unwound Back to Seller --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Processed in Netsuite --></label>
+        <name>Processed_in_Netsuite__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bad Debt Expense</masterLabel>
+            <translation><!-- Bad Debt Expense --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodwill</masterLabel>
+            <translation><!-- Goodwill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Direct Expense to ACV</masterLabel>
+            <translation><!-- No Direct Expense to ACV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion</masterLabel>
+            <translation><!-- Promotion --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is a field will display on a first time buyer&apos;s for the first 14 days after their first buy --></help>
+        <label><!-- Recent FTB --></label>
+        <name>Recent_FTB__c</name>
+    </fields>
+    <fields>
+        <help><!-- Resolution value, only. Reflects requested amount, and then approved amount, if approved. --></help>
+        <label><!-- Resolution Amount --></label>
+        <name>Resolution_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resolution --></label>
+        <name>Resolution__c</name>
+        <relationshipLabel><!-- Credits &amp; Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Root Cause --></label>
+        <name>Root_Cause__c</name>
+        <picklistValues>
+            <masterLabel>14-Day Guarantee</masterLabel>
+            <translation><!-- 14-Day Guarantee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>48-hour Title Notice</masterLabel>
+            <translation><!-- 48-hour Title Notice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration Avoidable</masterLabel>
+            <translation><!-- Arbitration Avoidable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration Unavoidable</masterLabel>
+            <translation><!-- Arbitration Unavoidable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction Error</masterLabel>
+            <translation><!-- Auction Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer Fee Refund / Correction</masterLabel>
+            <translation><!-- Buyer Fee Refund / Correction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Capital Fee Refund / Correction</masterLabel>
+            <translation><!-- Capital Fee Refund / Correction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Component Not Covered</masterLabel>
+            <translation><!-- Component Not Covered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disclosure Dispute</masterLabel>
+            <translation><!-- Disclosure Dispute --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Double Sale</masterLabel>
+            <translation><!-- Double Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Time Buyer</masterLabel>
+            <translation><!-- First Time Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Payment</masterLabel>
+            <translation><!-- Non-Payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Goodwill Issue</masterLabel>
+            <translation><!-- Other Goodwill Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Promotion</masterLabel>
+            <translation><!-- Other Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Past Arbitration Time Frame – 10-day Arbitration</masterLabel>
+            <translation><!-- Past Arbitration Time Frame – 10-day Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Past Arbitration Time Frame – 48-hour ACV Transport</masterLabel>
+            <translation><!-- Past Arbitration Time Frame – 48-hour ACV Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion</masterLabel>
+            <translation><!-- Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller Fee Refund / Correction</masterLabel>
+            <translation><!-- Seller Fee Refund / Correction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport Fee Refund / Correction</masterLabel>
+            <translation><!-- Transport Fee Refund / Correction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation Issue</masterLabel>
+            <translation><!-- Transportation Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zero Downside</masterLabel>
+            <translation><!-- Zero Downside --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Slam Dunk --></label>
+        <name>Slam_Dunk__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Approved Arb Amount --></label>
+        <name>Total_Approved_Arb_Amount__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum Resolution + Tow + Diag being requested --></help>
+        <label><!-- Total Arb Amount Requested --></label>
+        <name>Total_Arb_Amount_Requested__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tow refund value, only. Reflects requested amount, and then approved amount, if approved. --></help>
+        <label><!-- Tow Fee --></label>
+        <name>Tow_Fee__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- Produces a check record to issue check by payments --></description>
+        <label><!-- Check --></label>
+        <name>Check</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type issues a credit by payments --></description>
+        <label><!-- Credit --></label>
+        <name>Credit</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Creates an invoice for payments --></description>
+        <label><!-- Invoice --></label>
+        <name>Invoice</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

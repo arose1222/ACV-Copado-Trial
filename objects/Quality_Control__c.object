@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Quality_Control</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Quality_Control</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_To_Buyer_Label__c</fullName>
+        <description>ACV to Buyer Postage Label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ACV to Buyer Postage Label.</inlineHelpText>
+        <label>ACV To Buyer Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>ACV_To_Buyer_Tracking_Code__c</fullName>
+        <description>ACV to Buyer Tracking Code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ACV to Buyer Tracking Code.</inlineHelpText>
+        <label>ACV To Buyer Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_To_Seller_Label__c</fullName>
+        <description>ACV to Seller Postage Label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ACV to Seller Postage Label.</inlineHelpText>
+        <label>ACV To Seller Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>ACV_To_Seller_Tracking_Code__c</fullName>
+        <description>ACV to Seller Tracking Code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ACV to Seller Tracking Code.</inlineHelpText>
+        <label>ACV To Seller Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_Details__c</fullName>
+        <description>This is a manually entered field populated by the user who is creating the Quality control record via the New QC Flow.  This field will also be editable outside of the flow so updates can be made.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field for elaborating on the title problems selected and adding color to the issues beyond the selections.</inlineHelpText>
+        <label>Additional Details</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Auction__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.Auction_Number_Case__c</formula>
+        <label>Auction</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Buyer_Seller_Info_Incomplete_Incorrect__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;Buyer/Seller Info Incomplete/Incorrect&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Buyer/Seller Info Incomplete/Incorrect</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_To_ACV_Label__c</fullName>
+        <description>Buyer To ACV Postage Label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Buyer To ACV Postage Label.</inlineHelpText>
+        <label>Buyer To ACV Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_To_ACV_Tracking_Code__c</fullName>
+        <description>Buyer To ACV Tracking Code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Buyer To ACV Tracking Code.</inlineHelpText>
+        <label>Buyer To ACV Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_be_solved_in_house__c</fullName>
+        <description>used in the New Title QC Flow to identify if the problems identified can ALL be solved in house.</description>
+        <externalId>false</externalId>
+        <label>Can be solved in house</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Case_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.RecordType.Name</formula>
+        <label>Case Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Quality Control</relationshipLabel>
+        <relationshipName>Quality_Control</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Caught_Error__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Caught Error</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Quality_Control1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Caused_Missed_Error__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Caused/Missed Error</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Quality_Control</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_QC_Closed__c</fullName>
+        <description>Date time the quality control record is closed  - populated via QC Date time closed date</description>
+        <externalId>false</externalId>
+        <label>Date Time QC Closed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Error_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Buyer_Seller_Info_Incomplete_Incorrect__c  = True, 1, 0) +
+IF( Filed_Incorrectly__c = True, 1, 0) +
+IF( Incomplete_Vehicle_Info__c = True, 1, 0) +
+IF( Missed_AGT_Signature__c  = True, 1, 0) +
+IF( Missing_Notary__c  = True, 1, 0) +
+IF( ODOM_Date__c  = True, 1, 0) +
+IF( Other__c = True, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Error Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Filed_Incorrectly__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;Filed Incorrectly&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Filed Incorrectly</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Incomplete_Vehicle_Info__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;Incomplete Vehicle Info&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incomplete Vehicle Info</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issue__c</fullName>
+        <description>Issue picklist options should always align with the title problem field on case.  If updating options on this field they must also be updated their as well</description>
+        <externalId>false</externalId>
+        <label>Issue</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Missing Notary</fullName>
+                    <default>false</default>
+                    <label>Missing Notary</label>
+                </value>
+                <value>
+                    <fullName>Incorrect Vehicle Information on Title</fullName>
+                    <default>false</default>
+                    <label>Incorrect Vehicle Information on Title</label>
+                </value>
+                <value>
+                    <fullName>Odometer Discrepancy</fullName>
+                    <default>false</default>
+                    <label>Odometer Discrepancy</label>
+                </value>
+                <value>
+                    <fullName>Missing Signature</fullName>
+                    <default>false</default>
+                    <label>Missing Signature</label>
+                </value>
+                <value>
+                    <fullName>Reassignment Error</fullName>
+                    <default>false</default>
+                    <label>Reassignment Error</label>
+                </value>
+                <value>
+                    <fullName>Write-Overs</fullName>
+                    <default>false</default>
+                    <label>Write-Overs</label>
+                </value>
+                <value>
+                    <fullName>Reassigned to Wrong Purchaser</fullName>
+                    <default>false</default>
+                    <label>Reassigned to Wrong Purchaser</label>
+                </value>
+                <value>
+                    <fullName>Missing Document(s)</fullName>
+                    <default>false</default>
+                    <label>Missing Document(s)</label>
+                </value>
+                <value>
+                    <fullName>Damaged Title</fullName>
+                    <default>false</default>
+                    <label>Damaged Title</label>
+                </value>
+                <value>
+                    <fullName>Listing Error</fullName>
+                    <default>false</default>
+                    <label>Listing Error</label>
+                </value>
+                <value>
+                    <fullName>More Recently Issued Title</fullName>
+                    <default>false</default>
+                    <label>More Recently Issued Title</label>
+                </value>
+                <value>
+                    <fullName>Buyer Requested Duplicate</fullName>
+                    <default>false</default>
+                    <label>Buyer Requested Duplicate</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Buyer/Seller Info Incomplete/Incorrect</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Buyer/Seller Info Incomplete/Incorrect</label>
+                </value>
+                <value>
+                    <fullName>Filed Incorrectly</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Filed Incorrectly</label>
+                </value>
+                <value>
+                    <fullName>Incomplete Vehicle Info</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Incomplete Vehicle Info</label>
+                </value>
+                <value>
+                    <fullName>Missed AGT Signature</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Missed AGT Signature</label>
+                </value>
+                <value>
+                    <fullName>ODOM/Date</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>ODOM/Date</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Missed_AGT_Signature__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;Missed AGT Signature&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Missed AGT Signature</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Missing_Notary__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;Missing Notary&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Missing Notary</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ODOM_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES( Issue__c , &apos;ODOM/Date&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ODOM/Date</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Other_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Details</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Other__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(  Issue__c  , &apos;Other&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Other</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Problems_Open__c</fullName>
+        <externalId>false</externalId>
+        <label>Problems Open</label>
+        <summaryFilterItems>
+            <field>QC_Problem_Identified__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Resolved, Invalid</value>
+        </summaryFilterItems>
+        <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Problems_Resolved__c</fullName>
+        <description>Number of problem identified records associated with the quality Control record that are closed - used in validation rule to check that all problems are resolved before allowing the QC record to be marked as closed.</description>
+        <externalId>false</externalId>
+        <label>Problems Resolved</label>
+        <summaryFilterItems>
+            <field>QC_Problem_Identified__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Resolved</value>
+        </summaryFilterItems>
+        <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Reported_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Reported By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Title Clerk</fullName>
+                    <default>false</default>
+                    <label>Title Clerk</label>
+                </value>
+                <value>
+                    <fullName>Title Admin</fullName>
+                    <default>false</default>
+                    <label>Title Admin</label>
+                </value>
+                <value>
+                    <fullName>Buyer</fullName>
+                    <default>false</default>
+                    <label>Buyer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Return_Address_Postage_Label_URL__c</fullName>
+        <description>Return Address Postage Label URL to ACV.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Return Address Postage Label URL to ACV.</inlineHelpText>
+        <label>Return Address Postage Label URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Return_Address_Tracking_Code__c</fullName>
+        <description>Return Address Tracking Code to ACV.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Return Address Tracking Code to ACV.</inlineHelpText>
+        <label>Return Address Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Postage_Label_Contact_Name__c</fullName>
+        <description>Buyer/FloorPlan contact name used in the Title email template.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Buyer/FloorPlan contact name used in the Title email template.</inlineHelpText>
+        <label>Return Postage Label Contact Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Postage_Label_Email__c</fullName>
+        <description>Email for either buyer/floorplan</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email for either buyer/floorplan</inlineHelpText>
+        <label>Return Postage Label Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Account__c</fullName>
+        <description>Selling dealership on the title case related to this QC record - used in the Update QC Owner Flow.</description>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Case__r.Seller_Dealership__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Assistance_Needed__c</fullName>
+        <description>Used to identify if title problems require the seller&apos;s assistance to fix</description>
+        <externalId>false</externalId>
+        <label>Seller Assistance Needed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Seller_To_ACV_Label__c</fullName>
+        <description>Seller To ACV Postage Label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Seller To ACV Postage Label.</inlineHelpText>
+        <label>Seller To ACV Label</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Seller_To_ACV_Tracking_Code__c</fullName>
+        <description>Seller To ACV Tracking Code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Seller To ACV Tracking Code.</inlineHelpText>
+        <label>Seller To ACV Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Send_Postage_Email_To_Buyer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Send Email to Buyer to inform that return potage label is ready.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Send Email to Buyer to inform that return potage label is ready.</inlineHelpText>
+        <label>Send Postage Email To Buyer</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Postage_Label_URL_del__c</fullName>
+        <description>Postage Label URL to send the package to buyer/seller.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Postage Label URL to send the package to buyer/seller.</inlineHelpText>
+        <label>Ship To Postage Label URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Tracking_Code__c</fullName>
+        <description>Tracking Code for the package shipped to buyer/seller.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Tracking Code for the package shipped to buyer/seller.</inlineHelpText>
+        <label>Ship To Tracking Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Field is used within the QC flow for initial status  - relies on the problems open field.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                    <label>Open</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Working</fullName>
+                    <default>false</default>
+                    <label>Working</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title_Scanner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Title Scanner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>QC_Title_Scanner</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Problem_Count__c</fullName>
+        <description>Total number of problem Identified Records associated with the Quality Control record regardless of status.  used in Validation rule on QC object.</description>
+        <externalId>false</externalId>
+        <label>Total Problem Count</label>
+        <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UserReportFilter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(  Caused_Missed_Error__c =  $User.Id,  $Profile.Name = &apos;Title Manager&apos;, $Profile.Name = &apos;System Administrator&apos;,$Profile.Name = &apos;Read Only - Custom&apos; ,$Permission.Quality_Control_Admin = TRUE), 1, 0
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UserReportFilter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Quality Control</label>
+    <nameField>
+        <displayFormat>QC-{000000}</displayFormat>
+        <label>QC Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Quality Control</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>At_Buyer</fullName>
+        <active>true</active>
+        <label>At Buyer</label>
+        <picklistValues>
+            <picklist>Can_be_solved_in_house__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Issue__c</picklist>
+            <values>
+                <fullName>Buyer Requested Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Vehicle Information on Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Document%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Recently Issued Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned to Wrong Purchaser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassignment Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write-Overs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reported_By__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Admin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Seller_Assistance_Needed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>At_Clerking</fullName>
+        <active>true</active>
+        <label>At Clerking</label>
+        <picklistValues>
+            <picklist>Can_be_solved_in_house__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Issue__c</picklist>
+            <values>
+                <fullName>Buyer Requested Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Vehicle Information on Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Document%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Recently Issued Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned to Wrong Purchaser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassignment Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write-Overs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reported_By__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Admin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Seller_Assistance_Needed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>At_Outbound</fullName>
+        <active>true</active>
+        <label>At Outbound</label>
+        <picklistValues>
+            <picklist>Can_be_solved_in_house__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Issue__c</picklist>
+            <values>
+                <fullName>Buyer Requested Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Vehicle Information on Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Document%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Recently Issued Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned to Wrong Purchaser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassignment Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write-Overs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reported_By__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Admin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Seller_Assistance_Needed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>At_Problem</fullName>
+        <active>true</active>
+        <description>This record type is used when a QC record is created while the title case is in a status of problem.</description>
+        <label>At Problem</label>
+        <picklistValues>
+            <picklist>Can_be_solved_in_house__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Issue__c</picklist>
+            <values>
+                <fullName>Buyer Requested Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Vehicle Information on Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Document%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Recently Issued Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned to Wrong Purchaser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassignment Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write-Overs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reported_By__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Admin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Seller_Assistance_Needed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Titles_QC</fullName>
+        <active>true</active>
+        <label>At Reciept</label>
+        <picklistValues>
+            <picklist>Can_be_solved_in_house__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Issue__c</picklist>
+            <values>
+                <fullName>Buyer Requested Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Vehicle Information on Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Document%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Recently Issued Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odometer Discrepancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned to Wrong Purchaser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassignment Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write-Overs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reported_By__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Admin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Seller_Assistance_Needed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Can_not_close_QC_with_Open_QCPI_Records</fullName>
+        <active>true</active>
+        <description>The Quality Control Record Can not be placed in a closed status if any associated problem Identified records are unresolved.</description>
+        <errorConditionFormula>AND(
+ISCHANGED( Status__c),
+ISPICKVAL(Status__c, &quot;Closed&quot;),
+Total_Problem_Count__c  &lt;&gt;  Problems_Resolved__c)</errorConditionFormula>
+        <errorMessage>Please be sure all QC Problem Identified records are marked as Resolved - Use the Update Problem Status(es) button at the top right to resolve those issues.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

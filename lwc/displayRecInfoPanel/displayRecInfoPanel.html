@@ -1,0 +1,20 @@
+<!--
+ - @description A panel to display record fields (like Highlight panel). Highligh panel could only display upto 7 fields. 
+ - This component could be used if you like to display additional record fields.
+ -
+ - @name DisplayRecInfoPanel
+ - @author Manmeet Vaseer
+ - @date 05/25/2021
+ -->
+ <template>
+    <lightning-card title={panelTitle} icon-name="custom:custom14">
+        <lightning-record-view-form record-id={recordId} object-api-name={objectName}>
+            <div>
+                <lightning-output-field field-name={fieldAPIName1}></lightning-output-field>
+                <lightning-output-field field-name={fieldAPIName2}></lightning-output-field>
+                <lightning-output-field field-name={fieldAPIName3}></lightning-output-field>
+                <lightning-output-field field-name={fieldAPIName4}></lightning-output-field>
+            </div>
+        </lightning-record-view-form>
+    </lightning-card>    
+</template>

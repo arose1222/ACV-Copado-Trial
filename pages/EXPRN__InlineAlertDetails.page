@@ -1,0 +1,184 @@
+<apex:page standardController="EXPRN__Alert__c" extensions="EXPRN.InlineAlertDetailsController" >        
+
+    <style>
+        .headerText {color:#4a4a56 !important; } 
+        .detailFieldLabel {font-size: 12px !important; font-weight:bold; color:#4a4a56 !important;}
+        .summaryLabel {font-size: 98% !important; font-weight:bold; color:#4a4a56 !important;}  
+    
+        .pbButtonb {display:none !important;}
+        .bPageBlock .detailList tr td {
+            border-bottom: 1px solid white !important;
+        }
+        .bPageBlock .detailList tr th
+        {
+            border-bottom: 1px solid white !important;
+        }
+        
+    </style>
+      
+    <apex:sectionHeader title="Alert" subtitle="{!EXPRN__Alert__c.EXPRN__Alert_ID__c}"/>
+    
+    <apex:form id="frm">
+        <!-- 19-10-15 : changes for Security Review issues -->
+        <apex:actionFunction name="exceptionInsert" action="{!insertExceptions}" rerender="frm"/>
+        <script>
+            window.onload=function()
+            {
+                exceptionInsert();
+            };
+        </script>
+        <!-- 19-10-15 : changes end here-->
+    
+        <apex:pageblock mode="maindetail">
+        <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Delete" action="{!delete}"/>
+            </apex:pageBlockButtons>
+      
+            <apex:pageblockSection columns="2" title="Business Information" collapsible="false">
+                
+                <apex:pageblockSectionItem >
+                    <apex:outputLabel >Account Name</apex:outputLabel>
+                    <apex:outputfield label="Account Name" value="{!EXPRN__Alert__c.EXPRN__Account__c}"/>                
+                </apex:pageblockSectionItem> 
+                        
+                <apex:pageblockSectionItem >                
+                    <apex:outputLabel >Experian Business</apex:outputLabel>
+                    <apex:outputfield value="{!EXPRN__Alert__c.Account__r.Exp_Business__r.Name}"/>                
+                </apex:pageblockSectionItem> 
+                <!--       
+                <apex:repeat var="f" value="{!$ObjectType.Alert__c.FieldSets.BusinessInfo}">                                                                   
+                    <apex:outputText label="{!f.Label}" value="{!Alert__c[f]}" escape="false"/> 
+                </apex:repeat> 
+                -->
+            </apex:pageblockSection> 
+            <apex:dynamicComponent componentValue="{!BusinessInfo}" /> <!--Added on 27/10/2015 by TCSJ for Security Review -->              
+              
+            <apex:pageblockSection columns="1" title="Business Summary" collapsible="false">
+                <apex:pageblocksectionItem >
+                    <apex:outputPanel >
+                        <table style="font-size:91%; width:100%;">
+                
+                            <tr style="width:100%;">
+                                <td style="width:30%;">
+                                    <table>
+                                        <tr>
+                                            <td> <apex:outputLabel value="No. Continuous Trades " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;padding-right: 10%;"> <apex:outputText value=" {!NoContinuesTrades}"/> </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="Bal. Continuous Trades " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;padding-right: 10%;"> <apex:outputText value=" {!Bal_ContinuousTrades}"/> </td>                   
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="No. New Continuous Trades " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;padding-right: 10%;"> <apex:outputText value=" {!No_New_Continues_Trades}"/> </td>  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="Bal. New & Continuous Trades " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;padding-right: 10%;"> <apex:outputText value=" {!Bal_New_Continues_Trades}"/> </td>  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><apex:outputLabel value="Intelliscore Plus" styleClass="summaryLabel"/> </td>
+                                            <td style="padding-left: 1%;"><apex:outputText value="{!IPScore}" /></td>
+                                        </tr>                                                
+                                    </table>
+                                </td>
+                                
+                                <td style="width:30%;">
+                                    <table>
+                                        <tr>
+                                            <td> <apex:outputLabel value="6 Mo High Total Balance " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!Mo_High_Total_blnc}"/> </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="6 Mo Low Total Balance " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!Mo_Low_Total_blnc}"/> </td>                   
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="No. of Legal Filings " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!No_of_Legal_Filings}"/> </td>  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="Bal. of Legal Filings " styleClass="summaryLabel"/> </td>                    
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!Bal_of_Legal_Filings}"/> </td>  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><apex:outputLabel value="Financial Stability Risk" styleClass="summaryLabel"/> </td>
+                                            <td style="padding-left: 1%;"><apex:outputText value="{!FSRscore}" /></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            
+                                <td style="width:40%;">
+                                    <table>
+                                        <tr>
+                                            <td> <apex:outputLabel value="High Credit Limit " style="summaryLabel;"/> </td>                    
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!HighLimitCredit}"/> </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <apex:outputLabel value="Percent " style="font-weight:bold;"/> </td> 
+                                            <td> <apex:outputLabel value="Current " style="font-weight:bold;"/> </td>        
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!CurrentPercentage}"/> </td>                  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td> <apex:outputLabel value="1-30 " style="font-weight:bold;"/> </td>       
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!DBT30}"/> </td>                  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td> <apex:outputLabel value="31-60 " style="font-weight:bold;" /> </td>      
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!DBT60}"/> </td>                  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td> <apex:outputLabel value="61-90 " style="font-weight:bold;" /> </td>      
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!DBT90}"/> </td>                  
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td> <apex:outputLabel value="91+ " style="font-weight:bold;" /> </td>        
+                                            <td style="padding-left: 1%;"> <apex:outputText value="{!DBT120}"/> </td>                 
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                </apex:pageblocksectionItem>   
+            </apex:pageblockSection>
+                        
+            <apex:pageblockSection columns="1" title="Alert Details" collapsible="false">            
+                
+                <apex:pageBlockTable value="{!alertWrapperList}" var="a" headerClass="headerText" >
+                    <apex:repeat var="f" value="{!$ObjectType.EXPRN__Alert__c.FieldSets.EXPRN__Details}">                                                   
+                        <apex:column value="{!a.alert[f]}" />                                                                                                                                                    
+                    </apex:repeat>                                            
+                    <apex:column >
+                        <apex:facet name="header">
+                            Alert Details                                                                                        
+                        </apex:facet>
+                        <apex:dynamicComponent componentValue="{!pbTable}"/> 
+                    </apex:column>
+                </apex:pageBlockTable>                              
+            </apex:pageblockSection>           
+        </apex:pageblock>
+    </apex:form>  
+      
+    <apex:relatedList list="OpenActivities"/>  
+  
+</apex:page>

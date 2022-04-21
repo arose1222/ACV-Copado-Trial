@@ -1,0 +1,47 @@
+<apex:page standardController="Account" 
+           extensions="EXPRN.ExperianLinkagesController" 
+           contentType="application/vnd.ms-excel#LinkageList.xls"
+           sidebar="false" 
+           showHeader="false">
+
+    <head>
+        <style>       
+            .colHeader
+            {
+                font-size:12px;
+                font-weight:bold;
+            }        
+            
+            @page
+            {
+              size:landscape!important;
+            }
+        </style>
+    </head>   
+
+    <apex:pageBlock >
+    
+        <apex:pageBlockTable value="{!listLinkageWrapper}" var="link">
+            
+            <apex:column headerValue="BIN" value="{!link.bin}" />        
+            <apex:column headerValue="Company Name" value="{!link.companyName}" />             
+            <apex:column headerValue="Street Address" value="{!link.streetAdress}" />
+            <apex:column headerValue="Company City" value="{!link.companyCity}" />
+            <apex:column headerValue="Company State" value="{!link.companyState}" />
+            <apex:column headerValue="Country Code" value="{!link.countryCode}" />            
+            <apex:column headerValue="Parent BIN" value="{!link.parentBin}" />            
+            <apex:column headerValue="Parent Company Name" value="{!link.parentCompanyName}" /> 
+            <apex:column headerValue="Ultimate BIN" value="{!link.ultimateBin}" /> 
+            <apex:column headerValue="Ultimate Company Name" value="{!link.ultimateCompanyName}" />  
+            <apex:column headerValue="Linkage Type" value="{!link.linkageType}" />
+            <apex:column headerValue="Subsidary Indicator" value="{!link.subsidaryIndicator}" />              
+            <apex:column headerValue="Parent Indicator" value="{!link.parentIndicator}" />
+            <apex:column headerValue="Linkage Level" value="{!link.linkageLevel}" />
+            <apex:column headerValue="Ultimate Parent Indicator" value="{!link.ultimateParentIndicator}" />
+            <apex:column headerValue="Activity Indicator" value="{!link.activityIndicator}"/> 
+                      
+        </apex:pageBlockTable>        
+         
+    </apex:pageBlock>       
+       
+</apex:page>

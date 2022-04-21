@@ -1,0 +1,30 @@
+.filterManagerContainer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    min-width: 281px;
+    height: 100%;
+    background: #F2F3F4;
+    border: 1px solid #DCDFE8;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
+.filterManagerTitle{
+    font-size: 16px;
+    line-height: 21px;
+}
+.filterEditLink{
+    visibility: hidden;
+}
+.hoverBackgroundChange:hover{
+    background-color: #F2F3F4;
+}
+.hoverBackgroundChange:hover .filterEditLink{
+    visibility: visible;
+}
+
+.destructiveTextColor button{
+    color: red;
+}

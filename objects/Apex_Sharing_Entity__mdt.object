@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Access_Level__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Access Level</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Edit</fullName>
+                    <default>true</default>
+                    <label>Edit</label>
+                </value>
+                <value>
+                    <fullName>Read</fullName>
+                    <default>false</default>
+                    <label>Read</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Apex_Sharing_Rule__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Apex Sharing Rule</label>
+        <referenceTo>Apex_Sharing_Rule__mdt</referenceTo>
+        <relationshipLabel>Apex Sharing Entities</relationshipLabel>
+        <relationshipName>Apex_Sharing_Entities</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_of_Entity__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Name of Entity</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sharing_Cause__c</fullName>
+        <description>Only set if you have defined a specific Apex Sharing Reason on a Custom Object - Otherwise, it will cause errors.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Only set if you have defined a specific Apex Sharing Reason on a Custom Object - Otherwise, it will cause errors.</inlineHelpText>
+        <label>Sharing Cause</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type_of_Entity__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Type of Entity</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>User</fullName>
+                    <default>true</default>
+                    <label>User</label>
+                </value>
+                <value>
+                    <fullName>Public Group</fullName>
+                    <default>false</default>
+                    <label>Public Group</label>
+                </value>
+                <value>
+                    <fullName>Role</fullName>
+                    <default>false</default>
+                    <label>Role</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Apex Sharing Entity</label>
+    <listViews>
+        <fullName>All_Main</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Name_of_Entity__c</columns>
+        <columns>Type_of_Entity__c</columns>
+        <columns>Apex_Sharing_Rule__c</columns>
+        <columns>Active__c</columns>
+        <columns>Access_Level__c</columns>
+        <columns>Sharing_Cause__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All (Main)</label>
+    </listViews>
+    <pluralLabel>Apex Sharing Entities</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

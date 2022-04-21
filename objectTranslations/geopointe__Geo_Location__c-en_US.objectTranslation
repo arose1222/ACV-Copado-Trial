@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- City --></label>
+        <name>geopointe__City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>geopointe__Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Folder --></label>
+        <name>geopointe__Folder__c</name>
+        <relationshipLabel><!-- Geopointe Locations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Reference to the Geocode object holding all of mapping information for the record. --></help>
+        <label><!-- Geocode --></label>
+        <name>geopointe__Geocode__c</name>
+        <relationshipLabel><!-- Locations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If you collect your own coordinates for your locations, you can put the latitude here. The system will use this location instead of the address on the record. --></help>
+        <label><!-- Latitude --></label>
+        <name>geopointe__Latitude__c</name>
+    </fields>
+    <fields>
+        <help><!-- If you collect your own coordinates for your locations, you can put the longitude here. The system will use this location instead of the address on the record. --></help>
+        <label><!-- Longitude --></label>
+        <name>geopointe__Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>geopointe__PostalCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- State/Province --></label>
+        <name>geopointe__State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>geopointe__Street__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates that this is used by the system as a temporary record.  It is not intended to be saved long-term.  The system will periodically clean these records up. --></help>
+        <label><!-- Temporary --></label>
+        <name>geopointe__Temporary__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Map --></label>
+        <name>geopointe__Map</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_Records_Geo_Location --></label>
+        <name>geopointe__Map_Records_Geo_Location</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_newWindow --></label>
+        <name>geopointe__Map_newWindow</name>
+    </webLinks>
+</CustomObjectTranslation>

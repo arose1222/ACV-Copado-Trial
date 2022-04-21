@@ -1,0 +1,321 @@
+<apex:page showHeader="true" sidebar="true" controller="CSIRCD.HelpController" docType="html-5.0">
+    <style type="text/css">
+        li, dd { margin-bottom: 1em; margin-left: 0em;}
+        body .bPageBlock .pbBody .CSIorange .pbSubheader{
+            background-color:#F8971D;
+        }
+        .wt-Help {
+            background-color:#F8971D;
+        }
+        .Custom99Tab .brdPalette {
+            border-top-color:#F8971D;
+        }
+        .Custom99Tab .listViewport .subNav .linkBar, .Custom99Tab .mComponent .cHeader, .Custom99Tab .genericTable, .Custom99Tab .bSubBlock, .Custom99Tab .bPageBlock {
+            border-top-color:#F8971D;
+        }
+        .Custom99Tab .primaryPalette, .individualPalette .Custom99Block .primaryPalette {
+            border-top-color:#F8971D;
+            background-color:#F8971D;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    
+    <script>
+        function focusAndSaveSLU() {
+            document.getElementById('changeFocusSLU').click();
+            saveRecordsSLU();
+        }
+        function focusAndSaveBatch() {
+            document.getElementById('changeFocusBatch').click();
+            saveRecordsBatch();
+        }
+    </script>
+
+    <apex:pageMessages id="messages"></apex:pageMessages>
+
+    <apex:pageBlock title="General Information">
+        <apex:outputPanel styleClass="CSIorange">
+            <apex:pageBlockSection title="Welcome to CSI Watch List Checking!" columns="1" collapsible="false">
+                <p>CSI Watch List Checking enables you to verify your client base against subscribed watch lists, including OFAC, BIS, FBI, Interpol, and many others.</p>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Watch List Checking Searching" columns="1" collapsible="false">
+                <p>Your Salesforce administrator can adjust the searches to meet your business needs:</p>
+                <ul>
+                    <li>Tolerance setting (threshold) ranges from 80-100%. The default is set to 85% The lower the threshold level, the greater the possibility of a high number of search results. A higher threshold level returns fewer matches where the input data is more similar
+                 to the watch list data</li>
+                    <li>Ability to disqualify matches based on Address</li>
+                    <li>Optional capability to search address information</li>
+                    <li>CSI's search algorithm facilitates "fuzzy logic"</li>
+                    <li>Misspellings (typos) are considered</li>
+                    <li>Phonetics are considered when factoring of the match score</li>
+                    <li>Abbreviations are considered</li>
+                    <li>Nicknames (alternate names) will be utilized</li>
+                    <li>Accommodates initials and abbreviations</li>
+                    <li>Noise word elimination</li>
+                    <li>Country data (if supplied) will be checked against the OFAC Sanctioned Country list</li>
+                </ul>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="WatchDOG Elite" columns="1" collapsible="false">
+                <p>CSI also offers a fully featured browser based watch list checking solution, WatchDOG&reg; Elite.</p>
+
+                <dl>
+                    <dt>Single Lookups</dt>
+                    <dd>Integrate web services for Denied Party List Screening from your system, or enable your users to access the WatchDOG&reg; Elite site to manually input and review matches.</dd>
+
+                    <dt>Flat File Batch Processing</dt>
+                    <dd>Upload your file via a web browser or automate your file runs by sending them to us via secure means (FTPS, SFTP, etc).</dd>
+
+                    <dt>Automated List Updates</dt>
+                    <dd>CSI handles the burden of monitoring, gathering, cleansing and deploying the list for you.</dd>
+
+                    <dt>Auditing &amp; Reporting</dt>
+                    <dd>Previously scanned data can be reported on for documentation and auditing purposes.</dd>
+
+                    <dt>Other Features</dt>
+                    <dd>Good Customer List, Blocked Customer List, Client controlled administrative functions, Workflow Functionality, IAT Module, Customer Data Management and more...</dd>
+                </dl>
+
+                <p>For other compliance products and services offered by CSI, please visit the <a href="http://www.csiweb.com/solutions/regulatory-compliance/watch-list-screening" target="_blank" id="attus">CSI Compliance</a> website or contact our Sales department at <a href="tel:8884948449,2">888-494-8449 option 2.</a></p>
+            </apex:pageBlockSection>
+        </apex:outputPanel>
+    </apex:pageBlock>
+
+    <apex:form >
+        <apex:actionFunction action="{!save}" name="saveRecordsSLU" reRender="config, singleMessages"/>
+        <apex:pageBlock title="Single Lookup App Configuration" mode="inlineEdit" id="config">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton title="Save" id="SaveButton" value="Save" onclick="focusAndSaveSLU()" reRender="none"/>
+                <apex:commandButton title="Cancel" id="CancelButton" action="{!cancel}" value="Cancel" reRender="config,singleMessages" />
+                <input type="text" id="changeFocusSLU" style="display:none"/>
+            </apex:pageBlockButtons>
+            <apex:pageMessages id="singleMessages"></apex:pageMessages>
+
+            <apex:outputPanel id="SLUsettings" styleClass="CSIorange">
+                <apex:pageBlockSection >
+                    <apex:outputField value="{!config.CSIRCD__Corp_Name__c}" title="Corp Name" />
+                    <apex:outputField value="{!config.CSIRCD__ATTUS_GUID__c}" title="CSI GUID" />
+
+                    <apex:outputField value="{!config.CSIRCD__Host_Name__c}" title="Host Name" />
+                    <apex:outputField value="{!config.CSIRCD__URL__c}" title="URL" />
+
+                    <apex:outputField value="{!config.CSIRCD__List_Codes__c}" title="List Codes" >
+                    </apex:outputField>
+               
+                    <apex:outputField value="{!config.CSIRCD__Tolerance__c}" title="Tolerance" />
+                    
+                    <apex:outputField value="{!config.CSIRCD__List_Codes_Extended__c}" title="List Codes Extended" >
+                    </apex:outputField>
+
+                    <apex:outputField value="{!config.CSIRCD__Address_DQ__c}" title="Address DQ" >
+                    </apex:outputField>
+                    <apex:outputField value="{!config.CSIRCD__Save_Data_at_ATTUS__c}" title="Save Data at CSI" />
+
+                    <apex:outputField value="{!config.CSIRCD__Address_Match__c}" title="Street Address Match" />
+                    <apex:outputField value="{!config.CSIRCD__Update_Master_DB__c}" title="Update Master DB" />
+
+                    <apex:outputField value="{!config.CSIRCD__Lookup_Accounts__c}" title="Lookup Created/Edit Acounts" />
+                    <apex:outputField value="{!config.CSIRCD__Lookup_Contacts__c}" title="Lookup Created/Edit Contacts" />
+
+                    <apex:outputField value="{!config.CSIRCD__Account_Record_Types__c}" title="Account Record Types" />
+                    <apex:outputField value="{!config.CSIRCD__Lookup_Leads__c}" title="Lookup Created/Edit Leads" />
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+
+    <apex:form >
+        <apex:actionFunction action="{!saveBatch}" name="saveRecordsBatch" reRender="configBatch, batchMessages"/>
+        <apex:pageBlock title="Batch App Configuration" mode="inlineEdit" id="configBatch">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton title="Save" id="Save" value="Save" onclick="focusAndSaveBatch()" reRender="none"/>
+                <apex:commandButton title="Cancel" id="Cancel" action="{!cancelBatch}" value="Cancel" reRender="configBatch,batchMessages" />
+                <input type="text" id="changeFocusBatch" style="display:none"/>
+            </apex:pageBlockButtons>
+            <apex:pageMessages id="batchMessages"></apex:pageMessages>
+
+            <apex:outputPanel styleClass="CSIorange">
+                <apex:pageBlockSection columns="2">
+                    <apex:outputField value="{!configBatch.CSIRCD__Corp_Name__c}" title="Corp Name" />
+                    <apex:outputField value="{!configBatch.CSIRCD__ATTUS_GUID__c}" title="CSI GUID" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Host_Name__c}" title="Host Name" />
+                    <apex:outputField value="{!configBatch.CSIRCD__URL__c}" title="URL" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__List_Codes__c}" title="List Codes" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Tolerance__c}" title="Tolerance" />
+                    <apex:outputField value="{!configBatch.CSIRCD__List_Codes_Extended__c}" title="List Codes Extended" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Address_DQ__c}" title="Address DQ" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Save_Data_at_ATTUS__c}" title="Save Data at CSI" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Address_Match__c}" title="Street Address Match" />
+                    <apex:outputField value="{!configBatch.CSIRCD__MasterDBUpdate__c}" title="Master DB Update" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__RecordTypestoSend__c}" title="Account Record Types to Send" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Client_Defined_3__c}" title="Client Defined 3" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Success_Email__c}" title="Success Email" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Error_Email__c}" title="Error Email" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Country_Field_Type__c}" title="Country Field Type" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Sandbox_Send__c}" title="Sandbox Send" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__BatchName__c}" title="Batch Name" />
+                    <apex:outputField value="{!configBatch.CSIRCD__ATTUS_Batch_Size__c}" title="CSI Batch Size" />
+
+                    <apex:outputField value="{!configBatch.CSIRCD__Send_All_Accounts__c}" title="Send Accounts" />
+                    <apex:outputField value="{!configBatch.CSIRCD__Send_All_Contacts__c}" title="Send Contacts" />
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+
+    <apex:form >
+        <apex:pageBlock title="Batch Scheduler" id="scheduler">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton title="Save" id="save" action="{!saveSchedule}" value="Save Schedule" reRender="scheduler,scheduleMessages" rendered="{!crons.size == 0}" />
+                <apex:commandButton title="Cancel" id="cancelSchedule" action="{!cancelSchedule}" value="Cancel" reRender="scheduler,scheduleMessages" rendered="{!crons.size == 0}" />
+                <apex:commandButton title="Remove" id="remove" action="{!removeSchedules}" value="Remove Schedules and Start Over" reRender="scheduler,scheduleMessages" rendered="{!crons.size > 0}" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages id="scheduleMessages"></apex:pageMessages>
+
+            <apex:outputText value="{!cronString}" rendered="{!crons.size > 0}" />
+
+            <apex:pageBlockSection columns="3" rendered="{!crons.size == 0}">
+                <apex:outputPanel title="Overall Frequency">
+                    <h1>Overall Frequency</h1>
+                    <apex:selectRadio title="Frequency" value="{!frequency}" layout="pageDirection">
+                        <apex:actionSupport event="onchange" action="{!clearAll}" reRender="scheduler" />
+                        <apex:selectOption itemValue="Daily" itemLabel="Daily" />
+                        <apex:selectOption itemValue="Weekly" itemLabel="Weekly" />
+                        <apex:selectOption itemValue="Monthly" itemLabel="Monthly" />
+                    </apex:selectRadio>
+                </apex:outputPanel>
+
+                <apex:outputPanel title="Daily Frequency" rendered="{!IF(frequency=='Daily',true,false)}">
+                    <h1>Daily Frequency</h1>
+                    <apex:selectRadio title="Daily Frequency" value="{!dailyFrequency}" layout="pageDirection">
+                        <apex:actionSupport event="onchange" action="{!clearDailyFrequency}" reRender="scheduler" />
+                        <apex:selectOption itemValue="Every X Minutes" itemLabel="Every X Minutes" />
+                        <apex:selectOption itemValue="At Specific Time" itemLabel="At Specific Time" />
+                    </apex:selectRadio>
+                </apex:outputPanel>
+
+                <apex:outputPanel title="Every X Minutes" rendered="{!IF(dailyFrequency=='Every X Minutes',true,false)}">
+                    <h1>Every X Minutes</h1><br /><br />
+                    <apex:selectList value="{!minutes}" multiselect="false" size="1">
+                        <apex:actionSupport event="onchange" reRender="scheduler" />
+                        <apex:selectOption itemValue="30" itemLabel="30" />
+                        <apex:selectOption itemValue="60" itemLabel="60" />
+                        <apex:selectOption itemValue="90" itemLabel="90" />
+                        <apex:selectOption itemValue="120" itemLabel="120" />
+                    </apex:selectList>
+                </apex:outputPanel>
+
+                <apex:outputPanel title="Day of Week" rendered="{!IF(frequency=='Weekly',true,false)}">
+                    <h1>Day of Week</h1>
+                    <apex:selectCheckboxes value="{!days}" layout="pageDirection">
+                        <apex:actionSupport event="onchange" reRender="scheduler" />
+                        <apex:selectOptions value="{!daysOfWeek}" />
+                    </apex:selectCheckboxes>
+                </apex:outputPanel>
+
+                <apex:outputPanel title="Monthly Date" rendered="{!IF(frequency=='Monthly',true,false)}">
+                    <h1>Monthly Date</h1>
+                    <apex:selectRadio value="{!monthlyValue}" layout="pageDirection">
+                        <apex:actionSupport event="onchange" reRender="scheduler" />
+                        <apex:selectOption itemValue="Choose Date" itemLabel="Same date every month" />
+                        <apex:selectOption itemValue="Choose Weekday" itemLabel="Every X weekday of the month" />
+                    </apex:selectRadio>
+
+                    <!-- <apex:pageBlockSection columns="1" rendered="{!AND(crons.size == 0,frequency=='Monthly')}" >
+                        <apex:outputPanel style="{!IF(monthlyValue!='Choose Date','color: lightgray;','')}" rendered="{!monthlyValue == 'Choose Date'}">
+                            On the&nbsp;<apex:selectList value="{!chooseDate}" multiselect="false" size="1"><apex:selectOptions value="{!monthDays}" /></apex:selectList>&nbsp;(date) of every month.
+                        </apex:outputPanel>
+
+                        <apex:outputPanel style="{!IF(monthlyValue!='Choose Weekday','color: lightgray;','')}" rendered="{!monthlyValue == 'Choose Weekday'}">
+                            On the&nbsp;
+                            <apex:selectList value="{!chooseDayFreq}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!dayFreqs}" />
+                            </apex:selectList>
+                            &nbsp;
+                            <apex:selectList value="{!monthlyDay}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!daysOfWeek}" />
+                            </apex:selectList>
+                            &nbsp; of every month.
+                        </apex:outputPanel>
+                    </apex:pageBlockSection> -->
+                </apex:outputPanel>
+
+                <!-- <apex:outputPanel title="Time of Day" rendered="{!IF(frequency=='Weekly',true,IF(frequency=='Monthly',true,IF(dailyFrequency=='At Specific Time',true,false)))}"> -->
+                <apex:outputPanel title="Time of Day" rendered="{!OR(AND(frequency=='Weekly', days.size > 0), AND(frequency=='Monthly', monthlyValue != null), dailyFrequency=='At Specific Time')}">
+                    <h1>At Specific Time</h1><br /><br />
+                    <apex:selectList label="Time of Day" value="{!hour}" multiselect="false" size="1" rendered="{!frequency != 'Monthly'}">
+                        <apex:selectOptions value="{!hours}" />
+                    </apex:selectList>
+
+                    <apex:pageBlockSection columns="1" rendered="{!AND(crons.size == 0,frequency=='Monthly')}" >
+                        <apex:outputPanel style="{!IF(monthlyValue!='Choose Date','color: lightgray;','')}" rendered="{!monthlyValue == 'Choose Date'}">
+                            <apex:selectList label="Time of Day" value="{!hour}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!hours}" />
+                            </apex:selectList>
+                            &nbsp;on the&nbsp;
+                            <apex:selectList value="{!chooseDate}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!monthDays}" />
+                            </apex:selectList>
+                            &nbsp;(date) of every month.
+                        </apex:outputPanel>
+
+                        <apex:outputPanel style="{!IF(monthlyValue!='Choose Weekday','color: lightgray;','')}" rendered="{!monthlyValue == 'Choose Weekday'}">
+                            <apex:selectList label="Time of Day" value="{!hour}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!hours}" />
+                            </apex:selectList>
+                            &nbsp;on the&nbsp;
+                            <apex:selectList value="{!chooseDayFreq}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!dayFreqs}" />
+                            </apex:selectList>
+                            &nbsp;
+                            <apex:selectList value="{!monthlyDay}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!daysOfWeek}" />
+                            </apex:selectList>
+                            &nbsp; of every month.
+                        </apex:outputPanel>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <!-- <c:ATTUSBatchResend /> -->
+    <apex:form >
+        <apex:pageBlock title="Batch Resend" id="BatchResend">
+            <apex:pageMessages id="resendMessages" />
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Resend" action="{!resend}" reRender="BatchResend, resendMessages"/>
+                <apex:commandButton value="Cancel" action="{!resendCancel}" reRender="BatchResend, resendMessages"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection columns="2">
+                <apex:input type="number" value="{!batchID}" size="10" title="Batch number to re-send to CSI">Batch number to re-send to CSI&nbsp;</apex:input>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <apex:pageBlock title="Additional Links">
+        <apex:outputPanel styleClass="CSIorange">
+            <apex:pageBlockSection >
+                <apex:outputLink value="http://www.csiweb.com/solutions/regulatory-compliance" >Computer Services Inc.</apex:outputLink>
+                <apex:outputLink value="https://watchdogelite.csiweb.com/" >WatchDOG Elite Login</apex:outputLink>
+                <apex:outputLink value="http://www.csiweb.com/contact-us/customer-support" >Support (Regulatory Compliance)</apex:outputLink>
+                <apex:outputLink value="https://www.treasury.gov/resource-center/sanctions/OFAC-Enforcement/Pages/OFAC-Recent-Actions.aspx" >OFAC List Dates and Recent Actions</apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:outputPanel>
+    </apex:pageBlock>
+</apex:page>

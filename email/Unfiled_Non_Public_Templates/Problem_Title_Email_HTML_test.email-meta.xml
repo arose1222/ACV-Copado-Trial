@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Patricks Test Problem Title</name>
+    <style>none</style>
+    <subject>Subject: Title Problem Identified: {!Case.Vehicle_Year_Make_Model__c}, {!Case.VIN__c}</subject>
+    <textOnly>Hello,
+
+Our office has identified a problem(s) with the title paperwork for {!Case.Vehicle_Year_Make_Model__c} {!Case.VIN__c}, sold on {!Case.Auction_End__c}. The problem(s) is as follows:
+
+{!Case.Title_Problem_Subset__c}; {!Case.Details__c}
+
+Please reach out to your ACV Specialist, {!Case.OwnerFullName}, at {!Case.OwnerEmail} with any questions.
+
+Thank you,
+
+Titles Team
+ACV Auctions
+716-796-6976</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,75 @@
+<apex:page controller="EXPRN.ExpandedSearchService" renderAs="pdf" action="{!initPrint}" >
+<head>
+    <style>       
+        .colHeader{
+            font-size:12px;
+            font-weight:bold;
+        }        
+        
+        @page
+        {
+          size:landscape!important;
+        }
+    </style>
+</head>   
+    <apex:pageBlock rendered="{!IsCreditRiskSearch}">
+        <div style="font-size:14px;font-weight:bold; margin-bottom:2px;">Expanded Search List</div> 
+        <apex:pageBlockTable id="pbtCRViewResult" value="{!lstWrapAcc}" var="acc" border="1" cellpadding="2" style="font-size:11px; page-break-inside:avoid; " width="100%" >
+              <apex:column >
+                   <apex:facet name="header"><span class="colHeader">Business</span></apex:facet> 
+                   {!acc.sBusinessName}<br/>
+                   <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}" >{!acc.sStreetAddress}<br/></apex:outputpanel>
+                   <apex:outputpanel >{!acc.sCity}</apex:outputpanel>   
+                   <apex:outputpanel rendered="{!IF(acc.sState != '',true,false)}">, {!acc.sState}</apex:outputpanel>
+                   <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}</apex:outputpanel>
+                   <apex:outputpanel rendered="{!IF(acc.sPhone != '',true,false)}" ><br/>{!acc.sPhone}</apex:outputpanel>                   
+              </apex:column>
+              <apex:column >
+                  <apex:facet name="header"><span class="colHeader">Matching Name &amp; Address</span></apex:facet>
+                  <apex:outputpanel rendered="{!IF(acc.sMatchingBusinessName != '',true,false)}" >{!acc.sMatchingBusinessName}<br/></apex:outputpanel>  
+                  <apex:outputpanel rendered="{!IF(acc.sMatchingStreetAddress != '',true,false)}" >{!acc.sMatchingStreetAddress}<br/></apex:outputpanel>
+                  <apex:outputpanel rendered="{!IF(acc.sMatchingCity != '',true,false)}" >{!acc.sMatchingCity}</apex:outputpanel>   
+                  <apex:outputpanel rendered="{!IF(acc.sMatchingState != '',true,false)}">, {!acc.sMatchingState}</apex:outputpanel>
+                  <apex:outputpanel rendered="{!IF(acc.sMatchingZip != '',true,false)}"> {!acc.sMatchingZip}</apex:outputpanel>
+              </apex:column>                  
+              <apex:column >
+                  <apex:facet name="header"><span class="colHeader">BIN</span></apex:facet>
+                  {!acc.sBIN}
+              </apex:column>
+              <apex:column >  
+                   <apex:facet name="header"><span class="colHeader">TradeLineCount</span></apex:facet>    
+                   {!acc.sNumberOfTradeLines}
+              </apex:column>
+              <apex:column >  
+                   <apex:facet name="header"><span class="colHeader">Hierarchy</span></apex:facet>    
+                   {!acc.sHierarchy}
+              </apex:column> 
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!IsInternationalSearch}">
+         <div style="font-size:14px;font-weight:bold; margin-bottom:2px;">International Search List</div>
+         <apex:pageBlockTable id="pbtInterViewResult" value="{!lstWrapAcc}" var="acc" border="1" cellpadding="2" style="font-size:11px; page-break-inside:avoid;" width="100%" >
+              <apex:column >
+                   <apex:facet name="header"><span class="colHeader">Business</span></apex:facet>  
+                   {!acc.sBusinessName}<br/>
+                   <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}" >{!acc.sStreetAddress}<br/></apex:outputpanel>
+                   <apex:outputpanel rendered="{!IF(acc.sCity != '',true,false)}">{!acc.sCity}<br/></apex:outputpanel>
+                   <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}<br/></apex:outputpanel>
+                   <apex:outputpanel rendered="{!IF(acc.sCountryName != '',true,false)}">{!acc.sCountryName}</apex:outputpanel>     
+              </apex:column>    
+              <apex:column >
+                   <apex:facet name="header"><span class="colHeader">Regional Bus ID</span></apex:facet>  
+                   {!acc.sRegiBusID}
+              </apex:column>
+              <apex:column >
+                   <apex:facet name="header"><span class="colHeader">Global BIN</span></apex:facet>  
+                   {!acc.sGlobalBIN}
+              </apex:column>
+              <apex:column >
+                   <apex:facet name="header"><span class="colHeader">Phone Number</span></apex:facet>  
+                   {!acc.sPhoneNumber}
+              </apex:column>                                            
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

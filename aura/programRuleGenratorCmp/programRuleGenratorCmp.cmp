@@ -1,0 +1,4 @@
+<aura:component implements="lightning:actionOverride">
+    <lightning:workspaceAPI aura:id="workspace"/> 
+    <c:programRuleGenerator oncloseclicked="{!c.handleFilterChange}"/>
+</aura:component>

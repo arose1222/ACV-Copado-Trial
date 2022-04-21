@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Credit &amp; Check - Approved Credit Notification</name>
+    <style>none</style>
+    <subject>Your {!Credits_Checks__c.Reason__c} Credit to {!Credits_Checks__c.Dealer__c} has been Approved</subject>
+    <textOnly>Hi {!Credits_Checks__c.CreatedBy},
+
+Your credit to {!Credits_Checks__c.Dealer__c} has been approved for {!Credits_Checks__c.Amount_Requested__c}.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

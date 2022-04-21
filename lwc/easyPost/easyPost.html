@@ -1,0 +1,54 @@
+<!--
+ - @description A component to generate EasyPost tracking number and postage labels on Case & Quality Control objects.
+ - 
+ - @installation 
+ - isQualityControl -   This component only works on Case and Quality Control objects. Select this option if you are 
+ -                      installing this component on QC object, otherwise leave it unchecked for Case object.
+ - isRetrieveBuyerAddress - Select this option if you like to fetch all (billing, legal, mailing) buyer addresses.
+ - isRetrieveSellerAddress - Select this option if you like to fetch all (billing, legal, mailing) seller addresses.
+ - isRetrieveBuyerFloorPlanAddress - Select this option if you like fetch Buyer Floor Plan company address. The floor
+ -                                   plan address only be fetched if Send_Title_to_Buyer__c=false (i.e send the 
+                                     title to floor plan company). If Send_Title_to_Buyer__c=true (i.e. send the
+                                     title to the buyer) then buyer address will be fetched instead of floor plan
+                                     company address only if isRetrieveBuyerAddress=true. So, make sure to set
+                                     isRetrieveBuyerAddress=true with isRetrieveBuyerFloorPlanAddress=true if you 
+                                     want to display Buyer Address when Send_Title_to_Buyer__c=true.
+ -
+ - @name EasyPost
+ - @author Manmeet Vaseer
+ - @date 07/20/2021
+ -->
+ <template>
+    <lightning-card title="Easy Post" icon-name='standard:shipment'>
+        <lightning-spinner if:true={isSpinner} alternative-text="Generating Tracking Info. Please wait..."></lightning-spinner>
+
+        <lightning-textarea name="LegalNotes" disabled value={notes.legalNotes} label="Legal Notes" ></lightning-textarea>
+        <lightning-textarea name="PickUpNotes" disabled value={notes.pickupNotes} label="Pick Up Notes" ></lightning-textarea>
+        <lightning-textarea name="DealershipNotes" disabled value={notes.dealershipNotes} label = "Dealership Notes"></lightning-textarea>
+        <lightning-textarea name="TitleNotes" disabled value={notes.titleMailingAddressNotes} label = "Title Address Notes"></lightning-textarea>
+
+        <lightning-combobox name='Select Shipping Address' label='Select Shipping Address' value={selectedAddress}
+            placeholder='Select Shipping Address' options={addressOptions} onchange={onSelectedAddress}>
+        </lightning-combobox>
+
+        <lightning-input placeholder="Name" label="Name" value={address.name} onchange={onNameUpdate} required>
+        </lightning-input>
+
+        <div class="slds-p-around_medium">
+            <lightning-input-address address-label="Ship To" street-label="Street" city-label="City"
+                country-label="Country" province-label="Province/State" postal-code-label="Postal Code"
+                street={bothAddressStreets} city={address.city} country={address.country} province={address.state}
+                postal-code={address.zip} required field-level-help="Shipping Address" onchange={onAddressUpdate} show-address-lookup>
+            </lightning-input-address>
+
+            <div style="text-align:center">
+                <lightning-button-group>
+                    <lightning-button variant="destructive" label='Clear' onclick={onClearAddress}></lightning-button>
+                    <lightning-button variant="success" label='Submit' onclick={onSubmitToEasyPost} disabled={hideSubmitButton}>
+                    </lightning-button>
+                </lightning-button-group>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>

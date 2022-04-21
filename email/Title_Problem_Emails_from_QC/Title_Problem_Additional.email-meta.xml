@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to send email to interested parties reporting additional problems on a title</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Title Problem - Additional</name>
+    <style>freeForm</style>
+    <subject>Additional Title problem: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Hello,
+
+Our office has identified an additional problem(s) with the title paperwork for the following vehicle:
+
+Date Sold: {!Case.Auction_End__c}
+Year/Make/Model: {!Case.Vehicle_Year_Make_Model__c}
+Vin: {!Case.VIN__c}
+
+Here is a complete list of all problems identified:
+
+{!Case.Email_Problem_Subset__c}
+{!Case.Details__c}
+
+Please note that ACV will be unable to remit payment on the above-referenced auction until all issues are resolved and we have a transferable title.
+
+To resolve this issue please reach out to ACV Specialist, {!Case.OwnerFullName} - {!Case.OwnerEmail} at your earliest convenience.
+
+Thank you,
+
+Titles Team
+ACV Auctions
+716-796-6976</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

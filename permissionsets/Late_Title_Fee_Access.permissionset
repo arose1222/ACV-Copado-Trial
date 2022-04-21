@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Gives access to titles managers and Sr. Titles Specialists to edit the title late fee start date</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Late_Title_Fee_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Late Title Fee Access</label>
+</PermissionSet>

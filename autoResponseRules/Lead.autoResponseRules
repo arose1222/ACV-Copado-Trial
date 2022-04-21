@@ -1,3 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>ACV Web contact</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>equals</operation>
+                <value>tiada</value>
+            </criteriaItems>
+            <senderEmail>dealeronboarding@acvauctions.com</senderEmail>
+            <senderName>Dealer Onboarding</senderName>
+            <template>Marketing_Templates/Tiada_Response</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>equals</operation>
+                <value>marketing paid,sales organic</value>
+            </criteriaItems>
+            <senderEmail>dealeronboarding@acvauctions.com</senderEmail>
+            <senderName>Dealer Onboarding</senderName>
+            <template>Marketing_Templates/Sales_Generic_Response</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Transportation,True360,ACV Capital</value>
+            </criteriaItems>
+            <senderEmail>dealeronboarding@acvauctions.com</senderEmail>
+            <senderName>Dealer Onboarding</senderName>
+            <template>Unfiled_Non_Public_Templates/contact_response</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

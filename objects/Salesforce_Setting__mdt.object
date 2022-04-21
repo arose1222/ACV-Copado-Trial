@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This holds small Custom Metadata values that we wish are configurable but are not enough to have its own Custom Metadata Type.</description>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>This is used just to add context to a record in this Custom Metadata Type</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Please indicate why and where this is used.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Filter_Grouping__c</fullName>
+        <description>A comma based list of keywords to filter the different metadata types into list views</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>A comma based list of keywords to filter the different metadata types into list views</inlineHelpText>
+        <label>Filter Grouping</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>value that will be used in Apex or wherever this metadata record is used</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Value</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Salesforce Setting</label>
+    <listViews>
+        <fullName>All_Salesforce_Settings</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Value__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Salesforce Settings</label>
+    </listViews>
+    <listViews>
+        <fullName>FSL_Settings</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Value__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Filter_Grouping__c</field>
+            <operation>contains</operation>
+            <value>FSL</value>
+        </filters>
+        <label>FSL Settings</label>
+    </listViews>
+    <listViews>
+        <fullName>IdentifyBadAddress_Batch_Settings</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Value__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Filter_Grouping__c</field>
+            <operation>contains</operation>
+            <value>IdentifyBadAddress</value>
+        </filters>
+        <label>IdentifyBadAddress Batch Settings</label>
+    </listViews>
+    <pluralLabel>Salesforce Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

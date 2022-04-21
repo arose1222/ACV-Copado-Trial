@@ -6,6 +6,26 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>Type</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Contact_Attempt__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>ACV_Employees_Involved_in_Visit__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Priority</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>Subject</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
@@ -19,10 +39,9 @@
                 <field>WhoId</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
-        </quickActionLayoutColumns>
-        <quickActionLayoutColumns>
             <quickActionLayoutItems>
-                <emptySpace>true</emptySpace>
+                <emptySpace>false</emptySpace>
+                <field>WhatId</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -32,10 +51,21 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>WhatId</field>
+                <field>Status</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Description</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>IsReminderSet</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
     </quickActionLayout>
     <standardLabel>New</standardLabel>
     <targetObject>Task</targetObject>

@@ -1,0 +1,321 @@
+<apex:page standardController="geopointe__GP_Assignment_Plan__c" extensions="geopointe.s_AssignmentPlan_Extension" tabStyle="Geopointe_Setup__tab" sidebar="false" title="Geopointe Assignment Plan">
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/common/common.css')}" />
+  <!-- Common geopointe CSS -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__FontAwesome, '/css/font-awesome.min.css')}" />
+
+  <style type="text/css">
+    .assignmentlabel {
+      font-size: 95%;
+      display: inline-block;
+      margin-left: 15px;
+      width: 150px;
+    }
+
+    .grandfatherHelpText a {
+      position: relative;
+    }
+
+    .grandfatherHelpText a span {
+      display: none;
+    }
+
+    .grandfatherHelpText a:hover span {
+      display: block;
+      position: absolute;
+      top: 1.25em;
+      padding: 2px 5px;
+      left: -15em;
+      width: 15em;
+      z-index: 100;
+      border: 1px solid orange;
+      background-color: #fefdb9;
+      color: black;
+    }
+  </style>
+
+  <apex:includeScript value="{!URLFOR($Resource.geopointe__jquery, '/jquery-3.5.1.min.js')}" />
+  <!-- core jQuery -->
+  <apex:includeScript value="{!URLFOR($Resource.geopointe__jquery, '/jquery-migrate-3.3.1.min.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.geopointe__jquery, '/js/jqueryInit.js')}" />
+  <apex:includeScript value="{!$Resource.geopointe__GeopointeJS}" />
+  <!-- Geopointe universal functions -->
+
+  <apex:sectionHeader title="{!$ObjectType.geopointe__GP_Assignment_Plan__c.Label} Edit"
+    subtitle="{!geopointe__GP_Assignment_Plan__c.Name}"
+    rendered="{!AND($CurrentPage.parameters.Id != '',$CurrentPage.parameters.clone != '1')}"
+  />
+  <apex:sectionHeader title="{!$ObjectType.geopointe__GP_Assignment_Plan__c.Label} Edit"
+    subtitle="New {!$ObjectType.geopointe__GP_Assignment_Plan__c.Label}"
+    rendered="{!OR($CurrentPage.parameters.Id == '',$CurrentPage.parameters.clone == '1')}"
+  />
+
+  <p>
+    To learn more about Geopointe Assignment Plans visit our
+    <a href="http://help.geopointe.com/customer/portal/articles/1924073">support site</a>
+  </p>
+
+  <apex:pageMessages id="messages" />
+
+  <apex:form >
+    <apex:outputPanel layout="block" style="margin: 5px">
+      <apex:commandLink value="« {!$Label.geopointe__back_to_geopointe_settings}" action="{!cancel}" immediate="true" />
+    </apex:outputPanel>
+
+    <div id="modalWrapper">
+      <apex:pageBlock id="planBlock">
+        <apex:pageblockbuttons rendered="{!NOT(editingAssignment)}">
+          <apex:commandButton value="{!$Label.geopointe__save}" action="{!save}" />
+          <apex:commandButton value="{!$Label.geopointe__quick_save}"
+            action="{!quicksave}"
+            onclick="geopointeAjaxStart('body','Saving...')"
+            oncomplete="geopointeAjaxEnd();"
+            reRender="assignmentsBlock,messages"
+          />
+          <apex:commandButton immediate="true" action="{!cancel}" value="{!$Label.geopointe__cancel}" />
+        </apex:pageblockbuttons>
+
+        <apex:pageBlockSection title="{!$Label.geopointe__select_a_map_object_to_base_the_assignment_plan}" collapsible="false" columns="1" rendered="{!selectedEntity=''}">
+          <apex:outputPanel >
+            <apex:selectList value="{!SelectedEntity}" multiselect="false" size="1" disabled="{!selectedEntity!=''}">
+              <apex:selectOptions value="{!mapObjectSelectOptions}" />
+              <apex:actionSupport event="onchange" rerender="planBlock" onsubmit="geopointeAjaxStart('#modalWrapper','{!$Label.geopointe__loading}...');" oncomplete="geopointeAjaxEnd();" />
+            </apex:selectList>
+          </apex:outputPanel>
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection title="{!$Label.geopointe__assignment_plan_details}" rendered="{!selectedEntity!=''}" collapsible="false" id="assignmentPlanDetails">
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.Name.label}" />
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+              <div class="requiredBlock"></div>
+              <apex:inputText value="{!plan.Name}" disabled="{!plan.managedByTerritoryPlanner}" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Map_Object__c.label}" />
+            <apex:outputText value="{!plan.MapObjectLabel}" />
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Description__c.label}" />
+            <apex:outputPanel >
+              <apex:inputTextArea value="{!plan.Description}" disabled="{!plan.managedByTerritoryPlanner}" cols="50" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Status__c.label}" />
+            <apex:outputPanel >
+              <apex:selectList value="{!plan.Status}" multiselect="false" size="1">
+                <apex:selectOptions value="{!statusOptions}" />
+              </apex:selectList>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem helpText="You may save the assignment info to a custom field on the map object record, to a custom junction object, or both.  A field is typically used when a record will only belong to one area (i.e. areas are mutually exclusive).  Junction objects are typically used when a record can fall in multiple areas (i.e. areas overlap).  To use a field, add a Geopointe Assignment Area lookup field to your map object.  To use a junction object, create a new object that has master-detail relationships to both your map object and the Geopointe Assignment Area object."
+          >
+            <apex:outputPanel > Where to Save Assignment Info </apex:outputPanel>
+            <apex:outputPanel >
+              <span class="assignmentlabel">{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Custom_Assignment_Field__c.label}</span>
+              <apex:selectList value="{!plan.CustomAssignmentField}" multiselect="false" size="1">
+                <apex:selectOptions value="{!fieldOptions}" />
+              </apex:selectList>
+              <div style="padding: 4px 0 4px 70px; font-size: 90%">and/or</div>
+              <span class="assignmentlabel">{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Custom_Assignment_Object__c.label}</span>
+              <apex:selectList value="{!plan.CustomAssignmentObject}" multiselect="false" size="1">
+                <apex:selectOptions value="{!objectOptions}" />
+              </apex:selectList>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Reassign_Owner__c.inlineHelpText}">
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Reassign_Owner__c.label}" />
+            <apex:outputPanel >
+              <apex:inputCheckbox value="{!plan.ReassignOwner}" disabled="{!disableReassignOwner}" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__SOQL_Filter__c.inlineHelpText}">
+            <apex:outputPanel >
+              <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__SOQL_Filter__c.label}" />
+            </apex:outputPanel>
+            <apex:outputPanel >
+              <apex:inputTextArea value="{!plan.MapObjectSOQLFilter}" rows="1" cols="50" />
+              <br />
+              <span class="assignmentlabel" style="width: auto">{!$ObjectType.GP_Assignment_Plan__c.fields.SOQL_Filter_Grandfather_Records__c.label}</span>
+              <span class="grandfatherHelpText">
+                <apex:outputLink value="javascript:return false;">
+                  <img src="/s.gif" alt="" class="helpOrb" />
+                  <span>{!$ObjectType.GP_Assignment_Plan__c.fields.SOQL_Filter_Grandfather_Records__c.inlineHelpText}</span>
+                </apex:outputLink>
+              </span>
+
+              <apex:inputCheckbox value="{!plan.SOQLFilterGrandfatherRecords}" style="margin-left: 23px" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem >
+            <apex:outputPanel >
+              <b>Exclude Quality Level </b>
+              <span class="grandfatherHelpText">
+                <apex:outputLink value="javascript:return false;">
+                  <img src="/s.gif" alt="" class="helpOrb" />
+                  <span
+                    >Exclude Quality Level determines which geocode qualities will be excluded from this assignment plan. Geocode qualities at or worse than the selected value will
+                    not be included in the assignment plan. The default value is the exclusion level of the map object.</span
+                  >
+                </apex:outputLink>
+              </span>
+            </apex:outputPanel>
+            <apex:outputPanel >
+              <apex:selectList value="{!plan.GeocodeQualityExclusionLevel}" multiselect="false" size="1">
+                <apex:selectOptions value="{!geocodeQualityLevels}" />
+              </apex:selectList>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Run_Assignment_Rule__c.inlineHelpText}"
+            rendered="{! selectedEntity == 'case' || selectedEntity == 'lead' }"
+          >
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Run_Assignment_Rule__c.label}" />
+            <apex:outputPanel >
+              <apex:inputCheckbox value="{!plan.RunAssignmentRule}" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__High_Performance__c.inlineHelpText}" rendered="{!hiPerEnabled}">
+            <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__High_Performance__c.label}" />
+            <apex:outputPanel >
+              <apex:inputCheckbox value="{!plan.HighPerformance}">
+                <apex:actionSupport event="onclick" action="{!doNothing}" reRender="assignmentPlanDetails" />
+              </apex:inputCheckbox>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+
+          <apex:pageBlockSectionItem />
+
+          <apex:pageBlockSectionItem helpText="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Batch_Size_HP_Records__c.inlineHelpText}"
+            rendered="{!hiPerEnabled && plan.HighPerformance}"
+          >
+            <apex:outputLabel value="Batch Size" />
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+              <div class="requiredBlock"></div>
+              <apex:inputText value="{!plan.BatchSizeHPRecords}" />
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem helpText="This Assignemnt Plan was created and is maintained externally by Ascent Cloud's Territory Planner application.">
+            <apex:outputLabel value="Maintained by Territory Planner" />
+            <apex:outputPanel >
+              <apex:outputPanel rendered="{!plan.managedByTerritoryPlanner}">
+                <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
+              </apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(plan.managedByTerritoryPlanner)}">
+                <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
+              </apex:outputPanel>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+    </div>
+  </apex:form>
+
+  <apex:form id="assignmentsBlock">
+    <apex:pageBlock title="{!$Label.geopointe__assignment_areas}" rendered="{!NOT(ISBLANK(plan.Id))}">
+      <apex:pageBlockButtons location="top">
+        <apex:commandButton value="{!$Label.geopointe__new_assignment_area}" action="{!newAssignment}" rendered="{!NOT(editingAssignment)}" reRender="assignmentsBlock, planBlock, messages" />
+        <apex:commandButton value="{!$Label.geopointe__save}" action="{!saveAssignment}" rendered="{!editingAssignment}" reRender="assignmentsBlock, planBlock, messages" />
+        <apex:commandButton value="{!$Label.geopointe__cancel}" action="{!cancelAssignment}" rendered="{!editingAssignment}" reRender="assignmentsBlock, planBlock, messages" />
+      </apex:pageBlockButtons>
+
+      <apex:pageblockTable value="{!plan.assignments}"
+        var="a"
+        rowClasses="odd,even"
+        styleClass="sortable"
+        rendered="{!AND(NOT(editingAssignment), AND(plan.assignments != null, plan.assignments.size>0))}"
+      >
+        <apex:column headerValue="{!$Label.geopointe__action}" style="font-weight: bold" width="80px">
+          <apex:commandLink action="{!editAssignment}" value="Edit" reRender="assignmentsBlock, messages">
+            <apex:param name="editId" value="{!a.id}" assignTo="{!editId}" />
+          </apex:commandLink>
+          &nbsp;|&nbsp;
+          <apex:commandLink value="{!$Label.geopointe__delete}"
+            action="{!deleteAssignment}"
+            rerender="assignmentsBlock, messages"
+            onclick="if(confirm('{!$Label.geopointe__are_you_sure_you_want_to_delete_the_record} {!a.name}?')){geopointeAjaxStart('body','{!$Label.geopointe__deleting}');}else{return false}"
+            oncomplete="geopointeAjaxEnd();"
+          >
+            <apex:param value="{!a.id}" assignTo="{!editId}" name="delId" />
+          </apex:commandLink>
+        </apex:column>
+        <apex:column value="{!a.name}" width="300px" />
+        <apex:column value="{!a.geopointe__Shape__c}" width="300px" />
+        <apex:column value="{!a.geopointe__User__c}" />
+      </apex:pageblockTable>
+      <br />
+      <apex:commandLink action="{!URLFOR($Action.GP_Assignment_Area__c.List, $ObjectType.GP_Assignment_Area__c)}"
+        value="See All Assignment Areas"
+        rendered="{!plan.assignments.size=areaLimit}"
+      />
+
+      <apex:outputText value="To create an assignment, click the 'New Assignment Area' button." rendered="{!OR(ISNULL(plan.assignments), plan.assignments.size=0)}" />
+
+      <apex:pageBlockSection rendered="{!editingAssignment}"
+        title="{!IF(assignment.Id == null, $Label.geopointe__new_assignment_area, $Label.geopointe__edit_assignment_area)}"
+        columns="1"
+        collapsible="false"
+      >
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Area__c.fields.Name.label}" />
+          <apex:outputPanel styleClass="requiredInput" layout="block">
+            <div class="requiredBlock"></div>
+            <apex:inputField value="{!assignment.Name}" rendered="{!NOT(plan.managedByTerritoryPlanner)}" />
+            <apex:outputField value="{!assignment.Name}" rendered="{!plan.managedByTerritoryPlanner}" />
+          </apex:outputPanel>
+        </apex:pageBlockSectionItem>
+
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Area__c.fields.geopointe__Shape__c.label}" />
+          <apex:outputPanel styleClass="requiredInput" layout="block">
+            <div class="requiredBlock"></div>
+            <apex:inputField value="{!assignment.geopointe__Shape__c}" rendered="{!NOT(plan.managedByTerritoryPlanner)}" />
+            <apex:outputField value="{!assignment.geopointe__Shape__c}" rendered="{!plan.managedByTerritoryPlanner}" />
+          </apex:outputPanel>
+        </apex:pageBlockSectionItem>
+
+        <apex:inputField value="{!assignment.geopointe__User__c}" />
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection rendered="{!editingAssignment && hasCustomFields}" title="Custom Fields" columns="1" collapsible="false">
+        <apex:outputPanel >
+          Custom Fields configuration allows you to assign specific values to your target Map Object, when the Assignment Plan batch job is run. Any custom fields you’ve created in
+          the Assignment Area object will show up below. You can then enter a value, and map it to a target field in the Map Object (Account, Opportunity, etc).&nbsp;
+          <apex:outputLink value="https://customers.geopointe.com/s/article/Assignment-Plans#custom_fields">Learn more</apex:outputLink>
+        </apex:outputPanel>
+        <apex:pageBlockSection columns="3" collapsible="false">
+          <apex:pageBlockSectionItem dataStyle="width: 0">
+            <center>
+              <strong>Assignment Area Custom Field</strong>
+            </center>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem dataStyle="width: 0"> &nbsp; </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem dataStyle="width: 100%">
+            <strong>{!sObjectLabel} Field</strong>
+          </apex:pageBlockSectionItem>
+          <apex:repeat value="{!customFields}" var="customField">
+            <apex:pageBlockSectionItem dataStyle="width: 0">
+              <apex:outputLabel value="{!customField['fieldLabel']}" />
+              <apex:inputField value="{!assignment[customField['fieldName']]}" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem dataStyle="width: 0">
+              <i class="fa fa-arrow-right" style="color: #4a4a56; padding-top: 4px"></i>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem dataStyle="width: 100%">
+              <apex:selectList value="{!customField['mappedField']}" multiselect="false" size="1" styleClass="input">
+                <apex:selectOptions value="{!mappableFields}" />
+              </apex:selectList>
+            </apex:pageBlockSectionItem>
+          </apex:repeat>
+        </apex:pageBlockSection>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

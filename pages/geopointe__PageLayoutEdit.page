@@ -1,0 +1,654 @@
+<apex:page controller="geopointe.PageLayoutEdit_Controller" showHeader="false" sidebar="false" lightningStylesheets="true" standardStylesheets="true" docType="html-5.0" applyBodyTag="false">
+  <head>
+    <apex:slds />
+    <!---Stencil css -->
+    <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/slds-layout-stencil.css')}" />
+    <!-- Lightning StyleSheets for Classic Users -->
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+      <apex:stylesheet value="{!URLFOR($Resource.geopointe__jquery, '/css/slds-vf-scope.css')}" />
+      <style type="text/css">
+        span.dateInput,
+        span.dateInput > input {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        /* Fix error messages in apex:pageMessages to be white when in classic */
+
+        table.messageTable > tbody > tr > td > span > ul > li {
+          color: white;
+        }
+
+        td.messageCell > div.messageText {
+          color: white;
+        }
+      </style>
+    </apex:outputPanel>
+    <style>
+      /*  fixes IOS Mobile from focusing on inputs scrolling to top */
+
+      html,
+      html body {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      body {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+    </style>
+    <script src="{!URLFOR($Resource.jquery, '/js/purify.min.js')}" type="text/javascript"></script>
+    <script src="/soap/ajax/46.0/connection.js" type="text/javascript"></script>
+    <!-- Salesforce AJAX API -->
+    <script type="text/javascript">
+      /* Set the current session Id to sforce connection object */
+      sforce.connection.sessionId = '{!GETSESSIONID()}';
+      sforce.connection.client = 'Arrowpointe/Geopointe/';
+      var sObjectName = '{!JSENCODE(sObjectName)}';
+      var recordTypeId = '{!JSENCODE(recordTypeId)}';
+      var queryForRecord = '{!queryForRecord}';
+      var result = sforce.connection.describeLayout(sObjectName);
+      var mappings = result.getArray('recordTypeMappings');
+      var layouts = result.getArray('layouts');
+      var layoutToRecType;
+      var displayLayout;
+
+      //find mapping to current reocrd type
+      for (var i = 0; i < mappings.length; i++) {
+        if (mappings[i].recordTypeId == recordTypeId) {
+          layoutToRecType = mappings[i];
+          break;
+        }
+      }
+
+      //find layout that matches
+      for (var j = 0; j < layouts.length; j++) {
+        if (layouts[j].id == layoutToRecType.layoutId) {
+          displayLayout = layouts[j];
+          break;
+        }
+      }
+
+      var editLayout = displayLayout.getArray('editLayoutSections');
+      var payload = editLayoutSections(editLayout);
+
+      function editLayoutSections(sections) {
+        let newSections = [];
+        sections.forEach(function (section) {
+          newSections.push({
+            layoutRows: layoutRows(section.getArray('layoutRows')),
+            columns: section.columns,
+            heading: section.heading,
+            useHeading: convertBoolean(section.useHeading),
+            collapsed: convertBoolean(section.collapsed),
+          });
+        });
+        return newSections;
+      }
+
+      function layoutRows(rows) {
+        var newRows = [];
+        rows.forEach(function (row) {
+          newRows.push({
+            layoutItems: layoutItems(row.getArray('layoutItems')),
+          });
+        });
+        return newRows;
+      }
+
+      function layoutItems(items) {
+        var newItems = [];
+        items.forEach(function (item) {
+          var layoutComponents = item.getArray('layoutComponents');
+          var fieldPath = item.layoutComponents && item.layoutComponents.value ? item.layoutComponents.value : '';
+          var fieldType = item.layoutComponents && item.layoutComponents.fieldType ? item.layoutComponents.fieldType : '';
+          var isCompound = item.layoutComponents && item.layoutComponents.components ? true : false;
+          if (isCompound) item.layoutComponents.components = addressSLDS(item.layoutComponents.components);
+          var components = isCompound ? item.layoutComponents.components : undefined;
+          var placeholder = convertBoolean(item.placeholder);
+          //if its an empty space, classify it as a placeholder
+          if (!placeholder && item.layoutComponents && item.layoutComponents.type == 'EmptySpace') placeholder = true;
+          newItems.push({
+            label: item.label,
+            fieldPath: fieldPath,
+            required: convertBoolean(item.required),
+            placeholder: placeholder,
+            editableForNew: convertBoolean(item.editableForNew),
+            editableForUpdate: convertBoolean(item.editableForUpdate),
+            isCompound: isCompound,
+            fieldType: fieldType,
+            components: components,
+          });
+        });
+        return newItems;
+      }
+
+      function convertBoolean(str) {
+        return str.toLowerCase() == 'true' ? true : false;
+      }
+
+      function createLabel(str) {
+        return str.split(/(?=[A-Z])/).join(' ');
+      }
+
+      function addressSLDS(components) {
+        components.forEach(function (comp) {
+          var label = comp.value.toLowerCase();
+          if (label.includes('street')) {
+            comp.sldsClass = 'slds-size_1-of-1';
+          } else if (label.includes('city')) {
+            comp.sldsClass = 'slds-size_4-of-6';
+          } else if (label.includes('state')) {
+            comp.sldsClass = 'slds-size_2-of-6';
+          } else if (label.includes('postalcode')) {
+            comp.sldsClass = 'slds-size_4-of-6';
+          } else if (label.includes('country')) {
+            comp.sldsClass = 'slds-size_2-of-6';
+          }
+          comp.label = createLabel(comp.value);
+        });
+        return components;
+      }
+    </script>
+    <!-- Apex template style fixes -->
+    <style type="text/css">
+      div.slds-form__item > span,
+      div.slds-form-element__control > span {
+        width: 100% !important;
+      }
+
+      span.lookupInput,
+      span.lookupInput > input {
+        width: 100%;
+      }
+
+      span.dateInput,
+      span.dateInput > input {
+        width: 100%;
+      }
+
+      span > select {
+        width: 100%;
+      }
+
+      div.requiredBlock {
+        display: none;
+      }
+
+      #PageLayoutEditWrapper {
+        height: 100%;
+        overflow-x: hidden;
+      }
+    </style>
+    <!-- Apex template style fixes -->
+  </head>
+
+  <body>
+    <div id="PageLayoutEditWrapper" class="slds-scope slds-is-relative">
+      <div id="emptyHelpText" />
+      <apex:form >
+        <!-- Action Functions -->
+        <apex:actionFunction name="createPageLayout" action="{!createPageLayout}" rerender="CalendarEditForm" immediate="true" oncomplete="modifyAnchorTags();">
+          <apex:param name="layoutSectionSerialized" value="" assignTo="{!layoutSectionSerialized}" />
+        </apex:actionFunction>
+        <apex:actionFunction name="saveSObjectDraft" action="{!rollBackSave}" reRender="CalendarEditForm" onbeforedomupdate="showSpinner();" oncomplete="sObjectDraftCallback();" />
+        <!-- Action Functions -->
+
+        <!-- Page Layout Form -->
+        <apex:outputPanel id="CalendarEditForm">
+          <!-- JS variables that need to be refreshed on postback from vf page -->
+          <apex:outputPanel id="serializedObject">
+            <script type="text/javascript">
+              var inMemorySObject = '{!JSENCODE(draftObj)}';
+            </script>
+          </apex:outputPanel>
+          <script type="text/javascript">
+            var pageErrors = JSON.parse('{!pageErrors}');
+          </script>
+          <!-- Apex Page Messages -->
+          <div id="messageWrap">
+            <apex:pageMessages />
+          </div>
+
+          <!-- Loading Stencil -->
+          <apex:outputPanel rendered="{!IF(pageLayoutState == 'LOADING', true, false)}" id="loadingStencil">
+            <div class="forcePlaceholder">
+              <div class="placeholder detail">
+                <div class="left-column">
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                </div>
+
+                <div class="right-column">
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                  <div class="field border-bottom">
+                    <div class="text text-primary text-shorter text-thin"></div>
+                    <div class="text text-secondary text-medium text-thin"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </apex:outputPanel>
+          <!-- Loading Stencil -->
+
+          <!-- Dynamically Rendered Form -->
+          <div class="slds-p-around_small">
+            <apex:repeat value="{!layoutSections}" var="section">
+              <div class="slds-section slds-is-open">
+                <apex:outputPanel layout="none" rendered="{!IF(section.useHeading, true, false)}">
+                  <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-truncate slds-p-horizontal_small">{!section.heading}</span>
+                  </h3>
+                </apex:outputPanel>
+                <div class="slds-section__content slds-p-around_medium">
+                  <div class="slds-form" role="list">
+                    <apex:repeat value="{!section.layoutRows}" var="layoutRow">
+                      <div class="slds-form__row">
+                        <apex:repeat value="{!layoutRow.layoutItems}" var="layoutItem">
+                          <div class="slds-form__item slds-p-bottom_x-small" role="listitem">
+                            <apex:outputPanel rendered="{!IF(layoutItem.isCompound <> true, true, false)}">
+                              <div class="slds-form-element {!IF(pageLayoutDensity == 'COMFY','slds-form-element_stacked', 'slds-form-element_horizontal')} slds-is-editing">
+                                <!-- Label -->
+                                <label class="slds-form-element__label">
+                                  <abbr style="{!IF(AND(layoutItem.required, layoutItem.editableForNew == true), '','display: none;')}" class="slds-required" title="required"
+                                    >*</abbr
+                                  >{!layoutItem.label}</label
+                                >
+                                <!-- Label -->
+
+                                <!-- Help Text Icon Info -->
+                                <apex:outputPanel rendered="{!IF(layoutItem.helpText <> null, true, false)}">
+                                  <div class="slds-form-element__icon">
+                                    <button
+                                      class="slds-button slds-button_icon"
+                                      onclick="helpTextHandlerClick(event);"
+                                      onmouseover="helpTextHandler(event);"
+                                      onmouseout="removeHelpTextPopover(event);"
+                                    >
+                                      <!-- onmouseout="removeHelpTextPopover(event);" -->
+                                      <svg class="slds-button__icon" aria-hidden="true">
+                                        <use
+                                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                                          xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"
+                                        ></use>
+                                      </svg>
+                                      <span class="slds-assistive-text">{!layoutItem.helpText}</span>
+                                    </button>
+                                  </div>
+                                </apex:outputPanel>
+                                <!-- Help Text Icon Info -->
+
+                                <div class="slds-form-element__control">
+                                  <!-- Record Type Display Ouput Only -->
+                                  <apex:outputPanel rendered="{!IF(layoutItem.fieldPath == 'RecordTypeId', true, false)}">
+                                    <div class="slds-form-element__static">{!IF(recordTypeName <> 'Master', recordTypeName, '')}</div>
+                                  </apex:outputPanel>
+
+                                  <!-- Normal Input Fields -->
+                                  <apex:outputPanel styleClass="{!IF(AND(layoutItem.fieldPath == 'Subject', sobjectname == 'event'), 'lookupInput', '')}"
+                                    rendered="{!IF(AND(layoutItem.fieldPath <> 'RecordTypeId', layoutItem.placeholder <> true), true, false)}"
+                                  >
+                                    <apex:outputPanel rendered="{!IF(AND(layoutItem.fieldPath == 'Subject', sobjectname == 'event'), '', layoutItem.sldsClass)}">
+                                      <script type="text/javascript">
+                                        var myImage = document.querySelector("img.comboboxIcon[alt='Subject Combo (New Window)']");
+                                        var newImage = document.createElement('img');
+                                        newImage.setAttribute('class', 'lookupIcon');
+                                        newImage.setAttribute('src', '/img/s.gif');
+                                        newImage.setAttribute('title', 'Subject Combo (New Window)');
+                                        myImage.remove();
+                                        myImage.parentNode.appendChild(newImage);
+                                      </script>
+                                    </apex:outputPanel>
+
+                                    <apex:inputField value="{!obj[layoutItem.fieldPath]}"
+                                      styleClass="{!IF(AND(layoutItem.fieldPath == 'Subject', sobjectname == 'event'), '', layoutItem.sldsClass)}
+                                                                            {!IF(OR(layoutItem.isNamePointing, layoutItem.fieldType == 'datetime', layoutItem.fieldType == 'date'), 'slds-grid slds-grow','')}
+                                                                            {!IF(AND(layoutItem.fieldPath == 'Subject', sobjectname == 'event'), 'customCSS', '')}"
+                                      rendered="{!IF(AND(layoutItem.editableForNew, layoutItem.fieldType != 'richtext' ), true, false)}"
+                                      required="{!OR(layoutItem.dbRequired, layoutItem.required)}"
+                                      style="{!IF(AND(layoutItem.fieldType <> 'boolean', layoutItem.fieldType <> 'datetime'), 'width: 100%;', '')}"
+                                    />
+
+                                    <apex:outputPanel rendered="{!IF(AND(layoutItem.editableForNew,layoutItem.fieldType == 'richtext'), true, false)}">
+                                      <apex:inputTextArea html-data-fieldname="{!layoutItem.fieldPath}"
+                                        html-data-datatype="richtext"
+                                        value="{!obj[layoutItem.fieldPath]}"
+                                        richtext="false"
+                                        style="width: 100%"
+                                        styleClass="{!layoutItem.sldsClass}"
+                                      />
+                                    </apex:outputPanel>
+
+                                    <!-- Output Read Only Fields -->
+                                    <apex:outputPanel html-data-isLookup="{!IF(layoutItem.fieldType == 'reference', true, false)}">
+                                      <!-- for preventing clicks breaking modal-->
+                                      <apex:outputField value="{!obj[layoutItem.fieldPath]}"
+                                        rendered="{!IF(layoutItem.editableForNew <> true, true, false)}"
+                                        styleClass="{!layoutItem.sldsClass} {!IF(layoutItem.isNamePointing, 'slds-grid slds-grow','')}"
+                                        style="{!IF(AND(layoutItem.fieldType <> 'boolean', layoutItem.fieldType <> 'datetime'), 'width: 100%;', '')}"
+                                      />
+                                    </apex:outputPanel>
+                                  </apex:outputPanel>
+
+                                  <!-- Dependent Picklist Info -->
+                                  <apex:outputPanel rendered="{!IF(layoutItem.isDependentPicklist, true, false)}">
+                                    <a href="javascript:void(0)">Depends on {!layoutItem.controllingPicklist}</a>
+                                  </apex:outputPanel>
+                                </div>
+                              </div>
+                            </apex:outputPanel>
+
+                            <!-- Compound Address Fields -->
+                            <apex:outputPanel rendered="{!IF(AND(layoutItem.isCompound, layoutItem.fieldType == 'address'), true, false)}">
+                              <fieldset class="slds-form-element slds-form-element_compound slds-form-element_address slds-is-editing slds-form-element_stacked">
+                                <legend class="slds-form-element__legend slds-form-element__label">
+                                  <apex:outputLabel styleClass="slds-form-element__label" value="{!layoutItem.label}" />
+                                </legend>
+                                <div class="slds-form-element__control">
+                                  <apex:outputPanel rendered="{!IF(layoutItem.editableForNew, true, false)}">
+                                    <apex:repeat value="{!layoutItem.components[0]}" var="compField">
+                                      <div class="slds-form-element__row">
+                                        <div class="{!compField.sldsClass}">
+                                          <div class="slds-form-element">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="{!compField.label}" />
+                                            <div class="slds-form-element__control">
+                                              <apex:inputField styleClass="slds-input" value="{!obj[compField.value]}" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </apex:repeat>
+                                    <div class="slds-form-element__row">
+                                      <apex:repeat value="{!layoutItem.components[1]}" var="compField">
+                                        <div class="{!compField.sldsClass}">
+                                          <div class="slds-form-element">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="{!compField.label}" />
+                                            <div class="slds-form-element__control">
+                                              <apex:inputField styleClass="slds-input" value="{!obj[compField.value]}" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </apex:repeat>
+                                      <apex:repeat value="{!layoutItem.components[2]}" var="compField">
+                                        <div class="{!compField.sldsClass}">
+                                          <div class="slds-form-element">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="{!compField.label}" />
+                                            <div class="slds-form-element__control">
+                                              <apex:inputField styleClass="slds-input" value="{!obj[compField.value]}" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </apex:repeat>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                      <apex:repeat value="{!layoutItem.components}" var="compField" first="3">
+                                        <div class="{!compField.sldsClass}">
+                                          <div class="slds-form-element">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="{!compField.label}" />
+                                            <div class="slds-form-element__control">
+                                              <apex:inputField styleClass="slds-input" value="{!obj[compField.value]}" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </apex:repeat>
+                                    </div>
+                                  </apex:outputPanel>
+                                </div>
+                              </fieldset>
+                            </apex:outputPanel>
+                            <!-- Compound Address Fields -->
+
+                            <!-- Other Comound Fields -->
+                            <apex:outputPanel rendered="{!IF(AND(layoutItem.isCompound, layoutItem.fieldType <> 'address'), true, false)}">
+                              <fieldset
+                                class="
+                                  slds-form-element slds-form-element_compound
+                                  slds-is-editing
+                                  {!IF(pageLayoutDensity
+                                  ==
+                                  'Cozy','slds-form-element_stacked',
+                                  'slds-form-element_horizontal')}
+                                "
+                              >
+                                <legend class="slds-form-element__legend slds-form-element__label">
+                                  <apex:outputPanel rendered="{!IF(OR(layoutItem.required, layoutItem.dbRequired), true,false)}">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                  </apex:outputPanel>
+                                  <apex:outputLabel value="{!layoutItem.label}" />
+                                </legend>
+                                <div class="slds-form-element__control">
+                                  <apex:outputPanel rendered="{!IF(layoutItem.editableForNew, true, false)}">
+                                    <div class="slds-form-element__row slds-wrap">
+                                      <apex:repeat value="{!layoutItem.components}" var="compField">
+                                        <div class="slds-size_1-of-1 slds-p-bottom_xx-small">
+                                          <div class="slds-form-element">
+                                            <label class="slds-form-element__label">
+                                              <apex:outputLabel value="{!compField.label}" />
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                              <apex:inputField style="width: 100%" value="{!obj[compField.value]}" styleClass="{!obj[compField.sldsClass]}" />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </apex:repeat>
+                                    </div>
+                                  </apex:outputPanel>
+                                </div>
+                              </fieldset>
+                            </apex:outputPanel>
+                            <!-- Other Comound Fields -->
+                          </div>
+                        </apex:repeat>
+                      </div>
+                    </apex:repeat>
+                  </div>
+                </div>
+              </div>
+            </apex:repeat>
+          </div>
+          <!-- Dynamically Rendered Form -->
+        </apex:outputPanel>
+        <!-- Page Layout Form -->
+      </apex:form>
+      <!-- Loading Spinner -->
+      <div id="formSpinner" class="slds-spinner_container slds-hide" style="height: 100%">
+        <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand" style="position: fixed">
+          <span class="slds-assistive-text">Loading</span>
+          <div class="slds-spinner__dot-a"></div>
+          <div class="slds-spinner__dot-b"></div>
+        </div>
+      </div>
+      <!-- Other global javascript functions and variables -->
+      <script type="text/javascript">
+        var layoutSectionSerialized = JSON.stringify(payload);
+
+        setTimeout(function () {
+          createPageLayout(layoutSectionSerialized);
+        }, 0);
+
+        /* Iframe Communication Functions */
+        function dispatchMessage(data) {
+          window.parent.postMessage(data, '*');
+        }
+
+        // prevent anchor tags for lookups from breaking modal
+        function modifyAnchorTags() {
+          setTimeout(function () {
+            var parentSpans = document.querySelectorAll('span[data-isLookup=true]');
+            var parentSpansArray = Array.prototype.slice.call(parentSpans);
+            parentSpansArray.forEach(function (span) {
+              var innerAnchor = span.querySelector('a');
+              if (innerAnchor) {
+                innerAnchor.setAttribute('target', '_blank');
+              }
+            });
+          }, 0);
+        }
+
+        window.addEventListener('message', function (event) {
+          var data = event.data;
+          if (data && data.action == 'submit') {
+            saveSObjectDraft();
+          }
+          if (data && data.action === 'hideSpinner') {
+            hideSpinner();
+          }
+        });
+        /* Iframe Communication Functions */
+
+        /*  Popover functions  */
+        var popoverActive = false;
+
+        function helpTextHandlerClick(event) {
+          event.preventDefault();
+        }
+
+        function removeHelpTextPopover(event) {
+          var popover = document.getElementById('emptyHelpText');
+          popover.innerHTML = '';
+          popoverActive = false;
+        }
+
+        function helpTextHandler(event) {
+          if (popoverActive) return;
+
+          var button = event.currentTarget;
+          var span = button.querySelector('span.slds-assistive-text');
+          var spanRect = span.getBoundingClientRect();
+
+          var root = document.getElementById('emptyHelpText');
+          var helpTemplate = renderTemplate(span.textContent, spanRect.x, spanRect.y);
+          root.appendChild(helpTemplate);
+
+          var modifyPopover = helpTemplate.querySelector('div[role=tooltip]');
+          var popoverRect = modifyPopover.getBoundingClientRect();
+
+          var popoverHeight = popoverRect.height;
+          var customOffSet = popoverHeight + button.parentNode.getBoundingClientRect().height + 10;
+          var spanRectY = spanRect.y;
+
+          var newTop = spanRectY - customOffSet + window.pageYOffset; //pageYOffset for scrolling from top
+          var newLeft = spanRect.left - 22;
+
+          modifyPopover.style.top = newTop + 'px'; //`${newTop}px`;
+          modifyPopover.style.left = newLeft + 'px'; //`${newLeft}px`;
+          popoverActive = true;
+        }
+
+        function renderTemplate(message, x, y) {
+          var div = document.createElement('div');
+          var gpInner = '\n<div id="geoPopover" class="slds-is-hidden slds-popover slds-popover_tooltip slds-nubbin_bottom-left slds-rise-from-ground" ';
+          gpInner += '\nrole="tooltip" style="position:absolute;top: '.concat(x, ';left: ').concat(y, ';">\n<div class="slds-popover__body">').concat(message, '</div>\n</div>');
+          div.innerHTML = DOMPurify.sanitize(gpInner);
+          return div;
+        }
+        /*  Popover functions  */
+
+        function sObjectDraftCallback() {
+          const success = !pageErrors ? true : false;
+          const isCalendar = queryForRecord === 'false' ? true : false;
+          dispatchMessage({
+            pageLayout: {
+              sObject: inMemorySObject,
+              success,
+              isCalendar,
+            },
+          });
+          window.scrollTo(0, 0);
+          if (!success) hideSpinner();
+        }
+
+        /* Spinner functions */
+        function hideSpinner() {
+          var spinner = document.getElementById('formSpinner');
+          if (spinner) {
+            setTimeout(function () {
+              spinner.classList.add('slds-hide');
+            }, 0);
+          }
+        }
+
+        function showSpinner() {
+          var spinner = document.getElementById('formSpinner');
+          if (spinner) {
+            spinner.classList.remove('slds-hide');
+          }
+        }
+        /* Spinner functions */
+      </script>
+    </div>
+  </body>
+</apex:page>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- URL - Open the URL of a webpage. This can be a internal salesforce.com page or external website. 
+
+Apex - Invoke custom logic using Apex code.
+
+POST (Visualforce) - Will POST a comma separated string of record Ids (idArray) to the provided URL. --></help>
+        <label><!-- Action Type --></label>
+        <name>geopointe__Action_Type__c</name>
+        <picklistValues>
+            <masterLabel>Apex</masterLabel>
+            <translation><!-- Apex --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Create Record</masterLabel>
+            <translation><!-- Create Record --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POST (Visualforce)</masterLabel>
+            <translation><!-- POST (Visualforce) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>URL</masterLabel>
+            <translation><!-- URL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Deprecated. Use the &quot;Available (Web)&quot; and &quot;Available (SF1)&quot; fields to control usage in the app. --></help>
+        <label><!-- Deprecated --></label>
+        <name>geopointe__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- The name of the Apex class for this action. This class must implement the geopointe.ActionHandler interface. --></help>
+        <label><!-- Apex Class --></label>
+        <name>geopointe__Apex_Class__c</name>
+    </fields>
+    <fields>
+        <help><!-- Record (Map Point) - This action will be a link or button displayed in the detail bubble on the Map page and will only apply to the selected record.
+
+List (Data Set Search) - This action will be applied to all records returned in a Data Set search. --></help>
+        <label><!-- Apply To --></label>
+        <name>geopointe__Apply_To__c</name>
+        <picklistValues>
+            <masterLabel>List</masterLabel>
+            <translation><!-- List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point</masterLabel>
+            <translation><!-- Point --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If checked, this action will be available in the Salesforce1 Geopointe mobile app. Currently only Record actions are supported in the Salesforce1 mobile app. --></help>
+        <label><!-- Available (Mobile) --></label>
+        <name>geopointe__Available_SF1__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, this action will be available in web version of Geopointe. --></help>
+        <label><!-- Available (Web) --></label>
+        <name>geopointe__Available_Web__c</name>
+    </fields>
+    <fields>
+        <help><!-- For Apex actions this value controls how many records are sent to the receiving Apex class per Apex transaction. If blank, all records are sent in one batch. --></help>
+        <label><!-- Batch Size --></label>
+        <name>geopointe__Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- New Window - This link will open a new window or tab in the user&apos;s browser.
+
+Same Window - This link will redirect the user away from the current Map page.
+
+Modal - The URL will be opened in a popup (modal) window within the map page. --></help>
+        <label><!-- Behavior --></label>
+        <name>geopointe__Behavior__c</name>
+        <picklistValues>
+            <masterLabel>Modal Window</masterLabel>
+            <translation><!-- Modal Window --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Window</masterLabel>
+            <translation><!-- New Window --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Same Window</masterLabel>
+            <translation><!-- Same Window --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Calendar City --></label>
+        <name>geopointe__Calendar_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Country --></label>
+        <name>geopointe__Calendar_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Field Sets --></label>
+        <name>geopointe__Calendar_Field_Sets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Latitude --></label>
+        <name>geopointe__Calendar_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Longitude --></label>
+        <name>geopointe__Calendar_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Name --></label>
+        <name>geopointe__Calendar_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Postal Code --></label>
+        <name>geopointe__Calendar_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Record Id --></label>
+        <name>geopointe__Calendar_Record_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar State --></label>
+        <name>geopointe__Calendar_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Street --></label>
+        <name>geopointe__Calendar_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Latitude --></label>
+        <name>geopointe__Calendar_User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Longitude --></label>
+        <name>geopointe__Calendar_User_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Record Default Field Values --></label>
+        <name>geopointe__Create_Record_Default_Field_Values__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Record SObject --></label>
+        <name>geopointe__Create_Record_SObject__c</name>
+    </fields>
+    <fields>
+        <help><!-- Actions appear in the record detail bubble on the Map page in the following order: Inline, Buttons, then Links. 
+
+Buttons are typically used for the most commonly used actions.
+
+Inline actions will display a specified URL within an iframe. --></help>
+        <label><!-- Display Type --></label>
+        <name>geopointe__Display_Type__c</name>
+        <picklistValues>
+            <masterLabel>Button</masterLabel>
+            <translation><!-- Button --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inline</masterLabel>
+            <translation><!-- Inline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Link</masterLabel>
+            <translation><!-- Link --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Field Sets Mapping --></label>
+        <name>geopointe__Field_Sets_Mapping__c</name>
+    </fields>
+    <fields>
+        <help><!-- If Lightning Page Layout is selected, the action will only be visible in Lightning Experience. --></help>
+        <label><!-- Form Type --></label>
+        <name>geopointe__Form_Type__c</name>
+        <picklistValues>
+            <masterLabel>Field Set</masterLabel>
+            <translation><!-- Field Set --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lightning Page Layout</masterLabel>
+            <translation><!-- Lightning Page Layout --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Stored JSON data about how to structure the layout of the action --></help>
+        <label><!-- Layout --></label>
+        <name>geopointe__Layout__c</name>
+    </fields>
+    <fields>
+        <help><!-- The webpage address navigated to when this action is selected. For internal salesforce.com pages it is best to use relative URLs. For Inline actions, external pages must use https. --></help>
+        <label><!-- Link URL --></label>
+        <name>geopointe__Link_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map City --></label>
+        <name>geopointe__Map_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Country --></label>
+        <name>geopointe__Map_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Latitude --></label>
+        <name>geopointe__Map_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Longitude --></label>
+        <name>geopointe__Map_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Name --></label>
+        <name>geopointe__Map_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the sObjects this action can be applied to. Only sObjects that are Map Objects can be selected. --></help>
+        <label><!-- sObjects --></label>
+        <name>geopointe__Map_Objects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Phone --></label>
+        <name>geopointe__Map_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Postal Code --></label>
+        <name>geopointe__Map_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map State --></label>
+        <name>geopointe__Map_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Street --></label>
+        <name>geopointe__Map_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Latitude --></label>
+        <name>geopointe__Map_User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Longitude --></label>
+        <name>geopointe__Map_User_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Website --></label>
+        <name>geopointe__Map_Website__c</name>
+    </fields>
+    <fields>
+        <help><!-- The height of the modal popup. Values can be defined in pixels such as &quot;800px&quot; or percent of window height, &quot;80%&quot;. Modal window size will be automatically adjusted if the values defined are larger than users viewable window size. --></help>
+        <label><!-- Modal Height --></label>
+        <name>geopointe__Modal_Height__c</name>
+    </fields>
+    <fields>
+        <help><!-- The width of the modal popup. Values can be defined in pixels such as &quot;800px&quot; or percent of window width, &quot;80%&quot;. Modal window size will be automatically adjusted if the values defined are larger than users viewable window size. --></help>
+        <label><!-- Modal Width --></label>
+        <name>geopointe__Modal_Width__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name (Translated) --></label>
+        <name>geopointe__Name_Translated__c</name>
+        <picklistValues>
+            <masterLabel>Placeholder</masterLabel>
+            <translation><!-- Placeholder --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Controls the order in which links and buttons are displayed in the action sections on the Map page. --></help>
+        <label><!-- Order --></label>
+        <name>geopointe__Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place City --></label>
+        <name>geopointe__Place_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Country --></label>
+        <name>geopointe__Place_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Field Sets --></label>
+        <name>geopointe__Place_Field_Sets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Latitude --></label>
+        <name>geopointe__Place_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Longitude --></label>
+        <name>geopointe__Place_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Name --></label>
+        <name>geopointe__Place_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Phone --></label>
+        <name>geopointe__Place_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Postal Code --></label>
+        <name>geopointe__Place_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place State --></label>
+        <name>geopointe__Place_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Street --></label>
+        <name>geopointe__Place_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Latitude --></label>
+        <name>geopointe__Place_User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Longitude --></label>
+        <name>geopointe__Place_User_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Place Website --></label>
+        <name>geopointe__Place_Website__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the type of Point this action can be applied to. Record, salesforce records. Places, the results of a places search, i.e. &apos;coffee shops&apos;. Map, apply any location on the map with an address search or right click. Route Stop, actions for route stops. --></help>
+        <label><!-- Point Type --></label>
+        <name>geopointe__Point_Type__c</name>
+        <picklistValues>
+            <masterLabel>Map</masterLabel>
+            <translation><!-- Map --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Place</masterLabel>
+            <translation><!-- Place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record</masterLabel>
+            <translation><!-- Record --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Route Stop</masterLabel>
+            <translation><!-- Route Stop --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Record Type Id Mapping --></label>
+        <name>geopointe__RecordTypeIdMapping__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record City --></label>
+        <name>geopointe__Record_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Country --></label>
+        <name>geopointe__Record_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Field Sets --></label>
+        <name>geopointe__Record_Field_Sets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Latitude --></label>
+        <name>geopointe__Record_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Longitude --></label>
+        <name>geopointe__Record_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Name --></label>
+        <name>geopointe__Record_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Postal Code --></label>
+        <name>geopointe__Record_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Record Id --></label>
+        <name>geopointe__Record_Record_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record State --></label>
+        <name>geopointe__Record_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Street --></label>
+        <name>geopointe__Record_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type --></label>
+        <name>geopointe__Record_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Latitude --></label>
+        <name>geopointe__Record_User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Longitude --></label>
+        <name>geopointe__Record_User_Longitude__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, and if User Latitude/Longitude fields are mapped, this Action will only be performed if User Location is available. --></help>
+        <label><!-- Require User Location --></label>
+        <name>geopointe__Require_User_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record City --></label>
+        <name>geopointe__Route_Stop_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Country --></label>
+        <name>geopointe__Route_Stop_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Field Sets --></label>
+        <name>geopointe__Route_Stop_Field_Sets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Latitude --></label>
+        <name>geopointe__Route_Stop_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Longitude --></label>
+        <name>geopointe__Route_Stop_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Name --></label>
+        <name>geopointe__Route_Stop_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Postal Code --></label>
+        <name>geopointe__Route_Stop_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record State --></label>
+        <name>geopointe__Route_Stop_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Street --></label>
+        <name>geopointe__Route_Stop_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Latitude --></label>
+        <name>geopointe__Route_Stop_User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Longitude --></label>
+        <name>geopointe__Route_Stop_User_Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assign using active assignment rule --></label>
+        <name>geopointe__Run_Assignment_Rule__c</name>
+    </fields>
+    <fields>
+        <help><!-- If set, these are default actions included with the Geopointe application. --></help>
+        <label><!-- Standard Action --></label>
+        <name>geopointe__Standard_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Message (Translated) --></label>
+        <name>geopointe__Status_Message_Translated__c</name>
+        <picklistValues>
+            <masterLabel>Placeholder</masterLabel>
+            <translation><!-- Placeholder --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This text is display while the Apex operation is being executed. Text should be short and descriptive such as: &quot;Loading...&quot;, &quot;Updating Contacts...&quot;, &quot;Processing...&quot;, etc. --></help>
+        <label><!-- Status Message --></label>
+        <name>geopointe__Status_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Latitude --></label>
+        <name>geopointe__User_Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Longitude --></label>
+        <name>geopointe__User_Longitude__c</name>
+    </fields>
+</CustomObjectTranslation>

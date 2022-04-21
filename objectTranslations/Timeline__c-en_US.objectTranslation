@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Revolving Appointment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Revolving Appointments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Revolving Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Average Number of Cars --></label>
+        <name>Average_Number_Cars__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <help><!-- This Revolving Appointment was deactivated by the Halt True360 Checkbox on the Account. --></help>
+        <label><!-- Deactivated by Halt True360 Checkbox --></label>
+        <name>Deactivated_by_Halt_True360_Checkbox__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Farthest date in the future a work order or service appointment has been scheduled from this revolving appointment. --></help>
+        <label><!-- Farthest Date Generated --></label>
+        <name>Farthest_Date_Generated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Modified Since Last Batch --></label>
+        <name>Modified_Since_Last_Batch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Date of Previous Batch --></label>
+        <name>Run_Date_of_Previous_Batch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Resource Name --></label>
+        <name>Service_Resource_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Resource --></label>
+        <name>Service_Resource__c</name>
+        <relationshipLabel><!-- Revolving Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Service Territory --></label>
+        <name>Service_Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <help><!-- Street Address for all Service Appointments and Work Orders. --></help>
+        <label><!-- Street --></label>
+        <name>Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- Revolving Appointments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Type --></label>
+        <lookupFilter>
+            <errorMessage><!-- Revolving Appointments can only be assigned to select Work Types. Please ensure you are selecting an appropriate Work Type. --></errorMessage>
+        </lookupFilter>
+        <name>Work_Type__c</name>
+        <relationshipLabel><!-- Revolving Appointments --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- An account with a billing address is required --></errorMessage>
+        <name>Account_with_billing_address_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must fill in the Average Number of Cars for a Revolving Appointment --></errorMessage>
+        <name>Average_Number_of_Cars_is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This dealership is not approved for any True 360 inspections at this time. --></errorMessage>
+        <name>Prevent_True360_appointments</name>
+    </validationRules>
+</CustomObjectTranslation>

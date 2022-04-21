@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>ABBREVIATION__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ABBREVIATION</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Attached_If_False__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Title Attached If False</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Attached_If_True__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Title Attached If True</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>State Due Date</label>
+    <listViews>
+        <fullName>All_Fields</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>ABBREVIATION__c</columns>
+        <columns>Title_Attached_If_False__c</columns>
+        <columns>Title_Attached_If_True__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Fields</label>
+    </listViews>
+    <pluralLabel>State Due Dates</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

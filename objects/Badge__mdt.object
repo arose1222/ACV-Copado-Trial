@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>These are Badges that will display in the BadgetBanner if that LWC is added to the record page</description>
+    <fields>
+        <fullName>ACV_Preset_Colors__c</fullName>
+        <description>Colors are located in the Generic LWC Css class</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ACV Preset Colors</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Whether the Badge is active</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Background_Color__c</fullName>
+        <description>The background color of the badge</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Format Requires #HexCodeFormat, .standardColorText, or linear-gradiant(...)</inlineHelpText>
+        <label>Background Color</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class_Name__c</fullName>
+        <description>The Apex Class name for more dynamic logic</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Class Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Criteria_Logic_Equation__c</fullName>
+        <description>The equation to determine the Criteria Line Items order</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Allowed values - (), AND, OR, NOT or !. If not populated, assumes AND for all. If too complicated for custom metadata, put SPECIAL-CODED-LOGIC in this field</inlineHelpText>
+        <label>Criteria Logic Equation</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>API Name of the Object its associated with</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>API Name of the Object</inlineHelpText>
+        <label>Object</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Text_Color__c</fullName>
+        <description>The color of the title</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Format Requires #HexCodeFormat, .standardColorText, or linear-gradiant(...)</inlineHelpText>
+        <label>Text Color</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Badge</label>
+    <listViews>
+        <fullName>All_Badges</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Active__c</columns>
+        <columns>Object__c</columns>
+        <columns>Criteria_Logic_Equation__c</columns>
+        <columns>Class_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Badges</label>
+    </listViews>
+    <pluralLabel>Badges</pluralLabel>
+    <validationRules>
+        <fullName>One_Color_Option_Required</fullName>
+        <active>true</active>
+        <description>One Color Option is required. Either ACV Preset Color or Background Color AND Text Color</description>
+        <errorConditionFormula>/* Can not all be empty */
+( ISBLANK(Text_Color__c) &amp;&amp; ISBLANK(ACV_Preset_Colors__c) &amp;&amp; ISBLANK(Background_Color__c) )
+||
+/* Can not all be populated */
+( NOT(ISBLANK(Text_Color__c)) &amp;&amp; NOT(ISBLANK(ACV_Preset_Colors__c)) &amp;&amp;  NOT(ISBLANK(Background_Color__c)) )
+||
+/* Background and Text Color have to be both populated if picked */
+( NOT(ISBLANK(Background_Color__c)) &amp;&amp; ISBLANK(Text_Color__c) )
+||
+( ISBLANK(Background_Color__c) &amp;&amp; NOT(ISBLANK(Text_Color__c)) )</errorConditionFormula>
+        <errorMessage>One Color Option is required. Either ACV Preset Color or Background Color AND Text Color</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Only_One_Logic_Field_can_be_used</fullName>
+        <active>true</active>
+        <description>Either Class Name or Logic Criteria Equation will be used</description>
+        <errorConditionFormula>NOT(ISBLANK(Criteria_Logic_Equation__c)) &amp;&amp;  NOT(ISBLANK(Class_Name__c))</errorConditionFormula>
+        <errorMessage>Only one field should be populated. Criteria Logic Equation or Class Name</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

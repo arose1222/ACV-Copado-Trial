@@ -268,16 +268,21 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Contact_Record_Page</content>
         <formFactor>Large</formFactor>
-        <type>Default</type>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
+        <content>Contact_Record_Page</content>
         <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -323,66 +328,791 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ACV_User_Contact_Compact_layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>Phone</fields>
+        <fields>Email</fields>
+        <fields>MobilePhone</fields>
+        <fields>OwnerId</fields>
+        <label>ACV User Contact Compact layout</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>Arb_Contact_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>Email</fields>
+        <fields>MobilePhone</fields>
+        <fields>Phone</fields>
+        <label>Arb Contact Compact Layout</label>
+    </compactLayouts>
     <enableFeeds>true</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>AccountId</fullName>
-        <trackFeedHistory>true</trackFeedHistory>
+        <fullName>ACV_Created__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV Created</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ACV_Dealer_Id__c</fullName>
+        <description>External ID for dealer to which contact is associated.</description>
+        <externalId>false</externalId>
+        <label>ACV_Dealer_Id</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Updated__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV Updated</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ACV_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>ACV User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Billing_City__c</fullName>
+        <description>Billing city of the contacts associated account , used to be able to surface info in email merge fields from campaigns</description>
+        <externalId>false</externalId>
+        <formula>Account.BillingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Billing city of the contacts associated account</inlineHelpText>
+        <label>Account Billing City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Billing_State__c</fullName>
+        <description>Billing state of the contacts associated account , used to be able to surface info in email merge fields from campaigns</description>
+        <externalId>false</externalId>
+        <formula>Account.BillingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Billing state of the contacts associated account</inlineHelpText>
+        <label>Account Billing State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Dealer_Type__c</fullName>
+        <description>Dealer Type from Account for Reporting and List View use</description>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Account.Dealer_Type__c, &apos;1&apos;), &apos;Franchise&apos;, IF(
+ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(ISPICKVAL(Account.Dealer_Type__c, &apos;4&apos;), &apos;Independent - ACV Certified&apos;, IF(ISPICKVAL(Account.Dealer_Type__c,&apos;3&apos;), &apos;Wholesaler&apos;, IF(ISPICKVAL(Account.Dealer_Type__c, &apos;Dealer Group (Parent Account)&apos;), &apos;Dealer Group (Parent Account)&apos;,IF(ISPICKVAL(Account.Dealer_Type__c, &apos;5&apos;), &apos;Commercial&apos;, null))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Owner_TM__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Owner.FirstName &amp; &quot; &quot; &amp;  Account.Owner.LastName</formula>
+        <label>Account Owner (TM)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Acct_Owner_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Acct_Owner_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acct Owner ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Time_Purchases__c</fullName>
+        <description>Pulls the value from the All Time Purchases field on Account</description>
+        <externalId>false</externalId>
+        <formula>Account.Purchases_All_Time__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>All Time Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_Time_Sells__c</fullName>
+        <description>Pulls the All Time Sales value from the Account</description>
+        <externalId>false</externalId>
+        <formula>Account.All_Time_Sales_Gross__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>All Time Sells</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Annual_Unit_Sales__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual Unit Sales</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AssistantName</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>AssistantPhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Auto_Inc_Id__c</fullName>
+        <description>Auto Number used to generate Integers for Contact Unique IDs</description>
+        <externalId>true</externalId>
+        <label>Auto Inc Id</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>Birthdate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CR_Review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CR Review</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__WatchDOGResult__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>WatchDOG Result</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No Match</fullName>
+                    <default>false</default>
+                    <label>No Match</label>
+                </value>
+                <value>
+                    <fullName>Potential Match</fullName>
+                    <default>false</default>
+                    <label>Potential Match</label>
+                </value>
+                <value>
+                    <fullName>True Match</fullName>
+                    <default>false</default>
+                    <label>True Match</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__CES__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Contact Email Status</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__MAR__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mailing Address Record Type</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__MAS__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mailing Address Status</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__MAV__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mailing Address Vacancy</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__MRDI__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mailing Residential Delivery Indicator</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__MTZ__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mailing Timezone</label>
+        <length>48</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__OAR__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Address Record Type</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__OAS__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Address Status</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__OAV__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Address Vacancy</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__ORDI__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Residential Delivery Indicator</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloudingoAgent__OTZ__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Timezone</label>
+        <length>48</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Guid__c</fullName>
+        <externalId>true</externalId>
+        <label>User GUID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Creation_Source__c</fullName>
+        <description>Field indicating how this record was created, used to filter records created through bulk creation processes to avoid mass email send outs</description>
+        <externalId>false</externalId>
+        <label>Creation Source</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bulk Load</fullName>
+                    <default>false</default>
+                    <label>Bulk Load</label>
+                </value>
+                <value>
+                    <fullName>Registration</fullName>
+                    <default>false</default>
+                    <label>Registration</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Data_Quality_Score__c =100,&quot;All Contact Details Captured&quot;, &quot;Missing: &quot;&amp;IF( LEN( Phone ) = 0, &quot;Phone, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(LEN( Email) = 0, &quot;Email, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN( MailingStreet ) = 0, &quot;Complete Address, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN(Title) = 0, &quot;Job Title, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( ISPICKVAL( Salutation,&quot;&quot;), &quot;Salutation&quot;,&quot;&quot;))</formula>
+        <label>Data Quality Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( LEN( Phone) = 0, 0,20) + IF( LEN( Email) = 0, 0,20) + IF( LEN(MailingStreet) = 0, 0,20) + IF( LEN(Title) = 0, 0,20) + IF( ISPICKVAL(Salutation,&quot;&quot;), 0,20)</formula>
+        <label>Data Quality Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_and_Time_Dealer_Became_Compliant__c</fullName>
+        <description>Pulls the value from Date Time Compliant field on Account</description>
+        <externalId>false</externalId>
+        <formula>Account.Date_Time_Compliant__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date and Time Dealer Became Compliant</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_First_Purchase__c</fullName>
+        <description>Pulls the Date of First Purchase value from the Account</description>
+        <externalId>false</externalId>
+        <formula>Account.Date_of_First_Buy__c</formula>
+        <label>Date of First Purchase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Last_Purchase__c</fullName>
+        <description>Pulls the value from the Date of Last Purchase field from Account</description>
+        <externalId>false</externalId>
+        <formula>Account.Date_of_Last_Purchase__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date of Last Purchase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_last_Sale__c</fullName>
+        <description>Date of last sale from related account</description>
+        <externalId>false</externalId>
+        <formula>Account.Date_of_Last_Sale__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Date of last sale from related account</inlineHelpText>
+        <label>Date of Last Sale</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DaysSinceLastActivity__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() - DATEVALUE(LastModifiedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days Since Last Activity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealership_Contact_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Indicates the unique Dealership Contact Id for this Contact record. This field will be populated only for the Dealership Contact Record types</description>
+        <externalId>true</externalId>
+        <label>Dealership Contact Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>DelightedInc__Last_Delighted_Response_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Delighted Response Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Department</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Description</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Direct_Dealership_Member_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Direct Dealership Member Id</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>DoNotCall</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Email</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Email_Opt_Out_Categories__c</fullName>
+        <description>Field indicating which email updates this user has opted out of receiving</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field indicates which email updates this user has opted out of receiving</inlineHelpText>
+        <label>Email Opt Out Categories</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>orgUpdates</fullName>
+                    <default>false</default>
+                    <label>Organization Updates</label>
+                </value>
+                <value>
+                    <fullName>progUpdates</fullName>
+                    <default>false</default>
+                    <label>Programmatic Updates</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Fax</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>From_Historical_Load__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if this record was part of a historical load</description>
+        <externalId>false</externalId>
+        <label>From Historical Load</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Geocode_Quality__c</fullName>
+        <externalId>false</externalId>
+        <label>Geocode Quality</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Geopointe_LatLong__c</fullName>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Geopointe LatLong</label>
+        <required>false</required>
+        <scale>10</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>HOT_NOTES__c</fullName>
+        <description>I.E NEXT GEAR, KNOWS TIM ETC</description>
+        <externalId>false</externalId>
+        <label>HOT NOTES</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>HasOptedOutOfEmail</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>HasOptedOutOfFax</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>HomePhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Used by Integration</description>
+        <externalId>true</externalId>
+        <label>ACV Contact ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IST_Account_Manager_Email__c</fullName>
+        <description>Email of the IST Account Manager</description>
+        <externalId>false</externalId>
+        <formula>Account.IST_Account_Owner__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IST Account Manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IST_Account_Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.IST_Account_Owner__r.FirstName + &quot; &quot; + Account.IST_Account_Owner__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IST Account Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IST_Discovery_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IST Discovery Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IST_Rep__c</fullName>
+        <externalId>false</externalId>
+        <label>IST Rep</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IST_Todays_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>IST Todays Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Identity_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Identity Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>IndividualId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Is_Staff__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if the Contact User is ACV Staff</description>
+        <externalId>false</externalId>
+        <label>Is Staff</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Superuser__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Designates that this ACV user has all ACV App permissions without explicitly assigning them</description>
+        <externalId>false</externalId>
+        <label>Is Superuser</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Jigsaw</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Joined__c</fullName>
+        <externalId>false</externalId>
+        <label>Joined</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Language_Preference__c</fullName>
+        <externalId>false</externalId>
+        <label>Language Preference</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>English</fullName>
+                    <default>false</default>
+                    <label>English</label>
+                </value>
+                <value>
+                    <fullName>Spanish</fullName>
+                    <default>false</default>
+                    <label>Spanish</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>LastCURequestDate</fullName>
@@ -391,97 +1121,2098 @@
         <fullName>LastCUUpdateDate</fullName>
     </fields>
     <fields>
+        <fullName>Last_Geocode_Run__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Geocode Run</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>LeadSource</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Convert_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account.Lead_Convert_Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lead Convert Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Created_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox indicating if this Contact was created from a Lead</description>
+        <externalId>false</externalId>
+        <label>Lead Created Contact</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Linked_in_Profile__c</fullName>
+        <externalId>false</externalId>
+        <label>Linked in Profile</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MTD_Purchases__c</fullName>
+        <description>Pulls the value from the MTD Purchases field on Account</description>
+        <externalId>false</externalId>
+        <formula>Account.MTD_Purchases__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MTD Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MVP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>MVP Accounts</description>
+        <externalId>false</externalId>
+        <label>MVP</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MailingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>MobilePhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>NGDealerNumber__c</fullName>
+        <description>Dealer number for Next Gear</description>
+        <externalId>false</externalId>
+        <label>NG Dealer #</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Name</fullName>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>No_Longer_Employed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if Contact is no longer at the Dealer</inlineHelpText>
+        <label>No Longer Employed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Locations__c</fullName>
+        <description>Number of dealership locations</description>
+        <externalId>false</externalId>
+        <label># of Locations</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>OtherAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>OtherPhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Password__c</fullName>
+        <externalId>false</externalId>
+        <label>Password</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Phone_Carrier__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Carrier</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Phone_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Type</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Policy_Email_Status__c</fullName>
+        <description>This field is used for scheduling policy email with a delay.</description>
+        <externalId>false</externalId>
+        <label>Policy Email Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Policy Email Not Sent</fullName>
+                    <default>false</default>
+                    <label>Policy Email Not Sent</label>
+                </value>
+                <value>
+                    <fullName>Send Policy Email</fullName>
+                    <default>false</default>
+                    <label>Send Policy Email</label>
+                </value>
+                <value>
+                    <fullName>Policy Email Sent</fullName>
+                    <default>false</default>
+                    <label>Policy Email Sent</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PotentialMonthlyBuyVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Potential Monthly Buy Volume</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prescreen_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Prescreen Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Repeat</fullName>
+                    <default>false</default>
+                    <label>Repeat</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Promotion_Code__c</fullName>
+        <description>Promo code used when the user signed up, this is populated via the Identity services</description>
+        <externalId>false</externalId>
+        <label>Promotion Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Receive_Promo_Emails__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Should this contact receive sales promotion messaging (via text, push notification, email, etc..)?</description>
+        <externalId>false</externalId>
+        <label>Receive Promos?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>ReportsToId</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Title</fullName>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>User</fullName>
+                    <default>false</default>
+                    <label>User</label>
+                </value>
+                <value>
+                    <fullName>VCI</fullName>
+                    <default>false</default>
+                    <label>VCI</label>
+                </value>
+                <value>
+                    <fullName>readonly</fullName>
+                    <default>false</default>
+                    <label>Read Only</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SMS_Opt_In__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>True indicates the Contact has agreed to receive marketing-based SMS text messages from ACV.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>True indicates the Contact has agreed to receive marketing-based SMS text messages from ACV.</inlineHelpText>
+        <label>SMS Opt-In</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubmitterIP__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitter IP</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Successful_Virtual_Lift_Prescreens__c</fullName>
+        <externalId>false</externalId>
+        <label>Successful Virtual Lift Prescreens</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territory__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Maps_Sales_Territory_Name__c</formula>
+        <inlineHelpText>Territory from the Account the Contact is Associated With. Read Only Field</inlineHelpText>
+        <label>Territory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Timezone__c</fullName>
+        <externalId>false</externalId>
+        <label>Timezone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>America/New_York</fullName>
+                    <default>false</default>
+                    <label>America/New_York</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Title_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Title 2</label>
+        <length>64</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Picklist__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Title Clerk</fullName>
+                    <default>false</default>
+                    <label>Title Clerk</label>
+                </value>
+                <value>
+                    <fullName>Used Car Manager</fullName>
+                    <default>false</default>
+                    <label>Used Car Manager</label>
+                </value>
+                <value>
+                    <fullName>Accounting</fullName>
+                    <default>false</default>
+                    <label>Accounting</label>
+                </value>
+                <value>
+                    <fullName>Finance Manager</fullName>
+                    <default>false</default>
+                    <label>Finance Manager</label>
+                </value>
+                <value>
+                    <fullName>Principal</fullName>
+                    <default>false</default>
+                    <label>Principal</label>
+                </value>
+                <value>
+                    <fullName>Selling Rep</fullName>
+                    <default>false</default>
+                    <label>Selling Rep</label>
+                </value>
+                <value>
+                    <fullName>Buying Rep</fullName>
+                    <default>false</default>
+                    <label>Buying Rep</label>
+                </value>
+                <value>
+                    <fullName>Transport Manager</fullName>
+                    <default>false</default>
+                    <label>Transport Manager</label>
+                </value>
+                <value>
+                    <fullName>TrueFrame Billing Contact</fullName>
+                    <default>false</default>
+                    <label>TrueFrame Billing Contact</label>
+                </value>
+                <value>
+                    <fullName>TF Report Contact</fullName>
+                    <default>false</default>
+                    <label>TF Report Contact</label>
+                </value>
+                <value>
+                    <fullName>Lotsweep Vendor</fullName>
+                    <default>false</default>
+                    <label>Lotsweep Vendor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Transportation_Primary_Contact__c</fullName>
+        <description>Field is checked if the Primary transpo contact on the related account is this contact</description>
+        <externalId>false</externalId>
+        <formula>If(
+ Account.Transportation_Primary_Contact__c ==  Id,
+true,false
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This flag is checked if it is the Transportation Primary Contact on its Account</inlineHelpText>
+        <label>Transportation Primary Contact</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Travel_Radius__c</fullName>
+        <externalId>false</externalId>
+        <label>Travel Radius</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Twitter_Handle__c</fullName>
+        <externalId>false</externalId>
+        <label>Twitter Handle</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UnbouncePageID__c</fullName>
+        <externalId>false</externalId>
+        <label>Unbounce Page ID</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UnbouncePageVariant__c</fullName>
+        <externalId>false</externalId>
+        <label>Unbounce Page Variant</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UnbounceSubmissionDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Unbounce Submission Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UnbounceSubmissionTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Unbounce Submission Time</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Updated__c</fullName>
+        <externalId>false</externalId>
+        <label>Updated</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>UseSalesforce</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>VCI_CR_Counter__c</fullName>
+        <externalId>false</externalId>
+        <label>VCI CR Counter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Virtual_Lift_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Virtual Lift Enabled</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Most_Recent_Gift_Invitation_Create_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Alyce Most Recent Gift Invitation Create Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alyce Most Recent Gift Invitation Create Date</inlineHelpText>
+        <label>Most Recent Gift Invitation Create Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Most_Recent_Gift_Invitation_Gift_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Alyce Most Recent Gift Invitation Gift Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alyce Most Recent Gift Invitation Gift Name</inlineHelpText>
+        <label>Most Recent Gift Invitation Gift Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Most_Recent_Gift_Invitation_Sent_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Alyce Most Recent Gift Invitation Sent Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alyce Most Recent Gift Invitation Sent Date</inlineHelpText>
+        <label>Most Recent Gift Invitation Sent Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>alycecom__Most_Recent_Gift_Invitation_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Alyce Most Recent Gift Invitation Status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alyce Most Recent Gift Invitation Status</inlineHelpText>
+        <label>Most Recent Gift Invitation Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>alycecom__Most_Recent_Gift_Landing_Page__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Alyce Most Recent Gift Invitation Recipient Landing Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alyce Most Recent Gift Invitation Recipient Landing Page</inlineHelpText>
+        <label>Most Recent Gift Landing Page</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>geopointe__Geocode__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Reference to the Geocode object holding all of mapping information for the record.</inlineHelpText>
+        <label>Geocode</label>
+        <referenceTo>geopointe__Geocode__c</referenceTo>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>phone__c</fullName>
+        <description>Phone field for this dealership. Similar to standard phone field, except this field&apos;s type is Text instead of Phone to allow for phone #s that are not formatted properly.</description>
+        <externalId>false</externalId>
+        <label>xPhone</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <listViews>
         <fullName>AllContacts</fullName>
-        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>CONTACT.TITLE</columns>
         <columns>CONTACT.PHONE1</columns>
         <columns>CONTACT.EMAIL</columns>
-        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.ADDRESS2_STREET</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>HOT_NOTES__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.ACV_User</value>
+        </filters>
         <label>All Contacts</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>BirthdaysThisMonth</fullName>
+        <fullName>All_Contacts_Liz_Matya</fullName>
         <columns>FULL_NAME</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>CONTACT.TITLE</columns>
         <columns>CONTACT.PHONE1</columns>
         <columns>CONTACT.EMAIL</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CONTACT.BIRTHDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.BIRTHDATE</field>
-            <operation>equals</operation>
-            <value>THIS_MONTH</value>
-        </filters>
-        <label>Birthdays This Month</label>
-    </listViews>
-    <listViews>
-        <fullName>NewThisWeek</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>ACCOUNT.NAME</columns>
         <columns>CONTACT.TITLE</columns>
-        <columns>CONTACT.PHONE1</columns>
-        <columns>CONTACT.EMAIL</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CONTACT.CREATED_DATE</field>
+            <field>Account.IST_Owner_Name__c</field>
             <operation>equals</operation>
-            <value>THIS_WEEK</value>
+            <value>Lizz Matyas</value>
         </filters>
-        <label>New This Week</label>
+        <label>All Contacts - Liz Matya</label>
     </listViews>
+    <listViews>
+        <fullName>All_independents</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.Active_ACV_Capital_Customer__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All independents</label>
+    </listViews>
+    <listViews>
+        <fullName>All_independents_for_Run_List_Sends</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Phil Stasiak</value>
+        </filters>
+        <label>Independents - Phil Stasiak</label>
+    </listViews>
+    <listViews>
+        <fullName>Copy_of_Independents_Joe_Hacherl</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Joe Hacherl</value>
+        </filters>
+        <label>Independents - Joe Hacherl</label>
+    </listViews>
+    <listViews>
+        <fullName>Corrupt_Data</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTACT.LAST_UPDATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Corrupt Data</label>
+    </listViews>
+    <listViews>
+        <fullName>Independents_Elisa_Galante</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Elisa Galante</value>
+        </filters>
+        <label>Independents - Elisa Galante</label>
+    </listViews>
+    <listViews>
+        <fullName>Independents_Justin_Bacon</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Justin Bacon</value>
+        </filters>
+        <label>Independents - Justin Bacon</label>
+    </listViews>
+    <listViews>
+        <fullName>Independents_Melissa_Epolito</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Melissa Epolito</value>
+        </filters>
+        <label>Independents - Melissa Epolito</label>
+    </listViews>
+    <listViews>
+        <fullName>KS_City_Indy_Reg_Contacts_acct_purchase</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ID__c</columns>
+        <columns>Active__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>Account.Purchases_All_Time__c</columns>
+        <columns>Account.Dealer_Type__c</columns>
+        <columns>Account.Territory_Manager__c</columns>
+        <columns>Account.Maps_Sales_Territory_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.Maps_Sales_Region_Name__c</field>
+            <operation>equals</operation>
+            <value>texas West</value>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL_BOUNCED_DATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.TITLE</field>
+            <operation>notContain</operation>
+            <value>Trans</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notContain</operation>
+            <value>dc_</value>
+        </filters>
+        <filters>
+            <field>Account.Purchases_All_Time__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </filters>
+        <label>OK City Indy Reg Contacts acct purchase</label>
+        <sharedTo>
+            <role>Texas_West_RFOM</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MyContacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ID__c</columns>
+        <columns>Active__c</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>My Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Active_Independent_Contacts</fullName>
+        <columns>ID__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.ADDRESS2_STREET</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>FULL_NAME</columns>
+        <columns>HOT_NOTES__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notContain</operation>
+            <value>dc_</value>
+        </filters>
+        <filters>
+            <field>Account_Dealer_Type__c</field>
+            <operation>equals</operation>
+            <value>Independent</value>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notContain</operation>
+            <value>acv</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.NAME</field>
+            <operation>notContain</operation>
+            <value>acv</value>
+        </filters>
+        <label>My Active Independent Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyactiveFranchiseContacts</fullName>
+        <columns>ID__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.ADDRESS2_STREET</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>FULL_NAME</columns>
+        <columns>HOT_NOTES__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notContain</operation>
+            <value>dc_</value>
+        </filters>
+        <filters>
+            <field>Account_Dealer_Type__c</field>
+            <operation>equals</operation>
+            <value>Franchise</value>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notContain</operation>
+            <value>acv</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.NAME</field>
+            <operation>notContain</operation>
+            <value>acv</value>
+        </filters>
+        <label>My Active Franchise Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>Prescreen_Participants</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>Title_Picklist__c</columns>
+        <columns>ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CR_Review__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ACCOUNT_ID</field>
+            <operation>equals</operation>
+            <value>0010a00001UAavU</value>
+        </filters>
+        <label>Prescreen Participants</label>
+    </listViews>
+    <listViews>
+        <fullName>San_Anton_Indy_Reg_Contacts_acct_purchas</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ID__c</columns>
+        <columns>Active__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>Account.Purchases_All_Time__c</columns>
+        <columns>Account.Dealer_Type__c</columns>
+        <columns>Account.Territory_Manager__c</columns>
+        <columns>Account.Maps_Sales_Territory_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.Maps_Sales_Region_Name__c</field>
+            <operation>equals</operation>
+            <value>Texas West</value>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL_BOUNCED_DATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.TITLE</field>
+            <operation>notContain</operation>
+            <value>Trans</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notContain</operation>
+            <value>dc_</value>
+        </filters>
+        <filters>
+            <field>Account.Purchases_All_Time__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </filters>
+        <label>San Anton Indy Reg Contacts acct purchas</label>
+        <sharedTo>
+            <role>Texas_West_Regional_Director</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TEst</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ID__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>Account.Dealer_Type__c</columns>
+        <columns>Account.Territory_Manager__c</columns>
+        <columns>Account.Maps_Sales_Territory_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account_Dealer_Type__c</field>
+            <operation>equals</operation>
+            <value>Franchise</value>
+        </filters>
+        <filters>
+            <field>Account.Maps_Sales_Region_Name__c</field>
+            <operation>equals</operation>
+            <value>Texas West</value>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL_BOUNCED_DATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.TITLE</field>
+            <operation>notContain</operation>
+            <value>Trans</value>
+        </filters>
+        <filters>
+            <field>CONTACT.TITLE</field>
+            <operation>contains</operation>
+            <value>Manager,Mgr,Owner,GM,UCM</value>
+        </filters>
+        <label>Texas West Franchise Reg Contacts</label>
+        <sharedTo>
+            <role>Texas_West_RFOM</role>
+            <role>Texas_West_Regional_Director</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>test1</fullName>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.IST_Owner_Name__c</field>
+            <operation>equals</operation>
+            <value>Christina Caito</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>FULL_NAME</field>
+            <operation>notContain</operation>
+            <value>ACV</value>
+        </filters>
+        <filters>
+            <field>ID__c</field>
+            <operation>notContain</operation>
+            <value>dc_</value>
+        </filters>
+        <label>IST Contact List to Clone</label>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ACV_User</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>ACV_User_Contact_Compact_layout</compactLayoutAssignment>
+        <description>Contact record that indicates an ACV app user</description>
+        <label>ACV User</label>
+        <picklistValues>
+            <picklist>CSIRCD__WatchDOGResult__c</picklist>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True Match</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Creation_Source__c</picklist>
+            <values>
+                <fullName>Bulk Load</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Email_Opt_Out_Categories__c</picklist>
+            <values>
+                <fullName>orgUpdates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Language_Preference__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>ACVwebcontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Association Prospecting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 3_2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CIADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>California 8_20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Covid - Closed Physical Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flooring Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>From TM or VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Event List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal BDM found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas NADA 2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourced List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIADA 2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video Mailer Feb 20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>coupon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>haul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>marketing paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>sales organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tiada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>transport paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>web form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Policy_Email_Status__c</picklist>
+            <values>
+                <fullName>Policy Email Not Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy Email Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Policy Email</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Prescreen_Type__c</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repeat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>readonly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Timezone__c</picklist>
+            <values>
+                <fullName>America%2FNew_York</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_Picklist__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buying Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Principal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF Report Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Used Car Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Dealership_Contact</fullName>
+        <active>true</active>
+        <description>This Contact record is for Dealership contacts that do not have login access to the acv app</description>
+        <label>Dealership Contact</label>
+        <picklistValues>
+            <picklist>CSIRCD__WatchDOGResult__c</picklist>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True Match</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Creation_Source__c</picklist>
+            <values>
+                <fullName>Bulk Load</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Email_Opt_Out_Categories__c</picklist>
+            <values>
+                <fullName>orgUpdates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Language_Preference__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>ACVwebcontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Association Prospecting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 3_2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CIADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>California 8_20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Covid - Closed Physical Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flooring Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>From TM or VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Event List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal BDM found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas NADA 2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourced List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIADA 2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video Mailer Feb 20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>coupon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>haul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>marketing paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>sales organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tiada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>transport paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>web form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Policy_Email_Status__c</picklist>
+            <values>
+                <fullName>Policy Email Not Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy Email Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Policy Email</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Prescreen_Type__c</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repeat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>readonly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Timezone__c</picklist>
+            <values>
+                <fullName>America%2FNew_York</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_Picklist__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buying Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lotsweep Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Principal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF Report Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TrueFrame Billing Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Used Car Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Salesforce_Contact</fullName>
+        <active>true</active>
+        <description>The Default Salesforce Contact Record Type</description>
+        <label>Salesforce Contact</label>
+        <picklistValues>
+            <picklist>CSIRCD__WatchDOGResult__c</picklist>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True Match</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Creation_Source__c</picklist>
+            <values>
+                <fullName>Bulk Load</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Email_Opt_Out_Categories__c</picklist>
+            <values>
+                <fullName>orgUpdates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Language_Preference__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>ACVwebcontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Association Prospecting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 2_24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz Acquisition 3_2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CIADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>California 8_20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Covid - Closed Physical Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flooring Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>From TM or VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Event List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal BDM found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas NADA 2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourced List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIADA 2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video Mailer Feb 20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>coupon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>haul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>marketing paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>sales organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tiada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>transport paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>web form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Policy_Email_Status__c</picklist>
+            <values>
+                <fullName>Policy Email Not Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy Email Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Policy Email</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Prescreen_Type__c</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repeat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>readonly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Timezone__c</picklist>
+            <values>
+                <fullName>America%2FNew_York</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_Picklist__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buying Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Principal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF Report Contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Clerk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Used Car Manager</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>FULL_NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>CONTACT.PHONE1</customTabListAdditionalFields>
+        <listViewButtons>geopointe__Map_Records_Contact</listViewButtons>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
@@ -494,14 +3225,75 @@
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE5</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE6</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account.ALT_PHONE__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account.cell__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account.IST_Rep_Phone__c</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACV_User_must_have_email_address</fullName>
+        <active>true</active>
+        <description>If the contact record is an ACV User then ensure that they have an email address</description>
+        <errorConditionFormula>AND(RecordType.DeveloperName=&apos;ACV_User&apos;,
+IsBlank(Email))</errorConditionFormula>
+        <errorMessage>ACV User Contacts must have an email address to be saved</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Dealership_contact_must_have_phone</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RecordType.DeveloperName=&apos;Dealership_Contact&apos;,
+IsBlank(Phone))</errorConditionFormula>
+        <errorMessage>Dealership Contacts must have a Phone number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>First_and_Last_Name_Required</fullName>
+        <active>true</active>
+        <description>For Dealership Contact, the First &amp; Last Name needs to be required.</description>
+        <errorConditionFormula>AND(
+ ISNEW(),
+ RecordType.Name = &quot;Dealership Contact&quot;,
+ ISBLANK(FirstName)
+)</errorConditionFormula>
+        <errorMessage>Please make sure you have the &apos;First Name&apos; field filled out.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Lead_Conversion_Must_Be_Merged</fullName>
+        <active>false</active>
+        <description>Rule preventing Contact creation from a Lead Conversion</description>
+        <errorConditionFormula>AND(
+ISNEW(),
+Lead_Created_Contact__c = true
+)</errorConditionFormula>
+        <errorMessage>Please Convert the Contact record of this Lead into an existing Record instead of creating a new one</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mailing_postal_code_must_be_valid</fullName>
+        <active>true</active>
+        <description>Mailing_postal_code_must_be_valid</description>
+        <errorConditionFormula>AND(
+OR(MailingCountry = &quot;USA&quot;, MailingCountry = &quot;US&quot;, ISBLANK(MailingCountry)),
+NOT(ISBLANK(MailingPostalCode)),
+NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
+)</errorConditionFormula>
+        <errorMessage>Mailing Postal Code must be either 99999 or 99999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Must_have_Prescreen_with_CR_Review</fullName>
+        <active>true</active>
+        <description>Requires Prescreen Type when CR Review is selected.</description>
+        <errorConditionFormula>AND(
+ CR_Review__c = TRUE,
+  ISPICKVAL( Prescreen_Type__c , &quot;&quot;) )</errorConditionFormula>
+        <errorDisplayField>Prescreen_Type__c</errorDisplayField>
+        <errorMessage>If CR Review is selected you must select a Prescreen Type</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>GoogleMaps</fullName>
         <availability>online</availability>
@@ -541,9 +3333,10 @@
         <url>http://www.google.com/search?q={!Contact_FirstName} {!Contact_LastName}</url>
     </webLinks>
     <webLinks>
-        <fullName>SendGmail</fullName>
+        <fullName>MA_MapIt_a04j000000Mqzj2AAB</fullName>
         <availability>online</availability>
-        <displayType>link</displayType>
+        <description>Maps this Contact with selected tooltips</description>
+        <displayType>button</displayType>
         <encodingKey>UTF-8</encodingKey>
         <hasMenubar>false</hasMenubar>
         <hasScrollbars>true</hasScrollbars>
@@ -551,50 +3344,77 @@
         <height>600</height>
         <isResizable>true</isResizable>
         <linkType>url</linkType>
-        <masterLabel>Send Gmail</masterLabel>
+        <masterLabel>Map It</masterLabel>
         <openType>newWindow</openType>
         <position>none</position>
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>https://mail.google.com/mail?view=cm&amp;tf=0&amp;to={!Contact_Email}&lt;{!Contact_LastName}, {!Contact_FirstName}&gt;&amp;tf=1</url>
+        <url>/apex/sma__mapanything?recordId={!Contact.Id}&amp;baseObjectId=a04j000000Mqzj2AAB&amp;tooltipField=Name&amp;tooltipField2=Title&amp;tooltipField3=Phone&amp;tooltipField4=Email&amp;color=%2366FF00</url>
     </webLinks>
     <webLinks>
-        <fullName>YahooMaps</fullName>
+        <fullName>alycecom__Send_Gift_Classic</fullName>
         <availability>online</availability>
-        <displayType>link</displayType>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Send Alyce Gift</masterLabel>
+        <openType>replace</openType>
+        <page>alycecom__ContactSendGift</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>geopointe__Map</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Map</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Contact.Id)}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>geopointe__Map_Records_Contact</fullName>
+        <availability>online</availability>
+        <description>replaces JavaScript button functionality for Lightning layouts</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Map Records</masterLabel>
+        <openType>noSidebar</openType>
+        <page>geopointe__MapRecordsContacts</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>geopointe__Map_newWindow</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
         <encodingKey>UTF-8</encodingKey>
         <hasMenubar>true</hasMenubar>
         <hasScrollbars>true</hasScrollbars>
         <hasToolbar>true</hasToolbar>
-        <height>600</height>
+        <height>5000</height>
         <isResizable>true</isResizable>
         <linkType>url</linkType>
-        <masterLabel>Yahoo! Maps</masterLabel>
+        <masterLabel>Map</masterLabel>
         <openType>newWindow</openType>
         <position>none</position>
         <protected>false</protected>
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
-        <url>http://maps.yahoo.com/py/maps.py?cn={!Contact_MailingCountry}&amp;csz={!Contact_MailingCity}+{!Contact_MailingState}+{!Contact_MailingPostalCode}+&amp;addr={!Contact_MailingAddress}</url>
+        <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Contact.Id)}</url>
     </webLinks>
     <webLinks>
-        <fullName>YahooWeather</fullName>
+        <fullName>jiffle__Jifflenow_Meetings</fullName>
         <availability>online</availability>
-        <displayType>link</displayType>
+        <description>To Book meeting from contact</description>
+        <displayType>button</displayType>
         <encodingKey>UTF-8</encodingKey>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
-        <height>600</height>
-        <isResizable>true</isResizable>
         <linkType>url</linkType>
-        <masterLabel>Yahoo! Weather</masterLabel>
-        <openType>newWindow</openType>
-        <position>none</position>
+        <masterLabel>Jifflenow Meetings</masterLabel>
+        <openType>replace</openType>
         <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
-        <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+        <url>/apex/jiffle__JNEvents?accid={!CASESAFEID(Account.Id)}&amp;contactid={!CASESAFEID(Contact.Id)}</url>
     </webLinks>
 </CustomObject>

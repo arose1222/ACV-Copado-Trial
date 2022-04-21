@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Budget - 25% Remaining</name>
+    <style>none</style>
+    <subject>The {!Budget__c.Name} Budget has 25% or Less Remaining</subject>
+    <textOnly>Hi {!Budget__c.OwnerFullName},
+
+The {!Budget__c.Name} Budget has reached 25% or less remaining.
+
+You currently have {!Budget__c.Current_Balance__c} remaining.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

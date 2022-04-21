@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>51.0</apiVersion>
+    <dynamicChoiceSets>
+        <name>ServicesNeeded</name>
+        <dataType>Multipicklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Services_Needed__c</picklistField>
+        <picklistObject>Vendor_Engagement__c</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>Create Vendor Engagement Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create Vendor Engagement Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_VE_Record</name>
+        <label>Create VE Record.</label>
+        <locationX>678</locationX>
+        <locationY>225</locationY>
+        <connector>
+            <targetReference>Create_Vendor_Engagement_Record</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Details_of_Vendor_Engagement__c</field>
+            <value>
+                <elementReference>Details_of_Vendor_Engagement</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Ops_Case__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Services_Needed__c</field>
+            <value>
+                <elementReference>Services_Needed</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Vendor_Name__c</field>
+            <value>
+                <elementReference>caseRec.AccountId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Vendor_Engagement__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>Get Case Record for which we are going to create Vendor Engagement record.</description>
+        <name>Get_Case_Record</name>
+        <label>Get Case Record</label>
+        <locationX>384</locationX>
+        <locationY>42</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Enter_Required_Details_to_Create_VE</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+        <outputReference>caseRec</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>Create_Vendor_Engagement_Record</name>
+        <label>Create Vendor Engagement Record</label>
+        <locationX>550</locationX>
+        <locationY>315</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Submitted</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 15px; font-family: Slack-Lato, appleLogo, sans-serif; color: rgb(29, 28, 29);&quot;&gt;Vendor Engagement record has been created successfully.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Enter_Required_Details_to_Create_VE</name>
+        <label>Enter Required Details to Create VE.</label>
+        <locationX>578</locationX>
+        <locationY>41</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Create_VE_Record</targetReference>
+        </connector>
+        <fields>
+            <name>Details_of_Vendor_Engagement</name>
+            <dataType>String</dataType>
+            <fieldText>Details of Vendor Engagement</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Services_Needed</name>
+            <choiceReferences>ServicesNeeded</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Services Needed</fieldText>
+            <fieldType>MultiSelectPicklist</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>29</locationX>
+        <locationY>161</locationY>
+        <connector>
+            <targetReference>Get_Case_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>caseRec</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

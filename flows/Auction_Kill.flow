@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Ends the auction with an API callout in Tools</description>
+        <name>End_Auction_In_Tools</name>
+        <label>End Auction In Tools</label>
+        <locationX>1218</locationX>
+        <locationY>143</locationY>
+        <actionName>AuctionKillAPI</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>aucIds</name>
+            <value>
+                <elementReference>Get_Auction_Status.Name</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <decisions>
+        <description>Checks the auction kill permission checkbox if the user has permission to do this or not.</description>
+        <name>Check_if_specific_User_has_Permission</name>
+        <label>Check if specific User has Permission</label>
+        <locationX>951</locationX>
+        <locationY>258</locationY>
+        <defaultConnector>
+            <targetReference>Profile_Cancel</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Does not have Permission</defaultConnectorLabel>
+        <rules>
+            <name>Does_Have_Permission</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Auction_Kill_Permission.Auction_Kill_Permission__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>End_Auction_In_Tools</targetReference>
+            </connector>
+            <label>Does Have Permission</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks the auctions Current Status. If the status is counter sent it will continue. If not it will cancel.</description>
+        <name>Check_Status</name>
+        <label>Check Status</label>
+        <locationX>395</locationX>
+        <locationY>142</locationY>
+        <defaultConnector>
+            <targetReference>Status_Cancel_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Status Does not match.</defaultConnectorLabel>
+        <rules>
+            <name>Status_Match</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Auction_Status.status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>counter_sent</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Profile_Check</targetReference>
+            </connector>
+            <label>Status Match</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks if the user checked the checkbox or not on the previous screen.</description>
+        <name>Double_Check_Decision</name>
+        <label>Double Check Decision</label>
+        <locationX>42</locationX>
+        <locationY>341</locationY>
+        <defaultConnector>
+            <targetReference>Cancel_Screen_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not checked (Cancel)</defaultConnectorLabel>
+        <rules>
+            <name>Is_checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Check_to_Kill_Auction</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Auction_Status</targetReference>
+            </connector>
+            <label>Is checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks if the Current User&apos;s Profile matches one of the four profile names allowed to kill Auctions.</description>
+        <name>Profile_Check</name>
+        <label>Profile Check</label>
+        <locationX>581</locationX>
+        <locationY>140</locationY>
+        <defaultConnector>
+            <targetReference>Get_Auction_Kill_Permission</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Profile Mismatch</defaultConnectorLabel>
+        <rules>
+            <name>Profile_Success</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Inside Sales - Account Managers</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Inside Sales - Account Managers Unwind</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Inside Sales - Activation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Inside Sales - Managers</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CurrentUserProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Major Accounts CSM</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>End_Auction_In_Tools</targetReference>
+            </connector>
+            <label>Profile Success</label>
+        </rules>
+    </decisions>
+    <description>Ends Auction if Action button is clicked, auction goes from status sent to ended killed</description>
+    <formulas>
+        <description>Get&apos;s the profile of the current User</description>
+        <name>CurrentUserProfile</name>
+        <dataType>String</dataType>
+        <expression>{!$Profile.Name}</expression>
+    </formulas>
+    <formulas>
+        <description>Allows for the profile check to allow specific users that aren&apos;t in those profiles by matching their User IDs.</description>
+        <name>UserID</name>
+        <dataType>String</dataType>
+        <expression>{!$User.CaseSafe_Id__c}</expression>
+    </formulas>
+    <interviewLabel>Auction Kill {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Auction Kill</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Gets the field checkbox Auction Kill Checkbox able to be read and used in the flow.</description>
+        <name>Get_Auction_Kill_Permission</name>
+        <label>Get Auction Kill Permission</label>
+        <locationX>752</locationX>
+        <locationY>256</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_if_specific_User_has_Permission</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CaseSafe_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>UserID</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Auction_Kill_Permission__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Gets the status of the current auction</description>
+        <name>Get_Auction_Status</name>
+        <label>Get Auction Status</label>
+        <locationX>234</locationX>
+        <locationY>140</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Status</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Auction__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>status__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Cancelation screen. User didn&apos;t check the double check checkbox.</description>
+        <name>Cancel_Screen_1</name>
+        <label>Cancel Screen 1</label>
+        <locationX>51</locationX>
+        <locationY>583</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Cancel_1_Title</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;Auction Kill Canceled&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Cancel_1_Info</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;The auction kill is canceled and will not happen.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Double check to warn user that they are about to kill an auction.</description>
+        <name>Double_Check</name>
+        <label>Double Check</label>
+        <locationX>50</locationX>
+        <locationY>193</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Double_Check_Decision</targetReference>
+        </connector>
+        <fields>
+            <name>Double_Check_Title</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Double Check&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>DC_Description</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Check the box if you want to cancel the auction. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Check_to_Kill_Auction</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+            <fieldText>Check to Kill Auction</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Profile does not have access to kill auctions.</description>
+        <name>Profile_Cancel</name>
+        <label>Profile Cancel</label>
+        <locationX>959</locationX>
+        <locationY>502</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Profile_Cancel_Title</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;Profile Cancel&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Profile_Cancel_Description</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Your profile does not have access to kill auctions so this will be canceled. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Status isn&apos;t in counter sent, auction will not be canceled.</description>
+        <name>Status_Cancel_1</name>
+        <label>Status Cancel</label>
+        <locationX>402</locationX>
+        <locationY>589</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Status_Cancel</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Status Cancel&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Status_Cancel_Description</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Status of auction is not in counter sent status and can not be canceled in its current status.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Success Message for the User</description>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>1218</locationX>
+        <locationY>595</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>success_title</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Success&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>success_description</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Auction has been Successfully Killed.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Double_Check</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

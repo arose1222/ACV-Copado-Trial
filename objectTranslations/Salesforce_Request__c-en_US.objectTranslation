@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Requests &amp; Inquiries</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requests &amp; Inquiries</value>
+    </caseValues>
+    <fields>
+        <help><!-- Please provide as much detail as possible to help us help you! Links to records, screenshots, etc. If you would like to upload any files, navigate to the related list to create an attachment. --></help>
+        <label><!-- Additional Details Regarding My Request --></label>
+        <name>Additional_Details_Regarding_My_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned/Owner --></label>
+        <name>Assigned_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- &quot;Assigned To&quot; field is Locked --></label>
+        <name>Assigned_To_Flag__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will automatically update to reflect the person assigned to your request. --></help>
+        <label><!-- Assigned To --></label>
+        <name>Assigned_To__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Assigned To) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Manager of  who the ticket is assigned to --></help>
+        <label><!-- Assigned to Manager --></label>
+        <name>Assigned_to_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned to Profile --></label>
+        <name>Assigned_to_Profile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auction Buyer IST Rep --></label>
+        <name>Auction_Buyer_IST_Rep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Auction --></label>
+        <name>Auction__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Required for Unwind Requests ONLY --></help>
+        <label><!-- Is Buyer aware of this Unwind Request? --></label>
+        <name>Buyer_Aware__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Related Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Completed the escalation checklist? --></label>
+        <name>Completed_the_escalation_checklist__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Created By Profile --></label>
+        <name>Created_By_Profile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Date/Time For Reporting --></label>
+        <name>Created_Date_Time_For_Reporting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Feedback Experience --></label>
+        <name>Customer_Feedback_Attitude__c</name>
+        <picklistValues>
+            <masterLabel>Negative</masterLabel>
+            <translation><!-- Negative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral</masterLabel>
+            <translation><!-- Neutral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive</masterLabel>
+            <translation><!-- Positive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Feedback --></label>
+        <name>Customer_Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Success Resolution --></label>
+        <name>Customer_Success_Resolution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Requested --></label>
+        <name>Date_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date/Time Closed --></label>
+        <name>Date_Time_Closed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please specify which Domain this ticket relates to. --></help>
+        <label><!-- Domain Related Data --></label>
+        <name>Domain_Related_Data__c</name>
+        <picklistValues>
+            <masterLabel>Business Ops,</masterLabel>
+            <translation><!-- Business Ops, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Demand,</masterLabel>
+            <translation><!-- Demand, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FSL</masterLabel>
+            <translation><!-- FSL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Identity,</masterLabel>
+            <translation><!-- Identity, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply,</masterLabel>
+            <translation><!-- Supply, --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Employee ID from Ultipro --></help>
+        <label><!-- Employee Id --></label>
+        <name>Employee_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of Employee involved in request --></help>
+        <label><!-- Employee Name --></label>
+        <name>Employee_Name__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Employee Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Checking this box indicates that this requests needs manager review --></help>
+        <label><!-- Escalate --></label>
+        <name>Escalate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalation Date --></label>
+        <name>Escalation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalation was brought to me: via --></label>
+        <name>Escalation_was_brought_to_me_via__c</name>
+        <picklistValues>
+            <masterLabel>Google Review</masterLabel>
+            <translation><!-- Google Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations Manager</masterLabel>
+            <translation><!-- Operations Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional Sales Director</masterLabel>
+            <translation><!-- Regional Sales Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Manager</masterLabel>
+            <translation><!-- Sales Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media</masterLabel>
+            <translation><!-- Social Media --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Hour Requested --></label>
+        <name>Hour_Requested__c</name>
+    </fields>
+    <fields>
+        <help><!-- Measure the importance of this request, with 10 being the most important.  Take into consideration the business impact of the ticket. --></help>
+        <label><!-- Importance --></label>
+        <name>Importance__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If request has been sent to Jira, this will be populated with the link to that ticket. --></help>
+        <label><!-- Jira Link --></label>
+        <name>Jira_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be populated with status of Jira ticket if one exists --></help>
+        <label><!-- Jira Status --></label>
+        <name>Jira_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Account you wish to KEEP and is the correct account --></help>
+        <label><!-- Keep Account --></label>
+        <name>Keep_Account__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Keep Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Manager Email Address --></label>
+        <name>Manager_Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager Email --></label>
+        <name>Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager of Request Owner --></label>
+        <name>Manager_of_Request_Owner__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please classify your request so that we can ensure the appropriate person is notified. --></help>
+        <label><!-- My Request Is Related To --></label>
+        <name>My_Request_Is_Related_To__c</name>
+        <picklistValues>
+            <masterLabel>Abandoned Vehicle</masterLabel>
+            <translation><!-- Abandoned Vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Management</masterLabel>
+            <translation><!-- Account Management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Analytics, Reporting, and List Views</masterLabel>
+            <translation><!-- Analytics, Reporting, and List Views --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction Kill</masterLabel>
+            <translation><!-- Auction Kill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Capital</masterLabel>
+            <translation><!-- Capital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case Finalized Incorrectly</masterLabel>
+            <translation><!-- Case Finalized Incorrectly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Collections</masterLabel>
+            <translation><!-- Collections --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Damage Claim</masterLabel>
+            <translation><!-- Damage Claim --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Documents</masterLabel>
+            <translation><!-- Dealer Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duplicate Account</masterLabel>
+            <translation><!-- Duplicate Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employment Status Request</masterLabel>
+            <translation><!-- Employment Status Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error message or bug</masterLabel>
+            <translation><!-- Error message or bug --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factoring Company</masterLabel>
+            <translation><!-- Factoring Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Field Service Lightning</masterLabel>
+            <translation><!-- Field Service Lightning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>How to use Salesforce</masterLabel>
+            <translation><!-- How to use Salesforce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I&apos;m not sure how to classify my need</masterLabel>
+            <translation><!-- I&apos;m not sure how to classify my need --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect or missing data</masterLabel>
+            <translation><!-- Incorrect or missing data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Log an Interaction</masterLabel>
+            <translation><!-- Log an Interaction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major Accounts</masterLabel>
+            <translation><!-- Major Accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NADA</masterLabel>
+            <translation><!-- NADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New feature or development</masterLabel>
+            <translation><!-- New feature or development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off-lease Inspection Schedule Request</masterLabel>
+            <translation><!-- Off-lease Inspection Schedule Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments</masterLabel>
+            <translation><!-- Payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-Run, Pricing or Trim</masterLabel>
+            <translation><!-- Re-Run, Pricing or Trim --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returns &amp; ACV Owned</masterLabel>
+            <translation><!-- Returns &amp; ACV Owned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesforce user updates &amp; new user requests</masterLabel>
+            <translation><!-- Salesforce user updates &amp; new user requests --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Territory zip code changes</masterLabel>
+            <translation><!-- Territory zip code changes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Titles</masterLabel>
+            <translation><!-- Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training Schedule Request</masterLabel>
+            <translation><!-- Training Schedule Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport Issue Adjustment</masterLabel>
+            <translation><!-- Transport Issue Adjustment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind Request</masterLabel>
+            <translation><!-- Unwind Request --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Open to Close --></label>
+        <name>Open_to_Close__c</name>
+    </fields>
+    <fields>
+        <label><!-- Open to Close for Reporting --></label>
+        <name>Open_to_Close_for_Reporting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Full Name --></label>
+        <name>Owner_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Assignee --></label>
+        <name>Previous_Asignee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Problem Area --></label>
+        <name>Problem_Area__c</name>
+        <picklistValues>
+            <masterLabel>Account Manager</masterLabel>
+            <translation><!-- Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duplicate title</masterLabel>
+            <translation><!-- Duplicate title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lien Release</masterLabel>
+            <translation><!-- Lien Release --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscommunication</masterLabel>
+            <translation><!-- Miscommunication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State DMV</masterLabel>
+            <translation><!-- State DMV --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Region of the employee related to this request --></help>
+        <label><!-- Region of Employee --></label>
+        <name>Region_of_Employee__c</name>
+    </fields>
+    <fields>
+        <help><!-- Why was the request rejected --></help>
+        <label><!-- Rejected Reason --></label>
+        <name>Rejected_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Account --></label>
+        <name>Related_Account__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Related Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Related Departments --></label>
+        <name>Related_Departments__c</name>
+        <picklistValues>
+            <masterLabel>ACV Capital</masterLabel>
+            <translation><!-- ACV Capital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ASI</masterLabel>
+            <translation><!-- ASI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Analytics</masterLabel>
+            <translation><!-- Analytics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR Review</masterLabel>
+            <translation><!-- CR Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Covid</masterLabel>
+            <translation><!-- Covid --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Documents</masterLabel>
+            <translation><!-- Dealer Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR and Training</masterLabel>
+            <translation><!-- HR and Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inside Sales</masterLabel>
+            <translation><!-- Inside Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major Accounts CSM</masterLabel>
+            <translation><!-- Major Accounts CSM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing</masterLabel>
+            <translation><!-- Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outside Sales</masterLabel>
+            <translation><!-- Outside Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments and Collections</masterLabel>
+            <translation><!-- Payments and Collections --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pricing</masterLabel>
+            <translation><!-- Pricing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recruiting</masterLabel>
+            <translation><!-- Recruiting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolutions</masterLabel>
+            <translation><!-- Resolutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telephony</masterLabel>
+            <translation><!-- Telephony --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Titles</masterLabel>
+            <translation><!-- Titles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TrueFrame</masterLabel>
+            <translation><!-- TrueFrame --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please specify the field that this bad data ticket is related to, if it is not available please add it to this picklist by API Name, we utilize this for reporting purposes. --></help>
+        <label><!-- Related Field --></label>
+        <name>Related_Field__c</name>
+        <picklistValues>
+            <masterLabel>Account: Primary_Contact</masterLabel>
+            <translation><!-- Account: Primary_Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account: cell__c</masterLabel>
+            <translation><!-- Account: cell__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account:BillingAddress,</masterLabel>
+            <translation><!-- Account:BillingAddress, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account:Compliant_Dealer_License__c</masterLabel>
+            <translation><!-- Account:Compliant_Dealer_License__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account:Dealership_Notes__c,</masterLabel>
+            <translation><!-- Account:Dealership_Notes__c, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account:Legal_Address__c,</masterLabel>
+            <translation><!-- Account:Legal_Address__c, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account:Pickup_Notes__c,</masterLabel>
+            <translation><!-- Account:Pickup_Notes__c, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction: Buyer_Payment_Method</masterLabel>
+            <translation><!-- Auction: Buyer_Payment_Method --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction: odometer__c</masterLabel>
+            <translation><!-- Auction: odometer__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Date_Delivered_Actual__c</masterLabel>
+            <translation><!-- Case: Date_Delivered_Actual__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Date_Transporter_Paid__c</masterLabel>
+            <translation><!-- Case: Date_Transporter_Paid__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Empty Records</masterLabel>
+            <translation><!-- Case: Empty Records --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Missing Arb Case</masterLabel>
+            <translation><!-- Case: Missing Arb Case --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Title Case Not Created</masterLabel>
+            <translation><!-- Case: Title Case Not Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Vehicle__c,</masterLabel>
+            <translation><!-- Case: Vehicle__c, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case: Year_Make_Model__c</masterLabel>
+            <translation><!-- Case: Year_Make_Model__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case:Seller_Contact__c</masterLabel>
+            <translation><!-- Case:Seller_Contact__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case:Seller_Dealership__c,</masterLabel>
+            <translation><!-- Case:Seller_Dealership__c, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contact: phone__c</masterLabel>
+            <translation><!-- Contact: phone__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cose:Posted_Price__c</masterLabel>
+            <translation><!-- Cose:Posted_Price__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IST_Rep_Account_Manager__c</masterLabel>
+            <translation><!-- IST_Rep_Account_Manager__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Related Vehicle --></label>
+        <name>Related_Vehicle__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the Account that needs to be removed from Salesforce and will be DELETED. --></help>
+        <label><!-- Remove Account --></label>
+        <name>RemoveAccount__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Remove Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ReportCounter --></label>
+        <name>ReportCounter__c</name>
+    </fields>
+    <fields>
+        <help><!-- Use this field to enter a link to the report --></help>
+        <label><!-- Report Link --></label>
+        <name>Report_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Report Source --></label>
+        <name>Report_Source__c</name>
+        <picklistValues>
+            <masterLabel>Delighted</masterLabel>
+            <translation><!-- Delighted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netsuite</masterLabel>
+            <translation><!-- Netsuite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesforce</masterLabel>
+            <translation><!-- Salesforce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tableau</masterLabel>
+            <translation><!-- Tableau --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is used to further categorize your need. --></help>
+        <label><!-- Request Reasons --></label>
+        <name>Request_Reasons__c</name>
+        <picklistValues>
+            <masterLabel>85% Compliance Reached</masterLabel>
+            <translation><!-- 85% Compliance Reached --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACH Setup</masterLabel>
+            <translation><!-- ACH Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV Relist</masterLabel>
+            <translation><!-- ACV Relist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV Transport</masterLabel>
+            <translation><!-- ACV Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Activation</masterLabel>
+            <translation><!-- Account Activation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Manager Request</masterLabel>
+            <translation><!-- Account Manager Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arb Policy Dispute</masterLabel>
+            <translation><!-- Arb Policy Dispute --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arbitration</masterLabel>
+            <translation><!-- Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction Error</masterLabel>
+            <translation><!-- Auction Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer Arranged Shipment</masterLabel>
+            <translation><!-- Buyer Arranged Shipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR Question</masterLabel>
+            <translation><!-- CR Question --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Call escalation</masterLabel>
+            <translation><!-- Call escalation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Collections Inquiry</masterLabel>
+            <translation><!-- Collections Inquiry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contesting Arb Decision</masterLabel>
+            <translation><!-- Contesting Arb Decision --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credits</masterLabel>
+            <translation><!-- Credits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current Arb Update</masterLabel>
+            <translation><!-- Current Arb Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Feedback</masterLabel>
+            <translation><!-- Customer Feedback --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Damaged Vehicle</masterLabel>
+            <translation><!-- Damaged Vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dealer Account Update</masterLabel>
+            <translation><!-- Dealer Account Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disclosure Dispute</masterLabel>
+            <translation><!-- Disclosure Dispute --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DocuSign POA</masterLabel>
+            <translation><!-- DocuSign POA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Double  Sale</masterLabel>
+            <translation><!-- Double  Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Double Sale</masterLabel>
+            <translation><!-- Double Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETA Update</masterLabel>
+            <translation><!-- ETA Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expired Dealer Documents</masterLabel>
+            <translation><!-- Expired Dealer Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feedback</masterLabel>
+            <translation><!-- Feedback --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Floorplan Delay</masterLabel>
+            <translation><!-- Floorplan Delay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodwill</masterLabel>
+            <translation><!-- Goodwill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodwill CS</masterLabel>
+            <translation><!-- Goodwill CS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Late Title</masterLabel>
+            <translation><!-- Late Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Late Title Fee Inquiry</masterLabel>
+            <translation><!-- Late Title Fee Inquiry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost Title</masterLabel>
+            <translation><!-- Lost Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mileage Discrepancy</masterLabel>
+            <translation><!-- Mileage Discrepancy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mis-Clerked Title</masterLabel>
+            <translation><!-- Mis-Clerked Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Keys</masterLabel>
+            <translation><!-- Missing Keys --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Vehicle</masterLabel>
+            <translation><!-- Missing Vehicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment</masterLabel>
+            <translation><!-- Payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment Hold</masterLabel>
+            <translation><!-- Payment Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments Status Update</masterLabel>
+            <translation><!-- Payments Status Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pickup ETA</masterLabel>
+            <translation><!-- Pickup ETA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pickup/Delivery Address Change</masterLabel>
+            <translation><!-- Pickup/Delivery Address Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Post-Auction Transport Request</masterLabel>
+            <translation><!-- Post-Auction Transport Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Priority Pick-Up Request</masterLabel>
+            <translation><!-- Priority Pick-Up Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Problem Clarification</masterLabel>
+            <translation><!-- Problem Clarification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Problem Title</masterLabel>
+            <translation><!-- Problem Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Questions/Research</masterLabel>
+            <translation><!-- Questions/Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-Inspection Complete</masterLabel>
+            <translation><!-- Re-Inspection Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-Run Request/Pricing</masterLabel>
+            <translation><!-- Re-Run Request/Pricing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recommended Pricing</masterLabel>
+            <translation><!-- Recommended Pricing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refund, Credit, Fee Waiver</masterLabel>
+            <translation><!-- Refund, Credit, Fee Waiver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relaunch Request</masterLabel>
+            <translation><!-- Relaunch Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request for Arb</masterLabel>
+            <translation><!-- Request for Arb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single Point of Contact Requests</masterLabel>
+            <translation><!-- Single Point of Contact Requests --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Status Update</masterLabel>
+            <translation><!-- Status Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport</masterLabel>
+            <translation><!-- Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation Delays</masterLabel>
+            <translation><!-- Transportation Delays --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transporter Error</masterLabel>
+            <translation><!-- Transporter Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trim Level Clarification</masterLabel>
+            <translation><!-- Trim Level Clarification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unhappy Dealer</masterLabel>
+            <translation><!-- Unhappy Dealer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind Refund</masterLabel>
+            <translation><!-- Unwind Refund --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwind Request</masterLabel>
+            <translation><!-- Unwind Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update on Title</masterLabel>
+            <translation><!-- Update on Title --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request to Close(Days) --></label>
+        <name>Request_to_Close__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requested By --></label>
+        <name>Requested_By__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (Requested By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select the employment status you wish for your employee to be updated to --></help>
+        <label><!-- Requested Employment Status --></label>
+        <name>Requested_Employment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Full Furlough</masterLabel>
+            <translation><!-- Full Furlough --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full Time</masterLabel>
+            <translation><!-- Full Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reduced Hours</masterLabel>
+            <translation><!-- Reduced Hours --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Requester Profile --></label>
+        <name>Requester_Profile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Role --></label>
+        <name>Requester_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requestor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Root Causes --></label>
+        <name>Root_Causes__c</name>
+        <picklistValues>
+            <masterLabel>ACV Error</masterLabel>
+            <translation><!-- ACV Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer Error</masterLabel>
+            <translation><!-- Buyer Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller Error</masterLabel>
+            <translation><!-- Seller Error --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RunninguserisAssigned --></label>
+        <name>RunninguserAssigned__c</name>
+    </fields>
+    <fields>
+        <help><!-- Updated by Salesforce team. You will receive emails to let you know where your request stands. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ready for Review</masterLabel>
+            <translation><!-- Ready for Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Consideration</masterLabel>
+            <translation><!-- Under Consideration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Only those with a System Admin profile can see this field.  Use for conversation that is not appropriate for Chatter, as all users can see comments made there. --></help>
+        <label><!-- System Admin Notes --></label>
+        <name>System_Admin_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Territory of the employee related to this request --></help>
+        <label><!-- Territory of Employee --></label>
+        <name>Territory_of_Employee__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is required before the request can be marked as Closed.  Intended use is to provide detail on what was done in regards to the ticket - formulas, workflows, report links, etc.  If a ticket is closed without action, explain why here. --></help>
+        <label><!-- Ticket Outcome Details --></label>
+        <name>Ticket_Outcome_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Training Request- Select the type of training you are looking to complete - - -
+Off Lease Inspection Schedule Request - Select prefered days of the week to be scheduled - - -
+Employment Status Request - Select which days in a week to have employee work --></help>
+        <label><!-- Training / Days  Preferred or Available --></label>
+        <name>Training_Type_Days_Prefered__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off-lease (ASI)</masterLabel>
+            <translation><!-- Off-lease (ASI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail (Trueframe)</masterLabel>
+            <translation><!-- Retail (Trueframe) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturday</masterLabel>
+            <translation><!-- Saturday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunday</masterLabel>
+            <translation><!-- Sunday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale (CR)</masterLabel>
+            <translation><!-- Wholesale (CR) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Level of Urgency for this ticket to be completed. 1 = 2 weeks, 2-4 = 1 week,5-6 = 3-5 days, 7 = 2 days, 8-9 =Tomorrow, 10 = Today. --></help>
+        <label><!-- Urgency --></label>
+        <name>Urgency__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field will automatically update to reflect the person assigned to your request. --></help>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- Requests &amp; Inquiries (User) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Required for Unwind Requests ONLY --></help>
+        <label><!-- Has the vehicle location been confirmed? --></label>
+        <name>Vehicle_Location_Confirmed__c</name>
+        <picklistValues>
+            <masterLabel>Picked-up by buyer</masterLabel>
+            <translation><!-- Picked-up by buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>With seller</masterLabel>
+            <translation><!-- With seller --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Won&apos;t Be Executed --></label>
+        <name>Wont_Be_Executed__c</name>
+    </fields>
+    <fields>
+        <label><!-- 15 Min Field --></label>
+        <name>X15_Min_Field__c</name>
+    </fields>
+    <fields>
+        <label><!-- d2subd1 --></label>
+        <name>d2subd1__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- Used for Customer Experience Team --></description>
+        <label><!-- Customer Success --></label>
+        <name>Customer_Success</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for VCI training and scheduling requests in FSL --></description>
+        <label><!-- Inspector Workforce Management --></label>
+        <name>Inspector_Workforce_Management</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for reaching the Operations teams such as Recommended Pricing, Titles, Arbitrations and other internal teams. --></description>
+        <label><!-- Ops Help --></label>
+        <name>Ops_Help</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for phone entries of quick questions from the field --></description>
+        <label><!-- Quick Close --></label>
+        <name>Quick_Close</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for request related to the use of Salesforce, such as a bug, Duplicate Account or development request. --></description>
+        <label><!-- Salesforce Request --></label>
+        <name>Salesforce_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for Transportation team to request payment related updates to credits and invoices. --></description>
+        <label><!-- Transport Payments --></label>
+        <name>Transport_Payments</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for processing an unwind request --></description>
+        <label><!-- Unwind --></label>
+        <name>Unwind</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please fill out the field this request was related to. If not related to a field, select None in the Related Field Picklist. --></errorMessage>
+        <name>Add_Related_Field_Before_Closing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have an Account and a Root cause before closing an account --></errorMessage>
+        <name>CS_Close_Request</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Keep Account and Remove Account fields must be populated when selecting Duplicate Account. --></errorMessage>
+        <name>Keep_and_Delete_Account_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select answer Is Buyer Aware of this Unwind Request before saving. --></errorMessage>
+        <name>Mandatory_Buyer_Aware</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter &quot;Employee Name&quot; to save --></errorMessage>
+        <name>Mandatory_Employee_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter &quot;Requested Employment Status&quot; field before saving. --></errorMessage>
+        <name>Mandatory_Employee_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter &quot;Region of Employee&quot; to save --></errorMessage>
+        <name>Mandatory_Region_of_Employee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter &quot;Rejected Reason&quot; field before saving with rejected status. --></errorMessage>
+        <name>Mandatory_Rejection_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select any Request Reasons related to this request before saving --></errorMessage>
+        <name>Mandatory_Request_Reasons</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter &quot;Territory of Employee&quot; to save --></errorMessage>
+        <name>Mandatory_Territory_of_Employee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must complete &quot;Training / Days Prefered or Available&quot; field to save. --></errorMessage>
+        <name>Mandatory_Training_and_Days</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select answer Has the vehicle location been confirmed? before saving. --></errorMessage>
+        <name>Mandatory_Vehicle_Location_Confirmation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Field &quot;Additional Details Regarding My Request&quot; must contain a valid text. Spaces and/or no entry within this field is not permitted --></errorMessage>
+        <name>Prevent_Empty_Brief_Descriptions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select all departments related to this request before saving --></errorMessage>
+        <name>Related_Departments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Report Source before saving --></errorMessage>
+        <name>Report_Source</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Add Ticket Outcome Details before changing Status to closed --></errorMessage>
+        <name>Ticket_Outcome_Details</name>
+    </validationRules>
+</CustomObjectTranslation>

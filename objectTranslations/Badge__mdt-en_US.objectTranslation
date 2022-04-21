@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Badge</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Badges</value>
+    </caseValues>
+    <fields>
+        <label><!-- ACV Preset Colors --></label>
+        <name>ACV_Preset_Colors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Format Requires #HexCodeFormat, .standardColorText, or linear-gradiant(...) --></help>
+        <label><!-- Background Color --></label>
+        <name>Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class Name --></label>
+        <name>Class_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Allowed values - (), AND, OR, NOT or !. If not populated, assumes AND for all. If too complicated for custom metadata, put SPECIAL-CODED-LOGIC in this field --></help>
+        <label><!-- Criteria Logic Equation --></label>
+        <name>Criteria_Logic_Equation__c</name>
+    </fields>
+    <fields>
+        <help><!-- API Name of the Object --></help>
+        <label><!-- Object --></label>
+        <name>Object__c</name>
+    </fields>
+    <fields>
+        <help><!-- Format Requires #HexCodeFormat, .standardColorText, or linear-gradiant(...) --></help>
+        <label><!-- Text Color --></label>
+        <name>Text_Color__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- One Color Option is required. Either ACV Preset Color or Background Color AND Text Color --></errorMessage>
+        <name>One_Color_Option_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one field should be populated. Criteria Logic Equation or Class Name --></errorMessage>
+        <name>Only_One_Logic_Field_can_be_used</name>
+    </validationRules>
+</CustomObjectTranslation>

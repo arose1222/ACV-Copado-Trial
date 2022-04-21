@@ -1,0 +1,37 @@
+<!--*******************************************************************************************
+VFPageName:Notes
+Description:This is used in HomePage
+DevelopedBy: Niha Saha
+Revision:    1
+Fixed Defect#:
+*********************************************************************************************-->
+<apex:page controller="EXPRN.NoteHomeController">
+<Style>
+
+.pbTitle .h2 {
+font-size: 1.3em !important;
+}
+.bPageBlock{margin-left:-1%!Important;
+            margin-right:-1%!Important;}
+            .headerStyle{color:#666!Important;}  
+</style>
+<apex:form >
+        <apex:pageBlock title="My Notes">
+            <apex:pageBlockTable value="{!noteList}" var="note">
+                <apex:column headerValue="Title"  headerClass="headerStyle" >
+                    <apex:outputLink target="_top" value="/{!note.id}" style="color:#666!Important;">{!note.Title}</apex:outputLink>
+                    <!--<apex:outputField value="{!note.Title}"/>-->
+                </apex:column>
+                <apex:column headerValue="CreatedDate"  headerClass="headerStyle" >
+                    <apex:outputField value="{!note.createddate}" style="color:#666!Important;"/>
+                </apex:column>
+                <apex:column headervalue="CreatedbyID"  headerClass="headerStyle" >
+                    <apex:outputField value="{!note.createdbyid}" style="color:#666!Important;"/>
+                </apex:column>
+                <apex:column headerValue="Owner"  headerClass="headerStyle" >
+                    <apex:outputField value="{!note.OwnerId}" style="color:#666!Important;"/>  
+                </apex:column>
+            </apex:pageBlockTable>
+         </apex:pageblock>
+    </apex:form>
+</apex:page>

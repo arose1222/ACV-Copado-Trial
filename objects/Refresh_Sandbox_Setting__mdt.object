@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This holds the settings for the actions you want each environment to do</description>
+    <fields>
+        <fullName>Create_FSL_Required_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This creates the required Data that is needed for FSL. This includes Work Types</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Work Types</inlineHelpText>
+        <label>Create FSL Required Data</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Remove_API_Only_User_From_All_Users__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Remove API Only User From All Users</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Slack_Webhook__c</fullName>
+        <description>This is the URL of the webhook for the Slack page you wish to post the Status report to</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is the URL of the webhook for the Slack page you wish to post the Status report to</inlineHelpText>
+        <label>Slack Webhook</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Update_All_Flagged_Users__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Users are listed in the Refresh User Settings Custom Metadata.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If Checked, updates all users in the Refresh User Settings Custom Metadata List. Else only updates Email of User who triggered Sandbox Refresh.</inlineHelpText>
+        <label>Update All Flagged Users</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Refresh Sandbox Setting</label>
+    <pluralLabel>Refresh Sandbox Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

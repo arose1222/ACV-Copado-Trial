@@ -1,0 +1,7 @@
+<apex:component controller="ConditionReportReviewCompletedECont" access="global" allowDML="TRUE">
+    <apex:attribute name="inputId" type="String" description="Attribute for Task id" required="required" assignTo="{!parentId}" />
+    <apex:repeat var="att" value="{!relatedData}">
+        <apex:image value="{!att.ContentDownloadUrl}"></apex:image>
+        <br/>
+    </apex:repeat>
+</apex:component>

@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+    <lightning:workspaceAPI aura:id="workspace" />
+    <c:groupingHelper oncloseEvent="{!c.handleCloseTab}"/>
+</aura:component>

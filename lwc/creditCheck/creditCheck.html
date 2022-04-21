@@ -1,0 +1,318 @@
+<template>
+    <!-- Spinner -->
+    <template if:true={activeSpinner}>
+        <div class="spinner" style="z-index: 9999;">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+    <template if:true={showAucComp}>
+        <lightning-card 
+            variant="Narrow" 
+            icon-name="custom:custom90" 
+            icon-size="small" 
+            title="Goodwill" 
+            class="slds-card__header-link" 
+            margin="20px 0">
+            <lightning-button label="New" slot="actions" onclick={openModal}></lightning-button>
+        </lightning-card>
+    </template>
+    <template if:true={showCredComp}>
+        <lightning-card 
+            variant="Narrow" 
+            icon-name="custom:custom90" 
+            icon-size="small" 
+            title="Adjustment" 
+            class="slds-card__header-link" 
+            margin= "20px 0">
+            <lightning-button label="New" slot="actions" onclick={openModal}></lightning-button>
+        </lightning-card>
+    </template>
+    <template if:true={showActComp}>
+        <lightning-card 
+            variant="Narrow" 
+            icon-name="custom:custom90" 
+            icon-size="small" 
+            title="Promotional Credit/Check" 
+            class="slds-card__header-link" 
+            margin="20px 0">
+            <lightning-button label="New" slot="actions" onclick={openModal}></lightning-button>
+        </lightning-card>
+    </template>
+    <template if:true={showNoBudgetMessage}>
+        <div class="demo-only" style="height: 3200px; width:110% !important;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true" aria-describedby="modal-content-id-3" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container" title="Uh Oh">
+                    <header class="slds-modal__header" id="modal-heading-03">
+                        Uh Oh...
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-3">
+                            <p>Sorry, you do not have access to a budget to submit a Goodwill Request. For assistance, please reach out to a Territory Manager to make your request:</p>
+                            <template if:true={showSellerInfoBudgetMessage}>
+                                <p style="padding-top: 10px;">Seller: {desObjectInfo.auctionInfo.sellerDealer.name}</p>
+                                <p>{desObjectInfo.auctionInfo.sellerDealer.territoryManagerName} - <lightning-formatted-email value={desObjectInfo.auctionInfo.sellerDealer.territoryManagerEmail} hide-icon></lightning-formatted-email></p>
+                            </template>
+                            <template if:true={showBuyerInfoBudgetMessage}>
+                                <p style="padding-top: 10px;">Buyer: {desObjectInfo.auctionInfo.buyerDealer.name}</p>
+                                <p>{desObjectInfo.auctionInfo.buyerDealer.territoryManagerName} - <lightning-formatted-email value={desObjectInfo.auctionInfo.buyerDealer.territoryManagerEmail} hide-icon></lightning-formatted-email></p>
+                            </template>
+                            <p style="padding-top: 10px;">If you feel like you should have access to make your own Goodwill requests, please work with the Territory Manager who will connect you with the Regional Budget Owner.</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" class="inLineRight" variant="neutral" onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+    <div>
+        <template if:true={showForCredit}>
+            <div class="demo-only" style="height: 3200px; width:110% !important;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" title="New Credit Check">
+                        <header 
+                            class="slds-modal__header"
+                            id="modal-heading-02">New Adjustment
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-2">
+                            <lightning-input
+                                type="number"
+                                class="pad"
+                                label="Amount" 
+                                onchange={handleAmountChange} 
+                                placeholder="Enter Amount"
+                                formatter="currency" 
+                                step="0.01"
+                                required ></lightning-input>
+                            <lightning-combobox
+                                class="pad"
+                                name="Payment"
+                                label="Payment"
+                                value={value}
+                                placeholder="Select Payment Type"
+                                options={paymentOptions}
+                                onchange={handlepaymentChange}
+                                required ></lightning-combobox>
+                            <lightning-textarea
+                                class="pad" 
+                                label="Explanation"
+                                placeholder="Enter Explanation" 
+                                value={explanationValue} 
+                                maxlength="131072" 
+                                messagewhentoolong="The max for an Explanation is 131,072 characters. Please shorten your message."
+                                onchange={handleExplanationChange} ></lightning-textarea>
+                        </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" class="inLineLeft" variant="neutral" onclick={closeModal}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <lightning-button label="Submit" class="inLineRight" variant="brand" onclick={handleSubmitClick} disabled={disableSubmit}></lightning-button>
+                    </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+
+        <template if:true={showForAuction}>
+            <div class="demo-only" style=" width:110% !important;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-04" aria-modal="true" aria-describedby="modal-content-id-4" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" title="New Credit Check">
+                        <header 
+                            class="slds-modal__header"
+                            id="modal-heading-04">New Goodwill</header>
+                        <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-4">
+                            <lightning-combobox
+                                class="pad"
+                                name="Dealer"
+                                label="Dealer"
+                                value={value}
+                                placeholder="Select Dealer"
+                                options={dealerOptions}
+                                onchange={handleDealerChange}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Payment"
+                                label="Payment"
+                                value={value}
+                                placeholder="Select Payment Type"
+                                options={paymentOptions}
+                                onchange={handlepaymentChange}
+                                required ></lightning-combobox>
+                                <!--formatter="currency"-->
+                            <template if:true={showExpirationDate}>
+                                <lightning-input
+                                    class="pad"
+                                    type="date"
+                                    name="ExpirationDate"
+                                    label="Expiration Date"
+                                    value={expirationDefault}
+                                    onchange={handleExpirationDateChange}
+                                    required
+                                ></lightning-input>
+                            </template>
+                            <template if:true={showSlamDunk}>
+                            <lightning-input 
+                                type="checkbox" 
+                                label="Slam Dunk?" 
+                                name="slamDunkCheckbox"
+                                onchange={handleSlamDunkChange}></lightning-input>
+                            </template>
+                                <lightning-input
+                                type="number"
+                                class="pad"
+                                label="Amount" 
+                                onchange={handleAmountChange} 
+                                placeholder="Enter Amount"
+                                formatter="currency" 
+                                step="0.01"
+                                min="0"
+                                max={amountLimit}
+                                required ></lightning-input>
+                            <lightning-combobox
+                                class="pad"
+                                name="Budget"
+                                label="Budget"
+                                value={value}
+                                placeholder="Select Budget"
+                                options={budgetOptions}
+                                onchange={handleBudgetChange}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Reason"
+                                label="Reason"
+                                value={value}
+                                placeholder="Select Reason"
+                                onchange={handleReasonChange}
+                                options={reasonOptions}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Root Cause"
+                                label="Root Cause"
+                                value={value}
+                                placeholder="Select Root Cause"
+                                onchange={handleRootCauseChange} 
+                                options={rootCauseOptions}
+                                required ></lightning-combobox>
+                            <lightning-textarea
+                                class="pad" 
+                                label="Explanation"
+                                placeholder="Enter Explanation" 
+                                value={explanationValue} 
+                                maxlength="131072" 
+                                messagewhentoolong="The max for an Explanation is 131,072 characters. Please shorten your message."
+                                onchange={handleExplanationChange} ></lightning-textarea>  
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Cancel" class="inLineLeft" variant="neutral" onclick={closeModal}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <lightning-button label="Submit" class="inLineRight" variant="brand" onclick={handleSubmitClick} disabled={disableSubmit}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+        <template if:true={showForAccount}>
+            <div class="demo-only" style=" width:110% !important;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" title="New Credit Check">
+                        <header 
+                            class="slds-modal__header"
+                            id="modal-heading-01">New Goodwill</header>
+                        <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-1">
+                            <lightning-combobox
+                                class="pad"
+                                name="Dealer"
+                                label="Dealer"
+                                value={defaultDealer}
+                                placeholder="Select Dealer"
+                                options={dealerOptions}
+                                onchange={handleDealerChange}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Payment"
+                                label="Payment"
+                                value={value}
+                                placeholder="Select Payment Type"
+                                options={paymentOptions}
+                                onchange={handlepaymentChange}
+                                required ></lightning-combobox>
+                                <!--formatter="currency"-->
+                            <template if:true={showExpirationDate}>
+                                <lightning-input
+                                    class="pad"
+                                    type="date"
+                                    name="ExpirationDate"
+                                    label="Expiration Date"
+                                    value={expirationDefault}
+                                    onchange={handleExpirationDateChange}
+                                    required
+                                ></lightning-input>
+                            </template>
+                            <template if:true={showSlamDunk}>
+                            <lightning-input 
+                                type="checkbox" 
+                                label="Slam Dunk?" 
+                                name="slamDunkCheckbox"
+                                onchange={handleSlamDunkChange}></lightning-input>
+                            </template>
+                                <lightning-input
+                                type="number"
+                                class="pad"
+                                label="Amount" 
+                                onchange={handleAmountChange} 
+                                placeholder="Enter Amount"
+                                formatter="currency" 
+                                step="0.01"
+                                min="0"
+                                max={amountLimit}
+                                required ></lightning-input>
+                            <lightning-combobox
+                                class="pad"
+                                name="Budget"
+                                label="Budget"
+                                value={value}
+                                placeholder="Select Budget"
+                                options={budgetOptions}
+                                onchange={handleBudgetChange}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Reason"
+                                label="Reason"
+                                value={value}
+                                placeholder="Select Reason"
+                                onchange={handleReasonChange}
+                                options={reasonOptions}
+                                required ></lightning-combobox>
+                            <lightning-combobox
+                                class="pad"
+                                name="Root Cause"
+                                label="Root Cause"
+                                value={value}
+                                placeholder="Select Root Cause"
+                                onchange={handleRootCauseChange} 
+                                options={rootCauseOptions}
+                                required ></lightning-combobox>
+                            <lightning-textarea
+                                class="pad" 
+                                label="Explanation"
+                                placeholder="Enter Explanation" 
+                                value={explanationValue} 
+                                maxlength="131072" 
+                                messagewhentoolong="The max for an Explanation is 131,072 characters. Please shorten your message."
+                                onchange={handleExplanationChange} ></lightning-textarea>  
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Cancel" class="inLineLeft" variant="neutral" onclick={closeModal}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <lightning-button label="Submit" class="inLineRight" variant="brand" onclick={handleSubmitClick} disabled={disableSubmit}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+    </div>
+</template>

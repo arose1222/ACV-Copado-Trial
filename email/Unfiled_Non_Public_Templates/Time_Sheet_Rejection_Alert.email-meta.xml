@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template alerting the Time Sheet Owner their Time Sheet was rejected.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Time Sheet Rejection Alert</name>
+    <style>freeForm</style>
+    <subject>Your Time Sheet Has Been Rejected</subject>
+    <textOnly>Hi {!TimeSheet.ServiceResource},
+
+This email is to inform you that your Time Sheet submitted for Approval for the Week Ending {!TimeSheet.EndDate} has been rejected, and requires your attention to make the necessary changes in order for your Manager to approve it.
+
+Thank you,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

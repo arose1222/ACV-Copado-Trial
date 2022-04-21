@@ -1,0 +1,2034 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Credit_Check_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ACV_User_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>ACV User Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adjustment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if record is for an Adjustment of an existing Credit</description>
+        <externalId>false</externalId>
+        <label>Adjustment</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Approved__c</fullName>
+        <description>Amount actually approved for the credit/check.</description>
+        <externalId>false</externalId>
+        <label>Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Requested__c</fullName>
+        <description>The amount requested by the individual creating the Credit/Check Request</description>
+        <externalId>false</externalId>
+        <label>Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Applicable_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Applicable To</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACV Fees</fullName>
+                    <default>false</default>
+                    <label>ACV Fees</label>
+                </value>
+                <value>
+                    <fullName>Assurance</fullName>
+                    <default>false</default>
+                    <label>Assurance</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approval_Denial_Date__c</fullName>
+        <description>Date/Time of Approval Status changing to Approved or Denied.</description>
+        <externalId>false</externalId>
+        <label>Approval/Denial Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>set by approval process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the credit check approval</inlineHelpText>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Done Successful</fullName>
+                    <default>false</default>
+                    <label>Done Successful</label>
+                </value>
+                <value>
+                    <fullName>Done Failed</fullName>
+                    <default>false</default>
+                    <label>Done Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approved_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is entered by the approver to identify who approved the transaction.</description>
+        <externalId>false</externalId>
+        <label>Approved By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Arb_Amount_Approved__c</fullName>
+        <description>To capture the Exact dollar value as Arb Amount Requested field, once Credit &amp; Check Approved Status = Approved, as the regular field lacks the decimal places. Sum Resolution + Tow + Diag approved for payout</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum Resolution + Tow + Diag approved for payout</inlineHelpText>
+        <label>Total Arb Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Auction__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Auction Related to the Credit/Check issued</description>
+        <externalId>false</externalId>
+        <label>Auction</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Credits &amp; Checks</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Budget_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>THis field looks to the budget record associated with the credit and check</description>
+        <externalId>false</externalId>
+        <label>Budget Name</label>
+        <referenceTo>Budget__c</referenceTo>
+        <relationshipLabel>Credits &amp; Checks</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Credits &amp; Checks</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Complaint_Approved_Credits__c</fullName>
+        <description>Prior to approval of this record, this reflects the sum of total payouts previously approved for this Complaint. If this record is approved, that value is immediately included in this field.</description>
+        <externalId>false</externalId>
+        <formula>Resolution__r.complaint_id__r.Total_Approved_Credits__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Prior to approval of this record, this reflects the sum of total payouts previously approved for this Complaint. If this record is approved, that value is immediately included in this field.</inlineHelpText>
+        <label>Prior Complaint Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Created_Date__c</fullName>
+        <description>Date the Credit Check record was created</description>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Id__c</fullName>
+        <description>Id received when credit successfully commit to api</description>
+        <externalId>false</externalId>
+        <label>Credit Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The dealer being issued the credit - filled in by the entry of the credit/check - should be selecting the seller or buyer at that point.</description>
+        <externalId>false</externalId>
+        <label>Dealer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Credits &amp; Checks</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dealership_ID__c</fullName>
+        <description>Dealer ID from Tools</description>
+        <externalId>false</externalId>
+        <label>Dealer ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debt_Forgiveness_Notes__c</fullName>
+        <description>Notes to indicate what happened during a debt forgiveness interaction.</description>
+        <externalId>false</externalId>
+        <label>Debt Forgiveness Notes</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Diagnostic_Amount__c</fullName>
+        <description>This field displays the diagnostic amount from the resolution record and is NOT included in the amount of the credit/check value. Diag refund value, only. Reflects requested amount, and then approved amount, if approved.</description>
+        <externalId>false</externalId>
+        <formula>Resolution__r.Amount_Diagnostic__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Diag refund value, only. Reflects requested amount, and then approved amount, if approved.</inlineHelpText>
+        <label>Diagnostic Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Expiration_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Explanation__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Additional note on the reason for issuing the credit/check</inlineHelpText>
+        <label>Explanation</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Budget_Name__r.Name</formula>
+        <label>Group Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Netsuite_ID__c</fullName>
+        <description>Netsuite ID pulling from the Account object</description>
+        <externalId>false</externalId>
+        <formula>Dealer__r.Netsuite_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Netsuite ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organization_Credit_Id__c</fullName>
+        <description>Used in the CreditAPI for account_Id</description>
+        <externalId>true</externalId>
+        <label>Organization Credit Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Credit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup field to the Parent Credit record the current record(Adjustment) is related to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Credit record an Adjustment is related to</inlineHelpText>
+        <label>Parent Credit</label>
+        <referenceTo>Credits_Checks__c</referenceTo>
+        <relationshipLabel>Parent Credit</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Type__c</fullName>
+        <description>What type of payment will be issued for this credit/check</description>
+        <externalId>false</externalId>
+        <label>Payment Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACV Credit Assigned</fullName>
+                    <default>false</default>
+                    <label>ACV Credit Assigned</label>
+                </value>
+                <value>
+                    <fullName>ACV Issue Check</fullName>
+                    <default>false</default>
+                    <label>ACV Issue Check</label>
+                </value>
+                <value>
+                    <fullName>ACV to Re-List</fullName>
+                    <default>false</default>
+                    <label>ACV to Re-List</label>
+                </value>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>Seller Issue Check</fullName>
+                    <default>false</default>
+                    <label>Seller Issue Check</label>
+                </value>
+                <value>
+                    <fullName>Unwound Back to Seller</fullName>
+                    <default>false</default>
+                    <label>Unwound Back to Seller</label>
+                </value>
+                <value>
+                    <fullName>ACV Credit Deduction</fullName>
+                    <default>false</default>
+                    <label>ACV Credit Deduction</label>
+                </value>
+                <value>
+                    <fullName>Debt Forgiveness</fullName>
+                    <default>false</default>
+                    <label>Debt Forgiveness</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Processed_in_Netsuite__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field will be checked by Megan Greene (MVP until Netsuite is built out) when it is processed by Netsuite.</description>
+        <externalId>false</externalId>
+        <label>Processed in Netsuite</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reason__c</fullName>
+        <description>Describes the financial category of the payment</description>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Bad Debt Expense</fullName>
+                    <default>false</default>
+                    <label>Bad Debt Expense</label>
+                </value>
+                <value>
+                    <fullName>Goodwill</fullName>
+                    <default>false</default>
+                    <label>Goodwill</label>
+                </value>
+                <value>
+                    <fullName>No Direct Expense to ACV</fullName>
+                    <default>false</default>
+                    <label>No Direct Expense to ACV</label>
+                </value>
+                <value>
+                    <fullName>Promotion</fullName>
+                    <default>false</default>
+                    <label>Promotion</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Recent_FTB__c</fullName>
+        <description>Recent FTB field from the Account needed on the credit check object</description>
+        <externalId>false</externalId>
+        <formula>Dealer__r.Recent_FTB__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is a field will display on a first time buyer&apos;s for the first 14 days after their first buy</inlineHelpText>
+        <label>Recent FTB</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resolution_Amount__c</fullName>
+        <description>Resolution value, only. Reflects requested amount, and then approved amount, if approved.</description>
+        <externalId>false</externalId>
+        <formula>Resolution__r.Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Resolution value, only. Reflects requested amount, and then approved amount, if approved.</inlineHelpText>
+        <label>Resolution Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Resolution__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Resolution</label>
+        <referenceTo>Resolution__c</referenceTo>
+        <relationshipLabel>Credits &amp; Checks</relationshipLabel>
+        <relationshipName>Credits_Checks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Root_Cause__c</fullName>
+        <description>Cause for issuing Credit/Check - associated with dependant picklist with Financial Category</description>
+        <externalId>false</externalId>
+        <label>Root Cause</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Reason__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arbitration Unavoidable</fullName>
+                    <default>false</default>
+                    <label>Arbitration Unavoidable</label>
+                </value>
+                <value>
+                    <fullName>Arbitration Avoidable</fullName>
+                    <default>false</default>
+                    <label>Arbitration Avoidable</label>
+                </value>
+                <value>
+                    <fullName>Zero Downside</fullName>
+                    <default>false</default>
+                    <label>Zero Downside</label>
+                </value>
+                <value>
+                    <fullName>Past Arbitration Time Frame – 48-hour ACV Transport</fullName>
+                    <default>false</default>
+                    <label>Past Arbitration Time Frame – 48-hour ACV Transport</label>
+                </value>
+                <value>
+                    <fullName>Past Arbitration Time Frame – 10-day Arbitration</fullName>
+                    <default>false</default>
+                    <label>Past Arbitration Time Frame – 10-day Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Component Not Covered</fullName>
+                    <default>false</default>
+                    <label>Component Not Covered</label>
+                </value>
+                <value>
+                    <fullName>Disclosure Dispute</fullName>
+                    <default>false</default>
+                    <label>Disclosure Dispute</label>
+                </value>
+                <value>
+                    <fullName>Double Sale</fullName>
+                    <default>false</default>
+                    <label>Double Sale</label>
+                </value>
+                <value>
+                    <fullName>48-hour Title Notice</fullName>
+                    <default>false</default>
+                    <label>48-hour Title Notice</label>
+                </value>
+                <value>
+                    <fullName>Transportation Issue</fullName>
+                    <default>false</default>
+                    <label>Transportation Issue</label>
+                </value>
+                <value>
+                    <fullName>Other Goodwill Issue</fullName>
+                    <default>false</default>
+                    <label>Other Goodwill Issue</label>
+                </value>
+                <value>
+                    <fullName>First Time Buyer</fullName>
+                    <default>false</default>
+                    <label>First Time Buyer</label>
+                </value>
+                <value>
+                    <fullName>14-Day Guarantee</fullName>
+                    <default>false</default>
+                    <label>14-Day Guarantee</label>
+                </value>
+                <value>
+                    <fullName>Other Promotion</fullName>
+                    <default>false</default>
+                    <label>Other Promotion</label>
+                </value>
+                <value>
+                    <fullName>Buyer Fee Refund / Correction</fullName>
+                    <default>false</default>
+                    <label>Buyer Fee Refund / Correction</label>
+                </value>
+                <value>
+                    <fullName>Seller Fee Refund / Correction</fullName>
+                    <default>false</default>
+                    <label>Seller Fee Refund / Correction</label>
+                </value>
+                <value>
+                    <fullName>Transport Fee Refund / Correction</fullName>
+                    <default>false</default>
+                    <label>Transport Fee Refund / Correction</label>
+                </value>
+                <value>
+                    <fullName>Capital Fee Refund / Correction</fullName>
+                    <default>false</default>
+                    <label>Capital Fee Refund / Correction</label>
+                </value>
+                <value>
+                    <fullName>Non-Payment</fullName>
+                    <default>false</default>
+                    <label>Non-Payment</label>
+                </value>
+                <value>
+                    <fullName>Auction Error</fullName>
+                    <default>false</default>
+                    <label>Auction Error</label>
+                </value>
+                <value>
+                    <fullName>Promotion</fullName>
+                    <default>false</default>
+                    <label>Promotion</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Arbitration Unavoidable</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Arbitration Avoidable</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <valueName>Zero Downside</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Debt Expense</controllingFieldValue>
+                <valueName>Non-Payment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Past Arbitration Time Frame – 48-hour ACV Transport</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Past Arbitration Time Frame – 10-day Arbitration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Component Not Covered</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Disclosure Dispute</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Double Sale</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>48-hour Title Notice</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Transportation Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Goodwill</controllingFieldValue>
+                <valueName>Other Goodwill Issue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Direct Expense to ACV</controllingFieldValue>
+                <valueName>Auction Error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>First Time Buyer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>14-Day Guarantee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Other Promotion</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Buyer Fee Refund / Correction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Seller Fee Refund / Correction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Transport Fee Refund / Correction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Capital Fee Refund / Correction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Promotion</controllingFieldValue>
+                <valueName>Promotion</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Slam_Dunk__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If indicated, this request is a Slam Dunk which means a quick win for IST.</description>
+        <externalId>false</externalId>
+        <label>Slam Dunk</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Approved_Arb_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+NOT(ISNULL( Resolution__c )),
+ Arb_Amount_Approved__c +  Diagnostic_Amount__c +  Tow_Fee__c,
+NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Approved Arb Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Arb_Amount_Requested__c</fullName>
+        <description>Sum Resolution + Tow + Diag being requested</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum Resolution + Tow + Diag being requested</inlineHelpText>
+        <label>Total Arb Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Tow_Fee__c</fullName>
+        <description>Tow refund value, only. Reflects requested amount, and then approved amount, if approved.</description>
+        <externalId>false</externalId>
+        <formula>Resolution__r.Tow_Fee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Tow refund value, only. Reflects requested amount, and then approved amount, if approved.</inlineHelpText>
+        <label>Tow Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Credit &amp; Check</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ACV_User_Id__c</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <columns>Expiration_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Budget_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Arbitration</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Copy_of_credit_and_checks</fullName>
+        <columns>NAME</columns>
+        <columns>ACV_User_Id__c</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <columns>Expiration_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Budget_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Arbitration</value>
+        </filters>
+        <filters>
+            <field>Budget_Name__c</field>
+            <operation>equals</operation>
+            <value>IST</value>
+        </filters>
+        <filters>
+            <field>Approval_Denial_Date__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>credit and checks - IST Breakdown</label>
+    </listViews>
+    <listViews>
+        <fullName>Credit_ACV_Central_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit ACV Central</label>
+        <queue>Credit_ACV_Central</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Arbitration_Credits_Checks</fullName>
+        <columns>NAME</columns>
+        <columns>Dealer__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <columns>Explanation__c</columns>
+        <columns>Created_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </filters>
+        <filters>
+            <field>Budget_Name__c</field>
+            <operation>equals</operation>
+            <value>Arbitration</value>
+        </filters>
+        <filters>
+            <field>Created_Date__c</field>
+            <operation>greaterThan</operation>
+            <value>6/5/2020</value>
+        </filters>
+        <label>Arbitration Resolutions</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_California_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit California</label>
+        <queue>Credit_California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Carolinas_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Carolinas</label>
+        <queue>Credit_Carolinas</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Central_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Mid - West</label>
+        <queue>Credit_Mid_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Flordia_South_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Florida South</label>
+        <queue>Credit_Florida_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Florida_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Southeast</label>
+        <queue>Credit_Southeast</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Great_Lakes_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Greater NY</label>
+        <queue>Credit_Greater_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Great_Lakes_West_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Great Lakes West</label>
+        <queue>Credit_Great_Lakes_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Heartland_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Heartland</label>
+        <queue>Credit_Heartland</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_IST_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit IST</label>
+        <queue>Credit_IST</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Major_Accounts_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Major Accounts</label>
+        <queue>Credit_Major_Accounts</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Marketing_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Marketing</label>
+        <queue>Credit_Marketing</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Mid_Atlantic_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Mid - Atlantic</label>
+        <queue>Credit_Mid_Atlantic</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Mid_South_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Mid - South</label>
+        <queue>Credit_Mid_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Mountain_West_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Mountain West</label>
+        <queue>Credit_Mountain_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_NJ_Philly_Metro_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit NJ-Philly Metro</label>
+        <queue>Credit_NJ_Philly_Metro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_New_England_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit New England</label>
+        <queue>Credit_New_England</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_North_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit North</label>
+        <queue>Credit_North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Northeast_Metro_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Northeast Metro</label>
+        <queue>Credit_Northeast_Metro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Northern_California_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Northern California</label>
+        <queue>Credit_Northern_California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Northwest_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Northwest</label>
+        <queue>Credit_Northwest</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Ohio_Valley_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Ohio Valley</label>
+        <queue>Credit_Ohio_Valley</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Southern_California_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Southern California</label>
+        <queue>Credit_Southern_California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Southwest_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Southwest</label>
+        <queue>Credit_Southwest</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Tennessee_Valley_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Tennessee Valley</label>
+        <queue>Credit_Tennessee_Valley</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Texas_East_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Texas East</label>
+        <queue>Credit_Texas_East</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_Texas_West_Credits_Checks</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Credit Texas West</label>
+        <queue>Credit_Texas_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Credit_no_ACV_User_Id</fullName>
+        <columns>NAME</columns>
+        <columns>Expiration_Date__c</columns>
+        <columns>ACV_User_Id__c</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>ACV_User_Id__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Payment_Type__c</field>
+            <operation>equals</operation>
+            <value>ACV Credit Assigned,ACV Credit Deduction</value>
+        </filters>
+        <label>Credit no ACV User Id</label>
+    </listViews>
+    <listViews>
+        <fullName>Debt_Forgiveness_Not_Processed</fullName>
+        <columns>NAME</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Debt_Forgiveness_Notes__c</columns>
+        <columns>Processed_in_Netsuite__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Payment_Type__c</field>
+            <operation>equals</operation>
+            <value>Debt Forgiveness</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Credits_Checks__c.Check</value>
+        </filters>
+        <filters>
+            <field>Processed_in_Netsuite__c</field>
+            <operation>notEqual</operation>
+            <value>1</value>
+        </filters>
+        <label>Debt Forgiveness - Not Processed</label>
+    </listViews>
+    <listViews>
+        <fullName>Major_Accounts_Submitted</fullName>
+        <columns>NAME</columns>
+        <columns>Dealer__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Budget_Name__c</field>
+            <operation>equals</operation>
+            <value>Major Accounts</value>
+        </filters>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </filters>
+        <label>Major Accounts Submitted</label>
+    </listViews>
+    <listViews>
+        <fullName>Promo_d_Goodwill_d_Credits</fullName>
+        <columns>NAME</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Reason__c</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Credit_Id__c</columns>
+        <columns>Payment_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Reason__c</field>
+            <operation>equals</operation>
+            <value>Promotion</value>
+        </filters>
+        <label>Promo&apos;d Goodwill&apos;d Credits</label>
+    </listViews>
+    <listViews>
+        <fullName>Rejected</fullName>
+        <columns>NAME</columns>
+        <columns>ACV_User_Id__c</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Payment_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Created_Date__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <columns>Expiration_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>Rejected</label>
+    </listViews>
+    <listViews>
+        <fullName>Stuck_in_Approval_credit</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND (4 or 5)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>ACV_User_Id__c</columns>
+        <columns>Dealer__c</columns>
+        <columns>Budget_Name__c</columns>
+        <columns>Case__c</columns>
+        <columns>Auction__c</columns>
+        <columns>Expiration_Date__c</columns>
+        <columns>Created_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Amount_Approved__c</columns>
+        <columns>Amount_Requested__c</columns>
+        <columns>Organization_Credit_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Credit_Id__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Payment_Type__c</field>
+            <operation>contains</operation>
+            <value>Credit</value>
+        </filters>
+        <filters>
+            <field>Amount_Approved__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Amount_Requested__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>Stuck in Approval credit</label>
+    </listViews>
+    <nameField>
+        <label>Credits &amp; Checks  Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Credits &amp; Checks</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Check</fullName>
+        <active>true</active>
+        <description>Produces a check record to issue check by payments</description>
+        <label>Check</label>
+        <picklistValues>
+            <picklist>Applicable_To__c</picklist>
+            <values>
+                <fullName>ACV Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Successful</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Type__c</picklist>
+            <values>
+                <fullName>ACV Credit Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV to Re-List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Debt Forgiveness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwound Back to Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bad Debt Expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodwill</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Direct Expense to ACV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Root_Cause__c</picklist>
+            <values>
+                <fullName>14-Day Guarantee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48-hour Title Notice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Avoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Unavoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Auction Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buyer Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Component Not Covered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disclosure Dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Time Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Goodwill Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 10-day Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 48-hour ACV Transport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zero Downside</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Credit</fullName>
+        <active>true</active>
+        <description>This record type issues a credit by payments</description>
+        <label>Credit</label>
+        <picklistValues>
+            <picklist>Applicable_To__c</picklist>
+            <values>
+                <fullName>ACV Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Successful</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Type__c</picklist>
+            <values>
+                <fullName>ACV Credit Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Credit Deduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV to Re-List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Debt Forgiveness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwound Back to Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bad Debt Expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodwill</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Direct Expense to ACV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Root_Cause__c</picklist>
+            <values>
+                <fullName>14-Day Guarantee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48-hour Title Notice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Avoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Unavoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Auction Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buyer Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Component Not Covered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disclosure Dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Time Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Goodwill Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 10-day Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 48-hour ACV Transport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zero Downside</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Invoice</fullName>
+        <active>true</active>
+        <description>Creates an invoice for payments</description>
+        <label>Invoice</label>
+        <picklistValues>
+            <picklist>Applicable_To__c</picklist>
+            <values>
+                <fullName>ACV Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Done Successful</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Type__c</picklist>
+            <values>
+                <fullName>ACV Credit Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV to Re-List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Debt Forgiveness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwound Back to Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bad Debt Expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodwill</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Direct Expense to ACV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Root_Cause__c</picklist>
+            <values>
+                <fullName>14-Day Guarantee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48-hour Title Notice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Avoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration Unavoidable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Auction Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buyer Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Component Not Covered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disclosure Dispute</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Time Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Goodwill Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 10-day Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Arbitration Time Frame %E2%80%93 48-hour ACV Transport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport Fee Refund %2F Correction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zero Downside</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Dealer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Budget_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Amount_Approved__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Credit_Id__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

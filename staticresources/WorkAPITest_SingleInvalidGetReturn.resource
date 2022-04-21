@@ -1,0 +1,1 @@
+{"statusCode":400,"originalRequest":{"originalRequest":[{"vin":"12345678901234567","uuid":"a27ccf1f-ddb4-4afc-bc29-e8ac7f4a6bf6"}]},"message":"The provided information did not match data in the system, please review and adjust","apiResponse":{"successfulMatches":[],"failedMatches":[{"vin":"12345678901234567","uuid":"a27ccf1f-ddb4-4afc-bc29-e8ac7f4a6bf6"}]}}

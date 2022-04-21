@@ -1,0 +1,70 @@
+<apex:page controller="EXPRN.selectCreditPolicyController" showHeader="false" sidebar="false" >
+
+    <head>
+    <style>        
+    </style>
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-postmessage.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-ba-bbq-min.js')}" />
+        <script type="text/javascript">
+            var j$ = jQuery.noConflict(); 
+            var parent_domain = '{!JSENCODE($CurrentPage.parameters.parent_domain)}'; 
+            j$(document).ready(function() {
+                j$('input[id$=btnCloseModalDialog]').click(function(event) {          
+                    event.preventDefault();
+                    if(j$('select[id$="selectedPolicy"]').val() != '' && j$('select[id$="selectedPolicy"]').val() != 'undefined') {
+                        closeModalDialog();
+                    }
+                    else {
+                        alert('Please select a credit policy');
+                    }
+                    
+                });
+            });
+            
+            function closeModalDialog() {
+                var cross_result = new Object();
+                cross_result.action = 'close_modal_dialog';
+                cross_result.credit_policy = j$('select[id$="selectedPolicy"]').val();
+                j$.postMessage(
+                    cross_result,
+                    parent_domain,
+                    parent
+                );
+                
+            }
+            
+            j$(document).ready(function() {
+                j$('input[id$=btnCancelModalDialog]').click(function(event) {          
+                    event.preventDefault();
+                    cancelModalDialog();                
+                });
+            });
+            
+            function cancelModalDialog() {
+                var cross_result = new Object();
+                cross_result.action = 'cancel_modal_dialog';
+                j$.postMessage(
+                    cross_result,
+                    parent_domain,
+                    parent
+                );
+            }
+        </script>
+    </head>
+    <apex:form ><br/><br/><br/><br/>
+    <apex:pageMessages />
+    <apex:outputPanel style="margin-left: 2%; top:20%" id="opanel" rendered = "{!listCreditPolicyOptions.size > 0}">                        
+        <div style="margin-left:10px; margin-top:-30px; "><b>{!sSelectedAcctCnt}</b> accounts have been selected for Batch Decisioning.</div> <br/ ><br/ >        
+        <apex:outputLabel value="Credit Policy: "  style="font-weight: bold;margin-left: 3%;"/>
+        <apex:selectList value="{!strSelectedPolicy}" size="1" id="selectedPolicy">
+            <apex:selectOption itemLabel="---- Select ----" itemvalue=""/>
+            <apex:selectOptions value="{!listCreditPolicyOptions}" />
+        </apex:selectList>
+    </apex:outputPanel><br/><br/>
+    <center style="margin-left:8px;">
+    <apex:commandButton id="btnCloseModalDialog" rendered = "{!listCreditPolicyOptions.size > 0}" value="Initiate Batch Decisioning" />&nbsp; &nbsp;
+    <apex:commandButton value="Cancel" styleClass="ui-icon ui-icon-closethick" id="btnCancelModalDialog"/>
+    </center>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,343 @@
+<template>
+    <!-- Spinner -->
+	<template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+    <div class="filterManagerContainer">
+        <!-- Header Section -->
+        <header id="headerFilterManager" class="filterManagerTitle slds-p-around_small slds-border_bottom" style="width:100%; background-color:white;">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto" size=1 class="slds-media slds-media_center">
+                    <template if:true={currentWizardState.showBackButton}>
+                        <lightning-button-icon
+                            icon-name="utility:chevronleft"
+                            size="medium"
+                            variant="bare"
+                            alternative-text="Back"
+                            class="slds-p-right_x-small"
+                            onclick={handleBackButton}
+                        ></lightning-button-icon>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size=10 class="slds-media slds-media_center">
+                    <h1 class="slds-hyphenate">{currentWizardState.headerLabel}</h1>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size=1 class="slds-media slds-media_center">
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        size="medium"
+                        variant="container"
+                        alternative-text="Close"                            
+                        onclick={handleOnClose}
+                    ></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </header>
+        <!-- Body Section -->
+        <lightning-layout class="slds-border_bottom" style="background-color:white">
+        <!-- Show Filters Screen -->
+            <template if:true={showFilterScreen}>
+                <!-- Has Filters Screen-->
+                <template if:true={currentWizardState.hasFilters}>
+                    <lightning-layout-item size=12>
+                        <template for:each={filterList} for:item="filter">
+                            <!-- <div key={filter.filter.Name} name="divBackground" onclick={handleNavigateToFilterSet} class="hoverBackgroundChange slds-box slds-box_x-small slds-p-bottom_small slds-m-around_small"> -->
+                                <lightning-layout key={filter.filter.Name} class="hoverBackgroundChange slds-box slds-box_x-small slds-p-bottom_small slds-m-around_small">
+                                    <lightning-layout-item size=7 class="">
+                                        <h3>{filter.filter.Name}</h3>
+                                        <p style="font-weight: 12px;color: #919191">{filter.filter.Visibility__c}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1 class="filterEditLink slds-media slds-media_center">
+                                        <lightning-button
+                                            variant="base"
+                                            label="Edit"
+                                            alternative-text="Edit"
+                                            title="Edit"
+                                            name={filter.filter.Name}
+                                            onclick={handleCreateEditFilter}
+                                            index={index}
+                                        ></lightning-button>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=3 class="slds-media slds-media_center">
+                                        <lightning-input
+                                            type="toggle"
+                                            name={filter.filter.Name}
+                                            checked={filter.assignmentFilter.Pinned__c}
+                                            class="slds-media slds-media_center"
+                                            onchange={handleFilterSelection}
+                                            message-toggle-active=""
+                                            message-toggle-inactive=""
+                                            index={index}
+                                        ></lightning-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1 class="slds-media slds-media_center">
+                                        <lightning-button-icon
+                                            icon-name="utility:chevronright"
+                                            size="medium"
+                                            variant="container"
+                                            name={filter.filter.Name}
+                                            alternative-text="Go to Filter Sets"
+                                            onclick={handleNavigateToFilterSet}
+                                            index={index}
+                                        ></lightning-button-icon>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            <!-- </div> -->
+                        </template>
+                        <lightning-button
+                            variant="base"
+                            label="Create Filter Group"
+                            title="Create Filter Group"
+                            name="Create Filter"
+                            class="slds-p-left_xx-small"
+                            onclick={handleCreateEditFilter}
+                        ></lightning-button>
+                        <template if:true={hasChanged}>
+                            <div class="slds-p-around_medium">
+                                The table will be updated once you have closed the Filter Manager.
+                            </div>
+                        </template>
+                    </lightning-layout-item>
+                </template>
+                <!-- No Filters Screen -->
+                <template if:false={currentWizardState.hasFilters}>
+                    <lightning-layout-item size=12>
+                        <p class="slds-text-align_center slds-p-top_large slds-p-bottom_x-small">
+                            You currently have no filters
+                        </p>
+                        <lightning-button
+                            label="Create a Filter Group"
+                            title="Create a Filter Group"
+                            name="Create Filter"
+                            onclick={handleCreateEditFilter}
+                            variant="brand"
+                            class="slds-align_absolute-center slds-p-bottom_large"
+                        ></lightning-button>
+                    </lightning-layout-item>
+                </template>
+            </template>
+            <!-- Create/Edit a Filter Screen -->
+            <template if:true={showCreateEditFilterScreen}>
+                <lightning-layout-item size=12>
+                    <div class="slds-m-around_small">
+                        <lightning-input
+                            class="slds-p-bottom_xx-small"
+                            type="text"
+                            label="Name of Filter Group"
+                            maxlength="255"
+                            value={currentWizardState.selectedFilterName}
+                            onchange={handleFilterManagerNameChange}
+                            required
+                        ></lightning-input>
+                        <lightning-combobox
+                            label="Permission Type"
+                            placeholder="Choose one..."
+                            onchange={handlePermissionTypeChange}
+                            options={permissiontypeOptions}
+                            value="Private"
+                            required
+                            read-only
+                        ></lightning-combobox>
+                    </div>
+                    <div>
+                        <a class="slds-button slds-p-left_xx-small" name={currentWizardState.negativeAction} style="color: #C61521" onclick={handleNegativeActionFilter}>{currentWizardState.negativeAction}</a>
+                        <lightning-button
+                            variant="base"
+                            label={currentWizardState.positiveAction}
+                            title={currentWizardState.positiveAction}
+                            name={currentWizardState.positiveAction}
+                            class="slds-p-right_xx-small slds-float_right"
+                            onclick={handlePositiveActionFilter}
+                        ></lightning-button>
+                    </div>
+                </lightning-layout-item>
+            </template>
+            <!-- Show Filter Set Screen -->
+            <template if:true={showFilterSetScreen}>
+                <!-- Has Filter Sets -->
+                <template if:true={currentWizardState.hasFilterSets}>
+                    <lightning-layout-item size=12>
+                        <template iterator:filterset={filterSetList}>
+                            <div key={filterset.value.key} class="hoverBackgroundChange slds-box slds-box_x-small slds-p-bottom_small slds-m-around_small">
+                                <lightning-layout>
+                                    <lightning-layout-item size=7 class="">
+                                        <h3>Filter by {filterset.value.label}</h3>
+                                        <p style="font-weight: 12px;color: #919191">{filterset.value.label} {filterset.value.operator} {filterset.value.valueTextToShow}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1 class="filterEditLink slds-media slds-media_center" >
+                                        <lightning-button
+                                            variant="base"
+                                            label="Edit"
+                                            alternative-text="Edit"
+                                            title="Edit"
+                                            name={filterset.value.field}
+                                            onclick={handleCreateEditFilterSet}
+                                            value={filterset.index}
+                                        ></lightning-button>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=3 class="slds-media slds-media_center">
+                                        <lightning-input
+                                            type="toggle"
+                                            name={filterset.value.field}
+                                            checked={filterset.value.isActive}
+                                            onchange={handleFilterSetSelection}
+                                            message-toggle-active=""
+                                            message-toggle-inactive=""
+                                            value={filterset.index}
+                                        ></lightning-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size=1 class="slds-media slds-media_center">
+                                        <template if:true={filterset.value.canDelete}>
+                                            <lightning-button-icon
+                                                icon-name="utility:close"
+                                                size="medium"
+                                                variant="container"
+                                                name={filterset.value.field}
+                                                alternative-text="delete"
+                                                onclick={handleDeleteFilterSet}
+                                                value={filterset.index}
+                                            ></lightning-button-icon>
+                                        </template>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                        </template>
+                        <lightning-button
+                            variant="base"
+                            label="Create Filter"
+                            title="Create Filter Set"
+                            name="Create Filter Set"
+                            class="slds-p-left_xx-small"
+                            onclick={handleCreateEditFilterSet}
+                        ></lightning-button>
+                    </lightning-layout-item>
+                </template>
+                <!-- No Filter Sets -->
+                <template if:false={currentWizardState.hasFilterSets}>
+                    <lightning-layout-item size=12>
+                        <p class="slds-text-align_center slds-p-top_large slds-p-bottom_x-small slds-m-around_medium">
+                            You currently have no filter sets asscoiated with this filter
+                        </p>
+                        <lightning-button
+                            label="Create a Filter Set"
+                            title="Create a Filter Set"
+                            name="Create Filter Set"
+                            variant="brand"
+                            onclick={handleCreateEditFilterSet}
+                            class="slds-align_absolute-center slds-p-bottom_large"
+                        ></lightning-button>
+                    </lightning-layout-item>
+                </template>
+            </template>
+            <!-- Create/Edit a Filter Set Screen -->
+            <template if:true={showCreateEditFilterSetScreen}>
+                <lightning-layout-item size=12>
+                    <div class="slds-m-around_small">
+                        <lightning-combobox
+                            label="Field"
+                            placeholder="Choose one..."
+                            onchange={handleFieldChange}
+                            options={filterOptions}
+                            value={currentWizardState.selectedFilterSetField}
+                            required
+                        ></lightning-combobox>
+                        <lightning-combobox
+                            label="Operator"
+                            placeholder="Choose one..."
+                            onchange={handleFilterSetOperatorChange}
+                            options={filterSetOperatorOptions}
+                            value={currentWizardState.selectedFilterSetOperator}
+                            required
+                        ></lightning-combobox>
+                        <template if:true={showFilterSetValueInput}>
+                            <lightning-input
+                                class="slds-p-bottom_xx-small"
+                                type="text"
+                                label="Value"
+                                maxlength="255"
+                                onchange={handleFilterSetValueChange}
+                                value={currentWizardState.selectedFilterSetValue}
+                                required
+                            ></lightning-input>
+                        </template>
+                        <template if:true={showFilterSetValueCombobox}>
+                            <lightning-combobox
+                                label="Value"
+                                placeholder="Choose one..."
+                                onchange={handleFilterSetValueChange}
+                                options={filterSetValueOptions}
+                                value={currentWizardState.selectedFilterSetValue}
+                                required
+                            ></lightning-combobox>
+                        </template>
+                        <template if:true={showFilterSetValueLookup}>
+                            <c-lookup custom-key="master" data-item="master" selection={currentWizardState.selectedFilterSetValue} errors={lookupErrors}
+                                onsearch={handleLookupSearch} onselectionchange={handleLookupChange} is-multi-entry=true
+                                label="Value" name="value" placeholder="Start Typing...">
+                            </c-lookup>
+                        </template>
+                    </div>
+                    <div>
+                        <a class="slds-button slds-p-left_xx-small" name={currentWizardState.negativeAction} style="color: #C61521" onclick={handleNegativeActionFilter}>{currentWizardState.negativeAction}</a>
+                        <lightning-button
+                            variant="base"
+                            label={currentWizardState.positiveAction}
+                            title={currentWizardState.positiveAction}
+                            name={currentWizardState.positiveAction}
+                            class="slds-p-right_xx-small slds-float_right"
+                            onclick={handlePositiveActionFilterSet}
+                        ></lightning-button>
+                    </div>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+    <!-- Deletion Modal -->
+    <template if:true={showDeleteModal}>
+        <lightning-layout>
+            <lightning-layout-item size=12>
+                <!-- Modal/Popup Box LWC starts here -->
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">	
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box LWC header here -->
+                        <lightning-layout>
+                            <header id="modalPopup" class="slds-modal__header" style="width:100%">
+                                <lightning-layout-item size=12>
+                                    <h1 id="modal-heading-01" class="slds-text-heading_large slds-hyphenate slds-float_left">Delete {currentWizardState.deleteLabel}</h1>
+                                    <lightning-button-icon
+                                            icon-name="utility:close"
+                                            size="large"
+                                            variant="bare"
+                                            alternative-text="Close"
+                                            class="slds-float_right"
+                                            onclick={handleCloseModal}
+                                        ></lightning-button-icon>
+                                </lightning-layout-item>
+                            </header>
+                        </lightning-layout>
+                        <!-- Modal/Popup Box LWC body starts here -->
+                        <lightning-layout>
+                            <lightning-layout-item size=12>
+                                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                    <h2 class="slds-text-heading_small slds-p-bottom_small">Are you sure you would like to delete this filter set? This will permanently delete {currentWizardState.deleteLabel}</h2>
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <!-- Modal/Popup Box LWC footer starts here -->
+                        <lightning-layout>
+                            <lightning-layout-item size=12>
+                                <footer class="slds-modal__footer">
+                                    <button class="slds-button slds-button_neutral" onclick={handleCloseModal} title="Cancel">Cancel</button>
+                                    <button class="slds-button slds-button_brand" onclick={handleDelete} title="Delete">Delete</button>
+                                </footer>
+                            </lightning-layout-item>
+                    </lightning-layout>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+</template>

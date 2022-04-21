@@ -1,0 +1,10 @@
+<!--
+ - @description aura wrapper for the recurring event lwc (lwc can't be used as a quick action yet)
+ - @name tracRecurringEventWrapper
+ - @author Daniel Labonte, Traction on Demand
+ - @date 2019-09-17
+ -->
+
+<aura:component description="tracRecurringEventWrapper" implements="lightning:actionOverride,force:lightningQuickAction,force:hasRecordId,force:hasSObjectName">
+    <c:tracRecurringEvent recordId="{!v.recordId}" onclose="{!c.closeModal}"></c:tracRecurringEvent>
+</aura:component>

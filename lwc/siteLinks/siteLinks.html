@@ -1,0 +1,31 @@
+<!--
+ - @description A component to display links of internal/external websites. It is available on Utility Bar and App.
+ - It is configurable through Site_Links__c Custom Settings.
+ -
+ - @name SiteLinks
+ - @author Manmeet Vaseer
+ - @date 07/02/2021
+ -->
+ <template>
+    <template if:false={showError}>
+        <div>
+            <ul class="slds-m-around_medium slds-list_dotted">
+                <template for:each={siteLinks} for:item="siteLink">
+                    <li key={siteLink.Id}>
+                        <lightning-formatted-url value={siteLink.url} tooltip={siteLink.label} label={siteLink.label}
+                            target="_blank"></lightning-formatted-url>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </template>
+    <template if:true={showError}>
+        <div
+            style="background-color:rgb(238, 236, 236); border-radius:5px; border-width:thin; border-color:rgb(204, 204, 204); border-style:solid;">
+            <ui:message style="color:black; font-size:100%; text-align:center;">
+                <center>Error Loading Site Links: {error}</center>
+            </ui:message>
+        </div>
+    </template>
+
+</template>

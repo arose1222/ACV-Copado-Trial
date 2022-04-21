@@ -1,0 +1,276 @@
+<template>
+
+    <!--Navigation buttons are at bottom of page -->
+    
+    <!-- Step 1 -->
+        <!--Now or Later -->
+
+        <template if:true={isStateTime}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-radio-group name="radioGroup1"
+                                label="When should this inspection happen?"
+                                options={timeSelectionOptions}
+                                value={timeSelection}
+                                type="radio"
+                                onchange={handleTimeSelection}></lightning-radio-group>
+            </div>
+        </template>
+
+    <!-- Step 2 -->
+        <!--Revolving Appointment?-->
+        <template if:true={isStateRevolving}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-radio-group name="radioGroup2"
+                                label="What type of appointment?"
+                                options={revolvingAppointmentOptions}
+                                value={revolvingAppointmentSelection}
+                                type="radio"
+                                onchange={handleRevolvingSelection}></lightning-radio-group>
+                </div>
+        </template>
+
+
+    <!-- Step 3 -->
+        <!--Revolving Appointment Wizard-->
+        <template if:true={OpenRevolvingModal}>
+            <c-trac-recurring-event record-id={recordId} onclose={handleRevolvingClose} 
+                    account-billing-street={account.BillingStreet} 
+                    account-billing-city={account.BillingCity} 
+                    account-billing-country={account.BillingCountry} 
+                    account-billing-state={account.BillingState} 
+                    account-billing-postal-code={account.BillingPostalCode} 
+                    account-halt-true360-appointments={account.Halt_True360_Appointments__c}>
+            </c-trac-recurring-event>
+        </template>
+
+    <!-- Step 4 -->
+        <!--Select Day-->
+        <template if:true={isStateDay}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input type="date" name="dateInput" label="Date of Appointment" value={selectedDate} onchange={handleDate}></lightning-input>
+            </div>
+        </template>
+
+    <!-- Step 5 -->
+        <!--Live Appraisal Wizard-->
+        <template if:true={isStateLiveAppraisal}>
+            <c-live-appraisal record-id={recordId} onclose={handleRevolvingClose} 
+                    account-rec={account} 
+                    work-order-info-rec={workOrderInfo}>
+            </c-live-appraisal>
+        </template>
+
+    <!-- Step 6 -->
+        <!--How Many Cars?-->
+        <template if:true={isStateVehicles}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input type="number" name="WholesaleInspection" onchange={handleWS} label="Number of Wholesale" value={workOrderInfo.WSCount}></lightning-input>
+                <lightning-input type="number" name="True360" onchange={handleT360} label="Number of True 360" value={workOrderInfo.T360Count}></lightning-input>
+                <lightning-input type="number" name="SiriusXM" onchange={handleSXM} label="Number of SiriusXM" value={workOrderInfo.SXMCount}></lightning-input>
+                <br>
+                <lightning-input type="checkbox" name="BuyerSignup" onchange={handleBSU} label="Buyer Signup" checked={workOrderInfo.BSUCheck}></lightning-input>
+                <br>
+                <br>
+                <lightning-input type="checkbox" name="NotificationRequest" onchange={handleNotificationRequest} label="I would like to be notified when my request is fulfilled" checked={workOrderInfo.NotificationRequest}></lightning-input>
+            </div>
+        </template>
+
+    <!-- Step 7 -->
+        <!--Address -->
+        <template if:true={isStateAddress}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input-address
+                    address-label="Address"
+                    street-label="Street"
+                    street={account.BillingStreet}
+                    city-label="City"
+                    city={account.BillingCity}
+                    country-label="Country"
+                    country={account.BillingCountry}
+                    province-label="State"
+                    province={account.BillingState}
+                    postal-code-label="Zip Code"
+                    postal-code={account.BillingPostalCode}
+                    show-address-lookup
+                    onchange={handleAddress}>
+                </lightning-input-address>
+            </div>
+        </template>
+
+
+    <!-- Step 8 -->
+        <!-- Contact -->
+        <template if:true={isStateContact}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                    <c-lookup name="Contact" selection={initialSelection} errors={errors}
+                                        onsearch={handleContactSearch} onselectionchange={handleContact}
+                                        label="Contact" placeholder="Search for Contact" is-multi-entry={isMultiEntry}>
+                    </c-lookup>
+            </div>
+        </template>
+
+
+    <!-- Step 9 -->
+        <!--Inspection Notes-->
+        <template if:true={isStateNotes}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input type="text" label="Inspections Notes" placeholder="Notes" onchange ={handleNotes}></lightning-input>
+            </div>
+        </template>
+
+    <!-- Step 10 -->
+        <!--Summary-->
+        <template if:true={isStateSummary}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input type="text" name="Wholesale Vehicles" label="Wholesale Vehicles" disabled value={workOrderInfo.WSCount} ></lightning-input>
+                <lightning-input type="text" name="True 360 Vehicles" label="True 360 Vehicles" disabled value={workOrderInfo.T360Count} ></lightning-input>
+                <lightning-input type="text" name="SiriusXM Vehicles" label="SiriusXM Vehicles" disabled value={workOrderInfo.SXMCount} ></lightning-input>
+                <lightning-input type="text" name="Date" label="Date" disabled value={workOrderInfo.date} ></lightning-input>
+                <lightning-input type="text" name="Notes" label="Notes" disabled value={workOrderInfo.notes} ></lightning-input>
+
+            </div>
+        </template>
+
+
+        <template if:true={isStateInspection}>
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                <b>{inspectionDuration} Standard Inspection</b>
+            </div>
+
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                <lightning-formatted-date-time value={workOrderInfo.date}></lightning-formatted-date-time>
+            </div>
+            <template if:true={showOffers}>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    When would you like an inspector to arrive?
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="Anytime" title="Anytime" onclick={handleAnytime} variant="Brand" disabled={isInspectionFullDayAvailable}></lightning-button>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    <b>OR</b>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="8:30am - 12:30pm" title="AM" name="amInspectionOffer" variant="Brand" onclick={handleSaveOffer} disabled={isInspectionAMUnavailable}></lightning-button>
+                </div>
+
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="12:30pm - 5:00pm" title="PM" name="pmInspectionOffer" variant="Brand" onclick={handleSaveOffer} disabled={isInspectionPMUnavailable}></lightning-button>
+                </div>
+                <template if:true={isInspectionUnavailable}>
+                    <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                        Unfortunately, there is no availability on this date.
+                    </div>
+                    <div class="slds-align_absolute-center slds-p-top_large">
+                        <lightning-button label="Create Request Anyway" title="Create Request Anyway" variant="destructive" onclick={handleFullDayWithoutAvail} ></lightning-button>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+        <template if:true={isStateTrue360}>
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                <b>{true360Duration} True 360</b>
+            </div>
+
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                <lightning-formatted-date-time value={workOrderInfo.date}></lightning-formatted-date-time>
+            </div>
+
+            <template if:true={showOffers}>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    When would you like an inspector to arrive?
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="Anytime" title="Anytime" onclick={handleAnytime} variant="Brand" disabled={isTrue360FullDayAvailable}></lightning-button>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    <b>OR</b>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="8:30am - 12:30pm" title="AM" name="amTrue360Offer" variant="Brand" onclick={handleSaveOffer} disabled={isTrue360AMUnavailable}></lightning-button>
+                </div>
+
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="12:30pm - 5:00pm" title="PM" name="pmTrue360Offer" variant="Brand" onclick={handleSaveOffer} disabled={isTrue360PMUnavailable}></lightning-button>
+                </div>
+                <template if:true={isTrue360Unavailable}>
+                    <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                        Unfortunately, there is no availability on this date.
+                    </div>
+                    <div class="slds-align_absolute-center slds-p-top_large">
+                        <lightning-button label="Create Request Anyway" title="Create Request Anyway" variant="destructive" onclick={handleFullDayWithoutAvail} ></lightning-button>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+        <template if:true={isStateSiriusXM}>
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                    <b>{siriusXMDuration} Sirius XM</b>
+                </div>
+
+            <div class="slds-align_absolute-center slds-m-top_small slds-text-heading_large">
+                <lightning-formatted-date-time value={workOrderInfo.date}></lightning-formatted-date-time>
+            </div>
+
+            <template if:true={showOffers}>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    When would you like an inspector to arrive?
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="Anytime" title="Anytime" onclick={handleAnytime} variant="Brand" disabled={isSiriusXMFullDayAvailable}></lightning-button>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                    <b>OR</b>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="8:30am - 12:30pm" title="AM" name="amSiriusXMOffer" variant="Brand" onclick={handleSaveOffer} disabled={isSiriusXMAMUnavailable}></lightning-button>
+                </div>
+
+                <div class="slds-align_absolute-center slds-p-top_large">
+                    <lightning-button label="12:30pm - 5:00pm" title="PM" name="pmSiriusXMOffer" variant="Brand" onclick={handleSaveOffer} disabled={isSiriusXMPMUnavailable}></lightning-button>
+                </div>
+                <template if:true={isSiriusXMUnavailable}>
+                    <div class="slds-align_absolute-center slds-p-top_medium slds-text-heading_medium">
+                        Unfortunately, there is no availability on this date.
+                    </div>
+                    <div class="slds-align_absolute-center slds-p-top_large">
+                        <lightning-button label="Create Request Anyway" title="Create Request Anyway" variant="destructive" onclick={handleFullDayWithoutAvail} ></lightning-button>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+
+        <template if:true={showLoadingSpinner}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large slds-p-around_x-large">
+                <div class="slds-is-relative">
+                    <lightning-spinner alternative-text="Processing Request..." variant="brand">
+                    </lightning-spinner>
+                </div>
+            </div>
+        </template>
+
+
+            <!-- Navigation Buttons -->
+
+
+    <div>
+        <template if:false={isProcessing}>
+            <template if:false={isHideButtons}>
+                <!-- <footer class="slds-modal__footer"> -->
+                <lightning-button label={previousButtonLabel} title="Previous" icon-name={previousIconName}
+                    onclick={handlePreviousClick}>
+                </lightning-button>
+
+                <lightning-button label={nextButtonLabel} title="Next" icon-name={nextIconName}
+                    onclick={handleNextClick}>
+                </lightning-button>
+            <!-- </footer> -->
+            </template>
+        </template>
+    </div>
+
+
+</template>

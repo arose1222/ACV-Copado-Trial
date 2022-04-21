@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This is populated on Refresh with the Apex Class ACVSandboxRefreshScript. It holds the values that are avaiable from the SandboxRefresh context.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Organization_Id__c</fullName>
+        <description>This holds the Id of the Organization</description>
+        <externalId>false</externalId>
+        <label>Organization Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sandbox_Id__c</fullName>
+        <description>This holds the Id of the Sandbox</description>
+        <externalId>false</externalId>
+        <label>Sandbox Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sandbox_Name__c</fullName>
+        <description>This holds the name of the Sandbox</description>
+        <externalId>false</externalId>
+        <label>Sandbox Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Environment Information</label>
+    <visibility>Public</visibility>
+</CustomObject>

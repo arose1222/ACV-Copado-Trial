@@ -1,0 +1,331 @@
+<apex:page controller="EXPRN.AlertHistoryResults" docType="html-5.0" tabStyle="Alert_History__tab">
+
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-1.6.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jqPlugin, '/jquery.blockUI.js')}"/>            
+    <apex:stylesheet value="{!URLFOR($Resource.EXPRN__jQuery, 'css/ui-lightness/jquery-ui-1.8.16.custom.css')}"/>
+      
+    <style>
+    
+        .oddrow {background-color: white; text-align:left; font-size: 11px; } 
+        .evenrow {background-color: #EFFBFB; text-align:left; font-size: 11px; } 
+        .filterHeader {font-weight:bold ; font-size: 15px; color:#1c94c4; }      
+        .filterLabel {font-weight:bold; padding-left:16px; font-size: 11px; }
+        .filterText {font-size: 11px; }       
+        .link {font-weight:bold; font-size: 11px; color:#1c94c4; }
+        .flink {font-weight:bold; font-size: 12px; color:#1c94c4; }
+        .closeLink {color:white; font-size:small; float:right; }
+        .headerText {text-align:center; }
+        .pageLink {font-weight:bold; color:#1c94c4; }
+        .pageText {color:grey;}
+                
+        .ui-widget-header {background:#1c94c4 !important; border: 1px solid #1c94c4 !important;}                 
+        .btn { padding: 2px 2px !important; font-weight: 600 !important; }                                    
+                
+        .custPopup{
+            background-color: white;
+            //border-width: 0px;
+            //border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:5px;
+            position: absolute;
+            
+            width: 500px;            
+            margin-left: -250px;
+            top:100px;
+        }
+        
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        
+        .summaryPopup{
+            background-color: white;
+            //border-width: 0px;
+            //border-style: solid;
+            z-index: 9999;
+            left: 45%;
+            padding:5px;
+            position: absolute;
+            
+            width: 700px; 
+            margin-left: -250px;
+            top:50px;
+        }
+        
+        .Processing
+        {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+        } 
+        
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        }          
+        .list {
+            overflow: scroll;
+            
+            width :100%;
+            
+        }       
+        .firstColGrid {
+            width:30%;
+        }
+        
+        .secondColGrid {
+            width:50%;
+        }   
+        .td { 
+            border:transparent!important;
+        }          
+    </style>
+    
+    <script>
+
+        $j = jQuery.noConflict();
+                       
+        $j(document).ready(function()
+        {                                                                                                                                                                                       
+        });
+                                                                      
+        function checkAll(checkbox,section)
+        {                                                                                 
+            $j('.'+section).each(function() 
+            {
+                this.checked = checkbox.checked;
+            });                          
+        }
+        
+        function selectAlertType(choice,section)
+        {                                                                                 
+            $j('.'+section).each(function() 
+            {
+                this.checked = choice;
+            });                          
+        }
+        
+        function j_checkCount()
+        {
+            var checkCount = 0;
+            
+            $j('.check').each(function() 
+            {
+                if(this.checked)
+                    checkCount++;    
+            });
+            return checkCount;
+        }
+        
+        function readDelete()
+        {
+            var checkCount = j_checkCount();
+                                                            
+            if(checkCount == 0)
+            {
+                alert('Please select one or more Alerts');                
+                return false;
+            }
+                            
+            afCreateAccount(); 
+            return false;             
+        }
+                                                                                                                               
+    </script>
+    
+    <apex:sectionHeader title="Alert History"/>
+    
+    <apex:pagemessages rendered="{!!isAuthorized}"/>
+    
+    <apex:form id="frm" rendered="{!isAuthorized}">
+            
+        <apex:actionFunction name="afCreateAccount" action="{!getcreateAccount}" reRender="frm" status="modal"/>
+        
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />                
+            </div>
+       </div>
+       
+       <apex:actionStatus id="modal" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />        
+     
+                      
+       <apex:pageBlock title="Alert History">
+        
+            <apex:pageBlockSection columns="2">            
+                <apex:input label="Start Date" type="date" value="{!startDate}" id="startDate"/>
+                <apex:input label="End Date" type="date" value="{!endDate}" id="endDate"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="View Results" action="{!getdata}" rerender="frm" status="modal"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+        
+              
+        <apex:pageMessages id="infomsg"/>
+        
+        <table style="height:100%; width:100%">
+            <tr style="width:100%">                       
+                <td style="width:100%">
+                    <apex:pageBlock id="pb2">
+                                                                                               
+                        <apex:pageBlockButtons location="top">                           
+                            <apex:panelGrid columns="16">                                              
+                                <apex:commandButton value="Import Alerts" 
+                                                    onclick="return readDelete();"                                                    
+                                                    title="Once a date range has been selected above,select View Result"/>
+                                                    
+                            </apex:panelGrid>                           
+                        </apex:pageBlockButtons>
+                                                                                                                                                                                                                                                                    
+                         <div class="searchDiv">
+                             
+                             <apex:pageBlockSection columns="1" > 
+                                                                                       
+                                 <apex:pageBlockTable value="{!accountWrapList}" var="a" rowClasses="oddrow,evenrow" headerClass="headerText" rendered="{!accountWrapList.size > 0}" id="tablePbs">
+                                                                                                                                                
+                                    <apex:column styleClass="headerText"> 
+                                        <apex:facet name="header">
+                                            <input type="checkbox" id="selectAll" onclick="checkAll(this,'check')"/>                                   
+                                        </apex:facet>
+                                                                        
+                                        <apex:inputCheckbox value="{!a.pickMe}" styleClass="check"/>                                                                                                                                                                         
+                                    </apex:column>
+                                                                                                                                                                                                     
+                                    <apex:column headerValue="Business Name">                                                                                                                                                                       
+                                         <!--<apex:outputLink target="_blank" value="/{!a.accountName}">-->{!a.accountName}<!--</apex:outputLink>-->
+                                    </apex:column>
+                                                                        
+                                    <apex:column headerValue="Account Number(s)">                                                                                          
+                                         <apex:outputText value="{!a.accountNums}"/>                                                                                                                                                              
+                                    </apex:column>
+                                                                        
+                                    <apex:column headerValue="BIN" value="{!a.binNum}">                                                                                                                                         
+                                    </apex:column> 
+                                                                                                                                                                      
+                                    <apex:column headerValue="Priority" value="{!a.priority}">                                                                                                                                           
+                                    </apex:column>                                                                                                          
+                                
+                                    <apex:column > 
+                                        <apex:facet name="header">                                        
+                                            <apex:image value="/img/icon/mail16.png" title="Alerts Date"/> 
+                                              <!--  <apex:param name="sortField" value="Alert_Date__c" assignTo="{!sortField}"/> -->
+                                        </apex:facet>
+                                                        
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                           <apex:param value="{!a.accountDate}" /> 
+                                        </apex:outputText>                                     
+                                    </apex:column>
+                                
+                                    <apex:column > 
+                                        <apex:facet name="header">
+                                            <apex:outputLink value="/apex/AMSTriggerCode" target="_blank">
+                                                <apex:image value="/img/samples/flag_red.gif"/> 
+                                            </apex:outputLink>   
+                                        </apex:facet>
+                                                                     
+                                        <apex:commandLink value="{!a.triggerDisplay}" action="{!openPopups}" rerender="summarypopup" style="color: #0193dc;" status="modal">                                
+                                            <apex:param name="selectedAccount" value="{!a.binNum}" assignTo="{!selectedAccount}"/>
+                                            <apex:param name="popUp" value="Summary" assignTo="{!popUp}"/>                                  
+                                        </apex:commandLink>
+                                    
+                                    </apex:column>
+                                                                        
+                                </apex:pageBlockTable> 
+                                
+                                Total Results: {!accountWrapList.size}
+                                <br/><br/>
+                            
+                            </apex:pageBlockSection>                                               
+                        </div>                                                                                                                                            
+                    </apex:pageBlock>
+                </td>
+            </tr>
+        </table>                    
+                                                
+
+        <apex:outputPanel id="summarypopup">            
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Summary'}"/>
+            
+            <apex:outputPanel styleClass="summaryPopup" layout="block" rendered="{!popUp=='Summary'}">
+               
+                <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:medium;">
+                        Alerts
+                        
+                    <apex:commandLink styleClass="closeLink" reRender="summarypopup" action="{!closePopups}" immediate="true" title="Close">
+                        X                                                            
+                    </apex:commandLink>
+                    
+                </apex:outputPanel> 
+                
+                <apex:pageBlock mode="maindetail">
+    
+                    <apex:pageBlockSection columns="2">
+                        <apex:outputText value="" label="Portfolio Name:"/>
+                        <apex:outputText value="{!selectedAccountWrapper.accountName}" label="Experian Name:"/>
+                        <apex:outputText value="" label="Portfolio Address:"/>
+                        <apex:outputText value="" label="Experian Address:"/>
+                        <apex:outputText value="{!selectedAccountWrapper.accountNums}" label="Account(s):"/>
+                        <apex:outputText value="{!selectedAccountWrapper.binNum}" label="Experian BIN:"/>
+                    </apex:pageBlockSection>
+                    
+                    <br/><br/>
+                    <table class = "list">
+                        <thead>
+                        <tr class="headerRow"> 
+                            <th style = "border:transparent;"> Alert ID   </th>
+                            <th style = "border:transparent;"> Trigger Type  </th>
+                            <th style = "border:transparent;"> Date       </th>
+                            <th style = "border:transparent;"> Priority </th>
+                            <th style = "border:transparent;"> Alert Details   </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <apex:repeat value="{!alertWrapperList}" var="a">                            
+                            <tr>
+                                <td style = "border:transparent;"> <apex:outputText value="{!a.AlertId}" />    </td>
+                                <td style = "border:transparent;"> <apex:outputText value="{!a.AlertType}" />  </td>
+                                <td style = "border:transparent;"><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                       <apex:param value="{!a.AlertDate}" /> 
+                                    </apex:outputText> </td>
+                                <td style = "border:transparent;"> <apex:outputText value="{!a.AlertPriorityCode}" /> </td>
+                                <td style = "border:transparent;"> <apex:dynamicComponent componentValue="{!pbTable}"/> </td>
+                            </tr>
+                        </apex:repeat>
+                        </tbody>
+                    </table>
+                    
+                    
+                </apex:pageBlock>
+                <br/>
+                
+                Total Alerts: {!alertWrapperList.size}
+                
+            </apex:outputPanel>
+        </apex:outputPanel>
+                                    
+    </apex:form>       
+</apex:page>

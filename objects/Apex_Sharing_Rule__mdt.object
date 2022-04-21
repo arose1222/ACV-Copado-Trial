@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Field Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_API_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Object API Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operation__c</fullName>
+        <description>Select how the value relates back to the field selection (&apos;Contains&apos; will search for any substring, &apos;Starts With&apos; will only check is the beginning of the string matches exactly to your input, &apos;Equals&apos; will look for a direct match)</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Operation</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Equals</fullName>
+                    <default>true</default>
+                    <label>Equals</label>
+                </value>
+                <value>
+                    <fullName>Contains</fullName>
+                    <default>false</default>
+                    <label>Contains</label>
+                </value>
+                <value>
+                    <fullName>Starts With</fullName>
+                    <default>false</default>
+                    <label>Starts With</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>If needed, you can use &apos;%%&apos; to represent a white space requirement for the sake any functionality (For example of if you wanted any values that start with &quot;C &lt;Some Territory Name Here&gt;&quot; to be shared with a specific group, you can write it as &quot;C%%&quot; for the sake of the Starts With function. If you just enter &quot;C&quot;, it will then also share records like &quot;Canada&quot; or &quot;Central&quot; (since those start with C).</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>If needed, you can use &apos;%%&apos; to represent a white space requirement for the sake any functionality (For example of if you wanted any values that start with &quot;C &lt;Some Territory Name Here&gt;&quot; to be shared with a specific group, you can write it as &quot;C%%&quot; for the sake of the Starts With function. If you just enter &quot;C&quot;, it will then also share records like &quot;Canada&quot; or &quot;Central&quot; (since those start with C).</inlineHelpText>
+        <label>Value</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Apex Sharing Rule</label>
+    <listViews>
+        <fullName>All_Main</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Active__c</columns>
+        <columns>Object_API_Name__c</columns>
+        <columns>Field_Name__c</columns>
+        <columns>Operation__c</columns>
+        <columns>Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All (Main)</label>
+    </listViews>
+    <pluralLabel>Apex Sharing Rules</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

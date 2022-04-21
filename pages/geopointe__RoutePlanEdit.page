@@ -1,0 +1,62 @@
+<apex:page standardController="geopointe__GP_Route_Plan__c" tabStyle="geopointe__GP_Route_Plan__c" extensions="geopointe.Localization,geopointe.RemoteAction,geopointe.Utils" sidebar="true" showheader="true" lightningStylesheets="false" standardStylesheets="false">
+
+	<apex:slds />
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/vendor/mapWeb.vendor.css')}"/> <!-- App Vendor CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/dist/mapWeb.css')}"/> <!-- App CSS --> 
+	<c:GlobalVars />
+
+	<script src="{!URLFOR($Page.translations)}"></script> <!-- Geopointe translations -->
+	<script src="{!URLFOR($Resource.geopointeWeb, '/vendor/mapWeb.vendor.js')}"></script>
+	<script src="{!URLFOR($Resource.jquery, '/js/lib/angular/locales/angular-locale_'& angularLocaleForCurrentUser &'.js')}"></script> <!-- Angular -->
+	<script src="{!URLFOR($Resource.jquery, '/js/lib/moment/lang/'& momentJSLangForCurrentUser &'.js')}"></script> <!-- Moment.js language file -->
+	<script src="{!$Resource.GeopointeJS}"></script> <!-- Geopointe universal functions -->
+	<script src="{!URLFOR($Resource.geopointeWeb, '/dist/mapWeb.js')}"></script>
+	<script src="{!URLFOR($Resource.js_api_v1)}"></script> <!-- Geopointe Javascript api -->
+	<script src="{!$Resource.GeopointeJS_goog}" ></script>
+	<!-- Lightning -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+	    <style type="text/css">
+	    	body{
+	    		margin: -1px !important;
+	    		background: #b0c4df !important;
+	    	}
+	    </style>
+	</apex:outputPanel>
+
+	<!-- Classic -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+	    <style type="text/css">
+	    	.slds-scope .slds-table td {
+			    display: table-cell;
+			    vertical-align: inherit;
+			}
+	    </style>
+	</apex:outputPanel>
+
+	<style type="text/css">
+    	.auto-width{
+    		width: auto !important;
+    	}
+    	.slds-icon{
+    		cursor: pointer !important;
+    	}
+    </style>
+
+    <script type="text/javascript">
+		var gpResourceJquery = '{!URLFOR($Resource.jquery)}';
+		var gpAssetSldsSprites = {utility:'{!URLFOR($Asset.SLDS, "assets/icons/utility-sprite/svg/symbols.svg")}',standard:'{!URLFOR($Asset.SLDS, "assets/icons/standard-sprite/svg/symbols.svg")}'};
+		var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+		var gpRemoteActionReadOnly = '{!$RemoteAction.RemoteAction.doRemoteActionReadOnly}';
+		var redirectUrl = "{!URLFOR($Action.GP_Route_Plan__c.View, GP_Route_Plan__c.id)}";
+		var gpImagesUrl = "{!URLFOR($Resource.images)}";
+    </script>
+
+	<div class="slds-scope">
+		<app-user-route-plan></app-user-route-plan>
+	</div>
+
+	<script src="{!URLFOR($Resource.angular, 'angular/runtime.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/polyfills.js')}"></script>
+	<script src="{!URLFOR($Resource.angular, 'angular/main.js')}"></script>
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__angular, 'angular/styles.css')}" />
+</apex:page>

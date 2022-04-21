@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This metadata is child of Outbound integration field mapping and contains Integer to Picklist values mapping for a field</description>
+    <fields>
+        <fullName>ACV_Field_Mapping__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ACV Fields</label>
+        <referenceTo>ACV_Field_Mapping__mdt</referenceTo>
+        <relationshipName>Acv_Picklist_Value</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picklist_Value_Integer__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Picklist Value Integer</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picklist_Value_Text__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Picklist Value Text</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Outbound Integration Picklist Value</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>ACV_Field_Mapping__c</columns>
+        <columns>Picklist_Value_Integer__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Title_State</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Picklist_Value_Text__c</columns>
+        <columns>DeveloperName</columns>
+        <columns>ACV_Field_Mapping__c</columns>
+        <columns>Picklist_Value_Integer__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACV_Field_Mapping__c</field>
+            <operation>equals</operation>
+            <value>title_state_titles</value>
+        </filters>
+        <label>Title State</label>
+    </listViews>
+    <pluralLabel>Outbound Integration Picklist Values</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

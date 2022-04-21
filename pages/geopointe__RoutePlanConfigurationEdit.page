@@ -1,0 +1,98 @@
+<apex:page standardController="geopointe__GP_Route_Plan_Configuration__c"
+  tabStyle="geopointe__GP_Route_Plan_Configuration__c"
+  extensions="geopointe.RoutePlanConfigurationEditExtension,geopointe.Localization,geopointe.RemoteAction"
+  sidebar="true"
+  lightningStylesheets="false"
+  standardStylesheets="false"
+>
+  <apex:slds />
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/vendor/mapWeb.vendor.css')}" />
+  <!-- App Vendor CSS -->
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/dist/mapWeb.css')}" />
+  <!-- App CSS -->
+  <c:GlobalVars />
+  <script src="{!URLFOR($Page.translations)}"></script>
+  <!-- Geopointe translations -->
+  <script src="{!URLFOR($Resource.geopointeWeb, '/vendor/mapWeb.vendor.js')}"></script>
+  <script src="{!$Resource.GeopointeJS}"></script>
+  <!-- Geopointe universal functions -->
+  <script src="{!URLFOR($Resource.geopointeWeb, '/dist/mapWeb.js')}"></script>
+  <script src="{!URLFOR($Resource.js_api_v1)}"></script>
+  <!-- Geopointe Javascript api -->
+
+  <!-- Lightning -->
+  <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+    <style type="text/css">
+      body {
+        margin: -1px !important;
+        background: #b0c4df !important;
+      }
+    </style>
+  </apex:outputPanel>
+
+  <!-- Classic -->
+  <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+    <style type="text/css">
+      .slds-scope .slds-table td {
+        display: table-cell;
+        vertical-align: inherit;
+      }
+    </style>
+  </apex:outputPanel>
+
+  <script type="text/javascript">
+    var gpAssetSldsSprites = {
+      utility: '{!URLFOR($Asset.SLDS, "assets/icons/utility-sprite/svg/symbols.svg")}',
+      standard: '{!URLFOR($Asset.SLDS, "assets/icons/standard-sprite/svg/symbols.svg")}',
+    };
+    var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+    var namespacePrefix = '{!namespacePrefix}';
+    var distanceLimit = '{!distLimit}';
+    var showHideRoutePlanConfigurationDebugLogs = (shouldShow) => {
+      const modal = document.getElementById('routePlanConfigDebugLogsModal');
+      if (shouldShow) {
+        modal.style.display = 'block';
+      } else {
+        modal.style.display = 'none';
+      }
+    };
+    var routePlanConfigurationDeleteUrl = '{!IF(ISBLANK(rpc.id), "", URLFOR($Action.GP_Route_Plan_Configuration__c.Delete, rpc.id, [retURL=$CurrentPage.URL]))}';
+  </script>
+
+  <app-route-plan-configuration-edit></app-route-plan-configuration-edit>
+
+  <div id="routePlanConfigDebugLogsModal" style="display: none">
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open slds-modal_large"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="showHideRoutePlanConfigurationDebugLogs(false)">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+            </svg>
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Debug Logs</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium slds-text-longform" id="modal-content-id-1">
+          <apex:relatedList list="AttachedContentDocuments" />
+        </div>
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" onclick="showHideRoutePlanConfigurationDebugLogs(false)">Close</button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </div>
+
+  <script src="{!URLFOR($Resource.angular, 'angular/runtime.js')}"></script>
+  <script src="{!URLFOR($Resource.angular, 'angular/polyfills.js')}"></script>
+  <script src="{!URLFOR($Resource.angular, 'angular/main.js')}"></script>
+  <apex:stylesheet value="{!URLFOR($Resource.geopointe__angular, 'angular/styles.css')}" />
+</apex:page>

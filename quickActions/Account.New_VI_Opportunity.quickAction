@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>AccountId</field>
+        <formula>Account.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>CloseDate</field>
+        <formula>Today()+30</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>&quot;VI - &quot; &amp; Account.Name</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Primary_Contact__c</field>
+        <formula>Account.Primary_Contact__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>StageName</field>
+        <literalValue>New</literalValue>
+    </fieldOverrides>
+    <label>New VI Opportunity</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Type</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Primary_Contact__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Billing_Contact__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>StageName</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CloseDate</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <successMessage>Your Opportunity has been created.</successMessage>
+    <targetObject>Opportunity</targetObject>
+    <targetParentField>Account</targetParentField>
+    <targetRecordType>Opportunity.ACV_Sales_Opportunity</targetRecordType>
+    <type>Create</type>
+</QuickAction>

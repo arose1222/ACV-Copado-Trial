@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Direct Links to internal/external web sites.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Only show the if active.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Namespace__c</fullName>
+        <description>It is used to retrieve only the links related to this name space.</description>
+        <externalId>false</externalId>
+        <label>Namespace</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Site_Name__c</fullName>
+        <description>Name of the Website that will be visible as a link.</description>
+        <externalId>false</externalId>
+        <label>Site Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Site_URL__c</fullName>
+        <description>Website URL</description>
+        <externalId>false</externalId>
+        <label>Site URL</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Sort_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Sort Order</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Site Links</label>
+    <visibility>Public</visibility>
+</CustomObject>

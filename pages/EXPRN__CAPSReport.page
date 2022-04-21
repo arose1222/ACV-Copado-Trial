@@ -1,0 +1,39 @@
+<apex:page standardController="EXPRN__Credit_Report__c" extensions="EXPRN.CAPSHtmlReport" showHeader="false" >
+  <apex:form >
+  <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.EXPRN__EXPSTYLENEW, '/charts/js/FusionCharts.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.EXPRN__EXPSTYLENEW, '/charts/js/fusioncharts.charts.js')}" />
+  <br/>
+  <center><apex:commandButton value="Back" action="{!goBack}" /></center>
+  
+  <!--apex:outputText value="{!JSENCODE(htmlstr)}" escape="false"  /-->
+  <apex:outputPanel rendered="{!HtmlReports!= null}" layout="none">
+    <apex:dynamicComponent componentValue="{!HtmlReports}"/>
+</apex:outputpanel>
+  <script>
+      $('.fusion_chart').each(function(){
+            var chart_type = this.getAttribute('chart_type');
+            //createFusionChart(this, chart_type);
+            var dataXml = $(this).html();
+            while(dataXml.indexOf("&nbsp")!= -1)
+                {
+                dataXml = dataXml.replace('&nbsp','');
+                }
+            var nodeId = this.getAttribute('id');
+            var height = $(this).css('height');
+            if (height == '0px')
+                height = '400px';
+
+            if (dataXml) {
+                var fChart = new FusionCharts('/resource/*/EXPRN__EXPSTYLENEW/charts/'+chart_type+'.swf', 'fusion_'+nodeId, $(this).css('width'), height, 0, 1);
+                fChart.setDataXML(dataXml);
+                fChart.setTransparent(true);
+                fChart.render(nodeId);
+            }
+        });
+  </script> 
+  <br/>
+  <apex:pageMessages />
+  <center><apex:commandButton value="Back" action="{!goBack}" /></center><br/>
+  </apex:form>
+</apex:page>

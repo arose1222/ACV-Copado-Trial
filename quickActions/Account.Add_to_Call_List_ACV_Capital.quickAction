@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>ActivityDate</field>
+        <formula>today()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Notes__c</field>
+        <formula>&quot;Added to call list:  &quot; &amp;  Account.ACV_Capital_Primary_Contact__r.FirstName    &amp; &quot; &quot; &amp;  Account.ACV_Capital_Primary_Contact__r.LastName &amp; &quot;, &quot; &amp; 
+Account.Name &amp; &quot;, &quot; &amp;  Account.Phone</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Priority</field>
+        <literalValue>Normal</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Status</field>
+        <literalValue>Open</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Subject</field>
+        <formula>&quot;Call&quot;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Type</field>
+        <literalValue>Phone Call</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhatId</field>
+        <formula>Account.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhoId</field>
+        <formula>Account.ACV_Capital_Primary_Contact__c</formula>
+    </fieldOverrides>
+    <label>Add to Capital Call List</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>OwnerId</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Type</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Subject</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Notes__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>WhatId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>WhoId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>true</emptySpace>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <successMessage>Added to call list!</successMessage>
+    <targetObject>Task</targetObject>
+    <targetParentField>What</targetParentField>
+    <targetRecordType>Task.ACV_Capital_Task</targetRecordType>
+    <type>Create</type>
+</QuickAction>

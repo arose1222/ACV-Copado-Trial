@@ -1,0 +1,253 @@
+<apex:page controller="geopointe.CorrectLocationMobile_Controller" extensions="geopointe.Localization,geopointe.RemoteAction,geopointe.OrgSettings" action="{!init}" showHeader="false" sidebar="false" title="Correct Location - {!sObjectName}" standardStylesheets="false" lightningStylesheets="false" docType="html-5.0">
+
+	<apex:slds />
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/vendor/mapWeb.vendor.css')}"/> <!-- App Vendor CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.geopointe__geopointeWeb, '/dist/mapWeb.css')}"/> <!-- App CSS --> 
+	<c:GlobalVars />
+	<script src="{!URLFOR($Page.translations)}"></script> <!-- Geopointe translations -->
+	<script src="/canvas/sdk/js/publisher.js"/> <!-- Interact with sf1 wrapper -->
+	<script src="{!URLFOR($Resource.js_api_v1)}"/> <!-- Geopointe Javascript api -->
+
+	<script src="{!URLFOR($Resource.geopointeWeb, '/vendor/mapWeb.vendor.js')}"></script>
+	<script src="{!URLFOR($Resource.jquery, '/js/lib/angular/locales/angular-locale_'& angularLocaleForCurrentUser &'.js')}"></script> <!-- Angular -->
+	<script src="{!URLFOR($Resource.jquery, '/js/lib/moment/lang/'& momentJSLangForCurrentUser &'.js')}"></script> <!-- Moment.js language file -->
+	<script src="{!$Resource.GeopointeJS}"></script> <!-- Geopointe universal functions -->
+	<script src="{!URLFOR($Resource.geopointeWeb, '/dist/mapWeb.js')}"></script>
+
+	<!-- Lightning -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+		<style type="text/css">
+			body{
+				margin: -1px !important;
+				background: transparent !important;
+			}
+		</style>
+	</apex:outputPanel>
+
+	<!-- Classic -->
+	<apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+		<style type="text/css">
+			.slds-scope .slds-table td {
+				display: table-cell;
+				vertical-align: inherit;
+			}
+		</style>
+	</apex:outputPanel>
+
+	<style type="text/css">
+		.auto-width{
+			width: auto !important;
+		}
+		.slds-icon{
+			cursor: pointer !important;
+		}
+		.slds-form-element .slds-form-element__label{
+            top: 5px;
+            position: relative;
+        }
+	</style>
+
+	<script type="text/javascript">
+		var gpRecordId = '{!JSENCODE(recordId)}';
+		var gpResourceJquery = '{!URLFOR($Resource.jquery)}';
+		var gpAssetSldsSprites = {utility:'{!URLFOR($Asset.SLDS, "assets/icons/utility-sprite/svg/symbols.svg")}',standard:'{!URLFOR($Asset.SLDS, "assets/icons/standard-sprite/svg/symbols.svg")}'};
+		var gpRemoteAction = '{!$RemoteAction.RemoteAction.doRemoteAction}';
+	</script>
+
+	<div class="slds slds-container slds-container--center ng-cloak" id="ngApp" ng-app="GeopointeApp" ng-controller="CorrectLocationMobileController">
+		<div ng-show="saveSpinner || !showSpinner">
+			<div class="slds-text-heading_medium slds-align_absolute-center slds-p-top_xx-small" ng-if="launchFromMap">Correct Location</div>
+			<div class="slds-text-heading_small">
+				<div class="slds-form-element slds-col slds-size_1-of-1 slds-max-small-size_1-of-1">
+					<label class="slds-form-element__label">Name</label>
+					<div class="slds-form-element__control slds-border_bottom">
+						<div class="slds-form-element__static ">{!SobjectName}</div>
+					</div>
+				</div>
+				<div class="slds-form-element slds-col slds-size_1-of-1 slds-max-small-size_1-of-1" ng-show="selectedTab == 'correctMOLocation'">
+					<label class="slds-form-element__label">Address</label>
+					<div class="slds-form-element__control slds-border_bottom">
+						<div class="slds-form-element__static ">{{selectedMapObject.DisplayName}}</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="pickMapObject" class="slds-text-title_small slds-container--center slds-p-around-small" ng-show="selectedTab == 'pickMapObject'">
+				<div class="slds-p-top_medium slds-align_absolute-center">Select Address to Correct</div>
+				<div class="slds-p-vertical_small slds-align_absolute-center" ng-repeat="mo in matchingMapObjects">
+					<button class="slds-button slds-button_neutral slds-p-vertical_x-small" ng-click="selectMapObjectByIndex($index);" style="width:300px;max-width:60%">{{mo.DisplayName}}</button> <!--  style="min-width:60%"" -->
+				</div>
+			</div>
+
+			<div class="correctLocationMapWrapper slds-m-top_xx-small ng-cloak" ng-show="selectedTab == 'correctMOLocation'">
+				<!-- live map for updating location: center of map will be new coords -->
+				<div id="markerLocationMap" class="correctLocationMap">
+					// mapCanvas contents
+				</div>
+
+				<div class="correctLocationRecordAlert slds-align_absolute-center" ng-show="recordAlert">
+					<div class="slds-notify slds-notify_toast slds-theme_warning slds-m-vertical_large slds-p-right_small" role="warning" style="min-width: auto;">
+						<span class="slds-assistive-text">warning. record alert</span>
+						<span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
+							<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning')}" />
+							</svg>
+						</span>
+						<div class="slds-notify__content slds-align_absolute-center ">
+							<h2 class="slds-text">{{recordAlert}}</h2>
+						</div>
+						<span class="slds-icon_container slds-icon-utility-clear slds-m-left_small slds-no-flex slds-align-top" ng-click="recordAlert = ''">
+							<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#clear')}" />
+							</svg>
+						</span>
+					</div>
+				</div>
+
+				<!-- cosmetic marker to help locate center -->
+				<div id="markerCenter" class="correctLocationMarker">
+					<img id="markerCenterImg" src="{{markerUrl}}" width="29px" height="47px"/>
+				</div>
+
+				<div id="findMe" class="correctLocationLocateMe">
+					<i class="fa fa-crosshairs correctLocateMeMapButton" ng-click="locateMe(); $event.stopPropagation();" ng-class="locateMeInProgress ? 'locateMeInProgress':''"></i>
+				</div>
+			</div>
+
+			<div ng-show="selectedTab == 'correctMOLocation'">
+				<button id="correctLocationBtn" class="correctLocationBtn slds-button slds-button_brand slds-align_absolute-center" ng-hide="isSfdc" ng-disabled="true" ng-click="updateLocation()">Save</button>
+			</div>
+
+			<div id="okRecordUpdate" ng-show="selectedTab == 'okRecordUpdate'">
+				<!-- <img src="{!URLFOR($Resource.images, '/confirm18.png')}" style="margin-right:5px;"/> Record updated successfully! -->
+				<div class="slds-notify_container slds-is-relative slds-m-vertical_large">
+					<div class="slds-notify slds-notify_toast slds-theme_success" role="alert" style="min-width: auto;">
+						<span class="slds-assistive-text">success</span>
+						<span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+							<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#success')}" />
+							</svg>
+						</span>
+						<div class="slds-notify__content">
+							<h2 class="slds-text">Record updated successfully!</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'noCustomLatLng'">
+				<div class="slds-notify slds-notify_toast slds-theme_warning slds-m-vertical_large" role="warning" style="min-width: auto;">
+					<span class="slds-assistive-text">warning. no custom latitude longitude fields</span>
+					<span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">This object has no custom Latitude/Longitude fields defined.</h2>
+					</div>
+				</div>
+				<div class="slds-m-left_medium">
+					To learn more about using custom Latitude/Longitude fields to correct Geocode locations, 
+					<a href="http://help.geopointe.com/customer/portal/articles/1810993" target="_blank">click here</a>.
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errNoMapObject'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. no map object is specified for this record type</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text" ng-show="recordSobjectName">No Geopointe Map Object is specified for record type '{{recordSobjectName}}'.</h2>
+						<h2 class="slds-text" ng-show="!recordSobjectName">No Geopointe Map Object is specified for this record type.</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errMissingMapObject'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. map object does not exist</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">Specified Geopointe Map Object '{{mapObjectName}}' does not exist.</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errMapObjectType'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. map object does not match record type</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">Specified Map Object '{{mapObjectName}}' does not match record of type '{{recordSobjectName}}'.</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errPerm'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. no permission to update location of this record</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">You do not have permission to update the location of this record.</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errQuery'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. error querying record location</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">Something didn't work right getting record location.</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="slds-notify_container slds-is-relative" ng-show="selectedTab == 'errRecordUpdate'">
+				<div class="slds-notify slds-notify_toast slds-theme_error slds-m-vertical_large" role="alert" style="min-width: auto;">
+					<span class="slds-assistive-text">alert. error updating record location</span>
+					<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+						<svg class="slds-icon slds-icon_small" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+						</svg>
+					</span>
+					<div class="slds-notify__content slds-align_absolute-center ">
+						<h2 class="slds-text">Something didn't work right updating record location.</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Ajax spinner -->
+		<div class="slds-backdrop" ng-class="{'slds-backdrop_open': showSpinner}" ng-show="showSpinner">
+			<div role="status" class="slds-spinner slds-spinner_large">
+				<span class="slds-assistive-text">Loading</span>
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+
+	</div>
+
+</apex:page>

@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- ACV Created --></label>
+        <name>ACV_Created__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV_Dealer_Id --></label>
+        <name>ACV_Dealer_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Updated --></label>
+        <name>ACV_Updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV User --></label>
+        <name>ACV_User__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Billing city of the contacts associated account --></help>
+        <label><!-- Account Billing City --></label>
+        <name>Account_Billing_City__c</name>
+    </fields>
+    <fields>
+        <help><!-- Billing state of the contacts associated account --></help>
+        <label><!-- Account Billing State --></label>
+        <name>Account_Billing_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Dealer Type --></label>
+        <name>Account_Dealer_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Owner (TM) --></label>
+        <name>Account_Owner_TM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Acct Owner ID --></label>
+        <name>Acct_Owner_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Purchases --></label>
+        <name>All_Time_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Time Sells --></label>
+        <name>All_Time_Sells__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Unit Sales --></label>
+        <name>Annual_Unit_Sales__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auto Inc Id --></label>
+        <name>Auto_Inc_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- CR Review --></label>
+        <name>CR_Review__c</name>
+    </fields>
+    <fields>
+        <label><!-- WatchDOG Result --></label>
+        <name>CSIRCD__WatchDOGResult__c</name>
+        <picklistValues>
+            <masterLabel>No Match</masterLabel>
+            <translation><!-- No Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Match</masterLabel>
+            <translation><!-- Potential Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>True Match</masterLabel>
+            <translation><!-- True Match --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Contact Email Status --></label>
+        <name>CloudingoAgent__CES__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Address Record Type --></label>
+        <name>CloudingoAgent__MAR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Address Status --></label>
+        <name>CloudingoAgent__MAS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Address Vacancy --></label>
+        <name>CloudingoAgent__MAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Residential Delivery Indicator --></label>
+        <name>CloudingoAgent__MRDI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Timezone --></label>
+        <name>CloudingoAgent__MTZ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Address Record Type --></label>
+        <name>CloudingoAgent__OAR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Address Status --></label>
+        <name>CloudingoAgent__OAS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Address Vacancy --></label>
+        <name>CloudingoAgent__OAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Residential Delivery Indicator --></label>
+        <name>CloudingoAgent__ORDI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Timezone --></label>
+        <name>CloudingoAgent__OTZ__c</name>
+    </fields>
+    <fields>
+        <label><!-- User GUID --></label>
+        <name>Contact_Guid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Creation Source --></label>
+        <name>Creation_Source__c</name>
+        <picklistValues>
+            <masterLabel>Bulk Load</masterLabel>
+            <translation><!-- Bulk Load --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registration</masterLabel>
+            <translation><!-- Registration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Data Quality Description --></label>
+        <name>Data_Quality_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Quality Score --></label>
+        <name>Data_Quality_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date and Time Dealer Became Compliant --></label>
+        <name>Date_and_Time_Dealer_Became_Compliant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of First Purchase --></label>
+        <name>Date_of_First_Purchase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Last Purchase --></label>
+        <name>Date_of_Last_Purchase__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date of last sale from related account --></help>
+        <label><!-- Date of Last Sale --></label>
+        <name>Date_of_last_Sale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Since Last Activity --></label>
+        <name>DaysSinceLastActivity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealership Contact Id --></label>
+        <name>Dealership_Contact_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Delighted Response Score --></label>
+        <name>DelightedInc__Last_Delighted_Response_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direct Dealership Member Id --></label>
+        <name>Direct_Dealership_Member_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field indicates which email updates this user has opted out of receiving --></help>
+        <label><!-- Email Opt Out Categories --></label>
+        <name>Email_Opt_Out_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Organization Updates</masterLabel>
+            <translation><!-- Organization Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Programmatic Updates</masterLabel>
+            <translation><!-- Programmatic Updates --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- From Historical Load --></label>
+        <name>From_Historical_Load__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geocode Quality --></label>
+        <name>Geocode_Quality__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geopointe LatLong --></label>
+        <name>Geopointe_LatLong__c</name>
+    </fields>
+    <fields>
+        <label><!-- HOT NOTES --></label>
+        <name>HOT_NOTES__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACV Contact ID --></label>
+        <name>ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Manager Email --></label>
+        <name>IST_Account_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Account Manager --></label>
+        <name>IST_Account_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Discovery Comments --></label>
+        <name>IST_Discovery_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Rep --></label>
+        <name>IST_Rep__c</name>
+    </fields>
+    <fields>
+        <label><!-- IST Todays Date --></label>
+        <name>IST_Todays_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Identity Id --></label>
+        <name>Identity_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Staff --></label>
+        <name>Is_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Superuser --></label>
+        <name>Is_Superuser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Joined --></label>
+        <name>Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language Preference --></label>
+        <name>Language_Preference__c</name>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Last Geocode Run --></label>
+        <name>Last_Geocode_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead Convert Status --></label>
+        <name>Lead_Convert_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead Created Contact --></label>
+        <name>Lead_Created_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Linked in Profile --></label>
+        <name>Linked_in_Profile__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTD Purchases --></label>
+        <name>MTD_Purchases__c</name>
+    </fields>
+    <fields>
+        <label><!-- MVP --></label>
+        <name>MVP__c</name>
+    </fields>
+    <fields>
+        <label><!-- NG Dealer # --></label>
+        <name>NGDealerNumber__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check if Contact is no longer at the Dealer --></help>
+        <label><!-- No Longer Employed --></label>
+        <name>No_Longer_Employed__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Locations --></label>
+        <name>Number_of_Locations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password --></label>
+        <name>Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Carrier --></label>
+        <name>Phone_Carrier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Type --></label>
+        <name>Phone_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Policy Email Status --></label>
+        <name>Policy_Email_Status__c</name>
+        <picklistValues>
+            <masterLabel>Policy Email Not Sent</masterLabel>
+            <translation><!-- Policy Email Not Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Policy Email Sent</masterLabel>
+            <translation><!-- Policy Email Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send Policy Email</masterLabel>
+            <translation><!-- Send Policy Email --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Potential Monthly Buy Volume --></label>
+        <name>PotentialMonthlyBuyVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prescreen Type --></label>
+        <name>Prescreen_Type__c</name>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repeat</masterLabel>
+            <translation><!-- Repeat --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Code --></label>
+        <name>Promotion_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receive Promos? --></label>
+        <name>Receive_Promo_Emails__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>Read Only</masterLabel>
+            <translation><!-- Read Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User</masterLabel>
+            <translation><!-- User --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VCI</masterLabel>
+            <translation><!-- VCI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- True indicates the Contact has agreed to receive marketing-based SMS text messages from ACV. --></help>
+        <label><!-- SMS Opt-In --></label>
+        <name>SMS_Opt_In__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submitter IP --></label>
+        <name>SubmitterIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Successful Virtual Lift Prescreens --></label>
+        <name>Successful_Virtual_Lift_Prescreens__c</name>
+    </fields>
+    <fields>
+        <help><!-- Territory from the Account the Contact is Associated With. Read Only Field --></help>
+        <label><!-- Territory --></label>
+        <name>Territory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Timezone --></label>
+        <name>Timezone__c</name>
+        <picklistValues>
+            <masterLabel>America/New_York</masterLabel>
+            <translation><!-- America/New_York --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title 2 --></label>
+        <name>Title_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title_Picklist__c</name>
+        <picklistValues>
+            <masterLabel>Accounting</masterLabel>
+            <translation><!-- Accounting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buying Rep</masterLabel>
+            <translation><!-- Buying Rep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance Manager</masterLabel>
+            <translation><!-- Finance Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lotsweep Vendor</masterLabel>
+            <translation><!-- Lotsweep Vendor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Principal</masterLabel>
+            <translation><!-- Principal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Selling Rep</masterLabel>
+            <translation><!-- Selling Rep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TF Report Contact</masterLabel>
+            <translation><!-- TF Report Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title Clerk</masterLabel>
+            <translation><!-- Title Clerk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport Manager</masterLabel>
+            <translation><!-- Transport Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TrueFrame Billing Contact</masterLabel>
+            <translation><!-- TrueFrame Billing Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Used Car Manager</masterLabel>
+            <translation><!-- Used Car Manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This flag is checked if it is the Transportation Primary Contact on its Account --></help>
+        <label><!-- Transportation Primary Contact --></label>
+        <name>Transportation_Primary_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Radius --></label>
+        <name>Travel_Radius__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Handle --></label>
+        <name>Twitter_Handle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unbounce Page ID --></label>
+        <name>UnbouncePageID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unbounce Page Variant --></label>
+        <name>UnbouncePageVariant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unbounce Submission Date --></label>
+        <name>UnbounceSubmissionDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unbounce Submission Time --></label>
+        <name>UnbounceSubmissionTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Updated --></label>
+        <name>Updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- VCI CR Counter --></label>
+        <name>VCI_CR_Counter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Virtual Lift Enabled --></label>
+        <name>Virtual_Lift_Enabled__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Create Date --></help>
+        <label><!-- Most Recent Gift Invitation Create Date --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Create_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Gift Name --></help>
+        <label><!-- Most Recent Gift Invitation Gift Name --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Gift_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Sent Date --></help>
+        <label><!-- Most Recent Gift Invitation Sent Date --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Sent_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Status --></help>
+        <label><!-- Most Recent Gift Invitation Status --></label>
+        <name>alycecom__Most_Recent_Gift_Invitation_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Alyce Most Recent Gift Invitation Recipient Landing Page --></help>
+        <label><!-- Most Recent Gift Landing Page --></label>
+        <name>alycecom__Most_Recent_Gift_Landing_Page__c</name>
+    </fields>
+    <fields>
+        <help><!-- Reference to the Geocode object holding all of mapping information for the record. --></help>
+        <label><!-- Geocode --></label>
+        <name>geopointe__Geocode__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- xPhone --></label>
+        <name>phone__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- Contact record that indicates an ACV app user --></description>
+        <label><!-- ACV User --></label>
+        <name>ACV_User</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Contact record is for Dealership contacts that do not have login access to the acv app --></description>
+        <label><!-- Dealership Contact --></label>
+        <name>Dealership_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- The Default Salesforce Contact Record Type --></description>
+        <label><!-- Salesforce Contact --></label>
+        <name>Salesforce_Contact</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- ACV User Contacts must have an email address to be saved --></errorMessage>
+        <name>ACV_User_must_have_email_address</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Dealership Contacts must have a Phone number --></errorMessage>
+        <name>Dealership_contact_must_have_phone</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure you have the &apos;First Name&apos; field filled out. --></errorMessage>
+        <name>First_and_Last_Name_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Convert the Contact record of this Lead into an existing Record instead of creating a new one --></errorMessage>
+        <name>Lead_Conversion_Must_Be_Merged</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mailing Postal Code must be either 99999 or 99999-9999 --></errorMessage>
+        <name>Mailing_postal_code_must_be_valid</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If CR Review is selected you must select a Prescreen Type --></errorMessage>
+        <name>Must_have_Prescreen_with_CR_Review</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MA_MapIt_a04j000000Mqzj2AAB --></label>
+        <name>MA_MapIt_a04j000000Mqzj2AAB</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Gift_Classic --></label>
+        <name>alycecom__Send_Gift_Classic</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map --></label>
+        <name>geopointe__Map</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_Records_Contact --></label>
+        <name>geopointe__Map_Records_Contact</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Map_newWindow --></label>
+        <name>geopointe__Map_newWindow</name>
+    </webLinks>
+    <webLinks>
+        <label>NADA Meeting</label>
+        <name>jiffle__Jifflenow_Meetings</name>
+    </webLinks>
+</CustomObjectTranslation>

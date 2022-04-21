@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to Send an email alert to A-team member when an opportunity is assigned to them</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Notify A-Team member upon Opportunity Assignment</name>
+    <style>none</style>
+    <subject>{!Opportunity.Name} has been Assigned to you</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

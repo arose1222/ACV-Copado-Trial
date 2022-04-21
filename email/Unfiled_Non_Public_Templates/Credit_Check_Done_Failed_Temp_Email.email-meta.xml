@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This is a temp email to notify on Done Failed Credits. Will be replaced by splunk to slack logs</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Credit &amp; Check - Done Failed Temp Email</name>
+    <style>none</style>
+    <subject>Credit &amp; Check has Done Failed!!!</subject>
+    <textOnly>Hi Sarah, Danahy, and Chris,  It seems there is a Credit &amp; Check record that has resulted in a Done Failed status in Production. @Sarah Bostock - Please take a look and resolve. Message Danahy and Chris when you have started and finished the update. @Danahy Haley and @Chris Wood - Please message James if he does not contact you within 15 minutes as sometimes he misses things in his email.  - Salesforce Id - {!Credits_Checks__c.Id} - Budget - {!Credits_Checks__c.Group_Name__c} - Dealer - {!Credits_Checks__c.Dealer__c} - Dealer Id - {!Credits_Checks__c.Dealership_ID__c} - Submitted By - {!Credits_Checks__c.OwnerFullName} - Approved By - {!Credits_Checks__c.Approved_By__c} - ACV User Id Of Approver - {!Credits_Checks__c.ACV_User_Id__c} - Amount Approved - {!Credits_Checks__c.Amount_Approved__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

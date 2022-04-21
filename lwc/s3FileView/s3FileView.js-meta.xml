@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="s3LinkFieldApiName" label="S3 Field Api Name" type="String" required="true" description="API Name of the field which has S3 file link" />
+            <property name="title" label="Title" type="String" default="S3 Doc" description="Heading of the section" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

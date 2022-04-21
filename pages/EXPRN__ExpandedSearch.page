@@ -1,0 +1,2404 @@
+<apex:page DocType="html-5.0"
+    standardController="EXPRN__Experian_Business__c"
+    tabStyle="Expanded_Search__tab"
+    extensions="EXPRN.ExpandedSearchController"
+    sidebar="false"
+    title="Expanded Search"
+    id="pg"
+    lightningStylesheets="true">
+    <apex:slds />
+    <head>
+        <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+        <apex:slds />
+    </head>
+    <script>
+        function getParameterByName(name) {
+            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+        j$ = jQuery.noConflict();
+        j$(document).ready(function () {
+            if (!{!bIsShowBOBackground        
+        }) {
+            j$('#divBusinessOwner').hide();
+        }
+        j$('#divProfileInternationalDeveloped').hide();
+        j$('#searchResultDiv').hide();
+        j$('#divResultLinks').hide();
+        j$('#divPrintExport').hide();
+        j$('.clsOutputPanelResult').hide();
+
+        //alert(j$('#hdnCheckInterProfile').val());
+        var browserIndex = navigator.userAgent.indexOf('Chrome');
+        var vFocusBody = '';
+        if (browserIndex > -1) {
+            vFocusBody = 'body';
+        }
+        else {
+            vFocusBody = 'body,html';
+        }
+        j$('#hdnBody').val(vFocusBody);
+
+        //alert(navigator.userAgent.indexOf('Chrome'));
+        if (j$('#hdnNumberOfBO').val() == '2') {
+            j$('#divSecondBusinessOwner').show();
+        }
+        else {
+            j$('#divSecondBusinessOwner').hide();
+        }
+
+        if (j$('#hdnBinNotInSFDC').val() == '1') {
+            if (confirm('The selected Experian Business does not exist in Salesforce. Do you want to create an Experian Business?')) {
+                navigateToSelectReport();
+            }
+        }
+        j$('#spnDeleteOwner').attr('disabled', 'disabled');
+
+        var isShowConfComp = '';
+        var isShowCanConfComp = '';
+        var interCode = j$('#hdnInterCountryCode').val();
+        //alert(interCode);   
+        if (interCode == '') {
+            usPageLayout();
+            j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');
+            j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+        }
+        else {
+            j$('select[id$="slsTab1SearchCountry"]').val(interCode);
+            internationalPageLayout(interCode);
+            j$('input[id$="txtTab1GlobalBIN"]').attr('disabled', 'disabled');
+            j$('input[id$="txtRegionalBusID"]').attr('disabled', 'disabled');
+        }
+        //j$('select[id$="slsTab1SearchCountry"]').val('FRA');
+
+
+        //****
+        j$('input[id$="btnSearchBI"]').click(function () {
+            try {
+                HideTab1SearchMessage();
+                HideTab1BO1Message();
+                HideTab1BO2Message();
+                j$('#searchResultDiv').hide();
+                j$('#divResultLinks').hide();
+                j$('#divPrintExport').hide();
+                j$('.clsOutputPanelResult').hide();
+                var flag = false;
+                //var focusId = '';         
+                var country = j$('select[id$="slsTab1SearchCountry"]').val();
+
+                //*** Below Validation for International Search****//
+                if (country != j$('#hdnUSCountryName').val()) {
+                    var isValidBI = true;
+                    //Validation for Canada 12-Feb 2016 
+                    if (country == 'CAN') {
+                        if (j$('input[id$="txtCity"]').val().trim() == '') {
+                            j$('#spnCityMsg').show();
+                            isValidBI = false;
+                        }
+                        if (j$('[id$="txtTab2Province"]').val().trim() == '--') {
+                            j$('#spnProvinceMsg').show();
+                            isValidBI = false;
+                        }
+                        /*if(j$('input[id$="txtTab1Province"]').val().trim() != '' && checkSpecialChars(j$('input[id$="txtTab1Province"]').val().trim())){                    
+                           j$('#spnProvinceSpclChaMsg').show();                    
+                           isValidBI = false; 
+                        }*/
+                        if (j$('input[id$="txtAddress"]').val().trim() == '') {
+                            j$('#spnAddressMsg').show();
+                            isValidBI = false;
+                        }
+                        if (isShowCanConfComp == "1" && j$('input[id$="chkboxCanConfComp"]').is(":checked") == false) {
+                            j$('#spnCanConfCompMsg').show();
+                            isValidBI = false;
+                        }
+                    }
+
+                    if (j$('input[id$="txtTab1GlobalBIN"]').val().trim() != '') {
+                        if (j$('input[id$="txtTab1GlobalBIN"]').val().trim().length < 9) {
+                            j$('#spnGBINLengthMsg').show();
+                            isValidBI = false;
+                        }
+                    }
+                    else if (j$('input[id$="txtRegionalBusID"]').val().trim() != '') {
+                        //    
+                    }
+                    else {
+                        if (j$('input[id$="txtBusinessName"]').val().trim() == '') {
+                            j$('#spnBusinessNameMsg').show();
+                            isValidBI = false;
+                        }
+                        else if (checkSpecialChars(j$('input[id$="txtBusinessName"]').val().trim())) {
+                            j$('#spnBusNameSpclChaMsg').show();
+                            isValidBI = false;
+                        }
+
+                        if (j$('input[id$="txtCity"]').val().trim() != '' && checkSpecialChars(j$('input[id$="txtCity"]').val().trim())) {
+                            j$('#spnCitySpclChaMsg').show();
+                            isValidBI = false;
+                        }
+                    }
+                    if (country != 'CAN') {
+                        if (isShowConfComp == "1" && j$('input[id$="chkboxConfComp"]').is(":checked") == false) {
+                            j$('#spnConfCompMsg').show();
+                            isValidBI = false;
+                        }                    
+                    }
+
+                    if (isValidBI == true) {
+                        //alert('International Search');
+                        j$('#imgTopColExp').attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_plus.png')}');
+                        j$('#imgTopColExp').addClass('collapsestory');
+                        j$('#imgTopColExp').removeClass('expandstory');
+                        j$('#tblTopContent').hide();
+
+                        fetchBussinessAccounts();
+
+                        /*j$('#divBottom').show();                                                                      
+                                                   
+                        if(j$('#hdnBody').val() == 'body'){   
+                             j$(j$('#hdnBody').val()).scrollTop(j$('#divBottom').position().top);
+                        }
+                        else{
+                            j$(vFocusBody).addClass('bodyCSS, htmlCSS');
+                            j$(j$('#hdnBody').val()).scrollTop(j$('#divBottom').position().top);                            
+                        } 
+                        j$('#divRefineSearch').show(); */
+
+
+                        return false;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                //***End Validation for International Search****//                  
+                //alert('Hi USA');
+
+                if (jQuery('input[id$="chkboxPullBOProfile"]').is(":checked")) {
+                    //System validate only Business Owner Informations.
+                    if (jQuery('input[id$="chkboxFCRA"]').is(":checked") == false) {
+                        jQuery('#spnBOFCRAPermissibleMsg').show();
+                        flag = true;
+                        return false;
+                    }
+                    if (ValidateBusinessOwner() == false) {
+                        flag = true;
+                    }
+
+                    flagOwner = false;
+                    if (jQuery('input[id$="txtBusinessName"]').val().trim() == '') {
+                        jQuery('#spnBusinessNameMsg').show();
+                        flagOwner = true;
+                    }
+                    if (jQuery('[id$=slsTab1SearchCountry]').val() == '') {
+                        jQuery('#spnTab1SearchCountryMsg').show();
+                        flagOwner = true;
+                    }
+                    if (jQuery('input[id$="txtBusinessName"]').val().trim() == '') {
+                        jQuery('#spnBusinessNameMsg').show();
+                        flagOwner = true;
+                    }
+                    else if (checkSpecialChars(jQuery('input[id$="txtBusinessName"]').val().trim())) {
+                        jQuery('#spnBusNameSpclChaMsg').show();
+                        flagOwner = true;
+                    }
+                    if (jQuery('input[id$="txtCity"]').val().trim() == '') {
+                        jQuery('#spnCityMsg').show();
+                        flagOwner = true;
+                    }
+                    else if (checkSpecialChars(jQuery('input[id$="txtCity"]').val().trim())) {
+                        jQuery('#spnCitySpclChaMsg').show();
+                        flagOwner = true;
+                    }
+                    if (jQuery('[id$=slstState]').val() == '') {
+                        jQuery('#spnStateMsg').show();
+                        flagOwner = true;
+                    }
+
+                    if (flagOwner) {
+                        return false;
+                    } else {
+
+                        if (getParameterByName("returnAcc") == '' || getParameterByName("returnAcc") == null) {
+                            var confirmation = confirm("No Account, Lear or Opportunity are related, a default Account and Experian Business will be created instead, do you wish to continue?");
+                            if (!confirmation) {
+                                return false;
+                            }
+                        }
+
+                    }
+
+                }
+                else if (ValidateBusinessInformation() == false) {
+                    //System validate only Business Informations.
+                    flag = true;
+                }
+                //alert('step1');
+                if (j$('input[id$="chkboxFCRA"]').is(":checked") && ValidateBusinessOwner() == false) {
+                    flag = true;
+                }
+
+                if (flag == false) {
+                    j$('#imgTopColExp').attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_plus.png')}');
+                    j$('#imgTopColExp').addClass('collapsestory');
+                    j$('#imgTopColExp').removeClass('expandstory');
+                    j$('#tblTopContent').hide();
+
+                    /*j$('#divResultLinks').show();
+                    j$('#divPrintExport').show();
+                    j$('.clsOutputPanelResult').show(); */
+
+                    if (j$('input[id$="chkboxPullBOProfile"]').is(":checked")) {
+                        //alert('step2');
+                        fetchBussinessOwnerProfile();
+                    }
+                    else {
+                        fetchBussinessAccounts();
+                    }
+
+                    /* if(j$('#hdnBody').val() == 'body'){   
+                          j$(j$('#hdnBody').val()).scrollTop(j$('#divBottom').position().top);
+                     }
+                     else{
+                         j$(vFocusBody).addClass('bodyCSS, htmlCSS');
+                         j$(j$('#hdnBody').val()).scrollTop(j$('#divBottom').position().top);                            
+                     }
+                     j$('#divBottom').show();  
+                     j$('#divRefineSearch').show();   */
+
+                    return false;
+                }
+                else {
+                    return false;
+                }
+            }
+            catch (err) {
+                //alert(err);
+            }
+        });
+
+        //****
+        function ValidateBusinessInformation() {
+            var isValidBI = true;
+            if (j$('input[id$="txtBIN"]').val().trim() == '') {
+                if (j$('[id$=slsTab1SearchCountry]').val() == '') {
+                    j$('#spnTab1SearchCountryMsg').show();
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtBusinessName"]').val().trim() == '') {
+                    j$('#spnBusinessNameMsg').show();
+                    //focusId = 'input[id$="txtBusinessName"]';
+                    isValidBI = false;
+                }
+                else if (checkSpecialChars(j$('input[id$="txtBusinessName"]').val().trim())) {
+                    j$('#spnBusNameSpclChaMsg').show();
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtCity"]').val().trim() == '') {
+                    j$('#spnCityMsg').show();
+                    //focusId = 'input[id$="txtCity"]';
+                    isValidBI = false;
+                }
+                else if (checkSpecialChars(j$('input[id$="txtCity"]').val().trim())) {
+                    j$('#spnCitySpclChaMsg').show();
+                    isValidBI = false;
+                }
+                if (j$('[id$=slstState]').val() == '') {
+                    j$('#spnStateMsg').show();
+                    //focusId = '[id$=slstState]';
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtZipPart1"]').val().trim() == '' && j$('input[id$="txtZipPart2"]').val().trim() != '') {
+                    j$('#spnZipPart1Msg').show();
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtZipPart1"]').val().trim() != '' && j$('input[id$="txtZipPart1"]').val().trim().length != 5) {
+                    j$('#spnZipPart1LengthMsg').show();
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtZipPart2"]').val().trim() != '' && j$('input[id$="txtZipPart2"]').val().trim().length != 4) {
+                    j$('#spnZipPart2LengthMsg').show();
+                    isValidBI = false;
+                }
+                var taxIdLength = j$('input[id$="txtTaxPart1"]').val().trim().length + j$('input[id$="txtTaxPart2"]').val().trim().length;
+                if (j$('input[id$="txtTaxPart1"]').val().trim() != '' && taxIdLength != 9) {
+                    j$('#spnTaxLengthMsg').show();
+                    isValidBI = false;
+                }
+                if (j$('input[id$="txtTelephone"]').val().trim() != '' && j$('input[id$="txtTelephone"]').val().trim().length > 12) {
+                    j$('#spnTelephoneLengthMsg').show();
+                    isValidBI = false;
+                }
+
+            }
+            else if (j$('input[id$="txtBIN"]').val().trim().length != 9) {
+                j$('#spnBINLengthMsg').show();
+                isValidBI = false;
+            }
+            return isValidBI;
+        }
+
+        //****
+        function ValidateBusinessOwner() {
+            var isValidBO = true;
+            if (j$('input[id$="txtBO1FirstName"]').val().trim() == '') {
+                j$('#spnBO1FirstNameMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1LastName"]').val().trim() == '') {
+                j$('#spnBO1LastNameMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1Address"]').val().trim() == '') {
+                j$('#spnBO1AddressMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1City"]').val().trim() == '') {
+                j$('#spnBO1CityMsg').show();
+                isValidBO = false;
+            }
+            /* if(j$('input[id$="txtBO1State"]').val().trim() == ''){
+                 j$('#spnBO1StateMsg').show();                   
+                 isValidBO = false;              
+             }*/
+            if (j$('[id$=slstBO1State]').val() == '') {
+                j$('#spnBO1StateMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1ZipPart1"]').val().trim() == '') {
+                j$('#spnBO1ZipCodeMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1YearOfBirth"]').val().trim() != '' && j$('input[id$="txtBO1YearOfBirth"]').val().trim().length != 4) {
+                j$('#spnBO1YearOfBirthLengthMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1Age"]').val().trim() != '' && j$('input[id$="txtBO1Age"]').val().trim().length != 2) {
+                j$('#spnBO1AgeLengthMsg').show();
+                isValidBO = false;
+            }
+            if (j$('input[id$="txtBO1PhoneNumber"]').val().trim() != '' && j$('input[id$="txtBO1PhoneNumber"]').val().trim().length > 12) {
+                j$('#spnBO1PhoneLengthMsg').show();
+                isValidBO = false;
+            }
+
+            if (j$('#hdnNumberOfBO').val() == '2') {
+                if (j$('input[id$="txtBO2FirstName"]').val().trim() == '') {
+                    j$('#spnBO2FirstNameMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2LastName"]').val().trim() == '') {
+                    j$('#spnBO2LastNameMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2Address"]').val().trim() == '') {
+                    j$('#spnBO2AddressMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2City"]').val().trim() == '') {
+                    j$('#spnBO2CityMsg').show();
+                    isValidBO = false;
+                }
+                /* if(j$('input[id$="txtBO2State"]').val().trim() == ''){
+                     j$('#spnBO2StateMsg').show();                   
+                     isValidBO = false;              
+                 }*/
+                if (j$('[id$=slstBO2State]').val() == '') {
+                    j$('#spnBO2StateMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2ZipPart1"]').val().trim() == '') {
+                    j$('#spnBO2ZipCodeMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2YearOfBirth"]').val().trim() != '' && j$('input[id$="txtBO2YearOfBirth"]').val().trim().length != 4) {
+                    j$('#spnBO2YearOfBirthLengthMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2Age"]').val().trim() != '' && j$('input[id$="txtBO2Age"]').val().trim().length != 2) {
+                    j$('#spnBO2AgeLengthMsg').show();
+                    isValidBO = false;
+                }
+                if (j$('input[id$="txtBO2PhoneNumber"]').val().trim() != '' && j$('input[id$="txtBO2PhoneNumber"]').val().trim().length > 12) {
+                    j$('#spnBO2PhoneLengthMsg').show();
+                    isValidBO = false;
+                }
+            }
+            return isValidBO;
+        }
+
+        //******This Event cleared all business and owner informations.
+        j$('input[id$="btnClearFieldsBI"]').click(function () {
+            ClearBusinessInformation();
+            j$('input[id$="chkboxFCRA"]').attr('checked', false);
+            j$('input[id$="chkboxPullBOProfile"]').attr('checked', false);
+            j$('input[id$="chkboxConfComp"]').attr('checked', false);
+            j$('input[id$="chkboxCanConfComp"]').attr('checked', false);
+            ClearBusinessOwner1();
+            if (j$('#hdnNumberOfBO').val() == '2') {
+                ClearBusinessOwner2();
+            }
+            return false;
+        });
+
+        //*******         
+        j$('select[id$="slsTab1SearchCountry"]').change(function () {
+            //alert('hi'); 
+            //j$('#divProfileInternationalDeveloped').hide();
+            //ClearBusinessInformation();
+            HideTab1SearchMessage();
+            //alert('step1');
+            j$('#divBusinessOwner').hide();
+            j$('#divTab1InternationalProfile').hide();
+            //j$('#divProfileSec1').hide();
+            j$('#divProfileSec2').hide();
+            //j$('#divProfileSec3').hide();    
+            j$('#trRegionalBusID').hide();
+            j$('#spnCountryStar').hide();
+            j$('#spnCityStar').show();
+            j$('#spnAddressStar').hide();
+            //alert('step2');            
+            removeAttrDisable();
+            isShowConfComp = '';
+            isShowCanConfComp = '';
+            j$('input[id$="chkboxConfComp"]').attr('checked', false);
+            j$('input[id$="chkboxCanConfComp"]').attr('checked', false);
+
+            var selCountry = j$('select[id$="slsTab1SearchCountry"]').val();
+            //alert(selCountry); 
+            if (selCountry != j$('#hdnUSCountryName').val() && selCountry != '') {
+                //alert('step3');
+                internationalPageLayout(selCountry);
+                /*j$('#trGlobalBIN').show(); 
+                j$('#trProvince').show();
+                j$('#trNonUSCity').show();
+                j$('#trPostalcode').show(); 
+                            
+                j$('#trState').hide();
+                j$('#trZipCode').hide();
+                j$('#trRefInfor').hide();
+                j$('#trTaxId').hide();  
+                j$('#trBIN').hide(); 
+                j$('#spnCountryStar').show();   
+                j$('#spnCityStar').hide();
+                
+                if(selCountry == 'NOR'){
+                    j$('#divProfileSec2').hide();
+                }
+                if(selCountry == 'CAN'){
+                    j$('#divTab1InternationalProfile').show(); 
+                    j$('#divProfileSec3').show();
+                    j$('#divProfileSec2').hide();
+                    isShowCanConfComp = '1';
+                }
+                else{
+                    j$('#divTab1InternationalProfile').show(); 
+                    j$('#divProfileSec2').show();
+                    j$('#divProfileSec3').hide();
+                    isShowConfComp = '1'; 
+                }
+                if(selCountry == 'AUT' || selCountry == 'BEL' || selCountry == 'DNK' || selCountry == 'FIN' || selCountry == 'FRA' || selCountry == 'DEU' || selCountry == 'IRL' || selCountry == 'NLD'|| selCountry == 'NOR' || selCountry == 'ESP' || selCountry == 'SWE' || selCountry == 'UKR'){                                            
+                    j$('#trRegionalBusID').show();                      
+                }*/
+            }
+            else {
+                usPageLayout();
+            }
+        });
+
+        var openSecondOwnerForm = function () {
+            j$('#divSecondBusinessOwner').show();
+            j$('#spnAddOwner').attr('disabled', 'disabled');
+            j$('#spnDeleteOwner').removeAttr('disabled');
+
+            j$('#spnAddOwner').removeClass('enableLink');
+            j$('#spnAddOwner').addClass('disableLink');
+
+            j$('#spnDeleteOwner').removeClass('disableLink');
+            j$('#spnDeleteOwner').addClass('enableLink');
+            j$('#hdnNumberOfBO').val('2');
+        };
+        //********
+        j$('#spnAddOwner').click(function () {
+            openSecondOwnerForm();
+        });
+
+        //********
+        j$('#spnDeleteOwner').click(function () {
+            j$('#divSecondBusinessOwner').hide();
+            j$('#spnDeleteOwner').attr('disabled', 'disabled');
+            j$('#spnAddOwner').removeAttr('disabled');
+
+            j$('#spnDeleteOwner').removeClass('enableLink');
+            j$('#spnDeleteOwner').addClass('disableLink');
+
+            j$('#spnAddOwner').removeClass('disableLink');
+            j$('#spnAddOwner').addClass('enableLink');
+            ClearBusinessOwner2();
+            j$('#hdnNumberOfBO').val('1');
+        });
+
+        //10/5/2015 TCS Clear Owner (Link)
+        j$('#spnClearOwner').click(function () {
+            ClearBusinessOwner1();
+            ClearBusinessOwner2();
+        });
+
+        //10/5/2015 TCS Prepopulate owner (Link)
+        j$('#spnPopulateOwner').click(function () {
+
+            populateOwnerDetail();
+        });
+
+        if ({!populateSecondOwner}) {
+            openSecondOwnerForm();
+        }
+
+        //************
+        j$(".clsCheckNumeric").keydown(function (e) {
+            //alert(e.keyCode);
+            // Allow: backspace, delete, tab, escape, enter and .
+            if (j$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 17, 86]) !== -1 ||
+                // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+        //++++++++++++++++++++++++++++++++++++++++++++++++          
+        //*******
+        j$('.clsCheckLength2').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 1 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //*******
+        j$('.clsCheckLength3').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 2 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //*******
+        j$('.clsCheckLength4').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 3 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //*******
+        j$('.clsCheckLength5').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 4 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //*******
+        j$('.clsCheckLength7').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 6 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //*******
+        j$('.clsCheckLength9').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 8 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+        //Check for SSN added on 27Jan2016 DK
+        j$('.clsCheckLength9SSN').keypress(function (e) {
+            if (j$(this).val().indexOf('-') > 0) {
+                if (j$(this).val().length > 10) {
+                    e.preventDefault();
+                }
+            }
+            else {
+                if (j$(this).val().length > 8) {
+                    e.preventDefault();
+                }
+            }
+        });
+        //Check for SSN END
+
+        //*******
+        j$('.clsCheckLength12').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (j$(this).val().length > 11 && keycode != '13') {
+                event.preventDefault();
+            }
+        });
+
+        //****
+        j$('input[id$="txtTab1GlobalBIN"]').keyup(function (e) {
+            j$('input[id$="txtBusinessName"]').val('');
+            j$('input[id$="txtRegionalBusID"]').val('');
+            j$('input[id$="txtAddress"]').val('');
+            j$('input[id$="txtCity"]').val('');
+            j$('input[id$="txtTab1Province"]').val('');
+            j$('input[id$="txtTab1Postalcode"]').val('');
+            j$('input[id$="txtTelephone"]').val('');
+
+            if (j$(this).val().length > 0) {
+                j$('input[id$="txtBusinessName"]').attr('disabled', 'disabled');
+                j$('input[id$="txtRegionalBusID"]').attr('disabled', 'disabled');
+                j$('input[id$="txtAddress"]').attr('disabled', 'disabled');
+                j$('input[id$="txtCity"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTab1Province"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTab1Postalcode"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTelephone"]').attr('disabled', 'disabled');
+            }
+            else {
+                j$('input[id$="txtBusinessName"]').removeAttr('disabled');
+                j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+                j$('input[id$="txtAddress"]').removeAttr('disabled');
+                j$('input[id$="txtCity"]').removeAttr('disabled');
+                j$('input[id$="txtTab1Province"]').removeAttr('disabled');
+                j$('input[id$="txtTab1Postalcode"]').removeAttr('disabled');
+                j$('input[id$="txtTelephone"]').removeAttr('disabled');
+            }
+        });
+
+        //****
+        j$('input[id$="txtRegionalBusID"]').keyup(function (e) {
+            j$('input[id$="txtBusinessName"]').val('');
+            j$('input[id$="txtTab1GlobalBIN"]').val('');
+            j$('input[id$="txtAddress"]').val('');
+            j$('input[id$="txtCity"]').val('');
+            j$('input[id$="txtTab1Province"]').val('');
+            j$('input[id$="txtTab1Postalcode"]').val('');
+            j$('input[id$="txtTelephone"]').val('');
+
+            if (j$(this).val().length > 0) {
+                j$('input[id$="txtBusinessName"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTab1GlobalBIN"]').attr('disabled', 'disabled');
+                j$('input[id$="txtAddress"]').attr('disabled', 'disabled');
+                j$('input[id$="txtCity"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTab1Province"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTab1Postalcode"]').attr('disabled', 'disabled');
+                j$('input[id$="txtTelephone"]').attr('disabled', 'disabled');
+            }
+            else {
+                removeAttrDisable();
+            }
+        });
+
+        //****
+        j$('.clsDisableGlobalBIN').keyup(function (e) {
+            //var code = e.keyCode ? e.keyCode : e.which;                
+            //alert(code);
+
+            var flag = false;
+            if (j$('input[id$="txtBusinessName"]').val().trim() != '' || j$('input[id$="txtAddress"]').val().trim() != '' || j$('input[id$="txtCity"]').val().trim() != '' || j$('input[id$=txtTab1Province]').val().trim() != '' || j$('input[id$="txtTab1Postalcode"]').val().trim() != '' || j$('input[id$="txtTelephone"]').val().trim() != '') {
+                flag = true;
+            }
+            if (j$(this).val().length > 0) {
+                j$('input[id$="txtTab1GlobalBIN"]').val('');
+                j$('input[id$="txtRegionalBusID"]').val('');
+                j$('input[id$="txtTab1GlobalBIN"]').attr('disabled', 'disabled');
+                j$('input[id$="txtRegionalBusID"]').attr('disabled', 'disabled');
+            }
+            else if (flag == false) {
+                j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');
+                j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+            }
+        });
+
+        j$('#imgTopColExp').click(function () {
+            //alert('hi');
+            if (j$(this).attr('class') == 'expandstory') {
+                //j$(this).attr('src','/img/setup_plus.gif'); 
+                j$(this).attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_plus.png')}');
+                j$(this).addClass('collapsestory');
+                j$(this).removeClass('expandstory');
+                j$('#tblTopContent').hide();
+            }
+            else {
+                //j$(this).attr('src','/img/setup_minus.gif'); 
+                j$(this).attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_minus.png')}');
+                j$(this).addClass('expandstory');
+                j$(this).removeClass('collapsestory');
+                j$('#tblTopContent').show();
+            }
+        });
+
+        //*****
+        /* function ClearBusinessInformation()
+         {
+             j$('input[id$="txtBusinessName"]').val('');
+             j$('input[id$="txtAddress"]').val('');
+             j$('input[id$="txtCity"]').val('');
+             j$('select[id$="slstState"]').val('');
+             j$('input[id$="txtZipPart1"]').val('');
+             j$('input[id$="txtZipPart2"]').val('');
+             j$('input[id$="txtTelephone"]').val('');
+             j$('input[id$="txtBIN"]').val(''); 
+             j$('input[id$="txtTaxPart1"]').val('');
+             j$('input[id$="txtTaxPart2"]').val('');
+             j$('input[id$="txtRefInfor"]').val(''); 
+             
+             j$('input[id$="txtTab1GlobalBIN"]').val('');
+             j$('input[id$="txtRegionalBusID"]').val('');
+         }       
+       
+         //*****
+         function ClearBusinessOwner1()
+         {  
+             j$('input[id$="txtBO1FirstName"]').val('');
+             j$('input[id$="txtBO1MiddleName"]').val('');
+             j$('input[id$="txtBO1LastName"]').val('');
+             j$('input[id$="txtBO1SocialSecNo"]').val('');
+             j$('select[id$="slstBO1GenerationCode"]').val('Select');
+             j$('input[id$="txtBO1Address"]').val('');
+             j$('input[id$="txtBO1City"]').val('');
+             //j$('input[id$="txtBO1State"]').val(''); 
+             j$('select[id$="slstBO1State"]').val('--');
+             j$('input[id$="txtBO1ZipPart1"]').val('');
+             j$('input[id$="txtBO1ZipPart2"]').val('');
+             j$('input[id$="txtBO1DriverLicense"]').val('');
+             j$('input[id$="txtBO1YearOfBirth"]').val('');
+             j$('input[id$="txtBO1Age"]').val('');
+             j$('input[id$="txtBO1PhoneNumber"]').val('');
+             
+             j$('input[id$="txtTab1GlobalBIN"]').val('');
+             j$('input[id$="txtRegionalBusID"]').val('');
+             j$('input[id$="txtTab1Province"]').val('');
+             j$('input[id$="txtTab1Postalcode"]').val('');
+         }
+         
+         //*****
+         function ClearBusinessOwner2()
+         {
+             j$('input[id$="txtBO2FirstName"]').val('');
+             j$('input[id$="txtBO2MiddleName"]').val('');
+             j$('input[id$="txtBO2LastName"]').val('');
+             j$('input[id$="txtBO2SocialSecNo"]').val('');
+             j$('select[id$="slstBO2GenerationCode"]').val('Select');            
+             j$('input[id$="txtBO2Address"]').val('');
+             j$('input[id$="txtBO2City"]').val('');
+             //j$('input[id$="txtBO2State"]').val('');
+             j$('select[id$="slstBO2State"]').val('--');
+             j$('input[id$="txtBO2ZipPart1"]').val('');
+             j$('input[id$="txtBO2ZipPart2"]').val('');
+             j$('input[id$="txtBO2DriverLicense"]').val('');
+             j$('input[id$="txtBO2YearOfBirth"]').val('');
+             j$('input[id$="txtBO2Age"]').val('');
+             j$('input[id$="txtBO2PhoneNumber"]').val('');
+         }
+         */
+        //*****Function is used for hiding the error messages of Tab1.
+        function HideTab1SearchMessage() {
+            j$('#spnBusinessNameMsg').hide();
+            j$('#spnBusNameSpclChaMsg').hide();
+            j$('#spnCityMsg').hide();
+            j$('#spnCitySpclChaMsg').hide();
+            j$('#spnStateMsg').hide();
+            j$('#spnZipPart1Msg').hide();
+            j$('#spnZipPart1LengthMsg').hide();
+            j$('#spnZipPart2LengthMsg').hide();
+            j$('#spnBINLengthMsg').hide();
+            j$('#spnTaxLengthMsg').hide();
+            j$('#spnTab1SearchCountryMsg').hide();
+            j$('#spnGBINLengthMsg').hide();
+        }
+
+        //*****Function is used for hiding the error messages for Business Owner1 of Tab1.
+        function HideTab1BO1Message() {
+            j$('#spnBOFCRAPermissibleMsg').hide();
+            j$('#spnBO1FirstNameMsg').hide();
+            j$('#spnBO1LastNameMsg').hide();
+            j$('#spnBO1AddressMsg').hide();
+            j$('#spnBO1CityMsg').hide();
+            j$('#spnBO1StateMsg').hide();
+            j$('#spnBO1ZipCodeMsg').hide();
+            j$('#spnBO1YearOfBirthLengthMsg').hide();
+            j$('#spnBO1AgeLengthMsg').hide();
+            j$('#spnConfCompMsg').hide();
+            j$('#spnCanConfCompMsg').hide();
+        }
+
+        //*****Function is used for hiding the error messages for Business Owner2 of Tab1.
+        function HideTab1BO2Message() {
+            j$('#spnBO2FirstNameMsg').hide();
+            j$('#spnBO2LastNameMsg').hide();
+            j$('#spnBO2AddressMsg').hide();
+            j$('#spnBO2CityMsg').hide();
+            j$('#spnBO2StateMsg').hide();
+            j$('#spnBO2ZipCodeMsg').hide();
+            j$('#spnBO2YearOfBirthLengthMsg').hide();
+            j$('#spnBO2AgeLengthMsg').hide();
+        }
+
+        //******Function is used for hiding the error messages of Tab1.
+        function HideTab2SearchMessage() {
+            j$('#spnTab2SearchBusinessNameMsg').hide();
+            j$('#spnTab2SearchCountryMsg').hide();
+            j$('#spnGlobalBINMsg').hide();
+        }
+
+        //*****
+        function usPageLayout() {
+            j$('#trRegionalBusID').hide();
+            j$('#trGlobalBIN').hide();
+            j$('#trProvince').hide();
+            j$('#trPostalcode').hide();
+
+            j$('#trState').show();
+            j$('#trZipCode').show();
+            j$('#trRefInfor').show();
+            j$('#trTaxId').show();
+            j$('#trBIN').show();
+            j$('#spnAddressStar').hide();
+
+            if ({!bIsShowBOBackground        
+        }) { //hide BOP Form according to BIQ config 
+            j$('#divBusinessOwner').show();
+        }
+          }
+
+        //*****
+        function internationalPageLayout(countryCode) {
+
+            j$('#trGlobalBIN').show();
+            j$('#trProvince').show();
+            j$('#trNonUSCity').show();
+            j$('#trPostalcode').show();
+            //alert('step4');           
+            j$('#trState').hide();
+            j$('#trZipCode').hide();
+            j$('#trRefInfor').hide();
+            j$('#trTaxId').hide();
+            j$('#trBIN').hide();
+            j$('#spnCountryStar').show();
+            j$('#spnCityStar').hide();
+            j$('#spnAddressStar').hide();
+            j$('#spnProvinceStar').hide();
+            //alert('step5');
+            if (countryCode == 'NOR') {
+                j$('#divProfileSec2').hide();
+            }
+            else if (countryCode == 'CAN') {
+                j$('#divTab1InternationalProfile').show();
+                j$('#divProfileSec2').hide();
+                j$('#divProfileSec3').show();
+                isShowCanConfComp = '1';
+            }
+            else {
+                j$('#divTab1InternationalProfile').show();
+                j$('#divProfileSec2').show();
+                j$('#divProfileSec3').hide();
+                isShowConfComp = '1';
+            }
+            //alert('step6');
+            if (countryCode == 'AUT' || countryCode == 'BEL' || countryCode == 'DNK' || countryCode == 'FIN' || countryCode == 'FRA' || countryCode == 'DEU' || countryCode == 'IRL' || countryCode == 'NLD' || countryCode == 'NOR' || countryCode == 'ESP' || countryCode == 'SWE' || countryCode == 'GBR') {
+                j$('#trRegionalBusID').show();
+
+                j$('input[id$="txtTab1Province"]').show();
+                j$('[id$="txtTab2Province"]').hide();
+            }
+            //alert('step7');
+            if (countryCode == 'CAN') {
+                //j$('input[id$="txtTab1Province"]').attr('disabled','disabled');
+                j$('input[id$="txtTab1Province"]').hide();
+                j$('[id$="txtTab2Province"]').show();
+                j$('#spnCityStar').show();
+                j$('#spnAddressStar').show();
+                j$('#spnProvinceStar').show();
+                j$('#trGlobalBIN').hide();  //Added on 15-Feb-2016 by TCSSC              
+            }
+        }
+
+        function removeAttrDisable() {
+            j$('input[id$="txtRegionalBusID"]').removeAttr('disabled');
+            j$('input[id$="txtBusinessName"]').removeAttr('disabled');
+            j$('input[id$="txtTab1GlobalBIN"]').removeAttr('disabled');
+            j$('input[id$="txtAddress"]').removeAttr('disabled');
+            j$('input[id$="txtCity"]').removeAttr('disabled');
+            j$('input[id$="txtTab1Province"]').removeAttr('disabled');
+            j$('input[id$="txtTab1Postalcode"]').removeAttr('disabled');
+            j$('input[id$="txtTelephone"]').removeAttr('disabled');
+        }
+          
+        });
+
+        function NavigateToTop() {
+            j$('.clsOutputPanelResult').hide();
+            j$('input[id$="txtBIN"]').val('');
+            j$('input[id$="txtBusinessName"]').focus();
+
+            //document.getElementById("j_id0:frm:j_id9:txtBusinessName").focus();
+        }
+
+        function updatePageNumDisplay(pgNumber) {
+            afUpdatePageNumDisplay(pgNumber);
+            return false;
+        }
+
+        /* function navigateToPage(bin)
+         {  
+           j$('#hdnSelectedBIN').val(bin);
+           alert(j$('#hdnSelectedBIN').val());
+           var strBin = bin;
+           afNavigate();
+           //alert(strBin);
+           return false;
+         }
+         
+         function callSecondNav() {
+             alert('second AF');
+             afNavigate2();
+             return false;
+         }*/
+
+        function closepopup() {
+            document.getElementById('pg:form:popUpModal').style.display = 'None';
+            return false;
+        }
+
+        //**********
+        function checkSpecialChars(text) {
+            //alert(text);
+            //var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";  
+            var specialChars = "<>@%[]{}|\\\~`=";
+            for (i = 0; i < specialChars.length; i++) {
+                if (text.indexOf(specialChars[i]) > -1) {
+                    return true
+                }
+            }
+            return false;
+        }    
+    </script>
+    <apex:form id="frm1">
+        <!--<input type="hidden" id="hdnSelectedBIN" value="{!sSelectedBIN}" />
+            <apex:actionFunction action="{!navigateForValuePass}" name="afNavigate" reRender="divDummy" status="Processing"  oncomplete="callSecondNav();"  >    
+                <apex:param name="bin" value="" assignTo="{!sSelectedBIN}" />    
+            </apex:actionFunction>  
+            <apex:actionFunction action="{!navigate}" name="afNavigate2" />-->
+
+
+        <body>
+            <div id="dialog" title="Confirm Box" style="display:none; z-index:9997;">
+                <p>
+                    <p>The Searched Business is not present in Salesforce. Do you want to create one?</p>
+                    <br />
+                    <p style="margin-left:80px;">
+                        <input type="button" id="btnYes" value="Yes" onclick="clickYesButton();" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="btnNo" value="No" onclick="clickNoButton()" />
+                    </p>
+                </p>
+            </div>
+        </body>
+
+
+        <apex:actionFunction action="{!fetchBussinessInfo}" name="fetchBussinessAccounts" reRender="pbViewResult" status="Processing"
+        />
+        <apex:actionFunction action="{!fetchBussinessInfo}" name="fetchBussinessOwnerProfile" />
+        <apex:actionFunction action="{!navigateToSelectReportPage}" name="navigateToSelectReport" />
+
+        <!--Populate Owner Detail -->
+        <apex:actionFunction action="{!enableOwnerInfo}" name="populateOwnerDetail" status="Processing" />
+
+
+        <!--<apex:actionFunction action="{!fetchBussinessInfoForTab2}" name="fetchBussinessForTab2" reRender="optpnlViewResult optpnlResultLinks" status="Processing"/>-->
+        <!--<apex:actionFunction action="{!createBussinessRecord}" name="createBussinessRecord"  />-->
+        <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb2" status="Processing">
+            <apex:param name="selectedPageNum" value="" />
+        </apex:actionFunction>
+
+
+
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+            </div>
+        </div>
+
+        <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';"
+        />
+
+        <apex:actionStatus onStart="BlockPg()" id="modal" onstop="UnblockPg();" />
+
+        <!--<apex:sectionHeader title="Expanded Search"/>-->
+        <!--<apex:tabPanel switchType="client" id="tabPnlExpandedSearch">  -->
+        <!--<apex:tab label="Experian Search" name="CreditRisk" id="tabCreditRisk">      -->
+        <apex:pageBlock id="pbSearch" title="Experian Search">
+            <apex:pageBlockButtons location="top">
+                <div style="float: right; margin-right: -5px;">
+                    <!--<img src="/img/setup_minus.gif" id="imgTopColExp"  class="expandstory"  />-->
+                    <img src="{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_minus.png')}" id="imgTopColExp" style="width:25px; cursor: pointer;"
+                        class="collapsestory" />
+                </div>
+            </apex:pageBlockButtons>
+            <div class="slds-scope" id="tblTopContent">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                        <!-- Business Information Card -->
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">Business Information</h2>
+                                    </div>    
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-form">
+                                    <div>
+                                        <span class="reqClass">*</span> Required for Search
+                                    </div>
+
+                                    <apex:outputPanel id="optpnlBusinessInfor">
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal" id="trGlobalBIN" style="display:none;"> 
+                                                    <label class="slds-form-element__label" for="txtTab1GlobalBIN">Global BIN</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtTab1GlobalBIN" value="{!sGlobalBIN}"/>
+                                                        <span id="spnGBINLengthMsg" class="reqClass" style="display:none;">Global BIN must be 9 digits long.</span>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="slsTab1SearchCountry">Country</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:SelectList id="slsTab1SearchCountry" size="1" value="{!sCountry}" styleClass="slds-select">
+                                                            <apex:selectoption itemLabel="{!sUSName}" itemValue="{!sUSName}" />
+                                                            <apex:selectoptions value="{!lstCountry}" />
+                                                        </apex:SelectList>
+
+                                                        <span id="spnTab1SearchCountryMsg" class="reqClass" style="display:none;">Country is required.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal" id="trRegionalBusID" style="display:none;">
+                                                    <label class="slds-form-element__label" for="txtRegionalBusID">Regional Bus ID</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtRegionalBusID" value="{!sRegionalID}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <lable class="slds-form-element__label" for="txtBusinessName">
+                                                        Business Name <span class="reqClass">*</span>
+                                                    </lable>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBusinessName" value="{!expBus.Name}" styleClass="slds-input" />
+                                                        <span id="spnBusinessNameMsg" class="reqClass" style="display:none;">Business name is required.</span>
+                                                        <span id="spnBusNameSpclChaMsg" class="reqClass" style="display:none;">Business name has invalid characters.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <div class="slds-form-element__control">
+                                                        <label class="slds-form-element__label" for="txtAddress">
+                                                            Address <span id="spnAddressStar" class="reqClass">*</span>
+                                                        </label>
+
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputText id="txtAddress" value="{!expBus.EXPRN__Exp_Street_Address1__c}" styleClass="slds-input"/>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label">
+                                                        City<span id="spnCityStar" class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtCity" value="{!expBus.EXPRN__Exp_City_Name__c}" styleClass="slds-input" />
+                                                        <span id="spnCityMsg" class="reqClass" style="display:none;">City is required.</span>
+                                                        <span id="spnCitySpclChaMsg" class="reqClass" style="display:none;">City has invalid characters.</span>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtTab1Province">
+                                                        Province <span id="spnProvinceStar" class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtTab1Province" value="{!sProvince}" styleClass="slds-input" /> 
+
+                                                        <span id="spnProvinceMsg" class="reqClass" style="display:none;">Province is required.</span>
+                                                        <span id="spnProvinceSpclChaMsg" class="reqClass" style="display:none;">Province has invalid characters.</span>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element slds-form-element_horizontal">
+                                                        <apex:SelectList id="txtTab2Province" styleClass="slds-select" size="1" value="{!sProvince}">
+                                                            <apex:selectoption itemLabel="--" itemValue="" />
+                                                            <apex:selectoptions value="{!lstCANStates}" />
+                                                        </apex:SelectList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="slstState">
+                                                        State <span class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:SelectList id="slstState" size="1"  styleClass="slds-select" value="{!expBus.EXPRN__Exp_STATE__c}">
+                                                            <apex:selectoption itemLabel="--" itemValue="" />
+                                                            <apex:selectoptions value="{!lstUSStates}" />
+                                                        </apex:SelectList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtZipPart1">
+                                                        Zip Code <span class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtZipPart1" value="{!sZipCodePart1}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtZipPart2" value="{!sZipCodePart2}" styleClass="slds-input" />    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <span id="spnZipPart1Msg" class="reqClass" style="display:none;">Zip Code is required.</span>
+                                                <span id="spnZipPart1LengthMsg" class="reqClass" style="display:none;">Zip Code must be 5 digits long.</span>
+                                                <span id="spnZipPart2LengthMsg" class="reqClass" style="display:none;">Zip Code Extension must have minimum 4 digits.</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtTab1Postalcode">Postal code</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtTab1Postalcode" value="{!expBus.EXPRN__Exp_ZIP__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtTelephone">Telephone</label>
+
+                                                    <div class="slds-form-element slds-form-element_horizontal">
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputText id="txtTelephone" value="{!expBus.EXPRN__Exp_Business_Phone_No__c}" styleClass="slds-input" />
+                                                            <span id="spnTelephoneLengthMsg" class="reqClass" style="display:none;">Telephone must be 12 digits long.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtBIN">BIN</label>
+                                                    
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBIN" value="{!expBus.EXPRN__BIN__c}" styleClass="slds-input" />
+                                                        <span id="spnBINLengthMsg" class="reqClass" style="display:none;">BIN must be 9 digits long.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtTaxPart1">Tax ID</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtTaxPart1" value="{!sTaxIdPart1}" styleClass="slds-input" />
+
+                                                        <span id="spnTaxLengthMsg" class="reqClass" style="display:none;">Tax ID must be 9 digits long.</span>
+                                                        <span id="spnTaxPart1LengthMsg" class="reqClass" style="display:none;">Tax ID Part1 must be 2 digits long.</span>
+                                                        <span id="spnTaxPart2LengthMsg" class="reqClass" style="display:none;">Tax ID Part2 must be 7 digits long.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtTaxPart2" value="{!sTaxIdPart2}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtRefInfor">Reference Information</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtRefInfor" styleClass="slds-input" value="{!expBus.EXPRN__Reference_Information__c}" />
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- End Business Information Card -->
+                    </div>
+
+                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                        <!-- Business Owner Card -->
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">Business Owner</h2>
+                                    </div>    
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-form">
+                                    <apex:outputPanel id="optpnlBusinessOwner"
+                                        rendered="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US',  true, false)}">
+                                        
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-scrollable" style="height: 100px;">
+                                                    <div class="slds-text-longform">
+                                                        <p><strong>FCRA Permissible Purpose Certification</strong></p>
+
+                                                        <p><strong>1. BIS Blended Services</strong></p>
+
+                                                        <p>Under the Fair Credit Reporting Act (FCRA), businesses that do not have
+                                                        a credit relationship with their customer may request consumer credit
+                                                        information based upon receipt of the consumer's written instructions.
+                                                        BIS Blended Services (which include Business Owner Profile, Small
+                                                        Business Intelliscore (SBI), Decision Insight using SBI, Business
+                                                        Owner Background Report - Comprehensive and IntelliscorePlus) obtained
+                                                        for the purpose of mitigation of financial risk will be used solely
+                                                        in connection with a current commercial (i.e. not for personal, family
+                                                        or household purposes) financial risk assessment involving the individual
+                                                        on whom such information is sought, and only if the individual:</p>
+
+                                                        <p>&nbsp;&nbsp;° has provided written authorization to access his or her
+                                                        personal consumer report</p>
+                                                        <p>Each request for one of the above products will appear on the subject's
+                                                        individual Experian consumer report and the name and address of your
+                                                        business will be available to such individual.</p>
+
+                                                        <p>
+                                                        <strong> 2. OFAC Name Matching</strong>
+                                                        </p>
+
+                                                        <p>The United States Treasury Department, Office of Foreign Asset Control
+                                                        ("OFAC") periodically makes available to Experian a file of specially
+                                                        designated nationals and blocked persons. Matching of names to the
+                                                        OFAC list is based on very limited identification information. A
+                                                        match does not necessarily indicate that the individual whom the
+                                                        Client inquired is the same person referenced by OFAC. Accordingly,
+                                                        if the Client chooses to use OFAC data, the Client about acknowledges
+                                                        that any adverse action taken by the Client against an individual
+                                                        must be taken based on the Client's complete investigation of the
+                                                        individual and not based solely on the OFAC information.</p>
+
+                                                        <p>By checking the box, you are certifying to Experian that:</p>
+
+                                                        <p>(1) you understand the foregoing and </p>
+                                                        <p>(2) you agree to use the
+                                                        <strong>OFAC Name Matching</strong> andor the
+                                                        <strong>Blended Services</strong> only in accordance with this certificate</p>
+                                                        <p>Submitting your request signifies agreement to these terms and conditions.</p>
+                                                    </div>
+                                                </div>
+
+                                                <apex:outputLink value="/apex/FcraAgreementNote" target="_blank">Print FCRA agreement</apex:outputLink>
+                                                <apex:outputLabel >Note: You must repeat this certification for each sign on session</apex:outputLabel>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="slsTab1SearchCountry">First Name <span class="reqClass">*</span></label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBO1FirstName" value="{!owner1.EXPRN__First_Name__c}" />
+                                                        <span id="spnBO1FirstNameMsg" class="reqClass" style="display:none;">Fisrt Name is required.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtBO1MiddleName">Middle Initial</label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBO1MiddleName" value="{!owner1.EXPRN__Middle_Initial__c}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label">
+                                                        
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtBO1LastName">
+                                                        Last Name<span class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBO1LastName" value="{!owner1.EXPRN__Last_Name__c}" />
+                                                        <span id="spnBO1LastNameMsg" class="reqClass" style="display:none;">Last Name is required.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtBO1SocialSecNo">
+                                                        Social Sec No.
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBO1SocialSecNo" value="{!owner1.EXPRN__Social_Sec_No__c}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="slstBO1GenerationCode">
+                                                        Generation code
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:SelectList id="slstBO1GenerationCode" size="1" value="{!owner1.EXPRN__Generation_code__c}">
+                                                            <apex:selectoption itemLabel="Select" itemValue=""></apex:selectoption>
+                                                            <apex:selectoption itemLabel="SR" itemValue="SR"></apex:selectoption>
+                                                            <apex:selectoption itemLabel="JR" itemValue="JR"></apex:selectoption>
+                                                            <apex:selectoption itemLabel="II" itemValue="II"></apex:selectoption>
+                                                            <apex:selectoption itemLabel="III" itemValue="III"></apex:selectoption>
+                                                            <apex:selectoption itemLabel="IV" itemValue="IV"></apex:selectoption>
+                                                        </apex:SelectList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item">
+                                                <div class="slds-form-element slds-form-element_horizontal">
+                                                    <label class="slds-form-element__label" for="txtBO1Address">
+                                                        Address <span class="reqClass">*</span>
+                                                    </label>
+
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText id="txtBO1Address" value="{!owner1.EXPRN__Address__c}" />
+                                                        <span id="spnBO1AddressMsg" class="reqClass" style="display:none;">Address is required.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- End Business Owner Card -->
+                    </div>
+                </div>
+
+                <div>
+                    <apex:commandButton styleClass="btn" value="Search" id="btnSearchBI" />&nbsp;&nbsp;
+                    <apex:commandButton value="Clear Fields" id="btnClearFieldsBI" />&nbsp;&nbsp;
+                    <apex:commandButton value="Cancel" id="btnCalcelBI" action="{!CancelExpSearch}" />
+                </div>
+            </div>
+
+            <table id="tblTopContent" class="slds-scope">
+                <tr>
+                    <td id="tdBusinessOwner" style="float: left;width: 64%;">
+
+
+                        <div id="divTab1InternationalProfile" class="scoreBO" style="border-width:1px;border-style:solid;border-color:grey; background-color:white; width:91%; margin-left: 15px; display:none;">
+                            <div style="padding:0px;">
+                                <!-- <div id="divProfileSec1">   
+                                        <div class="formHeader">International Developed Profile</div><br />
+                                        <div>
+                                            You can request an international developed profile for a business in this country. 
+                                            If an online report is not immediately available we can create an international 
+                                            developed profile upon demand. The report will be returned based on the delivery 
+                                            option you select. The amount and accuracy of the information you provide may 
+                                            affect the quality of the report. Please contact your Experian representative for 
+                                            price and delivery time.
+                                        </div><br />
+                                        <div style="float:right;width:110px;color:#666;font-size:11px;margin-right: -15px;"><span class="reqClass">*</span> Required for Search</div><br />
+                                    </div>-->
+                                <div id="divProfileSec2" style="padding:0px;">
+                                    <div class="formHeader">
+                                        <input type="checkbox" id="chkboxConfComp" /> Check box to confirm compliance with the European Data Regulation
+                                        <span class="reqClass">*</span>
+                                    </div>
+                                    <span id="spnConfCompMsg" class="reqClass" style="display:none;">&nbsp;EU Privacy Law Compliance must be checked.</span>
+                                    <br />
+                                    <div style="margin-top:10px;color: #666;font-size: 11px;padding-left: 5%;">
+                                        European Data Regulation
+                                    </div>
+                                    <br />
+                                    <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                        Business information from countries located in the European Economic Area ("EEA") may contain information about individuals
+                                        that is governed by national and/or European Union legislation or regulation. Client
+                                        hereby certifies that when requesting business information on a business located
+                                        in the EEA that Client has obtained consent from a representative (or where the business
+                                        is unincorporated from the owner) of that business to the transfer of any personal
+                                        data contained in the business report into the U.S. or other countries outside of
+                                        the EEA.
+                                    </div>
+                                    <br />
+                                    <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                        Disclosures
+                                    </div>
+                                    <br />
+                                    <div style="color: #666;font-size: 11px;padding-left: 5%;">
+                                        Client agrees that Experian may disclose Client's name and address to the business that is the subject of a business report
+                                        provided to Client upon request of the subject business. Client also agrees that
+                                        it will provide to Experian upon request, and that Experian may disclose to the subject
+                                        business, the reason why the business report was requested by Client.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <apex:outputLink value="/apex/PrintEUPrivacyStatement" target="_blank" style="color: #0193DC;text-decoration:none;font-size:10px;padding-left:5%;">Print EU Privacy Statement</apex:outputLink>
+                                    </div>
+                                </div>
+
+                                <!-- Div for CANADA 12-Feb 2016 -->
+                                <div id="divProfileSec3" style="padding:0px;">
+                                    <div class="formHeader">
+                                        <input type="checkbox" id="chkboxCanConfComp" /> Check box to confirm compliance with the Canada Data Regulation
+                                        <span class="reqClass">*</span>
+                                    </div>
+                                    <span id="spnCanConfCompMsg" class="reqClass" style="display:none;">&nbsp;Canada Privacy Law Compliance must be checked.</span>
+                                    <br />
+                                    <div style="margin-top:10px;color: #666;font-size: 11px;padding-left: 5%;">
+
+                                        <p>
+                                            Experian no longer provides Canadian Profile reports. However, one of our partners has agreed to provide you access to the
+                                            same Canadian business information in real time. For first time users, a one
+                                            time registration will be required.Please select the first time Registration
+                                            option below.Once Completed, return to FusionIQ and proceed with your Canadian
+                                            report request.
+                                        </p>
+
+                                        <button type="button" id="canadaPartnerBtn1" onclick="window.open('https://expcan.businesscreditreports.com/Login?ReturnUrl=%2FReportSearch')">
+                                            <span>First Time Registration</span>
+                                        </button>
+
+
+                                    </div>
+                                    <br />
+                                    <div style="color: #666;font-size: 11px;padding-left: 5%;">
+
+                                    </div>
+                                    <br />
+                                </div>
+                                <!--<div id="divProfileSec3">
+                                        <table style="width:50%">
+                                        <tr>
+                                            <td style="width:150px">Delivery Type</td>                                              
+                                            <td style="width:250px">
+                                                <apex:selectRadio >
+                                                    <apex:selectOption itemLabel="Standard" itemValue="Standard" />
+                                                    <apex:selectOption itemLabel="Priority" itemValue="Priority" /> 
+                                                </apex:selectRadio>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">E-mail notification will be sent when this report is available.</td>
+                                        </tr>
+                                        <tr>
+                                           <td>Your email address<span class="reqClass">*</span></td>
+                                           <td><apex:inputText id="txtTab1EmailAddress"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Your Company</td>
+                                            <td><apex:inputText id="txtTab1Company"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><div class="formHeader">Reference 1</div></td>
+                                        </tr>
+                                        <tr>
+                                           <td>Business Name<span class="reqClass">*</span></td>
+                                           <td><apex:inputText id="txtTab1Ref1BusinessName"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Address</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref1Address"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">City</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref1City"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Country</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref1Country"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Telephone</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref1Telephone" /></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Contact</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref1Contact" /></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="2"><div class="formHeader">Reference 2</div></td>
+                                        </tr>
+                                        <tr>
+                                           <td>Business Name<span class="reqClass">*</span></td>
+                                           <td><apex:inputText id="txtTab1Ref2BusinessName"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Address</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref2Address"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">City</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref2City"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Country</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref2Country"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Telephone</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref2Telephone" /></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Contact</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref2Contact" /></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="2"><div class="formHeader">Reference 3</div></td>
+                                        </tr>
+                                        <tr>
+                                           <td>Business Name<span class="reqClass">*</span></td>
+                                           <td><apex:inputText id="txtTab2Ref3BusinessName"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Address</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref3Address"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">City</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref3City"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Country</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref3Country"/></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Telephone</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref3Telephone" /></td>
+                                        </tr>
+                                        <tr>
+                                           <td class="tableBIColumn1">Contact</td>
+                                           <td class="tableBIColumn2"><apex:inputText id="txtTab1Ref3Contact" /></td>
+                                        </tr> 
+                                    </table>
+                                    </div>-->
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </apex:pageBlock>
+        <!--</apex:tab> -->
+        <!--<apex:tab label="International" name="International" id="tabInternational">
+                <apex:pageBlock title="Check Development Profile Order Status">
+                    <table>
+                        <tr>
+                            <td id="tdInternationalSearch">
+                                <div>
+                                    <div style="padding:15px;"> 
+                                        <div class="formHeader">Business Information</div>
+                                        <div><span class="reqClass">*</span> Required for Search</div>
+                                        <table>
+                                          <tr>
+                                              <td class="tableBIColumn1">Global BIN <span class="reqClass">*</span></td>
+                                              <td class="tableBIColumn2">
+                                                <apex:inputText id="txtGlobalBIN" value="{!sTab2GlobalBIN}"/><br />
+                                                <span id="spnGlobalBINMsg" class="reqClass" style="display:none;">Please enter Global BIN.</span>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">Country <span class="reqClass">*</span></td>
+                                              <td class="tableBIColumn2">
+                                                  <apex:SelectList id="slsTab2SearchCountry" size="1" value="{!sTab2Country}">
+                                                      <apex:selectoption itemLabel="Select" itemValue="Select"></apex:selectoption>
+                                                      <apex:selectoption itemLabel="Afghanistan" itemValue="Afghanistan"></apex:selectoption>
+                                                      <apex:selectoption itemLabel="Denmark" itemValue="Denmark"></apex:selectoption>
+                                                      <apex:selectoption itemLabel="Japan" itemValue="Japan"></apex:selectoption>
+                                                      <apex:selectoption itemLabel="Poland" itemValue="Poland"></apex:selectoption>
+                                                  </apex:SelectList><br />
+                                                  <span id="spnTab2SearchCountryMsg" class="reqClass" style="display:none;">Please select Country.</span>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">Business Name <span class="reqClass">*</span></td>
+                                              <td class="tableBIColumn2">
+                                                <apex:inputText id="txtTab2BusinessName" value="{!sTab2BusinessName}" /><br />
+                                                <span id="spnTab2SearchBusinessNameMsg" class="reqClass" style="display:none;">Please enter Business Name.</span>
+                                               </td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">Address</td>
+                                              <td class="tableBIColumn2"><apex:inputText id="txtTab2Address" value="{!sTab2Street}" /></td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">City</td>
+                                              <td class="tableBIColumn2"><apex:inputText id="txtTab2City" value="{!sTab2City}" /></td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">Province</td>
+                                              <td class="tableBIColumn2"><apex:inputText id="txtProvince" value="{!sTab2State}"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1">Postal Code</td>
+                                              <td class="tableBIColumn2"><apex:inputText id="txtPostalCode" value="{!sTab2PostalCode}"/></td>
+                                          </tr>                   
+                                          <tr>
+                                              <td class="tableBIColumn1">Telephone</td>
+                                              <td class="tableBIColumn2"><apex:inputText id="txtTelephone" value="{!sTab2Telephone}" /></td>
+                                          </tr>                   
+                                          <tr>
+                                              <td class="tableBIColumn1"></td><td class="tableBIColumn2">                          
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td class="tableBIColumn1"></td>
+                                              <td class="tableBIColumn2">
+                                                  <apex:commandButton value="Search" id="btnTab2SearchBI" action="{!SearchBIForInternational}"/>&nbsp;&nbsp;
+                                                  <apex:commandButton value="Clear Fields" id="btnTab2ClearFieldsBI"/>&nbsp;&nbsp;
+                                                  <apex:commandButton value="Cancel" id="btnTab2CalcelBI"/>
+                                              </td>
+                                          </tr>
+                                        </table> 
+                                    </div>  
+                                </div>
+                            </td>
+                            <td id="tdInternationalProfile">
+                                <div id="divProfileInternationalDeveloped" style="border-width:1px;border-style:solid;border-color:grey; background-color:white; width:550px; margin-left: 15px;">
+                                    <div style="padding:15px;">   
+                                        <div id="divProfileSec1">   
+                                            <div class="formHeader">International Developed Profile</div><br />
+                                            <div>
+                                                You can request an international developed profile for a business in this country. 
+                                                If an online report is not immediately available we can create an international 
+                                                developed profile upon demand. The report will be returned based on the delivery 
+                                                option you select. The amount and accuracy of the information you provide may 
+                                                affect the quality of the report. Please contact your Experian representative for 
+                                                price and delivery time.
+                                            </div><br />
+                                            <div style="float:right;width:110px;color:#666;font-size:11px;"><span class="reqClass">*</span> Required for Search</div><br />
+                                        </div>
+                                        <div id="divProfileSec2" style="padding:15px;">
+                                            <div class="formHeader">Check box to confirm compliance with the European Data Regulation <span class="reqClass">*</span></div><br />
+                                            <div>
+                                                European Data Regulation 
+                                            </div><br />
+                                            <div>
+                                                Business information from countries located in the European Economic Area ("EEA") may
+                                                contain information about individuals that is governed by national and/or European Union
+                                                legislation or regulation. Client hereby certifies that when requesting business 
+                                                information on a business located in the EEA that Client has obtained consent from a 
+                                                representative (or where the business is unincorporated from the owner) of that business
+                                                to the transfer of any personal data contained in the business report into the U.S. or 
+                                                other countries outside of the EEA. 
+                                            </div><br />
+                                            <div>
+                                                Disclosures 
+                                            </div><br />
+                                            <div>
+                                                Client agrees that Experian may disclose Client's name and address to the business that 
+                                                is the subject of a business report provided to Client upon request of the subject 
+                                                business. Client also agrees that it will provide to Experian upon request, and that 
+                                                Experian may disclose to the subject business, the reason why the business report was
+                                                requested by Client.  
+                                            </div><br />
+                                            <div>
+                                                Print EU Privacy Statement
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="divProfileSec3">
+                                            <table style="width:50%">
+                                            <tr>
+                                                <td style="width:150px">Delivery Type</td>                                              
+                                                <td style="width:250px">
+                                                    <apex:selectRadio >
+                                                        <apex:selectOption itemLabel="Standard" itemValue="Standard" />
+                                                        <apex:selectOption itemLabel="Priority" itemValue="Priority" />                                                     
+                                                        <div id="divRadioSameDay"><apex:selectOption itemLabel="Same Day" itemValue="Same Day" /></div>                                                         
+                                                    </apex:selectRadio>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">E-mail notification will be sent when this report is available.</td>
+                                            </tr>
+                                            <tr>
+                                               <td>Your email address<span class="reqClass">*</span></td>
+                                               <td><apex:inputText id="txtTab2EmailAddress"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Your Company</td>
+                                                <td><apex:inputText id="txtTab2Company"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div class="formHeader">Reference 1</div></td>
+                                            </tr>
+                                            <tr>
+                                               <td>Business Name<span class="reqClass">*</span></td>
+                                               <td><apex:inputText id="txtTab2Ref1BusinessName"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Address</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref1Address"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">City</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref1City"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Country</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref1Country"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Telephone</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref1Telephone" /></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Contact</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref1Contact" /></td>
+                                            </tr> 
+                                            <tr>
+                                                <td colspan="2"><div class="formHeader">Reference 2</div></td>
+                                            </tr>
+                                            <tr>
+                                               <td>Business Name<span class="reqClass">*</span></td>
+                                               <td><apex:inputText id="txtTab2Ref2BusinessName"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Address</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref2Address"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">City</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref2City"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Country</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref2Country"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Telephone</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref2Telephone" /></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Contact</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref2Contact" /></td>
+                                            </tr> 
+                                            <tr>
+                                                <td colspan="2"><div class="formHeader">Reference 3</div></td>
+                                            </tr>
+                                            <tr>
+                                               <td>Business Name<span class="reqClass">*</span></td>
+                                               <td><apex:inputText id="txtTab2Ref3BusinessName"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Address</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab2Ref3Address"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">City</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab3Ref2City"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Country</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab3Ref2Country"/></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Telephone</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab3Ref2Telephone" /></td>
+                                            </tr>
+                                            <tr>
+                                               <td class="tableBIColumn1">Contact</td>
+                                               <td class="tableBIColumn2"><apex:inputText id="txtTab3Ref2Contact" /></td>
+                                            </tr> 
+                                        </table>
+                                        </div>
+                                    </div>                                  
+                                </div>  
+                            </td>
+                        </tr>   
+                    </table>
+                    
+              </apex:pageBlock>
+          </apex:tab> -->
+        <!--<apex:tab label="Fraud" name="Fraud" id="tabFraud">
+               <apex:pageBlock title="Fraud">   
+               </apex:pageBlock>
+          </apex:tab>-->
+        <!-- </apex:tabPanel> -->
+        <div id="divBottom">
+            <apex:pageBlock title="View Results" id="pbViewResult">
+                <apex:pageBlockButtons location="top">
+                    <!--<div id="divResultLinks" style="float: right; margin-right: 5%;" > -->
+                    <table style="float: right; width:400px">
+                        <tr>
+                            <td>
+                                <div id="divResultLinks">
+                                    <span id="spnRefineSearch" class="enableLink clsHideViewResult">Refine this search</span>
+                                    <span style="color: #0193dc;"> | </span>
+                                    <span id="spnNewSearch" class="enableLink ">New Search</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </td>
+                            <td>
+                                <div id="divPrintExport">
+                                    <apex:outputPanel rendered="{!if(lstWrapAcc.size != 0, true, false)}">
+                                        <apex:commandLink value="Export" action="{!ExportSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;"
+                                        />
+                                        <span style="color: #0193dc;"> | </span>
+                                        <apex:commandLink value="Print" action="{!PrintSearchReult}" target="_blank" style="color: #0193dc;text-decoration: none;font-size: 11px;"
+                                        />
+                                    </apex:outputPanel>
+                                </div>
+                            </td>
+                            <td style="float: right; margin-right: -5px;">
+                                <img src="{!URLFOR($Resource.BusinessIQ, 'SRC/images/setup_plus.png')}" id="imgBottomColExp" style="width:25px; cursor: pointer;"
+                                    class="collapsestory" />
+                            </td>
+                        </tr>
+                    </table>
+                </apex:pageBlockButtons>
+
+
+                <apex:outputPanel id="optpnlViewResult" styleClass="clsOutputPanelResult">
+
+                    <div id="searchResultDiv">
+                        <table>
+                            <tr>
+                                <td style="color:#666; float:left;">
+                                    <b>Search Results for: </b>
+                                </td>
+                                <td style="color:#666;font-size:11px;">
+                                    <apex:outputpanel rendered="{!IsCreditRiskSearch && expBus.EXPRN__BIN__c ==''}">
+                                        <apex:outputpanel >{!expBus.Name}
+                                            <br/>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Street_Address1__c != '',true,false)}">{!expBus.EXPRN__Exp_Street_Address1__c}
+                                            <br/>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel >{!expBus.EXPRN__Exp_City_Name__c}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_STATE__c != '',true,false)}">, {!expBus.EXPRN__Exp_STATE__c}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sZipCodePart1 != '',true,false)}"> {!sZipCodePart1}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sZipCodePart2 != '',true,false)}">-{!sZipCodePart2}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Country__c != '',true,false)}">, {!expBus.EXPRN__Exp_Country__c}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sPhoneSearchString != '',true,false)}">
+                                            <br/>{!sPhoneSearchString}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__BIN__c != '',true,false)}">
+                                            <br/>BIN: {!expBus.EXPRN__BIN__c}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sTaxIdPart1 != '',true,false)}">
+                                            <br/>Tax ID: {!sTaxIdPart1}{!sTaxIdPart2}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Reference_Information__c != '',true,false)}">
+                                            <br/>Reference Information: {!expBus.EXPRN__Reference_Information__c}</apex:outputpanel>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{! expBus.BIN__c !=''}">
+                                        BIN: {!expBus.EXPRN__BIN__c}
+                                        <br/> {!expBus.EXPRN__Exp_Country__c}
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IsBusSearchString}">
+                                        <apex:outputpanel >{!expBus.Name}
+                                            <br/>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Street_Address1__c != '',true,false)}">{!expBus.EXPRN__Exp_Street_Address1__c}
+                                            <br/>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_City_Name__c != '',true,false)}">{!expBus.EXPRN__Exp_City_Name__c}, </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sProvince != '',true,false)}">{!sProvince}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_ZIP__c != '',true,false)}"> {!expBus.EXPRN__Exp_ZIP__c}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(expBus.EXPRN__Exp_Country__c != '',true,false)}">
+                                            <br/>{!sCountry}</apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(sPhoneSearchString != '',true,false)}">
+                                            <br/>{!sPhoneSearchString}</apex:outputpanel>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IsGBINSearchString}">
+                                        GBIN: {!sGlobalBIN}
+                                        <br/> {!sCountry}
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IsRegIDSearchString}">
+                                        {!sCountry}
+                                        <br/> Reg Number: {!sRegionalID}
+                                    </apex:outputpanel>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <apex:outputPanel rendered="{!bBusinessSize}">
+                        <table>
+                            <tr>
+                                <td>Experian's extensive database does not show any records that match your inquiry.</td>
+                            </tr>
+                            <tr>
+                                <td>Experian updates its database on a daily basis from thousands of private and governmental
+                                    sources. The absence of a match can be valuable information.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="spnClickRefineSearch" class="enableLink clsHideViewResult" onclick="NavigateToTop();">Please click here to refine your search and search again.</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!bNoInteBusiness}">
+                        <table>
+                            <tr>
+                                <td>No matching businesses were identified for the input Name/Country.</td>
+                            </tr>
+                            <tr>
+                                <td>Please verify the Name/Country or input additional information for the requested business
+                                    and
+                                    <span id="spnClickRefineSearch" style="color:red; text-decoration: underline;" class="enableLink clsHideViewResult">search again.</span>
+                                </td>
+                            </tr>
+                            <!--<tr>
+                              <td>If an online report is unavailable, you can order a developed profile on this business by <span id="spnClickRefineSearch" style="color:red; text-decoration: underline;" class="enableLink clsHideViewResult" onclick="NavigateToTop();">clicking here.</span></td>
+                          </tr>-->
+                        </table>
+                    </apex:outputPanel>
+
+                    <!--<apex:panelGrid rendered="{!bExistBIN}"> 
+                      <table>                          
+                          <tr>
+                              <td>Your BIN number is not present in Salesforce.</td>
+                          </tr>
+                          <tr>
+                              <td><span id="spnClickRefineSearch" class="enableLink clsHideViewResult" onclick="NavigateToTop();">Please click here to refine your search and search again except BIN.</span></td>
+                          </tr>
+                      </table> 
+                  </apex:panelGrid>-->
+                    <apex:panelGrid rendered="{!bIsShowError}">
+                        <table>
+                            <tr>
+                                <!--<td>Backend Server is not available.</td>-->
+                                <td>{!sWSErrorMessage}</td>
+                            </tr>
+                        </table>
+                    </apex:panelGrid>
+
+                    <!-- <apex:outputLabel id="optlblNoRecordMsg" value="No record is found." rendered="{!bBusinessSize}" styleClass="errMsg"></apex:outputLabel>-->
+
+                    <apex:outputPanel rendered="{!if(lstWrapAcc.size>0, true, false)}" style="color:#666; font-size:11px;"> ({!lstWrapAcc.size} results found)</apex:outputPanel>
+                    <apex:pageBlock id="pb2" rendered="{!if(iAccountMapSize != 0, true, false)}">
+                        <apex:pageBlockButtons rendered="{!lstWrapAcc.size > iPageSize}">
+                            <apex:outputPanel >
+                                <apex:outputPanel >
+                                    <apex:outputText value="<< First" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                    <apex:commandLink value="<< First" status="Processing" styleClass="pageLink" action="{!first}" rerender="pb2" rendered="{!iCurrentPage > 1}"
+                                    /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel >
+                                <apex:outputText value="< Previous" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                <apex:commandLink value="< Previous" status="Processing" styleClass="pageLink" action="{!previous}" rerender="pb2" rendered="{!iCurrentPage > 1}"
+                                /> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>
+
+                            <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!iAccountMapSize>1}">
+                                <apex:outputPanel rendered="{!pg<=iAccountMapSize && pg>=1}">
+                                    <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=iCurrentPage }">
+
+                                    </apex:commandLink>
+                                    <apex:outputText value="{!pg}" rendered="{!pg==iCurrentPage}">
+                                    </apex:outputText>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </apex:outputPanel>
+                            </apex:repeat>
+
+                            <apex:outputPanel >
+                                <apex:outputText value="Next >" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText>
+                                <apex:commandLink value="Next >" status="Processing" styleClass="pageLink" action="{!next}" rerender="pb2" rendered="{!iCurrentPage < iAccountMapSize}"
+                                /> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </apex:outputPanel>
+
+                            <apex:outputPanel >
+                                <apex:commandLink value="Last >>" status="Processing" styleClass="pageLink" action="{!last}" rerender="pb2" rendered="{!iCurrentPage < iAccountMapSize}"
+                                />
+                                <apex:outputText value="Last >>" styleClass="pageText" rendered="{!iCurrentPage >=iAccountMapSize}"></apex:outputText>
+                            </apex:outputPanel>
+
+                            <!--<apex:outputPanel style="float:right">                        
+                            <apex:selectList size="1" value="{!iPageSize}" onchange="pagesize();" rendered="{!iAccountMapSize > 0}">
+                                <apex:selectOption itemLabel="5" itemValue="5"/>
+                                <apex:selectOption itemLabel="10" itemValue="10"/>
+                                <apex:selectOption itemLabel="15" itemValue="15"/>
+                                <apex:selectOption itemLabel="20" itemValue="20"/>
+                            </apex:selectList>
+                        </apex:outputPanel>-->
+                        </apex:pageBlockButtons>
+
+                        <apex:pageBlockTable id="pbtViewResult" styleClass="clsTableResult" value="{!mapPageToAccounts[iCurrentPage]}" var="acc"
+                            rendered="{!if(iAccountMapSize != 0, true, false)}">
+                            <!--<apex:column headerValue="Business" rendered="{!IsCreditRiskSearch}" onclick="return navigateToPage('{!acc.sBIN}');" styleClass="pbtColClass" >
+                               <apex:param name="businessName" value="{!acc.sBusinessName}"/>                              
+                               {!acc.sBusinessName}<br/>
+                               <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}" >{!acc.sStreetAddress}<br/></apex:outputpanel>
+                               <apex:outputpanel >{!acc.sCity}</apex:outputpanel>   
+                               <apex:outputpanel rendered="{!IF(acc.sState != '',true,false)}">, {!acc.sState}</apex:outputpanel>
+                               <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}</apex:outputpanel>
+                               <apex:outputpanel rendered="{!IF(acc.sPhone != '',true,false)}" ><br/>{!acc.sPhone}</apex:outputpanel>                               
+                          </apex:column>-->
+                            <apex:column headerValue="Business" rendered="{!IsCreditRiskSearch}">
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                    <apex:param name="binNumber" value="{!acc.sBIN}" />
+                                    <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                    {!acc.sBusinessName}
+                                    <br/>
+                                    <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}">{!acc.sStreetAddress}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel >{!acc.sCity}</apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sState != '',true,false)}">, {!acc.sState}</apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}</apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sPhone != '',true,false)}">
+                                        <br/>{!acc.sPhone}</apex:outputpanel>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="Matching Name & Address" rendered="{!IsCreditRiskSearch}">
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                    <apex:param name="binNumber" value="{!acc.sBIN}" />
+                                    <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                    <apex:outputpanel rendered="{!IF(acc.sMatchingBusinessName != '',true,false)}">{!acc.sMatchingBusinessName}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sMatchingStreetAddress != '',true,false)}">{!acc.sMatchingStreetAddress}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sMatchingCity != '',true,false)}">{!acc.sMatchingCity}</apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sMatchingState != '',true,false)}">{!acc.sMatchingState}</apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sMatchingZip != '',true,false)}"> {!acc.sMatchingZip}</apex:outputpanel>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column rendered="{!IsCreditRiskSearch}" style="color:#666;">
+                                <apex:facet name="header">Business
+                                    <br /> Identification No.</apex:facet>
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                    <apex:param name="binNumber" value="{!acc.sBIN}" />
+                                    <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                    {!acc.sBIN}
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column rendered="{!IsCreditRiskSearch}" style="color:#666;">
+                                <apex:facet name="header">Tradelines
+                                    <br /> Public Records,
+                                    <br />Collections</apex:facet>
+                                <apex:commandLink action="{!navigate}" styleClass="noUnderlineLink">
+                                    <apex:param name="binNumber" value="{!acc.sBIN}" />
+                                    <!--<apex:param name="businessName" value="{!acc.sBusinessName}"/>-->
+                                    {!acc.sNumberOfTradeLines}
+                                </apex:commandLink>
+                            </apex:column>
+
+                            <apex:column headerValue="Business" rendered="{!IsInternationalSearch}">
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+
+                                    <apex:param name="ctry" value="{!acc.sCountryName}" />
+                                    <apex:param name="rBin" value="{!acc.sRegiBusID}" />
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}" />
+
+                                    <span style="color: #0193DC;">{!acc.sBusinessName}</span>
+                                    <br/>
+                                    <apex:outputpanel rendered="{!IF(acc.sStreetAddress != '',true,false)}">{!acc.sStreetAddress}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sCity != '',true,false)}">{!acc.sCity}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sZip != '',true,false)}"> {!acc.sZip}
+                                        <br/>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!IF(acc.sCountryName != '',true,false)}">{!acc.sCountryName}</apex:outputpanel>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="Regional Bus ID" rendered="{!IsInternationalSearch}">
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+
+                                    <apex:param name="ctry" value="{!acc.sCountryName}" />
+                                    <apex:param name="rBin" value="{!acc.sRegiBusID}" />
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}" /> {!acc.sRegiBusID}
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="Global BIN" rendered="{!IsInternationalSearch}">
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+
+                                    <apex:param name="ctry" value="{!acc.sCountryName}" />
+                                    <apex:param name="rBin" value="{!acc.sRegiBusID}" />
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}" /> {!acc.sGlobalBIN}
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="Phone Number" rendered="{!IsInternationalSearch}">
+                                <apex:commandLink action="{!navigateToInternationalProfile}" styleClass="noUnderlineLink">
+
+                                    <apex:param name="ctry" value="{!acc.sCountryName}" />
+                                    <apex:param name="rBin" value="{!acc.sRegiBusID}" />
+                                    <apex:param name="gBin" value="{!acc.sGlobalBIN}" /> {!acc.sPhoneNumber}
+                                </apex:commandLink>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <script>
+                        //alert(j$('#hdnResultSize').val()); 
+                        /*if(j$('#hdnResultSize').val() != '0'){                      
+                            j$('#divResultLinks').show();
+                        }*/
+                        /* if(j$('#hdnResultSize').val() == '0' && j$('input[id$="txtBIN"]').val().trim() == ''){
+                             if(confirm('The Searched Business is not present in Salesforce. Do you want to create one ?')){
+                                  createBussinessRecord();  
+                                 //window.location.href = '/apex/CreateNewAccount';                             
+                             }                                           
+                         }*/
+                        /*
+                        if(j$('#hdnNavigateToAcctPage').val() == '1'){
+                              createBussinessRecord();                                    
+                        }*/
+                        j$(document).ready(function () {
+                            //alert(j$('#hdnResultSize').val());
+                            /*if(j$('#hdnResultSize').val() > 0 ){
+                               j$('body').scrollTop(j$('#searchResultDiv').position().top); 
+                            }*/
+                            //alert(j$('#hdnIsClickSearch').val());                         
+                            if (j$('#hdnIsClickSearch').val() == '1') {
+                                j$('#imgBottomColExp').attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_minus.png')}');
+                                j$('#imgBottomColExp').addClass('expandstory');
+                                j$('#imgBottomColExp').removeClass('collapsestory');
+
+                                j$('#searchResultDiv').show();
+                                j$('#divResultLinks').show();
+                                j$('#divPrintExport').show();
+                                j$('.clsOutputPanelResult').show();
+                            }
+                            //********
+                            j$('#imgBottomColExp').click(function () {
+                                //alert('hi');
+                                if (j$('#hdnIsClickSearch').val() == '0') {
+                                    return false;
+                                }
+                                if (j$(this).attr('class') == 'collapsestory') {
+                                    j$(this).attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_minus.png')}');
+                                    j$(this).addClass('expandstory');
+                                    j$(this).removeClass('collapsestory');
+                                    j$('.clsOutputPanelResult').show();
+
+                                    j$('#divResultLinks').show();
+                                    j$('#divPrintExport').show();
+                                }
+                                else {
+                                    j$(this).attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_plus.png')}');
+                                    j$(this).addClass('collapsestory');
+                                    j$(this).removeClass('expandstory');
+                                    j$('.clsOutputPanelResult').hide();
+
+                                    j$('#divResultLinks').hide();
+                                    j$('#divPrintExport').hide();
+                                }
+                            });
+
+                        });
+
+                        //******** 
+                        /*j$('#spnRefineSearch').click(function(){   
+                             j$('#divBottom').hide(); 
+                             j$('input[id$="txtBusinessName"]').focus();
+                        });*/
+
+                        //********
+                        j$('#spnNewSearch').click(function () {
+                            //j$('#divBottom').hide();
+                            hideBottomAndShowTop();
+                            ClearBusinessInformation();
+                            ClearBusinessOwner1();
+                            ClearBusinessOwner2()
+                            j$('#hdnIsClickSearch').val('0')
+                            j$('input[id$="txtBusinessName"]').focus();
+                        });
+
+                        //*********
+                        j$('.clsHideViewResult').click(function () {
+                            //j$('#divBottom').hide(); 
+                            hideBottomAndShowTop();
+                            j$('input[id$="txtBusinessName"]').focus();
+                        });
+
+                        function hideBottomAndShowTop() {
+                            j$('#imgBottomColExp').attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_plus.png')}');
+                            j$('#imgBottomColExp').addClass('collapsestory');
+                            j$('#imgBottomColExp').removeClass('expandstory');
+                            j$('.clsOutputPanelResult').hide();
+                            j$('#divResultLinks').hide();
+                            j$('#divPrintExport').hide();
+
+                            j$('#imgTopColExp').attr('src', '{!URLFOR($Resource.BusinessIQ, 'SRC / images / setup_minus.png')}');
+                            j$('#imgTopColExp').addClass('expandstory');
+                            j$('#imgTopColExp').removeClass('collapsestory');
+                            j$('#tblTopContent').show();
+                        }
+
+                        //*****
+                        function ClearBusinessInformation() {
+                            j$('input[id$="txtBusinessName"]').val('');
+                            j$('input[id$="txtAddress"]').val('');
+                            j$('input[id$="txtCity"]').val('');
+                            j$('select[id$="slstState"]').val('');
+                            j$('input[id$="txtZipPart1"]').val('');
+                            j$('input[id$="txtZipPart2"]').val('');
+                            j$('input[id$="txtTelephone"]').val('');
+                            j$('input[id$="txtBIN"]').val('');
+                            j$('input[id$="txtTaxPart1"]').val('');
+                            j$('input[id$="txtTaxPart2"]').val('');
+                            j$('input[id$="txtRefInfor"]').val('');
+
+                            j$('input[id$="txtTab1GlobalBIN"]').val('');
+                            j$('input[id$="txtRegionalBusID"]').val('');
+                        }
+
+                        //*****
+                        function ClearBusinessOwner1() {
+                            j$('input[id$="txtBO1FirstName"]').val('');
+                            j$('input[id$="txtBO1MiddleName"]').val('');
+                            j$('input[id$="txtBO1LastName"]').val('');
+                            j$('input[id$="txtBO1SocialSecNo"]').val('');
+                            j$('select[id$="slstBO1GenerationCode"]').val('Select');
+                            j$('input[id$="txtBO1Address"]').val('');
+                            j$('input[id$="txtBO1City"]').val('');
+                            j$('select[id$="slstBO1State"]').val('--');
+                            j$('input[id$="txtBO1ZipPart1"]').val('');
+                            j$('input[id$="txtBO1ZipPart2"]').val('');
+                            j$('input[id$="txtBO1DriverLicense"]').val('');
+                            j$('input[id$="txtBO1YearOfBirth"]').val('');
+                            j$('input[id$="txtBO1Age"]').val('');
+                            j$('input[id$="txtBO1PhoneNumber"]').val('');
+
+                            j$('input[id$="txtTab1GlobalBIN"]').val('');
+                            j$('input[id$="txtRegionalBusID"]').val('');
+                            j$('input[id$="txtTab1Province"]').val('');
+                            j$('input[id$="txtTab1Postalcode"]').val('');
+                        }
+
+                        //*****
+                        function ClearBusinessOwner2() {
+                            j$('input[id$="txtBO2FirstName"]').val('');
+                            j$('input[id$="txtBO2MiddleName"]').val('');
+                            j$('input[id$="txtBO2LastName"]').val('');
+                            j$('input[id$="txtBO2SocialSecNo"]').val('');
+                            j$('select[id$="slstBO2GenerationCode"]').val('Select');
+                            j$('input[id$="txtBO2Address"]').val('');
+                            j$('input[id$="txtBO2City"]').val('');
+                            j$('select[id$="slstBO2State"]').val('--');
+                            j$('input[id$="txtBO2ZipPart1"]').val('');
+                            j$('input[id$="txtBO2ZipPart2"]').val('');
+                            j$('input[id$="txtBO2DriverLicense"]').val('');
+                            j$('input[id$="txtBO2YearOfBirth"]').val('');
+                            j$('input[id$="txtBO2Age"]').val('');
+                            j$('input[id$="txtBO2PhoneNumber"]').val('');
+                        }
+                    </script>
+                    <input type="hidden" id="hdnResultSize" value="{!lstWrapAcc.size}" />
+                    <input type="hidden" id="hdnBinNotInSFDC" value="{!sBinNotInSFDC}" />
+                    <input type="hidden" id="hdnNavigateToAcctPage" value="{!sNaviToAcctCreatPage}" />
+                    <input type="hidden" id="hdnIsInterCountry" value="{!sIsInterCountry}" />
+                    <input type="hidden" id="hdnBody" />
+                    <input type="hidden" id="hdnIsClickSearch" value="{!sIsClickSearchBtn}" />
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </div>
+        <div id="divDummy">
+            <input type="hidden" id="hdnUSCountryName" value="{!sUSName}" />
+            <input type="hidden" id="hdnNumberOfBO" value="{!sNumberOfBO}" />
+            <input type="hidden" id="hdnInterCountryCode" value="{!sInterCountryCode}" />
+        </div>
+    </apex:form>
+</apex:page>

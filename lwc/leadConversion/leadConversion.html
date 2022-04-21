@@ -1,0 +1,67 @@
+<template >
+    <div style="background-color:white;">
+    <template if:true={showMobileButton}>
+        <lightning-accordion allow-multiple-sections-open=true onsectiontoggle={handleConvertLeadClick}>
+            <lightning-accordion-section name="Convert Lead" label="Convert Lead">     
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </template>
+    <template if:true={isModalOpen}>
+        <header class="slds-modal__header">
+            <h2>Convert Lead</h2>
+            <p class="slds-hide">
+                {recordId}
+            </p>
+        </header>
+
+        <div class="slds-box">
+            <div if:true={isProcessing} style="height:6rem;position:relative;">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+
+            <div if:false={isProcessing}>
+
+                <div class="slds-clearfix">
+                    <div class="slds-float_left" style="max-width:230px; word-wrap:break-word; font-weight:bold">
+                        <p>
+                            Please validate address by inputting the address to the right in the Address Search below.
+                        </p>
+                    </div>
+
+                    <div class="slds-float_right"  style="font-weight:bold">
+                        <lightning-formatted-address street={newAddress.street}
+                        city={newAddress.city}
+                        country={newAddress.country}
+                        province={newAddress.state}
+                        postal-code={newAddress.postalCode} disabled>
+
+                        </lightning-formatted-address>
+                    </div>
+                </div>
+                <br/>
+                    <lightning-input-address
+                    show-address-lookup
+                    address-label="Address"
+                    street-label="Street"
+                    city-label="City"
+                    country-label="Country"
+                    province-label="State"
+                    postal-code-label="Zip Code"
+                    country-options={getCountryOptions}
+                    province-options={getStateOptions}
+                    onchange={handleAddressChange} >
+                </lightning-input-address>
+            
+            </div>
+        </div>
+
+        <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+            <button class="slds-button slds-button_brand" disabled={disableConvert} onclick={updateAddAndConvertLead}>Convert</button>
+        </footer>
+    </template>
+    </div>
+</template>

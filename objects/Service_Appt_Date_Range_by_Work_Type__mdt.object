@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Default Date Ranges for the Service Appointment&apos;s Earliest Start Permitted to the Due Date based on Work Type.</description>
+    <fields>
+        <fullName>Date_Range__c</fullName>
+        <description>The number of says between the Service Appointment&apos;s Earliest Start Permitted field and the Due Date field.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>The number of says between the Service Appointment&apos;s Earliest Start Permitted field and the Due Date field.</inlineHelpText>
+        <label>Date Range</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Only_Use_Business_Days__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When calculating the Due Date, only business days will be taken into consideration. Based on the &quot;48 Hour Expiration Date Hours&quot; Business Hours.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Only Use Business Days</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Service Appt Date Range by Work Type</label>
+    <pluralLabel>Service Appt Date Ranges by Work Type</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>48 notification to Buyer</name>
+    <style>freeForm</style>
+    <subject>48 Hour Notification Received: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <textOnly>Dear {!Case.Account},
+
+
+We have received your 48 hour notice of intent to withdraw the offer for the below mentioned vehicle:
+
+
+{!Case.Vehicle_Year__c} {!Case.Vehicle_Make__c} {!Case.Vehicle_Model__c}
+
+{!Case.VIN__c}
+
+Auction ID: {!Case.Auction_ID_s__c}
+
+
+If the title is received within 48 hours, you will be notified via email.
+
+
+If the title is not received within 48 hours, we will reach out to discuss next steps.
+
+
+In the meantime, please reach out to your ACV Title Clerk, {!Case.OwnerFullName}, at {!Case.OwnerEmail} with any questions.
+
+
+Thank you!
+
+
+Titles Team
+
+ACV Auctions</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

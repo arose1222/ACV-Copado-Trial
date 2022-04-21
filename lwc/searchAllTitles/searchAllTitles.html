@@ -1,0 +1,64 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternativetext="Loading" size="large"></lightning-spinner>
+    </template>
+    <section role="dialog" tabindex="-1" class="slds-fade-in-open slds-modal_small">
+        <div>
+            <header class="slds-modal__header">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Search All Titles</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <aura:component>
+                <div class="row">
+                    <h2 class="header">Search for a VIN or Case Number:</h2>
+                    <lightning-input onchange={termChange} value={searchTerm} name="enter-search" placeholder="search..." type="search"></lightning-input>
+                </div>
+            </aura:component>
+            </div>
+        </div>
+    </section>
+    <article class="slds-card">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th><div class="slds-truncate">Mark Received</div></th>
+                    <th><div class="slds-truncate">TA/TWD</div></th>
+                    <th><div class="slds-truncate">Days Opened</div></th>
+                    <th><div class="slds-truncate">Status</div></th>
+                    <th><div class="slds-truncate">Case Number</div></th>
+                    <th><div class="slds-truncate">Auction Number</div></th>
+                    <th><div class="slds-truncate">Vehicle VIN</div></th>
+                    <th><div class="slds-truncate">Vehicle Make</div></th>
+                    <th><div class="slds-truncate">Vehicle Model</div></th>
+                    <th><div class="slds-truncate">Year</div></th>
+                    <th><div class="slds-truncate">Seller Name</div></th>
+                    <th><div class="slds-truncate">Buyer Name</div></th>
+                    <th><div class="slds-truncate">Payment Method</div></th>
+                    <th><div class="slds-truncate">Payment Status</div></th>
+                </tr>
+            </thead>
+            <template for:each={rows} for:item='row'>
+                <tr key={row.key}>
+                    <td><lightning-button key={row.key} data-key={row.key} variant='brand' label='Received' class='button' onclick={handleRowAction}></lightning-button></td>
+                    <!-- variant='brand' -->
+                    <td><lightning-input key={row.key} data-key={row.key} name='title' value={row.title} readonly class='slds-p-bottom_small'>{row.title}</lightning-input></td> <!-- field-level-help='If true, Title Absent. If false, Title is With Deal' -->
+                    <td><lightning-input key={row.key} data-key={row.key} name='days' value={row.days} readonly class='slds-p-bottom_small'>{row.days}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='status' value={row.status} readonly class='slds-p-bottom_small' style="width: 90px">{row.status}</lightning-input></td>
+                    <!-- <td><lightning-formatted-url key={row.key} data-key={row.key} name='caseNumber' value={row.caseNumber} readonly class='slds-p-bottom_small'>{row.caseNumber}</lightning-formatted-url></td> -->
+                    <td><a id={row.caseNum} href={row.caseNumber} key={row.key} data-key={row.key} name='linktoCase' class='slds-p-bottom_small'>{row.caseNum}</a></td>
+                    <!-- <td><lightning-input key={row.key} data-key={row.key} name='auctionNumber' value={row.auctionNumber} readonly class='slds-p-bottom_small'>{row.auctionNumber}</lightning-input></td> -->
+                    <td><a id={row.aucNum} href={row.auctionNumber} key={row.key} data-key={row.key} name='linktoAuction' class='slds-p-bottom_small'>{row.aucNum}</a></td>
+                    <!-- <td><lightning-input key={row.key} data-key={row.key} name='vin' value={row.vin} readonly class='slds-p-bottom_small' style="width: 180px">{row.vin}</lightning-input></td> -->
+                    <td><a id={row.vinNum} href={row.vin} key={row.key} data-key={row.key} name='linktoVIN' class='slds-p-bottom_small' style="width: 180px">{row.vinNum}</a></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='make' value={row.make} readonly class='slds-p-bottom_small'>{row.make}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='model' value={row.model} readonly class='slds-p-bottom_small'>{row.model}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='year' value={row.year} readonly class='slds-p-bottom_small' style="width: 60px">{row.year}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='sellerName' value={row.sellerName} readonly class='slds-p-bottom_small'>{row.sellerName}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='buyerName' value={row.buyerName} readonly class='slds-p-bottom_small'>{row.buyerName}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='paymentMethod' value={row.paymentMethod} readonly class='slds-p-bottom_small'>{row.paymentMethod}</lightning-input></td>
+                    <td><lightning-input key={row.key} data-key={row.key} name='paymentStatus' value={row.paymentStatus} readonly class='slds-p-bottom_small'>{row.paymentStatus}</lightning-input></td>
+                </tr>
+            </template>
+        </table>
+    </article>
+</template>

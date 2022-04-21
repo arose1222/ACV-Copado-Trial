@@ -1,0 +1,21 @@
+<apex:page sidebar="false" standardStylesheets="false" showHeader="{!if($CurrentPage.parameters.showHeader != null,$CurrentPage.parameters.showHeader,'true')}">
+  <!-- Set up the Session ID and User Info variables. -->
+  <script type="text/javascript">
+    var __sfdcSessionId = '{!GETSESSIONID()}';
+    var Apsona = { 
+        "version": "1.15",
+        "user": {
+            "name": "{!JSENCODE($User.FirstName)} {!JSENCODE($User.LastName)}", 
+            "loginId": "{!JSENCODE($User.Username)}", 
+            "email": "{!$User.Email}", 
+            "id": "{!$User.Id}", 
+            "orgId": "{!$Organization.Id}", 
+            "company": "{!JSENCODE($Organization.Name)}"
+        }
+    };
+  </script>
+  
+  <!-- Set up Apsona -->
+  <script src="https://service.apsona.com/sfdc/apsona.min.js"></script>
+    
+</apex:page>

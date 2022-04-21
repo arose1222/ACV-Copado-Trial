@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Buyer beware</name>
+    <style>freeForm</style>
+    <subject>ACV Auctions—buy aware not buyer beware</subject>
+    <textOnly>Hi {!Lead.FirstName},
+
+
+
+It’s pretty tough to make a good buying decision when you have 30 seconds to look over a car. So we do the hard work for you. Each ACV Auctions™ inspected vehicle includes an unbiased condition report. When you bid on a car with us, you know what you’re getting. Our ACV “Ride, Drive, and Frame—Green Light Policy”, OBDII, and Paint Meter Reading assurance that each vehicle you purchase is exactly as described.
+
+
+A few more reasons why ACV Auctions™ is the best way to purchase vehicle:
+
+Free to sign up
+
+No subscriptions fee
+
+Super low buy fees
+
+No contract
+
+
+
+See why dealers like you have made ACV Auctions the place to buy.
+
+
+E-Z Loan Auto Sales
+
+Mike Dan, Mike Dan Motors
+
+
+
+
+There is no doubt your day is busy. I will call you today, and I’ll keep it brief. I look forward to speaking to you and answering any questions you may have. If you have a second, please watch the videos.
+
+Sincerely,
+
+
+
+{!User.FirstName} {!User.LastName}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

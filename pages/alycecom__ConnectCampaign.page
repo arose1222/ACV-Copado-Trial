@@ -1,0 +1,29 @@
+<apex:page standardController="Campaign" sidebar="false" extensions="alycecom.CampaignSettingsController" showHeader="false">
+    <apex:include pageName="alycecom__AuthorizationForm"/>
+    <script type="text/javascript">
+        function closeModalDialog() {
+            campaign_url = '/{!Campaign.Id}';
+            window.location.href = campaign_url;
+        }
+        function reloadParent(){
+            window.parent.location.href = window.parent.location.href;
+        }
+    </script>
+    <apex:form id="MainForm">
+        <apex:outputPanel rendered="{!DisplayConnectToAlyceSection}">
+            <apex:iframe src="{!$Setup.alycecom__Alyce_Endpoints__c.alycecom__AlyceBase__c}/salesforce/v2/iframe/open/campaign-create?sf_id={!SFId}&sf_version={!SFVersion}&token={!AccessToken}&payload={!URLENCODE(PayloadJson)}&cb_success={!BaseURL}/apex/alycecom__ConnectCampaignRedirect?sf_campaign_id={!SfCampaignId}&cb_error={!BaseURL}/apex/alycecom__ConnectCampaignRedirect?sf_campaign_id={!SfCampaignId}" Id="CreateCampaignIframe"/>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!NOT(DisplayConnectToAlyceSection)}">
+            <script>
+                closeModalDialog();
+            </script>
+        </apex:outputPanel>
+    </apex:form>
+    <script>
+        function setHeight(){
+            var height = window.innerHeight;
+            document.getElementById("CreateCampaignIframe").style.height = height+"px";
+        }
+        setHeight();
+    </script>
+</apex:page>

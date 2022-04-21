@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify Seller Sales team member that paymnet has failed a vehicle</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Seller payment Issue Notification</name>
+    <style>freeForm</style>
+    <subject>Payment Issue on Selling Dealership Auction - Information Only</subject>
+    <textOnly>For your information only, no action needed at this time.
+
+A payment issue has been identified for your Selling Dealer,
+{!Collections_Auctions__c.Seller_Account__c}
+
+The Buyer for Auction {!Collections_Auctions__c.Auction_To_Collections__c} has experienced a payment issue.
+
+The payment issue is related to:{!Collections_Auctions__c.Case_Reason__c}
+
+Additional Details of issue described by payments:
+{!Collections_Auctions__c.Additional_Details__c}
+
+Please reference the activity on the collections case for up to date information on the status of this collections effort.
+
+https://acvauctions.lightning.force.com/{!Collections_Auctions__c.Collections_Case_ReordId__c}
+
+If you have questions related to this issue, please contact the owner of this collections effort, {!Collections_Auctions__c.OwnerFullName}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,189 @@
+<apex:page standardController="Account" extensions="EXPRN.InlineAccountReportsController" sidebar="false" showheader="false" lightningStylesheets="true">
+
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-1.6.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+    <!--<apex:includeScript value="{!URLFOR($Resource.jqPlugin, '/jquery.blockUI.js')}"/>  -->
+    
+    <apex:includeScript value="/soap/ajax/21.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/21.0/apex.js"/>
+
+    
+    <style>                               
+        .pageLink {font-weight:540 !important; color:#0193dc !important; font-size: 11px !important;}
+        .pageText {color:#666 !important; font-size: 11px !important;}
+        
+        .Processing
+        {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+        } 
+        
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        }
+                
+        .comLink {color: #015ba7 !important;} 
+         img.relatedListIcon {
+        	display: initial !important;
+        width: auto !important;
+        }
+    </style>  
+    
+    <script>        
+        $j = jQuery.noConflict();
+                       
+        $j(document).ready(function()
+        {                                                                                                                                                                                                      
+        })
+        ;
+        /*                                                      
+        function BlockPg()
+        {
+            $j('div.searchDiv').block({
+                message: '<img src="/img/loading32.gif">' ,
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    opacity: 1,
+                    '-webkit-border-radius': '40px', 
+                    '-moz-border-radius': '40px'                     
+                }
+            });
+        }
+                
+        function UnblockPg()
+        {
+            $j('div.searchDiv').unblock();
+        }*/ 
+        
+        function updatePageNumDisplay(pgNumber)
+        {          
+            afUpdatePageNumDisplay(pgNumber);
+            return false;
+        }
+        
+        function jsConfirmDelete(alertId)
+        {            
+            var r = confirm("Are you sure?");
+            
+            if (r == true) 
+            {
+                afConfirmDelete(alertId);
+                return false;
+            } 
+            else 
+            {
+                return false;
+            }            
+        }
+
+   </script>
+    <apex:form id="theForm">        
+        <!--
+        <apex:actionFunction name="afload" rerender="pb" status="modal"/> -->
+
+        <apex:actionFunction action="{!deleteAlert}" name="afConfirmDelete" reRender="theForm" status="modal">
+            <apex:param name="alertIdToDel" value="" />     
+        </apex:actionFunction> 
+        
+        <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb" status="modal">
+            <apex:param name="selectedPageNum" value="" />     
+        </apex:actionFunction> 
+        
+        <!--        
+        <apex:actionStatus onStart="BlockPg()" id="modal" onstop="UnblockPg();"/>
+        -->
+        
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />                
+            </div>
+       </div>
+       <apex:actionStatus id="modal" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />        
+        <apex:pageBlock title="" 
+                        id="pb" 
+                        helpTitle="Experian Credit Reports Help" 
+                        helpUrl="https://help.salesforce.com/htviewhelpdoc?err=1&id=co_relatedlist.htm&siteLang=en_US"><!-- rendered="{!alertMapSize > 0}"-->
+            
+            <apex:facet name="header">            
+                <apex:panelGrid columns="3">                                                           
+                    <div class="pbTitle" style="padding-left:5px;padding-top:5px;">
+                        <img src="/img/icon/diamond24.png" class="relatedListIcon" style="width:24px;display:block;margin-left:-6px;margin-top: -4%;"/>
+                        <h3 class="mainTitle" style="margin-top: -3%;">&nbsp;Experian Credit Reports</h3>
+                    </div>
+                    <!--apex:commandButton value="Pull New Report" onclick="window.open('/apex/SelectReport?id={!businessId}&accId={!accountId}')"/-->
+                    <!--<apex:commandButton value="Pull New Report" action="{!pullReport}"/>-->
+                    <apex:commandLink styleClass="btn" style="margin-top: 3%;text-decoration:none; " value="Pull New Report"  action="{!pullReport}" rendered="{!if(intURLRedirect == '' && businessId != null && businessId != '', true, false)}" target="_parent"/>
+                    <apex:commandButton value="Pull New Report" onclick="window.open('{!intURLRedirect}')" rendered="{!if(intURLRedirect != '' && businessId != null && businessId != '', true, false)}" />
+                    <!--apex:commandButton value="Pull New Report" onclick="window.open('/apex/ExperianCreditReport?accID={!accountId}&busId={!businessId}&reportCode=10')" rendered="{!isInternational = 2}"/-->
+                    <apex:outputText value=" "/> 
+                </apex:panelGrid>  
+            </apex:facet>
+            <apex:pagemessages />
+            <apex:outputPanel rendered="{!alertMapSize == 0}" style="margin-left: 1%;">
+                <!-- <apex:image url="/img/msg_icons/warning16.png"/>-->
+                <apex:outputText value="No records to display" styleClass="noRowsHeader"/>
+            </apex:outputPanel>
+            <!--
+            <div class="searchDiv">-->
+                <apex:pageBlockButtons rendered="{!AlertMapKeySetSize > 1}">                
+                    <apex:outputPanel >
+                        <apex:outputPanel >
+                            <apex:outputText value="<< First" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                            <apex:commandLink value="<< First" status="modal" styleClass="pageLink" action="{!first}" rerender="pb" rendered="{!currentAlertPage > 1}"/>                            
+                            &nbsp;&nbsp;
+                        </apex:outputPanel>
+                     </apex:outputPanel>
+                    <apex:outputPanel >
+                        <apex:outputText value="< Previous" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                        <apex:commandLink value="< Previous" status="modal" styleClass="pageLink" action="{!previous}" rerender="pb" rendered="{!currentAlertPage > 1}"/>                            
+                       &nbsp;&nbsp;
+                    </apex:outputPanel>
+                    <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!alertMapSize>1}" >                    
+                        <apex:outputPanel rendered="{!pg<=alertMapSize && pg>=1}" >
+                            <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=currentAlertPage }" >                               
+                            </apex:commandLink>                       
+                            <apex:outputText value="{!pg}" rendered="{!pg==currentAlertPage}">                                                
+                            </apex:outputText>
+                            &nbsp;&nbsp;
+                        </apex:outputPanel>                        
+                    </apex:repeat>
+                    <apex:outputPanel >                                     
+                         <apex:outputText value="Next >" styleClass="pageText" rendered="{!currentAlertPage >=alertMapSize}"></apex:outputText> 
+                         <apex:commandLink value="Next >" status="modal" styleClass="pageLink" action="{!next}" rerender="pb" rendered="{!currentAlertPage < alertMapSize}"/>                              
+                         &nbsp;&nbsp;
+                    </apex:outputPanel>
+                    <apex:outputPanel >
+                        <apex:commandLink value="Last >>" status="modal" styleClass="pageLink" action="{!last}" rerender="pb" rendered="{!currentAlertPage < alertMapSize}"/>                            
+                        <apex:outputText value="Last >>" styleClass="pageText" rendered="{!currentAlertPage >=alertMapSize}"></apex:outputText> 
+                    </apex:outputPanel>
+                </apex:pageBlockButtons>
+                <apex:pageBlockTable value="{!mapPageToAlerts[currentAlertPage]}" var="a" rendered="{!alertMapSize > 0}">
+                    <apex:column >
+                        <apex:facet name="header">
+                            Name
+                        </apex:facet>
+                        <apex:commandLink value="{!a.Name}" onclick="window.open('/{!a.Id}?accId={!accountId}')" />                       
+                    </apex:column>
+                    <apex:repeat var="f" value="{!$ObjectType.EXPRN__Credit_Report__c.FieldSets.EXPRN__Details}">                                                   
+                        <apex:column value="{!a[f]}"/>                                                                                                                                                    
+                    </apex:repeat>
+                </apex:pageBlockTable> 
+            <!--      
+            </div>-->
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>

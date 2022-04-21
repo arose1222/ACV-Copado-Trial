@@ -1,0 +1,61 @@
+<template>
+    <div data-id='container' class={containerClasses}>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item padding="around-small">
+                <lightning-dual-listbox id="RuleList"
+                    name="Rule"
+                    label="Rule"
+                    options={ruleList}
+                    value={selectedRules}
+                    onchange={handleRuleChange}
+                    disable-reordering="True">
+                </lightning-dual-listbox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-combobox
+                    name="Year"
+                    label="Year"
+                    value={selectedYear}
+                    placeholder="Select Year"
+                    options={yearList}
+                    onchange={handleYearChange} ></lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <center>
+        <div class="trapezoid" onclick={toggleDrawer}>
+            Filters
+        </div>
+    </center>
+    <br/>
+    <lightning-button-icon icon-name="utility:refresh"  alternative-text="Refresh" title="Refresh" onclick={getPrescreenList}></lightning-button-icon>
+    <br/>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th>Condition Report Prescreen</th>
+                <th>VIN</th>
+                <th>Year</th>
+                <th>Age</th>
+                <th>Link to CR</th>
+                <th>Prescreen Reasons</th>
+                <th>VCI</th>
+            </tr>
+        </thead>
+        <template for:each={filteredQueue} for:item="cr">
+            <tr key={cr.key}>
+                <td key={cr.key}><lightning-formatted-url value={cr.linkToRecord} label={cr.Name} target="_parent" ></lightning-formatted-url></td>
+                <td key={cr.key}>{cr.VIN}</td>
+                <td key={cr.key}>{cr.Year}</td>
+                <td key={cr.key}><lightning-formatted-rich-text
+                    value={cr.Age} disabled="TRUE"></lightning-formatted-rich-text></td>
+                <td key={cr.key}>
+                    <lightning-formatted-rich-text
+        value={cr.Link} disabled="TRUE">
+    </lightning-formatted-rich-text></td>
+                <td key={cr.key}>{cr.reasons}</td>
+                <td key={cr.key}>{cr.vci}</td>
+            </tr>
+        </template>
+    </table>
+</template>

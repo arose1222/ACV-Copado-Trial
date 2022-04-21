@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <assignments>
+        <name>Assign_Date_Time_Finalized</name>
+        <label>Assign Date Time Finalized</label>
+        <locationX>176</locationX>
+        <locationY>575</locationY>
+        <assignmentItems>
+            <assignToReference>varDateTimeFinalized</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NowDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Case_Records</targetReference>
+        </connector>
+    </assignments>
+    <description>Tracks the date &amp; time a transportation case is marked finalized.</description>
+    <formulas>
+        <description>The date &amp; time of the status update</description>
+        <name>NowDateTime</name>
+        <dataType>DateTime</dataType>
+        <expression>Now()</expression>
+    </formulas>
+    <interviewLabel>Date Time Finalized {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Date Time Finalized</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the case records that are in a Finalized status.</description>
+        <name>Get_Record</name>
+        <label>Get Case Records</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Date_Time_Finalized</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Finalized</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get record type so the record type name can be used instead of the ID.</description>
+        <name>Get_Record_Type</name>
+        <label>Get Record Type</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Transportation</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Place the date &amp; time on the case field, &quot;Date Time Finalized&quot;.</description>
+        <name>Update_Case_Records</name>
+        <label>Update Case Records</label>
+        <locationX>176</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Date_Time_Finalized__c</field>
+            <value>
+                <elementReference>varDateTimeFinalized</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Record_Type</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Finalized</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Holds the date &amp; time the record was finalized to place it on the case field.</description>
+        <name>varDateTimeFinalized</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,12 @@
+<apex:page sidebar="false">
+   <script>
+        function url_update(element){
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var sf_campaign_id = url.searchParams.get("sf_campaign_id");
+            campaign_url = '/'+sf_campaign_id;
+            window.parent.location.href = campaign_url;
+        }
+        window.onload = url_update;
+    </script>
+</apex:page>

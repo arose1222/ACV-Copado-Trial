@@ -1,0 +1,245 @@
+<apex:page controller="docebo_v3.CtrlPackageSetup" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" action="{!init}" tabStyle="DoceboAdmin__tab">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic"></link>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/dist/vuelidate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/dist/validators.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        font-size: 12px;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .form {
+        position: relative;
+        height: 200px;
+        width: 388px;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
+        padding: 20px;
+        display: inline-block;
+        text-align: left;
+      }
+
+      .form > .form-group {
+        padding-top: 10px;
+      }
+
+      .form__input {
+        border: 0;
+        border-bottom: 1px solid #e4e6e5;
+        width: 100%;
+        color: #757575;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        line-height: 19px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      .form-group--error > .form__input {
+        border-bottom: 2px solid #e74c3c;
+      }
+
+      .error {
+        color: #E74C3C;
+      }
+      .error-msg {
+        margin-top: 4px;
+      }
+
+      .button {
+        color: white;
+        font-size: 14px;
+        line-height: 30px;
+        height: 42px;
+        width: 395px;
+        border-radius: 4px;
+        background-color: #5EBE5E;
+        cursor: pointer;
+      }
+
+      .button[disabled] {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      .form__label {
+        display: inline-block;
+        width: 100%;
+        height: 17px;
+        color: #0465AC;
+        margin-bottom: 5px;
+        font-weight: 600;
+        line-height: 17px;
+      }
+    </style>
+
+    <script type="text/x-template" id="login-form">
+      <div class="container">
+        <div class="form">
+          <div class="form-group" :class="{ 'form-group--error': $v.platformUrl.$error }">
+            <label class="form__label">Platform URL <span class="error">*</span></label>
+            <input class="form__input" placeholder="Insert the platform url" v-model.trim="$v.platformUrl.$model"/>
+          </div>
+          <div class="error error-msg">
+            <span v-if="$v.platformUrl.$error">Platform URL is invalid</span>&nbsp;
+          </div>
+          <div class="form-group" :class="{ 'form-group--error': $v.clientSecret.$error }">
+            <label class="form__label">Client Secret <span class="error">*</span></label>
+            <input class="form__input" placeholder="Insert the client secret" type="password" v-model.trim="$v.clientSecret.$model"></input>
+          </div>
+          <div class="error error-msg">
+            <span v-if="!$v.clientSecret.serverSide">Client Secret is invalid</span>&nbsp;
+          </div>
+          <div class="form-group" style="text-align: center; position: absolute; bottom: 10px; left: 0; width: 100%">
+            <button class="button" @click="activate" :disabled="$v.$anyError || !$v.clientSecret.$model || !$v.platformUrl.$model || saving">ACTIVATE</button>
+          </div>
+        </div>
+      </div>
+    </script>
+  </head>
+
+  <body>
+    <div id="theApp">
+      <login-form v-if="notRegistered" />
+    </div>
+    <script>
+      Vue.use(vuelidate.default)
+      const { url, required } = validators
+
+      Vue.component('login-form', {
+        template: '#login-form',
+        data() {
+          return {
+            platformUrl: '',
+            clientSecret: '',
+            clientSecretError: false,
+            platformUrlError: false,
+            saving: false
+          }
+        },
+        validations: {
+          platformUrl: {
+            url,
+            validPu: (value, vm) => !vm.platformUrlError
+          },
+          clientSecret: {
+            serverSide: (value, vm) => !vm.clientSecretError
+          }
+        },
+        created () {
+          this.$v.$touch()
+        },
+        watch: {
+          platformUrl () {
+            this.platformUrlError = false
+          },
+          clientSecret () {
+            this.clientSecretError = false
+          }
+        },
+        methods: {
+          block () {
+            this.saving = true
+          },
+          unblock () {
+            this.saving = false
+          },
+          callLms (token) {
+            console.log('token', token);
+              //return fetch('https://sfdc-node-aap-proxy-02.herokuapp.com/lms/login', {
+              //return fetch('https://localhost:5000/lms/login', {
+              return fetch('https://anubi.docebo.cloud/lms/login', {
+              //return fetch('https://dev-anubi.docebo.cloud/lms/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                platformUrl: this.platformUrl,
+                token
+              })
+            })
+            .then(res => res.json())
+            .then(res => {
+              console.log('res', res);
+              if(!res.success) {
+                res.fieldsInError.forEach((fie, i) => this[fie + 'Error'] = true)
+                return Promise.reject()
+              } else return res
+            })
+          },
+          saveToSfdc () {
+            return this.$root.$api('saveToSfdc', {
+              clientSecret: this.clientSecret,
+              platformUrl: this.platformUrl
+            })
+          },
+          activate () {
+            this.clientSecretError = false
+            this.platformUrlError = false
+            this.block()
+            this.$api('activateLms', {
+              clientSecret: this.clientSecret,
+              platformUrl: this.platformUrl
+            }).then(res => {
+              if(!res.success) {
+                res.fieldsInError.forEach((fie, i) => this[fie + 'Error'] = true)
+              }
+              return res.token
+            })
+            .then(this.callLms)
+            .then(this.saveToSfdc)
+            .then(() => location.reload())
+            .catch(e => {
+              this.unblock()
+            })
+          }
+        }
+      })
+
+      const VfApiProxy = function (ctrl) {
+        return function (method, params) {
+          var sortedParams = Object.keys(params).sort()
+
+          return new Promise((resolve, reject) => {
+            ctrl[method](...(sortedParams.map(sp => params[sp])), (result, event) => {
+              if (event.status) {
+                resolve(result)
+              } else {
+                reject(event.message)
+              }
+            }, { escape: false })
+          })
+        }
+      }
+
+      Vue.mixin({
+        methods: {
+          $api: new VfApiProxy(docebo_v3.CtrlPackageSetup)
+        }
+      })
+
+      new Vue({
+        el: '#theApp',
+        data: {
+          notRegistered: true
+        }
+      })
+    </script>
+  </body>
+</html>
+</apex:page>

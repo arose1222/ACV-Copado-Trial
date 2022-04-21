@@ -1,0 +1,604 @@
+<apex:page controller="EXPRN.AlertsSummaryController" showHeader="false" sidebar="false">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-1.6.2.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+
+    <script>
+        //Below method added on 1910 by TCSP       
+        window.onload = function () {
+            //modified below method on 1112
+            invokeWebService();
+        };
+
+        //will get called before page Load finished .        
+        function preloader() {
+            document.getElementById("divLoadStatus").style.display = "none";
+            document.getElementById("divMainContent").style.display = "block";
+        }
+
+        //window onload will call when render is complete.
+        //window.onload = preloader;
+
+        $j = jQuery.noConflict();
+
+        $j(document).ready(function () {
+            //$j('#divLoadStatus').hide();
+            //$j('#divMainContent').show();                                                                                                                                                                                               
+
+        });
+
+        function updatePageNumDisplay(pgNumber) {
+            afUpdatePageNumDisplay(pgNumber);
+            return false;
+        }
+        //Below method added on 1910 by TCSP       
+        // window.onload = function()
+        // {
+        //      invokeWebService();               
+        //  };        
+
+        function openPopup(page, param) {
+            window.open(page + '?param=' + param, '_blank', 'toolbar=yes, scrollbars=yes, resizable=no, top=500, left=500, width=400, height=400')
+        }
+
+        function invokeAlertDetails(alertId, accNumber, triggerType) {
+            //j$('input[id$="hdnSelectedAccId"]').val(alertId);
+            //document.getElementById('j_id0:detailsForm:addOwnerPopup').style.display = '';
+            invokeAlertDetail(alertId, accNumber, triggerType);
+            return false;
+        }
+
+        function showPopup() {
+            document.getElementById('j_id0:detailsForm:addOwnerPopup').style.display = '';
+        }
+        function closeAddOwnerPopup() {
+            document.getElementById('j_id0:detailsForm:addOwnerPopup').style.display = 'none';
+            return false;
+        }
+    </script>
+    <style>
+        .Processing {
+            z-index: 9997;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            position: fixed;
+        }
+
+        .ProcessingBackground {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity=50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top: 0;
+            left: 0;
+        }
+    </style>
+
+
+
+    <apex:form id="detailsForm">
+
+        <!-- added on 1910 by TCSP-->
+        <apex:actionFunction name="invokeWebService" action="{!invokeWebServices}" status="Processing" rerender="detailsForm" oncomplete="preloader()"
+        />
+        <!--   -->
+        <!--added on 0911 by TCSP -->
+        <apex:actionFunction name="invokeAlertDetail" action="{!getAlertDetails}" reRender="addOwnerPopup" status="Processing" oncomplete="showPopup()">
+            <apex:param name="alertId" value="" />
+            <apex:param name="accNumber" value="" />
+            <apex:param name="triggerType" value="" />
+        </apex:actionFunction>
+
+
+        <!--<div id="divLoadStatus" style="font-size:22px; color:red;">
+        Please wait. Page is loading ...       
+    </div>-->
+
+        <div id="divLoadStatus" style="">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+            </div>
+        </div>
+
+        <apex:actionStatus id="Processing" onstart="document.getElementById('divLoadStatus').style.display = '';" onstop="document.getElementById('divLoadStatus').style.display = 'none';">
+        </apex:actionStatus>
+
+        <div id="divMainContent">
+            <apex:pageblock mode="maindetail" id="mainpb">
+
+                <apex:pagemessages />
+
+                <table style="font-size:14px; width:100%;">
+                    <tr style="width:100%;">
+                        <td style="width:49%;float:left;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:30%;">
+                                        <apex:outputLabel value="Portfolio Name" styleClass="summaryLabel" /> </td>
+                                    <td style="width:70%;">
+                                        <apex:outputText value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Portfolio Address" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <apex:outputText value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Accounts" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <!--apex:outputText value="{!JSENCODE(HTMLENCODE(Accounts))}" escape="false" /-->
+                                        <apex:outputPanel rendered="{!AccountNumbers != null}" layout="none">
+                                            <apex:dynamicComponent componentValue="{!AccountNumbers}" />
+                                        </apex:outputpanel>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:49%;float:right;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Experian Name" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <apex:outputText value="{!AlertView.Business_Name__r.EXPRN__Exp_Business_Name__c}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Experian Address" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <!--<apex:outputText value="{!SUBSTITUTE(JSINHTMLENCODE(address), '<BR>', '\n')}" />-->
+                                        <apex:outputPanel rendered="{!BusinesAddress!= null}" layout="none">
+                                            <apex:dynamicComponent componentValue="{!BusinesAddress}" />
+                                        </apex:outputpanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><apex:outputLabel value="Experian BIN" styleClass="summaryLabel" /></td>
+                                    <td><apex:outputText value="{!AlertView.Business_Name__r.EXPRN__BIN_formula__c}" /></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </apex:pageblock>
+
+
+            <apex:pageblock title="Summary">
+                <table style="font-size:14px; width:100%; margin-top: -1%;">
+
+                    <tr style="width:100%;">
+                        <td style="width:34%;">
+
+                            <table>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="No. Continuous Trades " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;padding-right: 10%;">
+                                        <apex:outputText value=" {!NoContinuesTrades}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Bal. Continuous Trades " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;padding-right: 10%;">
+                                        <apex:outputText value=" {!Bal_ContinuousTrades}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="No. New Continuous Trades " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;padding-right: 10%;">
+                                        <apex:outputText value=" {!No_New_Continues_Trades}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Bal. New & Continuous Trades " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;padding-right: 10%;">
+                                        <apex:outputText value=" {!Bal_New_Continues_Trades}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Intelliscore Plus" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <apex:outputText value="{!IPScore}" />
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                </tr>
+                            </table>
+                        </td>
+
+                        <td style="width:27%;">
+
+                            <table>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="6 Mo High Total Balance " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!Mo_High_Total_blnc}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="6 Mo Low Total Balance " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!Mo_Low_Total_blnc}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="No. of Legal Filings " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!No_of_Legal_Filings}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Bal. of Legal Filings " styleClass="summaryLabel" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!Bal_of_Legal_Filings}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Financial Stability Risk" styleClass="summaryLabel" /> </td>
+                                    <td>
+                                        <apex:outputText value="{!FSRscore}" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                </tr>
+                            </table>
+                        </td>
+
+                        <td style="width:39%;">
+                            <!-- padding-top: 3.5%;-->
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="High Credit Limit " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!HighLimitCredit}" /> </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Percent " style="font-weight:bold;" /> </td>
+                                    <td>
+                                        <apex:outputLabel value="Current " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!CurrentPercentage}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <apex:outputLabel value="1-30 " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!DBT30}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <apex:outputLabel value="31-60 " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!DBT60}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <apex:outputLabel value="61-90 " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!DBT90}" /> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <apex:outputLabel value="91+ " style="font-weight:bold;" /> </td>
+                                    <td style="padding-left: 1%;">
+                                        <apex:outputText value="{!DBT120}" /> </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </apex:pageblock>
+
+
+
+
+
+
+            <apex:actionFunction name="afload" rerender="pb" status="modal" />
+
+            <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb2" status="modal">
+                <apex:param name="selectedPageNum" value="" />
+            </apex:actionFunction>
+
+            <div id="divProcessing" style="display:none;">
+                <div class="ProcessingBackground"></div>
+                <div class="Processing">
+                    <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+                </div>
+            </div>
+            <!--<apex:actionStatus id="modal" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />-->
+
+            <apex:pageblock title="Details" id="pb">
+
+                <apex:outputPanel rendered="{!iAlertDetailsMapSize == 0}">
+                    <apex:outputText value="No records to display" styleClass="noRowsHeader" />
+                </apex:outputPanel>
+
+                <apex:pageBlockButtons location="top" rendered="{!if(iAlertDetailsMapSize != 0, true, false)}">
+                    <apex:outputPanel style="float:right">
+                        <apex:commandLink value="Print" action="{!Print}" target="_blank" style="text-decoration: none;" styleClass="btn" />
+                    </apex:outputPanel>
+                </apex:pageBlockButtons>
+                <!--<br />-->
+
+                <div class="searchDiv">
+                    <div style="overflow: auto; width: 100%; height: 40%;">
+                        <apex:pageblock id="pb2" rendered="{!if(iAlertDetailsMapSize != 0, true, false)}" mode="maindetail">
+                            <apex:pageBlockButtons rendered="{!alertWrapperList.size > iPageSize}" style="">
+                                <apex:outputPanel >
+                                    <apex:outputPanel >
+                                        <apex:outputText value="<< First" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                        <apex:commandLink value="<< First" status="modal" styleClass="pageLink" action="{!first}" rerender="pb2" rendered="{!iCurrentPage > 1}"
+                                        /> &nbsp;&nbsp;
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel >
+                                    <apex:outputText value="< Previous" styleClass="pageText" rendered="{!iCurrentPage ==1}"></apex:outputText>
+                                    <apex:commandLink value="< Previous" status="modal" styleClass="pageLink" action="{!previous}" rerender="pb2" rendered="{!iCurrentPage > 1}"
+                                    /> &nbsp;&nbsp;
+                                </apex:outputPanel>
+
+                                <apex:repeat value="{!lstDisplayNumber}" var="pg" rendered="{!iAlertDetailsMapSize>1}">
+                                    <apex:outputPanel rendered="{!pg<=iAlertDetailsMapSize && pg>=1}">
+                                        <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=iCurrentPage }">
+
+                                        </apex:commandLink>
+                                        <apex:outputText value="{!pg}" rendered="{!pg==iCurrentPage}">
+                                        </apex:outputText>
+                                        &nbsp;&nbsp;
+                                    </apex:outputPanel>
+                                </apex:repeat>
+
+                                <apex:outputPanel >
+                                    <apex:outputText value="Next >" styleClass="pageText" rendered="{!iCurrentPage >=iAlertDetailsMapSize}"></apex:outputText>
+                                    <apex:commandLink value="Next >" status="modal" styleClass="pageLink" action="{!next}" rerender="pb2" rendered="{!iCurrentPage < iAlertDetailsMapSize}"
+                                    /> &nbsp;&nbsp;
+                                </apex:outputPanel>
+
+                                <apex:outputPanel >
+                                    <apex:commandLink value="Last >>" status="modal" styleClass="pageLink" action="{!last}" rerender="pb2" rendered="{!iCurrentPage < iAlertDetailsMapSize}"
+                                    />
+                                    <apex:outputText value="Last >>" styleClass="pageText" rendered="{!iCurrentPage >=iAlertDetailsMapSize}"></apex:outputText>
+                                </apex:outputPanel>
+                            </apex:pageBlockButtons>
+                            <!-- 2nd page blocktable to do changes-->
+                            <apex:pageBlockTable value="{!mapPageToAlertDetails[iCurrentPage]}" var="a" headerClass="headerText">
+                                <apex:column value="{!a.alert.Alert_ID__c}" />
+                                <!--<apex:column value="{!a.alert.Trigger_Type__c}" />-->
+                                <apex:column value="{!a.alert.Trigger_Type_Formula__c}" />
+                                <apex:column value="{!a.alert.Alert_Date__c}" />
+                                <apex:column value="{!a.alert.Priority__c}" />
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        Alert Details
+                                    </apex:facet>
+                                    <apex:commandLink value="View Details" onclick="return invokeAlertDetails('{!a.alert.Alert_ID__c}', '{!a.alert.Account_Number__c}','{!a.alert.Trigger_Type__c}');"
+                                        style="text-decoration:none; color: #0193dc;">
+
+                                    </apex:commandLink>
+                                </apex:column>
+
+                            </apex:pageBlockTable>
+                        </apex:pageblock>
+                    </div>
+                </div>
+            </apex:pageblock>
+            <!--Added below section on 1109 by TCSP-->
+
+            <apex:outputPanel id="addOwnerPopup" style="display:none;" layout="block">
+                <apex:outputPanel id="popupBackground" styleClass="popupBackgroundDialog" />
+                <apex:outputPanel styleClass="ownerPopup" id="ownerpopupId" layout="inline">
+                    <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:medium;cursor: move;color: #fff;">
+                        <apex:outputLabel value="Alert Details" style="font-size: 13px;" />
+                        <apex:commandLink styleClass="closeLink" title="Close" onclick="return closeAddOwnerPopup();">
+                            <apex:outputLabel value="Close " style="font-size: 11px;" />
+                            <apex:outputLabel value="X" style="font-size:12px; font-weight:800" />
+                        </apex:commandLink>
+                    </apex:outputPanel>
+                    <br/>
+                    <apex:pageBlock >
+                        <apex:dynamicComponent componentValue="{!pnlgrid}" />
+                    </apex:pageBlock>
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </div>
+    </apex:form>
+
+
+
+    <style>
+        .pageLink {
+            font-weight: 540 !important;
+            color: #0193dc !important;
+            font-size: 11px !important;
+        }
+
+        .pageText {
+            color: #666 !important;
+            font-size: 11px !important;
+        }
+
+        .headerText {
+            color: #666 !important;
+        }
+
+        .detailFieldLabel {
+            font-size: 1em !important;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .fieldLabel {
+            font-size: 1.1em !important;
+            font-weight: bold;
+            color: #666;
+            float: right;
+        }
+
+        .fieldText {
+            font-size: 1.1em;
+        }
+
+        .summaryLabel {
+            font-weight: bold;
+            float: right;
+        }
+
+        .body,
+        td {
+            color: #666 !important;
+            font-size: .9em;
+        }
+
+        body .bPageBlock {
+            margin-bottom: 0px !important;
+        }
+
+        .btn {
+            padding: 2px 2px !important;
+            font-weight: 500 !important;
+            color: #0193dc !important;
+        }
+
+        .btn:active {
+            color: #01679A!Important;
+            border-color: #01679A !Important;
+            background: #fff;
+        }
+
+        div#divMainContent {
+            display: none;
+        }
+
+        .Processing {
+            z-index: 9997;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            position: fixed;
+        }
+
+        .ProcessingBackground {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity=50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top: 0;
+            left: 0;
+        }
+
+        .ownerPopup {
+            background-color: white;
+            border-width: 1px;
+            border-radius: 10px;
+            border-style: solid;
+            z-index: 9999;
+            padding: 0px;
+            position: absolute;
+            left: 20%;
+            top: 5%;
+            width: 350px;
+            font-size: 11px;
+            border: 1px solid #015AAC;
+            box-shadow: 3px 3px 1px #888888;
+        }
+
+        .popupBackgroundDialog {
+            background-color: transparent;
+            opacity: 0.50;
+            filter: alpha(opacity=20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+        }
+
+        .ui-widget-header {
+            background: #0193DC!important;
+            border: 1px solid #0193DC!important;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .closeLink {
+            color: white;
+            font-size: medium;
+            float: right;
+            text-decoration: none !important;
+        }
+
+        .closeLink:hover {
+            color: white;
+            font-size: medium;
+            float: right;
+            text-decoration: underline !important;
+        }
+
+        .outerGrid {
+            border: 1px solid #e0e3e5;
+
+        }
+
+        .firstColGrid {
+            width: 30%;
+        }
+
+        .secondColGrid {
+            width: 50%;
+        }
+    </style>
+</apex:page>

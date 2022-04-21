@@ -1,0 +1,141 @@
+body,
+* {
+  font-family: "Roboto" !important;
+}
+h2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 15px;
+  line-height: 28px;
+}
+.inputDiv {
+  margin-top: 15px;
+  border-bottom: 2px solid blue;
+  height: 56px;
+  background: #f1f2f3;
+  border-radius: 4px 4px 0px 0px;
+}
+.inputTitle {
+  padding-top: 5px;
+  margin-left: 16px;
+  height: 18px;
+  left: 16px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+  color: #004e7d;
+}
+.inputResult {
+  margin-left: 16px;
+  height: 24px;
+  left: 16px;
+  top: 22px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.scrollDiv {
+  border: 1px solid #dcdfe8;
+  box-sizing: border-box;
+  max-height: 250px;
+  overflow-y: scroll;
+  padding: 10px;
+  font-size: 14px;
+}
+.scrollDiv a div,
+.scrollDiv div {
+  margin-bottom: 5px;
+}
+.scrollDiv li {
+  height: 35px;
+}
+.scrollDiv::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollDiv::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+.scrollDiv::-webkit-scrollbar-thumb {
+  background: #dcdfe8;
+  border-radius: 3px;
+}
+ol:not(.browser-default) li {
+  list-style-type: disc;
+}
+
+.unclickedSubmitButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90px;
+  height: 47px;
+  left: 960px;
+  top: 1483px;
+  background: linear-gradient(90.72deg, #f26522 0.15%, #fc4243 87.52%);
+  border-radius: 6px;
+  border: none;
+}
+
+.unclickedSubmitButtonsText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: auto;
+}
+
+.clickedSubmitButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90px;
+  height: 47px;
+  left: 960px;
+  top: 1483px;
+  background: #fc4344;
+  border-radius: 6px;
+  border: none;
+}
+
+.hoveredSubmitButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90px;
+  height: 47px;
+  left: 960px;
+  top: 1483px;
+  background: #f26522;
+  border-radius: 6px;
+  border: none;
+}
+
+button:hover {
+  background: #f26522;
+}
+li .listCounter::before {
+  content: counter(li) ".";
+  display: inline-flex;
+  width: 2px;
+  margin-right: 15px;
+}
+
+li .listCounter {
+  counter-increment: li;
+}
+
+ol {
+  counter-reset: li;
+}

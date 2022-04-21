@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>CaseNumber</field>
+        <field>Owner</field>
+        <field>Account</field>
+        <field>Auction_Number_Case__c</field>
+        <field>Vehicle_VIN__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Assign_to_Legal_Queue</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>update_status_to_compliance_review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Owner</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>sierra@acvauctions.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>The IST of the buyer Account needs to gather the new Documents and update them in Tools</description>
+        <entryCriteria>
+            <formula>Account.Out_of_Document_Compliance__c &amp;&amp;  NOT(Account.Reviewed_By_Compliance__c)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>IST Gather Required Documents</label>
+        <name>IST_Gather_Required_Documents</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Legal_Review</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Legal will review the Documents and approve this record if they are up to date</description>
+        <label>Legal Review</label>
+        <name>Legal_Review</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>Update_to_closed_non_compliant</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Case.RecordType</field>
+            <operation>equals</operation>
+            <value>Dealer Compliance</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Update_to_closed_compliant</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Update_to_closed_non_compliant</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Dealer Documentation Approval</label>
+    <processOrder>1</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

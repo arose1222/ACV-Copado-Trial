@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Users with this permission set will be able to set inactive users as owns of records when performing data loads.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Update Records with Inactive Owners</label>
+    <license>Salesforce</license>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UpdateWithInactiveOwner</name>
+    </userPermissions>
+</PermissionSet>

@@ -1,0 +1,51 @@
+<apex:page showHeader="true" sidebar="false" tabStyle="Alyce__tab" controller="alycecom.SettingsTabController">
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alycecom__AlyceCSS)}" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'/>
+    <apex:stylesheet value="{!URLFOR($Resource.alycecom__fontastic, 'fontastic/fontastic.css')}"/>
+    <apex:include pageName="alycecom__AuthorizationForm"/>
+    <style type="text/css">
+        #SettingsTabWrapper{
+            background-color: white;
+        }
+        #SettingsTablink{
+            color: #00DDE5;
+        }
+        #AlycePage{
+            font-family: effra;
+        }
+        #AlyceSettingsIframeBody{
+            position: relative;
+        }
+        .popup-background{
+            position: absolute;
+        }
+        html {
+            overflow: hidden;
+            height: 100%;
+        }
+        html body.sfdcBody {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+    </style>
+    <script>
+        function reloadParent(){
+            window.location.href = window.location.href;
+        }
+    </script>
+    <div Id= "AlycePage">
+        <apex:iframe src="{!$Setup.alycecom__Alyce_Endpoints__c.alycecom__AlyceBase__c}/salesforce/v2/iframe/open/user-settings?sf_id={!SFId}&sf_version={!SFVersion}&token={!AccessToken}&cb_success={!BaseURL}/apex/alycecom__SettingsTabRedirect&cb_error={!BaseURL}/apex/alycecom__SettingsTabRedirect" scrolling="true" Id="AlyceSettingsIframeBody"/>
+    </div>
+    <script>
+        function setIframeHeight(){
+            var height = window.innerHeight;
+            var classic_header = document.getElementById("AppBodyHeader");
+            if (classic_header != null){
+                height = height - 115;
+            }
+            document.getElementById("AlyceSettingsIframeBody").style.height = height+"px";
+        }
+        setIframeHeight();
+        window.onresize = setIframeHeight;
+    </script>
+</apex:page>

@@ -1,0 +1,48 @@
+<template>
+    <!-- Spinner -->
+	<template if:true={activeSpinner}>
+        <div class="spinner">
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+	<lightning-layout style="background-color: #F9F9F9;">
+		<lightning-layout-item size=12>
+			<lightning-card>
+                <!-- Header Section -->
+				<!-- Card Header -->
+				<h1 slot="title">
+					<lightning-icon style="float: left;" icon-name="custom:custom31" size="medium"></lightning-icon>
+					<div style="padding-left: 40px;">
+						<p style="font-size: 13px; padding-bottom: 2px;">Work Requests</p>
+						<p style="font-size: 20px; font-weight: bold;">All Work</p>
+						<p style="font-size: 10px; line-height: 13px; ">Updated <lightning-relative-date-time value={lastRefreshed}></lightning-relative-date-time> <lightning-button-icon icon-name="utility:refresh"  variant="container" alternative-text="Refresh" title="Refresh" onclick={handleRefreshTable} size="small"></lightning-button-icon></p>
+
+					</div>
+				</h1>
+                <!-- Search (Right Side) -->
+				<div slot="actions" onkeyup={handleKeyUp}>
+					<p>
+						<lightning-input
+							name="searchTable"
+							type="search"
+							placeholder="Assignment Id or VIN..."
+							onblur={handleSearchTable}
+							onchange={handleSearchValueAssignment}
+							is-loading={searchLoading}
+						></lightning-input>
+					</p>
+				</div>
+                <!-- Card Body -->
+				<!-- Datatable -->
+				<div style="height: 60vh;">
+					<lightning-datatable
+                        data={filteredRows}
+                        columns={columns}
+                        hide-checkbox-column=TRUE
+                        key-field="id">
+                    </lightning-datatable>
+				</div>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

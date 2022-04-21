@@ -1,0 +1,10 @@
+<apex:page StandardController="alycecom__Gift__c" extensions="alycecom.GiftChooseOptionsUpdate_Ctrl" action="{!toReceiveParameters}" showHeader="false" sidebar="false">
+    <script>
+        try {
+            parent.closeModal();
+        } catch (err) {
+            gift_url = '{!BaseURL}/{!GiftRecord.Id}';
+            window.location.href = gift_url;
+        }
+    </script>
+</apex:page>

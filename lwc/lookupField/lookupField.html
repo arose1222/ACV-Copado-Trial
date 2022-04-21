@@ -1,0 +1,40 @@
+<template>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"  aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <lightning-input type="Search" onchange={handleOnChange}
+                                         label={label} value={filterValue}
+                                         data-id={inputFieldId}
+                                         aria-haspopup="listbox" onblur={handleOnBlur}
+                                         required={requiredFlag}
+                                         class="inputCmp"
+                        ></lightning-input>
+                    </div>
+                    <div data-id={lookupListId} class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid slds-hide" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                        <template for:each={lookupResult} for:item="record">
+                            <li role="presentation" class="slds-listbox__item" key={record.Id} data-id={record.Id} data-label={record.Description} onclick={handleSelect}>
+                                <div aria-selected="true" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <lightning-icon icon-name={iconName}></lightning-icon>
+                                        </span>
+                                    <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <lightning-formatted-text value={record.Description}></lightning-formatted-text>
+                                            </span>
+                                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                                {record.metaDescription}
+                                            </span>
+                                        </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

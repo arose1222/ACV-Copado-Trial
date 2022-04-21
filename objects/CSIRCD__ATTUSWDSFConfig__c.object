@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Settings for Single Lookup CSI Watch List Check.</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CSIRCD__ATTUS_GUID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact CSI Customer Service for this information.</inlineHelpText>
+        <label>CSI GUID</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Account_Record_Types__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comma-separated list of record type names to be used in the single lookup search.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a comma-separated list of the Account record type names to be used in the single lookup search. Leave this field blank to include all Account record types.</inlineHelpText>
+        <label>Account Record Types</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Address_DQ__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag indicating whether or not to use available address information to disqualify a name.</inlineHelpText>
+        <label>Address DQ</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Address_Match__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag indicating whether or not to consider the address information when reporting a match.</inlineHelpText>
+        <label>Street Address Match</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Corp_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Company Name used when logging into WatchDOG Elite web application.</inlineHelpText>
+        <label>Corp Name</label>
+        <length>150</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Host_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The hostname portion of the URL.</inlineHelpText>
+        <label>Host Name</label>
+        <length>200</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__List_Codes_Extended__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Place for additional List Codes (if needed).  Separate multiple list codes by commas.</inlineHelpText>
+        <label>List Codes (Extended)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__List_Codes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Separate multiple list codes by commas.</inlineHelpText>
+        <label>List Codes</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Lookup_Accounts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this checkbox will automate single lookup to pull watch list checks when an Account is Edited or Created</inlineHelpText>
+        <label>Automate Account Watch List Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Lookup_Contacts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this checkbox will automate single lookup to pull watch list checks when a Contact is Edited or Created</inlineHelpText>
+        <label>Automate Contact Watch List Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Lookup_Leads__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this checkbox will automate single lookup to pull watch list checks when a Lead is Edited or Created</inlineHelpText>
+        <label>Automate Lead Watch List Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Save_Data_at_ATTUS__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag indicating whether or not to save data in WatchDOG Elite database.</inlineHelpText>
+        <label>Save Data at CSI</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Tolerance__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contact CSI Customer Service for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Minimum match score for reporting.</inlineHelpText>
+        <label>Tolerance</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>URL used to access CSI Web Services.  Contact CSI Support for this information.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>URL used to access CSI Web Services.  Contact CSI Support for this information.</inlineHelpText>
+        <label>URL</label>
+        <length>200</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSIRCD__Update_Master_DB__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will save your data to your master database for scanning against future watch list updates.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this option will save your data to your master database for scanning against future watch list updates.</inlineHelpText>
+        <label>Update Master DB</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>CSI Single Lookup Watch List Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

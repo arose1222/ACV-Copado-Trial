@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for emailing the owner of a CI that it is in the AM Follow Up status.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Notify Owner of CI</name>
+    <style>none</style>
+    <subject>Customer Inquiry - AM Follow Up: {!Customer_Inquiry__c.Account__c}, {!Customer_Inquiry__c.Call_Bucket__c} - {!Customer_Inquiry__c.Call_Type__c}</subject>
+    <textOnly>An inquiry from your dealer, {!Customer_Inquiry__c.Account__c}, has been set to AM Follow Up and is ready for you to take action.
+
+Please review the ticket notes and close, when ready.
+{!Customer_Inquiry__c.Link}
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

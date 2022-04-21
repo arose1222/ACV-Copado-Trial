@@ -1,0 +1,42 @@
+<apex:page controller="EXPRN.ExpandedSearchService" action="{!initPrint}" contentType="application/vnd.ms-excel#SearchList.xls">
+<head>
+    <style>
+        .headerRow{
+            text-align: left;
+        }               
+    </style>
+</head>
+
+  <apex:pageBlock >
+      <apex:pageBlockTable id="pbtCRViewResult" value="{!lstWrapAcc}" var="acc" rendered="{!IsCreditRiskSearch}">
+          <apex:column headerValue="Business Name" value="{!acc.sBusinessName}" /> 
+          <apex:column headerValue="Address" value="{!acc.sStreetAddress}" />
+          <apex:column headerValue="City" value="{!acc.sCity}" />
+          <apex:column headerValue="State" value="{!acc.sState}" />
+          <apex:column headerValue="ZIP" value="{!acc.sZip}" />
+          <apex:column headerValue="Phone Number" value="{!acc.sPhone}" />
+          <apex:column headerValue="BIN" value="{!acc.sBIN}" />
+          <apex:column headerValue="TradeLineCount" value="{!acc.sNumberOfTradeLines}" /> 
+          <apex:column headerValue="Hierarchy" value="{!acc.sHierarchy}" /> 
+          <apex:column headerValue="Matching BusinessName" value="{!acc.sMatchingBusinessName}" />  
+          <apex:column headerValue="Matching Address" value="{!acc.sMatchingStreetAddress}" />
+          <apex:column headerValue="Matching City" value="{!acc.sMatchingCity}" />              
+          <apex:column headerValue="Matching State" value="{!acc.sMatchingStateExport}" />
+          <apex:column headerValue="Matching Zip" value="{!acc.sMatchingZip}" />
+      </apex:pageBlockTable>   
+       
+      <apex:pageBlockTable id="pbtInterViewResult" value="{!lstWrapAcc}" var="acc" rendered="{!IsInternationalSearch}">                 
+          <apex:column headerValue="Business Name" value="{!acc.sBusinessName}" />
+          <apex:column headerValue="Address" value="{!acc.sStreetAddress}" />
+          <apex:column headerValue="City" value="{!acc.sCity}" />
+          <apex:column headerValue="Province" value="{!acc.sState}" />
+          <apex:column headerValue="Postal Code" value="{!acc.sZip}" />
+          <apex:column headerValue="Country" value="{!acc.sCountryName}" />               
+          <apex:column headerValue="Regional Bus ID" value="{!acc.sRegiBusID}" />
+          <apex:column headerValue="Global BIN" value="{!acc.sGlobalBIN}" />         
+          <apex:column headerValue="Telephone">
+              <apex:outputPanel >{!acc.sPhoneNumber}</apex:outputPanel> 
+          </apex:column>                     
+     </apex:pageBlockTable>
+</apex:pageBlock>
+</apex:page>

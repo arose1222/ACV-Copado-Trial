@@ -1,0 +1,252 @@
+<apex:page controller="alycecom.AuthorizationFormController" action="{!refreshAuthorizationForm}">
+    <style type="text/css"> 
+        .modal-body {
+            position: relative;
+            text-align: left;
+            cursor: auto;
+            padding: 25px 20px 15px 20px;
+            font-family: 'effra', "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        label {
+            text-transform: uppercase;
+            font-size: 11px;
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 22px;
+            padding: 6px 12px;
+            font-size: 16px;
+            line-height: 1.42857143;
+            color: #555555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+        input:focus{
+            border: 1px solid #ccc !important;
+        }
+        .login-button {
+            background-color: #00DCE4 !important;
+            color: #fff !important;
+            border-width: 0px !important;
+            text-transform: uppercase !important;
+            border-radius: 5px !important;
+            padding: 8px 24px !important;
+            font-size: 19px !important;
+            line-height: 1.3333333 !important;
+            cursor: pointer !important;
+            background-image: none !important;
+        }
+        .login-area {
+            padding: 10px;
+            padding-right: 30px;
+        }
+        .modal-footer {
+            text-align: left;
+            padding: 25px 15px 15px 20px;
+            border: 0px;
+            border-top: 1px solid #ccc;
+            width: 98%;
+        }
+
+        .popup-background {
+            background-color: rgba(255, 255, 255, 0.75);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 49;
+        }
+
+        .custom-popup{
+            background-color: white;
+            border-radius: 5px;
+            z-index: 49;
+            left: calc(50% - 210px);
+            position: fixed;
+            width: 420px;
+            top: 30%;
+            transition: transform 0.6s, opacity 0.6s;
+            transition-delay: 0.5s;
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+        #AlyceIframeBody{
+            min-height: 99vh;
+        }
+        .custom-popup-body{
+            text-align: center;
+        }
+
+        .popup-text{
+            font-size: 20px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #4a4a4a;
+            margin-bottom: 22px;
+            margin-top: 8px;
+        }
+
+        .salesforce-button {
+            border: 0;
+            padding: 0;
+            display: inline-block;
+            box-sizing: border-box;
+            overflow: hidden;
+            border-radius: 4px;
+            position: relative;
+            height: 44px;
+            transition: background-color 0.2s ease-in-out;
+            background-color: #0070d2;
+            display: block;
+            margin: 10px 0 0;
+            width: calc(100% - 32px);
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .salesforce-button-text {
+            box-sizing: border-box;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
+            letter-spacing: 0.7px;
+            white-space: nowrap;
+            transition: background 0.3s;
+            -webkit-transition: background 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.25;
+            letter-spacing: normal;
+            text-align: center;
+            color: #fff;
+            top: 7px;
+            position: relative;
+        }
+
+        .popup-footer{
+            height: 48px;
+            text-align: center;
+            border-top: solid 1px #dddddd;
+            margin-top: 32px;
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .popup-footer-text{
+            font-size: 12px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.33;
+            letter-spacing: normal;
+            color: #9b9b9b;
+            position: relative;
+            top: 14px;
+        }
+
+        .footer-link{
+            font-weight: bold;
+            color: #029cef;
+            text-decoration: none;
+        }
+
+        .popup-error{
+            background-color: #fceff0;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            margin-left: 16px;
+            margin-right: 16px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        .popup-error-text{
+            width: 307px;
+            display: inline-block;
+            position: relative;
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.29;
+            letter-spacing: normal;
+            color: #9b9b9b;
+        }
+
+    </style>
+    <script>
+        function closeAuthorizationModalDialog(){
+            closeAuthorizationDialog();
+            reloadParent();
+        }
+    </script>
+    <apex:form Id="PopupForm">
+        <apex:actionFunction action="{!closeAuthorizationForm}" name="closeAuthorizationDialog"  reRender="PopupForm, MainForm"/>
+        <apex:actionFunction action="{!requestAccessAndRefreshTokens}" name="requestTokens"  reRender="PopupForm, MainForm"/>
+        <apex:outputPanel styleClass="popup-background" layout="block" rendered="{!ShowAuthorizationForm }" />
+        <apex:outputPanel styleClass="custom-popup" layout="block" rendered="{!ShowAuthorizationForm }">
+            <apex:outputPanel >
+                <div class="custom-popup-body">
+                    <apex:image style="display: inline-block; margin-top: 28px; width: 60px;"  url="{!URLFOR($Resource.alycecom__images, 'images/AlyceLogoNew.png')}"/>
+                    <div class="popup-text" title="Alyce Application">Log into Alyce</div>
+                    <div class="login-buttons">
+                        <a Id = "loginWithSalesforceRefference" href="" onclick="requestTokens();" style="text-decoration: none; cursor:pointer; position:relative;">
+                            <div class="salesforce-button">
+                                <div class="salesforce-button-text">
+                                    <apex:image style="display: inline-block; width: 32px; margin-right: 14px; top: 5px; position: relative;"  url="{!URLFOR($Resource.alycecom__images, 'images/salesforce-logo.png')}"/>
+                                    <span>Log in with Salesforce</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <apex:outputPanel rendered="{!ShowAuthorizationError}">
+                    <div class="popup-error">
+                        <apex:image style="display: inline-block; width: 20px; margin-right: 16px; top: 3px; position: relative; vertical-align: top;"  url="{!URLFOR($Resource.alycecom__images, 'images/warning-icon.svg')}"/>
+                        <span class="popup-error-text">
+                            <span>{!AuthorizationMessage}</span>
+                        </span>
+                    </div>
+                </apex:outputPanel>
+                <div class="popup-footer">
+                    <span class="popup-footer-text">
+                        <span>By signing up, you agree to our </span>
+                        <span><a href="https://www.alyce.com/terms-of-use/" target="_blank" class="footer-link"> terms of service </a></span>
+                        <span> and </span>
+                        <span><a href="https://www.alyce.com/privacy-policy/" target="_blank" class="footer-link">privacy policy</a></span>
+                    </span>
+                </div>
+            </apex:outputPanel>
+        </apex:outputPanel>
+
+        <apex:outputText rendered="{!ReloadParentFromApex}">
+            <script>
+                reloadParent();
+            </script>
+        </apex:outputText>
+    </apex:form>
+</apex:page>

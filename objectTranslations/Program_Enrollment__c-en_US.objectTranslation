@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Program Enrollment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Program Enrollments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Manager Email --></label>
+        <name>Account_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Manager First Name --></label>
+        <name>Account_Manager_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- To indicate status of Approval --></help>
+        <label><!-- Approval Status --></label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending TM Approval</masterLabel>
+            <translation><!-- Pending TM Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSD Approved</masterLabel>
+            <translation><!-- RSD Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSD Rejected</masterLabel>
+            <translation><!-- RSD Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM Approved</masterLabel>
+            <translation><!-- TM Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM Rejected</masterLabel>
+            <translation><!-- TM Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- To capture notes / comments related to the enrollment record --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to capture program enrollment end date --></help>
+        <label><!-- Enrollment End Date --></label>
+        <name>Enrollment_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to capture program enrollment expiration date --></help>
+        <label><!-- Enrollment Expiration Date --></label>
+        <name>Enrollment_Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to indicate enrolment invitation email is sent to the primary contact or not. --></help>
+        <label><!-- Enrollment Invitation Status --></label>
+        <name>Enrollment_Invitation_Status__c</name>
+        <picklistValues>
+            <masterLabel>Eligible</masterLabel>
+            <translation><!-- Eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Eligible</masterLabel>
+            <translation><!-- Not Eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent</masterLabel>
+            <translation><!-- Sent --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Used to capture program enrollment start date --></help>
+        <label><!-- Enrollment Start Date --></label>
+        <name>Enrollment_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Customer Applied? --></label>
+        <name>Has_Customer_Applied__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store IST Sales Rep Email used for communication --></help>
+        <label><!-- IST Sales Rep Email --></label>
+        <name>IST_Sales_Rep_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Link Expired? --></label>
+        <name>Invitation_Link_Expired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Sent Date --></label>
+        <name>Invitation_Sent_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- No. Of Days Since Invitation Sent --></label>
+        <name>No_Of_Days_Since_Invitation_Sent__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to store the primary contact of the dealer. --></help>
+        <label><!-- Primary Dealership Contact --></label>
+        <name>Primary_Dealership_Contact__c</name>
+        <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Used to display program name in flow --></help>
+        <label><!-- Program Name --></label>
+        <name>Program_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- To indicate if dealer is recommended to be approved or not --></help>
+        <label><!-- Recommended for Program --></label>
+        <name>Recommended_for_Program__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to store the user who is the regional sales director of the dealer / account --></help>
+        <label><!-- Regional Sales Director --></label>
+        <name>Regional_Sales_Director__c</name>
+        <relationshipLabel><!-- Program Enrollments (Regional Sales Director) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Used to store the user who is the manager of the dealer / account --></help>
+        <label><!-- Sales Contact --></label>
+        <name>Sales_Contact__c</name>
+        <relationshipLabel><!-- Program Enrollments (Sales Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active (initiated at first sale)</masterLabel>
+            <translation><!-- Active (initiated at first sale) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible</masterLabel>
+            <translation><!-- Eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In/under review by IST (use pre and post pending customer response)</masterLabel>
+            <translation><!-- In/under review by IST (use pre and post pending customer response) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not eligible</masterLabel>
+            <translation><!-- Not eligible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending customer response (pending app completion) -In/under review by IST</masterLabel>
+            <translation><!-- Pending customer response (pending app completion) -In/under review by IST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remove (for performance)</masterLabel>
+            <translation><!-- Remove (for performance) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM will be reaching out to you soon Enrolled (start date)</masterLabel>
+            <translation><!-- TM will be reaching out to you soon Enrolled (start date) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility)</masterLabel>
+            <translation><!-- Under review by TM under review by RSD approved Rejected [with reasons] (do not call removes from eligibility) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verified by IST (manually updated by IST)</masterLabel>
+            <translation><!-- Verified by IST (manually updated by IST) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on POA (manually updated by IST)</masterLabel>
+            <translation><!-- Waiting on POA (manually updated by IST) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Used to store the user who is the territory manager of the dealer / account --></help>
+        <label><!-- Territory Manager --></label>
+        <name>Territory_Manager__c</name>
+        <relationshipLabel><!-- Program Enrollments (Territory Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- UniqueProgAcc --></label>
+        <name>UniqueProgAcc__c</name>
+    </fields>
+    <fields>
+        <help><!-- To indicate if dealer has given power of attorney or not --></help>
+        <label><!-- Valid POA --></label>
+        <name>Valid_POA__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

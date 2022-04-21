@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_Queue__c</fullName>
+        <description>Indicates the Queue this CR will go to</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Assigned Queue</label>
+        <referenceTo>CR_Review_Queue_Priority__mdt</referenceTo>
+        <relationshipLabel>CR Review Triggers</relationshipLabel>
+        <relationshipName>CR_Review_Triggers</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Class Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comma_Seperated_Inspection_Types__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Comma Seperated Inspection Types</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Field__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Inspection Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Advanced_Logic__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Is Advanced Logic</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Aux_Reason__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field denotes if the prescreen reason is for Auxiliary prescreen. It is used for auto approving prescreens</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Is Aux Reason</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prescreen_Reason__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Prescreen Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Query_Path__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Query Path</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Trigger_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Trigger Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Value Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Integer</fullName>
+                    <default>true</default>
+                    <label>Integer</label>
+                </value>
+                <value>
+                    <fullName>Boolean</fullName>
+                    <default>false</default>
+                    <label>Boolean</label>
+                </value>
+                <value>
+                    <fullName>String</fullName>
+                    <default>false</default>
+                    <label>String</label>
+                </value>
+                <value>
+                    <fullName>Double</fullName>
+                    <default>false</default>
+                    <label>Double</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CR Review Trigger</label>
+    <listViews>
+        <fullName>All_with_queue</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>Active__c</columns>
+        <columns>Assigned_Queue__c</columns>
+        <columns>Value_Type__c</columns>
+        <columns>Prescreen_Reason__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All with queue</label>
+    </listViews>
+    <listViews>
+        <fullName>Expanded_View_Active</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Active__c</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>Inspection_Field__c</columns>
+        <columns>Query_Path__c</columns>
+        <columns>Comma_Seperated_Inspection_Types__c</columns>
+        <columns>Prescreen_Reason__c</columns>
+        <columns>Trigger_Value__c</columns>
+        <columns>Value_Type__c</columns>
+        <columns>Assigned_Queue__c</columns>
+        <columns>Is_Aux_Reason__c</columns>
+        <columns>Class_Name__c</columns>
+        <columns>Is_Advanced_Logic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Expanded View - Active</label>
+    </listViews>
+    <listViews>
+        <fullName>Inactive</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>Active__c</columns>
+        <columns>Prescreen_Reason__c</columns>
+        <columns>Assigned_Queue__c</columns>
+        <columns>Value_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Inactive</label>
+    </listViews>
+    <pluralLabel>CR Review Triggers</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

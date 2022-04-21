@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Rate Card approval request notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Rate Card Approval Email</name>
+    <style>freeForm</style>
+    <subject>Your Rate Card Request was Approved</subject>
+    <textOnly>Hello,
+
+Your Rate Card request for Rate Card #{!Rate_Card__c.Name}, {!Rate_Card__c.Display_Name__c}, was approved. To review this Rate Card, click the link below.
+
+{!Rate_Card__c.Link}
+
+Comments: {!ApprovalRequest.Comments}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

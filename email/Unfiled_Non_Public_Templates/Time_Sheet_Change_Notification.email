@@ -1,0 +1,7 @@
+<messaging:emailTemplate subject="Your Time Sheet has been modified after it was submitted for approval" recipientType="User" relatedToType="TimeSheetEntry">
+<messaging:plainTextEmailBody >
+Hello {!relatedTo.TimeSheet.ServiceResource.Name},
+
+Your Time Sheet has been modified after it was submitted for approval. Please go review the change inside of Salesforce.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

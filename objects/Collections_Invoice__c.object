@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Collections_Inv_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Collections_Inv_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Auction_Number__c</fields>
+        <fields>Invoice_Number__c</fields>
+        <fields>Open_Balance__c</fields>
+        <fields>Title_Status__c</fields>
+        <fields>Payment_Status__c</fields>
+        <fields>Invoice_Date__c</fields>
+        <fields>Cleared_Invoice_Reason__c</fields>
+        <label>Collections Inv Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object below Case to map 1:1 with invoices in the GL</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account_Name_from_Acct_Record__c</fullName>
+        <description>Helper formula to pull the account name down to the invoice level</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Helper formula to pull the account name down to the invoice level</inlineHelpText>
+        <label>Account Name from Acct Record</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Number__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Auction number for the invoice</inlineHelpText>
+        <label>Auction Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_payment_Method__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Method the buyer is using to pay - should match AM</inlineHelpText>
+        <label>Auction payment Method</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <description>Case the invoices are related to</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Case the invoices are related to</inlineHelpText>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Collections Invoices</relationshipLabel>
+        <relationshipName>Collections_Invoices</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Cleared_Invoice_Reason__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Cleared = They were are current in QB as of now
+Floorplan Approve = floorplan found to be approved 
+T/A Check = they were T/A hold and we have a check on file 
+Waved Balance =  If rev recovery found that fees had been waived
+Accounting Adj = Change QB</inlineHelpText>
+        <label>Investigation Findings</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>Cleared in QB</fullName>
+                    <default>false</default>
+                    <label>Cleared in QB</label>
+                </value>
+                <value>
+                    <fullName>Floorplan Approved</fullName>
+                    <default>false</default>
+                    <label>Floorplan Approved</label>
+                </value>
+                <value>
+                    <fullName>T/A with Check at ACV</fullName>
+                    <default>false</default>
+                    <label>T/A with Check at ACV</label>
+                </value>
+                <value>
+                    <fullName>Waved Balance Amount</fullName>
+                    <default>false</default>
+                    <label>Waved Balance Amount</label>
+                </value>
+                <value>
+                    <fullName>Accounting Adjustment</fullName>
+                    <default>false</default>
+                    <label>Accounting Adjustment</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Current_Auction_Status__c</fullName>
+        <description>Current auction status on this invoice given the auction number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Current auction status on this invoice given the auction number</inlineHelpText>
+        <label>Current Auction Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_ID_From_Account__c</fullName>
+        <description>Helper formula to pull in the dealer ID into the invoice level for reconciliation and reporting.</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Account.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Helper formula to pull in the dealer ID into the invoice level for reconciliation and reporting.</inlineHelpText>
+        <label>Dealer ID From Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Date of the invoice from QB</inlineHelpText>
+        <label>Invoice Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Due Date from QB</inlineHelpText>
+        <label>Invoice Due Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Number__c</fullName>
+        <description>Invoice number from QB</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Invoice number from QB</inlineHelpText>
+        <label>Invoice Number</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Open_Balance__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Open Balance in QB</inlineHelpText>
+        <label>Open Balance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Payment status from AM, should not be altered in SF, not a picklist so it can take any value from AM - should take the status from AM not manually changed unless absolutely necessary</inlineHelpText>
+        <label>Payment Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QB_Customer_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer Name from QB</inlineHelpText>
+        <label>QB Customer Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>T_Invoice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this a transport only invoice from QB, A T-Invoice</inlineHelpText>
+        <label>T-Invoice</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>From Auction Manager - should not be changed in SF, not a picklist so it can take any value from production</inlineHelpText>
+        <label>Title Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <description>VIN from production give the auction ID</description>
+        <externalId>false</externalId>
+        <inlineHelpText>VIN from production give the auction ID</inlineHelpText>
+        <label>VIN</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Collections Invoice</label>
+    <nameField>
+        <label>Collections Invoice Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Collections Invoices</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

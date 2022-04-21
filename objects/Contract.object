@@ -169,91 +169,133 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <fields>
         <fullName>AccountId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ActivatedById</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ActivatedDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>BillingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>CompanySignedDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>CompanySignedId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ContractTerm</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>CustomerSignedDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>CustomerSignedId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>CustomerSignedTitle</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
+        <fullName>Data_Quality_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Data_Quality_Score__c =100,&quot;All Contract Details Captured&quot;, &quot;Missing: &quot;&amp;IF( LEN( TEXT(MONTH( StartDate ))) = 0, &quot;Contract Start Date, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(LEN(  TEXT(ContractTerm)) = 0, &quot;Contract Term, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( LEN( BillingCity ) = 0, &quot;Complete Contract Address, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF(LEN( CustomerSignedId ) = 0, &quot;Customer Signature, &quot;,&quot;&quot;)&amp;&quot;&quot;&amp;IF( ISPICKVAL(  OwnerExpirationNotice ,&quot;&quot;), &quot;Owner Expiration Notice&quot;,&quot;&quot;))</formula>
+        <label>Data Quality Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( LEN(TEXT(MONTH(StartDate)))=0, 0,20) + IF( LEN(TEXT( ContractTerm ))=0, 0,20) + IF( LEN( BillingCity ) = 0, 0,20) + IF( LEN( CustomerSignedId) = 0, 0,20) + IF( ISPICKVAL(  OwnerExpirationNotice ,&quot;&quot;), 0,20)</formula>
+        <label>Data Quality Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>EndDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Name</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>OwnerExpirationNotice</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Pricebook2Id</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ShippingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>SpecialTerms</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>StartDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Status</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>

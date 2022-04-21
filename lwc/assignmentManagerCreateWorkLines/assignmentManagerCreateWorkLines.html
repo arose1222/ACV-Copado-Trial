@@ -1,0 +1,193 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Individual Row">
+            <article class="slds-card">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th><div class="slds-truncate"></div></th>
+                            <th><div class="slds-truncate"></div></th>
+                            <th>
+                                <!-- <div class="slds-truncate">Account</div> -->
+                                <c-lookup custom-key="master" data-item="master" selection={initialSelection} errors={errors}
+                                    onsearch={handleAccountLookup} onselectionchange={handleMassSelectionChangeforAccount}
+                                    label="" name="Find Account for All" class="account" placeholder="Apply Account To All Rows" is-multi-entry={isMultiEntry}>
+                                </c-lookup>
+                            </th>
+                            <th>
+                                <c-lookup custom-key="master" data-item="master" selection={initialSelection} errors={errors}
+                                    onsearch={handleAccountLookup} onselectionchange={handleMassSelectionChange}
+                                    label="" name="Find Lot for All" class="lot" placeholder="Apply Lot To All Rows" is-multi-entry={isMultiEntry}>
+                                </c-lookup>
+                            </th>
+                            <th><div class="slds-truncate"></div></th>
+                            <th><div class="slds-truncate"></div></th>
+                            <!-- <th><div class="slds-truncate">Make</div></th>
+                            <th><div class="slds-truncate">Model</div></th>
+                            <th><div class="slds-truncate">Color</div></th>
+                            <th><div class="slds-truncate">Inspection Type</div>
+                                <lightning-combobox value={selectedType}
+                            placeholder='--Apply To All Rows--' onchange={massChangeType} options={options} ></lightning-combobox>
+                            </th>
+                            <th><div class="slds-truncate">Notes</div></th>
+                            <th><div class="slds-truncate">Remove</div></th> -->
+                        </tr>
+                    </thead>
+                    <template for:each={rows} for:item="row" for:index="index">
+                        <tr key={row.uuid}>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='vin' value={row.vin} onchange={handleFieldChange} placeholder='VIN'>{row.vin}</lightning-input></td>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='stock number' value={row.stockNumber} onchange={handleFieldChange} placeholder='Stock Number'>{row.stockNumber}</lightning-input></td>
+                            <td><c-lookup key={row.uuid} custom-key={row.uuid} data-item={row.uuid} selection={initialSelection} errors={errors}
+                                onsearch={handleAccountLookup} onselectionchange={handleSelectionChangeforAccount}
+                                label="" name="Find Account" class="account" placeholder="Find Account" is-multi-entry={isMultiEntry}>
+                            </c-lookup></td>
+                            <td><c-lookup key={row.uuid} custom-key={row.uuid} data-item={row.uuid} selection={initialSelection} errors={errors}
+                                onsearch={handleAccountLookup} onselectionchange={handleSelectionChange}
+                                label="" name="Find Lot" class="lot" placeholder="Find Lot" is-multi-entry={isMultiEntry}>
+                            </c-lookup></td>
+                            <th><div class="slds-truncate"></div></th>
+                            <td style="text-align:right;">
+                                <lightning-button-icon-stateful key={row.uuid} data-key={row.uuid} icon-name="utility:note" label='Add Note' selected={row.hasNote} alternative-text="Add Note" class="slds-m-left_xx-small" onclick={addNote}></lightning-button-icon-stateful>
+                                &nbsp; &nbsp;
+                                <lightning-button-icon key={row.uuid} data-key={row.uuid} icon-name="action:delete" alternative-text="Remove Row" class="slds-m-left_xx-small" onclick={removeRow}></lightning-button-icon>
+                            </td>
+                            <!-- <br key={row.uuid}></br> -->
+                        </tr>
+                        <tr key={row.uuid}>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='year' value={row.year} onchange={handleFieldChange} placeholder='Year'>{row.year}</lightning-input></td>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='make' value={row.make} onchange={handleFieldChange} placeholder='Make'>{row.make}</lightning-input></td>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='model' value={row.model} onchange={handleFieldChange} placeholder='Model'>{row.model}</lightning-input></td>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='color' value={row.color} onchange={handleFieldChange} placeholder='Color'>{row.color}</lightning-input></td>
+                            <td><lightning-input key={row.uuid} data-key={row.uuid} name='reservePrice' value={row.reservePrice} onchange={handleFieldChange} placeholder='Reserve Price'>{row.reservePrice}</lightning-input></td>
+                            <td>
+                                <lightning-combobox key={row.uuid} value={row.inspectiontype}
+                                    placeholder='--Inspection Type--' options={options} data-key={row.uuid} name='type' onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </td>
+                        </tr>
+                    </template>
+                </table>
+                <div class="slds-card__body slds-card__body_inner">
+                    <lightning-button label="Add Line" title="Add Line" icon-name="utility:add" class="slds-m-left_x-small" onclick={addRow}></lightning-button>
+                    <lightning-button label="Submit" title="Submit" icon-name="utility:add" class="slds-m-left_x-small" onclick={submit}></lightning-button>
+                </div>
+            </article>
+            <template if:true={openmodel}>
+                <div class="demo-only" style="height: 100%;">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModel}>
+                                    <lightning-icon icon-name="utility:close" size="medium">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{selectedRecord.vin}</h2>
+                            </header>
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <div class="slds-grid slds-wrap"> 
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1">
+                                        <!-- <lightning-input readonly class='slds-p-bottom_small' value={accountNotes}></lightning-input> -->
+                                        <lightning-textarea name="lineNote" label="Vin Notes" placeholder="Add notes here..." onchange={handleFieldChange} value={accountNotes}></lightning-textarea>
+                                        <!-- value={selectedRecord.lineNote} -->
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <lightning-button label="Save" variant="neutral" onclick={closeModel}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+            </template>
+        </lightning-tab>
+        <lightning-tab label="Mass Uploader">
+            <article class="slds-card" if:true={uploaderFlag}>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large">
+                    <thead>
+                        <tr class="slds-text-title_caps"><th colspan="2"><div class="slds-truncate">Assignment Manager Mass Uploader</div></th></tr>
+                    </thead>
+                    <template if:true={showLoadingSpinner}>
+                        <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+                    </template>
+                    <tr>
+                        <td>
+                            <lightning-input type="file" label="CSV File Uploader" accept=".csv" onchange={handleFileChange}></lightning-input>
+                            <br/>
+                            <div data-id="fileNameDiv" style="display:none;">
+                                <lightning-badge label={filename}></lightning-badge>
+                                <br/>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                            <c-lookup selection={initialSelection} errors={errors}
+                                onsearch={handleAccountLookup} onselectionchange={handleUploaderSelectionChangeforAccount}
+                                label="" name="Find Account" class="account" placeholder="Find Account">
+                            </c-lookup>
+                            <br/>
+                            </div>
+                        </td>          
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <lightning-combobox value={inspectiontype} placeholder='--Inspection Type--' options={options} name='type' onchange={handleTypeChange}></lightning-combobox>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="slds-card__body slds-card__body_inner">
+                    <lightning-button icon-name="utility:add" label="Save" onclick={handleSave} variant="neutral" disabled={isTrue}></lightning-button>
+                </div>
+            </article>
+            <article class="slds-card" if:true={errorFlag}>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-bottom_large">
+                    <thead>
+                        <tr class="slds-text-title_caps"><th colspan="5"><div class="slds-truncate">Assignment Manager Mass Uploader - Errors Identified</div></th></tr>
+                    </thead>
+                    <template if:true={showErrorLoadingSpinner}>
+                        <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+                    </template>
+                    <template for:each={bulkErrRows} for:item="errorRow" for:index="errIndex">
+                        <tr key={errorRow.uuid}>
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='vin' value={errorRow.originalRow.vin} onchange={handelErrorFieldChange} placeholder='VIN'>{errorRow.originalRow.vin}</lightning-input></td>
+
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='stock number' value={errorRow.originalRow.stockNumber} onchange={handelErrorFieldChange} placeholder='Stock Number'>{errorRow.originalRow.stockNumber}</lightning-input></td>
+
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='year' value={errorRow.originalRow.year} onchange={handelErrorFieldChange} placeholder='year'>{errorRow.originalRow.year}</lightning-input></td>
+
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='make' value={errorRow.originalRow.make} onchange={handelErrorFieldChange} placeholder='Make'>{errorRow.originalRow.make}</lightning-input></td>
+
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='model' value={errorRow.originalRow.model} onchange={handelErrorFieldChange} placeholder='Model'>{errorRow.originalRow.model}</lightning-input></td>
+                        </tr>
+                        <tr key={errorRow.uuid}>
+                            <td><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='color' value={errorRow.originalRow.color} onchange={handelErrorFieldChange} placeholder='Color'>{errorRow.originalRow.color}</lightning-input><br/></td>
+
+                            <td colspan="2"><lightning-input key={errorRow.uuid} data-key={errorRow.uuid} name='address' value={errorRow.originalRow.address} onchange={handelErrorFieldChange} placeholder='Address'>{errorRow.originalRow.address}</lightning-input><br/></td>
+
+                            <td colspan="2" style="position:relative;">
+                                <!--<div style="color:rgb(255, 0, 0);font-size: 13px; position:absolute; left:3%;; top:40%;">Error: {errorRow.error}<br/></div>-->
+                                <div>
+                                    <lightning-icon icon-name="utility:error" alternative-text="error!" variant="error"></lightning-icon>
+                                    <lightning-badge label={errorRow.error}></lightning-badge>
+                                    <br/>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </table>
+                <div class="slds-card__body slds-card__body_inner">
+                    <lightning-button icon-name="utility:add" label="Save" onclick={handleModifiedSave} variant="neutral"></lightning-button>
+                    <br/>
+                </div>
+                <br/>
+            </article>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

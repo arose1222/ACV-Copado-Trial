@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template used to send IST Account Managers reminders about VT licenses going out of compliance soon.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Dealer Doc VT Expiration Reminder</name>
+    <style>none</style>
+    <subject>Dealer Doc Expiring Soon for Account {!Dealer_Docs__c.Account__c}, {!Dealer_Docs__c.Dealer_ID__c}</subject>
+    <textOnly>Hello {!Dealer_Docs__c.Account__c},
+
+Our records indicate that you recently renewed your Vermont dealership license. Please send us a copy of your Dealer registration tags or other proof of license renewal to avoid any interruption in access to the ACV platform. If you have any questions, please contact us at acvinfo@acvauctions.com or contact your account manager for assistance.
+
+Thank you for being a valued ACV dealer partner!
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

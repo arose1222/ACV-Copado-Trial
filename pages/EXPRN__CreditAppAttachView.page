@@ -1,0 +1,7 @@
+<apex:page standardController="EXPRN__Credit_Application__c" extensions="EXPRN.InlineCreditAppAttachController" showHeader="false" >
+    <apex:form >
+        <apex:outputPanel rendered="{!HtmlReports!= null}" layout="none">
+            <apex:dynamicComponent componentValue="{!HtmlReports}"/>
+        </apex:outputpanel>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Arb_Resolution_LEX</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>Arb_Resolution_LEX</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Arb_Resolution_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Arb_Resolution_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Case__c</fields>
+        <fields>complaint_id__c</fields>
+        <fields>Resolution__c</fields>
+        <fields>Amount__c</fields>
+        <fields>Goodwill__c</fields>
+        <fields>CreatedById</fields>
+        <label>Arb Resolution Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An object for use in the Arbitration Claims process to identify the resolution of a claim.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Amount_Diagnostic__c</fullName>
+        <externalId>false</externalId>
+        <label>Diagnostic Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Weighted__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Resolution__c,&apos;ACV Issue Check&apos;), Amount__c, IF(ISPICKVAL(Resolution__c,&apos;ACV Credit Assigned&apos;), Amount__c/2, IF(ISPICKVAL(Resolution__c,&apos;ACV To Re-List&apos;), 2000, 0)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Amount Weighted</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount should be entered for all valid complaint resolutions with the exception of &quot;ACV to Re-List&quot;</inlineHelpText>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Approved_Credits__c</fullName>
+        <externalId>false</externalId>
+        <label>Approved Credits</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Auction_Number_Resolution__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.Auction_Number__r.id__c</formula>
+        <label>Auction Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Avoidable_Complaint__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(complaint_id__r.avoidable__c, &quot;Yes&quot;),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Avoidable Complaint</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <description>Field will be set by Process Builder that makes a direct reference between a Resolution record and a its Parent Complaint&apos;s Case record. Assists in rolling up data for reporting purposes.</description>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Resolutions</relationshipLabel>
+        <relationshipName>Resolutions</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Complaint_Created__c</fullName>
+        <description>Pulls the date the complaint was created  to the related resolution.</description>
+        <externalId>false</externalId>
+        <formula>complaint_id__r.Complaint_Created__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Complaint Created</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Complaint_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>complaint_id__r.id__c</formula>
+        <label>Complaint Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complaint_Under_500__c</fullName>
+        <description>Used in the resolution flow to allow visibility into claims under 500 dollars and what the actual payout would be.</description>
+        <externalId>false</externalId>
+        <label>Complaint Under $500</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Credit_Check_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is checked once a Credit/Check object is created related to this resolution.</description>
+        <externalId>false</externalId>
+        <label>Credit/Check Created</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Estimate_Provided__c</fullName>
+        <description>Was an estimate provided for the arb claim if yes the parts and labor fields will appear in the Enter Complaint resolution flow.</description>
+        <externalId>false</externalId>
+        <label>Estimate Provided</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fastlane__c</fullName>
+        <description>This field is required on a resolution and will trigger a workflow to mark the entire Arb case as a Fastlane.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Was this case treated as a &apos;Fastlane&apos; - Yes or No</inlineHelpText>
+        <label>Fastlane</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Goodwill__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Goodwill</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Labor_Cost__c</fullName>
+        <description>Cost of the labor on an Arb claim only entered when the Estimate= yes</description>
+        <externalId>false</externalId>
+        <label>Labor Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Open_to_Close__c</fullName>
+        <description>Days, Hours , Minutes from Complaint created to resolution created.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(
+ FLOOR( CreatedDate  -  complaint_id__r.Complaint_Created__c )
+)  &amp; &quot; Days &quot; &amp;
+TEXT(
+ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*24,24),0)
+         )  &amp;&quot; Hours &quot; &amp;
+TEXT(
+ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
+) &amp;&quot; Minutes &quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Open to Close</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partner_Diag__c</fullName>
+        <externalId>false</externalId>
+        <label>Partner Diag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Verity</fullName>
+                    <default>false</default>
+                    <label>Verity</label>
+                </value>
+                <value>
+                    <fullName>One Guard</fullName>
+                    <default>false</default>
+                    <label>One Guard</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Parts_Cost__c</fullName>
+        <description>Cost of parts as it related to the Arb claim - only filled in when the estimate = yes</description>
+        <externalId>false</externalId>
+        <label>Parts Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Post_Close_Resolution__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Post Close Resolution</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Resolution_Created_Date__c</fullName>
+        <description>Date the resolution was created - inherently the date the complaint is closed - Created on a Resolution Created Date Timestamp</description>
+        <externalId>false</externalId>
+        <label>Resolution Created Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Resolution__c</fullName>
+        <description>A field to identify the arbitration administrator&apos;s resolution decision.</description>
+        <externalId>false</externalId>
+        <label>Resolution</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>ACV Credit Assigned</fullName>
+                    <default>false</default>
+                    <label>ACV Credit Assigned</label>
+                </value>
+                <value>
+                    <fullName>ACV Issue Check</fullName>
+                    <default>false</default>
+                    <label>ACV Issue Check</label>
+                </value>
+                <value>
+                    <fullName>ACV To Re-List</fullName>
+                    <default>false</default>
+                    <label>ACV To Re-List</label>
+                </value>
+                <value>
+                    <fullName>Seller Issue Check</fullName>
+                    <default>false</default>
+                    <label>Seller Issue Check</label>
+                </value>
+                <value>
+                    <fullName>Unwound Back To Seller</fullName>
+                    <default>false</default>
+                    <label>Unwound Back To Seller</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Resolution_guid__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>GUID generated in Salesforce to identify this unique Resolution Record across Datahub systems</description>
+        <externalId>true</externalId>
+        <label>Resolution guid</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Territory Manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Value_of_Complaint__c</fullName>
+        <description>The field will be filled in on the flow for entering a resolution and should only be filled out on complaints under 500 dollars</description>
+        <externalId>false</externalId>
+        <label>Total Value of Complaint</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_with_Fees__c</fullName>
+        <externalId>false</externalId>
+        <formula>Amount__c +  Amount_Diagnostic__c +  Tow_Fee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total with Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Tow_Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Tow Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>VCI_Email__c</fullName>
+        <description>VCI email added mto be included in workflow Avoidable Arb email alerts</description>
+        <externalId>false</externalId>
+        <label>VCI Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Valid_Complaint__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Valid Complaint</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Verity_Diagnosis_Completed__c</fullName>
+        <description>Was a verity diagnosis completed on an arbitration, this is filled out in the resolution flow and will only be presented if the Estimate provided field is yes.</description>
+        <externalId>false</externalId>
+        <label>Verity Diagnosis Completed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>complaint_id__c</fullName>
+        <description>Stores a reference to the parent Complaint that a Resolution is for.</description>
+        <externalId>false</externalId>
+        <label>Complaint</label>
+        <referenceTo>Complaint__c</referenceTo>
+        <relationshipLabel>Resolutions</relationshipLabel>
+        <relationshipName>Resolutions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>description__c</fullName>
+        <externalId>false</externalId>
+        <label>Resolution Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>id__c</fullName>
+        <description>External Id for this resolution from ACV DB.</description>
+        <externalId>true</externalId>
+        <label>id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Resolution</label>
+    <nameField>
+        <displayFormat>ACR-{0000000}</displayFormat>
+        <label>Resolution Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Resolutions</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Arb_Resolution_1</fullName>
+        <active>true</active>
+        <label>Arb Resolution 1</label>
+        <picklistValues>
+            <picklist>Complaint_Under_500__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estimate_Provided__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Fastlane__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partner_Diag__c</picklist>
+            <values>
+                <fullName>One Guard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verity</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Resolution__c</picklist>
+            <values>
+                <fullName>ACV Credit Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV To Re-List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwound Back To Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Verity_Diagnosis_Completed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Locked_Resolution</fullName>
+        <active>true</active>
+        <description>Used to lock the resolution records once closed</description>
+        <label>Locked Resolution</label>
+        <picklistValues>
+            <picklist>Complaint_Under_500__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estimate_Provided__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Fastlane__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partner_Diag__c</picklist>
+            <values>
+                <fullName>One Guard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verity</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Resolution__c</picklist>
+            <values>
+                <fullName>ACV Credit Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV To Re-List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller Issue Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unwound Back To Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Verity_Diagnosis_Completed__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Resolution_Amount_Required</fullName>
+        <active>true</active>
+        <description>Contains the logic governing when the Amount for a resolution must be filled out.
+
+AND(ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;),
+ISBLANK( Amount__c ))</description>
+        <errorConditionFormula>AND((ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;)), 
+AND (NOT(ISPICKVAL(Resolution__c, &quot;ACV to Re-List&quot;))), 
+AND (NOT(ISPICKVAL(Resolution__c, &quot;Unwound Back To Seller&quot;))),
+AND (NOT(ISPICKVAL(Resolution__c, &quot;None&quot;))), 
+AND(ISPICKVAL( Estimate_Provided__c , &quot;no&quot;)),
+(ISBLANK( Amount__c )))</errorConditionFormula>
+        <errorDisplayField>Amount__c</errorDisplayField>
+        <errorMessage>Resolution Amount is required for all Valid Complaints, except when Resolution is &quot;ACV to Re-List&quot; or &quot;Unwound Back To Seller&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Resolved_Complaint_must_be_Completed</fullName>
+        <active>true</active>
+        <description>Complaint must have Valid marked as yes or no in order to be marked as resolved</description>
+        <errorConditionFormula>ISBLANK(text(complaint_id__r.valid__c))</errorConditionFormula>
+        <errorMessage>In order to resolve this complaint, please mark the Valid field on the complaint as Yes or No</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

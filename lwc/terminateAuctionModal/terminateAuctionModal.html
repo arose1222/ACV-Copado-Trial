@@ -1,0 +1,169 @@
+<!-- Terminate Auction Modal. Loads its own Modal up -->
+<template>
+    <lightning-layout>
+        <lightning-layout-item size=12>
+            <!-- Modal/Popup Box LWC starts here -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">	
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <lightning-layout>
+                        <header id="modalPopup" class="slds-modal__header" style="width:100%">
+                            <lightning-layout-item size=12 class="slds-align-middle">
+                                    <h1 id="modal-heading-01" class="slds-text-heading_large slds-hyphenate slds-float_left">{currentWizardState.headerText}</h1>
+                                    <lightning-button-icon
+                                            icon-name="utility:close"
+                                            size="large"
+                                            variant="bare"
+                                            alternative-text="Close"
+                                            class="slds-float_right"
+                                            onclick={handleCloseModalEvent}
+                                        ></lightning-button-icon>
+                            </lightning-layout-item>
+                        </header>
+                    </lightning-layout>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                         <!-- Spinner -->
+                        <template if:true={activeSpinner}>
+                            <div class="spinner">
+                                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+                            </div>
+                        </template>
+                        <template if:true={showReviewScreen}>
+                            <lightning-layout>
+                                <!-- Review Screen -->
+                                <lightning-layout-item size=12>
+                                    <div style="height: 175px;">
+                                        <lightning-datatable
+                                            key-field="Id"
+                                            data={displayedRows}
+                                            column-widths-mode=true
+                                            show-row-number-column=true
+                                            hide-checkbox-column=true
+                                            onrowaction={handleRemoveClick}
+                                            columns={columns}>
+                                        </lightning-datatable>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <template if:true={showIneligibleMessage}>
+                            <lightning-layout>
+                                <lightning-layout-item size=12>
+                                    <!-- Ineligible Message and table -->
+                                        <div class="slds-modal__content slds-p-around_x-small ineligibleSection slds-m-top_small slds-p-vertical_small">
+                                            <lightning-icon size="x-small" icon-name="utility:warning" title="Warning" class="slds-m-horizontal_x-small" alternative-text="Warning"></lightning-icon>
+                                            <lightning-button variant="base" label={ineligibleValuesSize} class="textLookLikeLink" onclick={handleIneligibleSectionView}></lightning-button> selected are not eligible based on status criteria
+                                            <template if:true={expandIneligibleSection}>
+                                                <div class="slds-m-around_small ineligibleSection">
+                                                    <table style="table-layout:fixed;">
+                                                        <colgroup>
+                                                            <col span="1" style="width: 33%;"></col>
+                                                            <col span="1" style="width: 77%;"></col>
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr style="font-weight: strong;">
+                                                                <th>VIN</th>
+                                                                <th>Reason</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <template for:each={ineligibleValues} for:item="thisRow">
+                                                                <tr key={thisRow.Id}>
+                                                                    <td><div class="truncateText">{thisRow.ilc.VIN__c}</div></td>
+                                                                    <td><div class="truncateText">{thisRow.errorMessage}</div></td>
+                                                                </tr>
+                                                            </template>
+                                                        </tbody>
+                                                    </table>
+                                                    <template if:true={currentWizardState.showViewAll}>
+                                                        <template if:true={viewAllPossible}>
+                                                            <div class="absouluteCenter">
+                                                                <lightning-button variant="base" label="View All" class="textLookLikeLink" onclick={handleViewAllIneligible}></lightning-button>
+                                                            </div>
+                                                        </template>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <template if:true={showReviewScreen}>
+                            <lightning-layout>
+                                <lightning-layout-item size=12>
+                                    <lightning-textarea class="slds-m-top_small" name="reason" required=true value={termianteReasonValue} onchange={handleTerminateReasonChange} label="Why do you want to kill these auctions?" max-length="1000"></lightning-textarea>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <!-- Confirmation Screen -->
+                        <template if:true={showConfirmationScreen}>
+                            <lightning-layout>
+                                <lightning-layout-item size=12>
+                                    <div>
+                                        <lightning-formatted-text class="slds-text-heading_medium" value='Are you sure you would like to terminate these items?'></lightning-formatted-text>
+                                    </div>
+                                    <div class="slds-m-top_small">
+                                        <ul class="slds-list_dotted">
+                                        <template for:each={terminateConfirmList} for:item="terminateStatusSummary">
+                                            <li key={terminateStatusSummary}>{terminateStatusSummary}</li>
+                                        </template>
+                                        </ul>
+                                    </div>
+                                    <div class="slds-modal__content slds-p-around_x-small ineligibleSection slds-m-top_medium slds-p-vertical_small">
+                                        <lightning-layout>
+                                            <lightning-layout-item size=1>
+                                                <lightning-icon size="x-small" icon-name="utility:warning" title="Warning" class="slds-m-horizontal_x-small" alternative-text="Warning"></lightning-icon>
+                                            </lightning-layout-item>
+                                            <lightning-layout-item size=11>
+                                                    Terminating auctions that are currently in a state of <span style="font-weight:bold;">"In-Negotiation"</span> or <span style="font-weight:bold;">"Live"</span> will end all negotiation efforts for both the buyer and the seller.
+                                            </lightning-layout-item>
+                                        </lightning-layout>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                        <!-- Failure Screen -->
+                        <template if:true={showFailureScreen}>
+                            <lightning-layout>
+                                <lightning-layout-item size=12>
+                                    <div class="slds-p-bottom_small">
+                                        <lightning-formatted-text class="slds-text-heading_medium" value='These were the results of your termination?'></lightning-formatted-text>
+                                    </div>
+                                    <template if:true={mixedResultsMessage.showSuccessMessage}>
+                                        <div>
+                                            Successfully Terminated Auctions
+                                        </div>
+                                        <div class="slds-m-left_small">
+                                            <lightning-formatted-text value={mixedResultsMessage.successMessage}></lightning-formatted-text>
+                                        </div>
+                                    </template>
+                                    <template if:true={mixedResultsMessage.showErrorMessage}>
+                                        <div>
+                                            Failed to Terminate
+                                        </div>
+                                        <div class="slds-m-left_small">
+                                            <lightning-formatted-text value={mixedResultsMessage.errorMessage}></lightning-formatted-text>
+                                        </div>
+                                    </template>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <lightning-layout>
+                        <lightning-layout-item size=12>
+                            <footer class="slds-modal__footer">
+                                <template if:true={currentWizardState.showButtons}>
+                                    <button class="slds-button slds-button_neutral" onclick={handleBackCancel} name={currentWizardState.backOrCancel} title={currentWizardState.backOrCancel}>{currentWizardState.backOrCancel}</button>
+                                    <button class="slds-button slds-button_brand" onclick={handleConfirmOrTerminate} name={currentWizardState.confirmOrTerminate} title={currentWizardState.confirmOrTerminate} disabled={currentWizardState.disableConfirmTerminate}>{currentWizardState.confirmOrTerminate}</button>
+                                </template>
+                            </footer>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

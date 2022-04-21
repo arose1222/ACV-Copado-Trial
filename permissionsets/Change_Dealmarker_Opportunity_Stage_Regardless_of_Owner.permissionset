@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allow all IST to change stage on all the Dealmaker opportunities regardless of owner</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Change Dealmarker Opportunity Stage Regardless of Owner</label>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Opportunity</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Opportunity.Deal_Maker</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

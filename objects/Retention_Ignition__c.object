@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>DealerOutreachContainer</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>Retention_Ignition</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Retention_Ignition</fullName>
+        <fields>ContactName__c</fields>
+        <fields>No_Answer__c</fields>
+        <fields>Call_Direction__c</fields>
+        <fields>DateofCall__c</fields>
+        <label>Retention &amp; Ignition</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>AccountName__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Retention</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>AccountType__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Franchise</fullName>
+                    <default>false</default>
+                    <label>Franchise</label>
+                </value>
+                <value>
+                    <fullName>Independent</fullName>
+                    <default>false</default>
+                    <label>Independent</label>
+                </value>
+                <value>
+                    <fullName>Wholesale</fullName>
+                    <default>false</default>
+                    <label>Wholesale</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Account_Activity_Status__c</fullName>
+        <description>This is the Activity Bucket the related Account fell in at time of Retention call. Populated by Dealer Outreach</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the Activity Bucket the related Account fell in at time of Retention call.</inlineHelpText>
+        <label>Account Activity Status</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_Time_Arb_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.All_Time_Arb_Rate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>All Time Arb Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>All_Time_Arb_Rate_v2__c</fullName>
+        <description>All Time Arb Rate formula that pulls from Kendalls custom code on the Account object to calculate the arb rate percentage.</description>
+        <externalId>false</externalId>
+        <formula>AccountName__r.All_Time_Arb_Rate_Formula__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Calculated from the All Time Arb Rate field on the Account Level.</inlineHelpText>
+        <label>All Time Arb Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>All_Time_Purchases__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Purchases_All_Time__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>All Time Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_Direction__c</fullName>
+        <description>How was contact made with this customer.</description>
+        <externalId>false</externalId>
+        <label>Call Direction</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inbound</fullName>
+                    <default>false</default>
+                    <label>Inbound</label>
+                </value>
+                <value>
+                    <fullName>Outbound</fullName>
+                    <default>false</default>
+                    <label>Outbound</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ContactName__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Retention</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Experience__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select all that apply</inlineHelpText>
+        <label>Customer Experience</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Competition</fullName>
+                    <default>false</default>
+                    <label>Competition</label>
+                </value>
+                <value>
+                    <fullName>It&apos;s Been A Good Experience</fullName>
+                    <default>false</default>
+                    <label>It&apos;s Been A Good Experience</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+                <value>
+                    <fullName>Unwind</fullName>
+                    <default>false</default>
+                    <label>Unwind</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_of_First_Purchase__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Date_of_First_Buy__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date of First Purchase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Last_Purchase__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Date_of_Last_Purchase__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date of Last Purchase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DateofCall__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of Call</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Dealer_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Dealer Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(AccountName__r.Dealer_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Details_Related_to_Status_of_Business__c</fullName>
+        <description>Additional details based on the selection in the Status of Business field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What additional information do you have about the status of the business</inlineHelpText>
+        <label>Details Related to Status of Business</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Follow_Up_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Follow Up Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Forecasted_Cars_This_Month__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Same as the Potential Monthly Buy Volume listed on the Account.</inlineHelpText>
+        <label>Forecasted Cars This Month</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ISTRep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IST Rep</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Retention</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IST_Account_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.IST_Account_Owner__r.FirstName &amp; &quot; &quot; &amp;  AccountName__r.IST_Account_Owner__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IST Account Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_90_Days_Purchases__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Last_90_Days_Bought__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Last 90 Days Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Month_Purchase__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Purchase_Last_Month__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Last Month Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latest_ACV_Experience__c</fullName>
+        <externalId>false</externalId>
+        <label>Latest ACV Experience</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Buy Fee</fullName>
+                    <default>false</default>
+                    <label>Buy Fee</label>
+                </value>
+                <value>
+                    <fullName>Good experience with ACV</fullName>
+                    <default>false</default>
+                    <label>Good experience with ACV</label>
+                </value>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+                <value>
+                    <fullName>Unwind</fullName>
+                    <default>false</default>
+                    <label>Unwind</label>
+                </value>
+                <value>
+                    <fullName>Competition</fullName>
+                    <default>false</default>
+                    <label>Competition</label>
+                </value>
+                <value>
+                    <fullName>Valid Business Reason</fullName>
+                    <default>false</default>
+                    <label>Valid Business Reason</label>
+                </value>
+                <value>
+                    <fullName>Pricing Too High</fullName>
+                    <default>false</default>
+                    <label>Pricing Too High</label>
+                </value>
+                <value>
+                    <fullName>Lack of Inventory in Area</fullName>
+                    <default>false</default>
+                    <label>Lack of Inventory in Area</label>
+                </value>
+                <value>
+                    <fullName>Forgot About ACV</fullName>
+                    <default>false</default>
+                    <label>Forgot About ACV</label>
+                </value>
+                <value>
+                    <fullName>No Time to Bid</fullName>
+                    <default>false</default>
+                    <label>No Time to Bid</label>
+                </value>
+                <value>
+                    <fullName>Disagree with ACV Policy</fullName>
+                    <default>false</default>
+                    <label>Disagree with ACV Policy</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Buy Fee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Good experience with ACV</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Arbitration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Titles</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Payments</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Transportation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Unwind</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Competition</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>NPS</controllingFieldValue>
+                <controllingFieldValue>Introduction</controllingFieldValue>
+                <valueName>Valid Business Reason</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Pricing Too High</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Lack of Inventory in Area</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Forgot About ACV</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>No Time to Bid</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Disagree with ACV Policy</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LeadershipSponsor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Leadership Sponsor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Retention1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MTD_Purchases__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.MTD_Purchases__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MTD Purchases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Next_Steps__c</fullName>
+        <description>The next steps to be taken on this retention record.  When a new retention record is created via the dealer outreach pop up, this value is written here and overwrites the value of the Next_Step_Issues_or_Objections__c field on the related account.</description>
+        <externalId>false</externalId>
+        <label>Next Steps</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>No_Answer__c</fullName>
+        <externalId>false</externalId>
+        <label>No Answer</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No answer</fullName>
+                    <default>false</default>
+                    <label>No answer</label>
+                </value>
+                <value>
+                    <fullName>Declined call</fullName>
+                    <default>false</default>
+                    <label>Declined call</label>
+                </value>
+                <value>
+                    <fullName>Number Disconnected</fullName>
+                    <default>false</default>
+                    <label>Number Disconnected</label>
+                </value>
+                <value>
+                    <fullName>Left voicemail</fullName>
+                    <default>false</default>
+                    <label>Left voicemail</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>No_Purchase_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>No Purchase Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>No_Purchase_Reason__c</fullName>
+        <description>Indicates the reason there has been no purchase last month.</description>
+        <externalId>false</externalId>
+        <label>Reason For No Purchase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>Titles</fullName>
+                    <default>false</default>
+                    <label>Titles</label>
+                </value>
+                <value>
+                    <fullName>Payments</fullName>
+                    <default>false</default>
+                    <label>Payments</label>
+                </value>
+                <value>
+                    <fullName>Transport</fullName>
+                    <default>false</default>
+                    <label>Transport</label>
+                </value>
+                <value>
+                    <fullName>Unwind</fullName>
+                    <default>false</default>
+                    <label>Unwind</label>
+                </value>
+                <value>
+                    <fullName>Competition</fullName>
+                    <default>false</default>
+                    <label>Competition</label>
+                </value>
+                <value>
+                    <fullName>Valid Business Reason</fullName>
+                    <default>false</default>
+                    <label>Valid Business Reason</label>
+                </value>
+                <value>
+                    <fullName>Using other auction</fullName>
+                    <default>false</default>
+                    <label>Using other auction</label>
+                </value>
+                <value>
+                    <fullName>Does not want to buy cars online</fullName>
+                    <default>false</default>
+                    <label>Does not want to buy cars online</label>
+                </value>
+                <value>
+                    <fullName>Feels that cars on ACV are overpriced</fullName>
+                    <default>false</default>
+                    <label>Feels that cars on ACV are overpriced</label>
+                </value>
+                <value>
+                    <fullName>Not enough inventory in their area</fullName>
+                    <default>false</default>
+                    <label>Not enough inventory in their area</label>
+                </value>
+                <value>
+                    <fullName>Forgot about ACV, will revisit</fullName>
+                    <default>false</default>
+                    <label>Forgot about ACV, will revisit</label>
+                </value>
+                <value>
+                    <fullName>Already Bought</fullName>
+                    <default>false</default>
+                    <label>Already Bought This Month</label>
+                </value>
+                <value>
+                    <fullName>Called - No Answer</fullName>
+                    <default>false</default>
+                    <label>Called - No Answer</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Arbitration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Titles</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Payments</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Transport</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Unwind</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Competition</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <valueName>Valid Business Reason</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Already Bought</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Retention</controllingFieldValue>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Called - No Answer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Using other auction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Does not want to buy cars online</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Feels that cars on ACV are overpriced</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Not enough inventory in their area</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Ignition</controllingFieldValue>
+                <valueName>Forgot about ACV, will revisit</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Organization_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to create relationship with retention and Ignition and the organization group object</description>
+        <externalId>false</externalId>
+        <label>Organization Group</label>
+        <referenceTo>Group__c</referenceTo>
+        <relationshipLabel>Retentions &amp; Ignitions</relationshipLabel>
+        <relationshipName>Retentions_Ignitions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ReportCounter__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ReportCounter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Result</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Per_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(AccountName__r.Sales_Per_Month__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Per Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bought this month</fullName>
+                    <default>false</default>
+                    <label>Bought this month</label>
+                </value>
+                <value>
+                    <fullName>Has not bought this month</fullName>
+                    <default>false</default>
+                    <label>Has not bought this month</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>New</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status_of_Business__c</fullName>
+        <description>This field is used to identify any major changes to how the dealersip is running directly relating to the COVID 19 business impact</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the status of the dealership&apos;s business?</inlineHelpText>
+        <label>Status of Business</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>No_Purchase_Reason__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Business has slowed</fullName>
+                    <default>false</default>
+                    <label>Business has slowed</label>
+                </value>
+                <value>
+                    <fullName>May close permanently</fullName>
+                    <default>false</default>
+                    <label>May close permanently</label>
+                </value>
+                <value>
+                    <fullName>No change</fullName>
+                    <default>false</default>
+                    <label>No change</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Temporarily closing down</fullName>
+                    <default>false</default>
+                    <label>Temporarily closing down</label>
+                </value>
+                <value>
+                    <fullName>No Answer</fullName>
+                    <default>false</default>
+                    <label>No Answer</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Feels that cars on ACV are overpriced</controllingFieldValue>
+                <controllingFieldValue>Not enough inventory in their area</controllingFieldValue>
+                <controllingFieldValue>Forgot about ACV, will revisit</controllingFieldValue>
+                <controllingFieldValue>Already Bought</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Transport</controllingFieldValue>
+                <controllingFieldValue>Unwind</controllingFieldValue>
+                <controllingFieldValue>Competition</controllingFieldValue>
+                <controllingFieldValue>Valid Business Reason</controllingFieldValue>
+                <controllingFieldValue>Using other auction</controllingFieldValue>
+                <controllingFieldValue>Does not want to buy cars online</controllingFieldValue>
+                <valueName>Business has slowed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Feels that cars on ACV are overpriced</controllingFieldValue>
+                <controllingFieldValue>Not enough inventory in their area</controllingFieldValue>
+                <controllingFieldValue>Forgot about ACV, will revisit</controllingFieldValue>
+                <controllingFieldValue>Already Bought</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Transport</controllingFieldValue>
+                <controllingFieldValue>Unwind</controllingFieldValue>
+                <controllingFieldValue>Competition</controllingFieldValue>
+                <controllingFieldValue>Valid Business Reason</controllingFieldValue>
+                <controllingFieldValue>Using other auction</controllingFieldValue>
+                <controllingFieldValue>Does not want to buy cars online</controllingFieldValue>
+                <valueName>May close permanently</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Feels that cars on ACV are overpriced</controllingFieldValue>
+                <controllingFieldValue>Not enough inventory in their area</controllingFieldValue>
+                <controllingFieldValue>Forgot about ACV, will revisit</controllingFieldValue>
+                <controllingFieldValue>Already Bought</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Transport</controllingFieldValue>
+                <controllingFieldValue>Unwind</controllingFieldValue>
+                <controllingFieldValue>Competition</controllingFieldValue>
+                <controllingFieldValue>Valid Business Reason</controllingFieldValue>
+                <controllingFieldValue>Using other auction</controllingFieldValue>
+                <controllingFieldValue>Does not want to buy cars online</controllingFieldValue>
+                <valueName>No change</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Feels that cars on ACV are overpriced</controllingFieldValue>
+                <controllingFieldValue>Not enough inventory in their area</controllingFieldValue>
+                <controllingFieldValue>Forgot about ACV, will revisit</controllingFieldValue>
+                <controllingFieldValue>Already Bought</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Transport</controllingFieldValue>
+                <controllingFieldValue>Unwind</controllingFieldValue>
+                <controllingFieldValue>Competition</controllingFieldValue>
+                <controllingFieldValue>Valid Business Reason</controllingFieldValue>
+                <controllingFieldValue>Using other auction</controllingFieldValue>
+                <controllingFieldValue>Does not want to buy cars online</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Feels that cars on ACV are overpriced</controllingFieldValue>
+                <controllingFieldValue>Not enough inventory in their area</controllingFieldValue>
+                <controllingFieldValue>Forgot about ACV, will revisit</controllingFieldValue>
+                <controllingFieldValue>Already Bought</controllingFieldValue>
+                <controllingFieldValue>Arbitration</controllingFieldValue>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <controllingFieldValue>Payments</controllingFieldValue>
+                <controllingFieldValue>Transport</controllingFieldValue>
+                <controllingFieldValue>Unwind</controllingFieldValue>
+                <controllingFieldValue>Competition</controllingFieldValue>
+                <controllingFieldValue>Valid Business Reason</controllingFieldValue>
+                <controllingFieldValue>Using other auction</controllingFieldValue>
+                <controllingFieldValue>Does not want to buy cars online</controllingFieldValue>
+                <valueName>Temporarily closing down</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Called - No Answer</controllingFieldValue>
+                <valueName>No Answer</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Territory__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountName__r.Maps_Sales_Territory_Name__c</formula>
+        <label>Territory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Call</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>NPS</fullName>
+                    <default>false</default>
+                    <label>NPS</label>
+                </value>
+                <value>
+                    <fullName>Ignition</fullName>
+                    <default>false</default>
+                    <label>Ignition</label>
+                </value>
+                <value>
+                    <fullName>Introduction</fullName>
+                    <default>false</default>
+                    <label>Introduction</label>
+                </value>
+                <value>
+                    <fullName>Buy Fee Task</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Buy Fee Task</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Used_Cars_Retailed_Last_Month__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of used cars this dealer sold Retail on their lot last month</inlineHelpText>
+        <label>Used Cars Retailed Last Month</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>What_are_concerns_and_obstacles__c</fullName>
+        <description>Related to covid 19 - what are the dealers major concerns and obstacles throughout this time?</description>
+        <externalId>false</externalId>
+        <label>What are concerns and obstacles?</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Retention &amp; Ignition</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>AccountName__c</columns>
+        <columns>IST_Account_Owner__c</columns>
+        <columns>No_Purchase_Reason__c</columns>
+        <columns>No_Purchase_Comment__c</columns>
+        <columns>DateofCall__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Open_Retention</fullName>
+        <columns>NAME</columns>
+        <columns>IST_Account_Owner__c</columns>
+        <columns>AccountName__c</columns>
+        <columns>ContactName__c</columns>
+        <columns>DateofCall__c</columns>
+        <columns>Status__c</columns>
+        <columns>No_Purchase_Comment__c</columns>
+        <columns>All_Time_Arb_Rate__c</columns>
+        <columns>Forecasted_Cars_This_Month__c</columns>
+        <columns>Last_90_Days_Purchases__c</columns>
+        <columns>Last_Month_Purchase__c</columns>
+        <columns>MTD_Purchases__c</columns>
+        <columns>No_Purchase_Reason__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IST_Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>max kaplan</value>
+        </filters>
+        <label>All Open Retention</label>
+    </listViews>
+    <listViews>
+        <fullName>This_Month_s_Retention_IST</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>AccountName__c</columns>
+        <columns>IST_Account_Owner__c</columns>
+        <columns>No_Purchase_Reason__c</columns>
+        <columns>No_Purchase_Comment__c</columns>
+        <columns>DateofCall__c</columns>
+        <columns>Forecasted_Cars_This_Month__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>DateofCall__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>This Month&apos;s Retention-IST</label>
+    </listViews>
+    <listViews>
+        <fullName>This_Month_s_Retention_Ryan_s_Team</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>AccountName__c</columns>
+        <columns>IST_Account_Owner__c</columns>
+        <columns>No_Purchase_Reason__c</columns>
+        <columns>No_Purchase_Comment__c</columns>
+        <columns>DateofCall__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IST_Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Kaley Doyle,Joe Naylor,Adam Siedlecki,Matt Scheff,Paige Cuddihy,Louisa Burnett,Mick Annese,Melissa Epolito</value>
+        </filters>
+        <filters>
+            <field>DateofCall__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>This Month&apos;s Retention: Ryan&apos;s Team</label>
+    </listViews>
+    <listViews>
+        <fullName>This_Month_s_Retention_Ryan_s_Team_AM</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>AccountName__c</columns>
+        <columns>IST_Account_Owner__c</columns>
+        <columns>No_Purchase_Reason__c</columns>
+        <columns>No_Purchase_Comment__c</columns>
+        <columns>DateofCall__c</columns>
+        <columns>Forecasted_Cars_This_Month__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IST_Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Kaley Doyle,Mick Annese,Client Services,Melissa Epolito,Louisa Burnett,Matt Scheff,Paige Cuddihy,Joe Naylor</value>
+        </filters>
+        <filters>
+            <field>DateofCall__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>This Month&apos;s Retention: Ryan&apos;s AM Team</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RT-{00000}</displayFormat>
+        <label>Retention/Ignition Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Retentions &amp; Ignitions</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <searchResultsAdditionalFields>DateofCall__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ContactName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>No_Purchase_Reason__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>No_Purchase_Comment__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Already_Bought_This_Month_Needs_Cust_Exp</fullName>
+        <active>false</active>
+        <description>if Reason for no purchase = Already Bought this month - Customer Experience can not be blank.</description>
+        <errorConditionFormula>AND(
+ISBLANK(  Customer_Experience__c  ),
+ISPICKVAL(  No_Purchase_Reason__c  , &quot;Already Bought&quot;)
+)</errorConditionFormula>
+        <errorMessage>Please select a Customer Experience</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_purchases_last_month_needs_No_Reason</fullName>
+        <active>false</active>
+        <description>This rule is to ensure the &apos;Reason For No Purchase field is filled out when last month purchases = 0</description>
+        <errorConditionFormula>AND( Last_Month_Purchase__c = 0, ISPICKVAL(No_Purchase_Reason__c, &apos;&apos;))</errorConditionFormula>
+        <errorMessage>Reason For No Purchase Field must be completed to save the record</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_of_Business_Other</fullName>
+        <active>true</active>
+        <description>if Status of business is other must fill out details</description>
+        <errorConditionFormula>AND(ISPICKVAL(Status_of_Business__c ,&apos;Other&apos;), ISBLANK(Details_Related_to_Status_of_Business__c))</errorConditionFormula>
+        <errorMessage>Must fill in the details section about the Status of the Business to save record.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

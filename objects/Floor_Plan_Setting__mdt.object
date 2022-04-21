@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Payment Method API Name and address information for specific Floor Plan providers.</description>
+    <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>City</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company__c</fullName>
+        <description>Name of the Floor Plan company</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Company</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Country</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Email</label>
+        <required>false</required>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Internal_Delivery__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, a dummy shipping label will be generated for sorting out the titles, which will be delivered to the internal departments.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If checked, a dummy shipping label will be generated for sorting out the titles, which will be delivered to the internal departments.</inlineHelpText>
+        <label>Internal Delivery</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Name__c</fullName>
+        <description>The name of the person who mail should be addressed to.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Full Name of person receiving mail</inlineHelpText>
+        <label>Name</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_API_Name__c</fullName>
+        <description>The name of the payment method in ACV-API when this floor plan is used</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Payment Method API Name</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_Group_Name__c</fullName>
+        <description>This is specifically related to Internal Delivery field. You can group together multiple Payment Methods so that they share a single shipping label per day. Use the same Group Name for all the Payment Methods for them to share the same shipping label each day.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>This is specifically related to Internal Delivery field. You can group together multiple Payment Methods so that they share a single shipping label per day. Use the same Group Name for all the Payment Methods for them to share the same shipping label each day.</inlineHelpText>
+        <label>Payment Method Group Name</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Phone</label>
+        <required>false</required>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Send_Title_to_Buyer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked the Title will be shipped to the buyer</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If checked the Title will be shipped to the buyer</inlineHelpText>
+        <label>Send Title to Buyer</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>State</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Street1__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Street1</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Street2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Street2</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zip__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Zip</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Floor Plan Setting</label>
+    <listViews>
+        <fullName>All_Fields</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Payment_Method_API_Name__c</columns>
+        <columns>Payment_Method_Group_Name__c</columns>
+        <columns>Internal_Delivery__c</columns>
+        <columns>Send_Title_to_Buyer__c</columns>
+        <columns>Company__c</columns>
+        <columns>Name__c</columns>
+        <columns>Street1__c</columns>
+        <columns>City__c</columns>
+        <columns>State__c</columns>
+        <columns>Country__c</columns>
+        <columns>Zip__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Fields</label>
+    </listViews>
+    <pluralLabel>Floor Plan Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

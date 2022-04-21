@@ -1,0 +1,1346 @@
+<apex:page standardController="EXPRN__Experian_Business__c" id="pg" extensions="EXPRN.ExpandedSearch_LeadController" sidebar="true">
+<apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />
+    <apex:includeScript value="/soap/ajax/26.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/26.0/apex.js"/>
+     
+     
+<script>
+    
+    function enableAddOwnerPopup() {
+        document.getElementById('pg:frm:addOwnerPopup').style.display = '';
+        return false;
+    } 
+        
+    function closeAddOwnerPopup() {
+        HideTab1BO1Message();
+        HideTab1BO2Message();
+        document.getElementById('pg:frm:addOwnerPopup').style.display = 'none';
+        
+
+        return false;
+    }
+    var url = location.href;
+    var match = url.match(/inline=1/);
+    if (match != null) { 
+        var newUrl = url.replace(/inline=1/, '');
+        window.top.location=newUrl;
+    }
+    j$ = jQuery.noConflict();
+    j$(document).ready(function() { 
+        
+        var intl_check = j$('input[id$="isInternational"]').val();  
+        if(intl_check == 1)
+        {
+            j$(".reportType_chkBox").each(function(){
+                j$(this).attr("disabled", true);
+                j$(this).prop("disabled", true);
+            
+            });
+        
+        } 
+        
+       /*  function disdableInternationalCheckBox(){
+            alert ("Internatioanl");
+            //j$(this).prop('disabled', true);
+            j$(this).attr('disabled', true);
+        }
+         */
+        var accountId = j$('input[id$="hdnSelectedAccId"]').val();        
+        var businessId = j$('input[id$="hdnSelectedBusiness"]').val();
+        
+        if(ValidateBusinessOwner2Data() == false) {
+            j$('#hdnNumberOfBO').val('1');
+        }
+        else {
+            j$('#hdnNumberOfBO').val('2');
+        }
+       //  alert('accountId ='+accountId );
+         if(accountId != '') {          
+            //Capture the old scoring model
+            var selScoringMdl = document.getElementById('pg:frm:hdnScoringModelValue').value;    
+            var selectedCreditPolicy = '{!JSENCODE(HTMLENCODE(strCreditPolicy))}'; 
+            var reference = '{!JSENCODE(HTMLENCODE(strReferenceInfo))}';
+            var lastName = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Last_Name__c))}';
+            var firstName = '{!JSENCODE(HTMLENCODE(bussinessOwner1.First_Name__c))}'; 
+            var ownerstreet = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Address__c))}';
+            var ownercity = '{!JSENCODE(HTMLENCODE(bussinessOwner1.City__c))}';
+            var ownerstate = '{!JSENCODE(HTMLENCODE(bussinessOwner1.State__c))}';
+            var ownerzip = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Zip_Code__c))}';
+            var typeOfReports = document.getElementById('pg:frm:typeOfReports').value;
+            
+            //** 9/26/2015 TCS - for first owner
+            var middleName = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Middle_Initial__c))}';
+            var ssnNo = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Social_Sec_No__c))}';
+            var genCode = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Generation_code__c))}';
+            var driverLicense = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Driver_s_License__c))}';
+            var yearOfBirth = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Year_of_birth__c))}';
+            var phoneNumber = '{!JSENCODE(HTMLENCODE(bussinessOwner1.Phone_Number__c))}';
+            var ownerAge =    '{!JSENCODE(TEXT(bussinessOwner1.Age__c))}';
+             
+            
+            var lastName1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Last_Name__c))}';
+            var firstName1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.First_Name__c))}'; 
+            var ownerstreet1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Address__c))}';
+            var ownercity1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.City__c))}';
+            var ownerstate1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.State__c))}';
+            var ownerzip1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Zip_Code__c))}';
+            var ownerCount = j$('#hdnNumberOfBO').val();
+            
+             //** 9/26/2015 TCS - for second owner
+            var middleName1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Middle_Initial__c))}';
+            var ssnNo1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Social_Sec_No__c))}';
+            var genCode1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Generation_code__c))}';
+            var driverLicense1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Driver_s_License__c))}';
+            var yearOfBirth1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Year_of_birth__c))}';
+            var phoneNumber1 = '{!JSENCODE(HTMLENCODE(bussinessOwner2.Phone_Number__c))}';
+            var ownerAge1 =    '{!JSENCODE(TEXT(bussinessOwner2.Age__c))}';
+            //** 9/26/2015 TCS - END
+            
+             //replace special charecter to pass it through URL - 11/11 DK
+			if(firstName != null){ 
+                if(firstName.indexOf("&#39;") != -1){ 
+                    firstName = firstName.replace(/&#39;/g,"*sinQ*");                    
+                }                                  
+            } 
+            
+            if(middleName != null){ 
+                if(middleName.indexOf("&#39;") != -1){ 
+                    middleName = middleName.replace(/&#39;/g,"*sinQ*"); 
+                }                                  
+            }
+            
+            if(lastName != null){ 
+                if(lastName.indexOf("&#39;") != -1){ 
+                    lastName = lastName.replace(/&#39;/g,"*sinQ*"); 
+                }                                  
+            }
+            if(ownerstreet != null){ 
+                if(ownerstreet.indexOf("&") != -1){ 
+                    ownerstreet = ownerstreet.replace(/&/g,"*amnd*"); 
+                } 
+                if(ownerstreet.indexOf("#") != -1){ 
+                    ownerstreet = ownerstreet.replace(/#/g,"*hs*"); 
+                }                  
+            } 
+             
+            if(firstName1 != null){ 
+                if(firstName1.indexOf("&#39;") != -1){ 
+                    firstName1 = firstName1.replace(/&#39;/g,"*sinQ*"); 
+                }                                  
+            } 
+            
+            if(middleName1 != null){ 
+                if(middleName1.indexOf("&#39;") != -1){ 
+                    middleName1 = middleName1.replace(/&#39;/g,"*sinQ*"); 
+                }                                  
+            }
+            
+            if(lastName1 != null){ 
+                if(lastName1.indexOf("&#39;") != -1){ 
+                    lastName1 = lastName1.replace(/&#39;/g,"*sinQ*"); 
+                }                                  
+            }
+            if(ownerstreet1 != null){ 
+                if(ownerstreet1.indexOf("&") != -1){ 
+                    ownerstreet1 = ownerstreet1.replace(/&/g,"*amnd*"); 
+                } 
+                if(ownerstreet1.indexOf("#") != -1){ 
+                    ownerstreet1 = ownerstreet1.replace(/#/g,"*hs*"); 
+                }                  
+            }
+            
+             
+            var typeOfReports = document.getElementById('pg:frm:typeOfReports').value; 
+           	if (typeOfReports != null && typeOfReports == '10')
+            {
+            	//var intlCountry  =  document.getElementById('pg:frm:accCountry').value
+            	var intlCountry  = ''
+            	if(j$('[id$=accCountry]'))
+            		intlCountry  = j$('[id$=accCountry]').attr("value") ;
+            	
+            	if(intlCountry != null && intlCountry!='' && intlCountry=='CANADA')
+            	typeOfReports = '11.1';
+            }
+            window.open("/apex/ExperianCreditReportLead?busId=" + businessId + "&accID=" + accountId + "&reportCode=" + typeOfReports + "&score=" + selScoringMdl + "&credit=" + selectedCreditPolicy + "&ref=" + reference + "&lastName=" + lastName + "&firstName=" + firstName + "&ownerstreet=" + ownerstreet + "&ownercity=" + ownercity + "&ownerstate=" + ownerstate + "&ownerzip=" + ownerzip+ "&lastName1=" + lastName1 + "&firstName1=" + firstName1 + "&ownerstreet1=" + ownerstreet1 + "&ownercity1=" + ownercity1 + "&ownerstate1=" + ownerstate1 + "&ownerzip1=" + ownerzip1 + "&ownerCount="+ownerCount+ "&middleName="+middleName+ "&ssnNo="+ssnNo+ "&genCode="+genCode+ "&driverLicense="+driverLicense+ "&yearOfBirth="+yearOfBirth+ "&phoneNumber="+phoneNumber+ "&middleName1="+middleName1+ "&ssnNo1="+ssnNo1+ "&genCode1="+genCode1+ "&driverLicense1="+driverLicense1+ "&yearOfBirth1="+yearOfBirth1+ "&phoneNumber1="+phoneNumber1+ "&ownerAge="+ownerAge+ "&ownerAge1="+ownerAge1);        	            
+        }
+        
+        var selectedScoringMdl = j$('[id$=scoringMdlId]').attr("selScoringMdl");
+        j$('select[id$="scoringMdlId"]').val(selectedScoringMdl);  
+        changeCreditPolicyAF(selectedScoringMdl,j$('[id$=scoringMdlId]').attr("blended"));
+
+        j$('.commCreditScore input:checkbox').each(function() {                                                  
+                if(j$(this).attr('isChecked') == 'true')
+                    j$(this).attr('checked', true);            
+        });
+        
+        var ids = [];
+        j$('#spnAddOwner').click(function() {
+            document.getElementById('pg:frm:secondOwnerId').style.display = '';
+            document.getElementById('pg:frm:ownerpopupId').style.width = '710px';
+            j$('#secondOwnerId').show(); 
+            j$('#spnAddOwner').attr('disabled','disabled');    
+            j$('#spnDeleteOwner').removeAttr('disabled');  
+            j$('#spnAddOwner').removeClass('enableLink'); 
+            j$('#spnAddOwner').addClass('disableLink');
+            j$('#spnDeleteOwner').removeClass('disableLink'); 
+            j$('#spnDeleteOwner').addClass('enableLink');   
+            j$('#hdnNumberOfBO').val('2');
+            //j$('#spnAddOwner').css('cursor', 'pointer');
+            j$('[id$=additionalOwner]').show();
+        }); 
+        j$('#spnDeleteOwner').click(function(){
+            document.getElementById('pg:frm:secondOwnerId').style.display = 'none';
+            document.getElementById('pg:frm:ownerpopupId').style.width = '350px';
+            j$('#spnDeleteOwner').attr('disabled','disabled');    
+            j$('#spnAddOwner').removeAttr('disabled');                   
+            j$('#spnDeleteOwner').removeClass('enableLink'); 
+            j$('#spnDeleteOwner').addClass('disableLink');                  
+            j$('#spnAddOwner').removeClass('disableLink'); 
+            j$('#spnAddOwner').addClass('enableLink');    
+            j$('#hdnNumberOfBO').val('1');
+            //j$('#spnDeleteOwner').css('cursor', 'pointer');
+            ClearBusinessOwner2();
+        });
+          
+        j$('input[id$="btnSearchBI"]').click(function() {         
+            if(ValidateBusinessOwner() == true) {       
+                addOwnerInformations(j$('#hdnNumberOfBO').val());
+                closeAddOwnerPopup();
+                return false;
+            }
+            else {
+                return false;
+            }
+          
+        });
+       	  //10/22/2015 TCS Clear Owner (Link)
+          j$('#spnClearOwner').click(function(){
+              ClearBusinessOwner1();
+              ClearBusinessOwner2(); 
+          });
+        
+      	  //10/22/2015 TCS Prepopulate owner (Link)
+          j$('#spnPopulateOwner').click(function(){         
+              populateOwnerDetail();
+          });
+        
+        j$(".clsCheckNumeric").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if (j$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                 // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) || 
+                 // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                     // let it happen, don't do anything
+                    return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+      
+      //++++++++++++++++++++++++++++++++++++++++++++++++          
+      //*******
+        j$('.clsCheckLength2').keypress( function(e){              
+            if(j$(this).val().length > 1){
+              e.preventDefault();
+            }                              
+        });   
+      //*******
+        j$('.clsCheckLength3').keypress( function(e){              
+            if(j$(this).val().length > 2){
+              e.preventDefault();
+            }                              
+        });             
+      //*******
+        j$('.clsCheckLength4').keypress( function(e){              
+            if(j$(this).val().length > 3){
+              e.preventDefault();
+            }                              
+        });
+        //*******
+        j$('.clsCheckLength5').keypress( function(e){              
+            if(j$(this).val().length > 4){
+                e.preventDefault();
+            }                              
+        });         
+        //*******
+        j$('.clsCheckLength7').keypress( function(e){              
+            if(j$(this).val().length > 6){
+                e.preventDefault();
+            }                              
+        });
+        //*******
+        j$('.clsCheckLength9').keypress( function(e){              
+            if(j$(this).val().length > 8){
+                e.preventDefault();
+            }                                 
+        });
+        //Check for SSN added on 27Jan2016 DK
+        j$('.clsCheckLength9SSN').keypress( function(e){ 
+            if(j$(this).val().indexOf('-') > 0){
+                if(j$(this).val().length > 10){
+	                e.preventDefault();
+    	        }
+             }
+             else
+             {
+                if(j$(this).val().length > 8){
+	               e.preventDefault();
+    	        }
+             }
+        });
+        //Check for SSN END
+        
+        //*******
+        j$('.clsCheckLength12').keypress( function(e){              
+            if(j$(this).val().length > 11){
+                e.preventDefault();
+            }                              
+        });
+      
+      
+        var selectedValues = "";
+        j$('[id*=popularCombo] input:checked').each(function () {
+            //alert('hi');
+        });  
+        //for clicking the report type checkboxes
+        j$('input[type="checkbox"]').on('click', function() {
+            var arrayScrMdl = j$(this).attr('exlscoringmdl').trim().split(',');
+            var blnReportBlended = j$(this).attr('isblended'); //States whether product type is blended or not
+            var scoringMdl = j$('[id$=scoringMdlId]').val();        
+            var scoringMdlTxt = j$('[id$=scoringMdlId] option:selected').text();                       //Value of scoring model
+            var isCommBlended = j$(this).attr('isCommBlended'); //Retrieve isCommercial and blended value for a report type
+            var isScoringBlended = j$('[id$=scoringMdlId]').find('option:selected').attr("isBlended");    //selected scoring model blended attribute
+            if(isScoringBlended == 'true') {
+                scoringMdl = scoringMdl + 'B';
+            }
+            var found;
+            
+            if((this.value == '14' || this.value == '14.1') && scoringMdlTxt.indexOf('Small Business Credit Share') == -1 ) {
+            	alert('The selected model is not compatible with non Small Business Share products');
+            	return false;
+         	}
+            
+            if((this.value != '14' && this.value != '14.1') && scoringMdlTxt.indexOf('Small Business Credit Share') >= 0) {              
+              	alert('Please select a model compatible with Small Business Share products or select a different Scoring Model');
+            		return false;   
+            }
+            
+            if(scoringMdl == '0') {
+                found = '-1';
+                if(this.value == '8') {
+                    alert('A scoring model is required before selecting a scoring product.');
+                    return false;
+                }               
+            }
+            else if(scoringMdl == 'I') {                
+                found = j$.inArray(scoringMdl, arrayScrMdl);                
+                found +=2; 
+                //alert(found);               
+            } 
+            else {
+                for(var x=0; x<arrayScrMdl.length; x++){                     
+                    if(arrayScrMdl[x] === scoringMdl){
+                        found = '0';
+                        break;                        
+                    }
+                    else
+                        found = '-1';
+                }
+            }
+           // alert('found: '+found);                        
+            if(found == '2'){
+            alert('The selected model is a International model and not compatible with non International products. Please change the model or request a different product.');
+                if(j$(this).is(":checked")){
+                    j$(this).attr('checked', false);
+                }                
+                return false;
+            } 
+            if(found != '-1'){ 
+                if(found != '1'){
+                alert('The selected model is a blended model and not compatible with commercial products. Please change the model or request a different product.');
+                if(j$(this).is(":checked")){
+                    j$(this).attr('checked', false);
+                }
+                return false;
+            }
+            }
+            else if((isScoringBlended == 'true' && isCommBlended == 'false' && blnReportBlended == 'false') || 
+                    isScoringBlended == 'false' && isCommBlended == 'false' && blnReportBlended == 'true') {
+                alert('The selected model is a commercial model and not compatible with blended products. Please change the model or request a different product.');
+                if(j$(this).is(":checked")) {
+                    j$(this).attr('checked', false);
+                }
+            }
+                    
+            var array1 = j$(this).attr('exclprodopt').split(',');                        
+            if(j$(this).is(":checked")){
+                j$('.score input:checkbox').each(function() {                        
+                    for(i=0; i<array1.length; i++){
+                        if(array1[i] == j$(this).val()){ 
+                            j$(this).attr('checked', false);                   
+                            j$(this).attr('disabled','disabled');                           
+                        }
+                    }
+                });
+                var isScoreBlended = j$('[id$=scoringMdlId]').find('option:selected').attr("isBlended");                
+            }
+            else{
+                j$('.score input:checkbox').each(function() {                        
+                    for(i=0; i<array1.length; i++){
+                        if(array1[i] == j$(this).val()){                                                  
+                            j$(this).removeAttr('disabled');                           
+                        }
+                    }
+                });
+            }
+            /** Commented on 08/07/2015 based on change of blended func of product option v/s scoring model
+            if((j$(this).val() == '6' || j$(this).val() == '1') && ValidateBusinessOwnerData() == false && j$(this).is(":checked"))             
+                enableAddOwnerPopup();
+            else if(ValidateBusinessOwner() == false && j$(this).is(":checked") && isScoreBlended == 'true' && j$(this).val() != '5' && j$(this).val() != '7') 
+                 enableAddOwnerPopup();
+            **/
+            if(blnReportBlended == 'true' && isScoringBlended == 'true' && ValidateBusinessOwnerData() == false && j$(this).is(":checked")) {
+                enableAddOwnerPopup();
+            }
+            else if(isCommBlended == 'true' && isScoringBlended == 'true' && ValidateBusinessOwnerData() == false && j$(this).is(":checked")) {
+                enableAddOwnerPopup();
+            }
+                
+        });
+       var previousScringMdl;
+       
+       
+       //for scoring model change 
+       j$('select[id$="scoringMdlId"]').on('focus', function () {
+            // Store the current value on focus and on change 
+            previousScringMdl = this.value;          
+        }).change(function() {
+                
+            var selscringMdl = j$('select[id$="scoringMdlId"]').val();                                //selected scoring model
+            var isScoreBlended = j$('[id$=scoringMdlId]').find('option:selected').attr("isBlended");  //is scoring model a blended one?
+            var blendedModel = 'false';                                                               
+            var scoringMdl = j$('[id$=scoringMdlId]').val();                                          
+            if(isScoreBlended == 'true') {
+                selscringMdl = selscringMdl + 'B';
+            }
+            var isBlended = 'false';
+            j$('input.reportType_chkBox').each(function() {                                           //Iterate across all report types
+                if(this.checked) {
+                    var array1 = j$(this).attr('exlscoringmdl').trim().split(',');
+                    isBlended = j$(this).attr('isblended');
+                    var isCommBlended = j$(this).attr('isCommBlended'); //Retrieve isCommercial and blended value for a report type
+                    for(i=0; i<array1.length; i++) {
+                        if(array1[i] == selscringMdl) {
+                            alert('The selected model is a blended model and not compatible with commercial products. Please change the model or request a different product.'); 
+                            j$('select[id$="scoringMdlId"]').val(previousScringMdl);
+                            blendedModel = 'true';                            
+                        }
+                        else if((isScoreBlended == 'true' && isCommBlended == 'false' && isBlended == 'false') || 
+                                 isScoreBlended == 'false' && isCommBlended == 'false' && isBlended == 'true') {
+                            alert('The selected model is a blended model and not compatible with commercial products. Please change the model or request a different product.');
+                            j$('select[id$="scoringMdlId"]').val(previousScringMdl);
+                            blendedModel = 'true';
+                            
+                        }
+                    }
+                    if(blendedModel == 'false' && (isBlended == 'true' || isCommBlended == 'true') && isScoreBlended == 'true' && ValidateBusinessOwnerData() == false) {
+                        enableAddOwnerPopup();
+                    }
+                }
+            });
+                changeCreditPolicyAF(j$('[id$=scoringMdlId]').find('option:selected').attr("value"),isScoreBlended);
+        });
+                 
+    });
+    
+        function ValidateBusinessOwner2Data() {              
+            var isValidBO = true;                
+                         
+            if(j$('input[id$="txtBO2FirstName"]').val().trim() == ''){
+                isValidBO = false;                 
+            }          
+            if(j$('input[id$="txtBO2LastName"]').val().trim() == ''){
+                isValidBO = false;                
+            } 
+            if(j$('input[id$="txtBO2Address"]').val().trim() == ''){
+                isValidBO = false;               
+            } 
+            if(j$('input[id$="txtBO2City"]').val().trim() == ''){
+                isValidBO = false;                
+            } 
+            if(j$('select[id$=txtBO2State]').val() == ''){
+                isValidBO = false;                    
+            }
+            if(j$('input[id$="txtBO2ZipPart1"]').val().trim() == ''){
+                isValidBO = false;                 
+            }
+            return isValidBO;
+        }
+    
+        function addOwner() {
+            j$('#secondOwnerId').show(); 
+            j$('#spnAddOwner').attr('disabled','disabled');    
+            j$('#spnDeleteOwner').removeAttr('disabled');            
+            j$('#spnAddOwner').removeClass('enableLink'); 
+            j$('#spnAddOwner').addClass('disableLink');         
+            j$('#spnDeleteOwner').removeClass('disableLink'); 
+            j$('#spnDeleteOwner').addClass('enableLink');   
+            j$('#hdnNumberOfBO').val('2');
+            $('#spnAddOwner').css('cursor', 'pointer');
+        }
+    
+        function removeOwner() {
+            document.getElementById('pg:frm:secondOwnerId').style.display = 'none';
+            document.getElementById('pg:frm:ownerpopupId').style.width = '350px';
+            j$('#spnDeleteOwner').attr('disabled','disabled');    
+            j$('#spnAddOwner').removeAttr('disabled');                   
+            j$('#spnDeleteOwner').removeClass('enableLink'); 
+            j$('#spnDeleteOwner').addClass('disableLink');                  
+            j$('#spnAddOwner').removeClass('disableLink'); 
+            j$('#spnAddOwner').addClass('enableLink');    
+            j$('#hdnNumberOfBO').val('1');     
+            HideTab1BO1Message();
+            HideTab1BO2Message();    
+          
+        }
+            
+        function ValidateBusinessOwner() {              
+            var isValidBO = true;                
+                         
+            if(j$('input[id$="txtBO1FirstName"]').val().trim() == ''){
+                j$('#spnBO1FirstNameMsg').show();             
+                isValidBO = false;                 
+            }
+          
+            if(j$('input[id$="txtBO1LastName"]').val().trim() == ''){
+                j$('#spnBO1LastNameMsg').show();                   
+                isValidBO = false;                
+            } 
+            if(j$('input[id$="txtBO1Address"]').val().trim() == ''){
+                j$('#spnBO1AddressMsg').show();                   
+                isValidBO = false;               
+            } 
+            if(j$('input[id$="txtBO1City"]').val().trim() == ''){
+                j$('#spnBO1CityMsg').show();                   
+                isValidBO = false;                
+            } 
+            if(j$('select[id$=txtBO1State]').val() == ''){
+                j$('#spnBO1StateMsg').show(); 
+                //focusId = '[id$=txtBO1State]';
+                isValidBO = false;                    
+            }
+            if(j$('input[id$="txtBO1ZipPart1"]').val().trim() == ''){
+                j$('#spnBO1ZipCodeMsg').show();                   
+                isValidBO = false;                 
+            }
+          
+            if(j$('#hdnNumberOfBO').val() == '2') {
+                if(j$('input[id$="txtBO2FirstName"]').val().trim() == ''){
+                    j$('#spnBO2FirstNameMsg').show();                   
+                    isValidBO = false;                 
+                } 
+                if(j$('input[id$="txtBO2LastName"]').val().trim() == ''){
+                    j$('#spnBO2LastNameMsg').show();                   
+                    isValidBO = false;                
+                } 
+                if(j$('input[id$="txtBO2Address"]').val().trim() == ''){
+                    j$('#spnBO2AddressMsg').show();                   
+                    isValidBO = false;               
+                } 
+                if(j$('input[id$="txtBO2City"]').val().trim() == ''){
+                    j$('#spnBO2CityMsg').show();                   
+                    isValidBO = false;                
+                } 
+                if(j$('select[id$="txtBO2State"]').val() == ''){
+                    j$('#spnBO2StateMsg').show();                   
+                    isValidBO = false;              
+                }
+                if(j$('input[id$="txtBO2ZipPart1"]').val().trim() == ''){
+                    j$('#spnBO2ZipCodeMsg').show();                   
+                    isValidBO = false;                 
+                }
+             
+            }
+            return isValidBO;
+        }
+        
+        function ValidateBusinessOwnerData() {              
+            var isValidBO = true;                
+                         
+            if(j$('input[id$="txtBO1FirstName"]').val().trim() == ''){
+                isValidBO = false;                 
+            }          
+            if(j$('input[id$="txtBO1LastName"]').val().trim() == ''){
+                isValidBO = false;                
+            } 
+            if(j$('input[id$="txtBO1Address"]').val().trim() == ''){
+                isValidBO = false;               
+            } 
+            if(j$('input[id$="txtBO1City"]').val().trim() == ''){
+                isValidBO = false;                
+            } 
+            if(j$('select[id$=txtBO1State]').val() == ''){
+                isValidBO = false;                    
+            }
+            if(j$('input[id$="txtBO1ZipPart1"]').val().trim() == ''){
+                isValidBO = false;                 
+            }
+            return isValidBO;
+        }
+        
+        function clrBussinessOwnerVal(ownerCount) {
+            if(ownerCount == 1) {
+                ClearBusinessOwner1();
+                j$('input[id$="txtBO1FirstName"]').val(j$('input[id$="txtBO2FirstName"]').val());              
+                j$('input[id$="txtBO1MiddleName"]').val(j$('input[id$="txtBO2MiddleName"]').val());
+                j$('input[id$="txtBO1LastName"]').val(j$('input[id$="txtBO2LastName"]').val());
+                j$('input[id$="txtBO1SocialSecNo"]').val(j$('input[id$="txtBO2SocialSecNo"]').val());
+                j$('select[id$="slstBO1GenerationCode"]').val(j$('select[id$="slstBO2GenerationCode"]').val());
+                j$('input[id$="txtBO1Address"]').val(j$('input[id$="txtBO2Address"]').val());
+                j$('input[id$="txtBO1City"]').val(j$('input[id$="txtBO2City"]').val());
+                j$('select[id$="txtBO1State"]').val(j$('select[id$="txtBO2State"]').val());
+                j$('input[id$="txtBO1ZipPart1"]').val(j$('input[id$="txtBO2ZipPart1"]').val());
+                j$('input[id$="txtBO1DriverLicense"]').val(j$('input[id$="txtBO2DriverLicense"]').val());
+                j$('input[id$="txtBO1YearOfBirth"]').val(j$('input[id$="txtBO2YearOfBirth"]').val());
+                j$('input[id$="txtBO1Age"]').val(j$('input[id$="txtBO2Age"]').val());
+                j$('input[id$="txtBO1PhoneNumber"]').val(j$('input[id$="txtBO2PhoneNumber"]').val());          
+                ClearBusinessOwner2();      
+            }        
+            else if(ownerCount == 2) {               
+                ClearBusinessOwner2();
+                j$('#hdnNumberOfBO').val('1'); //Added on 0809 to rest owner count to 1 post deletion
+               // alert(ownerCount);
+            }
+            removeOwner();
+            removeOwnerInformation();
+            return false;
+        }
+    
+        function ClearBusinessOwner1() {
+            j$('input[id$="txtBO1FirstName"]').val('');
+            j$('input[id$="txtBO1MiddleName"]').val('');
+            j$('input[id$="txtBO1LastName"]').val('');
+            j$('input[id$="txtBO1SocialSecNo"]').val('');
+            j$('select[id$="slstBO1GenerationCode"]').val('');
+            j$('input[id$="txtBO1Address"]').val('');
+            j$('input[id$="txtBO1City"]').val('');
+            j$('select[id$="txtBO1State"]').val('');
+            j$('input[id$="txtBO1ZipPart1"]').val('');
+            j$('input[id$="txtBO1DriverLicense"]').val('');
+            j$('input[id$="txtBO1YearOfBirth"]').val('');
+            j$('input[id$="txtBO1Age"]').val('');
+            j$('input[id$="txtBO1PhoneNumber"]').val('');
+        }
+      
+        //*****
+        function ClearBusinessOwner2() {
+            j$('input[id$="txtBO2FirstName"]').val('');
+            j$('input[id$="txtBO2MiddleName"]').val('');
+            j$('input[id$="txtBO2LastName"]').val('');
+            j$('input[id$="txtBO2SocialSecNo"]').val('');
+            j$('select[id$="slstBO2GenerationCode"]').val('');
+            j$('input[id$="txtBO2Address"]').val('');
+            j$('input[id$="txtBO2City"]').val('');
+            j$('select[id$="txtBO2State"]').val('');
+            j$('input[id$="txtBO2ZipPart1"]').val('');
+            j$('input[id$="txtBO2DriverLicense"]').val('');
+            j$('input[id$="txtBO2YearOfBirth"]').val('');
+            j$('input[id$="txtBO2Age"]').val('');
+            j$('input[id$="txtBO2PhoneNumber"]').val('');
+        }
+        //*****Function is used for hiding the error messages for Business Owner1 of Tab1.
+          function HideTab1BO1Message() {
+              j$('#FCRAAgreement').hide();
+              j$('#spnBO1FirstNameMsg').hide();
+              j$('#spnBO1LastNameMsg').hide();
+              j$('#spnBO1AddressMsg').hide();
+              j$('#spnBO1CityMsg').hide();
+              j$('#spnBO1StateMsg').hide();
+              j$('#spnBO1ZipCodeMsg').hide();    
+          }
+          
+          //*****Function is used for hiding the error messages for Business Owner2 of Tab1.
+          function HideTab1BO2Message() {              
+              j$('#spnBO2FirstNameMsg').hide();
+              j$('#spnBO2LastNameMsg').hide();
+              j$('#spnBO2AddressMsg').hide();
+              j$('#spnBO2CityMsg').hide();
+              j$('#spnBO2StateMsg').hide();
+              j$('#spnBO2ZipCodeMsg').hide();             
+          }
+          
+        
+        function runReport() {
+            //j$('#hdnScoringModelValue').val(j$('[id$=scoringMdlId]').val());
+            var isScoreBlended = j$('[id$=scoringMdlId]').find('option:selected').attr("isBlended"); 
+            var selScoringMdl = j$('select[id$="scoringMdlId"]').val();
+            var enableOwnerPopup = 'false';
+            var isBlended = 'false';
+            if(isScoreBlended == 'true') {
+                selScoringMdl = selScoringMdl + 'B';
+            }
+            j$('input.reportType_chkBox').each(function() {                                           //Iterate across all report types
+                if(this.checked) {
+                    if(j$(this).attr('exlscoringmdl').trim() != null && j$(this).attr('exlscoringmdl').trim() != undefined)
+                    var array1 = j$(this).attr('exlscoringmdl').trim().split(',');
+                    var isCommBlended = j$(this).attr('isCommBlended'); //Retrieve isCommercial and blended value for a report type 
+                    for(i=0; i<array1.length; i++) {
+                        if(array1[i] !=  selScoringMdl && (j$(this).attr('isblended') == 'true' || isCommBlended == 'true') && isScoreBlended == 'true' && ValidateBusinessOwnerData() == false ){
+                           enableOwnerPopup = 'true';                            
+                        }
+                        if((j$(this).attr('isblended') == 'true' || isCommBlended == 'true') && isScoreBlended == 'true') {     
+                            isBlended = 'true';     
+                        }
+                    }                        
+                }
+            });           
+            
+            var blnReportTypeChk = 'false';
+            var popularCombo = document.getElementsByName('popularCombo');
+            var commCredit = document.getElementsByName('commCreditRpt');                    
+            var commCredtScre = document.getElementsByName('commCredtScr');
+            var isPremierOwnerPro = 'false';
+            var isBussOwnerPro = 'false';
+            var typeOfReports = '';
+            for(var i=0; i< popularCombo.length; ++i) {
+                if(popularCombo[i].checked == true) {
+                    blnReportTypeChk = 'true';
+                    if(popularCombo[i].value == '1')
+                        isPremierOwnerPro = 'true';
+                    if(typeOfReports != '')
+                        typeOfReports = typeOfReports + '.' + popularCombo[i].value;
+                    else
+                        typeOfReports = popularCombo[i].value;
+                }
+            }
+            for(var i=0; i< commCredit.length; ++i) {
+                if(commCredit[i].checked == true) {
+                    blnReportTypeChk = 'true';
+                    if(commCredit[i].value == '6')
+                        isBussOwnerPro = 'true';                 
+                    if(typeOfReports != '')
+                        typeOfReports = typeOfReports + '.' + commCredit[i].value;
+                    else
+                        typeOfReports = commCredit[i].value;
+                }
+            }
+            var isDecisionIQ = 'false';
+            for(var i=0; i< commCredtScre.length; ++i) {
+                if(commCredtScre[i].checked == true) {
+                    blnReportTypeChk = 'true';                    
+                    if(typeOfReports != '')
+                        typeOfReports = typeOfReports + '.' + commCredtScre[i].value;
+                    else
+                        typeOfReports = commCredtScre[i].value;
+                    if(commCredtScre[i].value == '9'){
+                        isDecisionIQ = 'true';
+                    }
+                }
+                   
+            }
+            if(blnReportTypeChk == 'false') {
+                alert('Please select at least one report.');
+            }
+            else if(j$('select[id$="scoringMdlId"]').val() == '0') {
+                alert('Please select at least one scoring model.');
+            }
+            else if('{!$User.Allow_Decisioning__c}' != 'true' && isDecisionIQ == 'true') {
+                alert('You are not allowed to pull DecisionIQ report');
+            }
+            else if(enableOwnerPopup == 'true') {
+                enableAddOwnerPopup();
+            }
+            else if(document.getElementById('pg:frm:FCRAAgreement').checked == false && isBlended == 'true') {
+                j$('#spnFCRAAgreement').show();
+                enableAddOwnerPopup(); 
+            } 
+           
+            else {
+                document.getElementById('pg:frm:typeOfReports').value = typeOfReports;                
+                var strScoringMdl = document.getElementById('pg:frm:hdnScoringModelValue').value = selScoringMdl;
+                runReportAF(typeOfReports, strScoringMdl);
+                }
+                return false;
+        }
+    </script>
+    
+    <apex:form id="frm" >
+        <apex:inputHidden value="{!strReportTypes}" id="typeOfReports"/>
+        <apex:inputHidden value="{!sHiddenScoringModel}" id="hdnScoringModelValue"/>
+        
+         <input type = "hidden" id="accCountry" value="{!accCountry}"/>        
+         <input type = "hidden" id="isInternational" value="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US',  0, 1)}"/>
+         <input type = "hidden" id="hdnNumberOfBO" value="{!strNumberOfBO}" /> 
+        
+        <apex:inputHidden value="{!newAccountId}" id="hdnSelectedAccId" />
+        <apex:inputHidden value="{!newBusinessId}" id="hdnSelectedBusiness" />
+        
+        <apex:actionFunction name="removeOwnerInformation" reRender="addInfo" status="Processing">
+            <!-- apex:param name="ownerIndi" value="" /-->
+        </apex:actionFunction>
+        
+
+        
+        <apex:actionFunction name="runReportAF" action="{!runAccReport}" status="Processing" >
+            <apex:param name="selScoringModel" value=""  assignTo="{!sHiddenScoringModel}"/>
+            <apex:param name="typeOfReports" value="" assignTo="{!strReportTypes}"/>
+            
+        </apex:actionFunction>
+        <!--apex:inputHidden value="{!selectedBusiness}" id="selAccnt" /-->
+        <apex:actionFunction action="{!changeCreditPolicy}" name="changeCreditPolicyAF" rerender="creditPolicyLbl, creditPolicyVal" status="Processing">
+            <apex:param name="selectedScoringModel" value="" />
+            <apex:param name="blended" value="" />
+        </apex:actionFunction>   
+        
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />
+            </div>
+        </div>  
+        
+        <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';">                            
+        </apex:actionStatus>
+
+        <apex:actionFunction name="addOwnerInformations" action="{!addOwner}" reRender="addInfo" status="Processing" >
+        <apex:param assignTo="{!strNumberOfBO}" name="noOfOwners" value="" />
+        </apex:actionFunction>
+        <!--Populate Owner Detail 10/22/2015--> 
+        <apex:actionFunction action="{!enableOwnerInfo}" name="populateOwnerDetail" status="Processing"/>
+        <apex:actionFunction name="addOwner" action="{!addOwner}" status="Processing"/>
+        <apex:sectionHeader title="Select Report"  /><apex:pageMessages />
+        <apex:panelGrid columns="1" styleClass="pnlgrid" frame="border" id="pnlgrid" >        
+            <apex:panelGrid columns="2" bgcolor="#f2f2f2" frame="border" styleClass="firstBlock" >
+            <!-- 1st block -->  
+                <apex:panelGrid bgcolor="white" frame="border" styleClass="addInfo" id="addInfo">
+                <apex:panelGrid columns="3" >
+                      <apex:outputLabel value="{!selectedBusiness.Name}" styleClass="txtBussinessBlck" style="margin-left: -1%;" />  
+                      <h4 class="txtBussinessBlck" style="margin-left: 65%;">BIN: </h4>   
+                      <apex:outputLabel value="{!selectedBusiness.EXPRN__BIN__c}" rendered="{!if(selectedBusiness.EXPRN__BIN__c != null && selectedBusiness.EXPRN__BIN__c != '' , true, false)}" style="color:#666;margin-left: 20%;"/>
+                      <apex:outputLabel value="{!selectedBusiness.EXPRN__Global_BIN__c}" rendered="{!if(selectedBusiness.EXPRN__BIN__c == null || selectedBusiness.EXPRN__BIN__c == '' , true, false)}" style="color:#666;margin-left: 20%;"/><br/>
+                </apex:panelGrid>            
+                <apex:outputLabel value="{!selectedBusiness.EXPRN__Exp_Street_Address1__c}" rendered="{!if(selectedBusiness.EXPRN__Exp_Street_Address1__c != null && selectedBusiness.EXPRN__Exp_Street_Address1__c != '' , true, false)}" style="color:#666;font-size: 11px;" />                  
+                  <apex:panelGrid columns="3" style="margin-left: -1%;color:#666;">
+                      <apex:outputLabel value="{!selectedBusiness.EXPRN__Exp_City_Name__c}" rendered="{!if(selectedBusiness.EXPRN__Exp_City_Name__c != null && selectedBusiness.EXPRN__Exp_City_Name__c != '' , true, false)}" style="color:#666;font-size: 11px;"/> 
+                      <apex:outputLabel value="{!selectedBusiness.EXPRN__Exp_STATE__c}" rendered="{!if(selectedBusiness.EXPRN__Exp_STATE__c != null && selectedBusiness.EXPRN__Exp_STATE__c != '' , true, false)}" style="color:#666;font-size: 11px;"/>
+                      <apex:outputLabel value="{!selectedBusiness.EXPRN__Exp_ZIP__c}" rendered="{!if(selectedBusiness.EXPRN__Exp_ZIP__c != null && selectedBusiness.EXPRN__Exp_ZIP__c != '' , true, false)}" style="color:#666;font-size: 11px;"/> 
+                  </apex:panelGrid>           
+                  <apex:outputLabel value="{!selectedBusiness.EXPRN__Exp_Business_Phone_No__c}" rendered="{!if(selectedBusiness.EXPRN__Exp_Business_Phone_No__c != null && selectedBusiness.EXPRN__Exp_Business_Phone_No__c != '' , true, false)}" style="color:#666;font-size: 11px;"/>            
+                  <apex:panelGrid columns="2" style="margin-left: -1%;">
+                      <apex:outputLabel Value="Reference information" styleClass="txtBussinessBlck" rendered="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US', true, false)}"/>
+                      <apex:inputText value="{!strReferenceInfo}" style="color:#666;font-size:11px;margin-left: 8%;" rendered="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US', true, false)}"/>
+                  </apex:panelGrid> 
+                  <!------Display owners ------>
+                  <apex:variable var="ownerCount" value="{!1}"/>
+                  <apex:repeat value="{!listowners}" var="ownerInfo"> 
+                  <apex:panelGrid columns="2" rendered="{!if(ownerInfo.EXPRN__First_Name__c != '' && ownerInfo.EXPRN__First_Name__c != null, true, false)}" style="margin-left: -2px;">
+                      <apex:outputLabel value="Owner: " style="color:#666;font-size: 11px;font-weight: 700;"/>
+                      <apex:outputLabel />
+                      <apex:panelGrid columns="1">
+                          <apex:outputLabel value="{!ownerInfo.EXPRN__First_Name__c}  {!ownerInfo.EXPRN__Middle_Initial__c} {!ownerInfo.EXPRN__Last_Name__c} {!ownerInfo.EXPRN__Generation_code__c}" style="color:#666;font-size: 11px;"/>
+                          <apex:outputLabel value="{!ownerInfo.EXPRN__Address__c}" style="color:#666"/>
+                          <apex:outputLabel value="{!ownerInfo.EXPRN__City__c} {!ownerInfo.EXPRN__State__c} {!ownerInfo.EXPRN__Zip_Code__c}" style="color:#666;font-size: 11px;"/>
+                      </apex:panelGrid>
+                      <apex:panelGrid columns="1">               
+                          <apex:outputLabel value="SSN : {!ownerInfo.EXPRN__Social_Sec_No__c}"  rendered="{!if(ownerInfo.EXPRN__Social_Sec_No__c != '', true, false)}" style="color:#666;font-size: 11px;"/>  
+                          <apex:outputLabel value="Year of Birth: {!ownerInfo.EXPRN__Year_of_birth__c}" rendered="{!if(ownerInfo.EXPRN__Year_of_birth__c != '', true, false)}" style="color:#666;font-size: 11px;"/>                       
+                          <apex:outputLabel value="Driver's License# : {!ownerInfo.EXPRN__Driver_s_License__c}" rendered="{!if(ownerInfo.EXPRN__Driver_s_License__c!= '', true, false)}" style="color:#666;font-size: 11px;"/>
+                          <apex:outputLabel value="Age: {!ownerInfo.EXPRN__Age__c}" rendered="{!if(ownerInfo.EXPRN__Age__c != null, true, false)}" style="color:#666;font-size: 11px;"/>
+                      </apex:panelGrid>  
+                  </apex:panelGrid>
+                  <apex:commandLink styleClass="btn" value="Remove Owner" onclick="return clrBussinessOwnerVal('{!ownerCount}');" style="margin-top: 3%;text-decoration:none; " reRender="frm"/>
+                  <apex:commandButton styleClass="btn" value="Add Owner" onclick="return enableAddOwnerPopup();" rendered="{!if(listowners.size == 1 && (accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US'), true, false)}"/>
+                      <!--apex:param value="{!ownerCount}" name="ownerIndi"/-->
+                   <apex:variable var="ownerCount" value="{!ownerCount+1}"/>
+                </apex:repeat>              
+                <apex:commandButton styleClass="btn" value="Add Owner" onclick="return enableAddOwnerPopup();" rendered="{!if(listowners.size == 0 && (accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US'), true, false)}" />
+            </apex:panelGrid>
+            <!--2nd block-->      
+                <apex:panelGrid style="padding-left:5%; float:right;" frame="border" styleClass="creditPull" id="creditPullSettingId">
+                    <h4 style="color:#666;font-size: 12px;"> Credit Pull Settings </h4> <p/>
+                    <apex:panelGrid columns="2" width="304px" style="float:left;width: 104%;" cellpadding="0px;">
+                    <h4 style="color:#666;font-size: 12px;"> Scoring Model:&nbsp;&nbsp;</h4> 
+                    <apex:outputPanel layout="none"  rendered="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US',  true, false)}">
+                    <select id="scoringMdlId" name="scoringMdlId" class="reportContentParameter" value = "{!strScoringModel}" selScoringMdl ="{!strScoringModel}" blended = "{!isBlended}" size="1" style="color:#666;width:204px;" >                        
+                        <option value = "0" isBlended = "false">  ----------------Select one---------------- </option>                       
+                        <apex:repeat value="{!listScoringModel}" var="scoringModelVal"  >
+                            <option isBlended = "{!scoringModelVal.blnIsBlended}" value = "{!scoringModelVal.strmodelNo}"   name = "{!scoringModelVal.strModelName}" > 
+                                {!scoringModelVal.strModelName} 
+                            </option>
+                        </apex:repeat>                                
+                    </select>
+                    </apex:outputPanel>
+                    <!-- For International report populate Scoring Model as International-->
+                    <apex:outputPanel layout="none" rendered="{!if(accCountry != 'UNITED STATES' && accCountry != 'USA' && accCountry != 'US', true, false)}">
+                    <select id="scoringMdlId" name="scoringMdlId" class="reportContentParameter" value = "{!strScoringModel}" selScoringMdl ="{!strScoringModel}" blended = "{!isBlended}" size="1" style="color:#666;width:204px;" >                        
+                        <option value = "I" isBlended = "false">  International </option>                       
+                                             
+                    </select>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" id="creditPolicyLbl">      
+                      <!--  <apex:outputPanel title="Credit Policy: " id="creditPolicyStr" style="color:#666;" rendered="{!if(listCreditPolicy.size != 0, true, false)}" layout="block">                        
+                        </apex:outputPanel> -->
+                        <apex:outputLabel value="Credit Policy:" rendered="{!if(listCreditPolicy.size != 0, true, false)}" style="color:#666;font-size: 12px;"/>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="creditPolicyVal" layout="block" >
+                        <apex:selectList value="{!strCreditPolicy}" id="creditPolicy" multiselect="false" size="1" style="color:#666;marin-top:0.5%!Important;" 
+                        rendered="{!if(listCreditPolicy.size != 0, true, false)}" >
+                            <apex:selectOptions value="{!listCreditPolicy}"/> 
+                        </apex:selectList>
+                        
+                    </apex:outputPanel>
+                    </apex:panelGrid>
+                </apex:panelGrid>
+                 
+ 
+ 
+               </apex:panelGrid>   
+             
+                <apex:panelGrid columns="3" frame="border" width="100%" styleClass="score">
+                    <apex:panelGrid columns="1">
+                        <h4 style="color:#666;font-size: 12px;">{!$Label.exprn__popular_combos} </h4>
+                        <apex:repeat value="{!listPopularCombos}" var="strVal" rows="{!listPopularCombos.size}" >
+                            <apex:panelGrid columns="2">
+                         
+                                <input type = "checkbox" id = "popularCombo" name = "popularCombo" value = "{!strVal.prodNo}" exclProdOpt = "{!strVal.prodOptions}" exlScoringMdl = "{!strVal.scoringModel}" isBlended = "{!strVal.blnBlended}" isCommBlended = "{!strVal.isCommercialBlended}" class ="reportType_chkBox"  style="margin-top:0px;" />
+                           <apex:outputLabel value="{!strVal.coProdOpts}" style="margin-top:20px;color: #0193DC!Important;font-size: 12px;"/>
+                         </apex:panelGrid>
+                        </apex:repeat><br/>
+                    </apex:panelGrid>
+                             
+                <!-- Display Commercial Credit Report type --> 
+                     
+                    <apex:panelGrid columns="1"> <!--rendered="{!if(accCountry == 'UNITED STATES' || accCountry == 'USA' || accCountry == 'US',  true, false)}">-->
+                        <h4 style="color:#666;font-size: 12px;">{!$Label.exprn__commercial_credit_reports}</h4>
+                        <apex:repeat value="{!listcommercialCreditReport}" var="strVal">
+                            <apex:panelGrid columns="2" style="color:#0193DC;" >                        
+                            <input type = "checkbox" id = "commCreditRpt" name = "commCreditRpt" value = "{!strVal.prodNo}" exclProdOpt = "{!strVal.prodOptions}" exlScoringMdl = "{!strVal.scoringModel}" isBlended = "{!strVal.blnBlended}" isCommBlended = "{!strVal.isCommercialBlended}" class ="reportType_chkBox"  style="margin-top:0px;"/>
+                            <apex:outputLabel style="color:#0193DC!Important;font-size: 12px;" value="{!strVal.coProdOpts}" />
+                            </apex:panelGrid>
+                        </apex:repeat><br/>
+                    </apex:panelGrid>
+                    
+                    <!-- Display Commercial Credit Score Report type -->
+                    <!-- Conditionally show product options for International and non International -->
+                    
+                    <apex:panelGrid columns="1" styleClass="commCreditScore">
+                        <h4 style="color:#666;font-size: 12px;">{!$Label.exprn__commercial_credit_score}</h4>
+                        <apex:repeat value="{!listcommercialCreditScore}" var="strVal">
+                            <apex:panelGrid columns="2"> <!--rendered="{!If(strVal.prodNo != '8' && (accCountry != 'UNITED STATES' && accCountry != 'USA' && accCountry != 'US') ,true, false)}">-->
+                                <!--<script>alert('Hi'+{!strVal.prodNo} + "{!accCountry}");</script>-->
+                                <input type = "checkbox" id = "commCredtScr" name = "commCredtScr" value = "{!strVal.prodNo}" exclProdOpt = "{!strVal.prodOptions}" exlScoringMdl = "{!strVal.scoringModel}" isBlended = "{!strVal.blnBlended}" isCommBlended = "{!strVal.isCommercialBlended}" isChecked = "{!strVal.isChecked}" class ="reportType_chkBox" style="margin-top:0px;"/>
+                                <apex:outputLabel style="color:#0193DC!Important;font-size: 12px;" value="{!strVal.coProdOpts}" />
+                            </apex:panelGrid>
+                        </apex:repeat>
+                        <apex:repeat value="{!listInternationalReports}" var="strVal">
+                            <apex:panelGrid columns="2" rendered="{!If(accCountry != 'UNITED STATES' && accCountry != 'USA' && accCountry != 'US' ,true, false)}">
+                                <input type = "checkbox" id = "commCredtScr" name = "commCredtScr" value = "{!strVal.prodNo}" exclProdOpt = "{!strVal.prodOptions}" exlScoringMdl = "{!strVal.scoringModel}" isBlended = "{!strVal.blnBlended}" isCommBlended = "{!strVal.isCommercialBlended}" isChecked = "{!strVal.isChecked}" style="margin-top:0px;"/>
+                                <apex:outputLabel style="color:#0193DC!Important;font-size: 12px;" value="{!strVal.coProdOpts}" />
+                            </apex:panelGrid>
+                        </apex:repeat>
+                    </apex:panelGrid>                   
+            </apex:panelGrid>
+
+            <apex:panelGrid columns="3" frame="border" styleClass="footer" width="100%" bgcolor="#f2f2f2">
+            <apex:panelGrid columns="2" columnclasses="footerElement" >
+            <apex:commandLink onclick="return runReport();" styleClass="btn" style="text-decoration:none; padding-top: 6%; padding-bottom: 6%;" value="View Report" />
+            
+            <apex:commandButton value="View Opportunity" action="{!cancel}" rendered="{!if(returnOppId == '', false, true)}" />
+            <apex:commandButton value="View Lead" action="{!cancel}" rendered="{!if(returnOppId != '', false, true)}" /> <!--Replace navigateToAccID == null check with returnOppId-->
+            </apex:panelGrid>
+            </apex:panelGrid>
+        </apex:panelGrid>
+
+
+        <!----owner information---->
+        <apex:outputPanel style="display:none;" id="addOwnerPopup" layout="block" >
+
+        <apex:outputPanel id="popupBackground" styleClass="popupBackgroundDialog" />
+        <apex:outputPanel styleClass="ownerPopup" id="ownerpopupId" layout="inline" >
+        
+        <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:medium;cursor: move;color: #fff;">
+            <apex:outputLabel value="Enter Business Owner Information" style="font-size: 13px;" />                
+            <apex:commandLink styleClass="closeLink" title="Close" onclick="return closeAddOwnerPopup();">
+               <apex:outputLabel value="Close " style="font-size: 11px;" /><apex:outputLabel value="X" style="font-size:12px; font-weight:800"/>                                                          
+            </apex:commandLink>           
+        </apex:outputPanel><br/>
+        <apex:panelGrid columns="2" style="margin-left:5px;margin-bottom: -8px;font-size:11px;color:#666;">
+            <apex:inputCheckbox value="{!bFCRAReport}" id="FCRAAgreement" style="margin-left: 20%; margin-top:0px;margin-right: 10px;"/>
+            When ordering FCRA reports, check box to acknowledge you have FCRA Permissible Purpose for this transaction
+                <span class="reqClass">*</span>
+                            
+        </apex:panelGrid>  <br/>      
+        <span id="spnFCRAAgreement" class="reqClass" style="display:none;">FCRA Report Agreement must be checked.</span>
+        
+        <apex:panelGrid columns="1" style="margin: 10px;">
+            <div style="height: 45px; overflow-y: scroll;border: 1px solid #B2B2CC;">
+                <div style="margin:5px;">
+                    <p style="font-size:12px;margin-top:0px;color:#666;"><strong>FCRA Permissible Purpose Certification </strong></p>
+                    <p style="color:#666;font-size:11px;"><strong>1. BIS Blended Services</strong></p>
+                    
+                    <p style="color:#666;font-size:11px;">Under the Fair Credit Reporting Act (FCRA), businesses that do not have a credit relationship with their
+                    customer may request consumer credit information based upon receipt of the consumer's written instructions.
+                    BIS Blended Services (which include Business Owner Profile, Small Business Intelliscore (SBI), Decision 
+                    Insight using SBI, Business Owner Background Report - Comprehensive and IntelliscorePlus) obtained for the
+                    purpose of mitigation of financial risk will be used solely in connection with a current commercial 
+                    (i.e. not for personal, family or household purposes) financial risk assessment involving the individual 
+                    on whom such information is sought, and only if the individual:</p>
+                    
+                     <p style="color:#666;font-size:11px;">&nbsp;&nbsp;ï¿½has provided written authorization to access his or her personal consumer report
+                    Each request for one of the above products will appear on the subject's individual Experian consumer 
+                    report and the name and address of your business will be available to such individual.</p>
+                    
+                    <p style="color:#666;font-size:11px;"><strong> 2. OFAC Name Matching</strong></p>
+                    
+                    <p style="color:#666;font-size:11px;">The United States Treasury Department, Office of Foreign Asset Control ("OFAC") periodically makes 
+                    available to Experian a file of specially designated nationals and blocked persons. Matching of names to
+                    the OFAC list is based on very limited identification information. A match does not necessarily indicate 
+                    that the individual whom the Client inquired is the same person referenced by OFAC. Accordingly, if the
+                    Client chooses to use OFAC data, the Client about acknowledges that any adverse action taken by the
+                    Client against an individual must be taken based on the Client's complete investigation of the individual 
+                    and not based solely on the OFAC information.</p>
+                    
+                    <p style="color:#666;font-size:11px;">By checking the box, you are certifying to Experian that:</p>
+                                                    
+                                                    <p style="color:#666;font-size:11px;">(1) you understand the foregoing and </p>
+                                                    <p style="color:#666;font-size:11px;">(2) you agree to use the <strong>OFAC Name Matching</strong> andor the <strong>Blended Services</strong> only in accordance with this certificate</p>
+                                                    <p style="color:#666;font-size:11px;">Submitting your request signifies agreement to these terms and conditions.</p>
+                </div>
+            </div>
+            <apex:outputLink value="/apex/FcraAgreementNote" target="_blank" style="color: #005bb0; font-size: 9px; text-decoration:none;">Print FCRA agreement</apex:outputLink><apex:outputPanel style="font-size:9px; color:#8D8D8D"> Note: You must repeat this certification for each sign on session</apex:outputPanel>
+        </apex:panelGrid>
+        <apex:variable id="ownerColumns" var="ownerColumn" value="1" />
+        <apex:inputHidden value="{!noOfCols}" id="noOfCols"/>
+            <apex:panelGrid columns="2" style="margin-top:-8px;width:100%;">                
+            <apex:panelGrid columns="1" width="90%">               
+                <apex:panelGrid columns="3" style="margin-left: 10px; margin-top:-10px;margin-bottom: -8px;width: 85%;">
+                    <apex:outputLabel value="First Name" style="  margin-left: -2px;font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                    <apex:outputLabel value="Middle Initial" style="font-size:11px;color:#666;"/>
+                    <apex:outputLabel value="Last Name"  style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                    <apex:inputField value="{!bussinessOwner1.EXPRN__First_Name__c}" style="margin-bottom: 1px;width:80%;margin-left: -2px;font-size:11px;color:#666;" id="txtBO1FirstName"/>
+                    <apex:inputField value="{!bussinessOwner1.EXPRN__Middle_Initial__c}" style="width:30%;font-size:11px;color:#666;" id="txtBO1MiddleName"/>
+                    <apex:inputField value="{!bussinessOwner1.EXPRN__Last_Name__c}" style="width:80%;font-size:11px;color:#666;" id="txtBO1LastName"/>
+                    <span id="spnBO1FirstNameMsg" class="reqClass" style="display:none;">First Name is required.</span>
+                    <span style="display:none;"></span>
+                    <span id="spnBO1LastNameMsg" class="reqClass" style="display:none;">Last Name is required.</span>
+                </apex:panelGrid>
+                <apex:outputLabel style="margin-left: 10px; font-size:11px;color:#666;" value="Generation code" />
+                <apex:inputField style="margin-top: -2px;margin-left: 10px;font-size:11px;color:#666;" value="{!bussinessOwner1.EXPRN__Generation_code__c}" id="slstBO1GenerationCode"/>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Social security No." />
+                <apex:inputField style="margin-top: -2px;margin-left: 10px;font-size:11px;color:#666;" value="{!bussinessOwner1.EXPRN__Social_Sec_No__c}" id="txtBO1SocialSecNo" styleClass="clsCheckLength9SSN"/>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Address " ><span class="reqClass">*</span></apex:outputLabel>
+                <apex:inputField style="margin-bottom: 1px;margin-top: -2px;margin-left: 10px;font-size:11px;color:#666;" value="{!bussinessOwner1.EXPRN__Address__c}" id="txtBO1Address"/>
+                <span id="spnBO1AddressMsg" class="reqClass" style="display:none;">Address is required.</span>
+                <apex:panelGrid columns="2" style="margin-left: 10px;margin-top:-8px;margin-bottom:-8px;font-size:11px;color:#666;">
+                    <apex:outputLabel value="City " style="margin-left: -2px;font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                    <apex:outputLabel value="State " style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel> 
+                    <apex:inputField style="margin-top: -2px;margin-left: -2px;font-size:11px;color:#666;" value="{!bussinessOwner1.EXPRN__City__c}" id="txtBO1City"/>                   
+                    <apex:SelectList id="txtBO1State" size="1" value="{!bussinessOwner1.EXPRN__State__c}" style="font-size:11px;color:#666;width: 114%!Important;margin-top: -1%;">
+                          <apex:selectoption itemLabel="Select" itemValue="" />
+                          <apex:selectoptions value="{!lstUSStates}" />
+                    </apex:SelectList> 
+                    <span id="spnBO1CityMsg" class="reqClass" style="display:none;">City is required.</span>
+                    <span id="spnBO1StateMsg" class="reqClass" style="display:none;">State is required.</span>
+                </apex:panelGrid>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="ZIP + 4 "><span class="reqClass">*</span></apex:outputLabel>
+                <apex:inputField value="{!bussinessOwner1.EXPRN__Zip_Code__c}" style="margin-top: -2px;margin-bottom: -2px;width:40%; margin-left: 10px;font-size:11px;color:#666;" id="txtBO1ZipPart1" styleClass="clsCheckLength9"/>
+                <span id="spnBO1ZipCodeMsg" class="reqClass" style="display:none;">Zip Code is required.</span>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Driver's License" />
+                <apex:inputField value="{!bussinessOwner1.EXPRN__Driver_s_License__c}" style="margin-top: -2px;width:40%;margin-left: 10px;font-size:11px;color:#666;" />
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Year of birth" />
+                <apex:inputField value="{!bussinessOwner1.EXPRN__Year_of_birth__c}" style="margin-top: -2px;width:25%;margin-left: 10px;font-size:11px;color:#666;" styleClass="clsCheckNumeric clsCheckLength4"/>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Age" />
+                <apex:inputField value="{!bussinessOwner1.EXPRN__Age__c}" style="margin-top: -2px;width:25%;margin-left: 10px;font-size:11px;color:#666;" styleClass="clsCheckNumeric clsCheckLength3"/>
+                <apex:outputLabel style="margin-left: 10px;font-size:11px;color:#666;" value="Phone Number" />
+                <apex:inputField style="margin-top: -2px;margin-left: 10px;font-size:11px;color:#666;" value="{!bussinessOwner1.EXPRN__Phone_Number__c}" styleClass="clsCheckNumeric clsCheckLength12"/>
+            </apex:panelGrid>
+                
+                <apex:panelGrid columns="1" width="90%" id="secondOwnerId" style="display:none;">                               
+                <apex:panelGrid columns="3" style="margin-top:-10px;margin-bottom: -8px;width:85%;">
+                <apex:outputLabel value="First Name" style="margin-left: -2px;font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                <apex:outputLabel value="Middle Initial" style="font-size:11px;color:#666;"/>
+                <apex:outputLabel value="Last Name" style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                        
+                <apex:inputField value="{!bussinessOwner2.EXPRN__First_Name__c}" style="margin-bottom: 1px;margin-left: -2px;width:80%;font-size:11px;color:#666;" id="txtBO2FirstName"/>                
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Middle_Initial__c}" style="width:30%;font-size:11px;color:#666;" id="txtBO2MiddleName"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Last_Name__c}" style="width:80%;font-size:11px;color:#666;" id="txtBO2LastName"/>
+                <span id="spnBO2FirstNameMsg" class="reqClass" style="display:none;">First Name is required.</span>
+                <span id="spnBO2LastNameMsg" class="reqClass" style="display:none;">Last Name is required.</span>
+                </apex:panelGrid>
+                <apex:outputLabel value="Generation code" style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Generation_code__c}" style="margin-top: -2px;font-size:11px;color:#666;" id="slstBO2GenerationCode"/>
+                <apex:outputLabel value="Social security No." style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Social_Sec_No__c}" id="txtBO2SocialSecNo" styleClass="clsCheckLength9SSN" style="font-size:11px;color:#666;margin-top: -2px;"/>
+                <apex:outputLabel value="Address " style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Address__c}" id="txtBO2Address" style="margin-bottom: 1px;margin-top: -2px;font-size:11px;color:#666;"/>
+                <span id="spnBO2AddressMsg" class="reqClass" style="display:none;">Address is required.</span>
+                <apex:panelGrid columns="2" style="margin-top:-8px;margin-bottom:-8px;">
+                    <apex:outputLabel value="City " style="margin-left: -2px;font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>                 
+                    <apex:outputLabel value="State " style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel> 
+                    <apex:inputField value="{!bussinessOwner2.EXPRN__City__c}" id="txtBO2City" style="margin-top: -2px;font-size:11px;color:#666;margin-left: -2px;"/>                                       
+                    <apex:SelectList id="txtBO2State" size="1" value="{!bussinessOwner2.EXPRN__State__c}" style="font-size:11px;color:#666;width: 114%!Important;margin-top: -1%;">
+                          <apex:selectoption itemLabel="Select" itemValue="" />
+                          <apex:selectoptions value="{!lstUSStates}" />
+                    </apex:SelectList> 
+                    <span id="spnBO2CityMsg" class="reqClass" style="display:none;">City is required.</span>
+                    <span id="spnBO2StateMsg" class="reqClass" style="display:none;">State is required.</span>
+                </apex:panelGrid>
+                <apex:outputLabel value="ZIP + 4 " style="font-size:11px;color:#666;"><span class="reqClass">*</span></apex:outputLabel>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Zip_Code__c}" style="margin-top: -2px;margin-bottom: -2px;width:40%;font-size:11px;color:#666;" id="txtBO2ZipPart1" styleClass="clsCheckLength9"/>
+                <span id="spnBO2ZipCodeMsg" class="reqClass" style="display:none;">Zip Code is required.</span>
+                <apex:outputLabel value="Driver's License" style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Driver_s_License__c}" style="margin-top: -2px;width:40%;font-size:11px;color:#666;" id="txtBO2DriverLicense"/>
+                <apex:outputLabel value="Year of birth" style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Year_of_birth__c}" id="txtBO2YearOfBirth" style="width:25%;font-size:11px;color:#666;margin-top: -2px;" styleClass="clsCheckNumeric clsCheckLength4"/>
+                <apex:outputLabel value="Age" style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Age__c}" id="txtBO2Age" style="margin-top: -2px;width:25%;font-size:11px;color:#666;" styleClass="clsCheckNumeric clsCheckLength3"/>
+                <apex:outputLabel value="Phone Number" style="font-size:11px;color:#666;"/>
+                <apex:inputField value="{!bussinessOwner2.EXPRN__Phone_Number__c}" id="txtBO2PhoneNumber" styleClass="clsCheckNumeric clsCheckLength12" style="margin-top: -2px;font-size:11px;color:#666;"/>
+                
+            </apex:panelGrid>
+
+            </apex:panelGrid><br></br>
+            <apex:panelGrid columns="2" width="100%" id="ownerLink">
+                <apex:panelGrid columns="3" style="margin-left:11px;margin-top: -4%;">
+                    <span id = "spnAddOwner" class = "{!if(strNumberOfBO == '1','enableLink','disableLink')}" >Add Owner</span>  | <span id = "spnDeleteOwner" class = "{!if(strNumberOfBO == '2','enableLink','disableLink')}">Delete Owner</span>|<span id="spnClearOwner" class="enableLink">&nbsp;Clear Owner</span> | <span id="spnPopulateOwner" class="enableLink">&nbsp;Populate Owner</span> 
+                </apex:panelGrid>
+                <apex:panelGrid columns="2" style="float:right;margin-top: -8px;">
+                    <apex:commandButton value="  OK  " style="width:60px;" id="btnSearchBI" />
+                    <apex:commandButton onclick="return closeAddOwnerPopup();" style="width:60px;" value="Cancel"/>
+                </apex:panelGrid>
+            </apex:panelGrid>
+
+            <!--input type="hidden" id="hdnNumberOfBO" value="{!strNumberOfBO}" /--> 
+        </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+    
+    <style>
+        body {
+            //font-size : 11px !important;
+        }
+        select {
+            font-size : 11px;
+        }
+      .txtBussinessBlck {
+          font-weight :bold;
+          font-size: 12px;
+          color:#666;
+      }
+      .footerElement {
+        vertical-align: middle!important;
+      }
+      .pnlgrid {
+          border-color: #D3C9C9 !important;
+          padding-left : 3%;
+          padding-right: 3%;
+          padding-top : 3%;
+          border-radius : 5px;
+          float: center; 
+          padding-bottom: 3%;
+          margin-left: 4%;
+          width: 90%;
+           border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;
+      }
+      .addInfo{
+          border-color: #D3C9C9 !important;          
+          padding-left : 3%;
+          padding-top : 6%;
+          border-radius : 5px;
+          padding-bottom: 3%;
+          padding-right: 3%;
+          font-size : 12px !important;  
+          width: 100%; 
+          border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;       
+      }
+      .creditPull{
+          border-color:#D3C9C9 !important;
+          padding-left : 10px;
+          padding-top : 5%;
+          border-radius : 5px;
+          padding-right : 7%;
+          padding-bottom : 2%;
+          font-size : 11px !important;
+          font-weight :bold; 
+          width:95%;
+          border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;         
+      }
+      
+      .score{
+          border-color: #D3C9C9 !important;
+          padding-left : 1.5%;
+          padding-top : 3%;
+          border-radius : 5px;
+          font-size : 11px !important;
+           border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;
+      }
+      .footer{
+          border-color: #D3C9C9 !important;
+          padding-left : 1.5%;
+          border-radius : 5px;
+          padding-top : 0.5%;
+          padding-bottom : 0.5%;
+          width: 100%;
+           border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;
+          
+      }
+      .firstBlock {
+        border-color: #D3C9C9 !important;
+        border-radius: 5px;
+        padding-left: 2.5%;
+        padding-top: 3%;
+        padding-right: 2.5%;
+        padding-bottom: 2%;
+        width: 100%;
+         border-bottom-style: inset; 
+          border-right-style: inset;
+          border-top-style: outset;
+          border-left-style: outset;
+    }
+      .table{
+          border- color : gray !important;
+      }
+      .tableBIColumn1{
+          width:200px;
+      }
+      .tableBIColumn2{
+          width:300px;
+      }
+      .reqClass{
+          color:red;
+          font-weight:bold;
+      }
+     .formHeader {
+            color: #005bb0;
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: middle;
+      }
+      .ownerPopup{
+            background-color: white;
+            border-width: 1px;
+            border-radius:10px;
+            border-style: solid;
+            z-index: 9999;
+            padding:0px;
+            position: absolute;
+            left:20%;
+            top:5%;
+            width:350px;
+            font-size: 11px;
+            border:1px solid #015AAC;
+            box-shadow: 3px 3px 1px #888888;
+        }
+        .popupBackgroundDialog {
+            background-color:transparent;
+            opacity: 0.50;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+        }
+        .enableLink{
+        color: #0193dc;
+        cursor: pointer;
+        }
+      .disableLink{
+        color: #999;
+        background-color: #e6e6e6;
+       }
+       .visibleSecondOwner {
+           display: inline;
+       }
+       .Processing
+        {
+            z-index: 9997;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            position: fixed;
+        } 
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        } 
+        body.yui-skin-sam .yui-panel .hd {
+            border-bottom: none;
+            border-color: #015cad;
+            height: 32px;
+            line-height: 32px;
+            background: transparent url(../images/sprites_repeat-x.png) repeat-x 0 0;
+            color: #fff;
+            font-size: 13px;
+        }
+        .ui-widget-header {
+            background:#0193DC!important; 
+            border: 1px solid #0193DC!important;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+        }   
+         .closeLink {
+        color:white; 
+        font-size:medium; 
+        float:right; 
+        text-decoration:none;
+        }
+        .closeLink:hover{
+        color:white; 
+        font-size:medium; 
+        float:right; 
+        text-decoration:none;
+        cursor:pointer!important;
+        } 
+        .btn {font-weight:100!Important; color: #0193DC !important;  
+                padding-bottom: 4px!Important;
+                padding-top: 4px!Important;
+                padding-right: 3px!Important;
+                padding-left: 3px!Important; }
+        .btn:active{
+            color: #01679A!Important; border-color: #01679A !Important;
+            background:#fff;
+              padding-bottom: 4px!Important;
+              padding-top: 4px!Important;
+              padding-right: 3px!Important;
+              padding-left: 3px!Important;
+        }
+        .classa {
+            width: 30%!Important;
+        }
+        .classb {
+            width: 60%!Important;
+        }
+        select {
+            width:250px !important;
+        }
+    </style>
+</apex:page>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Can_Sync_Trueframe</name>
+    </customPermissions>
+    <description>Grants users the custom permission &apos;Can Sync Trueframe&apos;</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Synced_to_TrueFrame_Datetime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Synced_to_TrueFrame__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.TrueFrame_Dealership__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Can Sync Trueframe</label>
+</PermissionSet>

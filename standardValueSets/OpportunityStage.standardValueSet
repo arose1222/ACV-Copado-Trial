@@ -2,75 +2,132 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>Prospecting</fullName>
+        <fullName>New</fullName>
         <default>false</default>
-        <label>Prospecting</label>
+        <label>New</label>
         <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>10</probability>
+        <forecastCategory>Omitted</forecastCategory>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Qualification</fullName>
+        <fullName>Documents Received</fullName>
         <default>false</default>
-        <label>Qualification</label>
+        <label>Documents Received</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
-        <probability>10</probability>
+        <probability>25</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Needs Analysis</fullName>
+        <fullName>Additional Documents</fullName>
         <default>false</default>
-        <label>Needs Analysis</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>20</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Value Proposition</fullName>
-        <default>false</default>
-        <label>Value Proposition</label>
+        <label>Additional Documents</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Id. Decision Makers</fullName>
+        <fullName>Processing</fullName>
         <default>false</default>
-        <label>Id. Decision Makers</label>
+        <label>Processing</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
-        <probability>60</probability>
+        <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Perception Analysis</fullName>
+        <fullName>Referred</fullName>
         <default>false</default>
-        <label>Perception Analysis</label>
+        <label>Referred</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
-        <probability>70</probability>
+        <probability>0</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Proposal/Price Quote</fullName>
+        <fullName>Application Sent</fullName>
         <default>false</default>
-        <label>Proposal/Price Quote</label>
+        <label>Application Sent</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>25</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Under Review</fullName>
+        <default>false</default>
+        <label>Under Review</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Underwriting</fullName>
+        <default>false</default>
+        <label>Underwriting</label>
+        <closed>false</closed>
+        <forecastCategory>BestCase</forecastCategory>
+        <probability>80</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Legal Documentation</fullName>
+        <default>false</default>
+        <label>Legal Documentation</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>90</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Discovery</fullName>
+        <default>false</default>
+        <description>In the process of finding out more about the customer’s needs and requirements</description>
+        <label>Discovery</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>10</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Evaluating</fullName>
+        <default>false</default>
+        <description>The customer is evaluating the value prop of ACV. During this stage you will be communicating the value of the proposal through meetings, phone calls, on-sites and emails.</description>
+        <label>Evaluating</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Negotiation</fullName>
+        <default>false</default>
+        <description>The customer is in the process of buying or selling and now we’re involved in finalizing a transaction.</description>
+        <label>Negotiation</label>
+        <closed>false</closed>
+        <forecastCategory>BestCase</forecastCategory>
+        <probability>80</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Working</fullName>
+        <default>false</default>
+        <label>Working</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Documents</fullName>
+        <default>false</default>
+        <description>used for ACV Capital - Indicates Active Opportunity where there is a commitment and we are waiting for documents</description>
+        <label>Awaiting Documents</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>75</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Negotiation/Review</fullName>
-        <default>false</default>
-        <label>Negotiation/Review</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>90</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
@@ -89,6 +146,42 @@
         <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Prospect</fullName>
+        <default>false</default>
+        <label>Prospect</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Sales Pitch</fullName>
+        <default>false</default>
+        <label>Sales Pitch</label>
+        <closed>false</closed>
+        <forecastCategory>BestCase</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+        <label>Onboarding</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>75</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Recurring Appointment</fullName>
+        <default>false</default>
+        <label>Recurring Appointment</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>95</probability>
         <won>false</won>
     </standardValue>
 </StandardValueSet>

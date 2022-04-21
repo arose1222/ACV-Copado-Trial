@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction object to populate data between Salesforce and Heroku</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>AccountId__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Delivery Name</description>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Acv_Transportation_Request_Id__c</fullName>
+        <description>MySQL id for transport requests in acv-api</description>
+        <externalId>true</externalId>
+        <label>Acv Transportation Request Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Delivery_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Alternate Delivery Address</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Delivery_City__c</fullName>
+        <externalId>false</externalId>
+        <label>Alternate Delivery City</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Delivery_Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Alternate Delivery Country</label>
+        <length>55</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Delivery_Postal_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Alternate Delivery Postal Code</label>
+        <length>9</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Delivery_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Alternate Delivery State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Number_Searchable__c</fullName>
+        <description>Auction Number (NON-SFDC ID)</description>
+        <externalId>false</externalId>
+        <label>Auction Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Number__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Auction ID</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the Auction Number that this Case is related to.</inlineHelpText>
+        <label>Auction Number</label>
+        <referenceTo>Auction__c</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Request</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BOL_Link__c</fullName>
+        <description>AWS S3 link for BOL</description>
+        <externalId>false</externalId>
+        <label>BOL Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>BOL_Received__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>BOL Received</description>
+        <externalId>false</externalId>
+        <label>BOL Received?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Buyer_Pickup_Notes__c</fullName>
+        <description>Buyer Pickup Notes/Instructions - copy of field of same name from Case object</description>
+        <externalId>false</externalId>
+        <label>Buyer Pickup Notes</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Buyer_Price__c</fullName>
+        <description>$ Charged to Customer</description>
+        <externalId>false</externalId>
+        <label>Buyer Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ContactId__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Delivery Contact Name</description>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ContactPhone__c</fullName>
+        <description>Delivery Phone</description>
+        <externalId>false</externalId>
+        <label>Contact Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Date_Delivered_Actual__c</fullName>
+        <description>Date Reported Delivered</description>
+        <externalId>false</externalId>
+        <label>Date Delivered Actual</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Delivered__c</fullName>
+        <description>Delivered TimeStamp</description>
+        <externalId>false</externalId>
+        <label>Date Delivered CD</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Estimated_Pick_Up__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Estimated Pick Up</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_First_Accepted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date First Accepted</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_First_Posted_Portal__c</fullName>
+        <externalId>false</externalId>
+        <label>Date First Posted Portal</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_First_Posted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date First Posted</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Last_Accepted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Last Accepted</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Last_Posted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Last Posted</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Picked_Up__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Picked Up</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Default_Delivery_Address__c</fullName>
+        <description>Delivery Address</description>
+        <externalId>false</externalId>
+        <label>Delivery Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Delivery_City__c</fullName>
+        <description>Delivery City</description>
+        <externalId>false</externalId>
+        <label>Delivery City</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Delivery_Postal_Code__c</fullName>
+        <description>Delivery Zip</description>
+        <externalId>false</externalId>
+        <label>Delivery Postal Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Delivery_State__c</fullName>
+        <description>Delivery State</description>
+        <externalId>false</externalId>
+        <label>Delivery State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Pickup_City__c</fullName>
+        <description>Pickup City</description>
+        <externalId>false</externalId>
+        <label>Pickup City</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Pickup_Postal_Code__c</fullName>
+        <description>Pickup Zip</description>
+        <externalId>false</externalId>
+        <label>Pickup Postal Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Pickup_State__c</fullName>
+        <description>Pickup State</description>
+        <externalId>false</externalId>
+        <label>Pickup State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_Delayed__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Delayed?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Delivery instructions to carrier</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dispatch_Comment__c</fullName>
+        <description>Dispatch Comment (Carrier to us)</description>
+        <externalId>false</externalId>
+        <label>Dispatch Comment (Carrier to ACV)</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Driver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Driver</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests (Driver)</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dry_Run_Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Dry Run Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Expected_Delivery__c</fullName>
+        <description>Delivery Date/Time</description>
+        <externalId>false</externalId>
+        <label>Expected Delivery</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Expected_Pick_Up__c</fullName>
+        <description>Pickup Date/Time</description>
+        <externalId>false</externalId>
+        <label>Expected Pick Up</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Inop__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Inop</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Transportation_Case__r.ACV_Transportation_Request_Id__c</formula>
+        <label>Legacy Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Marked_Picked_Up_in_CD__c</fullName>
+        <externalId>false</externalId>
+        <label>Marked &apos;Picked Up&apos; in CD?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Number_of_Times_Cancelled__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Times Cancelled</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Times_Declined__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Times Declined</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pickup_Address__c</fullName>
+        <description>Pickup Address</description>
+        <externalId>false</externalId>
+        <label>Pickup Street</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Posted_Price__c</fullName>
+        <description>Carrier Pay</description>
+        <externalId>false</externalId>
+        <label>Posted Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Price_Pre_Promotion__c</fullName>
+        <description>Price before promotion is applied to it.</description>
+        <externalId>false</externalId>
+        <label>Price Pre Promotion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Related_Transportation_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Related Transportation Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests (Related Transportation Case)</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release_Available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Release Available</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Release_Pickup_Phrase__c</fullName>
+        <description>Pickup_Phrase from auctions_attribute table</description>
+        <externalId>false</externalId>
+        <label>Release Pickup Phrase</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Contact_Phone__c</fullName>
+        <description>Pickup Phone</description>
+        <externalId>false</externalId>
+        <label>Seller Contact Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Pickup Contact Name</description>
+        <externalId>false</externalId>
+        <label>Seller Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests (Seller Contact)</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Dealership__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Pickup Name</description>
+        <externalId>false</externalId>
+        <label>Seller</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests (Seller)</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Seller_Inventory_Id__c</fullName>
+        <description>The Inventory Id for the vehicle on the seller lot</description>
+        <externalId>false</externalId>
+        <label>Seller Inventory Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Pick_Up_Notes__c</fullName>
+        <description>Seller Pickup Notes/Instructions - copy of field of same name from Case object</description>
+        <externalId>false</externalId>
+        <label>Seller Pickup Notes</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Send_to_Central_Dispatch__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Send to Central Dispatch</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unwind Transportation Requested</fullName>
+                    <default>false</default>
+                    <label>Unwind Transportation Requested</label>
+                </value>
+                <value>
+                    <fullName>Ready-to-Post</fullName>
+                    <default>false</default>
+                    <label>Ready-to-Post</label>
+                </value>
+                <value>
+                    <fullName>Sent to Third-Party</fullName>
+                    <default>false</default>
+                    <label>Sent to Third-Party</label>
+                </value>
+                <value>
+                    <fullName>Failed Post</fullName>
+                    <default>false</default>
+                    <label>Failed Post</label>
+                </value>
+                <value>
+                    <fullName>Posted</fullName>
+                    <default>false</default>
+                    <label>Posted</label>
+                </value>
+                <value>
+                    <fullName>Pending-Offer</fullName>
+                    <default>false</default>
+                    <label>Pending-Offer</label>
+                </value>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                    <label>Accepted</label>
+                </value>
+                <value>
+                    <fullName>Picked-Up</fullName>
+                    <default>false</default>
+                    <label>Picked-Up</label>
+                </value>
+                <value>
+                    <fullName>Delivered</fullName>
+                    <default>false</default>
+                    <label>Delivered</label>
+                </value>
+                <value>
+                    <fullName>Awaiting Release</fullName>
+                    <default>false</default>
+                    <label>Awaiting Release</label>
+                </value>
+                <value>
+                    <fullName>Cancelled by ACV</fullName>
+                    <default>false</default>
+                    <label>Cancelled by ACV</label>
+                </value>
+                <value>
+                    <fullName>Cancelled by Transporter</fullName>
+                    <default>false</default>
+                    <label>Cancelled by Transporter</label>
+                </value>
+                <value>
+                    <fullName>Locked</fullName>
+                    <default>false</default>
+                    <label>Locked</label>
+                </value>
+                <value>
+                    <fullName>Staged</fullName>
+                    <default>false</default>
+                    <label>Staged</label>
+                </value>
+                <value>
+                    <fullName>Hold</fullName>
+                    <default>false</default>
+                    <label>Hold</label>
+                </value>
+                <value>
+                    <fullName>Finalized</fullName>
+                    <default>false</default>
+                    <label>Finalized</label>
+                </value>
+                <value>
+                    <fullName>Closed Dry Run</fullName>
+                    <default>false</default>
+                    <label>Closed Dry Run</label>
+                </value>
+                <value>
+                    <fullName>Non-Responsive-Unpaid</fullName>
+                    <default>false</default>
+                    <label>Non-Responsive-Unpaid</label>
+                </value>
+                <value>
+                    <fullName>Awaiting Payment</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Awaiting Payment</label>
+                </value>
+                <value>
+                    <fullName>cancelled</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>cancelled</label>
+                </value>
+                <value>
+                    <fullName>in_transit</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>in_transit</label>
+                </value>
+                <value>
+                    <fullName>requested</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>requested</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Times_Posted_to_CD__c</fullName>
+        <externalId>false</externalId>
+        <label>Times Posted to CD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Distance__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Distance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transporter_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Transporter Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Transportation Dispatch Requests (Transporter Account)</relationshipLabel>
+        <relationshipName>Transportation_Dispatch_Requests1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Make__c</fullName>
+        <description>Vehicle Make</description>
+        <externalId>false</externalId>
+        <label>Vehicle Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Model__c</fullName>
+        <description>Vehicle Model</description>
+        <externalId>false</externalId>
+        <label>Vehicle Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Style__c</fullName>
+        <description>Vehicle Class</description>
+        <externalId>false</externalId>
+        <label>Vehicle Style</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Trim__c</fullName>
+        <description>Vehicle Trim</description>
+        <externalId>false</externalId>
+        <label>Vehicle Trim</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Vin__c</fullName>
+        <description>VIN</description>
+        <externalId>false</externalId>
+        <label>Vehicle Vin</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Year__c</fullName>
+        <description>Vehicle Year</description>
+        <externalId>false</externalId>
+        <label>Vehicle Year</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Year</valueSetName>
+        </valueSet>
+    </fields>
+    <label>Transportation Dispatch Request</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Related_Transportation_Case__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Related_Transportation_Case__c</field>
+            <operation>contains</operation>
+            <value>02175778</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Transportation_Queue_Transportation_Dispatch_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Transportation Queue</label>
+        <queue>Transportation_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Transportation Dispatch Request Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Transportation Dispatch Requests</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template used to send IST Account Managers reminders about a dealers docs going out to compliance soon.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Dealer Doc Two Week Expiration Reminder</name>
+    <style>none</style>
+    <subject>Dealer Doc Expiring Soon for Account {!Dealer_Docs__c.Account__c}</subject>
+    <textOnly>One of your Accounts ({!Dealer_Docs__c.Account__c}) has a document that is about to expire on {!Dealer_Docs__c.Expiration_Date__c}. Please reach out to remind them to provide a current document.
+The type of document expiring is a: {!Dealer_Docs__c.RecordType}.
+The link to the expiring document is unavailable outside of HTML formatting.
+
+Thank You!</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

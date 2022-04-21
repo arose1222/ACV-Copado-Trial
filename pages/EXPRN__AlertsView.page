@@ -1,0 +1,1004 @@
+<apex:page controller="EXPRN.AlertsViewController" tabStyle="BIQ_Alerts__tab">
+
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-1.6.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EXPRN__jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}"/>    
+    <apex:stylesheet value="{!URLFOR($Resource.EXPRN__jQuery, 'css/ui-lightness/jquery-ui-1.8.16.custom.css')}"/>
+   
+    
+    <script>
+
+        $j = jQuery.noConflict();
+                       
+        $j(document).ready(function()
+        {
+            $j('#ifDetails').hide();                                                                                                                                                                                                                                           
+        });                
+                
+        function checkAll(checkbox,section)
+        {                                                                                 
+            $j('.'+section).each(function() 
+            {
+                this.checked = checkbox.checked;
+            });                          
+        }
+        
+        function selectAlertType(choice,section)
+        {                                                                                 
+            $j('.'+section).each(function() 
+            {
+                this.checked = choice;
+            });                          
+        }
+        
+        function j_checkCount()
+        {
+            var checkCount = 0;
+            
+            $j('.check').each(function() 
+            {
+                if(this.checked)
+                    checkCount++;    
+            });
+            return checkCount;
+        }
+        
+        function jsReadDelete(option)
+        {
+            var checkCount = j_checkCount();
+                                                            
+            if(checkCount == 0)
+            {            
+                alert('Please select one or more Alerts'); 
+                return false;                                                             
+            }
+                
+            else
+            {
+                if(option == 'Read')
+                {                
+                    markAsRead();
+                    return false;                                    
+                }
+                    
+                else
+                {                                      
+                    var r = confirm("This operation will remove the selected alert(s) from your display. Please confirm this request by clicking on the \'OK\' button and the system will process your request.");
+            
+                    if (r == true)
+                    {                               
+                        deleteAlert();
+                        return false;                                               
+                    }
+                    
+                    else
+                    {
+                        return false;  
+                    }                                                
+                }
+            }                                                                 
+        }        
+                
+        function j_advSearch()
+        {           
+            if($j('[id$=advSearchText]').val().trim() == '')
+            {
+                alert('Please type Business Name, Account Number or BIN.');
+                return false;                 
+            }
+                
+            else
+            {
+                advSearch();
+                return false;  
+            }            
+        }                                
+        
+        function j_moreActions()
+        {    
+            var a = $j('[id$=actions]').val();
+            
+            if(a != 'None')
+            {
+                var checkCount = j_checkCount();                            
+                
+                if(checkCount != 1)
+                {
+                    alert('Please select one Alert');
+                    $j('[id$=actions]').val('None'); 
+                    return false;                                
+                }
+               
+                else
+                {
+                    moreActions(); 
+                    return false;      
+                }
+            }                  
+        }
+        
+       
+        function jsPrintFunc()
+        {
+            var printGroup = document.getElementsByName('printGrp');
+            var printOptionSelected;
+            
+            for(var i=0; i< printGroup.length; ++i) 
+            {
+                if(printGroup[i].checked)
+                {                        
+                    printOptionSelected = printGroup[i].value;                                        
+                }
+            }
+            
+            if(printOptionSelected == 'Checked')
+            {
+                var checkCount = j_checkCount();
+                
+                if(checkCount == 0)
+                {
+                    alert('Please select one or more Alerts');
+                    return false;
+                }                
+            }
+                                                                                              
+            $j('[id$=printText]').val(printOptionSelected);
+                  
+            return true;            
+        }
+        
+        
+        
+        function jsExportFunc()
+        {
+            var exportGroup = document.getElementsByName('exportGrp');
+            var exportOptionSelected;
+            
+            for(var i=0; i< exportGroup.length; ++i) 
+            {
+                if(exportGroup[i].checked)
+                {                        
+                    exportOptionSelected = exportGroup[i].value;                                        
+                }
+            }
+           
+            if(exportOptionSelected == 'Checked')
+            {
+                var checkCount = j_checkCount();
+                
+                if(checkCount == 0)
+                {
+                    alert('Please select one or more Alerts');
+                    return false;
+                }                                 
+            }
+            
+            else if(exportOptionSelected == 'Options')
+            {
+                var isValidBI = true; 
+                
+                if($j('input[id$="txtAlertsFrom"]').val() == ''){
+                    $j('#spnAlertsFromMsg').show();
+                    isValidBI = false;                                         
+                }
+                else{
+                    $j('#spnAlertsFromMsg').hide();                    
+                }
+                 
+                if($j('input[id$="txtAlertsTo"]').val() == ''){
+                    $j('#spnAlertsToMsg').show(); 
+                    isValidBI = false;                                         
+                }
+                else{
+                    $j('#spnAlertsToMsg').hide(); 
+                }
+                
+                if(isValidBI == false)
+                    return false;
+            }
+                                                                     
+            $j('[id$=exportText]').val(exportOptionSelected);
+                     
+            return true;            
+        }
+        
+        
+        
+        function expandAccounts(imgId, bin)
+        {           
+            if($j(imgId).attr('class')=='expandstory')
+            {                
+                $j(imgId).attr('src','/img/setup_minus.gif');
+                $j(imgId).addClass('collapsestory');
+                $j(imgId).removeClass('expandstory');
+                $j('.' + bin).show();
+            }
+            else
+            {                   
+                $j(imgId).attr('src','/img/setup_plus.gif');
+                $j(imgId).addClass('expandstory');
+                $j(imgId).removeClass('collapsestory');
+                $j('.' + bin).hide();
+            }                                    
+        }
+        
+        function updatePageNumDisplay(pgNumber)
+        {          
+          afUpdatePageNumDisplay(pgNumber);
+          return false;
+        } 
+        
+        function jsPagesize(pgSize)
+        {                        
+            afPageSize(pgSize.value);
+            return false;
+        }        
+        
+        function jsDisableSave()
+        {  
+            var allBtns = $j('.saveBtn');                 
+               
+            $j.each(allBtns, function() 
+            {                       
+                $j(this).disabled = false;
+                $j(this).addClass('btnDisabled');
+                $j(this).removeClass('btn');
+                $j(this).value = 'Saving...';                       
+            });     
+        }
+        
+        function jsEnableSave()
+        {
+            var allBtns = $j('.saveBtn');  
+            
+            $j.each(allBtns, function() 
+            {                       
+                $j(this).disabled = false;
+                $j(this).addClass('btn');
+                $j(this).removeClass('btnDisabled'); 
+                $j(this).value = 'Save';                        
+            }); 
+        }
+                                                                                              
+    </script>
+    
+    
+    
+    <style>
+    
+        .oddrow {background-color: white; text-align:left; font-size: 11px; } 
+        .evenrow {background-color: #EFFBFB; text-align:left; font-size: 11px; } 
+        .filterHeader {font-weight:bold ; font-size: 15px; color:#0193dc; }      
+        .filterLabel {font-weight:bold; margin-left:1%; font-size: 11px; color:#666; }
+        .filterText {font-size: 11px; margin-left:-11%; }       
+        .link {font-weight:bold; font-size: 11px; color:#0193dc; }
+        .flink {font-weight:540; font-size: 12px; color:#0193dc; margin-left:1%; font-family: Arial,Helvetica,sans-serif; }
+        .closeLink {color:white; font-size:small; float:right; text-decoration:none !important ;}
+        .closeLink:hover {color:white; font-size:small; float:right; text-decoration:underline !important ;}        
+        .headerText {text-align:center; color:#666 !important; }
+        .pageLink {font-weight:540; color:#0193dc; font-size: 11px;}
+        .pageText {color:#666; font-size: 11px;}
+        .otherText {color:#666; font-size: 11px;}
+        .radioText {color:#666; font-size: 11.7px;}
+        .noAlertText {color:#666; font-size: 12px; margin-left:0.5%; }
+        
+        .reqClass {
+          color:red;
+          font-weight:bold;
+          font-size: 11px;
+        }                        
+                
+        .notePopup{
+            background-color: white;           
+            z-index: 9999;
+            left: 30%;           
+            position: absolute;
+            //height: 37%;             
+            width: 45%;            
+            //margin-left: -250px;
+            top:0%;
+            border-radius: 8px;
+        }
+        
+        .taskPopup {
+            background-color: white;           
+            z-index: 9999;
+            left: 30%;           
+            position: absolute;
+            //height: 60%;             
+            width: 45%;            
+            //margin-left: -250px;
+            top:0%;
+            border-radius: 8px;
+        }
+        
+        .popupBackground {
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        
+        .summaryPopup {
+            background-color: white;            
+            z-index: 9999;
+            left: 12%;           
+            position: absolute;                       
+            height: 50%; 
+            width: 75%;          
+            //margin-left: -200px;
+            top:0%;
+            border-radius: 8px;
+            draggable: true;
+        }
+        
+        .printPopupStyle {
+            background-color: white;           
+            z-index: 9999;
+            left: 35%;           
+            position: absolute;
+            //height: 20%;             
+            width: 30%;            
+            //margin-left: -250px;
+            top:0%;
+            border-radius: 8px;
+        }         
+        
+        .exportPopupStyle {
+            background-color: white;           
+            z-index: 9999;
+            left: 35%;           
+            position: absolute;
+            //height: 30%;             
+            width: 30%;            
+            //margin-left: -250px;
+            top:0%;
+            border-radius: 8px;
+            draggable : true;
+        }                 
+        
+        .exportOptBI {
+            border-color: rgb(211, 201, 201) !important;
+            border-radius: 5px;            
+            border-width:1px;
+            border-style:solid;           
+            background-color:white;
+            width: 85%;
+            padding: 2%;
+            margin-left: 4%;
+            margin-top: -4%;          
+        }
+        
+        .ui-widget-header {background:#0193DC !important; border: 1px solid #0193DC !important;}                 
+        .btn { padding: 2px 2px !important; font-weight: 500 !important; color: #0193dc !important; } 
+        .btnDisabled { padding: 2px 2px !important; font-weight: 500 !important; }
+        .body , td { color:#666 !important; }                         
+        .pbBottomButtons{border:none!Important;}   
+        .pbTopButtons{border:none!Important;}               
+                         
+        .btn:active {
+            color: #01679A!Important; border-color: #01679A !Important;
+            background:#fff;
+        }
+        
+        .datePicker {              
+            z-index: 9999999 !important;      
+        } 
+        
+        .Processing
+        {
+           z-index: 9997;
+           left: 50%;
+           top: 50%;
+           text-align: center;
+           position: fixed;
+        } 
+        
+        .ProcessingBackground
+        {
+            background-color: black;
+            opacity: 0.50;
+            filter: alpha(opacity = 50);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9997;
+            top:0;
+            left:0;
+        }  
+                                                                              
+    </style>
+    
+    
+    
+    <apex:sectionHeader title="Alerts"/>
+    <apex:pagemessages rendered="{!!isAuthorized}"/>
+    <apex:form id="frm" style="font-family: arial,verdana,sans-serif;" rendered="{!isAuthorized}">
+                   
+        <apex:actionFunction id="pagesize" name="pagesize" action="{!selectPageSize}" rerender="pb2" status="modal"/>        
+        <apex:actionFunction id="popup" name="popup" rerender="taskpopup,notepopup"/>
+        <apex:actionFunction id="advSearch" name="advSearch" action="{!advSearch}" rerender="pb2" status="modal"/>        
+        <apex:actionFunction id="moreActions" name="moreActions" action="{!moreActions}" rerender="notePn,taskPn" status="modal"/>                                                                     
+        <apex:actionFunction id="markAsRead" name="markAsRead" action="{!markAsRead}" rerender="pb2" status="modal"/>                               
+        <apex:actionFunction id="deleteAlert" name="deleteAlert" action="{!deleteAlertViews}" rerender="pb2" status="modal"/>                               
+        
+        <apex:actionFunction action="{!updatePageNumberDisplay}" name="afUpdatePageNumDisplay" reRender="pb2" status="modal">
+            <apex:param name="selectedPageNum" value="" />     
+        </apex:actionFunction>
+        
+        <apex:actionFunction action="{!selectPageSize}" name="afPageSize" reRender="pb2" status="modal">
+            <apex:param name="alertPgSize" value="" />     
+        </apex:actionFunction>
+               
+        <div id="divProcessing" style="display:none;">
+            <div class="ProcessingBackground"></div>
+            <div class="Processing">
+                <apex:image alt="Processing" url="{!$Resource.EXPRN__LoadingCircle}" />                
+            </div>
+       </div>
+       
+       <apex:actionStatus id="modal" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';" />        
+     
+               
+        <table style="height:100%; width:100%; margin-left:-0.9%;margin-right:-0.7%;">
+            <tr style="width:98%">
+                <td style="width:17%">
+           
+                    <apex:pageBlock id="pb1" mode="inlineedit">                
+                        
+                        <apex:pageBlockButtons location="top" style="padding-left:7%; padding-top: 4%;padding-bottom: 3%;">
+                        
+                            <apex:outputLabel styleClass="filterHeader">
+                                Filters 
+                            </apex:outputLabel>
+                          
+                        </apex:pageBlockButtons>
+                    
+                    
+                        <apex:pageBlockButtons location="both" style="padding-left:10%; padding-top: 4%; padding-bottom: 5%;"> 
+                            
+                            <apex:commandLink style="margin-left:-17%;" value="Clear" styleClass="flink" action="{!ClearFilters}" rerender="pb1,pb2" status="modal"/>&nbsp;                    
+                            <apex:outputLabel styleClass="flink" value="|"/> &nbsp;
+                            <apex:commandLink value="Apply" styleClass="flink" action="{!search}" rerender="pb1,pb2" status="modal"/>
+                            
+                        </apex:pageBlockButtons> 
+                            
+                        <apex:outputLabel styleClass="filterLabel"> Status: </apex:outputLabel>
+                               
+                        <apex:selectRadio layout="pageDirection" value="{!alertStatus}" styleClass="filterText" style="margin-left:-9%;color:#666 !important">                    
+                            <apex:selectOption itemLabel="Read" itemValue="Read"/>                       
+                            <apex:selectOption itemLabel="Not Read" itemValue="Unread"/>                       
+                            <apex:selectOption itemLabel="All" itemValue="All"/>                       
+                        </apex:selectRadio>                                      
+                            
+                        <apex:outputLabel styleClass="filterLabel"> Alert Date: </apex:outputLabel> 
+                        
+                        <apex:selectRadio layout="pageDirection" value="{!alertDate}" styleClass="filterText" style="margin-left:-9%;">
+                            <apex:selectOption itemLabel="Today" itemValue="Today"/>                       
+                            <apex:selectOption itemLabel="Last Week" itemValue="Last_Week"/>                       
+                            <apex:selectOption itemLabel="Last Month" itemValue="Last_Month"/>                       
+                            <apex:selectOption itemLabel="All" itemValue="All"/>                       
+                        </apex:selectRadio>
+                    
+                       
+                        <apex:outputLabel styleClass="filterLabel"> Alert Type: </apex:outputLabel><br/>
+                        
+                        <apex:outputPanel layout="block" style="margin-left: 0%; color:#666 !important; min-height:512px; -webkit-margin-after: 18%;" styleClass="alertTypeCss" id="ckpanel"> 
+                                                    
+                            <apex:outputLabel onclick="selectAlertType(true,'trgCheck')" styleClass="link">Select All</apex:outputLabel>  
+                            <apex:outputLabel styleClass="link"> | </apex:outputLabel>
+                            <apex:outputLabel onclick="selectAlertType(false,'trgCheck')" styleClass="link">Clear All</apex:outputLabel>                         
+                            <br/>                  
+                                                                 
+                            <apex:repeat value="{!triggerTypesWrapper}" var="t"> 
+                                <apex:inputCheckbox value="{!t.isChecked}" style="padding-left:5%;" styleClass="trgCheck"/>
+                                <apex:outputLabel style="padding-left:1%; font-size: 11px;">{!t.triggerType}</apex:outputLabel><br/>
+                            </apex:repeat>
+                                 
+                        </apex:outputPanel>                                                                                                          
+                                        
+                    </apex:pageBlock> 
+                </td>
+            
+                <td style="width:80%">
+                    <apex:pageBlock id="pb2">
+                                                                                               
+                        <apex:pageBlockButtons location="top" style="width:102%;">
+                           
+                            <apex:panelGrid columns="16" style="width:143%;margin-left:-43%;">
+                                <apex:outputPanel style="float:left;margin-right: 0%;">                                                            
+                                    
+                                    <apex:selectList size="1" value="{!selectedAMS}" id="ams" styleClass="otherText" style="margin-right: 0%;">
+                                        <apex:selectOptions value="{!AmsOptions}" /> 
+                                    </apex:selectList>
+                                                                                                       
+                                    <apex:commandButton value="Go" action="{!searchByAms}" reRender="pb2" status="modal"/>
+                                    &nbsp;
+                                    
+                                    <apex:image value="/s.gif" styleClass="infoIcon" style="margin-bottom:-2%;" title="Select an 'Alerts Monitered Set' from the dropdown to display the alerts that pertain to that set of accounts."/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </apex:outputPanel>
+                                
+                              
+                                <apex:outputPanel style="float:right;">
+                                                                                          
+                                    <apex:inputText id="advSearchText" value="{!searchString}" styleClass="clsCheckEnter" style="width:200px; font-size:11px;margin-right: -1%;" html-placeholder="Business Name, Account Number or BIN"/>                                              
+                                    &nbsp;
+                                    <apex:commandButton value="Find in Alert List" onclick="return j_advSearch();" style="margin-right: 0%;" styleClass=""/>
+                                    <apex:commandButton value="Reset List" action="{!resetList}" reRender="pb2" status="modal"/>                                                                                                 
+                                    &nbsp;&nbsp;&nbsp;    
+                                    
+                                    
+                                    
+                                    <apex:selectList id="actions" size="1" value="{!moreAction}" onchange="return j_moreActions();" styleClass="otherText">                                                                           
+                                        <apex:selectOption itemLabel="More Actions" itemValue="None"/>
+                                        <apex:selectOption itemLabel="Create a Task" itemValue="Task"/>
+                                        <apex:selectOption itemLabel="Add a Note" itemValue="Note"/>                                                                                                                                                
+                                    </apex:selectList>
+                                                                            
+                                    &nbsp;
+                                                                               
+                                    
+                                    <apex:commandButton value="Print" action="{!openPopups}" rerender="printPn" disabled="{!alertMapSize == 0}">
+                                        <apex:param name="popup" value="Print" assignTo="{!popup}"/>     
+                                    </apex:commandButton>
+                                                                        
+                                    <apex:commandButton value="Export" action="{!openPopups}" rerender="exportPn" disabled="{!alertMapSize == 0}">
+                                        <apex:param name="popup" value="Export" assignTo="{!popup}"/>     
+                                    </apex:commandButton>
+                                                                
+                                </apex:outputPanel>    
+                            </apex:panelGrid>
+                           
+                        </apex:pageBlockButtons>
+                                                                                                               
+                    
+                        <apex:pageBlockButtons location="" style="width:102%;">
+                            <apex:panelGrid columns="20" style="width:143%;margin-left:-43%;">
+                             
+                                <apex:outputPanel style="margin-left:-1%;float: left;width: 70%;" layout="none">
+                                   
+                                    <apex:commandButton value="Mark as Read" onclick="return jsReadDelete('Read');" disabled="{!alertStatus == 'Read' || NOT(alertMapSize > 0)}"/>                                                
+                                    <apex:commandButton value="Delete" onclick="return jsReadDelete('Delete');" disabled="{!NOT(alertMapSize > 0)}"/> &nbsp;
+                                    
+                                    <apex:image value="/s.gif" styleClass="infoIcon" style="margin-bottom:-0.5%;" title="'Mark as Read/Unread' allows users to tag alerts that have already been reviewed. This also enables users to sort based on the 'Status' column. 'Delete' allows users to remove alerts"/>
+                                    
+                                    &nbsp;&nbsp;  
+                                    
+                                    
+                                    <apex:selectList id="pgSize" size="1" value="{!alertPageSize}" onchange="return jsPagesize(this);" rendered="{!alertMapSize > 0}" style="color:#666;margin-right: 0%;">
+                                        <apex:selectOptions value="{!pageSizeList}" />                                         
+                                    </apex:selectList>
+                                    
+                                    
+                                    &nbsp;&nbsp;  
+                                    
+                                    <apex:outputLabel styleClass="pageText" rendered="{!AlertMapKeySetSize > 1}">
+                                        Viewing {!((currentAlertPage - 1)*alertPageSize)+1} - {!((currentAlertPage-1)*alertPageSize)+CurrentAlertPageMapSize} of {!alertListSize} records
+                                    </apex:outputLabel> 
+                                        
+                                </apex:outputPanel> 
+                                
+                                                                                 
+                                <apex:outputPanel id="pgPn">
+                                    <apex:outputPanel style="float:right;margin-right: 3%;" layout="block" rendered="{!AlertMapKeySetSize > 1}">                                                                    
+                                        <apex:outputPanel >
+                                            <apex:outputText value="<< First" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                                            <apex:commandLink value="<< First" status="modal" styleClass="pageLink" action="{!first}" rerender="pb2" rendered="{!currentAlertPage >1}"/>                            
+                                            &nbsp;&nbsp;
+                                        </apex:outputPanel>
+                                
+                                        <apex:outputPanel >
+                                            <apex:outputText value="< Previous" styleClass="pageText" rendered="{!currentAlertPage ==1}"></apex:outputText>
+                                            <apex:commandLink value="< Previous" status="modal" styleClass="pageLink" action="{!previous}" rerender="pb2" rendered="{!currentAlertPage >1}"/>                            
+                                           &nbsp;&nbsp;
+                                        </apex:outputPanel>
+                                
+                                        <apex:repeat value="{!LstDisplayNumber}" var="pg" rendered="{!AlertMapSize>1}">                                
+                                            <apex:outputPanel rendered="{!pg<=AlertMapSize && pg>=1}">
+                                                
+                                                <apex:commandLink onclick="return updatePageNumDisplay('{!pg}');" styleClass="pageLink" value="{!pg}" rendered="{!pg!=currentAlertPage}"/>                               
+                                                                     
+                                                <apex:outputText value="{!pg}" rendered="{!pg==currentAlertPage}">                                                
+                                                </apex:outputText>
+                                                &nbsp;&nbsp;
+                                            </apex:outputPanel>                        
+                                         </apex:repeat>
+                                                        
+                                        <apex:outputPanel >               
+                                             <apex:outputText value="Next >" styleClass="pageText" rendered="{!currentAlertPage >=AlertMapSize}"></apex:outputText> 
+                                             <apex:commandLink value="Next >" status="modal" styleClass="pageLink" action="{!next}" rerender="pb2" rendered="{!currentAlertPage <AlertMapSize}"/>                              
+                                             &nbsp;&nbsp;
+                                        </apex:outputPanel>
+                                    
+                                        <apex:outputPanel style="margin-right: 0%;">                                    
+                                            <apex:outputText value="Last >>" styleClass="pageText" rendered="{!currentAlertPage >=AlertMapSize}"></apex:outputText>
+                                            <apex:commandLink value="Last >>" status="modal" styleClass="pageLink" action="{!last}" rerender="pb2" rendered="{!currentAlertPage <AlertMapSize}"/>                                                                  
+                                        </apex:outputPanel>
+                                                                                                          
+                                     </apex:outputPanel>
+                                 </apex:outputPanel>                                                              
+                             </apex:panelGrid>  
+                         </apex:pageBlockButtons>                                               
+                                      
+                         
+                         
+                         <div class="searchDiv">
+                             <apex:pageMessages id="msg" /><!-- rendered="{!alertMapSize > 0}"/-->    
+                         
+                             <apex:outputPanel rendered="{!alertMapSize == 0}" style="margin-left: 1%;">
+                                 <apex:image url="/img/msg_icons/warning16.png"/>
+                                 <apex:outputLabel value="No Alerts Found" styleClass="noAlertText"/>
+                             </apex:outputPanel>
+                         
+                             <apex:pageBlockSection columns="1" id="tablePbs"> 
+                                                                                       
+                                 <apex:pageBlockTable value="{!mapPageToAlerts[currentAlertPage]}" var="a" rowClasses="oddrow,evenrow" headerClass="headerText" rendered="{!alertMapSize > 0}">
+                                                                                                                                                
+                                    <apex:column styleClass="headerText" style="text-align:center;"> 
+                                        <apex:facet name="header">
+                                            <input type="checkbox" id="selectAll" onclick="checkAll(this,'check')"/>                                   
+                                        </apex:facet>
+                                                                        
+                                        <apex:inputCheckbox value="{!a.isChecked}" styleClass="check"/>                                                                                                                                                                         
+                                    </apex:column>
+                                                                                                           
+                                    
+                                    <apex:column style="width:24% !important;" value="{!a.alert.Business_Name__r.Exp_Business_Name__c}">                                                     
+                                    
+                                         <apex:facet name="header"> 
+                                             
+                                             <apex:commandLink value="Business Name{!IF(sortField=='Business_Name__r.Exp_Business_Name__c',IF(sortDir=='asc','▲','▼'),'')}" action="{!toggleSort}" reRender="pb2,tablePbs" styleClass="headerText" style="float:left;">
+                                                 <apex:param name="sortField" value="Business_Name__r.Exp_Business_Name__c" assignTo="{!sortField}"/>
+                                             </apex:commandLink>
+                                                                                                                                      
+                                         </apex:facet>
+                                        
+                                    </apex:column>
+                                    
+                                                                        
+                                    <apex:column style="width:19%">                                                          
+                                         <apex:facet name="header">   
+                                             <apex:outputLabel styleClass="headerText" style="float:left;">Account Number</apex:outputLabel>
+                                         </apex:facet> 
+                                         
+                                         <apex:repeat value="{!a.accounts}" var="ac" rows="1" first="0" id="acc1">                                                        
+                                             <apex:outputText rendered="{!a.accounts.size > 1}" style="margin-left:3%;">
+                                                 <img src="/img/setup_plus.gif" id="imgPlus"  class="expandstory" onclick="expandAccounts(this, '{!a.alert.Business_Name__c}{!a.alert.Alert_Monitored_Set__c}');" />                                                    
+                                             </apex:outputText>
+                                           
+                                             <apex:outputLink target="_parent" value="/{!ac.Account__c}" style="text-decoration:none; color: #0193dc;">{!ac.Account__r.Account_Number__c}</apex:outputLink>
+                                         </apex:repeat>                                                    
+                                                 
+                                         <div class="{!a.alert.Business_Name__c}{!a.alert.Alert_Monitored_Set__c}" style="display:none;">                                               
+                                            <apex:repeat value="{!a.accounts}" var="ac" first="1" id="acc2" rendered="{!a.accounts.size > 1}">                                                     
+                                              
+                                                <apex:outputLink target="_parent" value="/{!ac.Account__c}" style="text-decoration:none; color: #0193dc; margin-left:7.5%;">{!ac.Account__r.Account_Number__c}</apex:outputLink><br/>
+                                            </apex:repeat>                                                                                            
+                                         </div>
+                                                                                                                        
+                                    </apex:column>
+                                    
+                                    
+                                    <apex:column style=""> 
+                                        <apex:facet name="header">
+                                        
+                                            <apex:commandLink value="BIN{!IF(sortField=='Business_Name__r.BIN_formula__c',IF(sortDir=='asc','▲','▼'),'')}" action="{!toggleSort}" rerender="pb2,tablePbs" styleClass="headerText" style="float:left;">                                                
+                                                <apex:param name="sortField" value="Business_Name__r.BIN_formula__c" assignTo="{!sortField}"/>
+                                            </apex:commandLink>                                                               
+                                        </apex:facet>
+                                        <apex:outputLink target="_parent" value="/apex/EXPRN__SelectReport?id={!a.alert.Business_Name__r.Exp_Business__c}&isAlertView=1" style="text-decoration:none; color: #0193dc;">{!a.alert.Business_Name__r.BIN_formula__c}</apex:outputLink>                                                                        
+                                    </apex:column> 
+                                                                    
+                                    <apex:column value="{!a.alert.Alert_Monitored_Set__r.Name}"> 
+                                        <apex:facet name="header">
+                                        
+                                            <apex:commandLink action="{!toggleSort}" rerender="pb2,tablePbs" styleClass="headerText" style="float:left;"> 
+                                                Alert Monitored 
+                                                Set{!IF(sortField=='Alert_Monitored_Set__r.Name',IF(sortDir=='asc','▲','▼'),'')}
+                                                                                           
+                                                <apex:param name="sortField" value="Alert_Monitored_Set__r.Name" assignTo="{!sortField}"/>
+                                            </apex:commandLink>                                                               
+                                        </apex:facet>
+                                                                                                                
+                                    </apex:column>
+                                                                        
+                                    <apex:column value="{!a.alert.Priority__c}"> 
+                                        <apex:facet name="header">
+                                            
+                                            <apex:commandLink value="Priority{!IF(sortField=='Priority__c',IF(sortDir=='asc','▲','▼'),'')}" action="{!toggleSort}" rerender="pb2,tablePbs" styleClass="headerText" style="float:left;">                                                
+                                                <apex:param name="sortField" value="Priority__c" assignTo="{!sortField}"/>
+                                            </apex:commandLink>
+                                                                                                                                                                                        
+                                        </apex:facet>                                                                                                                
+                                    </apex:column>                                                                                                          
+                                
+                                    <apex:column style=""> 
+                                        <apex:facet name="header">
+                                        
+                                            <apex:commandLink value="{!IF(sortField=='Alert_Date__c',IF(sortDir=='asc','▲','▼'),'')}" action="{!toggleSort}" rerender="pb2,tablePbs">
+                                                <apex:image value="/img/icon/mail16.png" title="Alerts Date"/> 
+                                                <apex:param name="sortField" value="Alert_Date__c" assignTo="{!sortField}"/>
+                                            </apex:commandLink>                                                               
+                                        </apex:facet>
+                                        
+                                        <apex:outputField value="{!a.alert.Alert_Date__c}"/>                                        
+                                    </apex:column>
+                                
+                                    <apex:column style=""> 
+                                        <apex:facet name="header">
+                                            <apex:outputLink value="/apex/EXPRN__AMSTriggerCode" target="_blank">
+                                                <apex:image value="/img/samples/flag_red.gif"/> 
+                                            </apex:outputLink>   
+                                        </apex:facet>
+                                        
+                                                                                                            
+                                        <apex:commandLink value="{!a.alert.Trigger_Code__c}" rerender="summaryPn" status="modal" style="text-decoration:none; color: #0193dc;">                                
+                                            <apex:param name="summaryAlertView" value="{!a.alert.Id}" assignTo="{!summaryAlertView}"/>                                            
+                                            <apex:param name="popUp" value="Summary" assignTo="{!popUp}"/>                                  
+                                        </apex:commandLink>
+                                      
+                                    </apex:column>
+                                                                        
+                                    <apex:column value="{!a.alert.Status__c}"> 
+                                        <apex:facet name="header">
+                                        
+                                            <apex:commandLink value="Status{!IF(sortField=='Status__c',IF(sortDir=='asc','▲','▼'),'')}" action="{!toggleSort}" rerender="pb2,tablePbs" styleClass="headerText" style="float:left;">                                                
+                                                <apex:param name="sortField" value="Status__c" assignTo="{!sortField}"/>
+                                            </apex:commandLink>                                                               
+                                        </apex:facet>                                                                                                                
+                                    </apex:column>
+                                                                        
+                                </apex:pageBlockTable>                            
+                            </apex:pageBlockSection>                                                                                                                                                            
+                         </div>                                                  
+                    </apex:pageBlock>
+                </td>
+            </tr>
+        </table>                    
+                                                
+       
+       
+        
+     
+        <apex:outputPanel id="notePn">
+            <apex:outputPanel id="notepopup">
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Note'}"/>
+                <apex:outputPanel styleClass="notePopup" layout="block" rendered="{!popUp=='Note'}">
+                
+                    <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:small;">
+                            Add a Note
+                            
+                        <apex:commandLink styleClass="closeLink" reRender="notePn" action="{!closePopups}" immediate="true" title="Close" oncomplete="$j('[id$=notepopup]').hide();">
+                            Close X
+                        </apex:commandLink>
+                        
+                    </apex:outputPanel>  
+            
+                    <apex:pageBlock id="note" mode="maindetail">                   
+                              
+                        <apex:pageblockSection columns="1"  collapsible="false">
+                        
+                            <apex:pagemessages />         
+                            
+                            <apex:inputField value="{!alertNote.EXPRN__Account__c}" required="true" styleClass="pageText"/>                             
+                            <apex:inputField value="{!alertNote1.Title}" label="Title" styleClass="pageText" required="true"/>                         
+                            <apex:inputField value="{!alertNote1.Body}" label="Notes" style="height: 150px; width: 300px;" styleClass="pageText"/> 
+                            
+                        </apex:pageblockSection>
+                                                                     
+                        <apex:pageBlockButtons location="">                            
+                            <apex:commandButton value="Save" action="{!createNote}" reRender="notePn" status="NoteStatus" styleClass="saveBtn" onclick="jsDisableSave();" oncomplete="jsEnableSave();"/>                                                                                                                                                                       
+                            <apex:commandButton value="Cancel" action="{!closePopups}" reRender="notePn" status="NoteStatus" immediate="true" oncomplete="$j('[id$=notepopup]').hide();"/>                          
+                        </apex:pageBlockButtons>
+                                               
+                    </apex:pageBlock>                                                        
+                </apex:outputPanel>
+                <script>                    
+                    $j(document).ready(function()
+                    {                        
+                        if($j('#hdnNoteError').val() == '1'){
+                            location.reload();
+                        } 
+                    });
+                </script>    
+                <input type="hidden" id="hdnNoteError" value="{!sNoteError}" />
+            </apex:outputPanel>
+        </apex:outputPanel>
+        
+        
+                               
+        <apex:outputPanel id="taskPn">
+            <apex:outputPanel id="taskpopup">
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Task'}"/>
+                    
+                <apex:outputPanel styleClass="taskPopup" layout="block" rendered="{!popUp=='Task'}">
+                
+                    <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:small;">
+                            Create a Task
+                            
+                        <apex:commandLink styleClass="closeLink" reRender="taskPn" action="{!closePopups}" immediate="true" title="Close" oncomplete="$j('[id$=taskpopup]').hide();">
+                            Close X                                                            
+                        </apex:commandLink>
+                    
+                    </apex:outputPanel>       
+                                                            
+                    <apex:pageBlock id="tsk" mode="maindetail">                                                                                                      
+                        <apex:pageblockSection columns="1" collapsible="false" >
+                        
+                            <apex:pagemessages />      
+                            
+                            <apex:repeat var="f" value="{!$ObjectType.EXPRN__Experian_Alert_Task__c.FieldSets.EXPRN__ExpTaskFields}">
+                                <apex:inputfield value="{!alertTask[f]}" styleClass="pageText" required="{!f=='EXPRN__Account__c' || f=='Name' || f=='EXPRN__Priority__c' || f=='EXPRN__Status__c' || f=='EXPRN__Assigned_To__c'}" style="{!IF(f=='EXPRN__Details__c','width:200px; height:70px;','')}"/>
+                            </apex:repeat>
+                            
+                        </apex:pageblockSection>
+                    
+                        <apex:pageBlockButtons location="">                                                    
+                            <apex:commandButton value="Save" action="{!createTask}" reRender="taskPn" status="TaskStatus" styleClass="saveBtn" onclick="jsDisableSave();" oncomplete="jsEnableSave();"/>
+                            <apex:commandButton value="Cancel" action="{!closePopups}" reRender="taskPn" immediate="true" oncomplete="$j('[id$=taskpopup]').hide();"/>                                                                
+                        </apex:pageBlockButtons>
+                    
+                    </apex:pageBlock>                
+                </apex:outputPanel>
+                <script>                    
+                    $j(document).ready(function()
+                    {                        
+                        if($j('#hdnTaskError').val() == '1'){
+                            location.reload();
+                        } 
+                    });
+                </script>    
+                <input type="hidden" id="hdnTaskError" value="{!sTaskError}" />
+            </apex:outputPanel>
+        </apex:outputPanel>
+            
+            
+            
+            
+        <apex:outputPanel id="printPn">            
+            <apex:outputPanel id="printpopup">                                    
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Print'}"/>                
+                <apex:outputPanel styleClass="printPopupStyle" layout="block" rendered="{!popUp=='Print'}">
+                                    
+                    <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:small;">
+                            Print Alerts                            
+                        <apex:commandLink styleClass="closeLink" reRender="printPn,dummyPn" action="{!closePopups}" immediate="true" title="Close" oncomplete="$j('[id$=printpopup]').hide();">
+                           Close X                                                         
+                        </apex:commandLink>                        
+                    </apex:outputPanel>  
+                                                       
+                    <br /> 
+                                            
+                    <apex:outputLabel styleClass="radioText" style="padding-left:3%;">Please choose from one of the options below:</apex:outputLabel> 
+                    <br /><br />
+                    
+                    <apex:outputPanel styleClass="radioText">
+                        
+                        <input type="radio" name="printGrp" value="All" checked="true" style="margin-left:3%;">Whole List</input> 
+                        <input type="radio" name="printGrp" value="Checked" style="font-size: 11px !important;">Checked</input>
+                                                                                                                        
+                        <br/><br/><br/>
+                             
+                        <center>    
+                            <apex:commandlink value="Print Alerts" target="_blank" rerender="" onclick="return jsPrintFunc();" action="{!print}" style="text-decoration: none; margin-right: 2%; 4px 4px !important;" styleClass="btn"/>                                                  
+                            <apex:commandButton value="Cancel" action="{!closePopups}" reRender="printPn,dummyPn" immediate="true" oncomplete="$j('[id$=printpopup]').hide();"/>                                                                               
+                        </center> 
+                        <br/> 
+                    </apex:outputPanel>                                                                                                                                                                                                                                                           
+                </apex:outputPanel>                                                                
+            </apex:outputPanel>            
+        </apex:outputPanel>     
+            
+        
+        
+        
+        <apex:outputPanel id="exportPn">            
+            <apex:outputPanel id="exportPopup">                                    
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Export'}"/>                
+                <apex:outputPanel id="exportPopupId" styleClass="exportPopupStyle" layout="block" rendered="{!popUp=='Export'}">
+                                    
+                    <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:small;">
+                            Export Alerts                            
+                        <apex:commandLink styleClass="closeLink" reRender="exportPn,dummyPn" action="{!closePopups}" immediate="true" title="Close" oncomplete="$j('[id$=exportPopup]').hide();">
+                            Close X                                                       
+                        </apex:commandLink>                        
+                    </apex:outputPanel>  
+                                                       
+                    <br/>
+                                       
+                    <apex:panelGrid columns="1" width="100%">                                        
+                        <apex:outputLabel styleClass="radioText" style="padding-left:2%;" value="Please choose from one of the options below:"/> <br/>
+                                                                        
+                        <input type="radio" name="exportGrp" value="All" checked="true" style="margin-left:2%;" onclick="$j('[id$=exportOptDiv]').hide();">Whole List</input> 
+                        <input type="radio" name="exportGrp" value="Checked" onclick="$j('[id$=exportOptDiv]').hide();">Checked</input> 
+                        <input type="radio" name="exportGrp" value="Options" onclick="$j('[id$=exportOptDiv]').show();">Options</input>
+                    </apex:panelGrid>
+                    
+                    <br/>                                        
+                    
+                    <div id="exportOptDiv" style="display:none;">
+                        <div class="exportOptBI">
+                        <div style="float:right;width:140px;color:#666;font-size:11px;margin-right: -15px;"><span class="reqClass">*</span> Required for Search</div><br/>
+                    
+                        <table style="width: 100%; padding-left: 2%;" class="radioText">
+                        
+                            <tr class="">
+                                <td class="">Alerts From <span class="reqClass">*</span></td>
+                                <td class="">                                              
+                                    <apex:inputField id="txtAlertsFrom" value="{!exportDate.EXPRN__Start_Date__c}" styleClass="radioText" style="z-index:9900"/><br />
+                                    <span id="spnAlertsFromMsg" class="reqClass" style="display:none;">Alerts From is required</span>                              
+                                </td>
+                            </tr>
+                            
+                            <tr class="">
+                                <td class="radioText">Alerts To <span class="reqClass">*</span></td>
+                                <td class="radioText">                                              
+                                    <apex:inputField id="txtAlertsTo" value="{!exportDate.EXPRN__Due_Date__c}" styleClass="radioText" style=""/><br />
+                                    <span id="spnAlertsToMsg" class="reqClass" style="display:none;">Alerts To is required</span>                              
+                                </td>
+                            </tr>
+                        
+                        
+                            <tr class="">
+                                <td class="">Status</td>
+                                <td class="">                                              
+                                    <apex:selectList id="actions" size="1" value="{!exportStatus}" styleClass="radioText">                                                                           
+                                        <apex:selectOption itemLabel="All" itemValue="All"/>
+                                        <apex:selectOption itemLabel="Read" itemValue="Read"/>
+                                        <apex:selectOption itemLabel="Unread" itemValue="Unread"/>                                                                                                                                                
+                                    </apex:selectList>                                                                                              
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    </div>
+                    <br/>
+                    
+                    <center>                                     
+                        <apex:commandlink value="Export Alerts" target="_blank" rerender="" onclick="return jsExportFunc();" action="{!export}" style="text-decoration: none; margin-right: 2%; 4px 4px !important;" styleClass="btn"/>                                                 
+                        <apex:commandButton value="Cancel" action="{!closePopups}" reRender="exportPn,dummyPn" immediate="true" oncomplete="$j('[id$=exportPopup]').hide();"/>                                                                                                       
+                    </center>
+                    <br/>
+                                                                                                                                                                                                                                              
+                </apex:outputPanel>                                                                
+            </apex:outputPanel>            
+        </apex:outputPanel>     
+        
+        
+        
+            
+        <apex:outputPanel id="summaryPn">
+            <apex:outputPanel id="summarypopup">            
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!popUp=='Summary'}"/>
+            
+                    <apex:outputPanel styleClass="summaryPopup" layout="block" rendered="{!popUp=='Summary'}">
+                   
+                        <apex:outputPanel layout="block" styleClass="ui-widget-header ui-corner-top" style="padding:6px;font-size:medium;">
+                                Alerts
+                                
+                            <apex:commandLink styleClass="closeLink" reRender="summaryPn" action="{!closePopups}" immediate="true" title="Close" onclick="$j('[id$=summarypopup]').hide();">
+                                Close X                                                       
+                            </apex:commandLink>
+                            
+                        </apex:outputPanel> 
+                        
+                        <apex:iframe id="ifDetails" height="100%" width="100%" scrolling="true" src="/apex/EXPRN__AlertsSummary?AlertViewId={!summaryAlertView}" />                              
+                                                                                            
+                </apex:outputPanel>
+            </apex:outputPanel>                       
+        </apex:outputPanel>
+        
+        
+                               
+        <apex:outputPanel id="dummyPn" layout="block">
+            <apex:inputHidden id="printText" value="{!printOption}"/>
+            <apex:inputHidden id="exportText" value="{!exportOption}"/>       
+        </apex:outputPanel>   
+                                             
+    </apex:form>       
+</apex:page>

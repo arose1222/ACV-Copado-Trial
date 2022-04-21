@@ -1,0 +1,56 @@
+<template> 
+    <lightning-card title='EasyPost' icon-name='standard:shipment'>
+        <template if:true={showscreen1}>
+            <template if:true={Case.data}> 
+                <div class="slds-m-around_medium">
+                    <lightning-spinner if:false={loaded} alternative-text="Loading"></lightning-spinner>
+                    <lightning-textarea name="LegalNotes" disabled value={legalNote} label="Legal Notes" ></lightning-textarea>
+                    <lightning-textarea name="PickUpNotes" disabled value={pickupNote} label="Pick Up Notes" ></lightning-textarea>
+                    <lightning-textarea name="DealershipNotes" disabled value={dealershipNote} label = "Dealership Notes"></lightning-textarea>
+                    <lightning-textarea name="TitleNotes" disabled value={titleNote} label = "Title Address Notes"></lightning-textarea>
+                    <lightning-textarea name="SellerTitleMailingAddress" disabled value={titleNoteseller} label = "Seller Title Mailing Address Notes"></lightning-textarea>
+                    <lightning-combobox name='Selected Address' label='Selected Address' value={selectedAddress}
+                    placeholder='Select Shipping Address' options={options} onchange={generateSelectedAddress} ></lightning-combobox>
+                    <lightning-input placeholder="Name" label="Name" value={address.name} onchange={onNameUpdate} required></lightning-input>
+                    <lightning-input-address
+                    address-label="Address"
+                    street-label="Street"
+                    city-label="City"
+                    country-label="Country"
+                    province-label="Province/State"
+                    postal-code-label="PostalCode"
+                    street={address.street}
+                    city={address.city}
+                    country={address.country}
+                    province={address.state}
+                    postal-code={address.zip}
+                    required onchange={onAddressUpdate}></lightning-input-address>
+                    <div style="text-align:center"><lightning-button-group>
+                        <lightning-button variant="destructive" label='Clear' onclick={clearAddress}></lightning-button>
+                        <template if:true={Case.data.Easypost_Tracker__c}>
+                            <lightning-button variant="success" label='Submit' disabled></lightning-button>
+                        </template>
+                        <template if:false={Case.data.Easypost_Tracker__c}>
+                            <lightning-button variant="success" label='Submit' onclick={submitToEasyPost}></lightning-button>
+                        </template>
+                        
+                    </lightning-button-group></div>
+                </div>
+            </template> 
+            <template if:false={Case.data}>
+                <c-error-panel errors={Case.error}></c-error-panel>
+            </template>
+        </template>
+        <template if:true={shippingResponse.trackingCode}>
+            <template if:true={shippingResponse.trackingCode}>
+                <div class="slds-grid">
+                    <p><lightning-formatted-text value="Tracking Number: " ></lightning-formatted-text>{shippingResponse.trackingCode}</p>
+                    <p><lightning-formatted-url value={shippingResponse.link} ></lightning-formatted-url></p>
+                </div>
+            </template>
+            <template if:true={error}>
+                <lightning-formatted-text name="error" disabled value="Unable to generate shipping code" label="Error"></lightning-formatted-text>
+            </template>
+        </template>
+    </lightning-card>
+</template>

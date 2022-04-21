@@ -1,0 +1,252 @@
+<apex:page tabStyle="Expanded_Search__tab" DocType="html-5.0" controller="EXPRN.ExpandedSearchController" title="Owner not found" > 
+   <head>
+      <apex:includeScript value="{!URLFOR($Resource.EXPRN__BusinessIQ, '/SRC/jquery-1.8.0.min.js')}" />      
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+      <link rel="stylesheet" href="/resources/demos/style.css"/>
+        <style>
+.reqClass{
+          color:red;
+          font-weight:bold;           
+      }
+h2.mainTitle{
+           width:300px;
+}      
+.tableSubMenu{
+           width:100%;
+           background-color:#7AA3CC;
+           margin-top:0px;
+}      
+.pbHeader{
+      width:100%!Important;     
+      background: linear-gradient(#66C2FF, #B2E0FF);
+      }
+.scoreBI {
+            border-color: rgb(211, 201, 201) !important;
+            border-radius: 5px;            
+            border-width:1px;
+            border-style:solid;           
+            background-color:white;
+            width:330px;
+            padding:15px;
+        }
+.tableInfo{
+            font:Times New Roman;
+            font-size:11px;            
+    }        
+.formHeader {
+            color: #005bb0;
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: middle;
+            margin-left: 10px;
+            margin-top:20px;
+      }
+.subMenu1 {
+       width:800px;
+       font-size: 12px;
+       font-colour: #f0f0f0;
+       margin-left: 10px;
+       margin-top:35px;
+       padding-bottom:15px;
+    }
+    .content{
+    width:800px;
+    margin-right:10px;
+    margin-left:10px;
+    }
+    .bPageBlock{
+    width:90%!Important;
+    }
+        </style>
+  </head>
+  <apex:form >     
+     <apex:pageBlock title="Credit Report" >
+       <apex:commandButton value="Print/Save" id="btnPrintSave1" action="{!URLFOR('/home/home.jsp')}" />
+     </apex:pageBlock>
+       <div id="OwnrNotExist1" style="width: 88.5%; scroll;border: 10px solid #FFF5F5; margin-top:0px;">
+            <div>
+                <div class="formHeader" style="width:800px; float:left;">Business Owner Profile<span class="reqClass" style="font-size:12px!Important; float:right;">Pulled:&nbsp;<apex:commandButton value="Pull New Report" id="btnPulled" action="{!URLFOR('/home/home.jsp')}" /></span>
+                </div>
+             </div>
+             <div class="subMenu1" style=" border-bottom: 2px solid #FFF5F5"><span> Subcode:563751</span><span style="margin-left:280px;">Transaction number:C600127789</span><br></br>
+             Search Inquiry:ssss sssdd
+             </div>     
+             <div class="formHeader">Business Owner Profile -SSSSS SSSDD
+             </div><br></br>
+             <div class="reqClass" style="font-size:14px;"><center>Business owner not found</center>
+             </div><br></br>
+             <div class="content">&nbsp;&nbsp;&nbsp;Experian prides itself on the depth and accuracy of the data maintained on our databases. Reporting your customer's payment behavior to Experian will further strengthen and enhance the power of the information available for making sound credit decisions. Give credit where credit is due. Call 1-800-520-1221, option #4 for more information.
+             </div><br></br>
+             <div style="font-color:#585858; padding-bottom:15px;"><span>&nbsp;&nbsp;End of report</span><span style="float:right; margin-right:10px;">1 of 1 report</span>
+             </div>
+       </div>
+      
+       <div id="ownerExist" class=""> 
+              <div style="width: 88.5%; scroll;border: 10px solid #FFF5F5; margin-top:0px;">
+                 <div>
+                        <div class="formHeader" style="width:800px; float:left;">Business Owner Profile<span class="reqClass" style="font-size:12px!Important; float:right;">Pulled:&nbsp;<apex:commandButton value="Pull New Report" id="btnPulledExist" action="{!URLFOR('/home/home.jsp')}" /></span>
+                        </div>
+                 </div>
+              <div class="subMenu1" style=" border-bottom: 2px solid #FFF5F5"><span> Subcode:563751</span><span style="margin-left:35%;">Transaction number:C600127789</span><br></br>
+              Search Inquiry:ssss sssdd</div><div class="formHeader">Business Owner Profile -EVELYN ARPE</div><br></br>
+                  <div style="width:100%; margin-left:35px;">
+                      <apex:pageBlock title="Identifying Information" id="IdInfo1" >
+                          <div style="border:2px solid #66C2FF;">
+                             <table style="width:100%" class="tableInfo">
+                                 <tr>
+                                     <td style="width:35%"><strong>EVELYN ARPE</strong></td>
+                                     <td style="width:25%"><strong>SSN:</strong></td>
+                                     <td style="width:40%"><strong>Employer:</strong>  MUNA</td>
+                                 </tr>
+                                 <tr>
+                                     <td style="width:35%; padding-right:5px;">1419 CENTER DR<br></br> STEPHENVILLE, TX 76401-2105 </td>
+                                     <td style="width:25%"><strong>YOB:</strong> 1958</td>
+                                     <td style="width:40%"><strong>Last Updated:</strong> 09/2011</td>
+                                 </tr>
+                                 <tr>
+                                     <td style="width:35%">1419 CN DR<br></br>  STEPHENVILLE, TX 76401</td>
+                                     <td style="width:25%">&nbsp;</td>
+                                     <td style="width:40%">SELF COMP <br></br><strong>Last Updated:</strong> 03/2009</td>
+                                 </tr>
+                                 <tr>
+                                     <td style="width:35%">226 ROSEBUD DR <br></br>STEPHENVILLE, TX 76401-6077 </td>
+                                     <td style="width:25%">&nbsp;</td>
+                                     <td style="width:40%">&nbsp;</td>
+                                 </tr>
+                             </table>
+                         </div>     
+                     </apex:pageBlock>
+                  </div>
+                  <div style="width:100%; margin-left:35px;">
+                      <apex:pageBlock title="Executive Summary" id="ExeSum" >  
+                          <div style="border:2px solid #66C2FF;">
+                             <p class="tableSubMenu">Payment and Legal Filings Summary</p>                            
+                              <table style="width:100%" class="tableInfo">
+                                  <tr>
+                                      <td style="width:40%"><strong>Legal Filings</strong><br></br>Total legal filings:</td>
+                                       <td style="width:5%">&nbsp;<br></br>4</td>
+                                      <td style="width:40%"><strong>Legal Filings</strong><br></br>Total legal filings:</td>
+                                      <td style="width:15%">&nbsp;<br></br>$556</td>
+                                  </tr>
+                                  <tr>
+                                      <td style="width:40%"><strong>Delinquent Payment Information</strong><br></br>Past due amount:<br></br>In dispute</td>
+                                      <td style="width:5%">&nbsp;<br></br>$0<br></br>0</td>
+                                      <td style="width:40%">Installment loan balance: (4)<br></br>Revolving charge balance: (14)</td>
+                                      <td style="width:15%"></td>
+                                  </tr>
+                                  <tr>
+                                      <td style="width:40%"><strong>Delinquent Payment Information</strong><br></br>Past due amount:<br></br>In dispute</td>
+                                      <td style="width:5%">&nbsp;<br></br>$0<br></br>0</td>
+                                      <td style="width:40%">Installment loan balance: (4)<br></br>Revolving charge balance: (14)</td>
+                                      <td style="width:15%"></td>
+                                  </tr>
+                              </table><br></br>
+                              <p class="tableSubMenu">ScorexPLUSSM score</p>
+                               <table style="width:100%" class="tableInfo">
+                                   <tr>
+                                       <td style="width:30%;"><strong>ScorexPLUSSM</strong></td>
+                                       <td style="width:25%;">score: 615</td>
+                                   </tr>
+                                   <tr>
+                                   </tr>
+                               </table>
+                          </div> 
+                      </apex:pageBlock>                      
+                  </div> 
+                  <div style="width:95%; height:150px; margin-left:35px;">
+                      <div style="width:50%; float:left;">                     
+                          <apex:pageBlock title="Trade Payment Status">
+                              <div style="border:2px solid #66C2FF;">
+                                  <table style="width:100%" class="tableInfo">
+                                      <tr>
+                                          <td style="width:80%;">Oldest trade opened</td>
+                                          <td style="width:20%;">01/1995</td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width:80%;">Paid trades</td>
+                                          <td style="width:20%;">4</td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width:80%;">Satisfactory trades</td>
+                                          <td style="width:20%;">10</td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width:80%;">Total trades</td>
+                                          <td style="width:20%;">14</td>
+                                      </tr>
+                                  </table>
+                              </div>
+                          </apex:pageBlock>                                           
+                      </div>
+                      <div style="width:50%; float:right;">                     
+                          <apex:pageBlock title="Delinquency Detail">
+                              <div style="border:2px solid #66C2FF;"><br></br>
+                                  <table style="width:90%; margin-left:20px;"  class="tableInfo">
+                                      <tr style="text-align: center;">
+                                          <td style="width:25%; background:#66FF66;">11</td>
+                                          <td style="width:25%; background:#FF66FF;">1</td>
+                                          <td style="width:25%; background:#E6E65C;">0</td>
+                                          <td style="width:25%; background:#FF66A3;">0</td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width:25%;">Satisfactory</td>
+                                          <td style="width:25%;">30 days past due</td>
+                                          <td style="width:25%;">60 days past due</td>
+                                          <td style="width:25%;">90+ days past due</td>
+                                      </tr>
+                                  </table>
+                              </div>
+                          </apex:pageBlock>                                           
+                      </div>    
+                  </div>
+                  <div style="width:100%; margin-left:35px;">
+                      <apex:pageBlock title="Consumer Statement">
+                          <div style="border:2px solid #66C2FF;">
+                              <p class="tableSubMenu">Disputes and Supplemental Data Related to Transactional Information</p>
+                              <p> 09-01-13 0000000 CONSUMER COMMENT TEXT PRESENT</p><br></br>
+                          </div>
+                      </apex:pageBlock>
+                  </div>                                   
+                  <div style="width:100%; margin-left:35px;">
+                      <apex:pageBlock title="Legal Filings">
+                          <div style="border:2px solid #66C2FF;">
+                              <p class="tableSubMenu">Bankruptcies</p>
+                                  <table style="width:90%; margin-left:20px;"  class="tableInfo">
+                                      <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                      </tr>
+                                  </table>
+                          </div>
+                      </apex:pageBlock>
+                  </div>  
+              </div>
+               
+         </div>
+      
+         <div id="OwnrNotExist2" style="width: 88.5%; scroll;border: 10px solid #FFF5F5; margin-top:0px;">
+             <div>
+                 <div class="formHeader" style="width:800px; float:left;">Business Owner Profile<span class="reqClass" style="font-size:12px!Important; float:right;">Pulled:&nbsp;<apex:commandButton value="Pull New Report" id="btnPulled1" action="{!URLFOR('/home/home.jsp')}" /></span>
+                 </div>
+             </div>
+             <div class="subMenu1" style=" border-bottom: 2px solid #FFF5F5"><span> Subcode:563736</span><span style="margin-left:280px;">Transaction number:C600127383</span><br></br>
+             Search Inquiry:ssss sssdd
+             </div>      
+             <div class="formHeader">Business Owner Profile -SSSSS SSDDS
+             </div><br></br>
+             <div class="reqClass" style="font-size:14px;"><center>Business owner not found</center> 
+             </div><br></br>
+             <div class="content">&nbsp;&nbsp;&nbsp;Experian prides itself on the depth and accuracy of the data maintained on our databases. Reporting your customer's payment behavior to Experian will further strengthen and enhance the power of the information available for making sound credit decisions. Give credit where credit is due. Call 1-800-520-1221, option #4 for more information.
+             </div><br></br>
+             <div style="font-color:#585858; padding-bottom:15px;"><span>&nbsp;&nbsp;End of report</span><span style="float:right; margin-right:10px;">1 of 1 report</span>
+             </div>
+         </div>
+   
+    
+  </apex:form>
+</apex:page>

@@ -1,0 +1,109 @@
+<template>
+    
+<!-- Step 1 -->
+    <!--Select Date, Start, End-->
+    <template if:true={isStateDate}>
+        <div class="slds-m-top_medium slds-m-bottom_x-large">
+            <lightning-input type="date" name="dateInput" label="Date of Appointment" value={workOrderInfo.date} onchange={handleDateChange} required=true></lightning-input>
+        </div>
+
+        <div class="slds-grid slds-m-bottom--small">
+            <div class="slds-col">
+                <lightning-input
+                        type="time"
+                        class="startTime"
+                        name="startTime"
+                        label="Start Time"
+                        value={workOrderInfo.startTime}
+                        placeholder="Start Time"
+                        onchange={handleStartTimeChange}
+                        required=true>
+                </lightning-input>
+            </div>
+            <div class="slds-col">
+                <lightning-input
+                        type="time"
+                        class="endTime"
+                        name="endTime"
+                        label="End Time"
+                        value={workOrderInfo.endTime}
+                        placeholder="End Time"
+                        onchange={handleEndTimeChange}
+                        required=true>
+                </lightning-input>
+            </div>
+        </div>
+    </template>
+
+<!-- Step 2 -->
+    <!--Select Service Resources-->    
+    <template if:true={isStateServiceResource}>
+        <c-lookup onsearch={handleServiceResourceLookup} onselectionchange={handleSelectionChange} selection={serviceResourceSelection} label="Service Resource Name" name="Find Service Resource" placeholder="Service Resource Search" class="slds-col" is-multi-entry={serviceResourceMultiEntry}></c-lookup>
+    </template>
+    
+<!-- Step 3 -->
+    <!--Enter Address-->
+    <template if:true={isStateAddress}>
+            <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <lightning-input-address
+                    address-label="Address"
+                    street-label="Street"
+                    street={workOrderInfo.street}
+                    city-label="City"
+                    city={workOrderInfo.city}
+                    country-label="Country"
+                    country={workOrderInfo.country}
+                    province-label="State"
+                    province={workOrderInfo.state}
+                    postal-code-label="Zip Code"
+                    postal-code={workOrderInfo.zip}
+                    show-address-lookup
+                    onchange={handleAddressChange}>
+                </lightning-input-address>
+            </div>
+    </template>
+
+<!-- Step 4 -->
+    <!--Enter Contact Info-->
+    <template if:true={isStateContact}>
+        <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
+                <c-lookup name="Contact" selection={initialSelection} errors={errors}
+                                    onsearch={handleContactSearch} onselectionchange={handleContact}
+                                    label="Contact" placeholder="Search for Contact" is-multi-entry={contactMultiEntry}>
+                </c-lookup>
+        </div>
+    </template>
+
+    <div>
+        <template if:false={showLoadingSpinner}>
+            <template if:false={isHideButtons}>
+                <!-- <footer class="slds-modal__footer"> -->
+                <template if:false={hidePrevious}>
+                    <lightning-button label="Previous" title="Previous" icon-name={previousIconName}
+                        onclick={handlePreviousClick}>
+                    </lightning-button>
+                </template>
+                <template if:false={hideNext}>
+                    <lightning-button label="Next" title="Next" icon-name={nextIconName}
+                        onclick={handleNextClick}>
+                    </lightning-button>
+                </template>    
+                <template if:false={hideSave}>
+                    <lightning-button label="Save" title="Save" icon-name={finishIconName}
+                        onclick={handleSaveClick}>
+                    </lightning-button>
+                </template>
+                <!-- </footer> -->
+            </template>
+        </template>
+    </div>
+    
+    <template if:true={showLoadingSpinner}>
+        <div class="slds-m-top_medium slds-m-bottom_x-large slds-p-around_x-large">
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Processing Request...">
+                </lightning-spinner>
+            </div>
+        </div>
+    </template>
+</template>

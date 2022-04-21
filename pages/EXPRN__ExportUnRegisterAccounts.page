@@ -1,0 +1,43 @@
+<apex:page controller="EXPRN.UnRegisterAccountsController" contentType="application/vnd.ms-excel#DeregisterSearchList.xls" >
+   
+   <head>
+       <style>       
+            .colHeader{
+                font-size:12px;
+                font-weight:bold;
+            }        
+            
+            @page
+            {
+              size:landscape!important;
+            }
+        </style>
+    </head>
+     
+    <apex:pageBlock >        
+        <apex:pageBlockTable id="pbtAcctsResult" value="{!lstAMSWrap}" var="acc" border="1" cellpadding="2" style="font-size:11px; page-break-inside:avoid; " width="100%" >
+            
+            <apex:column headerValue="Account Number" value="{!acc.amset.Account__r.EXPRN__Account_Number__c}" styleClass="pageText "/>
+            
+            <apex:column headerValue="BIN" value="{!acc.amset.Account__r.EXPRN__BIN_formula__c}" rendered="{!acc.amset.Account__r.EXPRN__Exp_Business__c != NULL}" styleClass="pageText "/>
+            <apex:column headerValue="BIN" value="{!acc.amset.Account__r.EXPRN__BIN_formula__c}" rendered="{!acc.amset.Account__r.EXPRN__Exp_Business__c == NULL}" styleClass="pageText "/>
+            
+            <apex:column headerValue="Business" value="{!acc.amset.Account__r.EXPRN__Exp_Business__c}" rendered="{!acc.amset.Account__r.EXPRN__Exp_Business__c != NULL}" styleClass="pageText "/>            
+            <apex:column headerValue="Business" value="{!acc.amset.Account__r.EXPRN__Exp_Business__c}" rendered="{!acc.amset.Account__r.EXPRN__Exp_Business__c == NULL}" styleClass="pageText "/>            
+            
+            <apex:column headerValue="Business Address">
+                <apex:outputpanel rendered="{!IF(acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_Street_Address1__c != '',true,false)}" >{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_Street_Address1__c},<br/></apex:outputpanel>
+                <apex:outputpanel rendered="{!IF(acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_City_Name__c != '',true,false)}" >{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_City_Name__c},<br/></apex:outputpanel>
+                <apex:outputpanel rendered="{!IF(acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_STATE__c != '',true,false)}" >{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_STATE__c},<br/></apex:outputpanel>
+                <apex:outputpanel rendered="{!IF(acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_ZIP__c != '',true,false)}" >{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_ZIP__c}<br/></apex:outputpanel>                
+            </apex:column>
+            
+            <apex:column headerValue="Phone" value="{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_Business_Phone_No__c}" styleClass="pageText "/>
+            <apex:column headerValue="TAX ID" value="{!acc.amset.Account__r.Exp_Business__r.EXPRN__Exp_Tax_ID__c}" styleClass="pageText "/>
+            <apex:column headerValue="TAX ID Type" value="{!acc.amset.Account__r.Exp_Business__r.EXPRN__Tax_ID_Type__c}" styleClass="pageText "/>
+            <apex:column headerValue="Source" value="{!acc.amset.Account__r.EXPRN__Source__c}" styleClass="pageText "/>
+            <apex:column headerValue="Date Added" value="{!acc.amset.Account__r.EXPRN__Date_Added__c}" styleClass="pageText "/>                   
+                                              
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

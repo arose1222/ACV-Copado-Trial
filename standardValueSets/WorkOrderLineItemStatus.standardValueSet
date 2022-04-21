@@ -15,22 +15,130 @@
         <groupingString>InProgress</groupingString>
     </standardValue>
     <standardValue>
-        <fullName>On Hold</fullName>
+        <fullName>Inspected</fullName>
         <default>false</default>
-        <label>On Hold</label>
-        <groupingString>OnHold</groupingString>
-    </standardValue>
-    <standardValue>
-        <fullName>Completed</fullName>
-        <default>false</default>
-        <label>Completed</label>
+        <label>Inspected</label>
         <groupingString>Completed</groupingString>
     </standardValue>
     <standardValue>
-        <fullName>Closed</fullName>
+        <fullName>Internal Review</fullName>
         <default>false</default>
-        <label>Closed</label>
-        <groupingString>Closed</groupingString>
+        <label>Internal Review</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Awaiting Floor Price</fullName>
+        <default>false</default>
+        <label>Awaiting Floor Price</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Ready To Launch</fullName>
+        <default>false</default>
+        <label>Ready To Launch</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Launched</fullName>
+        <default>false</default>
+        <label>Launched</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Inspected Vehicle</fullName>
+        <default>false</default>
+        <label>Inspected Vehicle</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Inspected Other Location</fullName>
+        <default>false</default>
+        <label>Inspected Other Location</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>At Other Location</fullName>
+        <default>false</default>
+        <label>At Other Location</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>In Transit</fullName>
+        <default>false</default>
+        <label>In Transit</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Demonstrator</fullName>
+        <default>false</default>
+        <label>Demonstrator</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Service Loaner</fullName>
+        <default>false</default>
+        <label>Service Loaner</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Sold Paid</fullName>
+        <default>false</default>
+        <label>Sold Paid</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Sold But Not Paid</fullName>
+        <default>false</default>
+        <label>Sold But Not Paid</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>SOT</fullName>
+        <default>false</default>
+        <label>SOT</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Vehicle in Transport</fullName>
+        <default>false</default>
+        <label>Vehicle in Transport</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Verified by Phone (if close-by we encourage them to take a picture)</fullName>
+        <default>false</default>
+        <label>Verified by Phone (if close-by we encourage them to take a picture)</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Canceled</fullName>
+        <default>false</default>
+        <label>Canceled</label>
+        <groupingString>Canceled</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Approved</fullName>
+        <default>false</default>
+        <label>Approved</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Declined</fullName>
+        <default>false</default>
+        <label>Declined</label>
+        <groupingString>Canceled</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Not Ready</fullName>
+        <default>false</default>
+        <label>Not Ready</label>
+        <groupingString>Canceled</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Sold</fullName>
+        <default>false</default>
+        <label>Sold</label>
+        <groupingString>Completed</groupingString>
     </standardValue>
     <standardValue>
         <fullName>Cannot Complete</fullName>
@@ -39,9 +147,51 @@
         <groupingString>CannotComplete</groupingString>
     </standardValue>
     <standardValue>
-        <fullName>Canceled</fullName>
+        <fullName>Expired</fullName>
         <default>false</default>
-        <label>Canceled</label>
-        <groupingString>Canceled</groupingString>
+        <label>Expired</label>
+        <groupingString>Closed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Test Drive</fullName>
+        <default>false</default>
+        <label>Test Drive</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Unknown</fullName>
+        <default>false</default>
+        <label>Unknown</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Vehicle Inspection Waiver</fullName>
+        <default>false</default>
+        <label>Vehicle Inspection Waiver</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Secondary Location (if close-by we encourage them to take a picture)</fullName>
+        <default>false</default>
+        <label>Secondary Location (if close-by we encourage them to take a picture)</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Secondary Location - Inspected Vehicle</fullName>
+        <default>false</default>
+        <label>Secondary Location - Inspected Vehicle</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Vehicle in Transit</fullName>
+        <default>false</default>
+        <label>Vehicle in Transit</label>
+        <groupingString>Completed</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Complete</fullName>
+        <default>false</default>
+        <label>Complete</label>
+        <groupingString>Completed</groupingString>
     </standardValue>
 </StandardValueSet>

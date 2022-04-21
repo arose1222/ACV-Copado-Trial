@@ -129,6 +129,10 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>AccountId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>CampaignId</fullName>
         <type>Lookup</type>
     </fields>
@@ -173,6 +177,15 @@
         <fullName>HasResponded</fullName>
     </fields>
     <fields>
+        <fullName>IST_Account_Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact.Account.IST_Account_Owner__r.FirstName &amp; &quot; &quot; &amp;  Contact.Account.IST_Account_Owner__r.LastName</formula>
+        <label>IST Account Manager</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>LastName</fullName>
     </fields>
     <fields>
@@ -209,5 +222,36 @@
     <fields>
         <fullName>Title</fullName>
     </fields>
+    <listViews>
+        <fullName>All_Campaign_Members</fullName>
+        <columns>CAMPAIGN.NAME</columns>
+        <columns>MEMBER_TYPE</columns>
+        <columns>STATUS</columns>
+        <columns>NAME</columns>
+        <columns>TITLE</columns>
+        <columns>COMPANY</columns>
+        <columns>IST_Account_Manager__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Campaign Members</label>
+    </listViews>
+    <listViews>
+        <fullName>FTB_to_2TB_Members</fullName>
+        <columns>CAMPAIGN.NAME</columns>
+        <columns>MEMBER_TYPE</columns>
+        <columns>STATUS</columns>
+        <columns>NAME</columns>
+        <columns>TITLE</columns>
+        <columns>COMPANY</columns>
+        <columns>IST_Account_Manager__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CAMPAIGN.NAME</field>
+            <operation>equals</operation>
+            <value>FTB to 2TB</value>
+        </filters>
+        <label>FTB to 2TB Members</label>
+    </listViews>
     <sharingModel>ControlledByCampaign</sharingModel>
 </CustomObject>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>This template is used by automation to alert an Arbitration claimant that ACV is still waiting for evidence on a claim.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Outbound Notification: Awaiting Buyer Response Reminder</name>
+    <style>none</style>
+    <subject>ACV Arbitration: Case #{!Case.CaseNumber} Action Required</subject>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -140,119 +140,1830 @@
         <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
+    <compactLayoutAssignment>ACV_Work_Order_Line_Item_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ACV_Work_Order_Line_Item_Compact_Layout</fullName>
+        <fields>LineItemNumber</fields>
+        <fields>WorkOrderId</fields>
+        <fields>Status</fields>
+        <fields>WorkTypeId</fields>
+        <fields>Year_and_Make_and_Model__c</fields>
+        <label>ACV Work Order Line Item Compact Layout</label>
+    </compactLayouts>
+    <enableFeeds>true</enableFeeds>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>FSL__CrewManagment_Lightbox</fullName>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ListPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ParentWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PricebookEntryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Quantity</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>UnitPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Crew Managment Lightbox</description>
+        <displayedFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Crew Managment Lightbox</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FSL__Emergency_Current_WOLineItem</fullName>
+        <availableFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ListPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ParentWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PricebookEntryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Quantity</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>UnitPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Deprecated</description>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Deprecated</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FSL__Gantt_Lightbox</fullName>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ListPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PricebookEntryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Quantity</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>UnitPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Gantt Lightbox</description>
+        <displayedFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ParentWorkOrderLineItemId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Gantt Lightbox</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACV_Inspection_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>ACV Inspection Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>API_or_Import_Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( !ISBLANK( External_Record_guid__c ),
+IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;Import Manager&quot;, &quot;API&quot; ), 
+&quot;&quot; )</formula>
+        <label>API or Import Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Add_to_Run_List__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Add to Run List?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Address</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>AssetId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description</fullName>
+        <fullName>AssetWarrantyId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cannot_Complete_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Cannot Complete Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cloned_for_Grouping__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Cloned for Grouping</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Color__c</fullName>
+        <externalId>false</externalId>
+        <label>Color</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <description>***DO NOT DELETE***
+
+field used in scoring_logic__c
+JIRA:  CAP - 456</description>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Time__c</fullName>
+        <description>Date time value of when the records was put into a completed status category</description>
+        <externalId>false</externalId>
+        <label>Completed Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Mobile_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Mobile Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Phone_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Phone Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Inspected__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Inspected</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Creation__c</fullName>
+        <externalId>false</externalId>
+        <formula>(NOW() - CreatedDate )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days Since Creation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Contact__c</fullName>
+        <externalId>false</externalId>
+        <label>Dealer Contact</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Id__c</fullName>
+        <description>Holds the Dealer Id from the Work Order&apos;s Account.</description>
+        <externalId>false</externalId>
+        <formula>WorkOrder.Account.Dealership_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Salesforce_Id__c</fullName>
+        <description>The Salesforce Id of the Account on the Work Order</description>
+        <externalId>false</externalId>
+        <formula>WorkOrder.AccountId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The Salesforce Id of the Account on the Work Order</inlineHelpText>
+        <label>Dealer Salesforce Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealer_Type__c</fullName>
+        <description>Holds the Dealer Type API Name from Account</description>
+        <externalId>false</externalId>
+        <formula>TEXT(WorkOrder.Account.Dealer_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dealer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dealership_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Dealership Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Discount</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Driving_Directions__c</fullName>
+        <externalId>false</externalId>
+        <label>Driving Directions</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Duration</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>DurationType</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Duration_in_Minutes__c</fullName>
+        <externalId>false</externalId>
+        <formula>WorkType.DurationInMinutes</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Duration in Minutes</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Earliest_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Earliest Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>EndDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Exclude_From_Optimization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude From Optimization</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>External_Assignment_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>External Assignment Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Invoice_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>External Invoice Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Link_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>External Link Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>External Link</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>External_Record_guid__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Record guid</label>
+        <length>36</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__IsFillInCandidate__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Fill In Candidate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FSL__VisitingHours__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Visiting Hours</label>
+        <referenceTo>OperatingHours</referenceTo>
+        <relationshipLabel>Work Order Line Items</relationshipLabel>
+        <relationshipName>Work_Order_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Finance_Source__c</fullName>
+        <description>Finance Source</description>
+        <externalId>false</externalId>
+        <label>Finance Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Floor_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Floor Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Inspection_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>This is a unique Id owned by ACV Inspection Database &amp; App</description>
+        <externalId>true</externalId>
+        <label>Inspection Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Inspection_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Inspection Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_Life_Cycle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Populated with the Inventory Life Cycle that it relates to.</description>
+        <externalId>false</externalId>
+        <label>Inventory Life Cycle</label>
+        <referenceTo>Inventory_Life_Cycle__c</referenceTo>
+        <relationshipLabel>Work Order Line Items</relationshipLabel>
+        <relationshipName>Work_Order_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Invoice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Invoice</label>
+        <referenceTo>Invoice__c</referenceTo>
+        <relationshipLabel>Work Order Line Items</relationshipLabel>
+        <relationshipName>Work_Order_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>IsClosed</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>IsGeneratedFromMaintenancePlan</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Is_In_Jeopardy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is In Jeopardy?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Opportunity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Opportunity?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Jeopardy_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Jeopardy State</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open FBI</fullName>
+                    <default>false</default>
+                    <label>Open FBI</label>
+                </value>
+                <value>
+                    <fullName>Unresourced</fullName>
+                    <default>false</default>
+                    <label>Unresourced</label>
+                </value>
+                <value>
+                    <fullName>Late Start Work</fullName>
+                    <default>false</default>
+                    <label>Late Start Work</label>
+                </value>
+                <value>
+                    <fullName>Unable to update Schedule</fullName>
+                    <default>false</default>
+                    <label>Unable to update Schedule</label>
+                </value>
+                <value>
+                    <fullName>Not Acknowledged</fullName>
+                    <default>false</default>
+                    <label>Not Acknowledged</label>
+                </value>
+                <value>
+                    <fullName>Forced Appointment</fullName>
+                    <default>false</default>
+                    <label>Forced Appointment</label>
+                </value>
+                <value>
+                    <fullName>EarlyStart is after DueDate</fullName>
+                    <default>false</default>
+                    <label>EarlyStart is after DueDate</label>
+                </value>
+                <value>
+                    <fullName>Dispatched CPO Time has changed</fullName>
+                    <default>false</default>
+                    <label>Dispatched CPO Time has changed</label>
+                </value>
+                <value>
+                    <fullName>Unscheduled TDI - VW task with EarlyStart approaching</fullName>
+                    <default>false</default>
+                    <label>Unscheduled TDI - VW task with EarlyStart approaching</label>
+                </value>
+                <value>
+                    <fullName>Unscheduled CPO with Commitment Flag True</fullName>
+                    <default>false</default>
+                    <label>Unscheduled CPO with Commitment Flag True</label>
+                </value>
+                <value>
+                    <fullName>DueDate Changed (Roll Over)</fullName>
+                    <default>false</default>
+                    <label>DueDate Changed (Roll Over)</label>
+                </value>
+                <value>
+                    <fullName>Unscheduled Dealer-Auction Task with SLA in Past</fullName>
+                    <default>false</default>
+                    <label>Unscheduled Dealer-Auction Task with SLA in Past</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Job_Notes__c</fullName>
+        <businessStatus>Active</businessStatus>
+        <externalId>false</externalId>
+        <label>Job Notes</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Last_Status_Set_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Status Set Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Lesse_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Lesse Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ListPrice</fullName>
     </fields>
     <fields>
         <fullName>LocationId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MaintenancePlanId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MaintenanceWorkRuleId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <externalId>false</externalId>
+        <label>Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maturity_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Maturity Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MinimumCrewSize</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Missing_Dealer_Jacket__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked when a Dealer Jacket is available; otherwise, false. Populated by the Flow: Asset Verification.</description>
+        <externalId>false</externalId>
+        <label>Missing Bill of Sale/Deal Jacket</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Off_Lot_Notes__c</fullName>
+        <description>Contains notes for Work Order Line Items with a Status set to &quot;At Other Location&quot;. May be populated by the Flow: Asset Verification.</description>
+        <externalId>false</externalId>
+        <label>Off-Lot Notes</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Open_Date__c</fullName>
+        <description>When the request was open in an external system (if supplied)</description>
+        <externalId>false</externalId>
+        <label>Open Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>OrderId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Origin__c</fullName>
+        <externalId>false</externalId>
+        <label>Origin</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+                <value>
+                    <fullName>Revolving Term</fullName>
+                    <default>false</default>
+                    <label>Revolving Term</label>
+                </value>
+                <value>
+                    <fullName>Phone Call</fullName>
+                    <default>false</default>
+                    <label>Phone Call</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>ParentWorkOrderLineItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Payment_Method__c</fullName>
+        <description>How the buyer has paid/will be paying - either with cash or through financing.</description>
+        <externalId>false</externalId>
+        <label>Payment Method</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cash</fullName>
+                    <default>false</default>
+                    <label>Cash</label>
+                </value>
+                <value>
+                    <fullName>Financing</fullName>
+                    <default>false</default>
+                    <label>Financing</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>PricebookEntryId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Priority</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ProductServiceCampaignId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductServiceCampaignItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Quantity</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
-        <fullName>RootWorkOrderLineItemId</fullName>
+        <fullName>RecommendedCrewSize</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Reserve_Price__c</fullName>
+        <description>A location for the reserve price to be entered by IST for inspectors to use through fsl. This field is required by the assignmentManagerCreateWorkLines code pieces.</description>
+        <externalId>false</externalId>
+        <label>Reserve Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Residential__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Residential</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ReturnOrderId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ReturnOrderLineItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RootWorkOrderLineItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sale_Date__c</fullName>
+        <description>May be populated by the Flow: Asset Verification.</description>
+        <externalId>false</externalId>
+        <label>Sale Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Scoring_Logic__c</fullName>
+        <description>Formula field used to assign a score to the work order based on work order line item criteria
+
+Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</description>
+        <externalId>false</externalId>
+        <formula>IF(
+   ISPICKVAL(Status, &apos;unknown&apos;) || ISPICKVAL(Status, &apos;Service Loaner&apos;) || ISPICKVAL(Status, &apos;Demonstrator&apos;) || ISPICKVAL(Status, &apos;Test Drive&apos;) || ISPICKVAL(Status, &apos;Secondary Location&apos;)
+    || ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Cash&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &lt;= 1 || 
+    ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Financing&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &lt;= 5 , 2, 
+
+
+      IF(ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Cash&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &gt; 1 || 
+    ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Financing&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &gt; 5 , 3, 1)
+   )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula field used to assign a score to the work order based on work order line item criteria
+
+Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</inlineHelpText>
+        <label>Scoring Logic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Series__c</fullName>
+        <externalId>false</externalId>
+        <label>Series</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ServiceAppointmentCount</fullName>
     </fields>
     <fields>
-        <fullName>StartDate</fullName>
+        <fullName>ServiceReportTemplateId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ServiceTerritoryId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>StartDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Status</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>StatusCategory</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Stock_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Stock Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Subject</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Subtotal</fullName>
     </fields>
     <fields>
+        <fullName>SuggestedMaintenanceDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Task__c</fullName>
+        <externalId>false</externalId>
+        <label>Task</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technical_Origin__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Asset&quot; ), &quot;DataHub Asset Verification&quot;, 
+IF( CONTAINS( CreatedBy.Full_Name__c, &quot;TrueFrame&quot; ), &quot;V1 TrueFrame Inspections&quot;, 
+IF( CONTAINS( CreatedBy.Full_Name__c, &quot;InspectionDB&quot; ), &quot;InspectionDB Work&quot;,  
+IF( CONTAINS( CreatedBy.Full_Name__c, &quot;MyACV&quot; ), &quot;Inspections from MyACV&quot;,  
+IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standard Inspections&quot;, 
+&quot;Bulk Importer&quot; )
+)
+) 
+)
+)</formula>
+        <label>Technical Origin</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Title Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_with_Dealer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Title with Dealer?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>TotalPrice</fullName>
     </fields>
     <fields>
+        <fullName>Transport_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Transport Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Transport Arranged</fullName>
+                    <default>false</default>
+                    <label>Transport Arranged</label>
+                </value>
+                <value>
+                    <fullName>Unit Delivered</fullName>
+                    <default>false</default>
+                    <label>Unit Delivered</label>
+                </value>
+                <value>
+                    <fullName>Unit in Transit</fullName>
+                    <default>false</default>
+                    <label>Unit in Transit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>UnitPrice</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>VIN__c</fullName>
+        <externalId>false</externalId>
+        <label>VIN</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>Work Order Line Items</relationshipLabel>
+        <relationshipName>Work_Order_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>WOLI_Status__c</fullName>
+        <description>This picklist field will be used to change the status of the Work order line item</description>
+        <externalId>false</externalId>
+        <label>WOLI Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Not Ready</fullName>
+                    <default>false</default>
+                    <label>Not Ready</label>
+                </value>
+                <value>
+                    <fullName>Declined</fullName>
+                    <default>false</default>
+                    <label>Declined</label>
+                </value>
+                <value>
+                    <fullName>Sold</fullName>
+                    <default>false</default>
+                    <label>Sold</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>WorkOrderId</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>MasterDetail</type>
+    </fields>
+    <fields>
+        <fullName>WorkTypeId</fullName>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>WorkType.Name</field>
+                <operation>notContain</operation>
+                <value>Dealership Visit</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_and_Make_and_Model__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( WorkType.Work_Type_Unique_ID__c == &apos;promo work&apos;,  Task__c , Year__c &amp; &apos; &apos; &amp; Make__c &amp; &apos; &apos; &amp; Model__c &amp; &apos; &apos; &amp; Color__c )</formula>
+        <label>Year and Make and Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <searchLayouts>
         <customTabListAdditionalFields>WorkOrder</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>WorkOrder</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>WorkOrder</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact_Mobile_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact_Phone_Number__c</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>WorkOrder</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Only_Allow_Asset_Verification_Change</fullName>
+        <active>false</active>
+        <errorConditionFormula>WorkType.Name != &apos;Asset Verification&apos; &amp;&amp; WorkType.Name != &apos;True 360&apos; &amp;&amp; $Profile.Name != &apos;System Administrator&apos; &amp;&amp; NOT(ISNEW())</errorConditionFormula>
+        <errorMessage>You do not have permission to change the Status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Prevent_VCIs_LCs_from_Canceling_WOLIs</fullName>
+        <active>true</active>
+        <description>Prevent VCI&apos;s from Canceling WOLI Jobs.
+Prevent LC&apos;s from Canceling some WOLI Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
+        <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
+        <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Prevent_Work_Type_Change</fullName>
+        <active>true</active>
+        <description>Prevent Work Type from being changed</description>
+        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
+        <errorMessage>Work Type CANNOT be changed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Sale_Date_if_In_Sold_Status</fullName>
+        <active>false</active>
+        <description>Validation Rule that requires sale date on Work Order Line Item to be filled out if the status is in a Sold status.</description>
+        <errorConditionFormula>AND(ISBLANK( Sale_Date__c), OR( TEXT(Status) == &apos;Sold Paid&apos;, TEXT(Status) == &apos;Sold But Not Paid&apos;))</errorConditionFormula>
+        <errorMessage>Please fill out the Sale date if your Vehicle is in a Sold status.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Launch_Flow</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Launch Flow</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/flow/Stage_Modification/?CurrentRecord{!WorkOrderLineItem.Id}</url>
+    </webLinks>
 </CustomObject>

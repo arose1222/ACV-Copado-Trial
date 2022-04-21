@@ -1,0 +1,12 @@
+<apex:page controller="EXPRN.ExperianCreditReportController" sidebar="false" showHeader="false" cache="true" >
+    <apex:pageMessages />
+    <apex:form >
+        <apex:actionFunction name="Attachment" action="{!createAttachment}" />
+        <script>
+            window.onload=function()
+            {
+                Attachment();
+            };
+        </script>
+    </apex:form>        
+</apex:page>

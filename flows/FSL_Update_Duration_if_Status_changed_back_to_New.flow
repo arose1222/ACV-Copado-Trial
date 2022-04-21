@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <description>Assign Duration to Work Order DurationInMinutes (this takes in to consideration # of vehicles).</description>
+        <name>Assign_Duration_to_Work_Order_DurationInMinutes</name>
+        <label>Assign Duration to Work Order DurationInMinutes</label>
+        <locationX>314</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>VariableDuration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_WorkOrder.DurationInMinutes</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Duration</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_to_Work_Type_Duration</name>
+        <label>Assign to Work Type Duration</label>
+        <locationX>50</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>VariableDuration</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Work_Type_Duration__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Duration</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_if_Duration_is_Zero</name>
+        <label>Check if Duration is Zero</label>
+        <locationX>182</locationX>
+        <locationY>575</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Duration_to_Work_Order_DurationInMinutes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Duration NOT Zero or Null</defaultConnectorLabel>
+        <rules>
+            <name>Duration_is_Zero</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_WorkOrder.DurationInMinutes</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_WorkOrder.DurationInMinutes</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_to_Work_Type_Duration</targetReference>
+            </connector>
+            <label>Duration Zero or Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Previous Status was not Equal to New and THEN changed to New.</description>
+        <name>Was_Previous_Status_not_Equal_to_New</name>
+        <label>Was Previous Status not Equal to New</label>
+        <locationX>380</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NOT_New</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>New</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_WorkOrder</targetReference>
+            </connector>
+            <label>NOT New</label>
+        </rules>
+    </decisions>
+    <description>Update the Service Appointment Duration to the Work Order DurationInMinutes (this takes in to consideration # of vehicles) when the (Non New) Status is changed back to New.</description>
+    <interviewLabel>FSL Update Duration if Status changed back to New {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FSL Update Duration if Status changed back to New</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_WorkOrder</name>
+        <label>Get WorkOrder</label>
+        <locationX>182</locationX>
+        <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_if_Duration_is_Zero</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Work_Order__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>WorkOrder</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>DurationInMinutes</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the Service Appointment Duration to the Work Type Duration.</description>
+        <name>Update_Duration</name>
+        <label>Update Duration</label>
+        <locationX>182</locationX>
+        <locationY>911</locationY>
+        <inputAssignments>
+            <field>Duration</field>
+            <value>
+                <elementReference>VariableDuration</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>DurationType</field>
+            <value>
+                <stringValue>Minutes</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Was_Previous_Status_not_Equal_to_New</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </filters>
+        <object>ServiceAppointment</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Store the Work Type Duration</description>
+        <name>VariableDuration</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+</Flow>

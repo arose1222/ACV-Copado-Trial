@@ -140,177 +140,3092 @@
         <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>false</enableFeeds>
-    <externalSharingModel>Private</externalSharingModel>
+    <compactLayoutAssignment>ACV_Work_Order_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ACV_Work_Order_Compact_Layout</fullName>
+        <fields>AccountId</fields>
+        <fields>WorkOrderNumber</fields>
+        <fields>Status</fields>
+        <fields>LineItemCount</fields>
+        <fields>Special_Instructions__c</fields>
+        <fields>WorkTypeId</fields>
+        <label>ACV Work Order Compact Layout</label>
+    </compactLayouts>
+    <enableFeeds>true</enableFeeds>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>FSL__CrewManagment_Lightbox</fullName>
+        <availableFields>
+            <field>BusinessHoursId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CaseId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ContactId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>GrandTotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LineItemCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MaintenancePlanId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ParentWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Prevent_Geocoding_For_Chatter_Actions__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Pricebook2Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>SuggestedMaintenanceDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Tax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Crew Managment Lightbox</description>
+        <displayedFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FSL__Scheduling_Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AccountId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Crew Managment Lightbox</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FSL__Emergency_Current_WorkORder_Fields</fullName>
+        <availableFields>
+            <field>AccountId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>BusinessHoursId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CaseId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ContactId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LineItemCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MaintenancePlanId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ParentWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Prevent_Geocoding_For_Chatter_Actions__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Pricebook2Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Scheduling_Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>SuggestedMaintenanceDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Tax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Deprecated</description>
+        <displayedFields>
+            <field>GrandTotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Deprecated</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FSL__Gantt_Lightbox</fullName>
+        <availableFields>
+            <field>AssetId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>BusinessHoursId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CaseId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Discount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Duration</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>DurationType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>EndDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>GrandTotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsClosed</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__IsFillInCandidate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Latitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LocationId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Longitude</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MaintenancePlanId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MinimumCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ParentWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Prevent_Geocoding_For_Chatter_Actions__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Pricebook2Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecommendedCrewSize</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RootWorkOrderId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceAppointmentCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceReportTemplateId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ServiceTerritoryId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StartDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>StatusCategory</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Subtotal</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>SuggestedMaintenanceDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Tax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>TotalPrice</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__VisitingHours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WorkTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Gantt Lightbox</description>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AccountId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ContactId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LineItemCount</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Origin__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedById</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FSL__Scheduling_Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Occurrence__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Occurrence__r.Timeline__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Occurrence__r.Day__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Revolving_Appointment_Resource__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Gantt Lightbox</label>
+    </fieldSets>
     <fields>
         <fullName>AccountId</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.BillingStreet+&apos; &apos;+ Account.BillingCity+&apos; &apos;+ Account.BillingState+&apos; &apos;+ Account.BillingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Address</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>All_Time_Arb_Rate__c</fullName>
+        <description>Displays key Account information to the VCI.</description>
+        <externalId>false</externalId>
+        <formula>Account.All_Time_Arb_Rate__c</formula>
+        <label>All Time Arb Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>AssetId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AssetWarrantyId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Asset_Verification_Number_of_Vehicles__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Used to capture the number of vehicles to be verified while on-site. Populated in advance if known but always updated by VCI on-site. When Work Order Line items are loaded from a csv, this field should be updated as well.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populate in advance if known - to be validated by VCI on-site. Also updated when Work Order Line Items are added/deleted with the &quot;Asset Verification&quot; Work Type</inlineHelpText>
+        <label>Asset Verification - Number of Vehicles</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_Date_Time__c</fullName>
+        <description>Stores the DateTime of the most recent time when the Status was set to &quot;Assigned&quot;. Automatically populated by a Process Builder. Used to calculate the following fields: New to Assigned (Hours); and, Assigned to Completed (Hours). Not meant to be on the page layout.</description>
+        <externalId>false</externalId>
+        <label>Assigned Date/Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To_Completed_Hours__c</fullName>
+        <description>Returns the number of hours spanned between the Completed Date/Time and the Assigned Date/Time. Not meant to be on the page layout.</description>
+        <externalId>false</externalId>
+        <formula>( Completed_Date_Time__c - Assigned_Date_Time__c ) * 24</formula>
+        <label>Assigned To Completed (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auditor_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CAP-456: Used by Netsuite Integration (Celigo) to track Audit Information</description>
+        <externalId>false</externalId>
+        <label>Auditor Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Beta_Flag__c</fullName>
+        <description>Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories).</description>
+        <externalId>false</externalId>
+        <formula>OR ( BEGINS( ServiceTerritory.Name, &apos;GN&apos; ),
+BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
+        <inlineHelpText>Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories).</inlineHelpText>
+        <label>Beta Flag</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>BusinessHoursId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>CaseId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Date_Time__c</fullName>
+        <description>Stores the most recent DateTime when the Status was set to &quot;Completed&quot;. Automatically populated by a Process Builder. Used to calculate the following fields: Assigned to Completed (Hours); and, New to Completed (Hours). Not meant to be on the page layout.</description>
+        <externalId>false</externalId>
+        <label>Completed Date/Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>ContactId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Created_From_Quick_Action__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to define whether a &apos;Work Order&apos; is created from a Quick Action or not.</description>
+        <externalId>false</externalId>
+        <label>Created From Quick Action</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Created_Without_Line_Items__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Created Without Line Items</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Creation__c</fullName>
+        <description>Returns the number of days spanned between when the Work Order was created and the current date/time.</description>
+        <externalId>false</externalId>
+        <formula>NOW() - CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days Since Creation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Discount</fullName>
     </fields>
     <fields>
-        <fullName>Duration</fullName>
+        <fullName>DueDate_Adjustment_Engine_Bypass__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>DueDate Adjustment Engine Bypass</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Duration</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>DurationType</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Duration_in_Minutes__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration in Minutes</label>
+        <summarizedField>WorkOrderLineItem.DurationInMinutes</summarizedField>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>EndDate</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
-        <fullName>EntitlementId</fullName>
+        <fullName>External_Record_guid__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Record guid</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__IsFillInCandidate__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Fill In Candidate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FSL__Prevent_Geocoding_For_Chatter_Actions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Prevent Geocoding For Chatter Actions</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FSL__Scheduling_Priority__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(Priority), &apos;Critical&apos; , 1 ,&apos;High&apos; ,2,&apos;Medium&apos; ,3 , &apos;Low&apos;, 4, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Scheduling Priority</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSL__VisitingHours__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Visiting Hours</label>
+        <referenceTo>OperatingHours</referenceTo>
+        <relationshipLabel>Work Orders</relationshipLabel>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Final_Audit_Score__c</fullName>
+        <description>This field reads the score from &apos;Scoring Logic Summary&apos;, but can be overwritten by a user with the permission set:  &apos;Final_Audit_score__c editable on Work Order&apos;.  All other profiles have this field set to &apos;read-only&apos;
+
+JIRA:  CAP - 456</description>
+        <externalId>false</externalId>
+        <label>Final Audit Score</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>GrandTotal</fullName>
     </fields>
     <fields>
-        <fullName>IsClosed</fullName>
+        <fullName>Has_Required_Resource__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Has Required Resource</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IsStopped</fullName>
+        <fullName>Initiative__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiative</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
-        <fullName>LineItemCount</fullName>
-        <trackHistory>false</trackHistory>
+        <fullName>Inspection_Number_of_Vehicles__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Used to capture the number of vehicles to be inspected while on-site.  Populated in advance if known and/or updated by VCI on-site (for Standard Inspection, Sirius XM, and True 360).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populated in advance if known - to be validated by VCI on-site.  Should be updated when Work Order Line Items are added/deleted (for Standard Inspection, Sirius XM, and True 360).</inlineHelpText>
+        <label>Inspection - Number of Vehicles</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
-        <fullName>LocationId</fullName>
+        <fullName>Inspection_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inspection Request</label>
+        <referenceTo>Inspection_Request__c</referenceTo>
+        <relationshipLabel>Work Orders</relationshipLabel>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>MilestoneStatus</fullName>
+        <fullName>IsClosed</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
-        <fullName>MilestoneStatusIcon</fullName>
+        <fullName>IsGeneratedFromMaintenancePlan</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Last_90_Days_Sold__c</fullName>
+        <description>Displays key Account information to the VCI.</description>
+        <externalId>false</externalId>
+        <formula>Account.Last_90_Days_Sold__c</formula>
+        <label>Last 90 Days Sold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Launch_Term_Details__c</fullName>
+        <description>Stores the additional information on the Account&apos;s Vehicle Launch Terms especially when it is set to Future Date/Time, Run List or Other.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide additional information on the Vehicle Launch Terms especially when it is set to Future Date/Time, Run List or Other.</inlineHelpText>
+        <label>Launch Term Details</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>LineItemCount</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>List_View_Display__c</fullName>
+        <description>Returns the following text: &lt;Account Name&gt;: &lt;Status&gt;, &lt;Line Item Count&gt; lines, &lt;Days Since Creation&gt; days old. The text will only return the first 255 characters. Used in the Lightning Component: Work Order List App.</description>
+        <externalId>false</externalId>
+        <formula>LEFT(
+				Account.Name &amp; &quot;: &quot; &amp;
+				TEXT( LineItemCount ) &amp; 
+				IF( LineItemCount &lt;&gt; 1,
+							&quot; lines, &quot;,
+							&quot; line, &quot; ) &amp;
+				TEXT( ROUND( Days_Since_Creation__c, 1 ) ) &amp; 
+				IF( Days_Since_Creation__c &gt; 1,
+							&quot; days old, &quot;,
+							&quot; day old, &quot; ) &amp;
+				Text( Priority ) &amp; &quot;, &quot; &amp;  City &amp; &quot; &quot; &amp;  State &amp; &quot; &quot; &amp;  PostalCode  ,
+				255  
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>List View Display</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LocationId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MaintenancePlanId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MaintenanceWorkRuleId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MinimumCrewSize</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>New_To_Assigned_Hours__c</fullName>
+        <description>Returns the number of hours spanned between the Work Order&apos;s Created Date and the Assigned Date/Time. Not meant to be on the page layout.</description>
+        <externalId>false</externalId>
+        <formula>( Assigned_Date_Time__c - CreatedDate ) * 24</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>New To Assigned (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_To_Completed_Hours__c</fullName>
+        <description>Returns the number of hours spanned between the Work Order&apos;s Completed Date/Time and the Created Date. Not meant to be on the page layout.</description>
+        <externalId>false</externalId>
+        <formula>( Completed_Date_Time__c - CreatedDate ) * 24</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>New To Completed (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Not_Beta_Territory__c</fullName>
+        <externalId>false</externalId>
+        <formula>CONTAINS( ServiceTerritory.Name, &apos;OV&apos; )</formula>
+        <label>Not Beta Territory</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Occurrence__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Occurrence record from the revolving appointment generator that generated this work order record</description>
+        <externalId>false</externalId>
+        <label>Occurrence</label>
+        <referenceTo>Occurrence__c</referenceTo>
+        <relationshipLabel>Work Orders</relationshipLabel>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Origin__c</fullName>
+        <externalId>false</externalId>
+        <label>Origin</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+                <value>
+                    <fullName>Revolving Term</fullName>
+                    <default>false</default>
+                    <label>Revolving Term</label>
+                </value>
+                <value>
+                    <fullName>Phone Call</fullName>
+                    <default>false</default>
+                    <label>Phone Call</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ParentWorkOrderId</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Pricebook2Id</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Priority</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>RootWorkOrderId</fullName>
+        <fullName>Proactive_Work__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Proactive Work</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Processing_Offers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Processing Offers</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProductServiceCampaignId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductServiceCampaignItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Promotional_Work_Type__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Promotional Work Type</label>
+        <referenceTo>WorkType</referenceTo>
+        <relationshipLabel>Work Orders</relationshipLabel>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RecommendedCrewSize</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>ReturnOrderId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ReturnOrderLineItemId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Revolving_Appointment_Resource__c</fullName>
+        <externalId>false</externalId>
+        <formula>Occurrence__r.Timeline__r.Service_Resource_Name__c</formula>
+        <label>Revolving Appointment Resource</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RootWorkOrderId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Scoring_Logic_Summary__c</fullName>
+        <description>This is a roll-up summary field which takes all the Work Order Line Items and takes the MAX value of &apos;scoring_logic__c&apos; and applies it to work order.
+
+JIRA:  CAP - 456</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll-up Summary field calculating MAX Value of Work Order Line Items</inlineHelpText>
+        <label>Scoring Logic Summary</label>
+        <summarizedField>WorkOrderLineItem.Scoring_Logic__c</summarizedField>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>max</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>ServiceAppointmentCount</fullName>
     </fields>
     <fields>
-        <fullName>ServiceContractId</fullName>
+        <fullName>ServiceReportLanguage</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>ServiceReportTemplateId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>SlaExitDate</fullName>
-        <trackHistory>false</trackHistory>
+        <fullName>ServiceTerritoryId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>SlaStartDate</fullName>
+        <fullName>Service_Territory__c</fullName>
+        <description>Field added strictly for reporting, simply pulls the name of the Service Territory from the Account Level, of which the work order is based off of.</description>
+        <externalId>false</externalId>
+        <formula>Account.Service_Territory__r.Name</formula>
+        <inlineHelpText>Added formula field for report grouping purposes while Asset Verification 2.0 is being implemented.</inlineHelpText>
+        <label>Request Account&apos;s Service Territory</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Special_Instructions__c</fullName>
+        <externalId>false</externalId>
+        <label>Special Instructions</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>StartDate</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Status</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>StatusCategory</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>StopStartDate</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Subject</fullName>
-        <trackHistory>false</trackHistory>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Subtotal</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>SuggestedMaintenanceDate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Tax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>TotalPrice</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
+    <fields>
+        <fullName>Vehicle_Launch_Terms__c</fullName>
+        <description>Used to capture launch terms as agreed to with the TM/RSD.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Captures the launch terms as agreed to with the TM/RSD. If Future Date/Time, Run List or Other is selected, please fill in the Launch Term Details</inlineHelpText>
+        <label>Vehicle Launch Terms</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>After each vehicle</fullName>
+                    <default>false</default>
+                    <label>After each vehicle</label>
+                </value>
+                <value>
+                    <fullName>End of Visit/After Prescreen</fullName>
+                    <default>false</default>
+                    <label>End of Visit/After Prescreen</label>
+                </value>
+                <value>
+                    <fullName>Future Date/Time</fullName>
+                    <default>false</default>
+                    <label>Future Date/Time</label>
+                </value>
+                <value>
+                    <fullName>Run List</fullName>
+                    <default>false</default>
+                    <label>Run List</label>
+                </value>
+                <value>
+                    <fullName>No Reserve</fullName>
+                    <default>false</default>
+                    <label>No Reserve</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>WOLI_Cannot_Complete_Status_Category_Cnt__c</fullName>
+        <description>WOLI Cannot Complete Status Category Record Count</description>
+        <externalId>false</externalId>
+        <label>WOLI Cannot Complete Status Category Cnt</label>
+        <summaryFilterItems>
+            <field>WorkOrderLineItem.StatusCategory</field>
+            <operation>equals</operation>
+            <value>Cannot Complete</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>WOLI_Completed_Status_Category_Cnt__c</fullName>
+        <description>WOLI Completed Status Category Record Count</description>
+        <externalId>false</externalId>
+        <label>WOLI Completed Status Category Cnt</label>
+        <summaryFilterItems>
+            <field>WorkOrderLineItem.StatusCategory</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>WorkTypeId</fullName>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>WorkType.Name</field>
+                <operation>contains</operation>
+                <value>&quot;Dealership Visit&quot;</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Scheduling_Priority__c</fullName>
+        <description>Converts Work Order&apos;s Priority picklist options to numeric.</description>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(Priority), &apos;Critical&apos;,1, &apos;Very High&apos;,2, &apos;High&apos;,3, &apos;Medium&apos;,4, &apos;Low&apos;,5, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Work Order Scheduling Priority</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X90_Day_Sell_Thru_Rate__c</fullName>
+        <description>Displays key Account information to the VCI.</description>
+        <externalId>false</externalId>
+        <formula>Account.X90_Day_Sell_Thru_Rate__c</formula>
+        <label>90 Day Sell-Thru Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <listViews>
+        <fullName>Akron_OH_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Akron, OH</label>
+        <queue>Akron_OH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Albany_Schenectady_Troy_NY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Albany-Schenectady-Troy, NY</label>
+        <queue>Albany_Schenectady_Troy_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Albuquerque_NM_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Albuquerque, NM</label>
+        <queue>Albuquerque_NM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>All_WorkOrders</fullName>
+        <columns>ServiceTerritory</columns>
+        <columns>Name</columns>
+        <columns>WorkType</columns>
+        <columns>Account</columns>
+        <columns>Status</columns>
+        <columns>CreatedDate</columns>
+        <columns>CreatedBy</columns>
+        <columns>Completed_Date_Time__c</columns>
+        <columns>LastModifiedBy</columns>
+        <columns>LastModifiedDate</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>WorkType</field>
+            <operation>contains</operation>
+            <value>Asset</value>
+        </filters>
         <label>All Work Orders</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Work_Orders_To_Be_Assigned</fullName>
+        <columns>CreatedDate</columns>
+        <columns>Name</columns>
+        <columns>Owner</columns>
+        <columns>Account</columns>
+        <columns>Status</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Work Orders To Be Assigned</label>
+    </listViews>
+    <listViews>
+        <fullName>Arizona_North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Arizona North</label>
+        <queue>Arizona_North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Arizona_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Arizona South</label>
+        <queue>Arizona_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Athens_GA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Athens, GA</label>
+        <queue>Athens_GA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Atlanta_South_GA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Atlanta South, GA</label>
+        <queue>Atlanta_South_GA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Austin_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Austin, TX</label>
+        <queue>Austin_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Baltimore_MD_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Baltimore, MD</label>
+        <queue>Baltimore_MD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Binghamton_SW_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>EndDate</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Binghamton/SW</label>
+        <queue>Binghamton_SW</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Birmingham_AL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Birmingham, AL</label>
+        <queue>Birmingham_AL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Boca_Raton_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Boca Raton, FL Use Fort Lauderdale</label>
+        <queue>Boca_Raton_FL_Use_Fort_Lauderdale</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Boise_ID_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Boise, ID</label>
+        <queue>Boise_ID</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Boston_MA_North_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Boston, MA - North</label>
+        <queue>Boston_MA_North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Boston_MA_South_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Boston, MA - South</label>
+        <queue>Boston_MA_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Boston_North_MA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Boston - West, MA</label>
+        <queue>Boston_West_MA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Buffalo_NY_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>CreatedDate</columns>
+        <columns>Status</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <filterScope>Queue</filterScope>
+        <label>Buffalo, NY</label>
+        <queue>Buffalo_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>California_Central_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>California Central- Use California</label>
+        <queue>California_Central_Use_California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>California_North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Northern California</label>
+        <queue>Northern_California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>California_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>California</label>
+        <queue>California</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Carolinas_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Carolinas</label>
+        <queue>Carolinas</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Central_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Central</label>
+        <queue>Central</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Charleston_SC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Charleston, SC</label>
+        <queue>Charleston_SC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Charlotte_North_NC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Charlotte North, NC</label>
+        <queue>Charlotte_North_NC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Charlotte_South_NC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Charlotte South, NC</label>
+        <queue>Charlotte_South_NC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Chicago_North_IL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Chicago North, IL</label>
+        <queue>Chicago_North_IL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Chicago_South_IL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Chicago South, IL</label>
+        <queue>Chicago_South_IL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Cincinnati_OH_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Cincinnati, OH</label>
+        <queue>Cincinnati_OH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Clearwater_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Clearwater, FL</label>
+        <queue>Clearwater_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Cleveland_OH_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Cleveland, OH</label>
+        <queue>Cleveland_OH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Colorado_Springs_CO_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Colorado Springs, CO</label>
+        <queue>Colorado_Springs_CO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Columbia_SC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Columbia, SC</label>
+        <queue>Columbia_SC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Columbus_OH_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Columbus, OH</label>
+        <queue>Columbus_OH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Corpus_Christi_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Corpus Christi, TX</label>
+        <queue>Corpus_Christi_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DC_Metro_North_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>DC Metro North</label>
+        <queue>DC_Metro_North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DC_Metro_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>DC Metro</label>
+        <queue>DC_Metro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Dallas_Fort_Worth_East_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>DFW - East, TX</label>
+        <queue>DFW_East_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Dallas_Fort_Worth_West_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>DFW - West, TX</label>
+        <queue>DFW_West_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Daytona_Beach_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Daytona Beach, FL- Inactive</label>
+        <queue>Daytona_Beach_FL_Inactive</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Denver_CO_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Denver, CO</label>
+        <queue>Denver_CO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Detroit_MI_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Detroit, MI</label>
+        <queue>Detroit_MI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>El_Paso_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>El Paso, TX</label>
+        <queue>El_Paso_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Erie_PA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Erie, PA</label>
+        <queue>Erie_PA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Eugene_OR_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Eugene, OR</label>
+        <queue>Eugene_OR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Everett_WA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Everett, WA</label>
+        <queue>Everett_WA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Fargo_ND_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Fargo, ND</label>
+        <queue>Fargo_ND</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Florida_North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Florida</label>
+        <queue>Florida</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Florida_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Florida South</label>
+        <queue>Florida_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Fort_Collins_CO_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Fort Collins, CO</label>
+        <queue>Fort_Collins_CO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Fort_Lauderdale_FL_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Fort Lauderdale, FL</label>
+        <queue>Fort_Lauderdale_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Fort_Myers_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Fort Myers, FL</label>
+        <queue>Fort_Myers_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Fort_Wayne_IN_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Fort Wayne, IN</label>
+        <queue>Fort_Wayne_IN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Grand_Rapids_MI_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Grand Rapids, MI</label>
+        <queue>Grand_Rapids_MI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Great_Lakes_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Great Lakes</label>
+        <queue>Great_Lakes</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Harrisburg_PA_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>Harrisburg, PA</label>
+        <queue>Harrisburg_PA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Hartford_New_Haven_CT_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Hartford-New Haven, CT</label>
+        <queue>Hartford_New_Haven_CT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Hayward_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Hayward, CA</label>
+        <queue>Hayward_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Heartland_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Heartland</label>
+        <queue>Heartland</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Houston_North_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Houston - North, TX</label>
+        <queue>Houston_North_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Houston_South_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Houston - South, TX</label>
+        <queue>Houston_South_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Huntsville_AL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Huntsville, AL</label>
+        <queue>Huntsville_AL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Indianapolis_IN_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Indianapolis, IN</label>
+        <queue>Indianapolis_IN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Jacksonville_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Jacksonville, FL</label>
+        <queue>Jacksonville_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Kansas_City_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Kansas City, MO/KS</label>
+        <queue>Kansas_City_MO_KS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Knoxville_TN_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Knoxville, TN</label>
+        <queue>Knoxville_TN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Las_Vegas_NV_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Las Vegas, NV</label>
+        <queue>Las_Vegas_NV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Lexington_KY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Lexington, KY</label>
+        <queue>Lexington_KY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Little_Rock_AR_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Little Rock, AR</label>
+        <queue>Little_Rock_AR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Long_Island_East_NY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Long Island East, NY</label>
+        <queue>Long_Island_East_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Long_Island_Metro_NY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Long Island Metro, NY</label>
+        <queue>Long_Island_Metro_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Louisville_KY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Louisville, KY</label>
+        <queue>Louisville_KY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Lubbock_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Lubbock, TX</label>
+        <queue>Lubbock_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Maine_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Maine</label>
+        <queue>Maine</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Marietta_GA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Marietta, GA</label>
+        <queue>Marietta_GA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Melbourne_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Melbourne, FL</label>
+        <queue>Melbourne_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Memphis_TN_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Memphis, TN</label>
+        <queue>Memphis_TN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Metro_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Northeast Metro</label>
+        <queue>Northeast_Metro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Miami_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Miami, FL</label>
+        <queue>Miami_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mid_Atlantic_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Mid-Atlantic</label>
+        <queue>Mid_Atlantic</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mid_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Mid - South</label>
+        <queue>Mid_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Minnesota_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Minnesota - South</label>
+        <queue>Minnesota_South1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Montana_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Montana</label>
+        <queue>Montana</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mountain_West_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Mountain West</label>
+        <queue>Mountain_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_WorkOrders</fullName>
         <filterScope>Mine</filterScope>
         <label>My Work Orders</label>
     </listViews>
+    <listViews>
+        <fullName>NY_CT_Metro_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>NY/CT Metro</label>
+        <queue>NY_CT_Metro1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NY_Hudson_NY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>NY- Hudson</label>
+        <queue>NY_Hudson</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Nashville_TN_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Nashville, TN</label>
+        <queue>Nashville_TN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Hampshire_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Hampshire</label>
+        <queue>New_Hampshire</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Jersey_Central_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Jersey - Central</label>
+        <queue>New_Jersey_Central</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Jersey_North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Jersey - North</label>
+        <queue>New_Jersey_North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Jersey_Shore_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Jersey - Shore</label>
+        <queue>New_Jersey_Shore</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Jersey_South_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Jersey - South</label>
+        <queue>New_Jersey_South</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Orleans_LA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>New Orleans, LA Use Baton Rouge, LA</label>
+        <queue>New_Orleans_LA_Use_Baton_Rouge_LA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Work_Orders</fullName>
+        <columns>Name</columns>
+        <columns>Account</columns>
+        <columns>Owner</columns>
+        <columns>Subject</columns>
+        <columns>Status</columns>
+        <columns>Priority</columns>
+        <columns>CreatedDate</columns>
+        <columns>CreatedBy</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>New Work Orders</label>
+    </listViews>
+    <listViews>
+        <fullName>Norfolk_Portsmth_Newpt_News_VA_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>Norfolk-Portsmth-Newpt Nws</label>
+        <queue>Norfolk_Portsmth_Newpt_Nws</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>North</label>
+        <queue>North</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Oklahoma_City_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Oklahoma City, OK</label>
+        <queue>Oklahoma_City_OK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Olympia_WA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Olympia, WA</label>
+        <queue>Olympia_WA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Open_Resolutions_Arbitrations_Work_Orders</fullName>
+        <columns>Name</columns>
+        <columns>Account</columns>
+        <columns>Subject</columns>
+        <columns>Status</columns>
+        <columns>WorkType</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WorkType</field>
+            <operation>contains</operation>
+            <value>Arbitration</value>
+        </filters>
+        <label>Open Arb Work Orders</label>
+    </listViews>
+    <listViews>
+        <fullName>Orange_County_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Orange County, CA</label>
+        <queue>Orange_County_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Orlando_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Orlando, FL</label>
+        <queue>Orlando_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Orlando_North_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Orlando North, FL</label>
+        <queue>Orlando_North_FL1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Panhandle_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Pensacola, FL</label>
+        <queue>Pensacola_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Pasadena_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Pasadena, CA</label>
+        <queue>Pasadena_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Philadelphia_PA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Philadelphia, PA</label>
+        <queue>Philadelphia_PA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Philadelphia_South_PA_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Philadelphia South, PA</label>
+        <queue>Philadelphia_South_PA1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Pittsburgh_PA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Pittsburgh, PA</label>
+        <queue>Pittsburgh_PA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Portland_OR_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Portland, OR</label>
+        <queue>Portland_OR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Providence_RI_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Providence, RI</label>
+        <queue>Providence_RI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Raleigh_Durham_NC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Raleigh-Durham, NC</label>
+        <queue>Raleigh_Durham_NC1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Redding_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Redding, CA</label>
+        <queue>Redding_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Richmond_Petersburg_VA_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>Richmond-Petersburg, VA</label>
+        <queue>Richmond_Petersburg_VA1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Rio_Grande_Valley_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Rio Grande Valley, TX</label>
+        <queue>Rio_Grande_Valley_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Riverside_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Riverside, CA</label>
+        <queue>Riverside_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Roanoke_Lynchburg_VA_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Asset_Verification_Number_of_Vehicles__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>Roanoke/Lynchburg, VA</label>
+        <queue>Roanoke_Lynchburg_VA1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Rochester_NY_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <columns>CreatedDate</columns>
+        <columns>Days_Since_Creation__c</columns>
+        <columns>EndDate</columns>
+        <filterScope>Queue</filterScope>
+        <label>Rochester, NY</label>
+        <queue>Rochester_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Sacramento_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Sacramento, CA</label>
+        <queue>Sacramento_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Salt_Lake_City_UT_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Salt Lake City, UT</label>
+        <queue>Salt_Lake_City_UT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>San_Antonio_TX_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>San Antonio, TX</label>
+        <queue>San_Antonio_TX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>San_Bernadino_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>San Bernardino, CA</label>
+        <queue>San_Bernardino_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>San_Diego_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>San Diego, CA</label>
+        <queue>San_Diego_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>San_Francisco_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>San Francisco, CA</label>
+        <queue>San_Francisco_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Santa_Rosa_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Santa Rosa, CA</label>
+        <queue>Santa_Rosa_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Sarasota_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Sarasota, FL</label>
+        <queue>Sarasota_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Shreveport_LA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Shreveport, LA</label>
+        <queue>Shreveport_LA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Spokane_WA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Spokane, WA</label>
+        <queue>Spokane_WA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>St_Louis_MO_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ST Louis, MO/IL</label>
+        <queue>ST_Louis_MO_IL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>St_Louis_North_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>St Louis - North</label>
+        <queue>St_Louis_North1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Stockton_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Stockton, CA</label>
+        <queue>Stockton_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Syracuse_Utica_Elmira_NY_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Syracuse/Utica/Elmira, NY</label>
+        <queue>Syracuse_Utica_Elmira_NY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Tampa_St_Petersburg_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Tampa-St. Petersburg, FL</label>
+        <queue>Tampa_St_Petersburg_FL1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Texas_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Texas West</label>
+        <queue>Texas_West</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Toledo_OH_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Toledo, OH</label>
+        <queue>Toledo_OH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Torrance_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Torrance, CA</label>
+        <queue>Torrance_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Tulsa_OK_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Tulsa, OK</label>
+        <queue>Tulsa_OK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Tuscaloosa_AL_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <columns>StartDate</columns>
+        <columns>EndDate</columns>
+        <columns>Service_Territory__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>Tuscaloosa, AL</label>
+        <queue>Tuscaloosa_AL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Ventura_North_CA_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Ventura North, CA</label>
+        <queue>Ventura_North_CA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Vermont_WorkOrder</fullName>
+        <columns>Name</columns>
+        <columns>Subject</columns>
+        <columns>Account</columns>
+        <columns>Priority</columns>
+        <columns>Status</columns>
+        <filterScope>Queue</filterScope>
+        <label>Vermont</label>
+        <queue>Vermont</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>West_Palm_Beach_FL_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>West Palm Beach, FL</label>
+        <queue>West_Palm_Beach_FL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Wichita_KS_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Wichita, KS</label>
+        <queue>Wichita_KS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Wilmington_NC_WorkOrder</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Wilmington, NC Use Charleston</label>
+        <queue>Wilmington_NC_Use_Charleston</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <searchLayouts>
         <customTabListAdditionalFields>Subject</customTabListAdditionalFields>
         <customTabListAdditionalFields>Account</customTabListAdditionalFields>
         <customTabListAdditionalFields>Priority</customTabListAdditionalFields>
         <customTabListAdditionalFields>Status</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Subject</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Account</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Priority</lookupDialogsAdditionalFields>
@@ -324,5 +3239,42 @@
         <searchResultsAdditionalFields>Priority</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Prevent_True360_appointments</fullName>
+        <active>true</active>
+        <description>Prevents the creation of True360 Work Orders based on the Account&apos;s &quot;Halt True360 Appointments&quot; field.</description>
+        <errorConditionFormula>AND(WorkType.Work_Type_Unique_ID__c = &apos;true360&apos;,  Account.Halt_True360_Appointments__c,  ISNEW())</errorConditionFormula>
+        <errorMessage>This dealership is not approved for any True 360 inspections at this time.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Prevent_VCIs_LCs_from_Canceling_WO_Jobs</fullName>
+        <active>true</active>
+        <description>Prevent VCI&apos;s from Canceling WO Jobs.
+Prevent LC&apos;s from Canceling some WO Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
+        <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
+        <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Prevent_Work_Type_Change</fullName>
+        <active>true</active>
+        <description>Prevent Work Type from being changed</description>
+        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
+        <errorMessage>Work Type CANNOT be changed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Launch_Term_Details</fullName>
+        <active>true</active>
+        <description>Ensures that users fill in the Field: Launch Term Details if the Field: Vehicle Launch Terms is set to either of the following: Future Date/Time, Run List, or Other.</description>
+        <errorConditionFormula>AND(
+OR(
+ISPICKVAL(Vehicle_Launch_Terms__c, &apos;Future Date/Time&apos;),
+ISPICKVAL(Vehicle_Launch_Terms__c, &apos;Run List&apos;),
+ISPICKVAL(Vehicle_Launch_Terms__c, &apos;Other&apos;)
+),
+ISBLANK(Launch_Term_Details__c)
+)</errorConditionFormula>
+        <errorDisplayField>Launch_Term_Details__c</errorDisplayField>
+        <errorMessage>Please fill in the Launch Terms Details for Future Date/Time, Run List or Other terms.</errorMessage>
+    </validationRules>
 </CustomObject>

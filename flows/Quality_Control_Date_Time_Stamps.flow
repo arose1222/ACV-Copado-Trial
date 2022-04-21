@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Assign_Date_Time_Formula</name>
+        <label>Assign Date Time Formula</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Date_Time_QC_Closed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NowFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_QC_Record</targetReference>
+        </connector>
+    </assignments>
+    <description>populates the date time QC record is marked closed - intended to overw</description>
+    <formulas>
+        <name>NowFormula</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <interviewLabel>Quality Control - Date Time Stamps {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quality Control - Date Time Stamps</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the QC Record with Date Time Closed</description>
+        <name>Update_QC_Record</name>
+        <label>Update QC Record</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Date_Time_QC_Closed__c</field>
+            <value>
+                <elementReference>NowFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Date_Time_Formula</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </filters>
+        <object>Quality_Control__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

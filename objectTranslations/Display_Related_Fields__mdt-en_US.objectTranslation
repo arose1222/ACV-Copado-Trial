@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Display Related Fields Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Display Related Fields Settings</value>
+    </caseValues>
+    <fields>
+        <help><!-- Type of operation that will be performed to fetch the fields value. --></help>
+        <label><!-- Action Type --></label>
+        <name>Action_Type__c</name>
+        <picklistValues>
+            <masterLabel>Apex Class</masterLabel>
+            <translation><!-- Apex Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOQL</masterLabel>
+            <translation><!-- SOQL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Execute the action based on the Action Type. --></help>
+        <label><!-- Action --></label>
+        <name>Action__c</name>
+    </fields>
+    <fields>
+        <help><!-- The order you would like to use to display the fields on the LWC. --></help>
+        <label><!-- Fields Display Order --></label>
+        <name>Fields_Display_Order__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

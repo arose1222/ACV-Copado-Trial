@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Condition Report Review Completed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Condition Report Review Completed</name>
+    <style>none</style>
+    <subject>Completed Condition Report Prescreen for VIN# {!Condition_Report_Prescreen__c.Vin__c}</subject>
+    <textOnly>ACV Auctions
+
+
+Your condition report Prescreen for VIN# {!Condition_Report_Prescreen__c.Vin__c} has been completed. 
+
+{!Condition_Report_Prescreen__c.Vehicle_Information__c}
+Please be advised that you are now able to proceed with launching the vehicle for auction. 
+
+Thank You!
+
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

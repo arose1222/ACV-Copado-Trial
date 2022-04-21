@@ -1,0 +1,40 @@
+<apex:page standardController="CSIRCD__ATTUSWDSAccount__c" extensions="CSIRCD.ATTUSEditLookupCtrlAccount" showHeader="true" sidebar="true" >
+    <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock title="CSI WatchDOG Lookup" >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <b>Lookup By:</b>&nbsp;
+            <apex:outputText title="Lookup By" value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Lookup_By__c}"/><br /><br />
+            <b>List Description:</b>&nbsp;
+            <apex:outputText title="List Description" value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__List_Description__c}"/><br /><br />
+            <b>List Date:</b>&nbsp;
+            <apex:outputText title="List Date" value="{0,date,MM/dd/yyyy}">
+                <apex:param value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__List_Date__c}" />
+            </apex:outputText><br /><br />
+            <b>Name Searched:</b>&nbsp;
+            <apex:outputText title="Name Searched" value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Name_Searched__c}"/><br /><br />
+            <b>Address Type:</b>&nbsp;
+            <apex:outputText title="Address Type" value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Address_Type__c}"/><br /><br />
+            <b>Address Searched:</b>&nbsp;
+            <apex:outputText title="Address Searched" value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Search_Street__c} {!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Search_City__c} {!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Search_State__c} {!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Search_Postal_Code__c} {!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Search_Country__c}" /><br /><br />
+            <b>Review Status:</b>&nbsp;
+            <apex:inputField value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Review_Status__c}" /><br /><br />
+            <b>Last Reviewed:</b>&nbsp;
+            <apex:outputtext value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Last_Reviewed__c}" /><br /><br />
+            <b>Comment: (255 chars. max.)</b><br/>&nbsp;
+            <apex:inputField value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Comment__c}" style="width: 70%;height:30px" /><br /><br />
+            <apex:inputField value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Account__c}" rendered="false"/>
+        </apex:pageBlock>
+        <apex:pageBlock title="Results Returned">
+            <apex:pageblockSection >
+                <apex:outputText value="{!resHTML}" escape="false" />
+            </apex:pageblockSection>
+            <apex:pageblockSection >
+                <apex:outputText value="{!CSIRCD__ATTUSWDSAccount__c.CSIRCD__Result_Node__c}" rendered="false"/>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:page StandardController="alycecom__Gift__c" extensions="alycecom.GiftChooseOptionSingleExtension" sidebar="false" showHeader="false">
+    <apex:include pageName="alycecom__AuthorizationForm"/>
+    <script type="text/javascript">
+        function closeModal() {
+            try {
+                parent.closeModalDialog();
+            } catch (err) {
+                gift_url = '{!BaseURL}/{!alycecom__Gift__c.Id}';
+                window.parent.location.href = gift_url;
+            }
+        }
+    </script>
+    <apex:form id="MainForm">
+        <apex:outputPanel >
+            <apex:outputPanel rendered="{!IF((alycecom__Gift__c.alycecom__Status_Id__c=20),true,false)}">
+                <apex:iframe src="{!$Setup.alycecom__Alyce_Endpoints__c.alycecom__AlyceBase__c}/salesforce/v2/iframe/open/gift-send?sf_id={!SFId}&sf_version={!SFVersion}&token={!AccessToken}&payload={!URLENCODE(PayloadJson)}&cb_success={!BaseURL}/apex/alycecom__GiftChooseOptionsUpdate&cb_error={!BaseURL}/apex/alycecom__GiftChooseOptionsUpdate" scrolling="true" Id="AlyceIframeBody"/>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

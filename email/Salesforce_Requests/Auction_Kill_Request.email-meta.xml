@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Template for Auction Kill Request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>Auction Kill Request</name>
+    <style>freeForm</style>
+    <subject>Auction Kill Request Has Been Issued</subject>
+    <textOnly>A Request Has Been Made to Kill an Auction
+Requester: {!Salesforce_Request__c.OwnerFullName}
+Related to: {!Salesforce_Request__c.My_Request_Is_Related_To__c}
+Brief Description: {!Salesforce_Request__c.Name}
+You can view details by visiting the ticket: {!Salesforce_Request__c.Link}
+Keep in mind that any Chatter comments made on the ticket will be visible to the requester. If you would like to communicate with another team member, use the @ mention feature in chatter to loop in others.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

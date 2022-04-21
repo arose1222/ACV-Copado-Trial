@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <name>Assign_Add_Tags</name>
+        <label>Assign Add Tags</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>form_Add_Arb</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Transport</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Titles</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_CR_VCI</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Price</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Location</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_CustomerService</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Payments</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Happy</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Product_Feedback</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Dealmaker</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTags</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>form_Add_Competition</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Tag</targetReference>
+        </connector>
+    </assignments>
+    <formulas>
+        <name>CommentTags</name>
+        <dataType>String</dataType>
+        <expression>IF( CONTAINS({!$Record.DelightedInc__Comment__c}, &quot;arbitr:claim:arb:ration&quot;),&apos;Arbitration&apos;,&apos;Other&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Arb</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsArb} = TRUE, &apos;Arbitration, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Competition</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContains_Competition} = TRUE, &apos;Competition, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_CR_VCI</name>
+        <dataType>String</dataType>
+        <expression>IF({!formContainsCR_VCI} = TRUE, &apos;CR/VCI, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_CustomerService</name>
+        <dataType>String</dataType>
+        <expression>IF({!formContains_Customer_Service} = TRUE, &apos;Customer Service, &apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Dealmaker</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsDealmaker} = TRUE,  &apos;Dealmaker, &apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Happy</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsHappy} = TRUE, &apos;Happy Customer, &apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Location</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsLocation} = TRUE, &apos;Location, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Payments</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsPayments} = TRUE, &apos;Payments, &apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Price</name>
+        <dataType>String</dataType>
+        <expression>IF({!formContainsPrice} = TRUE, &apos;Price, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Product_Feedback</name>
+        <dataType>String</dataType>
+        <expression>IF( {!formContainsProduct_Feedback} = TRUE, &apos;Product Feedback, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Titles</name>
+        <dataType>String</dataType>
+        <expression>IF({!formContainsTitle} = TRUE, &apos;Titles, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Add_Transport</name>
+        <dataType>String</dataType>
+        <expression>IF({!formContainsTransport} = TRUE, &apos;Transport, &apos;,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>form_MultipleOps_Check</name>
+        <dataType>Boolean</dataType>
+        <expression>IF( {!form_Ops_Sum} &gt; 1, TRUE, FALSE)</expression>
+    </formulas>
+    <formulas>
+        <name>form_Ops_Sum</name>
+        <dataType>Number</dataType>
+        <expression>IF( {!formContainsArb} = TRUE, 1, 0) + 
+IF( {!formContainsTitle}= TRUE, 1, 0) + 
+IF( {!formContainsPayments} = TRUE, 1, 0) +
+IF( {!formContainsTransport}= TRUE, 1, 0)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>formContains_Competition</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;adessa&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;manheim&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;trade rev&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;alli&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;competit&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContains_Customer_Service</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;great guy&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;rep&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;repres&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;comun&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;friendli&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;custom servic&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;custom satisfact&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;respond&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;unprofession&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;response&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;staff&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;carr&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;bad experi&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;service&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;personnel&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;zero help&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;peopl&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;team&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;call back&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;certain time&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;manager&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;busiest hour&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;awesome&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;phone call&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;commun&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;call&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;follow&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;contact&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;crew&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;profession&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;person&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;associ&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;agents&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;servic&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;support&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsArb</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;arbitr&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;arb&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;claim&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;ration&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsCR_VCI</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;condit report&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;inspect&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;inspector&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;describ&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;descript&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;writer&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;cr writer&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;rust&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;pictur&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;batteri&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;engin issu&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transmiss&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;mechan&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;leak&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;deliveri car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;cr&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;major issu&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;vehicl report&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;airbag&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;vci&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transmission&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;frame&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;tailgate&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;condit&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsDealmaker</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;negoti&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;agreement&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;steep fee&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsHappy</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;easi deal&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;versatil&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;best&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;profit&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;great compani&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;great concept&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;easi use&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;great experi&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;eas use&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;great select&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;game hanger&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;pleasur&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;good job&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;leader&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;easi busi&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsLocation</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;east coast&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;west coast&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;Arkansas&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;south&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;mid west&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;california&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsPayments</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;paid fast&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;payment&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;fund&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;slip&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsPrice</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;expens&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;price&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;overpr&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;reason fee&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;buy fee&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;steep fee&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsProduct_Feedback</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;know buy&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;like see&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;retail&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;high mileag&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;local buyer&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;bar code scan&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;vehicl histori&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;seller car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;notif&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;local auction&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;sell car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;sell inventori&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;live apprais&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;make offer&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;save vehicl&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;high bidder&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;retail&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;login&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;design&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;carfax&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;better inventori&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;site&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;log&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;UI&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;need car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;leas inventori&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;nada&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;mobil app&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;preview car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;sold elsewher&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;retail&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;search&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;websit&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;list seller&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;interfac&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;sold unsold&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;live apprais&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;complic&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;junk car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;cancel sale&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;make deal&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;filter&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;counter&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;big dealer&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;bill sale&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;alerts&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;bluebook&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;schedul&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;ipad&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsTitle</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS(LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;title&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;lien&apos;),
+AND(
+     CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), {!formTA}),
+     NOT(CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transportation&apos;))),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl attach&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl absent&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formContainsTransport</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transport&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;vehicl pick&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;ship&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;car get pick&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;week deliv&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;vehicl deliv&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;receiv car&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;long deliveri&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;deliveri&apos;),
+CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transpori&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formTA</name>
+        <dataType>String</dataType>
+        <expression>&quot; &quot; + &quot;ta&quot; + &quot; &quot;</expression>
+    </formulas>
+    <formulas>
+        <name>trimTags</name>
+        <dataType>String</dataType>
+        <expression>IF ( RIGHT({!varTags}, 2) = &apos;, &apos; , 
+       LEFT({!varTags}, LEN({!varTags})-2), {!varTags})</expression>
+    </formulas>
+    <interviewLabel>Delighted Response Before Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Delighted Response Before Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Tag</name>
+        <label>Update Tag</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Description_Tag__c</field>
+            <value>
+                <elementReference>trimTags</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Multiple_Ops__c</field>
+            <value>
+                <elementReference>form_MultipleOps_Check</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Add_Tags</targetReference>
+        </connector>
+        <object>DelightedInc__Delighted_Response__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varTags</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

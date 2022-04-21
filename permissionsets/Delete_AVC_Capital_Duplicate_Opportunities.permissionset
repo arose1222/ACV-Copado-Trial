@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allow for the deletion of opportunities that are clear duplicates</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Delete AVC Capital Duplicate Opportunities</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Opportunity</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Opportunity.ACV_Capital_Referral</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

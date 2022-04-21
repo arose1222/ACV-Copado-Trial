@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Account Related Calls Additional Fields --></label>
+        <name>Gong__Account_Related_Calls</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Contact Participated Calls Additional Fields --></label>
+        <name>Gong__Contact_Participated_Calls</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Lead Participated Calls Additional Fields --></label>
+        <name>Gong__Lead_Participated_Calls</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Opportunity Related Calls Additional Fields --></label>
+        <name>Gong__Opp_Related_Calls</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Duration (Min.) --></label>
+        <name>Gong__Call_Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration (Sec.) --></label>
+        <name>Gong__Call_Duration_sec__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ended --></label>
+        <name>Gong__Call_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gong ID --></label>
+        <name>Gong__Call_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Score --></label>
+        <name>Gong__Call_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Started --></label>
+        <name>Gong__Call_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direction --></label>
+        <name>Gong__Direction__c</name>
+        <picklistValues>
+            <masterLabel>Conference</masterLabel>
+            <translation><!-- Conference --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound</masterLabel>
+            <translation><!-- Inbound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound</masterLabel>
+            <translation><!-- Outbound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Auto computed field that is used in reports for aggregations. --></help>
+        <label><!-- Gong Count --></label>
+        <name>Gong__Gong_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>Gong__Language__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media --></label>
+        <name>Gong__Media__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Amount --></label>
+        <name>Gong__Opp_Amount_Time_of_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Close Date --></label>
+        <name>Gong__Opp_Close_Date_Time_Of_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Forecast Category --></label>
+        <name>Gong__Opp_Forecast_Category_Time_Of_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Probability --></label>
+        <name>Gong__Opp_Probability_Time_Of_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Stage --></label>
+        <name>Gong__Opp_Stage_Time_Of_Call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Stage Now --></label>
+        <name>Gong__Opportunity_Stage_Now__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participants Emails --></label>
+        <name>Gong__Participants_Emails__c</name>
+    </fields>
+    <fields>
+        <label><!-- Playbook match --></label>
+        <name>Gong__Playbook_match__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pricing Duration --></label>
+        <name>Gong__Pricing_Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Account --></label>
+        <name>Gong__Primary_Account__c</name>
+        <relationshipLabel><!-- Gong Conversations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Opportunity --></label>
+        <name>Gong__Primary_Opportunity__c</name>
+        <relationshipLabel><!-- Gong Conversations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary User --></label>
+        <name>Gong__Primary_User__c</name>
+        <relationshipLabel><!-- Conversations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Related Accounts --></label>
+        <name>Gong__Related_Accounts_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Action Items --></label>
+        <name>Gong__Related_Action_Items_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Agenda --></label>
+        <name>Gong__Related_Agenda_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Contacts --></label>
+        <name>Gong__Related_Contacts_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Invitees --></label>
+        <name>Gong__Related_Invitees_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Leads --></label>
+        <name>Gong__Related_Leads_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Notes --></label>
+        <name>Gong__Related_Notes_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Opportunities --></label>
+        <name>Gong__Related_Opportunities_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Participants --></label>
+        <name>Gong__Related_Participants_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Scorecards --></label>
+        <name>Gong__Related_Scorecards_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Stats --></label>
+        <name>Gong__Related_Stats_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Topics --></label>
+        <name>Gong__Related_Topics_json__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Trackers --></label>
+        <name>Gong__Related_Trackers_json__c</name>
+    </fields>
+    <fields>
+        <help><!-- if( Gong__Contact_1__c  &lt;&gt; Null, 
+    HYPERLINK (
+       LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) +
+            Gong__Contact_1__c ,
+        Gong__Contact_1__r.FirstName +  Gong__Contact_1__r.LastName, &apos;_self&apos; --></help>
+        <label><!-- Related to --></label>
+        <name>Gong__Related_to__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope --></label>
+        <name>Gong__Scope__c</name>
+        <picklistValues>
+            <masterLabel>External</masterLabel>
+            <translation><!-- External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal</masterLabel>
+            <translation><!-- Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- System --></label>
+        <name>Gong__System__c</name>
+    </fields>
+    <fields>
+        <label><!-- Talk Time Them --></label>
+        <name>Gong__Talk_Time_Them__c</name>
+    </fields>
+    <fields>
+        <label><!-- Talk Time Us --></label>
+        <name>Gong__Talk_Time_Us__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title (Full Conversation Title) --></label>
+        <name>Gong__Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>Gong__View_call__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduled --></label>
+        <name>Gong__scheduled__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- View_Call_Button --></label>
+        <name>Gong__View_Call_Button</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Call_link --></label>
+        <name>Gong__View_Call_link</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Transcript_button --></label>
+        <name>Gong__View_Transcript_button</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Transcript_link --></label>
+        <name>Gong__View_Transcript_link</name>
+    </webLinks>
+</CustomObjectTranslation>

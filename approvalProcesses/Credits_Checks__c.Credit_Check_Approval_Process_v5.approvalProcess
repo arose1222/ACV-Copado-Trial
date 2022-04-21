@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Amount_Requested__c</field>
+        <field>Budget_Name__c</field>
+        <field>Explanation__c</field>
+        <field>Payment_Type__c</field>
+        <field>Reason__c</field>
+        <field>Root_Cause__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Greater_NY</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Great Lakes&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Great Lakes</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Great Lakes Assignment</label>
+        <name>Great_Lakes_Assignment</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Marketing</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Marketing&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Marketing</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Marketing Assignment</label>
+        <name>Marketing_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Mid_West</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Central&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Central</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Central Assignment</label>
+        <name>Central_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_ACV_Central</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;ACV Central&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>ACV Central</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>ACV Central Assignment</label>
+        <name>ACV_Central_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Carolinas</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Carolinas&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Carolinas</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Carolinas Assignment</label>
+        <name>Carolinas_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Southeast</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Florida</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Florida</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Florida Assignment</label>
+        <name>Florida_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Mid_Atlantic</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Mid - Atlantic&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Mid - Atlantic</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Mid - Atlantic Assignment</label>
+        <name>Mid_Atlantic_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Mid_South</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Mid - South</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Mid - South</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Mid - South Assignment</label>
+        <name>Mid_South_Assignment</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Mountain_West</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Mountain West&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Mountain West</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Mountain West</label>
+        <name>Mountain_West</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_New_England</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for New England&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>New England</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>New England</label>
+        <name>New_England</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_NJ_Philly_Metro</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;NJ-Philly Metro&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>NJ-Philly Metro</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>NJ-Philly Metro</label>
+        <name>NJ_Philly_Metro</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Northeast_Metro</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Northeast Metro&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Northeast Metro</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Northeast Metro</label>
+        <name>Northeast_Metro</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Northern_California</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Northern California&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Northern California</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Northern California</label>
+        <name>Northern_California</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Northwest</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Northwest&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Northwest</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Northwest</label>
+        <name>Northwest</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Ohio_Valley</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Ohio Valley&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Ohio Valley</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Ohio Valley</label>
+        <name>Ohio_Valley</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Southern_California</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Southern California&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Southern California</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Southern California</label>
+        <name>Southern_California</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Southwest</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Southwest&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Southwest</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Southwest</label>
+        <name>Southwest</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Texas_East</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Texas East&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Texas East</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Texas East</label>
+        <name>Texas_East</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Texas_West</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Texas West&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Texas West</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Texas West</label>
+        <name>Texas_West</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_California</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This is the queue to assign to California</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>California</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>California</label>
+        <name>California</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Heartland</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Heartland&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Heartland</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Credit Heartland</label>
+        <name>Credit_Heartland</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_Tennessee_Valley</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;Tennesse Valley&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>Tennessee Valley</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Credit_Tennessee Valley</label>
+        <name>Credit_Tennessee_Valley</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Credit_North</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>This queue is for &apos;North&apos;</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Credits_Checks__c.Group_Name__c</field>
+                <operation>equals</operation>
+                <value>North</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Credit North</label>
+        <name>Credit_North</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>If amount requested is over set amount and/or amount is over department budget, credit/check record needs to be approved by certain queue members</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <finalApprovalActions>
+        <action>
+            <name>Update_ACV_User_Id</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Update_Amount_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Update_Approval_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Update_Denial_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <label>Credit &amp; Check Approval Process v5</label>
+    <processOrder>1</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sends email informing of an account needing a title consultant</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Notify of Needed Consultant</name>
+    <style>none</style>
+    <subject>Please assign a Consultant to Account</subject>
+    <textOnly>A Customer Inquiry was just created related to {!Customer_Inquiry__c.Account__c}, but there is no member of your team assigned to the account. Please visit the page and populate Title Consultant ASAP; the Customer Inquiry will automatically be assigned to that user.
+
+640 Ellicott St #321
+Buffalo, NY 14203
+www.acvauctions.com
+
+Want to change how you receive these emails? You can update your preferences or unsubscribe.
+
+Copyright © 2018 ACV Auctions, All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

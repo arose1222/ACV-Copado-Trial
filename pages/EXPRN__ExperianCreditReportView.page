@@ -1,0 +1,58 @@
+<apex:page standardcontroller="EXPRN__Credit_Report__c" extensions="EXPRN.ExperianCreditReportViewController" sidebar="false" showHeader="false" contentType="{!if(isCanadaReport||isCanadaDIQReport,'text/html', 'application/xml')}" >
+
+<apex:form id="canadaDIQReportBandForm" rendered="{!isCanadaDIQReport}">
+	<div style="overflow:hidden; position: absolute;top:10px;left:20px;right:0px;bottom:0px" >
+          
+                	<table width="80%" cellspacing="0" style="border: thin solid {!DECISION_COLOR};" class="section">
+						<colgroup style="width:50%"/>
+						<colgroup style="width:50%"/>
+						<tbody style="font-family: arial; font-size: 9pt;">
+							<tr>
+								<td>
+									<div style="padding: 0 5px;">
+										<img style="vertical-align:middle; border:none" src="/resource/1425395019000/EXPRN__EXPSTYLENEW/images/{!DECISION_IMG}"/>
+										<b>&nbsp;&nbsp;Credit Decision:&nbsp;<span style="color:{!DECISION_COLOR};">{!DECISION}</span>
+										</b>
+										<div style="clear:both">
+											<span class="label">Decision Action:&nbsp;</span>{!DECISION}</div>
+										<div style="clear:both">
+											<span class="label">Recommended Credit Limit:&nbsp;</span>{!RECOMMENDED_LIMIT}</div>
+										<br/>
+										<div style="clear:both">
+										<!-- 	<a href="#" onclick="goDecisionDetails()" style="text-decoration: none; color:#0193DC;">Decision details</a>&nbsp; | &nbsp;<a href="#" onclick="goOverrideDecision()" style="text-decoration: none; color:#0193DC;">Override Decision</a> -->
+										</div>
+										<br/>
+										<div style="clear:both"/>
+									</div>
+								</td>
+								<td style="vertical-align: top;">
+									<div style="padding: 0 5px;">
+										<div>
+											<span style="clear:both;float:right" >Decision Date:&nbsp;{!DECISION_DATE}&nbsp;&nbsp;</span>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+  </apex:form>
+
+  <apex:form id="canadaDIQReportForm" rendered="{!isCanadaDIQReport}">  
+  	 			<iframe src="{!candaReportURL}"  frameborder="0"  style="overflow:hidden; height: 1000%;  width: 150%; position: absolute;top:130px;left:0px;right:0px;bottom:0px" height="1000" width="150"></iframe>
+  </apex:form>
+  
+  <apex:form id="canadaReportForm" rendered="{!isCanadaReport}">  
+  <apex:actionFunction name="canReDirect" action="{!getCanadaRedir}" />
+        <script>
+            window.onload=function()
+            {
+				canReDirect();
+            };
+        </script>
+  </apex:form>
+
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="{!styleURL}"?>
+{!xmldata}
+</apex:page>

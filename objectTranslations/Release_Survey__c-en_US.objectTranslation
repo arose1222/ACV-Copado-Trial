@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Release Survey</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Release Surveys</value>
+    </caseValues>
+    <fields>
+        <label><!-- Alert Salesforce Slack Channel --></label>
+        <name>Alert_Salesforce_Slack_Channel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Atlassian link --></label>
+        <name>Atlassian_link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please capitalize first letter for the sake of consistent reporting! Use commas to separate multiple object entries --></help>
+        <label><!-- Backfilled Object(s) --></label>
+        <name>Backfilled_Object__c</name>
+    </fields>
+    <fields>
+        <help><!-- Describe this release at a high level for context --></help>
+        <label><!-- Brief Functionality Description --></label>
+        <name>Brief_Functionality_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Set Link --></label>
+        <name>Change_Set_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Demo provided date --></label>
+        <name>Demo_provided_date__c</name>
+    </fields>
+    <fields>
+        <help><!-- By default, select Successful until another condition applies --></help>
+        <label><!-- Deployment Status --></label>
+        <name>Deployment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Broke other functionality</masterLabel>
+            <translation><!-- Broke other functionality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bug identified</masterLabel>
+            <translation><!-- Bug identified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New requirements identified</masterLabel>
+            <translation><!-- New requirements identified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requirement missed</masterLabel>
+            <translation><!-- Requirement missed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reverted deployment</masterLabel>
+            <translation><!-- Reverted deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Successful</masterLabel>
+            <translation><!-- Successful --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This references the member of the Enterprise Applications team who gave deployment approval --></help>
+        <label><!-- Enterprise App Approver --></label>
+        <name>Enterprise_App_Approver__c</name>
+        <relationshipLabel><!-- Release Surveys (Enterprise App Approver) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Estimated number of days it will take to complete the proposed work - Start of work to Prod --></help>
+        <label><!-- Estimated Days to Build --></label>
+        <name>Estimated_Days_to_Build__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date submitter expects to begin working on submitted work --></help>
+        <label><!-- Estimated Start Date --></label>
+        <name>Estimated_Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This link defines this release as a fix for a previous release --></help>
+        <label><!-- Fix for Previous Release --></label>
+        <name>Fix_for_Previous_Release__c</name>
+        <relationshipLabel><!-- Releases to fix issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Functionality Age --></label>
+        <name>Functionality_Age__c</name>
+        <picklistValues>
+            <masterLabel>Existing Only</masterLabel>
+            <translation><!-- Existing Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New &amp; Existing</masterLabel>
+            <translation><!-- New &amp; Existing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Only</masterLabel>
+            <translation><!-- New Only --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Includes Batch/Schedulable Logic --></label>
+        <name>Includes_Batch_Schedulable_Logic__c</name>
+    </fields>
+    <fields>
+        <help><!-- Visual code (HTML, XML, Aura, Lightning, etc..) counts as code! --></help>
+        <label><!-- Includes Code? --></label>
+        <name>Includes_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes Flows? --></label>
+        <name>Includes_Flows__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes Formula Fields? --></label>
+        <name>Includes_Formula_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is for modifications (or creation) directly on the integration process, not just related fields/objects indirectly used by integrations --></help>
+        <label><!-- Includes Integration Functionality? --></label>
+        <name>Includes_Integration_Functionality__c</name>
+    </fields>
+    <fields>
+        <help><!-- LWC = Lightning Web Component --></help>
+        <label><!-- Includes LWC? --></label>
+        <name>Includes_LWC__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is for the traditional Lightning Components, not Lightning Web Components (LWC) --></help>
+        <label><!-- Includes Lightning Components? --></label>
+        <name>Includes_Lightning_Components__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes Process Builders? --></label>
+        <name>Includes_Process_Builders__c</name>
+    </fields>
+    <fields>
+        <help><!-- This includes both new and updated profile/permission sets --></help>
+        <label><!-- Includes Profile/Permission changes? --></label>
+        <name>Includes_Profile_Permission_changes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes Validation Rule? --></label>
+        <name>Includes_Validation_Rule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes Visualforce? --></label>
+        <name>Includes_Visualforce__c</name>
+    </fields>
+    <fields>
+        <label><!-- Includes descriptions on new fields? --></label>
+        <name>Includes_descriptions_on_new_fields__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Success? --></label>
+        <name>Is_Success__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is a backfill required? --></label>
+        <name>Is_a_backfill_required__c</name>
+    </fields>
+    <fields>
+        <help><!-- Briefly Describe the issue when a Release Survey is marked as anything besides &quot;Successful&quot; --></help>
+        <label><!-- Issue Described --></label>
+        <name>Issue_Described__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lines of Code --></label>
+        <name>Lines_of_Code__c</name>
+        <picklistValues>
+            <masterLabel>1 - 100</masterLabel>
+            <translation><!-- 1 - 100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>101 - 250</masterLabel>
+            <translation><!-- 101 - 250 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1500+</masterLabel>
+            <translation><!-- 1500+ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>251 - 750</masterLabel>
+            <translation><!-- 251 - 750 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>751 - 1500</masterLabel>
+            <translation><!-- 751 - 1500 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Defined by the number of items in a Change set/metadata deployment --></help>
+        <label><!-- Number of Components --></label>
+        <name>Number_of_Components__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11 - 20</masterLabel>
+            <translation><!-- 11 - 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>150+</masterLabel>
+            <translation><!-- 150+ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 - 10</masterLabel>
+            <translation><!-- 2 - 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21 - 35</masterLabel>
+            <translation><!-- 21 - 35 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36 - 70</masterLabel>
+            <translation><!-- 36 - 70 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>71 - 150</masterLabel>
+            <translation><!-- 71 - 150 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other --></label>
+        <name>Other__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required for the Deployment survey - this field should link back to that record --></help>
+        <label><!-- Pre-Development Survey --></label>
+        <name>Pre_Development_Survey__c</name>
+        <relationshipLabel><!-- Release Surveys (Pre-Development Survey) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Problem to Solve --></label>
+        <name>Problem_to_Solve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Solution --></label>
+        <name>Proposed_Solution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Tools --></label>
+        <name>Proposed_Tools__c</name>
+        <picklistValues>
+            <masterLabel>API Call Out</masterLabel>
+            <translation><!-- API Call Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>API Endpoint</masterLabel>
+            <translation><!-- API Endpoint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apex</masterLabel>
+            <translation><!-- Apex --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer</masterLabel>
+            <translation><!-- Consumer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Field</masterLabel>
+            <translation><!-- Custom Field --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Object</masterLabel>
+            <translation><!-- Custom Object --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flow</masterLabel>
+            <translation><!-- Flow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LWC</masterLabel>
+            <translation><!-- LWC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>List View/Reporting</masterLabel>
+            <translation><!-- List View/Reporting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permission Sets</masterLabel>
+            <translation><!-- Permission Sets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Builder</masterLabel>
+            <translation><!-- Process Builder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record Types</masterLabel>
+            <translation><!-- Record Types --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trigger</masterLabel>
+            <translation><!-- Trigger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Rule</masterLabel>
+            <translation><!-- Validation Rule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workflow Rule</masterLabel>
+            <translation><!-- Workflow Rule --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Release Date --></label>
+        <name>Release_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release Survey Score --></label>
+        <name>Release_Survey_Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicate a release is being done on behalf of another individual - typically a contractor --></help>
+        <label><!-- Released on Behalf of --></label>
+        <name>Released_on_Behalf_of__c</name>
+        <relationshipLabel><!-- Release Surveys (Released on Behalf of) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requests &amp; Inquiries --></label>
+        <name>Requests_Inquiries__c</name>
+        <relationshipLabel><!-- Release Surveys --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Pending = yet to be reviewed
+Approved = Good to start work
+Re-Evaluate = Work with team mates to discuss further - move back to pending o re-submit. --></help>
+        <label><!-- Review Status --></label>
+        <name>Review_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-Evaluate</masterLabel>
+            <translation><!-- Re-Evaluate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Schema Changes references changes to Salesforce Objects and their respective fields, not the data or validations around them --></help>
+        <label><!-- Schema Changes? --></label>
+        <name>Schema_Changes__c</name>
+        <picklistValues>
+            <masterLabel>Field Type Change</masterLabel>
+            <translation><!-- Field Type Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Field</masterLabel>
+            <translation><!-- New Field --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Field and Field Type Change</masterLabel>
+            <translation><!-- New Field and Field Type Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Field and New Object</masterLabel>
+            <translation><!-- New Field and New Object --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Object</masterLabel>
+            <translation><!-- New Object --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Object and Field Type Change</masterLabel>
+            <translation><!-- New Object and Field Type Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This references a stakeholder who provided sign-off on the work --></help>
+        <label><!-- Sign-off provided by --></label>
+        <name>Sign_off_provided_by__c</name>
+        <relationshipLabel><!-- Release Surveys (Sign-off provided by) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Who has assigned the work for this issue or who has identified the problem? (Typically PM) --></help>
+        <label><!-- Sponsor --></label>
+        <name>Sponsor__c</name>
+        <relationshipLabel><!-- Release Surveys (Sponsor) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Successful Release Status? --></label>
+        <name>Successful_Release_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team --></label>
+        <name>Team__c</name>
+        <picklistValues>
+            <masterLabel>ACV Capital</masterLabel>
+            <translation><!-- ACV Capital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Operations</masterLabel>
+            <translation><!-- Business Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enterprise Applications Core Team</masterLabel>
+            <translation><!-- Enterprise Applications Core Team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT</masterLabel>
+            <translation><!-- IT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Identity &amp; Orgs</masterLabel>
+            <translation><!-- Identity &amp; Orgs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inspection Platform</masterLabel>
+            <translation><!-- Inspection Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketplace, vAuto &amp; Private Auctions</masterLabel>
+            <translation><!-- Marketplace, vAuto &amp; Private Auctions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quality Engineering</masterLabel>
+            <translation><!-- Quality Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Domain</masterLabel>
+            <translation><!-- Sales Domain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scheduling</masterLabel>
+            <translation><!-- Scheduling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unaligned Work</masterLabel>
+            <translation><!-- Unaligned Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Valuation</masterLabel>
+            <translation><!-- Valuation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vehicle Integration</masterLabel>
+            <translation><!-- Vehicle Integration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Training --></label>
+        <name>Training__c</name>
+        <picklistValues>
+            <masterLabel>Training not provided</masterLabel>
+            <translation><!-- Training not provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training not required</masterLabel>
+            <translation><!-- Training not required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training provided</masterLabel>
+            <translation><!-- Training provided --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Was it Reviewed for Mobile? --></label>
+        <name>Was_it_Reviewed_for_Mobile__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- This survey is used for final release and deployment --></description>
+        <label><!-- Deployment Survey --></label>
+        <name>Deployment_Survey</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is a survey used for before work is started --></description>
+        <label><!-- Pre-Development Survey --></label>
+        <name>Pre_Development_Survey</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You must fill out the field &quot;Other&quot; when selecting the other option in proposed tools field. --></errorMessage>
+        <name>Proposed_Tools_Includes_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When selecting a Deployment Status other then &apos;Successful&apos;, you need to provide additional details in the Issue Described Field --></errorMessage>
+        <name>Require_Issue_Description</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a link to either the &quot;Atlassian Link&quot; or &quot;Request &amp; Inquiries&quot; field. --></errorMessage>
+        <name>Require_RI_Ticket_or_Atlassian_Link</name>
+    </validationRules>
+</CustomObjectTranslation>

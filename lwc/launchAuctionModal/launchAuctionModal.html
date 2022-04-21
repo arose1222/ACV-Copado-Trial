@@ -1,0 +1,173 @@
+<!-- Launch Auction Modal. Loads its own Modal up -->
+<template>
+    <lightning-layout>
+        <lightning-layout-item size=12>
+            <!-- Modal/Popup Box LWC starts here -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">	
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box LWC header here -->
+                    <lightning-layout>
+                        <header id="modalPopup" class="slds-modal__header" style="width:100%">
+                            <lightning-layout-item size=12 class="slds-align-middle">
+                                    <h1 id="modal-heading-01" class="slds-text-heading_large slds-hyphenate slds-float_left">Bulk Launch Inventory</h1>
+                                    <lightning-button-icon
+                                            icon-name="utility:close"
+                                            size="large"
+                                            variant="bare"
+                                            alternative-text="Close"
+                                            class="slds-float_right"
+                                            onclick={handleCloseModalEvent}
+                                        ></lightning-button-icon>
+                            </lightning-layout-item>
+                        </header>
+                    </lightning-layout>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                         <!-- Spinner -->
+                        <template if:true={activeSpinner}>
+                            <div class="spinner">
+                                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+                            </div>
+                        </template>
+                        <lightning-layout>
+                            <!-- Starting Screen -->
+                            <template if:true={showStartingPage}>
+                                <lightning-layout-item size=12>
+                                    <h2 class="slds-text-heading_medium slds-p-bottom_small">Where would you like to launch this inventory?</h2>
+                                    <!-- Loops over Launch Options to show which options a user can launch to -->
+                                    <template for:each={launchOptionsList} for:item="launchOption">
+                                        <div key={launchOption.title} class={launchOption.className}>
+                                            <lightning-layout>
+                                                <lightning-layout-item size=11 class="slds-align-middle">
+                                                    <h3 class="slds-text-title_bold">{launchOption.title}</h3>
+                                                    <p style="font-weight: 12px">{launchOption.subTitleEligible}</p>
+                                                </lightning-layout-item>
+                                                <lightning-layout-item size=1 class="slds-align-middle slds-p-top_x-small">
+                                                    <input class="radioButtonSize" type="radio" name={launchOption.title} onclick={handleLaunchAuctionSelection}>
+                                                </lightning-layout-item>
+                                            </lightning-layout>
+                                        </div>
+                                    </template>
+                                </lightning-layout-item>
+                            </template>
+                            <!-- Asap or Specific Time screen Screen -->
+                            <template if:true={showAsapOrSpecificScreen}>
+                                <lightning-layout-item size=12>
+                                    <h2 class="slds-text-heading_medium slds-p-bottom_small">When will this inventory launch?</h2>
+                                    <div class="slds-box slds-box_x-small slds-p-bottom_small">
+                                        <lightning-layout>
+                                            <lightning-layout-item size=11 class="slds-align-middle">
+                                                <h3 class="slds-text-title_bold">Launch Immediately</h3>
+                                                <p style="font-weight: 12px">After confirmation this inventory will launch</p>
+                                            </lightning-layout-item>
+                                            <lightning-layout-item size=1 class="slds-align-middle slds-p-top_x-small">
+                                                <input class="radioButtonSize" type="radio" name="asap" onclick={handleAsapDateTimeSelection} checked={asapChecked}>
+                                            </lightning-layout-item>
+                                        </lightning-layout>
+                                    </div>
+                                    <div class="slds-box slds-box_x-small slds-p-bottom_small slds-m-top_small">
+                                        <lightning-layout>
+                                            <lightning-layout-item size=11 class="slds-align-middle">
+                                                <h3 class="slds-text-title_bold">Choose a Date and Time</h3>
+                                                <p style="font-weight: 12px">Choose a specific date and time to launch this inventory</p>
+                                            </lightning-layout-item>
+                                            <lightning-layout-item size=1 class="slds-align-middle slds-p-top_x-small">
+                                                <input class="radioButtonSize" type="radio" name="specificTime" onclick={handleAsapDateTimeSelection} checked={specificTimeChecked}>
+                                            </lightning-layout-item>
+                                        </lightning-layout>
+                                    </div>
+                                </lightning-layout-item>
+                            </template>
+                            <!-- Laucnh Auction Screen for Date and Time -->
+                            <template if:true={showDateTimeScreen}>
+                                <lightning-layout-item size=12>
+                                    <h2 class="slds-text-heading_medium slds-p-bottom_small">
+                                        Choose a date and time to launch this inventory
+                                        <lightning-helptext
+                                            content="You will have a chance to overwrite these times for individual inventory in the next step.">
+                                        </lightning-helptext>
+                                    </h2>
+                                    <lightning-layout>
+                                        <lightning-layout-item size="8">
+                                            <lightning-input type="date" 
+                                                name="LaunchDate"
+                                                class="LaunchDate"
+                                                onchange={handleLaunchDateChange}
+                                                variant="label-hidden"
+                                                value={launchDateValue}
+                                                min={launchDateMinValue}
+                                            ></lightning-input>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="1" class="absouluteCenter">
+                                            <p>at</p>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="3">
+                                            <lightning-input type="time" 
+                                                name="LaunchTime"
+                                                class="LaunchTime"
+                                                onchange={handleLaunchTimeChange}
+                                                variant="label-hidden"
+                                                value={launchTimeValue}
+                                                min={launchTimeMinValue}
+                                            ></lightning-input>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+                                </lightning-layout-item>
+                            </template>
+                        </lightning-layout>
+                        <!-- Ineligible List Message -->
+                        <template if:true={showIneligibleMessage}>
+                            <lightning-layout class="slds-m-top_small" style="background-color: #FAFAF9;">
+                                <lightning-layout-item size=12>
+                                    <div class="slds-modal__content slds-p-around_xsmall ineligibleSection" style="background-color: inherit;">
+                                        <lightning-icon size="x-small" icon-name="utility:warning" title="Warning" class="slds-m-horizontal_x-small" alternative-text="Warning"></lightning-icon>
+                                            <lightning-button variant="base" label={ineligibleValuesSize} class="textLookLikeLink" onclick={handleIneligibleSectionView}></lightning-button> selected are not eligible based on criteria
+                                    </div>
+                                    <template if:true={expandIneligibleSection}>
+                                        <div class="slds-m-around_small">
+                                            <table style="table-layout:fixed; background-color:inherit">
+                                                <colgroup>
+                                                    <col span="1" style="width: 33%;"></col>
+                                                    <col span="1" style="width: 77%;"></col>
+                                                 </colgroup>
+                                                <thead>
+                                                    <tr style="font-weight: strong;">
+                                                        <th>Vin</th>
+                                                        <th>Reason</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template for:each={ineligibleValuesView} for:item="thisRow">
+                                                        <tr key={thisRow.ilc.Id}>
+                                                            <td><div class="truncateText">{thisRow.ilc.VIN__c}</div></td>
+                                                            <td><div class="truncateText">{thisRow.errorMessage}</div></td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </table>
+                                            <template if:true={currentWizardState.showViewAll}>
+                                                <div class="absouluteCenter">
+                                                    <lightning-button variant="base" label="View All" class="textLookLikeLink" onclick={handleViewAllIneligible}></lightning-button>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                    </div>
+                    <!-- Modal/Popup Box LWC footer starts here -->
+                    <lightning-layout>
+                        <lightning-layout-item size=12>
+                            <footer class="slds-modal__footer">
+                                <button class="slds-button slds-button_neutral" onclick={handleBackCancel} name={currentWizardState.backOrCancel} title={currentWizardState.backOrCancel}>{currentWizardState.backOrCancel}</button>
+                                <template if:true={currentWizardState.showNext}><button class="slds-button slds-button_brand" onclick={handleNext} name="Next" title="Next" disabled={disableNext}>Next</button></template>
+                            </footer>
+                        </lightning-layout-item>
+                </lightning-layout>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
