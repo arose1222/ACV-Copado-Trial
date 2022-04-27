@@ -14066,7 +14066,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.No_DOT__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
