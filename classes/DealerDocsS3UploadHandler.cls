@@ -1,3 +1,9 @@
+/*
+*
+* Adding a comment header for Copado deployment testing
+*
+*/
+
 public with sharing class DealerDocsS3UploadHandler {
     @TestVisible
     private static List<AWS_Credential__mdt> mockMetadata;
