@@ -1,3 +1,9 @@
+/*
+*
+* this is a test class for Copado
+*
+*/
+
 public class AccountAutomations {
     Public static Account setDefaultDescription(Account a){
         If (a.Description != null) return a;
