@@ -12,23 +12,19 @@
     </values>
     <values>
         <field>Class_Name__c</field>
-        <value xsi:type="xsd:string">.</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Comma_Seperated_Inspection_Types__c</field>
-        <value xsi:type="xsd:string">wholesale,off_lease</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Inspection_Field__c</field>
-        <value xsi:type="xsd:string">region</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Is_Advanced_Logic__c</field>
         <value xsi:type="xsd:boolean">false</value>
-    </values>
-    <values>
-        <field>Is_Aux_Reason__c</field>
-        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Prescreen_Reason__c</field>

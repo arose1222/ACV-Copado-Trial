@@ -186,6 +186,36 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.Training_Only__c</fieldItem>
+                <identifier>RecordTraining_Only__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Aux_Queue__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Reason__c</fieldItem>
+                <identifier>RecordReason__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Aux_Queue__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldItem>Record.OwnerId</fieldItem>
                 <identifier>RecordOwnerIdField</identifier>
             </fieldInstance>
@@ -242,6 +272,45 @@
             <fieldInstance>
                 <fieldItem>Record.Incomplete_Missing_Photos__c</fieldItem>
                 <identifier>RecordIncomplete_Missing_Photos__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Aux_Time_to_Under_Review__c</fieldItem>
+                <identifier>RecordAux_Time_to_Under_Review__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Aux_Queue__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Aux_Time_to_Reviewed__c</fieldItem>
+                <identifier>RecordAux_Time_to_Reviewed__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Aux_Queue__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Aux_Under_Review_to_Reviewed_Time__c</fieldItem>
+                <identifier>RecordAux_Under_Review_to_Reviewed_Time__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Aux_Queue__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-6cdc8133-5b6e-4cdc-ab33-2d0ec6d3dc6c</name>

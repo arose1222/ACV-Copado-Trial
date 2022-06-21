@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>if opportunity does not meet first knockout requirements - post this message to chatter</description>
+        <name>First_Rejection</name>
+        <label>First Rejection</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Automated rejection of the opportunity was triggered - First knockout rules weren’t met</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>$Record.Opportunity__r.Id</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <decisions>
+        <name>Associated_Opportunity_Stage_Underwriting</name>
+        <label>Associated Opportunity Stage = Underwriting</label>
+        <locationX>248</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Opportunity__r.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Underwriting</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>First_Knockout</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>CSO-67/CSO-611 - In order to proceed with the flow automation, the account record must meet the following conditions:
+
+(Experian_BI_Score__c &gt;= 10 AND  Experian_BI_Score__c &lt; 100) OR OR  Experian_Tax_Lien__c &lt; 10000 OR Commercial_BK_C = ‘FALSE’ 
+OR Data is &gt; 4 months OR there is no information</description>
+        <name>First_Knockout</name>
+        <label>First Knockout</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opportunity</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Fail</defaultConnectorLabel>
+        <rules>
+            <name>pass</name>
+            <conditionLogic>(1 AND 2) OR 3 OR 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account__r.Experian_BI_Score__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>15.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__r.Experian_BI_Score__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>100.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__r.Experian_Tax_Lien__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>10000.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__r.Commercial_BK__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FALSE</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Pass</label>
+        </rules>
+    </decisions>
+    <description>https://acvauctions.atlassian.net/browse/CSO-67
+https://acvauctions.atlassian.net/browse/CSO-611</description>
+    <interviewLabel>CSO-67/CSO {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CSO-67/CSO-611 - FastPass Automated Credit Decisioning</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update corresponding opportunity, underwriting recommendation field with &apos;Reject&apos; and map the data to the opportunity.</description>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>182</locationX>
+        <locationY>575</locationY>
+        <connector>
+            <targetReference>First_Rejection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Underwriter_Recomendations__c</field>
+            <value>
+                <stringValue>Reject</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Associated_Opportunity_Stage_Underwriting</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <object>Application__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

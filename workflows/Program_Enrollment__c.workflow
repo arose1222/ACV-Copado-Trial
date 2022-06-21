@@ -180,7 +180,7 @@
             <name>Update_Invitation_Sent_Date_To_Today</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Program_Enrollment__c.Enrollment_Invitation_Status__c</field>
             <operation>equals</operation>
@@ -194,7 +194,7 @@
             <name>UpdateUniqueProgAcc</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND( NOT( ISNULL(Account__c )),NOT(ISNULL(Program__c)))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

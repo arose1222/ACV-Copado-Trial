@@ -193,6 +193,7 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If applicable, enter the date when the Affiliation ended.</inlineHelpText>
         <label>End Date</label>
@@ -233,6 +234,7 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Enter the date that the Affiliation began.</inlineHelpText>
         <label>Start Date</label>
@@ -276,6 +278,7 @@
         <fullName>id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Unique Id in ACV databases - used for integration purposes.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Dealership Member Id</label>
         <length>255</length>
@@ -312,21 +315,21 @@
     <startsWith>Vowel</startsWith>
     <validationRules>
         <fullName>Cannot_change_Affiliation_lookups</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>After an affiliation is created you cannot change the look ups after the fact. Only delete and recreate</description>
         <errorConditionFormula>ISCHANGED(Account__c) || ISCHANGED(Contact__c)</errorConditionFormula>
         <errorMessage>Cannot change the Account or Contact lookups on an affiliation record after is been created. If this record contains a mistake, please delete and recreate the record with the correct lookups.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Contact_Record_Must_be_ACV_User</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>The Contact of the affiliation must be an ACV User record type</description>
         <errorConditionFormula>NOT(Contact__r.RecordType.DeveloperName=&apos;ACV_User&apos;)</errorConditionFormula>
         <errorMessage>Contact affiliation must be an ACV User contact Record Type</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Standard_Account_must_have_dealerId</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Account associated to Contact must have dealerId populated</description>
         <errorConditionFormula>Account__r.RecordType.DeveloperName=&apos;Standard&apos; &amp;&amp; IsBlank(Account__r.Dealership_ID__c)</errorConditionFormula>
         <errorMessage>Affiliation to a Standard Account type must have a Dealership Id</errorMessage>

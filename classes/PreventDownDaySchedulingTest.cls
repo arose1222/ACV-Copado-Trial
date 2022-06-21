@@ -11,7 +11,7 @@ public class PreventDownDaySchedulingTest {
 
         // FSLTestUtility.makePreferredResourceData( acct );
 
-        WorkType cpoWT = [ SELECT Id FROM WorkType WHERE Work_Type_Unique_Id__c = 'CPOBM' LIMIT 1 ];
+        WorkType cpoWT = [ SELECT Id FROM WorkType WHERE Work_Type_Unique_Id__c = 'cpo120' LIMIT 1 ];
 
         insert new Down_Day__c(
             Start__c = now,
@@ -26,7 +26,7 @@ public class PreventDownDaySchedulingTest {
         // ServiceResource userResource = [ SELECT Id FROM ServiceResource LIMIT 1 ]; // Get pre-generated Resource
         Account testAcct = [ SELECT Id, Name FROM Account LIMIT 1 ];
         ServiceTerritory testST = [ SELECT Id FROM ServiceTerritory LIMIT 1 ];
-        WorkType cpoWT = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c = 'CPOBM' LIMIT 1 ];
+        WorkType cpoWT = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c = 'cpo120' LIMIT 1 ];
         
         Boolean errorThrown = FALSE;
         String errorMsg;

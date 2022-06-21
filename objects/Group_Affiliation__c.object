@@ -207,6 +207,7 @@
     </fields>
     <fields>
         <fullName>Lead_Id_Text__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Lead Id Text</label>
         <length>18</length>
@@ -244,6 +245,7 @@
         <fullName>Unique_Affiliation__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Field used to prevent duplication by concatenating the Ids of the Group and Account associated with this Affiliation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unique Affiliation</label>
         <length>50</length>
@@ -295,7 +297,7 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Standard_Account_must_have_Org_ID</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation will prevent creation of an affiliation to a Standard Account that does not have its Dealership_Id__c populated (Org ID)</description>
         <errorConditionFormula>Account__r.RecordType.DeveloperName=&apos;Standard&apos; &amp;&amp; IsBlank(Account__r.Dealership_ID__c)</errorConditionFormula>
         <errorMessage>Group affiliation to a Standard Account type must have a Dealership Id</errorMessage>

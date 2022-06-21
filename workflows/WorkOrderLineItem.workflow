@@ -27,7 +27,7 @@
             <name>Update_Completed_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>completed_date__c refers to when the corresponding service appointment related to the work order line item is set to status &apos;completed&apos;</description>
         <formula>NOT(ISBLANK( WorkOrder.Completed_Date_Time__c ))</formula>
         <triggerType>onAllChanges</triggerType>

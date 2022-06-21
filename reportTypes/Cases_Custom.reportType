@@ -269,6 +269,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>End_Date_to_Received__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Auction_End_to_Title_Received_CD__c</field>
             <table>Case</table>
         </columns>
@@ -345,6 +350,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Branded_Title__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Business_Days_Since_Opened__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -1184,11 +1194,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Received__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Marked_Picked_Up_in_CD__c</field>
             <table>Case</table>
         </columns>
@@ -1390,6 +1395,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Parent</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Pecks_Book__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -2046,6 +2056,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Title_Shipping_Status_Seller_To_ACV__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Title_State__c</field>
             <table>Case</table>
         </columns>
@@ -2431,7 +2446,120 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.BillingState</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.BillingStreet</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.BillingCity</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.BillingAddress</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.BillingPostalCode</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Buyer_Dealership__c.BillingAddress</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Buyer_Dealership__c.BillingCity</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Buyer_Dealership__c.BillingState</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Buyer_Dealership__c.BillingStreet</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Buyer_Dealership__c.BillingPostalCode</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Auction_Number__c.Seller_Dealership__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Auction_Number__c.Seller_Dealership__c.Title_Specialist__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Auction_Number__c.Private_Lane_Id__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Dealership_ID__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Title_Specialist__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Title_Specialist_Admin__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Limited_Power_of_Attorney_Signed__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Seller Dealership: Late Title Fee Eligible</displayNameOverride>
+            <field>Auction_Number__c.Seller_Dealership__c.Late_Title_Fee_Eligible__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Auction_Number__c.Seller_Dealership__c.Customer_Success_Advocate__c.Name</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Territory_Manager__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Regional_Sales_Director__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Buyer: Regional Sales Director</displayNameOverride>
+            <field>Account.Regional_Sales_Director__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Buyer: Territory Manager</displayNameOverride>
+            <field>Account.Territory_Manager__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -2441,7 +2569,13 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Notes_for_Inspector_Old__c</field>
+            <displayNameOverride>Seller: Late Title Fee Start Date</displayNameOverride>
+            <field>Seller_Dealership__c.Late_Title_Fee_Start_Date__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Notes_for_Inspector__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -2478,230 +2612,9 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account.Account_Activity_Status__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.Dealership_ID__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Seller: Account Name</displayNameOverride>
-            <field>Seller_Dealership__c.Name</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Notes_for_Inspector__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Sent__c.Name</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Sent__c.Full_Name__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Sent__c.Id</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Received__c.Id</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Received__c.Full_Name__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Received__c.Name</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Working__c.Name</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Working__c.Full_Name__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_Working__c.Id</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_48_Hour_Notice__c.Id</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_48_Hour_Notice__c.Full_Name__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Marked_48_Hour_Notice__c.Name</field>
+            <field>ACV_Capital_Primary_Contact_Email_Text__c</field>
             <table>Case</table>
         </columns>
         <masterLabel>Cases</masterLabel>
-    </sections>
-    <sections>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Seller Dealership: Late Title Fee Eligible</displayNameOverride>
-            <field>Auction_Number__c.Seller_Dealership__c.Late_Title_Fee_Eligible__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Title_Specialist_Admin__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Customer_Success_Advocate__c.IsActive</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Customer_Success_Advocate__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Territory_Manager__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Auction_Number__c.Seller_Dealership__c.Customer_Success_Advocate__c.Name</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Limited_Power_of_Attorney_Signed__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Regional_Sales_Director__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Title_Specialist__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Account_Activity_Status__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Seller: Late Title Fee Start Date</displayNameOverride>
-            <field>Seller_Dealership__c.Late_Title_Fee_Start_Date__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.BillingStreet</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Auction_Number__c.Seller_Dealership__c.Title_Specialist__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.BillingCity</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.Dealership_ID__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.BillingAddress</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.BillingPostalCode</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Seller_Dealership__c.BillingState</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Auction_Number__c.Seller_Dealership__c</field>
-            <table>Case</table>
-        </columns>
-        <masterLabel>Seller Dealership</masterLabel>
-    </sections>
-    <sections>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Buyer: Regional Sales Director</displayNameOverride>
-            <field>Account.Regional_Sales_Director__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.BillingAddress</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.BillingPostalCode</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.BillingStreet</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Buyer: Territory Manager</displayNameOverride>
-            <field>Account.Territory_Manager__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.Account_Activity_Status__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.BillingState</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Buyer_Dealership__c.BillingCity</field>
-            <table>Case</table>
-        </columns>
-        <masterLabel>Buyer Dealership</masterLabel>
     </sections>
 </ReportType>

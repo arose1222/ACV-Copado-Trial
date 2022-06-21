@@ -123,13 +123,49 @@
         <template>ACVCapital/ACV_Capital_Welcome_Floorplan_1635868148832</template>
     </alerts>
     <alerts>
+        <fullName>ACV_Capital_Welcome_Orange_Elite</fullName>
+        <description>ACV Capital Welcome - Orange Elite</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Capital_Account_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>capitalconcierge@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ACVCapital/ACV_Capital_Welcome_Orange_Elite_1635868761239</template>
+    </alerts>
+    <alerts>
+        <fullName>Application_Status_Approved</fullName>
+        <description>Application Status - Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Owner_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Application_Form/ACV_Application_Status_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Application_Status_Declined</fullName>
+        <description>Application Status - Declined</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Owner_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Application_Form/ACV_Application_Status_Declined</template>
+    </alerts>
+    <alerts>
         <fullName>Capital_Opportunity_Approved</fullName>
         <description>Capital Opportunity Approved</description>
         <protected>false</protected>
-        <recipients>
-            <recipient>ekorzenski@acvauctions.com</recipient>
-            <type>user</type>
-        </recipients>
         <recipients>
             <recipient>emilywirth@acvauctions.com</recipient>
             <type>user</type>
@@ -152,10 +188,6 @@
         </recipients>
         <recipients>
             <recipient>jstephenson@acvauctions.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>kmagruder@acvauctions.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>
@@ -556,7 +588,7 @@ Anticipated Yearly Volume</description>
             <name>Update_Opp_Owner_to_Julie</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -591,7 +623,7 @@ Anticipated Yearly Volume</description>
             <name>Set_Opp_Name_for_ACV_Capital_Referrals</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.CreatedDate</field>
             <operation>notEqual</operation>
@@ -610,7 +642,7 @@ Anticipated Yearly Volume</description>
             <name>Stage_Change_ACV_Capital_Awaiting_Docs</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notify opp owner on ACV Capital referrals when hitting the following stages: Under Review, Underwriting, awaiting Docs and Closed</description>
         <formula>AND(RecordType.DeveloperName = &quot;ACV_Capital_Referral&quot;,  ISPICKVAL(StageName, &quot;Awaiting Documents&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -621,7 +653,7 @@ Anticipated Yearly Volume</description>
             <name>Stage_Change_ACV_Capital</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notify opp owner on ACV Capital referrals when hitting the following stages: Under Review, Underwriting, awaiting Docs and Closed</description>
         <formula>AND(RecordType.DeveloperName = &quot;ACV_Capital_Referral&quot;,  ISPICKVAL(StageName, &quot;Closed Won&quot;)|| ISPICKVAL(StageName, &quot;Closed Lost&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -632,7 +664,7 @@ Anticipated Yearly Volume</description>
             <name>Stage_Change_ACV_Capital_Review</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notify opp owner on ACV Capital referrals when hitting the following stages: Under Review, Underwriting, awaiting Docs and Closed</description>
         <formula>AND(RecordType.DeveloperName = &quot;ACV_Capital_Referral&quot;,  ISPICKVAL(StageName, &quot;Under Review&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -643,7 +675,7 @@ Anticipated Yearly Volume</description>
             <name>Stage_Change_ACV_Capital_Underwriting</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notify opp owner on ACV Capital referrals when hitting the following stages: Under Review, Underwriting, awaiting Docs and Closed</description>
         <formula>AND(RecordType.DeveloperName = &quot;ACV_Capital_Referral&quot;,  ISPICKVAL(StageName, &quot;Underwriting&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -654,7 +686,7 @@ Anticipated Yearly Volume</description>
             <name>Update_Amount_Field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.Anticipated_Yearly_Volume__c</field>
             <operation>notEqual</operation>
@@ -673,7 +705,7 @@ Anticipated Yearly Volume</description>
             <name>Change_Status_when_Closed_Lost</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -692,7 +724,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Closed_Lost_IST_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -712,7 +744,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Closed_Won_Payments_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -732,7 +764,7 @@ Anticipated Yearly Volume</description>
             <name>Notify_IST_Rep_when_FastPass_is_Granted_and_Active_in_Netsuite</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -761,7 +793,7 @@ Anticipated Yearly Volume</description>
             <name>Stage_New_on_Create</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -780,7 +812,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Status_Additional_Documents_T</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -800,7 +832,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Status_Closed_Timestamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3)</booleanFilter>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
@@ -826,7 +858,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Status_Documents_Received_Tim</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -846,7 +878,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Status_New_Timestamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -866,7 +898,7 @@ Anticipated Yearly Volume</description>
             <name>FastPass_Status_Processing_Timestamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -886,7 +918,7 @@ Anticipated Yearly Volume</description>
             <name>New_IST_Opportunity_for_ACV_CApital</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>User.ProfileId</field>
             <operation>notEqual</operation>
@@ -911,7 +943,7 @@ Anticipated Yearly Volume</description>
             <name>Blank_out_Auction_ID</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -931,7 +963,7 @@ Anticipated Yearly Volume</description>
             <name>Populate_Auction_ID</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Opportunity is Updated Check Auction_ID</description>
         <formula>(RecordType.Name = &apos;Deal Maker&apos;) &amp;&amp; (IsClosed = FALSE) &amp;&amp; (NOT(ISBLANK (Auction__c)) &amp;&amp; ISBLANK(Auction_ID__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -942,7 +974,7 @@ Anticipated Yearly Volume</description>
             <name>Populate_IST_Account_Owner_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
@@ -962,7 +994,7 @@ Anticipated Yearly Volume</description>
             <name>Referred_Date_Now</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -976,7 +1008,7 @@ Anticipated Yearly Volume</description>
             <name>Update_account_status_when_closed_won</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.IsWon</field>
             <operation>equals</operation>

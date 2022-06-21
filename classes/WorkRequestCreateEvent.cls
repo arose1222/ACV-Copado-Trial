@@ -1,5 +1,5 @@
 public class WorkRequestCreateEvent extends TriggerInterface {
-
+    
     public override void afterInsert( Map<Id, SObject> newMap ) {
         Set<Id> woIdSet = new Set<Id>();
         for ( WorkOrderLineItem woliRec : (List<WorkOrderLineItem>) newMap.values() ) {
@@ -8,7 +8,7 @@ public class WorkRequestCreateEvent extends TriggerInterface {
 
         if ( !woIdSet.isEmpty() ) {
             Map<Id, WorkOrder> woMap = new Map<Id, WorkOrder>(
-                [ SELECT Id, Street, City, State, PostalCode, Country, Account.Dealership_ID__c, WorkType.Name
+                [ SELECT Id, Street, City, State, PostalCode, Country, Account.Dealership_ID__c, WorkType.Name 
                         FROM WorkOrder WHERE Id IN :woIdSet ]
             );
 
@@ -44,13 +44,13 @@ public class WorkRequestCreateEvent extends TriggerInterface {
                     inspection_Id__c = woliRec.Inspection_Id__c,
                     ns_Invoice_Id__c = woliRec.External_Invoice_Id__c,
                     work_Type__c = FSLWorkProcessUtility.workTypeIdMap.get( woliRec.WorkTypeId ).Name,
-                    origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
+                    origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
                 ) );
                 uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );
             }
 
             if ( !createEventLst.isEmpty() ) {
-                List<Database.SaveResult> results = EventBus.publish( createEventLst );
+                List<Database.SaveResult> results = EventBus.publish( createEventLst );        
                 //FSLWorkProcessUtility.makeLogFromEvent( results, uuidLst, 'WorkRequestCreateEvent', '' + ACVUtility.currentLineNumber() );
             }
         }

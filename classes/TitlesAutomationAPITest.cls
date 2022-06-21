@@ -31,189 +31,6 @@ public class TitlesAutomationAPITest {
         }
     }
     
-    static void setupFloorPlanMetadata()	{
-        TitlesAutomationAPI.loadFloorPlanMap();
-        
-        Floor_Plan_Setting__mdt fpRec= new Floor_Plan_Setting__mdt();
-        fpRec.Name__c = 'test_payment_method_1';
-        fpRec.Payment_Method_API_Name__c = 'test_payment_method_1';
-        fpRec.Payment_Method_Group_Name__c = 'test_payment_method_group';
-        fpRec.Internal_Delivery__c = true;
-        fpRec.Company__c = 'Unit Testing';
-        fpRec.Street1__c = '640 Ellicott St, Suite #321';
-        fpRec.City__c = 'Buffalo';
-        fpRec.State__c = 'NY';
-        fpRec.Country__c = 'USA';
-        fpRec.Zip__c = '14203';        
-        TitlesAutomationAPI.floorPlanMap.put(fpRec.Payment_Method_API_Name__c, fpRec);
-        
-        fpRec= new Floor_Plan_Setting__mdt();
-        fpRec.Name__c = 'test_payment_method_2';
-        fpRec.Payment_Method_API_Name__c = 'test_payment_method_2';
-        fpRec.Payment_Method_Group_Name__c = 'test_payment_method_group';
-        fpRec.Internal_Delivery__c = true;
-        fpRec.Company__c = 'Unit Testing';
-        fpRec.Street1__c = '640 Ellicott St, Suite #321';
-        fpRec.City__c = 'Buffalo';
-        fpRec.State__c = 'NY';
-        fpRec.Country__c = 'USA';
-        fpRec.Zip__c = '14203';        
-        TitlesAutomationAPI.floorPlanMap.put(fpRec.Payment_Method_API_Name__c, fpRec);        
-    }
-    
-    /*
-     * New shipping label will be generated and saved in the Internal Delivery object for the Payment Method Group.
-     */
-    @isTest
-    public static void testInternalDeliveryNewShippingLabel()
-    {
-        //
-        // Begin : Setup Testing Data
-        // 
-        setupFloorPlanMetadata();
-            
-        String acvTitlesExternalId = 'external_title_uuid_BB';
-        String acctUniqueName = 'BB_TitlesAuto_BB';
-        
-        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
-        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
-        Contact newContact = TestUtility.createContact(newSellerAcct);
-        Vehicle__c newVehicle = TestUtility.createVehicle();
-
-        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
-        insert newObjs;
-        
-        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
-        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
-        newAuction.Seller_Dealership__c = newSellerAcct.Id;
-        newAuction.Name = acctUniqueName;
-        newAuction.id__c = acctUniqueName;        
-        newAuction.Payment_Status__c = 'Paid';
-        newAuction.Payment_Method__c= 'test_payment_method_1';
-        insert newAuction;
-        
-		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
-        newTitleCase.AccountId = newBuyerAcct.Id;
-        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
-        newTitleCase.Status = 'Working';
-        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
-        newTitleCase.Title_Attached__c = true;
-        newTitleCase.Digital_Title__c = false;
-        newTitleCase.Vehicle__c = newVehicle.Id;        
-        newTitleCase.ClosedDate = System.now();
-        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
-        insert newTitleCase;
-        
-        //
-        // End : Setup Testing Data
-        // 
-                
-        RestResponse res = new RestResponse();
-        RestRequest req = new RestRequest();
-        RestContext.response = res;
-        RestContext.request = req;
-        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
-        
-        List<Internal_Delivery__c> internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
-		System.assertEquals(0, internalDel.size());
-        
-        Test.startTest();
-        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
-        
-        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
-        System.assertEquals(1, casesWithTrackingCode.size());        
-        System.assertEquals('794668170255', casesWithTrackingCode[0].Easypost_Tracker__c);        
-        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
-        
-        internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
-		System.assertEquals(1, internalDel.size());
-		System.assertEquals('test_payment_method_group', internalDel[0].Payment_Method_Group_Name__c);
-		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
-
-        Test.stopTest();
-    }
-
-    /*
-     * Existing shipping label will be used from the Internal Delivery object for the Payment Method Group.
-     */
-    @isTest
-    public static void testInternalDeliveryExistingShippingLabel()
-    {
-        //
-        // Begin : Setup Testing Data
-        // 
-        setupFloorPlanMetadata();
-            
-        String acvTitlesExternalId = 'external_title_uuid_BB';
-        String acctUniqueName = 'BB_TitlesAuto_BB';
-        
-        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
-        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
-        Contact newContact = TestUtility.createContact(newSellerAcct);
-        Vehicle__c newVehicle = TestUtility.createVehicle();
-
-        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
-        insert newObjs;
-        
-        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
-        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
-        newAuction.Seller_Dealership__c = newSellerAcct.Id;
-        newAuction.Name = acctUniqueName;
-        newAuction.id__c = acctUniqueName;        
-        newAuction.Payment_Status__c = 'Paid';
-        newAuction.Payment_Method__c= 'test_payment_method_2';
-        insert newAuction;
-        
-		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
-        newTitleCase.AccountId = newBuyerAcct.Id;
-        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
-        newTitleCase.Status = 'Working';
-        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
-        newTitleCase.Title_Attached__c = true;
-        newTitleCase.Digital_Title__c = false;
-        newTitleCase.Vehicle__c = newVehicle.Id;        
-        newTitleCase.ClosedDate = System.now();
-        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
-        insert newTitleCase;
-        
-        Internal_Delivery__c internalDelv = new Internal_Delivery__c(
-            Payment_Method_API_Name__c = 'test_payment_method_1',
-            Payment_Method_Group_Name__c = 'test_payment_method_group',
-            Easypost_Tracker__c = '555568172222',
-            Easypost_Postage_Label_URL__c = 'some_shipping_label_url',
-            Shipping_Label_Created_Date__c = DateTime.now()
-        );
-        insert internalDelv;
-        
-        //
-        // End : Setup Testing Data
-        // 
-                
-        RestResponse res = new RestResponse();
-        RestRequest req = new RestRequest();
-        RestContext.response = res;
-        RestContext.request = req;
-        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
-        
-        Test.startTest();
-        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
-        
-        //
-        //TODO - This test is failing when run between 6-7PM EST so disable it until find the solution
-        //
-        /*List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
-        System.assertEquals(1, casesWithTrackingCode.size());        
-        System.assertEquals('555568172222', casesWithTrackingCode[0].Easypost_Tracker__c);        
-        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
-        
-        List<Internal_Delivery__c> internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
-		System.assertEquals(1, internalDel.size());
-		System.assertEquals('test_payment_method_group', internalDel[0].Payment_Method_Group_Name__c);
-		System.assertEquals('555568172222', internalDel[0].Easypost_Tracker__c);*/
-
-        Test.stopTest();
-    }
-    
     @isTest
     public static void codeCoverage() {
         RestResponse res = new RestResponse();
@@ -223,9 +40,13 @@ public class TitlesAutomationAPITest {
         Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
         Case c = [SELECT Id, Auction_Number_Searchable__c FROM Case LIMIT 1];
 
+
         TitlesAutomationAPI.validateParams('','',Datetime.now(), null, null);
+
         TitlesAutomationAPI.validateParams('','gamer@420.com',Datetime.now(), null, null);
+
         TitlesAutomationAPI.validateParams('auctionNumber', 'gamer@420.com', Datetime.now(), null, null);
+
     }
 
     @isTest

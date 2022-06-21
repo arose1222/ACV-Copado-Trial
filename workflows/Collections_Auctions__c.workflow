@@ -162,7 +162,7 @@
             <name>Stamp_Seller_IST_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Collections_Auctions__c.CreatedDate</field>
             <operation>notEqual</operation>

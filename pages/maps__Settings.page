@@ -12,7 +12,7 @@
     <script async="true" defer="true" type='text/javascript' src="{!URLFOR($Resource.MapsJS, 'JSActionFramework.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.Maps3rdPartyPlugins, 'toastr/toastr.min.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Maps3rdPartyPlugins, 'toastr/toastr.min.css')}"></link>
-    <link rel="stylesheet" type="text/css" href="{!resourcePaths['MapsJS']}/dist/admin/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="{!resourcePaths['VueAdmin']}/build/main.css"></link>
 
     <!-- jQuery UI -->
     <script type='text/javascript' src="{!URLFOR($Resource.Maps3rdPartyPlugins, 'jquery/jquery-ui.min.js')}"></script>
@@ -249,5 +249,5 @@
 
     <!-- JS Color -->
     <apex:includeScript value="{!URLFOR($Resource.maps__Maps3rdPartyPlugins, 'jscolor/jscolor.js')}"/>
-    <script type="text/javascript" src="{!resourcePaths['MapsJS']}/dist/admin/bundle.js"></script>
+    <script type="text/javascript" src="{!resourcePaths['VueAdmin']}/build/bundle.js"></script>
 </apex:page>

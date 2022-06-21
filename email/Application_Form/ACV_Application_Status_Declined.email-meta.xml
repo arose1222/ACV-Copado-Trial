@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Application Status - Declined</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV_Application_Form</letterhead>
+    <name>ACV Application Status - Declined</name>
+    <style>freeForm</style>
+    <subject>ACV Capital Application Update</subject>
+    <textOnly>ACV Capital Application Update
+
+Your application is declined
+
+ACV Capital
+
+640 Ellicott Street #321
+
+Buffalo, NY 14203
+
+
+
+Date: {!Today}
+
+Applicant&apos;s Name: {!Application__c.Account__c}
+
+Applicant&apos;s Address: {!Application__c.Business_Street__c}
+Description of Action Taken: Denied
+
+
+
+Dear {!Application__c.Account__c},
+
+Thank you for your credit application. We have given your request careful consideration and regret that we are unable to extend credit to you at this time, for the following reason(s):
+
+{!Application__c.Declined_Reason__c}
+
+Sincerely, ACV Capital
+
+
+
+
+
+
+
+Notice: The Federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant&apos;s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Trade Commission, Equal Credit Opportunity, Washington, DC 20580.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

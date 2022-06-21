@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to apply from the Sales Manager</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV_Application_Form</letterhead>
+    <name>ACV Email to apply from the Sales Manager</name>
+    <style>freeForm</style>
+    <subject>ACV Capital Application</subject>
+    <textOnly>ACV Capital Application
+
+Start your application!
+
+Thanks for your interest in applying with ACV Capital! Please access the link below where you will be able to begin your application process:
+
+https://uat-app.acvauctions.com/capital/landing-page?dealer_id={!Opportunity.Dealer_ID__c}
+Don’t hesitate to contact your ACV Capital Sales Manager with any questions.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

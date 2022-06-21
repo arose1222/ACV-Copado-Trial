@@ -2,24 +2,13 @@
 
 global class GMBundlerBatch extends SchedulingInterface implements Database.Batchable<sObject>, Database.AllowsCallouts {
 
-    private static Date GMFIA_EARLIEST_START_DATE {
+    private static Date EARLIEST_START_DATE {
         get {
-            if ( GMFIA_EARLIEST_START_DATE == null ) {
+            if ( EARLIEST_START_DATE == null ) {
                 Salesforce_Setting__mdt defaultRange = [ SELECT Value__c FROM Salesforce_Setting__mdt WHERE DeveloperName = 'Extend_GMFIA_Start_Date' LIMIT 1 ];
-                GMFIA_EARLIEST_START_DATE = System.today().addDays(Integer.valueOf( defaultRange.Value__c ));
+                EARLIEST_START_DATE = System.today().addDays(Integer.valueOf( defaultRange.Value__c ));
             }
-            return GMFIA_EARLIEST_START_DATE;
-        }
-        set;
-    }
-
-    private static Date CPOGM_EARLIEST_START_DATE {
-        get {
-            if ( CPOGM_EARLIEST_START_DATE == null ) {
-                Salesforce_Setting__mdt defaultRange = [ SELECT Value__c FROM Salesforce_Setting__mdt WHERE DeveloperName = 'Extend_CPO_Start_Date' LIMIT 1 ];
-                CPOGM_EARLIEST_START_DATE = System.today().addDays(Integer.valueOf( defaultRange.Value__c ));
-            }
-            return CPOGM_EARLIEST_START_DATE;
+            return EARLIEST_START_DATE;
         }
         set;
     }
@@ -31,11 +20,11 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
         System.debug('Start');
 
         String query;
-        query =  'SELECT Id, EarliestStartTime, DueDate, Address, WorkType.Work_Type_Unique_ID__c, Work_Order__c, Bundled__c ';
+        query =  'SELECT Id, EarliestStartTime, DueDate, Address, WorkType.Work_Type_Unique_ID__c, Work_Order__c ';
         query += 'FROM ServiceAppointment ';
         query += 'WHERE WorkType.Work_Type_Unique_ID__c = \'gmfia\' ';
         query +=    'AND Status IN (\'New\', \'Scheduled\') ';
-        query +=    'AND EarliestStartTime >= :GMFIA_EARLIEST_START_DATE ';
+        query +=    'AND EarliestStartTime >= :EARLIEST_START_DATE ';
         query +=    'AND work_order__r.lineitemcount = 1 ';
          // return
         return Database.getQueryLocator(query);
@@ -68,7 +57,7 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
                                                 WHERE Street IN: streetList
                                                     AND WorkType.Work_Type_Unique_ID__c = 'cpogm'
                                                     AND Status IN ('New', 'Scheduled')
-                                                    AND EarliestStartTime >= :CPOGM_EARLIEST_START_DATE
+                                                    AND EarliestStartTime >= :EARLIEST_START_DATE
                                                     AND work_order__r.lineitemcount = 1];
 
         List<Id> workOrderIdList = new List<Id>();
@@ -91,7 +80,7 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
         for(WorkOrderLineItem woli : [SELECT Id, Stock_Number__c, Origin__c, Address, Street, City, State, PostalCode, Country, vin__c, year__c, make__c, model__c, color__c, Reserve_Price__c,
         Title_Status__c, Title_with_Dealer__c, Dealer_Contact__c, Residential__c, Add_To_Run_List__c, Floor_Price__c, Date_Inspected__c, WorkTypeId, WorkType.Name, WorkType.Work_Type_Unique_ID__c,
         External_Record_guid__c, WorkOrder.Account.Dealership_ID__c, WorkOrder.Origin__c, Due_Date__c, Status, Transport_Status__c, Description, Dealership_Name__c, Earliest_Start_Date__c,
-        External_Invoice_Id__c, WorkOrderId, Inspection_Location__c, Series__c, External_Assignment_Id__c, Inspection_Id__c, Cloned_for_Grouping__c,
+        External_Invoice_Id__c, WorkOrderId, Inspection_Location__c, Series__c, External_Assignment_Id__c, Inspection_Id__c,
         Is_In_Jeopardy__c, Jeopardy_State__c, Lesse_Name__c, Open_Date__c, Maturity_Date__c, Contact_Name__c, Contact_Phone_Number__c, Contact_Mobile_Number__c, Contact_Email__c,
         Customer_Email__c, Driving_Directions__c, Is_Opportunity__c, Exclude_from_Optimization__c, WorkOrder.Street, WorkOrder.City, WorkOrder.State, WorkOrder.PostalCode, WorkOrder.Country, WorkOrder.Address, External_Link__c, External_Link_Code__c
         FROM WorkOrderLineItem WHERE WorkOrderId IN :workOrderIdList AND WorkType.Work_Type_Unique_ID__c = 'cpogm']){
@@ -114,7 +103,6 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
                 WorkOrderLineItem cpogmOriginalWOLI = cpogmAddressKeyWOLIMap.get(key);
                 WorkOrderLineItem cpogmClonedWOLI = cpogmOriginalWOLI.clone(false,false,false,false);
                 cpogmClonedWOLI.workorderId = gmfiaSA.Work_Order__c;
-                cpogmClonedWOLI.Cloned_for_Grouping__c = true;
 
                 //Build data maps for processing
                 AddressKeyWoIdUpdateMap.put(key, gmfiaSA.Work_Order__c);
@@ -124,8 +112,6 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
 
                 gmfiaSA.EarliestStartTime = earliestCombinedStartDate;
                 gmfiaSA.DueDate = latestCombinedDueDate;
-                gmfiaSA.Bundled__c = true;
-
                 AddressKeySaUpdateMap.put(key, gmfiaSA);
 
             }
@@ -206,7 +192,7 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
 
         //Non-critical: Do not rollback with failure
 
-        //Update the work order
+        //Update the Special Instructions on the work order
         List<WorkOrder> woToUpdateList = new List<WorkOrder>();
         for(WorkOrder wo : [SELECT Id, Special_Instructions__c FROM WorkOrder WHERE Id IN :AddressKeyWoIdUpdateMap.values()]){
             wo.Special_Instructions__c = 'This is a CPOGM and GMFIA assignment.';

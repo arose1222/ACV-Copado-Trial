@@ -96,7 +96,7 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
         // Get all unpaid fees related to each account
         List<Assigned_Fee__c> assignedFees = [SELECT Id, Fee_Status__c, Date_Fee_Accessed__c, Total_Billable_Amount__c, Potential_Billable_Amount__c, Fee__r.Max_Allowable_Fees__c, Fee__r.Default_Amount__c, 
                                               Case__c, Account__c, Account__r.Total_Billable_Amount__c, Account__r.Potential_Billable_Amount__c, Account__r.Unpaid_Title_Late_Fee__c 
-                                              FROM Assigned_Fee__c WHERE RecordTypeId = :this.titleLateFeeRecordTypeId AND Account__c IN :accountIds];
+                                              FROM Assigned_Fee__c WHERE Account__c IN :accountIds];
         
         /*
          * We have unpaid fees (as Assigned Fee) from all the cases. We will create a map of Cases and related Assigned Fees so

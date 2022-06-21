@@ -16,7 +16,7 @@
             <name>UpdateUniquePE</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND( NOT( ISNULL( Program_Enrollment__r.Account__c )),NOT(ISNULL(Program_Enrollment__r.Program__c)),NOT(ISNULL( Program_Enrollment__c )), IsMonitoring__c =true)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

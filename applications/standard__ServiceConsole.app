@@ -195,7 +195,13 @@
     <tabs>maps__DebugLog__c</tabs>
     <tabs>Inventory_Life_Cycle__c</tabs>
     <tabs>Opportunity_Stage_History__c</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
     <workspaceConfig>
+        <mappings>
+            <tab>Application__c</tab>
+        </mappings>
         <mappings>
             <tab>Email_Notification_Subscription__c</tab>
         </mappings>
@@ -207,6 +213,9 @@
         </mappings>
         <mappings>
             <tab>Field_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Floorplan__c</tab>
         </mappings>
         <mappings>
             <tab>Group_Affiliation__c</tab>
@@ -225,6 +234,9 @@
         </mappings>
         <mappings>
             <tab>Opportunity_Stage_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Principal__c</tab>
         </mappings>
         <mappings>
             <tab>Salesforce_Request__c</tab>

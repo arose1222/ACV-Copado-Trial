@@ -125,6 +125,7 @@
     </fields>
     <fields>
         <fullName>ActivityType__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Activity Type</label>
         <length>255</length>
@@ -135,6 +136,7 @@
     <fields>
         <fullName>Activity_Comments__c</fullName>
         <description>This provides a truncated (255char) view of the standard task description field&apos;s value</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Activity Comments</label>
         <length>255</length>
@@ -198,6 +200,7 @@
     </fields>
     <fields>
         <fullName>Auction__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Auction</label>
         <length>18</length>
@@ -215,6 +218,7 @@
     </fields>
     <fields>
         <fullName>Call_Script__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Call Script</label>
         <required>false</required>
@@ -277,6 +281,7 @@
         <fullName>Completed_Date__c</fullName>
         <defaultValue>TODAY()</defaultValue>
         <description>Date task was completed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -595,6 +600,7 @@
     <fields>
         <fullName>Follow_Up_Date__c</fullName>
         <description>Used to log the follow up date on the related Title Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Follow Up Date</label>
         <required>false</required>
@@ -664,6 +670,7 @@
     <fields>
         <fullName>Inquiry_Call_Bucket__c</fullName>
         <description>The Call Bucket of the parent customer inquiry of an inquiry comment. Logged on activity when an inquiry comment is created</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inquiry Call Bucket</label>
         <length>255</length>
@@ -674,6 +681,7 @@
     <fields>
         <fullName>Inquiry_Call_Type__c</fullName>
         <description>The Call Type of the parent customer inquiry of an inquiry comment. Logged on activity when an inquiry comment is created</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inquiry Call Type</label>
         <length>255</length>
@@ -684,6 +692,7 @@
     <fields>
         <fullName>Inquiry_Status__c</fullName>
         <description>The status of the parent customer inquiry of an inquiry comment.  Logged on activity when an inquiry comment is created</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inquiry Status</label>
         <length>255</length>
@@ -722,6 +731,7 @@
     <fields>
         <fullName>Legacy_Id__c</fullName>
         <description>Stores the Id of any record from legacy systems that is migrated to SFDC as an Activity.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Legacy Id</label>
         <length>10</length>
@@ -738,6 +748,7 @@
     </fields>
     <fields>
         <fullName>Next_Scheduled_Meeting__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Next Scheduled Meeting</label>
         <required>false</required>
@@ -790,6 +801,7 @@
     <fields>
         <fullName>Notes__c</fullName>
         <description>Workaround to get comments to show on open activity related lists on case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>255</length>
@@ -799,6 +811,7 @@
     </fields>
     <fields>
         <fullName>Other_Reason__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other: Reason</label>
         <length>255</length>
@@ -819,6 +832,7 @@
     </fields>
     <fields>
         <fullName>Promotional_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Promotional Comments</label>
         <required>false</required>
@@ -873,11 +887,6 @@
                     <fullName>Blitz</fullName>
                     <default>false</default>
                     <label>Blitz</label>
-                </value>
-                <value>
-                    <fullName>Seller Launch</fullName>
-                    <default>false</default>
-                    <label>Seller Launch</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1240,6 +1249,7 @@
     <fields>
         <fullName>Received_Date__c</fullName>
         <description>Date the Document was received</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date the Document was received</inlineHelpText>
         <label>Received Date</label>
@@ -1328,11 +1338,6 @@
                     <label>No Interest</label>
                 </value>
                 <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
-                </value>
-                <value>
                     <fullName>Needs Follow-up</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
@@ -1380,6 +1385,7 @@
     <fields>
         <fullName>Title_ETA__c</fullName>
         <description>Estimated date for when title should be received</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Estimated date for when title should be received</inlineHelpText>
         <label>Title ETA</label>
@@ -1449,6 +1455,7 @@
     <fields>
         <fullName>maps__LayerId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Layer Id</label>
         <length>255</length>

@@ -5,18 +5,15 @@ public class OrganizationChangeEventTest {
 
         Id orgRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Standard').getRecordTypeId();
 
-        List<Account> accountList = new List<Account>();
         Account a = new Account(Dealership_ID__c = '4568777', phone='1234567890', Name='sellerr',legal_Name__c='sellerr', active__c = false, dealer_type__c='2',BillingStreet='159 main st', BillingState='NY', BillingCity='Rochester', BillingPostalCode='15555', BillingCountry='US', RecordTypeId = orgRecordTypeId);
-        accountList.add(a);
-        Account a1 = new Account(Dealership_ID__c = '456', phone='1234567890',Name='sellerName',legal_Name__c='sellerName', active__c = false,  Inactive_Sub_Status__c = '1', dealer_type__c='2',BillingStreet='159 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='10245', BillingCountry='US', RecordTypeId = orgRecordTypeId);
-        accountList.add(a1);
+        insert a;
+        Account a1 = new Account(Dealership_ID__c = '456', phone='1234567890',Name='sellerr1',legal_Name__c='sellerr1', active__c = false,  Inactive_Sub_Status__c = '1', dealer_type__c='2',BillingStreet='159 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='10245', BillingCountry='US', RecordTypeId = orgRecordTypeId);
+        insert a1;
 
         Account a3 = TestUtility.createAccount('ParkingAccount');
         a3.OwnerId = UserInfo.getUserId();
         a3.Dealership_Id__c = '1';
-        accountList.add(a3);
-
-        insert accountList;
+        insert a3;
 
 
     }

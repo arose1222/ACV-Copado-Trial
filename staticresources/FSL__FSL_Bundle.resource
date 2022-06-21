@@ -21,13 +21,33 @@
         <field>ServiceAppointment.RelatedBundleId</field>
         <readable>true</readable>
     </fieldPermissions>
-    <pageAccesses>
-        <apexPage>vf0008_BundlerDetailsLightBox</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>ServiceAppointment.BundlePolicyId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ApptBundlePolicy.IsManualBundling</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
         <editable>false</editable>
         <field>ServiceTerritory.O2_Enabled__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ApptBundlePolicy</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <pageAccesses>
+        <apexPage>vf0008_BundlerDetailsLightBox</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+  
 </PermissionSet>

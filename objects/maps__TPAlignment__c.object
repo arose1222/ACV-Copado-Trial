@@ -184,8 +184,32 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>maps__ApprovalSubmissionDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date Alignment was submitted for approval</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ApprovalSubmissionDate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>maps__ApprovalSubmittedBy__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ApprovalSubmittedBy</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>maps__Config__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Config</label>
         <length>131072</length>
@@ -209,6 +233,7 @@
     <fields>
         <fullName>maps__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -219,6 +244,7 @@
         <fullName>maps__LastError__c</fullName>
         <deprecated>false</deprecated>
         <description>Additional detail to help explain the latest error</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Error</label>
         <length>255</length>
@@ -305,6 +331,7 @@
     </fields>
     <label>Territory Planning Alignment</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

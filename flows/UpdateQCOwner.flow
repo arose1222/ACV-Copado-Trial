@@ -1,61 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>52.0</apiVersion>
-    <assignments>
-        <name>Add_QC_to_new_Collection</name>
-        <label>Add QC to new Collection</label>
-        <locationX>974</locationX>
-        <locationY>332</locationY>
-        <assignmentItems>
-            <assignToReference>varQCRecord</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>QC_Loop</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>QC_Loop</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Update_QC_Owner</name>
-        <label>Update QC Owner</label>
-        <locationX>788</locationX>
-        <locationY>423</locationY>
-        <assignmentItems>
-            <assignToReference>QC_Loop.OwnerId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Title_Specialist__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_QC_to_new_Collection</targetReference>
-        </connector>
-    </assignments>
-    <description>Added Seller Account to look to the record - new Version for pushing flow</description>
-    <formulas>
-        <description>This formulais used to look at cases created within the last 2 years or 720 days</description>
-        <name>TimeFrameforCreate</name>
-        <dataType>DateTime</dataType>
-        <expression>Now()-730</expression>
-    </formulas>
+    <decisions>
+        <name>IsCorrectAccount</name>
+        <label>IsCorrectAccount</label>
+        <locationX>170</locationX>
+        <locationY>490</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetCase.Seller_Dealership__r.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateQC</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Updated the owner of all open QC records when the specialist is changed on the account</description>
     <interviewLabel>UpdateQCOwner {!$Flow.CurrentDateTime}</interviewLabel>
     <label>UpdateQCOwner</label>
-    <loops>
-        <name>QC_Loop</name>
-        <label>QC Loop</label>
-        <locationX>628</locationX>
-        <locationY>363</locationY>
-        <collectionReference>Get_QC_Records</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Update_QC_Owner</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>UpdateQC</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -76,15 +46,31 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <description>Get QC Where the case records have a selling dealership that = the account that initiated the flow</description>
-        <name>Get_QC_Records</name>
-        <label>Get QC Records</label>
-        <locationX>177</locationX>
-        <locationY>363</locationY>
+        <name>GetCase</name>
+        <label>GetCase</label>
+        <locationX>176</locationX>
+        <locationY>338</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>QC_Loop</targetReference>
+            <targetReference>IsCorrectAccount</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Seller_Dealership__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>UpdateQC</name>
+        <label>UpdateQC</label>
+        <locationX>178</locationX>
+        <locationY>630</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Status__c</field>
@@ -93,38 +79,19 @@
                 <stringValue>Open</stringValue>
             </value>
         </filters>
-        <filters>
+        <inputAssignments>
             <field>OwnerId</field>
-            <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record__Prior.Title_Specialist__c</elementReference>
+                <elementReference>$Record.Title_Specialist__r.Id</elementReference>
             </value>
-        </filters>
-        <filters>
-            <field>Seller_Account__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
+        </inputAssignments>
         <object>Quality_Control__c</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>OwnerId</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>UpdateQC</name>
-        <label>UpdateQC</label>
-        <locationX>797</locationX>
-        <locationY>214</locationY>
-        <inputReference>varQCRecord</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Get_QC_Records</targetReference>
+            <targetReference>GetCase</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -138,22 +105,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
-    <variables>
-        <name>QualityControl</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Quality_Control__c</objectType>
-    </variables>
-    <variables>
-        <description>Individual QC record we are looking to update</description>
-        <name>varQCRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Quality_Control__c</objectType>
-    </variables>
+    <status>Obsolete</status>
 </Flow>

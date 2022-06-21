@@ -1,11 +1,8 @@
 /**
  * Created by zdeng on 9/19/2019.
- * @description Deprecated test class for original implementation of what is now RevolvingGenerator and RevolvingTest
- * @author Adam Richbart
- * @since 3/22/2022
- * @group Inspector Dispatch
  */
 
+@IsTest
 global class tracGenerate_Test {
 
     global static Occurrence__c generateTestOcc(Timeline__c tl0, String testName, String frequency, Integer every, String day, String WeekNum){
@@ -25,6 +22,7 @@ global class tracGenerate_Test {
         return occ0;
     }
 
+    @TestSetup
     global static void setUp(){
         insert FSLTestUtility.createWorkTypes();
         WorkType wt2 = FSLWorkProcessUtility.availableWTMap.get( 'inspection' );
@@ -86,6 +84,7 @@ global class tracGenerate_Test {
         insert occs;
     }
 
+    @IsTest
     static void testGenerate_01() {
         List<Occurrence__c> occs = getOccurrences( 'testocc0' );
         Test.startTest();
@@ -97,6 +96,7 @@ global class tracGenerate_Test {
         System.assert(genereatedWOs.size() > 0);
     }
 
+    @IsTest
     static void testGenerate_02() {
         List<Occurrence__c> occs = getOccurrences( 'testocc1' );
         Test.startTest();
@@ -108,6 +108,7 @@ global class tracGenerate_Test {
         System.assert(genereatedWOs.size() > 0);
     }
 
+    @IsTest
     static void testGenerate_03() {
         List<Occurrence__c> occs = getOccurrences( 'testocc2' );
         Test.startTest();
@@ -119,6 +120,7 @@ global class tracGenerate_Test {
         System.assert(genereatedWOs.size() > 0);
     }
 
+    @IsTest
     static void testGenerate_04() {
         List<Occurrence__c> occs = getOccurrences( 'testocc3' );
         Test.startTest();
@@ -129,7 +131,7 @@ global class tracGenerate_Test {
 
         System.assert(genereatedWOs.size() > 0);
     }
-    
+    @IsTest
     static void testGenerate_05() {
         List<Occurrence__c> occs = getOccurrences( 'testocc4' );
         Test.startTest();
@@ -141,6 +143,7 @@ global class tracGenerate_Test {
         System.assert(genereatedWOs.size() > 0);
     }
 
+    @IsTest
     static void testGenerate_06() {
         List<Occurrence__c> occs = getOccurrences( 'testocc5' );
         Test.startTest();
@@ -152,6 +155,7 @@ global class tracGenerate_Test {
         System.assert(genereatedWOs.size() > 0);
     }
 
+    @IsTest
     static void testGenerate_07() {
         List<Occurrence__c> occs = getOccurrences( 'testocc6' );
         Test.startTest();

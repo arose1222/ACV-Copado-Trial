@@ -1357,14 +1357,6 @@ Adding Retry loop outside of callout to transport api</description>
         <valueField>Full_Location_Address__c</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
-        <name>Picklist_Transport_Request_Type</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
-        <picklistField>Transport_Request_Type__c</picklistField>
-        <picklistObject>Case</picklistObject>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
         <name>Pickup_Contact_Choice_set</name>
         <dataType>String</dataType>
         <displayField>Name</displayField>
@@ -2501,9 +2493,9 @@ Adding Retry loop outside of callout to transport api</description>
         <label>Do you want to create this Transportation Case?</label>
         <locationX>2229</locationX>
         <locationY>2223</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <allowPause>true</allowPause>
         <connector>
             <targetReference>Create_Transpo_Case_decision</targetReference>
         </connector>
@@ -2876,17 +2868,6 @@ You will need to know the price that will be charged to the dealership that is r
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <scale>2</scale>
-        </fields>
-        <fields>
-            <name>Transport_Request_Type</name>
-            <choiceReferences>Picklist_Transport_Request_Type</choiceReferences>
-            <dataType>String</dataType>
-            <defaultValue>
-                <stringValue>Non-Captive</stringValue>
-            </defaultValue>
-            <fieldText>Transport Request Type</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
         </fields>
         <fields>
             <name>Transportation_Case_Notes</name>
@@ -3302,7 +3283,7 @@ You will need to know the price that will be charged to the dealership that is r
             <targetReference>Post_Auction_Transportation_Request_Requirements</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>AllAssociatedLocationSellerOther</name>
         <dataType>SObject</dataType>

@@ -125,7 +125,6 @@ public class createPrescreenForVirtualLiftCR extends ClassInterface{
                     wrapperWithVLMap.put(vinWrapperMap.get(vl.vin).idef.inspectionId, vinWrapperMap.get(vl.vin));
                     LinkToVL.put(vinWrapperMap.get(vl.vin).idef.inspectionID, vl.link);
                     wrapperMap.get(vinWrapperMap.get(vl.vin).idef.inspectionID).prescreenReasons.add(crt.Prescreen_Reason__c);
-                    wrapperMap.get(vinWrapperMap.get(vl.vin).idef.inspectionID).prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper(crt.Prescreen_Reason__c, crt.Is_Aux_Reason__c));
                 }
             }
         }

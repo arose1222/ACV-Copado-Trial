@@ -18,7 +18,7 @@ public class IdentityServiceRegistrationCreateLeadTst {
         data.PhoneExt= '123';
         data.Street= '640 Ellicott St #321';
         data.City= 'Buffalo';
-        data.State= 'AK';
+        data.State= 'NY';
         data.Zipcode= '14203';
         data.ContactPreference='Text';
         data.ReferralType='Search engines';
@@ -46,7 +46,7 @@ public class IdentityServiceRegistrationCreateLeadTst {
         System.Assert(RestContext.response.statuscode == 201, 'Bad Status Code: '+RestContext.response.statuscode);
         System.Assert([Select Count() from Lead Where FirstName='Joe' and LastName='Pel' and Company='SK\' Company' 
         and Dealership_DBA_Name__c= 'KS\' Dealers' and Email='joepel@test.com' and  Dealer_Type__c='Franchise' and Phone='1234567890;123'
-         and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='AK' and PostalCode='14203'
+         and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='NY' and PostalCode='14203'
         and Referral__c='Search engines' and Referral_Code__c='Google' and SMS_Opt_In__c= true and Website='www.testsk.com'
         and How_many_cars_do_you_stock__c= 100 and Interested_in_Buying__c= true and Interested_In_Selling__c= true
         and Language_Preference__c='English' and MobilePhone='9876543210' and utm_source__c= 'anim' and  
@@ -97,10 +97,8 @@ public class IdentityServiceRegistrationCreateLeadTst {
         RestContext.request = req;
         RestContext.response = res;
 
-        Test.startTest();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
         IdentityServiceRegistrationCreateLead.createLead(data);
-        Test.stopTest();
 
         System.Assert(RestContext.response.statuscode == 201, 'Bad Status Code: '+RestContext.response.statuscode + RestContext.response);
         System.Assert([Select Count() from Lead Where FirstName='Joe' and LastName='Pel' and Company='SK Company' 
@@ -135,7 +133,7 @@ public class IdentityServiceRegistrationCreateLeadTst {
         data.PhoneExt= '123';
         data.Street= '640 Ellicott St #321';
         data.City= 'Buffalo';
-        data.State= 'AK';
+        data.State= 'NY';
         data.Zipcode= '14203';
         data.ContactPreference='Text';
         data.ReferralType='Search engines';
@@ -159,15 +157,13 @@ public class IdentityServiceRegistrationCreateLeadTst {
         RestContext.request = req;
         RestContext.response = res;
 
-        Test.startTest();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
         IdentityServiceRegistrationCreateLead.createLead(data);
-        Test.stopTest();
 
         System.Assert(RestContext.response.statuscode == 201, 'Bad Status Code: '+RestContext.response.statuscode + RestContext.response);
         System.Assert([Select Count() from Lead Where FirstName='Joe' and LastName='Pel' and Company='SK Company' 
         and Dealership_DBA_Name__c= 'KS Dealers' and Email='joepel@test.com' and  Dealer_Type__c='Franchise' and Phone='1234567890;123'
-         and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='AK' and PostalCode='14203'
+         and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='NY' and PostalCode='14203'
         and Referral__c='Search engines' and Referral_Code__c='Google' and SMS_Opt_In__c= true and Website='www.testsk.com'
         and How_many_cars_do_you_stock__c= 100 and Interested_in_Buying__c= true and Interested_In_Selling__c= true
         and Language_Preference__c='English' and MobilePhone='9876543210' and utm_source__c= 'anim' and  
@@ -422,7 +418,7 @@ public class IdentityServiceRegistrationCreateLeadTst {
         data.PhoneExt= '123';
         data.Street= '640 Ellicott St #321';
         data.City= 'Buffalo';
-        data.State= 'AK';
+        data.State= 'NY';
         data.Zipcode= '14203';
         data.ContactPreference='Text';
         data.ReferralType='Search engines';
@@ -432,7 +428,6 @@ public class IdentityServiceRegistrationCreateLeadTst {
         data.CarsInstock= 100;
         data.DealersInterest= 'both';
         data.LanguagePreference= 'English';
-        data.EulaTosAcceptedDate='2020-01-18 06:23:29';
 
         RestRequest req = new RestRequest();
         RestResponse res = new RestResponse();
@@ -440,9 +435,7 @@ public class IdentityServiceRegistrationCreateLeadTst {
         RestContext.request = req;
         RestContext.response = res;
 
-        Test.startTest();
         IdentityServiceRegistrationCreateLead.createLead(data);
-        Test.stopTest();
         IdentityServiceRegistrationCreateLead.createLead(data);
 
         System.Assert(RestContext.response.statuscode == 409, 'Bad Status Code: '+RestContext.response.statuscode);

@@ -213,6 +213,7 @@
     <fields>
         <fullName>EXPRN__Application_ID__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Application ID</label>
         <length>255</length>
@@ -292,6 +293,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Credit_Limit1__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Recomended Credit Limit</label>
         <length>18</length>
@@ -317,6 +319,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Credit_Policy1__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Credit Policy</label>
         <length>255</length>
@@ -343,6 +346,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prior Decision Date</label>
         <required>false</required>
@@ -353,6 +357,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Decision_Action__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Decision Action</label>
         <length>255</length>
@@ -365,6 +370,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Decision_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Decision Date</label>
         <required>false</required>
@@ -497,6 +503,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Override_Reason__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Override Reason</label>
         <length>255</length>
@@ -519,6 +526,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Overwritten_By__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Overridden By</label>
         <length>255</length>
@@ -531,6 +539,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Previous_Decision__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prior Decision</label>
         <length>50</length>
@@ -557,6 +566,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Rule__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Rule</label>
         <length>2000</length>
@@ -568,6 +578,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__Score__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Percentile Score</label>
         <length>255</length>
@@ -580,6 +591,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <fields>
         <fullName>EXPRN__User_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>User Name</label>
         <length>255</length>
@@ -778,7 +790,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>EXPRN__For_Other_Override_Reason_mandatory</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If reason is Other,Comment is mandatory.</description>
         <errorConditionFormula>AND( NOT(ISNEW()),  INCLUDES(EXPRN__Decision_Reason__c,&quot;Other&quot;),ISBLANK(EXPRN__Override_Reason__c))</errorConditionFormula>
         <errorDisplayField>EXPRN__Decision_Reason__c</errorDisplayField>
@@ -794,7 +806,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     </validationRules>
     <validationRules>
         <fullName>EXPRN__Reason_is_mandatory</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If override decision , reason is mandatory</description>
         <errorConditionFormula>AND(  NOT(ISNEW()), OR(TEXT(EXPRN__Decision_Override__c)=&apos;Decline&apos;,TEXT(EXPRN__Decision_Override__c)=&apos;Approve&apos;,TEXT(EXPRN__Decision_Override__c)=&apos;Manual Decision&apos;), ISBLANK(EXPRN__Decision_Reason__c))</errorConditionFormula>
         <errorDisplayField>EXPRN__Decision_Reason__c</errorDisplayField>
@@ -802,7 +814,7 @@ IF(ISPICKVAL(EXPRN__Decision__c, &quot;Manual Review&quot;),TEXT(EXPRN__Decision
     </validationRules>
     <validationRules>
         <fullName>EXPRN__Revoke_Editing_Recommended_credit_line</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>User will be able to update Recommended_credit_line only when decision = Approve and Manual Review else, user will not be allowed to do</description>
         <errorConditionFormula>RecordType.DeveloperName == &apos;Recent_Decision&apos; &amp;&amp; 
 TEXT( EXPRN__Decision_Override__c ) == &apos;Decline&apos; &amp;&amp;  

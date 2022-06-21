@@ -212,6 +212,7 @@
     <fields>
         <fullName>Calendly_Link__c</fullName>
         <description>Used for BDR&apos;s</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Calendly Link</label>
         <required>false</required>
@@ -239,6 +240,7 @@
     </fields>
     <fields>
         <fullName>Changed_By_Sf_User_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Changed By Sf User Id</label>
         <length>100</length>
@@ -249,6 +251,7 @@
     </fields>
     <fields>
         <fullName>Changed_By_Username__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Changed By Username</label>
         <length>100</length>
@@ -310,6 +313,7 @@
     <fields>
         <fullName>Deactivated_Date__c</fullName>
         <description>Set by workflow &amp; field update when the user record is set active = false</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date use was deactivated in Salesforce</inlineHelpText>
         <label>Deactivated Date</label>
@@ -320,6 +324,7 @@
     <fields>
         <fullName>Deal_Maker_Filter_Save__c</fullName>
         <description>Saves the filters into a field from the deal maker page, so when the user refreshes the page or goes back to it later the same filters are saved. This field updates when the user makes a filter change on the page.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Deal Maker Filter Save</label>
         <length>32768</length>
@@ -330,6 +335,7 @@
     <fields>
         <fullName>Default_Priorities__c</fullName>
         <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected Priorities &apos;,&apos; comma-separated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Priorities</label>
         <required>false</required>
@@ -369,6 +375,7 @@
     <fields>
         <fullName>Default_Service_Territories__c</fullName>
         <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected service territories (Record IDs), comma-separated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Service Territories</label>
         <length>32000</length>
@@ -379,6 +386,7 @@
     <fields>
         <fullName>Default_Status_Values__c</fullName>
         <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected status values, comma-separated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Status Values</label>
         <length>255</length>
@@ -390,6 +398,7 @@
     <fields>
         <fullName>Default_Work_Types__c</fullName>
         <description>Used to store preferences for the Work Order Queue LWC. Represents the user’s selected work types (Record IDs), comma-separated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Work Types</label>
         <length>255</length>
@@ -400,6 +409,7 @@
     </fields>
     <fields>
         <fullName>Director__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Director</label>
         <length>100</length>
@@ -428,6 +438,11 @@
         <label>Allow Decisioning</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
         <fullName>FSL_Beta__c</fullName>
@@ -460,6 +475,7 @@
     <fields>
         <fullName>Hover_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Hover Id</label>
         <length>255</length>
@@ -472,6 +488,7 @@
         <fullName>Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>acv_prod id found on the users table used to identify internal users</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>This corresponds to the User&apos;s ACV Tools ID</inlineHelpText>
         <label>ACV User Id</label>
@@ -484,6 +501,7 @@
     <fields>
         <fullName>Inside_Territory_Manager__c</fullName>
         <description>Inside Sales or Territory Manager</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inside/Territory Manager</label>
         <length>100</length>
@@ -509,6 +527,7 @@
     </fields>
     <fields>
         <fullName>Sales_Leader__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sales Leader</label>
         <length>100</length>
@@ -574,6 +593,7 @@
     <fields>
         <fullName>maps__DefaultType__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DefaultType</label>
         <length>255</length>
@@ -637,6 +657,7 @@
     <fields>
         <fullName>maps__MapsSetting__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Map Settings</label>
         <length>32768</length>
@@ -1017,7 +1038,7 @@
     <sharingModel>Read</sharingModel>
     <validationRules>
         <fullName>Admin_Profile_Assignment_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation rule prevents users from granting other users the System Administrator profile without having the Admin Profile Assignment permission.</description>
         <errorConditionFormula>AND(OR(ISCHANGED(ProfileId), ISNEW()), Profile.Name == &quot;System Administrator&quot;, !$Permission.Admin_Profile_Assignment,  !$Setup.Validation_Bypass__c.System_Admin_Assignment__c)</errorConditionFormula>
         <errorDisplayField>ProfileId</errorDisplayField>

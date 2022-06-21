@@ -39,7 +39,7 @@
             <name>Update_QC_Status</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Quality_Control__c.Problems_Open__c</field>
             <operation>equals</operation>
@@ -58,7 +58,7 @@
             <name>Reset_Email_Checkbox</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Sends email notification to buyer, or floorplan that Return Postage Label to ACV is ready.</description>
         <formula>Send_Postage_Email_To_Buyer__c=true</formula>
         <triggerType>onAllChanges</triggerType>

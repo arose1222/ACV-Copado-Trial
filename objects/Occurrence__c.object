@@ -168,6 +168,7 @@
     <fields>
         <fullName>Date_of_Last_Generation__c</fullName>
         <description>Old field with not up to date information</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Do not use this field</inlineHelpText>
         <label>Date of Last Generation</label>
@@ -595,6 +596,7 @@
     <fields>
         <fullName>Farthest_Date_Generated__c</fullName>
         <description>This field marks the date of the work order/service appointment that is scheduled the farthest into the future.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The farthest date in the future that work is scheduled for.</inlineHelpText>
         <label>Farthest Date Generated</label>
@@ -657,6 +659,7 @@
     </fields>
     <fields>
         <fullName>Most_Recent_Batch__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Most Recent Batch</label>
         <required>false</required>
@@ -676,6 +679,7 @@
     </fields>
     <fields>
         <fullName>TestName__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TestName</label>
         <length>10</length>
@@ -806,7 +810,7 @@
     <listViews>
         <fullName>All_Active_Occurence</fullName>
         <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Mine</filterScope>
         <label>All Active Occurence</label>
     </listViews>
     <nameField>
@@ -821,19 +825,19 @@
     <startsWith>Vowel</startsWith>
     <validationRules>
         <fullName>Must_Select_Day_if_not_Daily</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND($Profile.Name != &apos;System Administrator&apos;, ISNULL(Day__c), TEXT(Frequency__c)!= &apos;Daily&apos;)</errorConditionFormula>
         <errorMessage>If your frequency is set to weekly or monthly please specify the days for it to repeat on.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Start_Time_Less_Than_End_Time</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>Start_Time__c &gt;  End_Time__c</errorConditionFormula>
         <errorMessage>You can not have a start time later than your end time.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>You_can_not_modify_the_frequency</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISCHANGED(Frequency__c)</errorConditionFormula>
         <errorDisplayField>Frequency__c</errorDisplayField>
         <errorMessage>You can not modify the frequency of an occurrence.</errorMessage>

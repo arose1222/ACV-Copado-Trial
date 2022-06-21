@@ -198,6 +198,7 @@
     <fields>
         <fullName>maps__Body__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Body</label>
         <length>131072</length>
@@ -208,6 +209,7 @@
     <fields>
         <fullName>maps__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -218,6 +220,7 @@
     <fields>
         <fullName>maps__Details__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Details</label>
         <length>32768</length>
@@ -229,6 +232,7 @@
         <fullName>maps__ErrorBody__c</fullName>
         <deprecated>false</deprecated>
         <description>This holds information about the error and hopefully some way of identifying where the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Body</label>
         <length>32768</length>
@@ -240,6 +244,7 @@
         <fullName>maps__ErrorMessages__c</fullName>
         <deprecated>false</deprecated>
         <description>This will hold messages returned from the routing services</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Messages</label>
         <length>32768</length>
@@ -251,6 +256,7 @@
         <fullName>maps__Error__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the main error mesage</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error</label>
         <length>32768</length>
@@ -297,6 +303,7 @@
         <fullName>maps__ProcessingDate__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the date that was processing for the template user when the error occurred</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Processing Date</label>
         <required>false</required>
@@ -307,6 +314,7 @@
         <fullName>maps__RecordId__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the id of a related record that could help in resolving the error</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Record Id</label>
         <length>255</length>
@@ -318,6 +326,7 @@
     <fields>
         <fullName>maps__RequestParameters__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Request Parameters</label>
         <length>32768</length>
@@ -329,6 +338,7 @@
         <fullName>maps__RoutingJobId__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the routing job id that is related to the route that was processing when the error occurred</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Routing Job Id</label>
         <length>255</length>
@@ -420,6 +430,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

@@ -8,14 +8,14 @@
 public class tracRecurringEventController {
     private final static Integer MAX_RESULTS = 5;
 
-    
+
     /**
      * @description finds territories based on string
      * @param searchTerm string to search
      * @param selectedIds list of ids to exclude from the search
      * @return list of lookup results
      */
-    /*@AuraEnabled
+    @AuraEnabled
     public static List<LookupSearchResult> getTerritories(String searchTerm, List<String> selectedIds) {
         // Prepare query paramters
         searchTerm += '*';
@@ -35,7 +35,7 @@ public class tracRecurringEventController {
         }
 
         return results;
-    }*/
+    }
 
     @AuraEnabled
     public static String getOperatingHours( String acctId ) {      
@@ -146,16 +146,6 @@ public class tracRecurringEventController {
                 FROM Occurrence__c WHERE Timeline__c = :recordId];
     }
 
-    /**
-     * @description get account from record Id
-     * @param recordId account Id
-     * @return Account
-     */
-    @AuraEnabled
-    public static Account getAccountAddress(String recordId) {
-        return [SELECT BillingStreet,BillingCity,BillingState,BillingCountry,BillingPostalCode,Halt_True360_Appointments__c 
-                FROM Account WHERE Id = :recordId];
-    }
 
     /**
      * @description deletes a timeline record

@@ -320,7 +320,7 @@
             
             //handle changing frequency interval
             $('input[name="newbatch-frequency-interval"]').click(function () {
-            	if ($(this).attr('value') == 'Weekly')
+            	if ($(this).attr('value') == window.MASystem.Labels.MA_Weekly)
             	{
             		$('#newbatch-frequency-monthly-wrapper').hide();
             		$('#newbatch-frequency-weekly-wrapper').show();
@@ -335,7 +335,7 @@
             //handle aborting batches
             $('#lastbatches-grid').on('click', '.link.abort', function () {
             
-            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), 'Aborting...');
+            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), window.MASystem.Labels.automationSettings_Aborting);
 	            var processData = {
                     action : 'abort_batch',
                     batchId : $(this).closest('.lastbatches-row').attr('data-id')
@@ -359,8 +359,7 @@
             
             //handle scheduling batches
             $('#newbatch-schedule').click(function () {
-            
-            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), 'Scheduling...');
+            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), window.MASystem.Labels.automationSettings_Scheduling);
             
             	//send request
 				var processData = {
@@ -381,13 +380,13 @@
                         if(event.status && response.success) {
     	               		//clear fields
     	               		$('#newbatch-batchname').val('');
-    	            		$('#newbatch-baseobject').val('--Please Choose--').next().find('input').val('--Please Choose--');
+    	            		$('#newbatch-baseobject').val(window.MASystem.Labels.automationSettings_Please_Choose).next().find('input').val(window.MASystem.Labels.automationSettings_Please_Choose);
     	            		$('input[name="newbatch-frequency-interval"][value="Weekly"]').click();
     	            		$('.newbatch-frequency-weekly').attr('checked', false);
     	            		$('#newbatch-frequency-monthly-day').val('1');
     	            		$('#newbatch-starttime').val('0').next().find('input').val('12:00 AM');
     	            		
-    	            		showSuccess($tab, 'Batch Scheduled');
+    	            		showSuccess($tab, window.MASystem.Labels.automationSettings_Batch_Scheduled);
                         }
     	                else
     	                {
@@ -401,7 +400,7 @@
             //handle manual batches
             $('#manualbatch-startgeocoder, #manualbatch-startlatlongremoval, #manualbatch-startskipgeocodeflagremovalbatch').click(function () {
             
-            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), 'Executing...');
+            	var $tab = showLoading($(this).closest('.ui-tabs-panel'), window.MASystem.Labels.automationSettings_Executing);
             
             	//send request for automation data
 				var processData = {
@@ -415,9 +414,9 @@
                     function(response, event){
                         if(event.status && response.success) {
     	                	//clear fields
-    	                	$('#manualbatch-baseobject').val('--Please Choose--').next().find('input').val('--Please Choose--');
+    	                	$('#manualbatch-baseobject').val(window.MASystem.Labels.automationSettings_Please_Choose).next().find('input').val(window.MASystem.Labels.automationSettings_Please_Choose);
     	                
-    	                    showSuccess($tab, 'Batch Started');
+    	                    showSuccess($tab, window.MASystem.Labels.automationSettings_Batch_Started);
     	                }
     	                else
     	                {
@@ -434,7 +433,7 @@
             	if (confirm('Are you sure you want to delete ' + $(this).closest('.scheduledbatches-row').find('.jobName').text() + '?'))
             	{
             		//show loader
-            		var $loader = showLoading($(this).closest('.loadmask-wrapper'), 'Deleting...');
+            		var $loader = showLoading($(this).closest('.loadmask-wrapper'), window.MASystem.Labels.automationSettings_Deleting);
             		
             		//send request
             		var processData = {
@@ -469,7 +468,7 @@
         	//show loaders
         	$('.combobox').combobox().next().prepend("<div class='loadmask'></div>");
         	$('div.loadmask-wrapper').each(function () {
-        		showLoading($(this), 'Refreshing...');
+        		showLoading($(this), window.MASystem.Labels.automationSettings_Refreshing);
         	});
         	
             var processData = {
@@ -481,7 +480,7 @@
                 function(response, event){
                     if(event.status) {
                         //populate base object options
-                        $('#newbatch-baseobject, #manualbatch-baseobject').html('<option value="--Please Choose--">--Please Choose--</option>').val('--Please Choose--').next().find('input').text('--Please Choose--');
+                        $('#newbatch-baseobject, #manualbatch-baseobject').html('<option value="' + window.MASystem.Labels.automationSettings_Please_Choose + '">' + window.MASystem.Labels.automationSettings_Please_Choose + '</option>').val(window.MASystem.Labels.automationSettings_Please_Choose).next().find('input').text(window.MASystem.Labels.automationSettings_Please_Choose);
                         $.each(response.baseObjects, function (index, baseObject) {
                         	
                         	//remove namespace
@@ -511,7 +510,7 @@
                         //remove loaders
                         $('.combobox').next().find('.loadmask').remove();
                         $('div.loadmask-wrapper').each(function () {
-    		        		showSuccess($(this), 'Refresh Complete');
+    		        		showSuccess($(this), window.MASystem.Labels.automationSettings_Refresh_Complete);
     		        	});
                     }
                 },{buffer:false,escape:false}
@@ -521,7 +520,7 @@
         function appendBatch(batch)
         {
         	var $row = $('#templates .lastbatches-row').clone().attr('data-id', batch.Id);
-           	$row.find('.action').html(batch.Status == 'Processing' ? "<span class='link abort'>Abort</span>" : "");
+           	$row.find('.action').html(batch.Status == window.MASystem.Labels.MA_Processing ? "<span class='link abort'>" + window.MASystem.Labels.automationSettings_Abort + "</span>" : "");
            	$row.find('.submittedDate').text(batch.CreatedDate);
            	$row.find('.jobType').text(batch.JobType);
            	$row.find('.status').text(batch.Status);
@@ -576,8 +575,8 @@
                                                     <span class="slds-icon ma-icon ma-icon-Maps"></span>
                                                 </div>
                                                 <div class="slds-media__body">
-                                                    <p class="slds-line-height--reset">Salesforce Maps</p>
-                                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Automation</h1>
+                                                    <p class="slds-line-height--reset">{!JSENCODE($Label.MapsSetting_MAPageHeader_Salesforce_Maps)}</p>
+                                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">{!JSENCODE($Label.MapsSetting_Automation)}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -600,7 +599,7 @@
                                         <!-- Schedule Settings -->
                                         <div class='slds-section slds-m-bottom_large slds-is-open newbaseobjectdetails'>
                                             <div class='slds-section__title slds-theme--shade'>
-                                                <span class="section-header-title slds-p-horizontal--small slds-truncate">Schedule Settings</span>
+                                                <span class="section-header-title slds-p-horizontal--small slds-truncate">{!JSENCODE($Label.automationSettings_Schedule_Settings)}</span>
                                             </div>
                                             <div class='slds-section__content section__content'>
                                                 <div class="slds-grid">
@@ -622,7 +621,7 @@
                                                             <label class="slds-form-element__label">{!JSENCODE($Label.MA_Apex_Class)}</label>
                                                             <div class="slds-form-element__control">
                                                                 <select id="newbatch-apexclass" class="combobox">
-                                                                    <option value="GeoCoderSchedulable">GeoCoderSchedulable</option>
+                                                                    <option value="GeoCoderSchedulable">{!JSENCODE($Label.automationSettings_GeoCoderSchedulable)}</option>
                                                                 </select>
                                                             </div>
                                                         </div> 
@@ -634,7 +633,7 @@
                                                             <label class="slds-form-element__label">{!JSENCODE($Label.MA_Base_Object)}</label>
                                                             <div class="slds-form-element__control">
                                                                 <select id='newbatch-baseobject' class='combobox'>
-                                                                    <option value='--Please Choose--'>--{!JSENCODE($Label.MA_Please_Choose)}--</option>
+                                                                    <option value='{!JSENCODE($Label.automationSettings_Please_Choose)}'>{!JSENCODE($Label.automationSettings_Please_Choose)}</option>
                                                                 </select>
                                                             </div>
                                                         </div> 
@@ -813,7 +812,7 @@
                                         
                                         <!-- Buttons -->
                                         <div class='MainTabs-buttons'>
-                                            <input type='button' id='newbatch-schedule' class='MAbutton button-blue slds-button slds-button_brand' value='Schedule' />
+                                            <input type='button' id='newbatch-schedule' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.MA_SCHEDULE)}' />
                                         </div>
                                     </div>
                                     
@@ -828,10 +827,10 @@
                                                 <div class="slds-grid">
                                                     <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-has-flexi-truncate">
                                                         <div class="slds-form-element">
-                                                            <label class="slds-form-element__label">Base Object</label>
+                                                            <label class="slds-form-element__label">{!JSENCODE($Label.MA_Base_Object)}</label>
                                                             <div class="slds-form-element__control">
                                                                 <select id='manualbatch-baseobject' class='combobox'>
-                                                                    <option value='--Please Choose--'>--{!JSENCODE($Label.MA_Please_Choose)}--</option>
+                                                                    <option value='{!JSENCODE($Label.automationSettings_Please_Choose)}'>{!JSENCODE($Label.automationSettings_Please_Choose)}</option>
                                                                 </select>
                                                             </div>
                                                         </div> 
@@ -842,9 +841,9 @@
 
                                         <!-- Buttons -->
                                         <div class='MainTabs-buttons'>
-                                            <input type='button' id='manualbatch-startgeocoder' class='MAbutton button-blue slds-button slds-button_brand' value='Start GeoCoding Batch' data-batch='GeoCoderBatchable' />
-                                            <input type='button' id='manualbatch-startlatlongremoval' class='MAbutton button-blue slds-button slds-button_brand' value='Start Lat/Long Removal Batch' data-batch='RemoveLatLongBatch' /> 
-                                            <input type='button' id='manualbatch-startskipgeocodeflagremovalbatch' class='MAbutton button-blue slds-button slds-button_brand' value='Start Skip Geocode Flag Removal Batch' data-batch='SkipGeocodeFlagRemovalBatch' />
+                                            <input type='button' id='manualbatch-startgeocoder' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.automationSettings_Start_GeoCoding_Batch)}' data-batch='GeoCoderBatchable' />
+                                            <input type='button' id='manualbatch-startlatlongremoval' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.automationSettings_Lat_Long_Removal_Batch)}' data-batch='RemoveLatLongBatch' /> 
+                                            <input type='button' id='manualbatch-startskipgeocodeflagremovalbatch' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.automationSettings_Start_Clear_Skip_Flag)}' data-batch='SkipGeocodeFlagRemovalBatch' />
                                         </div>
                                     
                                     </div>
@@ -858,13 +857,13 @@
                                             <table id='lastbatches-grid' class='grid-blue'>
                                                 <tr>
                                                     <th>{!JSENCODE($Label.MA_Action)}</th>
-                                                    <th>{!JSENCODE($Label.MA_Submitted_Date)}</th>
+                                                    <th>{!JSENCODE($Label.automationSettings_Date_Submitted)}</th>
                                                     <th>{!JSENCODE($Label.MA_Job_Type)}</th>
                                                     <th>{!JSENCODE($Label.MA_Status)}</th>
                                                     <th>{!JSENCODE($Label.MA_Status_Detail)}</th>
                                                     <th>{!JSENCODE($Label.MA_Total_Batches)}</th>
                                                     <th>{!JSENCODE($Label.MA_Batches_Processed)}</th>
-                                                    <th>{!JSENCODE($Label.MA_Failures)}</th>
+                                                    <th>{!JSENCODE($Label.automationSettings_Incomplete)}</th>
                                                     <th>{!JSENCODE($Label.MA_Submitted_By)}</th>
                                                     <th>{!JSENCODE($Label.MA_Completion_Date)}</th>
                                                     <th>{!JSENCODE($Label.MA_Apex_Class)}</th>
@@ -873,7 +872,7 @@
                                             
                                             <!-- Buttons -->
                                             <div class='MainTabs-buttons slds-p-top_small'>
-                                                <input type='button' id='lastbatches-refresh' class='MAbutton button-blue slds-button slds-button_brand' value='Refresh' /> 
+                                                <input type='button' id='lastbatches-refresh' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.MA_REFRESH)}' /> 
                                             </div>
                                         </div>
                                         
@@ -891,15 +890,15 @@
                                                     <th>{!JSENCODE($Label.MA_Job_Name)}</th>
                                                     <th>{!JSENCODE($Label.MA_Apex_Class)}</th>
                                                     <th>{!JSENCODE($Label.MA_Submitted_By)}</th>
-                                                    <th>{!JSENCODE($Label.MA_Submitted)}</th>
-                                                    <th>{!JSENCODE($Label.MA_Last_Run)}</th>
+                                                    <th>{!JSENCODE($Label.automationSettings_Date_Submitted)}</th>
+                                                    <th>{!JSENCODE($Label.automationSettings_Date_Last_Run)}</th>
                                                     <th>{!JSENCODE($Label.MA_Next_Scheduled_Run)}</th>
                                                 </tr>
                                             </table>
                                             
                                             <!-- Buttons -->
                                             <div class='MainTabs-buttons slds-p-top_small'>
-                                                <input type='button' id='scheduledbatches-refresh' class='MAbutton button-blue slds-button slds-button_brand' value='Refresh' /> 
+                                                <input type='button' id='scheduledbatches-refresh' class='MAbutton button-blue slds-button slds-button_brand' value='{!JSENCODE($Label.MA_REFRESH)}' /> 
                                             </div>
                                         </div>
                                     
@@ -936,7 +935,7 @@
     	<!-- Scheduled Batch Row -->
     	<table>
     		<tr class='scheduledbatches-row'>
-    			<td class='action'><span class='delete link'>Del</span></td>
+    			<td class='action'><span class='delete link'>{!JSENCODE($Label.automationSettings_Del)}</span></td>
     			<td class='jobName'></td>
     			<td class='apexClassName'></td>
     			<td class='submittedBy'></td>

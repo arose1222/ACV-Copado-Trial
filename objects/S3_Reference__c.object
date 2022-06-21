@@ -158,6 +158,7 @@
         <fullName>External_Record_Guid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>This is an external id to link to the MySQL database generated in Salesforce</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Record Guid</label>
         <length>255</length>
@@ -170,6 +171,7 @@
     <fields>
         <fullName>S3_URL__c</fullName>
         <description>URL to the S3 file</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>S3 URL</label>
         <required>false</required>
@@ -222,6 +224,7 @@
     </fields>
     <label>S3 Reference</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>S3 Reference Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

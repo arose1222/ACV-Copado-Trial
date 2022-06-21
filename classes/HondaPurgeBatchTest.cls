@@ -1,13 +1,5 @@
-/**
- * @description Test class for HondaPurgeBatch that creates work orders, service appointments, and work order line items and tests to make sure that after purging records, expected results occur 
- * @author Adam Richbart
- * @since 03/18/2022
- * @group Inspector Dispatch
- */
 @isTest
 public class HondaPurgeBatchTest {
-
-    public static Integer RECORD_COUNT = 10;
 
     @TestSetup
     public static void makeData() {
@@ -23,7 +15,7 @@ public class HondaPurgeBatchTest {
         // Create Work Order (needed for Service Appointment):
         List<WorkOrder> workOrderList = new List<WorkOrder>();
 
-        for (Integer i = 0, j = 0; i < RECORD_COUNT; i++) {
+        for (Integer i = 0, j = 0; i < 10; i++) {
             WorkOrder workOrder = new WorkOrder(
                 AccountId = acc.Id,
                 ServiceTerritoryId = [ SELECT Id FROM ServiceTerritory LIMIT 1 ].Id,
@@ -65,76 +57,10 @@ public class HondaPurgeBatchTest {
         }
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
+
     @isTest
-    static void testCancelAndSeparateAllRecords(){
-        String HONDA_DEALER_ID = HondaPurgeBatch.HONDA_DEALER_ID;
-        DateTime DATE_NUMDAYSOUT = HondaPurgeBatch.DATE_NUMDAYSOUT;
-
-        List<WorkOrder> woList = Database.query(HondaPurgeBatch.QUERY);
-        List<ServiceAppointment> saList = new List<ServiceAppointment>();
-        List<WorkOrderLineItem> woliList = new List<WorkOrderLineItem>();
-        
-        HondaPurgeBatch.cancelAndSeparateAllRecords(saList, woliList, woList);
-
-        Boolean allRecordsCanceled = true;
-        for(ServiceAppointment sa : saList){
-            if(sa.Status != 'Canceled'){
-                allRecordsCanceled = false;
-                break;
-            }
-        }
-
-        if(allRecordsCanceled) {
-            for(WorkOrder wo : woList) {
-                if(wo.Status != 'Canceled') {
-                    allRecordsCanceled = false;
-                    break;
-                }
-            }
-        }
-        
-        if(allRecordsCanceled){
-            for(WorkOrderLineItem woli : woliList){
-                if(woli.Status != 'Canceled'){
-                    allRecordsCanceled = false;
-                    break;
-                }
-            }
-        }
-
-        System.assertEquals(RECORD_COUNT, saList.size(), 'There was an incorrect number of service appointments in the returned list');
-        System.assertEquals(RECORD_COUNT, woList.size(), 'There was an incorrect number of work orders in the returned list');
-        System.assertEquals(RECORD_COUNT, woliList.size(), 'There was an incorrect number of work order line items in the returned list');
-        System.assert(allRecordsCanceled, 'Not all records were in a status of Canceled');
-    }
-
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
-    @isTest
-    static void testStoreSaveResults() {
-        BatchUtilityClass.BatchReturn returnInfo = new BatchUtilityClass.BatchReturn( FALSE );
-
-        string query = 'SELECT Id, Status FROM WorkOrder LIMIT 2';
-        List<WorkOrder> woList = Database.query(query);
-
-        Database.SaveResult[] mockSaveResults = new Database.SaveResult[] {
-            (Database.SaveResult) JSON.deserialize('{"success":true,"id":"' + woList[0].id + '"}', Database.SaveResult.class),
-            (Database.SaveResult) JSON.deserialize('{"success":false, "id":"' + woList[1].id + '", "errors":[{"message":"You cannot do this...","statusCode":"FIELD_CUSTOM_VALIDATION_EXCEPTION"}]}', Database.SaveResult.class)
-        };
-
-        HondaPurgeBatch.storeSaveResults(returnInfo, mockSaveResults, woList);
-
-        System.assertEquals(1, returnInfo.successfulReturnSet.size(), 'Successful return set did not have exactly 1 successful save result record');
-        System.assertEquals(1, returnInfo.errorReturnLst.size(), 'Error return list did not have exactly 1 error save result record');
-    }
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
     static void runBatch() {
+
         // run batch
         Test.startTest();
             HondaPurgeBatch batch = new HondaPurgeBatch();
@@ -220,64 +146,92 @@ public class HondaPurgeBatchTest {
         system.assert(retrievedWorkOrderLineItems.size() == 0, 'Expected 0 canceled work orders, but retrieved ' + retrievedWorkOrderLineItems.size());
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-526
-     */
+    @isTest
+    static void mustBeDealerWorkType() {
+
+        Test.startTest();
+        
+            Id nonDealerWorkTypeId = [SELECT Id FROM WorkType WHERE Work_Type_Unique_ID__c = 'inspection'].Id;
+            WorkOrder wo = [SELECT Id, WorkTypeId FROM WorkOrder LIMIT 1];
+            wo.WorkTypeId = nonDealerWorkTypeId;
+            update wo;
+
+            // run batch
+            HondaPurgeBatch batch = new HondaPurgeBatch();
+            batch.executeScheduledLogic();
+        Test.stopTest();
+
+        List<WorkOrder> retrievedWorkOrders = [SELECT Id FROM WorkOrder WHERE Status = 'Canceled'];
+        system.assert(retrievedWorkOrders.size() == 9, 'Expected 9 canceled work orders, but retrieved ' + retrievedWorkOrders.size());
+
+        List<ServiceAppointment> retrievedServiceAppointments = [SELECT Id FROM ServiceAppointment WHERE Status = 'Canceled'];
+        system.assert(retrievedServiceAppointments.size() == 9, 'Expected 9 canceled service appointments, but retrieved ' + retrievedServiceAppointments.size());
+
+        List<WorkOrderLineItem> retrievedWorkOrderLineItems = [SELECT Id FROM WorkOrderLineItem WHERE Status = 'Canceled'];
+        system.assert(retrievedWorkOrderLineItems.size() == 9, 'Expected 9 canceled work orders, but retrieved ' + retrievedWorkOrderLineItems.size());
+    }
+
     @isTest
     static void excludeByServiceApptStatus() {
-        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
+        //Service Appointments must not be in status of Completed or Expired
+        List<ServiceAppointment> saList = [SELECT Id, Status, ServiceTerritoryId FROM ServiceAppointment];
 
-        List<ServiceAppointment> saList = [SELECT Id, Status, ServiceTerritoryId FROM ServiceAppointment LIMIT 2];
+        Test.startTest();
+            //These should not be canceled
+            saList[0].Status = 'In Progress';
+            saList[1].Status = 'In Progress';
+            saList[0].SchedStartTime = DateTime.now();
+            saList[1].SchedStartTime = DateTime.now();
+            saList[0].SchedEndTime = DateTime.now().addMinutes( 30 );
+            saList[1].SchedEndTime = DateTime.now().addMinutes( 30 );
+            update saList;
         
-        saList[0].Status = 'In Progress';
-        saList[1].Status = 'In Progress';
-        saList[0].SchedStartTime = DateTime.now();
-        saList[1].SchedStartTime = DateTime.now();
-        saList[0].SchedEndTime = DateTime.now().addMinutes( 30 );
-        saList[1].SchedEndTime = DateTime.now().addMinutes( 30 );
-        update saList;
+            ServiceResource vciServiceResource = FSLTestUtility.makeResourceData();
+    
+        	OperatingHours vciOperatingHours = [ SELECT Id from OperatingHours LIMIT 1 ];
+        	ServiceTerritory vciServiceTerritory = [ SELECT Id FROM ServiceTerritory LIMIT 1 ];
+        
+            // Create Service Territory Member:
+            ServiceTerritoryMember stm = new ServiceTerritoryMember(
+                OperatingHoursId = vciOperatingHours.Id,
+                ServiceTerritoryId = vciServiceTerritory.Id,
+                ServiceResourceId = vciServiceResource.Id,
+                EffectiveStartDate = Date.today(),
+                TerritoryType = 'P'
+            );
+            insert stm;
 
-        saList[0].Status = 'Completed';
-        saList[1].Status = 'Completed';
-        saList[0].ActualStartTime = DateTime.now().addMinutes(-20);
-        saList[1].ActualStartTime = DateTime.now().addMinutes(-20);
-        saList[0].ActualEndTime = DateTime.now();
-        saList[1].ActualEndTime = DateTime.now();
-        update saList;
+            List<AssignedResource> arLst = new List<AssignedResource>();
+            for ( Integer index = 0; index < 2; index++ ) {
+                ServiceAppointment sa = saList[index];
+                arLst.add( new AssignedResource(
+                    ServiceAppointmentId = sa.Id,
+                    ServiceResourceId = stm.ServiceResourceId
+                ) );
+            }  
+            insert arLst;   
 
-        String HONDA_DEALER_ID = HondaPurgeBatch.HONDA_DEALER_ID;
-        DateTime DATE_NUMDAYSOUT = HondaPurgeBatch.DATE_NUMDAYSOUT;
+            saList[0].Status = 'Completed';
+            saList[1].Status = 'Completed';
+            saList[0].ActualStartTime = DateTime.now().addMinutes(-20);
+            saList[1].ActualStartTime = DateTime.now().addMinutes(-20);
+            saList[0].ActualEndTime = DateTime.now();
+            saList[1].ActualEndTime = DateTime.now();
+            update saList;
 
-        List<WorkOrder> woList = Database.query(HondaPurgeBatch.QUERY);
-        List<WorkOrderLineItem> woliList = new List<WorkOrderLineItem>();
+             // run batch
+            HondaPurgeBatch batch = new HondaPurgeBatch();
+            batch.executeScheduledLogic();
+        Test.stopTest();
 
-        HondaPurgeBatch.cancelAndSeparateAllRecords(saList, woliList, woList);
+        List<WorkOrder> retrievedWorkOrders = [SELECT Id FROM WorkOrder WHERE Status = 'Canceled'];
+        system.assert(retrievedWorkOrders.size() == 8, 'Expected 8 canceled work orders, but retrieved ' + retrievedWorkOrders.size());
 
-        Integer numberOfCanceledWorkOrders = 0;
-        Integer numberOfCanceledServiceAppointments = 0;
-        Integer numberOfCanceledWorkOrderLineItems = 0;
+        List<ServiceAppointment> retrievedServiceAppointments = [SELECT Id FROM ServiceAppointment WHERE Status = 'Canceled'];
+        system.assert(retrievedServiceAppointments.size() == 8, 'Expected 8 canceled service appointments, but retrieved ' + retrievedServiceAppointments.size());
 
-        for(WorkOrder wo : woList) {
-            if(wo.Status == 'Canceled') {
-                numberOfCanceledWorkOrders++;
-            }
-        }
-
-        for(ServiceAppointment sa : saList) {
-            if(sa.Status == 'Canceled') {
-                numberOfCanceledServiceAppointments++;
-            }
-        }
-
-        for(WorkOrderLineItem woli : woliList) {
-            if(woli.Status == 'Canceled') {
-                numberOfCanceledWorkOrderLineItems++;
-            }
-        }
-
-        System.assertEquals(8, numberOfCanceledWorkOrders, 'Expected 8 canceled work orders but retrieved ' + numberOfCanceledWorkOrders);
-        System.assertEquals(8, numberOfCanceledServiceAppointments, 'Expected 8 canceled service appointments but retrieved ' + numberOfCanceledServiceAppointments);
-        System.assertEquals(8, numberOfCanceledWorkOrderLineItems, 'Expected 8 canceled work order line items but retrieved ' + numberOfCanceledWorkOrderLineItems);
+        List<WorkOrderLineItem> retrievedWorkOrderLineItems = [SELECT Id FROM WorkOrderLineItem WHERE Status = 'Canceled'];
+        system.assert(retrievedWorkOrderLineItems.size() == 8, 'Expected 8 canceled work orders, but retrieved ' + retrievedWorkOrderLineItems.size());
     }
 
 

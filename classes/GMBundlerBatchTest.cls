@@ -5,18 +5,21 @@ public class GMBundlerBatchTest {
         FSLTestUtility.createAllStructureWithParentST( 'Buffalo', '14209' );
         Account acct = TestUtility.createAccount();
         insert acct;
+
         ServiceTerritory testST = [ SELECT Id FROM ServiceTerritory LIMIT 1 ];
 
         List<String> workTypeUniqueIdList = new List<String>{'gmfia', 'cpogm'};
         List<WorkType> workTypeList = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c IN :workTypeUniqueIdList ORDER BY Work_Type_Unique_Id__c];
         WorkType cpogmWT = workTypeList[0];
         WorkType gmfiaWT = workTypeList[1];
+
         List<WorkOrder> woInsertList = new List<WorkOrder>();
         WorkOrder cpogmWO = FSLTestUtility.createWorkOrder( cpogmWT, acct, '14209', testST, null );
         WorkOrder gmfiaWO = FSLTestUtility.createWorkOrder( gmfiaWT, acct, '14209', testST, null );
         woInsertList.add(cpogmWO);
         woInsertList.add(gmfiaWO);
         insert woInsertList;
+
         List<WorkOrderLineItem> woliInsertList = new List<WorkOrderLineItem>();
         WorkOrderLineItem cpogmLineItem = FSLTestUtility.createWorkOrderLineItem( cpogmWO, cpogmWT, 0 );
         WorkOrderLineItem gmfiaLineItem = FSLTestUtility.createWorkOrderLineItem( gmfiaWO, gmfiaWT, 0 );
@@ -54,6 +57,66 @@ public class GMBundlerBatchTest {
         system.assert(updatedSAList[0].EarliestStartTime == system.today().addDays(18), 'Expected ' + system.today().addDays(18) + ', Actual ' + updatedSAList[0].EarliestStartTime);
         system.assert(updatedSAList[0].DueDate == system.today().addDays(28), 'Expected ' + system.today().addDays(28) + ', Actual ' + updatedSAList[0].DueDate);
 
+    }
+
+    @IsTest
+    static void successfulBulkBundle(){
+
+        ServiceTerritory testST = [ SELECT Id FROM ServiceTerritory LIMIT 1 ];
+
+        WorkType cpogmWT = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c = 'cpogm' LIMIT 1];
+        WorkType gmfiaWT = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c = 'gmfia' LIMIT 1];
+
+        List<Account> acctInsertList = new List<Account>();
+        for ( Integer i = 0; i < 9; i++ ) {
+            Account acct = TestUtility.createAccount('Account ' + i);
+            acctInsertList.add(acct);
+        }
+        insert acctInsertList;
+		Test.startTest();
+        List<WorkOrder> woInsertList = new List<WorkOrder>();
+        Integer zip = 14000;
+        for(Account acct : acctInsertList){
+            woInsertList.add(FSLTestUtility.createWorkOrder( cpogmWT, acct, string.valueof(zip), testST, null ));
+            woInsertList.add(FSLTestUtility.createWorkOrder( gmfiaWT, acct, string.valueof(zip), testST, null ));
+            zip++;
+        }
+        insert woInsertList;
+
+        List<WorkOrderLineItem> woliInsertList = new List<WorkOrderLineItem>();
+        for(WorkOrder wo : [SELECT Id, WorkType.Work_Type_Unique_ID__c, Street, City, Country, State, PostalCode FROM WorkOrder WHERE Id IN :woInsertList]){
+            if(wo.WorkType.Work_Type_Unique_ID__c == 'gmfia'){
+                woliInsertList.add(FSLTestUtility.createWorkOrderLineItem( wo, gmfiaWT, 0 ));
+            } else if(wo.WorkType.Work_Type_Unique_ID__c == 'cpogm'){
+                woliInsertList.add(FSLTestUtility.createWorkOrderLineItem( wo, cpogmWT, 0 ));
+            }
+        }
+        insert woliInsertList;
+
+        List<ServiceAppointment> saList = [SELECT Id, EarliestStartTime, DueDate, WorkType.Work_Type_Unique_ID__c FROM ServiceAppointment];
+        for(ServiceAppointment sa : saList){
+            if(sa.WorkType.Work_Type_Unique_ID__c == 'gmfia'){
+                sa.EarliestStartTime = system.today().addDays(20);
+                sa.DueDate = system.today().addDays(40);
+
+            } else if(sa.WorkType.Work_Type_Unique_ID__c == 'cpogm'){
+                sa.EarliestStartTime = system.today().addDays(20);
+                sa.DueDate = system.today().addDays(40);
+            }
+        }
+        update saList;
+		
+        List<WorkOrder> workOrderList = [SELECT Id, LineItemCount FROM WorkOrder];
+        system.assert(workOrderList.size() == 20, 'Exptected 20 work order, actual = ' + workOrderList.size());
+        Database.executeBatch( new GMBundlerBatch(), 200 );
+        Test.stopTest();
+        List<WorkOrder> updatedWorkOrderList = [SELECT Id, LineItemCount FROM WorkOrder];
+        system.assert(updatedWorkOrderList.size() == 10, 'Exptected 10 work orders, actual = ' + workOrderList.size());
+
+       
+        for(WorkOrder wo : updatedWorkOrderList){
+            system.assert(wo.LineItemCount == 2, 'Expected LineItemCount = 2, actual = ' + wo.LineItemCount);
+        }
     }
 
     @IsTest
@@ -131,11 +194,25 @@ public class GMBundlerBatchTest {
 
     @IsTest
     static void noBundleDifferentAddresses(){
+        delete [SELECT Id FROM WorkOrder WHERE WorkType.Work_Type_Unique_ID__c = 'cpogm'];
+
+        Account acct = TestUtility.createAccount('Account 2');
+        insert acct;
+
+        ServiceTerritory testST = [ SELECT Id FROM ServiceTerritory LIMIT 1 ];
+
+        WorkType cpogmWT = [ SELECT Id, Name, DurationType, EstimatedDuration FROM WorkType WHERE Work_Type_Unique_Id__c = 'cpogm' LIMIT 1];
+
+        WorkOrder cpogmWO = FSLTestUtility.createWorkOrder( cpogmWT, acct, '14210', testST, null );
+        insert cpogmWO;
+
+        WorkOrderLineItem cpogmLineItem = FSLTestUtility.createWorkOrderLineItem( cpogmWO, cpogmWT, 0 );
+        insert cpogmLineItem;
+
 
         List<ServiceAppointment> saList = [SELECT Id, EarliestStartTime, DueDate, WorkType.Work_Type_Unique_ID__c FROM ServiceAppointment];
         for(ServiceAppointment sa : saList){
             if(sa.WorkType.Work_Type_Unique_ID__c == 'gmfia'){
-                sa.Street = 'Different Street';
                 sa.EarliestStartTime = system.today().addDays(20);
                 sa.DueDate = system.today().addDays(40);
 
@@ -145,13 +222,13 @@ public class GMBundlerBatchTest {
             }
         }
         update saList;
+
         Test.startTest();
         Database.executeBatch( new GMBundlerBatch(), 200 );
         Test.stopTest();
 
         List<WorkOrder> workOrderList = [SELECT Id, LineItemCount FROM WorkOrder];
         system.assert(workOrderList.size() == 2, 'Exptected 2 work order, actual = ' + workOrderList.size());
-
     }
 
     @IsTest

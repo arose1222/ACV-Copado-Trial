@@ -1,9 +1,3 @@
-/**
- * @description Batch class that purges Honda work orders, service appointments, and work order line items
- * @author Adam Richbart
- * @since 02/24/2022
- * @group Inspector Dispatch
- */
 global class HondaPurgeBatch extends SchedulingInterface implements Database.Batchable<sObject>, Database.AllowsCallouts {
 
     public static final String HONDA_DEALER_ID {
@@ -28,31 +22,23 @@ global class HondaPurgeBatch extends SchedulingInterface implements Database.Bat
         set;
     }
 
-    public static final Date DATE_NUMDAYSOUT {
-        get {
-            return System.Today().addDays(-PURGE_RANGE);
-        }
-        set;
-    }
-    
-    public static final String QUERY {
-        get {
-            return 'SELECT Id, Status, ' +
-            '(SELECT Id, Status FROM ServiceAppointments), ' +
-            '(SELECT Id, Status FROM WorkOrderLineItems WHERE Status != \'Canceled\') ' +
-            'FROM WorkOrder ' +
-            'WHERE Account.Dealership_Id__c =: HONDA_DEALER_ID ' +
-            'AND WorkType.Work_Type_Unique_ID__c = \'dealer\' ' +
-            'AND Id IN (SELECT Work_Order__c FROM ServiceAppointment WHERE EarliestStartTime <=: DATE_NUMDAYSOUT AND Status NOT IN (\'Canceled\', \'Completed\', \'Expired\' ))';
-        }
-        set;
-    }
-
     // State Variable
     global BatchUtilityClass.BatchReturn returnInfo = new BatchUtilityClass.BatchReturn( FALSE );
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
-        return Database.getQueryLocator(QUERY);
+
+        Date Date_NumDaysOut = System.Today().addDays(-PURGE_RANGE);
+
+        String query = 'SELECT Id, Status, ' +
+                            '(SELECT Id, Status FROM ServiceAppointments), ' +
+                            '(SELECT Id, Status FROM WorkOrderLineItems WHERE Status != \'Canceled\') ' +
+                       'FROM WorkOrder ' +
+                       'WHERE Account.Dealership_Id__c = :HONDA_DEALER_ID ' +
+                       'AND WorkType.Work_Type_Unique_ID__c = \'dealer\' ' +
+                       'AND Id IN (SELECT Work_Order__c FROM ServiceAppointment WHERE EarliestStartTime <= :Date_NumDaysOut AND Status NOT IN (\'Canceled\', \'Completed\', \'Expired\' ))';
+
+        // return
+        return Database.getQueryLocator(query);
     }
 
     public override void executeScheduledLogic() {
@@ -61,60 +47,67 @@ global class HondaPurgeBatch extends SchedulingInterface implements Database.Bat
         Database.executeBatch(HondaPurgeBatch, 200);
     }
 
-    //This method will move all the children service appointments and work order line items from the work order
-    //list into the passed in service appointment and woli lists. Additionally this method sets all records to a canceled status
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
-    public static void cancelAndSeparateAllRecords(List<ServiceAppointment> serviceAppointmentList, List<WorkOrderLineItem> woliList, List<WorkOrder> workOrderList){
-        for(WorkOrder workOrder : workOrderList){
-            workOrder.Status = 'Canceled';
-            for(ServiceAppointment serviceAppt: workOrder.ServiceAppointments){
-                serviceAppt.Status = 'Canceled';
-                serviceAppointmentList.add(serviceAppt);
-            }
-            for(WorkOrderLineItem woli : workOrder.WorkOrderLineItems){
-                woli.Status = 'Canceled';
-                woliList.add(woli);
-            }
-        }
-    }
-
-    // take a Batch return object and a list of save results and load up the batch return with the results
-    // if there is a save result that failed, serialize the record and later in the class, send it to splunk
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
-    public static void storeSaveResults(BatchUtilityClass.BatchReturn batchReturn, Database.SaveResult[] sObjectUpdateResultList, List<SObject> sObjectList){
-        for ( Integer position = 0; position < sObjectUpdateResultList.size(); position++ ) {
-            Database.SaveResult saveRecord = sObjectUpdateResultList[position];
-
-            if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
-                batchReturn.errorReturnLst.add( JSON.serialize(sObjectList[position] ) );
-                if ( !saveRecord.getErrors().isEmpty() ) { batchReturn.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
-            } else {
-                batchReturn.successfulReturnSet.add( sObjectList[position].Id );
-            }
-        }
-    }
-
-    /**
-     * @see https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-541
-     */
     global void execute(Database.BatchableContext bc, List<WorkOrder> scope){
+        //batch process
         List<ServiceAppointment> serviceAppointmentsToUpdate = new List<ServiceAppointment>();
         List<WorkOrderLineItem> workOrderLineItemsToUpdate = new List<WorkOrderLineItem>();
 
-        cancelAndSeparateAllRecords(serviceAppointmentsToUpdate, workOrderLineItemsToUpdate, scope);
+        for(WorkOrder workOrder : scope){
+            workOrder.Status = 'Canceled';
+            for(ServiceAppointment serviceAppt: workOrder.ServiceAppointments){
+                serviceAppt.Status = 'Canceled';
+                serviceAppointmentsToUpdate.add(serviceAppt);
+            }
+            for(WorkOrderLineItem woli : workOrder.WorkOrderLineItems){
+                woli.Status = 'Canceled';
+                workOrderLineItemsToUpdate.add(woli);
+            }
+        }
 
         // Update Service Appointments
-        storeSaveResults(returnInfo, Database.update(serviceAppointmentsToUpdate), serviceAppointmentsToUpdate);
+        Database.SaveResult[] serviceApptMesgList = Database.update(serviceAppointmentsToUpdate, false);
+
+        for ( Integer position = 0; position < serviceApptMesgList.size(); position++ ) {
+            Database.SaveResult saveRecord = serviceApptMesgList[position];
+            ServiceAppointment serviceAppointmentRec = serviceAppointmentsToUpdate[position];
+
+            if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
+                returnInfo.errorReturnLst.add( JSON.serialize(serviceAppointmentRec ) );
+                if ( !saveRecord.getErrors().isEmpty() ) { returnInfo.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
+            } else {
+                returnInfo.successfulReturnSet.add( serviceAppointmentRec.Id );
+            }
+        }
 
         // Update Work Orders
-        storeSaveResults(returnInfo, Database.update(scope), scope);
+        Database.SaveResult[] workOrderMesgList = Database.update(scope, false);
+
+        for ( Integer position = 0; position < workOrderMesgList.size(); position++ ) {
+            Database.SaveResult saveRecord = workOrderMesgList[position];
+            WorkOrder workOrderRec = scope[position];
+
+            if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
+                returnInfo.errorReturnLst.add( JSON.serialize(workOrderRec ) );
+                if ( !saveRecord.getErrors().isEmpty() ) { returnInfo.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
+            } else {
+                returnInfo.successfulReturnSet.add( workOrderRec.Id );
+            }
+        }
 
         // Update Work Order Line Items
-        storeSaveResults(returnInfo, Database.update(workOrderLineItemsToUpdate), workOrderLineItemsToUpdate);
+        Database.SaveResult[] workOrderLineItemMesgList = Database.update(workOrderLineItemsToUpdate, false);
+
+        for ( Integer position = 0; position < workOrderLineItemMesgList.size(); position++ ) {
+            Database.SaveResult saveRecord = workOrderLineItemMesgList[position];
+            WorkOrderLineItem workOrderLineItemRec = workOrderLineItemsToUpdate[position];
+
+            if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
+                returnInfo.errorReturnLst.add( JSON.serialize(workOrderLineItemRec ) );
+                if ( !saveRecord.getErrors().isEmpty() ) { returnInfo.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
+            } else {
+                returnInfo.successfulReturnSet.add( workOrderLineItemRec.Id );
+            }
+        }
     }
 
     global void finish(Database.BatchableContext bc) {

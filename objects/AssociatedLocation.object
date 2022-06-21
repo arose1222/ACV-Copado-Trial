@@ -150,6 +150,7 @@
     <fields>
         <fullName>Alternate_Address_Name__c</fullName>
         <description>Provides an alternative Address name for the associated location</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This Location Name will show on the release slip instead of Dealer Name if this address is selected for Transportation</inlineHelpText>
         <label>Alternate Address Name</label>
@@ -167,6 +168,7 @@
         <fullName>Associated_Location_Guid__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>Unique Guid of this associated location</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Associated Location Guid</label>
         <length>36</length>
@@ -222,6 +224,7 @@
     <fields>
         <fullName>Notes__c</fullName>
         <description>Notes related to the relationship between this Account and the Address association</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>2000</length>
@@ -233,6 +236,7 @@
         <fullName>Organization_Address_Guid__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>Unique Guid associated with an Organization and an address, along with the unique address type</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Organization Address Guid</label>
         <length>36</length>
@@ -266,21 +270,21 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Cannot_Change_Location_Ref</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>After an associated Location&apos;s Location is created it cannot be changed</description>
         <errorConditionFormula>IsChanged(LocationId)</errorConditionFormula>
         <errorMessage>Cannot Change Location after Associated Location has been updated. Please de-activate this Associated Location and Create a new one</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cannot_Change_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Associated Location Type cannot be changed</description>
         <errorConditionFormula>IsChanged(Type)</errorConditionFormula>
         <errorMessage>Type cannot be changed. Please De-activate this Address if it is no longer valid and recreate a new address with the correct type</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cannot_Delete_ActiveTo</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>After an associated Location&apos;s Active To is filled, it cannot be deleted.</description>
         <errorConditionFormula>AND( 
 ISCHANGED(ActiveTo), 

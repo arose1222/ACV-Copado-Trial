@@ -3,24 +3,34 @@ import { NavigationMixin } from 'lightning/navigation';
 import { fireToast } from 'c/acvUtilHelper';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
+import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 import getContacts from '@salesforce/apex/CaseCreateUtilityController.getContacts';
 import getAccounts from '@salesforce/apex/CaseCreateUtilityController.getAccounts';
 import initialQuery from '@salesforce/apex/CaseCreateUtilityController.initialQuery';
 import checkAffiliationAccess from '@salesforce/apex/CaseCreateUtilityController.checkAffiliationCreateAccess';
 import checkRetentionAccess from '@salesforce/apex/DealerOutreachController.checkRetentionCreateAccess';
-import checkForLockedAccount from '@salesforce/apex/DealerOutreachController.checkForLockedAccount';
 import createRetention from '@salesforce/apex/DealerOutreachController.createRetention';
-import getRecordTypeId from '@salesforce/apex/DealerOutreachController.getInsideSalesRecordTypeId';
 
 import retentionIgnition from '@salesforce/schema/Retention_Ignition__c';
 import CONTACT_OBJECT from '@salesforce/schema/Contact';
 import RETENTION_OBJECT from '@salesforce/schema/Retention_Ignition__c';
+import LATEST_EXPERIENCE_FIELD from '@salesforce/schema/Retention_Ignition__c.Latest_ACV_Experience__c';
 
 export default class CaseCreateUtility extends NavigationMixin(LightningElement) {
 
     @wire(getObjectInfo, { objectApiName: RETENTION_OBJECT })
     retentionInfo;
+
+    @wire(getPicklistValues, { recordTypeId: '$retentionInfo.data.defaultRecordTypeId', fieldApiName: LATEST_EXPERIENCE_FIELD })
+    experienceFieldInfo({ data }) {
+        if (data) {
+            this.listOptions = data.values;
+        }
+    }
+
+    listOptions = [];
+    selectedOptions = [];
 
     @api recordId;
     @api get closedCheck() {
@@ -50,19 +60,16 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
     hasErrors = false;
     clearedByClose = false;
     callAnswered = true;
-    answeredErrors = false;
-    noAnswerErrors = false;
-    lockedAccount = false;
     retentionAPI = retentionIgnition;
     contactId = '';
     clickCounter = 0;
 
+    selectedOptionsList;
     direction;
     noAnswerSelection;
     dealerComments;
     callType;
     nextSteps;
-    latestSelectionsList;
 
     connectedCallback() {
         checkRetentionAccess()
@@ -104,22 +111,18 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         }
     }
 
-    handleLatestChange(event){
-        this.latestSelectionsList = event.detail.value;
-        if(this.latestSelectionsList != null || this.latestSelectionsList != ''){
-            this.hasErrors = false;
-        }
-        if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
-        }
+    handleDualChange(event) {
+        this.selectedOptionsList = event.detail.value;
+        var dualCmp = this.template.querySelector('[data-id="dualBox"]');
+        dualCmp.setCustomValidity("");
+        dualCmp.reportValidity();
+        this.hasErrors = false;
     }
 
     handleDirectionChange(event) {
         this.direction = event.detail.value;
+        this.template.querySelector('[data-id="directionInput"]').classList.remove('slds-has-error');
         this.hasErrors = false;
-        if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
-        }
     }
 
     handleAnswerChange(event) {
@@ -136,9 +139,11 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         if (this.clearedByClose) {
             this.clearedByClose = false;
         }
-        else if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
+        else {
+            this.checkNoAnswerDependencies();
         }
+
+        
     }
 
     handleCommentChange(event) {
@@ -147,17 +152,13 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         dealerCommentsCmp.setCustomValidity("");
         dealerCommentsCmp.reportValidity();
         this.hasErrors = false;
-        if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
-        }
+        
     }
     
     handleCallTypeChange(event) {
         this.callType = event.detail.value;
+        this.template.querySelector('[data-id="typeInput"]').classList.remove('slds-has-error');
         this.hasErrors = false;
-        if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
-        }
     }
 
     handleNextStepsChange(event) {
@@ -166,9 +167,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         nextStepsCmp.setCustomValidity("");
         nextStepsCmp.reportValidity();
         this.hasErrors = false;
-        if (this.noAnswerErrors || this.answeredErrors) {
-            this.checkRequiredFields();
-        }
     }
 
     handleAccountLookup(evt) {
@@ -185,33 +183,14 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
     }
 
     handleAccountChange(evt) {
-        // add in apex call to see if the selected account is in an approval process SELECT TargetObjectId, ProcessDefinitionId, Status FROM ProcessInstance WHERE Status = 'Pending'
         if (evt.target.getSelection() == '') {
             this.accountId = '';
-            this.lockedAccount = false;
         }
         else {
             let account = evt.target.getSelection();
             this.accountId = account[0].id;
             this.template.querySelector('[data-id="accountInput"]').classList.remove('error');
             this.hasErrors = false;
-            if (this.noAnswerErrors || this.answeredErrors) {
-                this.checkRequiredFields();
-            }
-
-            // Adding this with SDP-70
-            // provides a toast alert if the selected account is currently locked in an approval process
-            checkForLockedAccount({accountId: this.accountId})
-                .then(results => {
-                    if (results == true) {
-                        this.lockedAccount = true;
-                        fireToast('Unable to log an outreach on Dealership - ' + account[0].title, 'This Account is locked in an Approval process. Please reach out to reactivations@acvauctions.com for assistance.', 'warning', 'sticky');
-                    }
-                    else {
-                        this.lockedAccount = false;
-                    }
-                }
-            );
         }
     }
 
@@ -241,9 +220,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
             this.contactId = contact[0].id;
             this.template.querySelector('[data-id="contactInput"]').classList.remove('error');
             this.hasErrors = false;
-            if (this.noAnswerErrors || this.answeredErrors) {
-                this.checkRequiredFields();
-            }
         }
     }
 
@@ -279,32 +255,25 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         });
     }
 
-    navigateToTaskPage() {
-
-        getRecordTypeId()
-            .then(istRecordTypeId => {
-
-                let defaultValues;
-                if(this.accountId != ''){
-                    defaultValues = encodeDefaultFieldValues({
-                        WhatId: this.accountId
-                    });
-        
-                }
- 
-                this[NavigationMixin.Navigate]({
-                    type: 'standard__objectPage',
-                    attributes: {
-                        objectApiName: 'Task',
-                        actionName: 'new'
-                    },
-                    state: {
-                        defaultFieldValues: defaultValues,
-                        recordTypeId: istRecordTypeId
-                    }
-                });
+    navigateToEventPage() {
+        let defaultValues;
+        if(this.accountId != ''){
+            defaultValues = encodeDefaultFieldValues({
+                WhatId: this.accountId
             });
 
+        }
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Event',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defaultValues
+            }
+        });
     }
 
     handleSubmit(){
@@ -313,7 +282,7 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         if(this.hasErrors == false){
 
             this.showSpinner = true;
-
+    
             let retention = 
                 {
                     account: this.accountId,
@@ -322,10 +291,9 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
                     direction: this.direction,
                     noAnswer: this.noAnswerSelection,
                     callType: this.callType,
-                    experience: this.latestSelectionsList,
+                    experience: this.selectedOptionsList,
                     nextSteps: this.nextSteps
                 };
-
     
             createRetention({jsonString:JSON.stringify(retention)}) 
                 .then(results => {
@@ -346,8 +314,7 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
                 this.handleCancel();
             });
         }
-    }
-
+     }
 
     checkRequiredFields() {
         if (this.accountId == null || this.accountId == '') {
@@ -367,25 +334,22 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         }
 
         if (this.direction == null || this.direction == '') {
+            this.template.querySelector('[data-id="directionInput"]').classList.add('slds-has-error');
             this.hasErrors = true;
+        }
+        else {
+            this.template.querySelector('[data-id="directionInput"]').classList.remove('slds-has-error');
         }
 
         if (this.callType == null || this.callType == '') {
+            this.template.querySelector('[data-id="typeInput"]').classList.add('slds-has-error');
             this.hasErrors = true;
+        }
+        else {
+            this.template.querySelector('[data-id="typeInput"]').classList.remove('slds-has-error');
         }
 
         this.checkNoAnswerDependencies();
-
-        if (this.hasErrors && this.callAnswered) {
-            this.answeredErrors = true;
-            this.noAnswerErrors = false;
-        } else if (this.hasErrors && !this.callAnswered) {
-            this.noAnswerErrors = true;
-            this.answeredErrors = false;
-        } else if (!this.hasErrors) {
-            this.noAnswerErrors = false;
-            this.answeredErrors = false;
-        }
         
     }
 
@@ -403,8 +367,14 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
                 this.template.querySelector('[data-id="commentsInput"]').classList.remove('slds-has-error');
             }
 
-            if (this.latestSelectionsList == null || this.latestSelectionsList == '') {
+            if (this.selectedOptionsList == null || this.selectedOptionsList == '') {
+                var optionCmp = this.template.querySelector('[data-id="dualBox"]');
+                optionCmp.setCustomValidity("At least one option must be selected");
+                optionCmp.reportValidity();
                 this.hasErrors = true;
+            }
+            else {
+                this.template.querySelector('[data-id="dualBox"]').classList.remove('error');
             }
 
             if (this.nextSteps == null || this.nextSteps == '') {
@@ -427,48 +397,57 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         const textAreas = this.template.querySelectorAll('lightning-textarea');
         if (textAreas) {
             textAreas.forEach(field => {
-                field.setCustomValidity("");
-                field.reportValidity();
-            });
-        }
-    }
-
-    handleCancel() {
-        this.hasErrors = false;
-        this.noAnswerErrors = false;
-        this.answeredErrors = false;
-        this.clearedByClose = true;
-        this.cancelCheck = false;
-        
-        this.template.querySelectorAll("c-lookup").forEach(item => {
-            item.selection = [];
-        });
-        
-        this.accountId = '';
-        this.contactId = '';
-        this.latestSelectionsList = null;
-        this.dealerComments = '';
-        this.nextSteps = '';
-        this.direction = null;
-        this.callType = null;
-        this.noAnswerSelection = null;
-
-        this.removeAlwaysRequiredErrors();
-        const textAreas = this.template.querySelectorAll('lightning-textarea');
-        if (textAreas) {
-            textAreas.forEach(field => {
                 field.value = "Temp";
                 field.setCustomValidity("");
                 field.reportValidity();
                 field.value = '';
             });
         }
+
+        if (this.selectedOptionsList == null || this.selectedOptionsList == '') {
+            const selectList = this.template.querySelector('lightning-dual-listbox');
+            selectList.value = ["Titles"];
+            selectList.setCustomValidity("");
+            selectList.reportValidity();
+            this.selectedOptions = [];
+        }
+
+    }
+
+    handleCancel() {
+        this.removeAlwaysRequiredErrors();
+        this.removeNoAnswerErrors();
+        this.hasErrors = false;
+        this.clearedByClose = true;
+        this.cancelCheck = false;
+        
+        const inputFields = this.template.querySelectorAll('lightning-input-field');
+        if (inputFields) {
+            inputFields.forEach(field => {
+                if(field.fieldName !== 'AccountId'){
+                    field.reset();
+                }
+            });
+        }
+
+        this.template.querySelectorAll("c-lookup").forEach(item => {
+            item.selection = [];
+        });
+        
+        this.accountId = '';
+        this.contactId = '';
+        this.selectedOptions = [];
+        this.dealerComments = '';
+        this.nextSteps = '';
+        this.selectedOptionsList = [];
         this.minimizePopUp();
     }
 
     removeAlwaysRequiredErrors() {
         this.template.querySelector('[data-id="accountInput"]').classList.remove('error');
         this.template.querySelector('[data-id="contactInput"]').classList.remove('error');
+        this.template.querySelector('[data-id="directionInput"]').classList.remove('slds-has-error');
+        this.template.querySelector('[data-id="typeInput"]').classList.remove('slds-has-error');
     }
 
     checkCancel() {

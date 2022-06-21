@@ -64,7 +64,7 @@
 
     <div id='chatter-wrapper' style='overflow: scroll;height:100%;padding: 10px; width: calc(100% - 20px);'>
         <!--<a href='#' onclick='chatter.getFeed().refresh(chatter.getFeed().config); return false;' style="position: absolute; right: 5px; color: #015BA7; text-decoration: none;">Refresh Feed</a>-->
-        <a href='#' onclick="parent.$(parent.$.find('iframe')[0]).attr('src', parent.$(parent.$.find('iframe')[0]).attr('src')); return false;" style="float:right; color: #015BA7; text-decoration: none;">Refresh Feed</a>
+        <a href='#' onclick="parent.$(parent.$.find('iframe')[0]).attr('src', parent.$(parent.$.find('iframe')[0]).attr('src')); return false;" style="float:right; color: #015BA7; text-decoration: none;">{!JSENCODE($Label.MA_Refresh_Feed)}</a>
         <chatter:follow entityId="{!chatterEntityId}" />
         <chatter:feed entityId="{!chatterEntityId}"  />
     </div>

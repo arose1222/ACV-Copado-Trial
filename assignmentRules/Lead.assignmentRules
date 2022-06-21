@@ -14,6 +14,8 @@
             <formula>RecordType.DeveloperName = &quot;Organization_Lead&quot; &amp;&amp; LOWER(Referral_Code__c) =&quot;blitzteam&quot;</formula>
         </ruleEntry>
         <ruleEntry>
+            <assignedTo>BDR_Organization_Lead_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
             <formula>RecordType.DeveloperName = &quot;Organization_Lead&quot;</formula>
         </ruleEntry>
         <ruleEntry>
@@ -90,7 +92,7 @@
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
-            <assignedTo>enovick@acvauctions.com</assignedTo>
+            <assignedTo>avondeveld@acvauctions.com</assignedTo>
             <assignedToType>User</assignedToType>
             <criteriaItems>
                 <field>Lead.RecordTypeId</field>
@@ -98,9 +100,9 @@
                 <value>ACV Capital</value>
             </criteriaItems>
             <criteriaItems>
-                <field>Lead.LeadSource</field>
-                <operation>equals</operation>
-                <value>web form</value>
+                <field>Lead.Company</field>
+                <operation>contains</operation>
+                <value>Test</value>
             </criteriaItems>
             <template>Unfiled_Non_Public_Templates/SUPPORTNewassignmentnotificationSAMPLE</template>
         </ruleEntry>

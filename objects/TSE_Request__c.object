@@ -228,6 +228,7 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Time</label>
         <required>false</required>
@@ -236,6 +237,7 @@
     </fields>
     <fields>
         <fullName>Immediate_Action_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Immediate Action Notes</label>
         <length>255</length>
@@ -298,6 +300,7 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Time</label>
         <required>false</required>
@@ -400,7 +403,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Notes_Required_For_Other</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>(ISPICKVAL( Immediate_Action__c ,&apos;Other&apos;))  &amp;&amp;  ISBLANK( Immediate_Action_Notes__c )</errorConditionFormula>
         <errorMessage>Additional notes are required when selecting &apos;Other&apos;</errorMessage>
     </validationRules>

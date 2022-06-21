@@ -67,23 +67,21 @@ public class OrganizationAddressTypeValidationTest {
         AssociatedLocation l2 = new AssociatedLocation();
         l2 = [Select id, Type, isDeleted From AssociatedLocation Where Type = 'title_mailing' AND ParentRecordId=:a.id ALL ROWS];
 
-        Test.startTest();
-            AssociatedLocation l3 = new AssociatedLocation(ParentRecordId=a.id, Type = 'title_mailing', LocationId=l.id);
-            insert l3;
-            Boolean goterror = false;
-                try{
-                    System.debug(l2);
-                    undelete l2;
-                    AssociatedLocation l4 = new AssociatedLocation();
-                    l4 = [Select id, Type, isDeleted From AssociatedLocation Where Type = 'title_mailing' AND LocationId=:l.id ALL ROWS];
-                    System.debug(l4);
-                }catch(Exception exc){
-                    System.debug(exc);
-                    if(exc.getMessage().contains('This Account already has a title_mailing Address. Please update this address instead of creating a new one')){
-                        goterror = true;
-                    }        
-                }
-        Test.stopTest();
+        AssociatedLocation l3 = new AssociatedLocation(ParentRecordId=a.id, Type = 'title_mailing', LocationId=l.id);
+        insert l3;
+        Boolean goterror = false;
+            try{
+                System.debug(l2);
+                undelete l2;
+                AssociatedLocation l4 = new AssociatedLocation();
+                l4 = [Select id, Type, isDeleted From AssociatedLocation Where Type = 'title_mailing' AND LocationId=:l.id ALL ROWS];
+                System.debug(l4);
+            }catch(Exception exc){
+                System.debug(exc);
+                if(exc.getMessage().contains('This Account already has a title_mailing Address. Please update this address instead of creating a new one')){
+                    goterror = true;
+                }        
+            }
         System.assert(goterror, 'OrganizationAddressTypeValidation Rule to prevent multiple Address types for an account has failed to fire');    
     }
 }

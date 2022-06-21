@@ -456,6 +456,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     <fields>
         <fullName>Resolution_Created_Date__c</fullName>
         <description>Date the resolution was created - inherently the date the complaint is closed - Created on a Resolution Created Date Timestamp</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Resolution Created Date</label>
         <required>false</required>
@@ -512,6 +513,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
         <fullName>Resolution_guid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>GUID generated in Salesforce to identify this unique Resolution Record across Datahub systems</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Resolution guid</label>
         <length>36</length>
@@ -523,6 +525,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     </fields>
     <fields>
         <fullName>Territory_Manager_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Territory Manager Email</label>
         <required>false</required>
@@ -571,6 +574,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     <fields>
         <fullName>VCI_Email__c</fullName>
         <description>VCI email added mto be included in workflow Avoidable Arb email alerts</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VCI Email</label>
         <required>false</required>
@@ -632,6 +636,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     </fields>
     <fields>
         <fullName>description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Resolution Notes</label>
         <length>32768</length>
@@ -643,6 +648,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     <fields>
         <fullName>id__c</fullName>
         <description>External Id for this resolution from ACV DB.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>id</label>
         <length>255</length>
@@ -840,7 +846,7 @@ ROUND(MOD((CreatedDate  -  complaint_id__r.Complaint_Created__c )*1440,60),0)
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Resolution_Amount_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Contains the logic governing when the Amount for a resolution must be filled out.
 
 AND(ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;),
@@ -856,7 +862,7 @@ AND(ISPICKVAL( Estimate_Provided__c , &quot;no&quot;)),
     </validationRules>
     <validationRules>
         <fullName>Resolved_Complaint_must_be_Completed</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Complaint must have Valid marked as yes or no in order to be marked as resolved</description>
         <errorConditionFormula>ISBLANK(text(complaint_id__r.valid__c))</errorConditionFormula>
         <errorMessage>In order to resolve this complaint, please mark the Valid field on the complaint as Yes or No</errorMessage>

@@ -71,6 +71,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>End_Date_to_Received__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Open_Arbitration_Cases__c</field>
             </layoutItems>
             <layoutItems>
@@ -361,6 +365,10 @@
                 <behavior>Readonly</behavior>
                 <field>Seller_Tracking_URL_for_Titles__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Title_Shipping_Status_Seller_To_ACV__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
@@ -456,7 +464,12 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Reference Tools</label>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Pecks_Book__c</field>
+            </layoutItems>
+        </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>

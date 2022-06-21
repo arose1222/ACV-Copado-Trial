@@ -12,7 +12,47 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account</field>
+            <field>Id</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RelatedRecord</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ResourceType</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Description</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
@@ -27,41 +67,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CreatedBy</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedDate</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Description</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FSL__Efficiency__c</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Employee_Number__c</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Employment_Status__c</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FSL__GanttLabel__c</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>IsOptimizationCapable</field>
             <table>ServiceResource</table>
         </columns>
@@ -72,22 +77,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>LastKnownLocationDate</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>LastKnownLongitude</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedBy</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
+            <field>LastKnownLocationDate</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
@@ -96,8 +91,23 @@
             <table>ServiceResource</table>
         </columns>
         <columns>
-            <checkedByDefault>true</checkedByDefault>
-            <field>Name</field>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ServiceCrew</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FSL__Efficiency__c</field>
+            <table>ServiceResource</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FSL__GanttLabel__c</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
@@ -117,27 +127,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Id</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ResourceType</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ServiceCrew</field>
-            <table>ServiceResource</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>FSL__Travel_Speed__c</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>RelatedRecord</field>
+            <field>Employee_Number__c</field>
             <table>ServiceResource</table>
         </columns>
         <columns>
@@ -145,9 +140,64 @@
             <field>Username__c</field>
             <table>ServiceResource</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Employment_Status__c</field>
+            <table>ServiceResource</table>
+        </columns>
         <masterLabel>Service Resources</masterLabel>
     </sections>
     <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ServiceTerritory</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TerritoryType</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EffectiveStartDate</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EffectiveEndDate</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Address</field>
@@ -165,47 +215,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>State</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PostalCode</field>
+            <table>ServiceResource.ServiceTerritories</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Country</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedBy</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedDate</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EffectiveEndDate</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>GeocodeAccuracy</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FSL__Internal_SLR_HomeAddress_Geolocation__Latitude__s</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FSL__Internal_SLR_HomeAddress_Geolocation__Longitude__s</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedBy</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
             <table>ServiceResource.ServiceTerritories</table>
         </columns>
         <columns>
@@ -219,8 +239,8 @@
             <table>ServiceResource.ServiceTerritories</table>
         </columns>
         <columns>
-            <checkedByDefault>true</checkedByDefault>
-            <field>Name</field>
+            <checkedByDefault>false</checkedByDefault>
+            <field>GeocodeAccuracy</field>
             <table>ServiceResource.ServiceTerritories</table>
         </columns>
         <columns>
@@ -230,50 +250,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Id</field>
+            <field>FSL__Internal_SLR_HomeAddress_Geolocation__Latitude__s</field>
             <table>ServiceResource.ServiceTerritories</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ServiceTerritory</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EffectiveStartDate</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>State</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TerritoryType</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>PostalCode</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Parent Territory</displayNameOverride>
-            <field>ServiceTerritory.ParentTerritory</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Top-Level Territory</displayNameOverride>
-            <field>ServiceTerritory.TopLevelTerritory</field>
-            <table>ServiceResource.ServiceTerritories</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Region</displayNameOverride>
-            <field>ServiceTerritory.ParentTerritory.ParentTerritory</field>
+            <field>FSL__Internal_SLR_HomeAddress_Geolocation__Longitude__s</field>
             <table>ServiceResource.ServiceTerritories</table>
         </columns>
         <masterLabel>Service Territory Members</masterLabel>

@@ -2,7 +2,7 @@
  * @description https://acvauctions.atlassian.net/browse/TDO-26
  * Update Title Due Date field on existing Case when Seller Account's Legal/Billing State changes.
  * 
- * @author Manmeet Vaseer
+ * @author Amul
  * @date 05/10/2021
  * 
  * @history 06/09/2021 Manmeet Vaseer - Added logic to handle Legal vs Billing state.
@@ -36,9 +36,10 @@ public class CalculateTitleDueDateAccount extends TriggerInterface	{
         Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get(CalculateTitleDueDateHelper.TITLE_INFORMATION_RT).getRecordTypeId();
         
 		// Get all Cases related to all the Accounts        
-        List<Case> allRelatedCases = [SELECT Id, Seller_Dealership__c, Title_Attached__c, Title_Due_Date__c, Auction_End__c, CaseNumber, CreatedDate FROM Case 
+        List<Case> allRelatedCases = [SELECT Id, Seller_Dealership__c, Title_Attached__c, Title_Due_Date__c, Auction_End__c, CaseNumber FROM Case 
                                       WHERE Seller_Dealership__c IN :newAccountMap.keySet()
                                      AND RecordTypeId = :caseRecordTypeId
+                                     AND Auction_End__c != null
                                      AND (NOT Status LIKE 'Close%')];
         Map<Id,List<Case>> accountCasesMap = new Map<Id, List<Case>>();
         for(Case c : allRelatedCases)	{
@@ -52,20 +53,18 @@ public class CalculateTitleDueDateAccount extends TriggerInterface	{
         
         for(Id newAcctId : newAccountMap.keySet())	{
             String[] sellerStates = CalculateTitleDueDateHelper.getSellerLegalOrBillingState(oldAccountMap.get(newAcctId), newAccountMap.get(newAcctId));
-            if(sellerStates != null && sellerStates.size() == 2)	{
-                String sellerStateOld = sellerStates[0];
-                String sellerStateNew = sellerStates[1];
-                
-                boolean isSellerChanged = (sellerStateNew != sellerStateOld) || (oldAccountMap.isempty() && sellerStateNew != null); 
-                if(isSellerChanged)	{
-                    List<Case> acctRelatedCases = accountCasesMap.get(newAcctId);
-                    if(acctRelatedCases != null)	{
-                        for(Case c : acctRelatedCases) {
-                            CalculateTitleDueDateHelper.setTitleDueDate(sellerStateNew, c, c.CreatedDate);
-                        }                    
-                    }
-                } // if isSellerChanged     
-            }
+            String sellerStateOld = sellerStates[0];
+            String sellerStateNew = sellerStates[1];
+            
+            boolean isSellerChanged = (sellerStateNew != sellerStateOld) || (oldAccountMap.isempty() && sellerStateNew != null); 
+            if(isSellerChanged)	{
+                List<Case> acctRelatedCases = accountCasesMap.get(newAcctId);
+                if(acctRelatedCases != null)	{
+                    for(Case c : acctRelatedCases) {
+                        CalculateTitleDueDateHelper.setTitleDueDate(sellerStateNew, c);
+                    }                    
+                }
+            } // if isSellerChanged     
         } //for        
     }
     

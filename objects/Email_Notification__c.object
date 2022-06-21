@@ -157,6 +157,7 @@
     <fields>
         <fullName>Account_Name__c</fullName>
         <description>The name of the Account the user has subscribed to. (Leaving this long because some dealers have long names).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Name</label>
         <length>255</length>
@@ -183,6 +184,7 @@
     <fields>
         <fullName>Dealership_Id__c</fullName>
         <description>The tools Id of the dealership the user has subscribed to.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealership Id</label>
         <length>60</length>
@@ -227,6 +229,7 @@
     </fields>
     <fields>
         <fullName>Service_Appointment_Completed_Date_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Service Appointment Completed Date/Time</label>
         <required>false</required>
@@ -236,6 +239,7 @@
     </fields>
     <fields>
         <fullName>Service_Appointment_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Service Appointment Status</label>
         <length>255</length>
@@ -247,6 +251,7 @@
     </fields>
     <fields>
         <fullName>Service_Appointment_Work_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Service Appointment Work Type</label>
         <length>255</length>
@@ -272,6 +277,7 @@
     <fields>
         <fullName>User_WorkOrder_Key__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>User WorkOrder Key</label>
         <length>255</length>
@@ -296,6 +302,7 @@
     <fields>
         <fullName>Work_Order_Number__c</fullName>
         <description>The number of  the work order if the email subscription was for when a work order closes fo an account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Work Order Number</label>
         <length>60</length>
@@ -308,6 +315,7 @@
     <fields>
         <fullName>Work_Order_VINs__c</fullName>
         <description>The list of VINs from all WOLIs associated with the Work Order the Email Notification record is being created for.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Work Order VINs</label>
         <length>131072</length>

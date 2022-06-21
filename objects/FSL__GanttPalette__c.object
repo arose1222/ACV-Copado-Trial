@@ -179,6 +179,7 @@
     <fields>
         <fullName>FSL__ColorScheme__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Color Scheme</label>
         <length>32768</length>
@@ -189,6 +190,7 @@
     <fields>
         <fullName>FSL__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -198,6 +200,7 @@
     <fields>
         <fullName>FSL__ServiceProperty__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Service Property</label>
         <length>50</length>
@@ -213,6 +216,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Gantt Palette Name</label>
         <type>Text</type>
     </nameField>
@@ -225,7 +229,7 @@
     </sharingReasons>
     <validationRules>
         <fullName>FSL__Color_Level_validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>FSL__ColorLevel__c &lt; 4 || FSL__ColorLevel__c &gt; 15</errorConditionFormula>
         <errorDisplayField>FSL__ColorLevel__c</errorDisplayField>
         <errorMessage>Color level value cannot be less than 4 or greater than 15</errorMessage>

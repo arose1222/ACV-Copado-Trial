@@ -27,7 +27,6 @@ global class TitleDefinition extends CoreObject {
     public VehicleInfo vehicle;
     public PaymentInfo payment;
     public DealershipNoteInfo dealershipNote;
-    public TitleReviewInfo titleReview;
     public MetaInfo metadata;
     
     global class VehicleInfo extends CoreObject{
@@ -47,19 +46,6 @@ global class TitleDefinition extends CoreObject {
         public String noteId;			// Dealership_Note__c.Name
         public String note;				// Dealership_Note__c.Note__c
         public Integer authorId;		// Seller Dealership Contact.ID__c (ACV Contact Id) in Salesforce. It will be used to populate Dealership_Note__c.Note_Author__c (Contact Salesforce Id). 
-    }    
-
-    global class TitleReviewInfo extends CoreObject{
-        public String salesforceId;		// Title_Review__c.Id
-        public String reviewId;			// Title_Review__c.Name
-        public Boolean commitPending; 	// Title_Review__c.Commit_Pending__c (Once the record is created, we send its salesforce Id & commitPending=true to the backend. Once the backend update its DB, it sends an Update Event with commit_pending=false.)
-    	public TitleReviewDocumentInfo titleReviewDocument;
-    }    
-
-    global class TitleReviewDocumentInfo extends CoreObject{
-        public String documentId;		// Title_Review_Document__c.Name
-        public String documentUri;		// Title_Review_Document__c.Document_URI__c
-        public Integer userId;			// Title_Review_Document__c.User_Id__c (from Contact.ID__c (ACV Contact Id) in Salesforce.) Title_Review_Document__c.User_Id will be populated with Contact Salesforce Id that is associated with Contact.ID__c. 
     }    
     
     global class MetaInfo extends CoreObject{

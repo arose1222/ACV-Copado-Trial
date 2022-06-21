@@ -25,22 +25,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Additional_Details</name>
-        <label>Assign Additional Details</label>
-        <locationX>588</locationX>
-        <locationY>905</locationY>
-        <assignmentItems>
-            <assignToReference>varAdditionalDetails</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Additional_Details</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>WorkingProblemText</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <description>Adding to variable a Single subset that is not a duplicate to add to Case record</description>
         <name>assign_AddSubsetProblem</name>
         <label>assign AddSubsetProblem</label>
@@ -67,8 +51,8 @@
     <assignments>
         <name>Assign_Other_Details</name>
         <label>Assign Other Details</label>
-        <locationX>1397</locationX>
-        <locationY>7</locationY>
+        <locationX>1290</locationX>
+        <locationY>247</locationY>
         <assignmentItems>
             <assignToReference>varOtherDetails</assignToReference>
             <operator>Assign</operator>
@@ -81,13 +65,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Is_Seller_assistance_needed_to_resolve_problem_s</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varAdditionalDetails</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Additional_Details_1</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1108,12 +1085,6 @@ IF(AND(ISPICKVAL({!GetCase.Status}, &apos;48 Hour Notice&apos;),{!GetCase.Title_
             <targetReference>Roll_back_QC_Records_0</targetReference>
         </faultConnector>
         <inputAssignments>
-            <field>Additional_Details__c</field>
-            <value>
-                <elementReference>varAdditionalDetails</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Case__c</field>
             <value>
                 <elementReference>recordId</elementReference>
@@ -1166,8 +1137,8 @@ IF(AND(ISPICKVAL({!GetCase.Status}, &apos;48 Hour Notice&apos;),{!GetCase.Title_
     <recordCreates>
         <name>CreateQC</name>
         <label>CreateQC</label>
-        <locationX>1404</locationX>
-        <locationY>394</locationY>
+        <locationX>1386</locationX>
+        <locationY>400</locationY>
         <assignRecordIdToReference>sobjQCRecord.Id</assignRecordIdToReference>
         <connector>
             <targetReference>QCIssueText</targetReference>
@@ -1175,12 +1146,6 @@ IF(AND(ISPICKVAL({!GetCase.Status}, &apos;48 Hour Notice&apos;),{!GetCase.Title_
         <faultConnector>
             <targetReference>Roll_back_QC_Records_0</targetReference>
         </faultConnector>
-        <inputAssignments>
-            <field>Additional_Details__c</field>
-            <value>
-                <elementReference>varAdditionalDetails</elementReference>
-            </value>
-        </inputAssignments>
         <inputAssignments>
             <field>Case__c</field>
             <value>
@@ -1617,8 +1582,8 @@ May go away with Update Status Process</description>
     <screens>
         <name>New_Quality_Control</name>
         <label>New Quality Control</label>
-        <locationX>1136</locationX>
-        <locationY>251</locationY>
+        <locationX>1134</locationX>
+        <locationY>247</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1643,32 +1608,7 @@ May go away with Update Status Process</description>
             <defaultValue>
                 <elementReference>varOtherDetails</elementReference>
             </defaultValue>
-            <fieldText>You have selected &quot;Other&quot; from the problem list, please enter the problem here</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>Quality_Control_Issue</leftValueReference>
-                    <operator>Contains</operator>
-                    <rightValue>
-                        <elementReference>Other</elementReference>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Additional_Details_to_Add</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Use the Additional Details field below to add additional information about the title problems selected. Use this as a general notes field. &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Additional_Details_1</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>varAdditionalDetails</elementReference>
-            </defaultValue>
-            <fieldText>Additional Details</fieldText>
+            <fieldText>Other Details</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
         </fields>
@@ -1742,7 +1682,7 @@ May go away with Update Status Process</description>
             <defaultValue>
                 <elementReference>varOtherDetails</elementReference>
             </defaultValue>
-            <fieldText>You have selected &quot;Other&quot; from the problem list, please enter the problem here:</fieldText>
+            <fieldText>Other Details</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
         </fields>
@@ -1865,13 +1805,13 @@ May go away with Update Status Process</description>
     <screens>
         <name>Title_Problem</name>
         <label>Title Problem</label>
-        <locationX>445</locationX>
-        <locationY>749</locationY>
+        <locationX>452</locationX>
+        <locationY>737</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Assign_Additional_Details</targetReference>
+            <targetReference>WorkingProblemText</targetReference>
         </connector>
         <fields>
             <name>Case_Status_scr_ch</name>
@@ -1902,21 +1842,6 @@ May go away with Update Status Process</description>
             <fieldType>MultiSelectCheckboxes</fieldType>
             <isRequired>false</isRequired>
         </fields>
-        <fields>
-            <name>Add_additional_details</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;Use the Additional Details field below to add additional information about the title problems selected.  If selecting &quot;Other&quot; you will be asked to describe that issue later in the flow. Use this as a general notes field. &lt;/b&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Additional_Details</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>varAdditionalDetails</elementReference>
-            </defaultValue>
-            <fieldText>Additional Details</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
@@ -1927,7 +1852,7 @@ May go away with Update Status Process</description>
             <targetReference>GetCase</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <textTemplates>
         <name>TestTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
@@ -2086,14 +2011,6 @@ May go away with Update Status Process</description>
         <description>Originated from Problem flow for Add Problem button to diverge this flow from regular QC record</description>
         <name>var_Problem</name>
         <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Used to further describe the issues</description>
-        <name>varAdditionalDetails</name>
-        <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>

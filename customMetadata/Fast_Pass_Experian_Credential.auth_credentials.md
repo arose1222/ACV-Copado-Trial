@@ -4,30 +4,30 @@
     <protected>false</protected>
     <values>
         <field>auth_url__c</field>
-        <value xsi:type="xsd:string">https://us-api.experian.com/oauth2/v1/token</value>
+        <value xsi:type="xsd:string">https://sandbox-us-api.experian.com/oauth2/v1/token</value>
     </values>
     <values>
         <field>base_url__c</field>
-        <value xsi:type="xsd:string">https://us-api.experian.com</value>
+        <value xsi:type="xsd:string">https://sandbox-us-api.experian.com</value>
     </values>
     <values>
         <field>client_id__c</field>
-        <value xsi:type="xsd:string">6ivLbok4CCmKnBSrUgFiQwqCcCaFhsFR</value>
+        <value xsi:type="xsd:string">5GWVGOB2o766LysZvPQT1pD8YdwrY84P</value>
     </values>
     <values>
         <field>client_secret__c</field>
-        <value xsi:type="xsd:string">GNfHv2oqnnIZrAZc</value>
+        <value xsi:type="xsd:string">ZeFq5V1jvIBeJ2cX</value>
     </values>
     <values>
         <field>password__c</field>
-        <value xsi:type="xsd:string">ycb0mfd9mfu0grw_KYZ</value>
+        <value xsi:type="xsd:string">RBT6hzj8cth7hca*cep</value>
     </values>
     <values>
         <field>subcode__c</field>
-        <value xsi:type="xsd:string">0608790</value>
+        <value xsi:type="xsd:string">0586548</value>
     </values>
     <values>
         <field>username__c</field>
-        <value xsi:type="xsd:string">acv_apiprod</value>
+        <value xsi:type="xsd:string">jchadha@acvauctions.com</value>
     </values>
 </CustomMetadata>

@@ -1,0 +1,50 @@
+<aura:component controller="DealerApplicationDocViewerController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <div class="slds-page-header">
+      <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+          <div class="slds-media">
+            <div class="slds-media__body">
+              <div class="slds-page-header__name">
+                <div class="slds-page-header__name-title">
+                  <h5>
+                    <span class="slds-page-header__title" title="Dealer Application Doc Viewer">Dealer Application Doc Viewer</span>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="fileList" type="List" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="fileMessage" type="String"/>
+    <aura:attribute name="files" type="String"/>
+    <aura:attribute name="enableFileUploader" type="Boolean"/>
+    <lightning:card>
+        <lightning:select name="documentType" aura:id="documentType" label="Which Document:" onchange="{! c.documentTypeonChange }">
+            <option value="driver_license">Driver License</option>
+            <option value="certificate_of_insurance">Certificate of Insurance</option>
+            <option value="dealer_license">Dealer License</option>
+            <option value="voided_check">Voided Check</option>
+            <option value="articles_of_incorporation">Articles of Incorporation</option>
+            <option value="dealership_picture_including_signage">Dealership Picture Including Signage </option>
+            <option value="other_documents">Other Documents</option>
+        </lightning:select>
+        <div class="fileDiv">
+            <lightning:datatable
+                                 keyField="id"
+                                 data="{! v.fileList }"
+                                 columns="{! v.columns }"
+                                 hideCheckboxColumn="true"
+                                 onrowaction="{! c.handleRowAction }"
+                                 />
+        </div>
+        <lightning:input id="fileuploader" aura:id="fileuploader" onchange="{!c.handleFilesChange}" type="file" name="file" label="Upload File" multiple="false"/>
+        <p><lightning:formattedText value="{! v.fileMessage}" /></p>
+        <lightning:button label="Clear" onclick="{!c.handleCancel}" class="slds-m-top--medium" />
+        <lightning:button label="Save" onclick="{!c.handleSave}"
+                          variant="brand" class="slds-m-top--medium"/>
+    </lightning:card>
+</aura:component>

@@ -4,12 +4,68 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Account.Address_Management</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.New_ACV_Capital_Opportunity</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Work_Order_Ingest</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Update_Buy_Fee_Rate_Card</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Create_True360_Opportunity_Action</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.EXPRN__Experian_Search</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Edit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Submit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>XClean</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>AccountHierarchy</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ChangeOwnerOne</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.Account.geopointe__Map</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.geopointe__Correct_Location</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.Instant_Assignment</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Recurring_Appointment</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Reactivate</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Update_Vehicle_Count</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsInNative</name>
@@ -24,13 +80,7 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
-                <identifier>force_highlightsPanel</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>badgeBanner</componentName>
-                <identifier>c_badgeBanner1</identifier>
+                <identifier>force_highlightsPanel1</identifier>
             </componentInstance>
         </itemInstances>
         <name>header</name>
@@ -50,19 +100,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>relatedListComponentOverride</name>
-                    <value>NONE</value>
+                    <name>hideHeader</name>
+                    <value>false</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>rowsToDisplay</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>force:relatedListContainer</componentName>
-                <identifier>force_relatedListContainer1</identifier>
+                <componentName>force:relatedListQuickLinksContainer</componentName>
+                <identifier>force_relatedListQuickLinksContainer1</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -91,7 +133,7 @@
                 <identifier>force_relatedListSingleContainer1</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-989497d9-6538-4cf0-960b-a80edce20013</name>
+        <name>Facet-ce0947f5-3490-4a2d-a849-b9fe60591923</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -117,14 +159,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-989497d9-6538-4cf0-960b-a80edce20013</value>
+                    <value>Facet-ce0947f5-3490-4a2d-a849-b9fe60591923</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
                     <value>All Related Lists</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
-                <identifier>customTab2</identifier>
+                <identifier>flexipage_tab1</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-b46f473f-edb6-4257-a82c-77054d87c278</name>
@@ -145,6 +187,12 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>runtime_sales_activities:activityPanel</componentName>
+                <identifier>runtime_sales_activities_activityPanel1</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

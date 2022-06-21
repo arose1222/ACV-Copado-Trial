@@ -150,7 +150,7 @@ public with sharing class S3 {
         this.decodedContent = EncodingUtil.base64Decode(this.requestBody);
 
         String url = 'https://' + this.bucketName + '.' + this.AWS_DOMAIN + '/?' + this.urlParams;
-
+		System.debug(url);
         HttpRequest req = new HttpRequest();
 
         req.setEndpoint(url);
@@ -252,7 +252,7 @@ public with sharing class S3 {
 	private HttpResponse putFile() {
 		Http http = new Http();
 		HttpRequest req = this.getPutRequest();
-
+        
         HttpResponse resp = http.send(req);
         
         Integer statusCode = resp.getStatusCode();

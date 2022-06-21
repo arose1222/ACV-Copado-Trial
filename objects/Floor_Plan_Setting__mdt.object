@@ -42,16 +42,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Internal_Delivery__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>If checked, a dummy shipping label will be generated for sorting out the titles, which will be delivered to the internal departments.</description>
-        <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
-        <inlineHelpText>If checked, a dummy shipping label will be generated for sorting out the titles, which will be delivered to the internal departments.</inlineHelpText>
-        <label>Internal Delivery</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Name__c</fullName>
         <description>The name of the person who mail should be addressed to.</description>
         <externalId>false</externalId>
@@ -70,18 +60,6 @@
         <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Payment Method API Name</label>
         <length>50</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Payment_Method_Group_Name__c</fullName>
-        <description>This is specifically related to Internal Delivery field. You can group together multiple Payment Methods so that they share a single shipping label per day. Use the same Group Name for all the Payment Methods for them to share the same shipping label each day.</description>
-        <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
-        <inlineHelpText>This is specifically related to Internal Delivery field. You can group together multiple Payment Methods so that they share a single shipping label per day. Use the same Group Name for all the Payment Methods for them to share the same shipping label each day.</inlineHelpText>
-        <label>Payment Method Group Name</label>
-        <length>100</length>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
@@ -145,24 +123,6 @@
         <unique>false</unique>
     </fields>
     <label>Floor Plan Setting</label>
-    <listViews>
-        <fullName>All_Fields</fullName>
-        <columns>MasterLabel</columns>
-        <columns>DeveloperName</columns>
-        <columns>Payment_Method_API_Name__c</columns>
-        <columns>Payment_Method_Group_Name__c</columns>
-        <columns>Internal_Delivery__c</columns>
-        <columns>Send_Title_to_Buyer__c</columns>
-        <columns>Company__c</columns>
-        <columns>Name__c</columns>
-        <columns>Street1__c</columns>
-        <columns>City__c</columns>
-        <columns>State__c</columns>
-        <columns>Country__c</columns>
-        <columns>Zip__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All Fields</label>
-    </listViews>
     <pluralLabel>Floor Plan Settings</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>

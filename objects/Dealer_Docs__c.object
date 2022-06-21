@@ -207,6 +207,7 @@
     </fields>
     <fields>
         <fullName>Capital_Primary_Contact_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Primary Contact Email</label>
         <required>false</required>
@@ -336,6 +337,7 @@
     </fields>
     <fields>
         <fullName>Document_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Document Notes</label>
         <length>32768</length>
@@ -392,6 +394,7 @@
     </fields>
     <fields>
         <fullName>Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23.</inlineHelpText>
         <label>Expiration Date</label>
@@ -404,6 +407,7 @@
     <fields>
         <fullName>Expiration_Reminder_Date__c</fullName>
         <description>This field contains a date two weeks before the expiration date for when a reminder will be sent to the IST Account Manager as needed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xExpiration Reminder Date</label>
         <required>false</required>
@@ -447,6 +451,7 @@
     <fields>
         <fullName>IST_Account_Manager_Email__c</fullName>
         <description>IST Account Manager&apos;s email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Account Manager Email</label>
         <required>false</required>
@@ -470,6 +475,7 @@
     </fields>
     <fields>
         <fullName>Insurance_Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Insurance Company Name</label>
         <length>255</length>
@@ -494,6 +500,7 @@
     </fields>
     <fields>
         <fullName>License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Number</label>
         <required>false</required>
@@ -549,6 +556,7 @@
     </fields>
     <fields>
         <fullName>Permit_Resale_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Permit/Resale Number</label>
         <required>false</required>
@@ -560,6 +568,7 @@
     <fields>
         <fullName>Primary_Contact_Email__c</fullName>
         <description>Field containing the primary contact&apos;s email for the related account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Primary Contact Email</label>
         <required>false</required>
@@ -641,6 +650,7 @@
     <fields>
         <fullName>S3_Link__c</fullName>
         <description>This field holds the link to the related file in S3. Should never be visible on the page layout.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>S3 Link</label>
         <length>255</length>
@@ -652,54 +662,8 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>S3_Migration_Status__c</fullName>
-        <description>This is used to check whether legacy Dealer Doc attachments are migrated to S3 or not.</description>
-        <externalId>false</externalId>
-        <label>S3 Migration Status</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Migrated</fullName>
-                    <default>false</default>
-                    <label>Migrated</label>
-                </value>
-                <value>
-                    <fullName>Upload Failed</fullName>
-                    <default>false</default>
-                    <label>Upload Failed</label>
-                </value>
-                <value>
-                    <fullName>No Files</fullName>
-                    <default>false</default>
-                    <label>No Files</label>
-                </value>
-                <value>
-                    <fullName>Multiple Files</fullName>
-                    <default>false</default>
-                    <label>Multiple Files</label>
-                </value>
-                <value>
-                    <fullName>Invalid File Type</fullName>
-                    <default>false</default>
-                    <label>Invalid File Type</label>
-                </value>
-                <value>
-                    <fullName>Bigger File</fullName>
-                    <default>false</default>
-                    <label>Bigger File</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>TM_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TM Email</label>
         <required>false</required>
@@ -754,9 +718,6 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>IST_Account_Manager__c</columns>
-        <columns>Document_Type__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Related_Dealer_License__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -778,11 +739,6 @@
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Dealer_Docs__c.Certificate_of_Insurance</value>
-        </filters>
-        <filters>
-            <field>Thirty_Day_Reminder_Email_Sent__c</field>
-            <operation>equals</operation>
-            <value>1</value>
         </filters>
         <label>ACV Capital - Certificate of Insurance</label>
     </listViews>
@@ -1372,29 +1328,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Dealer_License</fullName>
@@ -1657,33 +1590,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Bigger File</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>License_Renewal_Confirmation</fullName>
@@ -1771,29 +1677,6 @@
             </values>
             <values>
                 <fullName>Requires BDR</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2087,33 +1970,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Bigger File</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>New</excludedStandardButtons>
@@ -2121,7 +1977,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>AL_Sales_Tax_must_have_AL_and_Resale</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If AL_Sales_Tax field is true, State must be AL AND Type must be Resale Cert.</description>
         <errorConditionFormula>AND(
 AL_Sales_Tax__c = true, 
@@ -2132,7 +1988,7 @@ RecordType.DeveloperName != &apos;Resale_Certificate&apos;))</errorConditionForm
     </validationRules>
     <validationRules>
         <fullName>Can_not_mark_No_Expiration_with_Date</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Throws an error if user sets &quot;No Expiration&quot; to true and they have an Expiration Date filled in.</description>
         <errorConditionFormula>AND(No_Expiration__c = True, NOT(ISNULL(Expiration_Date__c)))</errorConditionFormula>
         <errorDisplayField>Expiration_Date__c</errorDisplayField>
@@ -2140,14 +1996,14 @@ RecordType.DeveloperName != &apos;Resale_Certificate&apos;))</errorConditionForm
     </validationRules>
     <validationRules>
         <fullName>Cannot_have_AL_Sales_Tax_AND_MTC_true</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>AL_Sales_Tax__c and MTC__c cannot both be marked as true.</description>
         <errorConditionFormula>AND(AL_Sales_Tax__c = true, MTC__c = true)</errorConditionFormula>
         <errorMessage>Cannot have both AL Sales Tax and MTC selected.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Confirmation_Doc_Not_Editable</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Make sure no one can edit Confirmation Docs except admins and anyone with special permission.</description>
         <errorConditionFormula>AND(
 $Profile.Name != &quot;System Administrator&quot;,
@@ -2163,7 +2019,7 @@ ISCHANGED(Related_Dealer_License__c))
     </validationRules>
     <validationRules>
         <fullName>Docs_Not_Editable_After_Marked_Compliant</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Certain fields on Docs should not be changed after the doc has been marked as compliant. Admins will still be able to edit.</description>
         <errorConditionFormula>OR(
 AND(
@@ -2193,7 +2049,7 @@ ISCHANGED(Compliant__c)
     </validationRules>
     <validationRules>
         <fullName>Document_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Rule that flows through the possible document types, depending on the document type corresponding fields will need to be filled out.</description>
         <errorConditionFormula>IF(
 OR(
@@ -2222,7 +2078,7 @@ False))))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>ExpDate_Cannot_be_in_Past_if_Compliant</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot have an expiration date in the past if the document is compliant.</description>
         <errorConditionFormula>AND(
 ( Expiration_Date__c &lt; TODAY()),
@@ -2232,7 +2088,7 @@ False))))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Expiration_Date_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Document Type = Resale Certificate, and Document State = AZ, MI, NE, WA, ME, LA, IA, IL, or FL, force user to enter data in the Expiration Date field.</description>
         <errorConditionFormula>OR(
 AND(
@@ -2257,7 +2113,7 @@ AL_Sales_Tax__c == True))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Fill_out_Expiration_Field</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Document Type = Dealer License, force user to enter data in the Expiration Date field. Error msg: &quot;You must enter an expiration date for this document.&quot;</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Dealer_License&apos;,
@@ -2297,7 +2153,7 @@ AL_Sales_Tax__c = false))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>If_Compliant_True_no_Compliance_issue</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation rule that ensures if the Complaint checkbox is true there are no values selected in the Compliance Issues picklist.</description>
         <errorConditionFormula>AND( Compliant__c =True, ISNULL(Compliance_Issues__c )!=True)</errorConditionFormula>
         <errorDisplayField>Compliance_Issues__c</errorDisplayField>
@@ -2305,7 +2161,7 @@ AL_Sales_Tax__c = false))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>MTC_Field</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Rule #1: Do NOT allow the MTC field to be marked as &apos;true&apos; for the following states:
 AK, DE, DC, IN, LA, MA, MS, MT, NH, NY, OR, PR, VA, WV, WY</description>
         <errorConditionFormula>IF(MTC__c == true &amp;&amp; 
@@ -2330,7 +2186,7 @@ TEXT(Document_State__c) =&apos;WY&apos;), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>MTC_is_True</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Use of MTC in this state has expiration: IL and NE = 3 years from signature; MI and WA = 4 years from signature.</description>
         <errorConditionFormula>IF(
 AND(
@@ -2351,7 +2207,7 @@ FALSE))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Review_Status_Complete</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Review status can not be marked as complete unless the Complaint check box is marked to true.</description>
         <errorConditionFormula>AND(TEXT(Review_Status__c) = &apos;Complete&apos;,  Compliant__c == false)</errorConditionFormula>
         <errorDisplayField>Compliant__c</errorDisplayField>

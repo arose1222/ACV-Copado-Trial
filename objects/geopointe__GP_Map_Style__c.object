@@ -159,6 +159,7 @@
         <fullName>geopointe__Style_JSON__c</fullName>
         <defaultValue>&quot;[{\&quot;key\&quot;: \&quot;value\&quot;}]&quot;</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Google Maps style array in JSON format.</inlineHelpText>
         <label>Style JSON</label>
@@ -169,6 +170,7 @@
     </fields>
     <label>Geopointe Map Style</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Map Style Name</label>
         <type>Text</type>
     </nameField>
@@ -177,7 +179,7 @@
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>geopointe__isNameBlank</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISBLANK(Name)</errorConditionFormula>
         <errorDisplayField>Name</errorDisplayField>
         <errorMessage>You must enter a value</errorMessage>

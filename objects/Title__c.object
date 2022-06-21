@@ -155,32 +155,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Buyer_Organization_Id__c</fullName>
-        <description>Buyer Account Id - populated by the backed (engineering team) using SF TitleService.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Buyer Account Id - populated by the backed (engineering team) using SF TitleService.</inlineHelpText>
-        <label>Buyer Organization Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Buyer_User_Id__c</fullName>
-        <description>Buyer Contact Id - populated by the backed (engineering team).</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Buyer Contact Id - populated by the backed (engineering team).</inlineHelpText>
-        <label>Buyer User Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Case__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Related Case</description>
@@ -193,45 +167,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Legacy_Auction_Id__c</fullName>
-        <description>Auction Id - populated by the backed (engineering team) using SF TitleService.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Auction Id - populated by the backed (engineering team) using SF TitleService.</inlineHelpText>
-        <label>Legacy Auction Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Seller_Organization_Id__c</fullName>
-        <description>Seller Account Id - populated by the backed (engineering team) using SF TitleService.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Seller Account Id - populated by the backed (engineering team) using SF TitleService.</inlineHelpText>
-        <label>Seller Organization Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Seller_User_Id__c</fullName>
-        <description>Seller Contact Id - populated by the backed (engineering team) using SF TitleService.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Seller Contact Id - populated by the backed (engineering team) using SF TitleService.</inlineHelpText>
-        <label>Seller User Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Title_Id_Type__c</fullName>
@@ -260,21 +195,9 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <fields>
-        <fullName>VIN__c</fullName>
-        <description>Vehicle Id - populated by the backed (engineering team) using SF TitleService.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Vehicle Id - populated by the backed (engineering team) using SF TitleService.</inlineHelpText>
-        <label>VIN</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Title</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Title Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

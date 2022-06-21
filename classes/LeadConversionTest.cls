@@ -11,7 +11,7 @@ public class LeadConversionTest {
         leadRec.Dealer_Type__c='Franchise';
         leadRec.Street = '1318 Plumgrove Rd';
         leadRec.City = 'Schaumburg';
-        leadRec.State = 'AK';
+        leadRec.State = 'IL';
         leadRec.PostalCode = '60173';
 
         insert leadRec;
@@ -19,7 +19,7 @@ public class LeadConversionTest {
 
     
     public static LeadConversion.AddressWrapper getAddress(){
-        List<lead> leadRecLst = [SELECT Id FROM Lead WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        List<lead> leadRecLst = [SELECT Id FROM Lead WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
         return LeadConversion.getLeadAddress(leadRecLst[0].Id);
     }
 
@@ -27,7 +27,7 @@ public class LeadConversionTest {
     @isTest
     public static void ConvertLeadForDuplicateContact(){
 
-        List<lead> leadRecLst = [SELECT Id, Email FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        List<lead> leadRecLst = [SELECT Id, Email FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
         
         Account acct1 = TestUtility.createAccount('Account 1');
         insert acct1;
@@ -49,7 +49,7 @@ public class LeadConversionTest {
     public static void ConvertLeadForDuplicateAccount(){
 
         List<lead> leadRecLst = [SELECT Id, Company, Street, City, State, PostalCode FROM Lead
-                                 WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+                                 WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
 
         
         Account acct1 = TestUtility.createAccount('Account 1');
@@ -73,7 +73,7 @@ public class LeadConversionTest {
     @isTest
     public static void ConvertLead(){
 
-        List<lead> leadRecLst = [SELECT Id, Email, Company FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        List<lead> leadRecLst = [SELECT Id, Email, Company FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
         Eula_Tos__C eulaTosRec = new Eula_Tos__c(Lead__c = leadRecLst[0].Id);
         insert eulaTosRec;
 
@@ -110,7 +110,7 @@ public class LeadConversionTest {
     @isTest
     public static void ConvertLeadBlitzTeam(){
 
-        List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
         leadRecLst[0].Referral_Code__c='blitzteam';
         leadRecLst[0].Market_Place_Report_User__c= false;
         update leadRecLst;
@@ -147,7 +147,7 @@ public class LeadConversionTest {
     @isTest
     public static void ConvertLeadMarketPlaceReportUser(){
 
-        List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
         leadRecLst[0].Market_Place_Report_User__c= true;
         update leadRecLst;
 
@@ -186,7 +186,7 @@ public class LeadConversionTest {
        
         Test.startTest();
         List<lead> leadRecLst = [SELECT Id, Company, Street, City, State, PostalCode FROM Lead
-        WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+        WHERE EIN_Number__c= '456123' AND  State = 'IL' LIMIT 1];
 
 
         Account acct1 = TestUtility.createAccount(leadRecLst[0].Company);

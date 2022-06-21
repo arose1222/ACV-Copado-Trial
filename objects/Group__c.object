@@ -176,6 +176,7 @@
         <fullName>Group_Guid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External unique Id field for the Group object used across data systems. This field is generated in Salesforce upon record creation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Group Guid</label>
         <length>36</length>
@@ -301,6 +302,7 @@
         <label>Top 150 Groups</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Group Name</label>
         <trackHistory>true</trackHistory>
         <type>Text</type>

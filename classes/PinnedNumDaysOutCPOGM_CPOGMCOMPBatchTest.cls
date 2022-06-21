@@ -23,7 +23,7 @@ public class PinnedNumDaysOutCPOGM_CPOGMCOMPBatchTest {
         // Create Work Type (needed for Work Order):
         List<WorkType> vciWorkTypeList = new List<WorkType>();
 
-        vciWorkTypeList.add (new WorkType (Work_Type_Unique_ID__c = 'acvhome', Name = 'ACV Anywhere', EstimatedDuration = 30, ShouldAutoCreateSvcAppt = false));
+        vciWorkTypeList.add (new WorkType (Work_Type_Unique_ID__c = 'acvhome', Name = 'ACV Home', EstimatedDuration = 30, ShouldAutoCreateSvcAppt = false));
         vciWorkTypeList.add (new WorkType (Work_Type_Unique_ID__c = 'verification', Name = 'Asset Verfication', EstimatedDuration = 5, ShouldAutoCreateSvcAppt = false));
         vciWorkTypeList.add (new WorkType (Work_Type_Unique_ID__c = 'auction off-lease', Name = 'Auction Off-Lease', EstimatedDuration = 35, ShouldAutoCreateSvcAppt = false));
         vciWorkTypeList.add (new WorkType (Work_Type_Unique_ID__c = 'auction site', Name = 'Auction Site', EstimatedDuration = 2030, ShouldAutoCreateSvcAppt = false));

@@ -195,6 +195,7 @@
     </fields>
     <fields>
         <fullName>Auction_payment_Method__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Method the buyer is using to pay - should match AM</inlineHelpText>
         <label>Auction payment Method</label>
@@ -274,6 +275,7 @@ Accounting Adj = Change QB</inlineHelpText>
     <fields>
         <fullName>Current_Auction_Status__c</fullName>
         <description>Current auction status on this invoice given the auction number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Current auction status on this invoice given the auction number</inlineHelpText>
         <label>Current Auction Status</label>
@@ -300,6 +302,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <fields>
         <fullName>Invoice_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date of the invoice from QB</inlineHelpText>
         <label>Invoice Date</label>
@@ -310,6 +313,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <fields>
         <fullName>Invoice_Due_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Due Date from QB</inlineHelpText>
         <label>Invoice Due Date</label>
@@ -321,6 +325,7 @@ Accounting Adj = Change QB</inlineHelpText>
     <fields>
         <fullName>Invoice_Number__c</fullName>
         <description>Invoice number from QB</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Invoice number from QB</inlineHelpText>
         <label>Invoice Number</label>
@@ -345,6 +350,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <fields>
         <fullName>Payment_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Payment status from AM, should not be altered in SF, not a picklist so it can take any value from AM - should take the status from AM not manually changed unless absolutely necessary</inlineHelpText>
         <label>Payment Status</label>
@@ -357,6 +363,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <fields>
         <fullName>QB_Customer_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Customer Name from QB</inlineHelpText>
         <label>QB Customer Name</label>
@@ -379,6 +386,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <fields>
         <fullName>Title_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>From Auction Manager - should not be changed in SF, not a picklist so it can take any value from production</inlineHelpText>
         <label>Title Status</label>
@@ -392,6 +400,7 @@ Accounting Adj = Change QB</inlineHelpText>
     <fields>
         <fullName>VIN__c</fullName>
         <description>VIN from production give the auction ID</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>VIN from production give the auction ID</inlineHelpText>
         <label>VIN</label>
@@ -404,6 +413,7 @@ Accounting Adj = Change QB</inlineHelpText>
     </fields>
     <label>Collections Invoice</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Collections Invoice Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

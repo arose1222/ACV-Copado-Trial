@@ -53,7 +53,7 @@
             <field>Case__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Case__r.Id</elementReference>
+                <elementReference>$Record.Case__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -88,11 +88,20 @@
         <connector>
             <targetReference>Get_QC_Records</targetReference>
         </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Case__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
         <object>Quality_Control__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>CurCase</name>
         <dataType>SObject</dataType>

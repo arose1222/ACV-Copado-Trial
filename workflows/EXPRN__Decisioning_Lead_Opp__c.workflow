@@ -56,7 +56,7 @@
             <name>EXPRN__Update_Override_field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Experian Decisioning Lead &amp; Opportunity: Override to update</description>
         <formula>EXPRN__Override__c = False &amp;&amp; ISCHANGED(EXPRN__Decision_Override__c) &amp;&amp;  (  ((ISPICKVAL(PRIORVALUE(EXPRN__Decision_Override__c),&quot;Approve&quot;) &amp;&amp; ISPICKVAL(EXPRN__Decision_Override__c, &quot;Decline&quot;)) ||  ((ISPICKVAL(PRIORVALUE(EXPRN__Decision_Override__c),&quot;Decline&quot;) &amp;&amp; ISPICKVAL(EXPRN__Decision_Override__c, &quot;Approve&quot;)))  )  )  &amp;&amp; (  EXPRN__Lead__c != null || EXPRN__Opportunity__c != null  )</formula>
         <triggerType>onAllChanges</triggerType>
@@ -79,7 +79,7 @@
             <name>EXPRN__Update_prior_decision_date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Populate fields Change_Decision__c, Decision_Override__c, Overwritten_By__c, Override__c, Previous_Decision__c, Date__c when user overrides decision</description>
         <formula>NOT(ISNEW()) &amp;&amp;  RecordType.DeveloperName = &apos;Recent_Decision&apos; &amp;&amp;  ISCHANGED(EXPRN__Decision_Override__c) &amp;&amp; NOT(ISPICKVAL(EXPRN__Decision_Override__c, &apos;&apos;)) &amp;&amp; ( EXPRN__Lead__c != null || EXPRN__Opportunity__c != null)</formula>
         <triggerType>onAllChanges</triggerType>

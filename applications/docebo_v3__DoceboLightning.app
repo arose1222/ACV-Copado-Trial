@@ -13,24 +13,6 @@
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
         <content>Vendor_Engagement</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>

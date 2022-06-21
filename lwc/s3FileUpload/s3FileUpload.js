@@ -13,9 +13,6 @@ export default class S3FileUpload extends LightningElement {
 
     @api allowMultiple = false;
     @api disableSObjectInsertion = false;
-		@api acceptedExtensions = 'image/*';
-		@api uploadButtonText = 'Upload Files';
-		@api cdnUrl = '';
 
 
     uploadResults = [];
@@ -98,27 +95,10 @@ export default class S3FileUpload extends LightningElement {
                 
                 createSplunkLog('INFO', 'successfully uploaded ' + finishedFile.fileName + ' to s3 bucket ' + this.s3Bucket, 's3FileUpload', ['ENTERPRISE_APPS']);
                 finishedFile.icon = 'utility:success';
-                //var insertReturn = insertObjects({s3Name:finishedFile.fileName, s3Type:this.s3ReferenceType, s3Url:this.cdnUrl + finishedFile.fileName, junctionObjectType:this.junctionObjectType, junctionObjectId: this.junctionObjectId});
-                //console.log('insert results');
-                //this.insertionResults.push(insertReturn);
-								//console.log(this.insertionResults);
-								
-								insertObjects({s3Name:finishedFile.fileName, s3Type:this.s3ReferenceType, s3Url:this.cdnUrl + finishedFile.fileName, junctionObjectType:this.junctionObjectType, junctionObjectId: this.junctionObjectId}).then(message => {
-                    message = JSON.parse(message);
-                    console.log(message);
-										var messageData = {
-                        icon: "standard:brand",
-                        id:  message.referenceId,
-                        sObjectType: "S3_Reference__c",
-                        subtitle: message.url,
-                        title: message.name 
-                		};
-                    const selectEvent = new CustomEvent('supload', {
-                    detail: messageData
-												
-                });
-                    this.dispatchEvent(selectEvent);
-                });
+                var insertReturn = insertObjects({s3Name:finishedFile.fileName, s3Type:this.s3ReferenceType, s3Url:finishedFile.fileURL, junctionObjectType:this.junctionObjectType, junctionObjectId: this.junctionObjectId})
+                console.log('insert results');
+                this.insertionResults.push(insertReturn);
+                console.log(this.insertionResults);
             }
             else{
                 createSplunkLog('ERROR', 'failed to upload' + finishedFile.fileName + ' to s3 bucket ' + this.s3Bucket + '. Status: ' + response.status, 's3FileUpload', ['ENTERPRISE_APPS']);

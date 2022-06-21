@@ -157,6 +157,7 @@
     <fields>
         <fullName>ACV_Auction_Id__c</fullName>
         <description>auction.id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV Auction Id</label>
         <length>11</length>
@@ -169,6 +170,7 @@
     <fields>
         <fullName>ACV_CR_Document_Id__c</fullName>
         <description>condition_report_document.id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV CR Document Id</label>
         <length>11</length>
@@ -182,6 +184,7 @@
         <fullName>ACV_CR_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>condition_report.id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV CR Id</label>
         <length>11</length>
@@ -221,6 +224,7 @@
         <fullName>ACV_Saved_Auction_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>saved_auctions.id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Saved Auction Id</label>
         <length>11</length>
@@ -255,6 +259,7 @@
     <fields>
         <fullName>Arb_Risk_Categories__c</fullName>
         <description>JSON list of the Arb Risk categories through the ArbGuard endpoint</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Arb Risk Categories</label>
         <length>32768</length>
@@ -318,6 +323,7 @@
     <fields>
         <fullName>CR_Doc_CreateDate__c</fullName>
         <description>condition_report_document.created</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>CR Doc CreateDate</label>
         <required>false</required>
@@ -328,6 +334,7 @@
     <fields>
         <fullName>CR_Doc_LastUpdated__c</fullName>
         <description>condition_report_document.updated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>CR Doc LastUpdated</label>
         <required>false</required>
@@ -338,6 +345,7 @@
     <fields>
         <fullName>CR_Review_Date_Time__c</fullName>
         <description>Date/Time CR Review field is set to TRUE (Populated via workflow/field update)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>CR Review Date/Time</label>
         <required>false</required>
@@ -369,6 +377,7 @@
     <fields>
         <fullName>Date_of_Most_Recent_Recommended_Price__c</fullName>
         <description>Stamps the created date of the most recent Recommended Price record.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Most Recent Recommended Price</label>
         <required>false</required>
@@ -430,6 +439,7 @@
     <fields>
         <fullName>Inspection_Guid__c</fullName>
         <description>Inspection Guid generated for SIA records</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Guid</label>
         <length>36</length>
@@ -592,20 +602,9 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Sales_Region__c</fullName>
-        <externalId>false</externalId>
-        <formula>Dealership__r.Sales_Region_Formula__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Sales Region</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Trim__c</fullName>
         <description>This field is populated through inbound integration from the Saved_auctions table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Trim</label>
         <length>255</length>
@@ -662,6 +661,7 @@ IF(
     <fields>
         <fullName>VIN__c</fullName>
         <description>saved_auctions.vin</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VIN</label>
         <length>17</length>
@@ -801,6 +801,7 @@ IF(
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Condition Report Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

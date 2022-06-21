@@ -203,6 +203,7 @@
         <fullName>docebo_v3__Who__c</fullName>
         <deprecated>false</deprecated>
         <description>A Contact, User or CO Salesforce Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Who</label>
         <length>18</length>
@@ -226,6 +227,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Docebo User Id</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -235,7 +237,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>docebo_v3__CannotReferenceMultipleObjects</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This avoids that a docebo users is linked to more than one SFDC entity</description>
         <errorConditionFormula>IF (docebo_v3__User__c != NULL &amp;&amp; docebo_v3__Contact__c != null, TRUE, FALSE)</errorConditionFormula>
         <errorMessage>Docebo Users cannot have multiple related entities, they must be associated with either a User, a Contact or a custom object.</errorMessage>

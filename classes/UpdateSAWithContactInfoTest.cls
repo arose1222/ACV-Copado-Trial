@@ -9,8 +9,6 @@ public class UpdateSAWithContactInfoTest {
     static String externalAssignmentId = 'April262021TEST';
     static String externalLink = 'externalLink';
     static String externalLinkCode = 'externalLinkCode';
-    static String description = 'description';
-    static String dealerName = 'dealer name';
 
     @TestSetup
     static void makeData(){
@@ -50,8 +48,7 @@ public class UpdateSAWithContactInfoTest {
     private static void assertResults() {
         ServiceAppointment sa = [ SELECT Id, Customer_Email__c, Driving_Directions__c, Contact_Name__c,
                                     Contact_Phone_Number__c, Contact_Mobile_Number__c, Contact_Email__c,
-                                    External_Assignment_Id__c, External_Link__c, External_Link_Code__c, 
-                                    Inspection_Notes__c, Dealership_Name__c
+                                    External_Assignment_Id__c, External_Link__c, External_Link_Code__c
                                     FROM ServiceAppointment LIMIT 1 ];
 
         System.assertEquals( dealerEmail, sa.Customer_Email__c, 'Unexpected Email Set' );
@@ -63,8 +60,6 @@ public class UpdateSAWithContactInfoTest {
         System.assertEquals( externalAssignmentId, sa.External_Assignment_Id__c, 'Unexpected External Assignment ID' );
         System.assertEquals( externalLink, sa.External_Link__c, 'Unexpected External Link' );
         System.assertEquals( externalLinkCode, sa.External_Link_Code__c, 'Unexpected External Link Code' );
-        System.assertEquals( description, sa.Inspection_Notes__c, 'Unexpected Description' );
-        System.assertEquals( dealerName, sa.Dealership_Name__c, 'Unexpected Dealership Name' );
     }
 
     private static WorkOrderLineItem updateWithContactInfo( WorkOrderLineItem providedWOLI ) {
@@ -77,8 +72,6 @@ public class UpdateSAWithContactInfoTest {
         providedWOLI.External_Assignment_Id__c = externalAssignmentId;
         providedWOLI.External_Link__c = externalLink;
         providedWOLI.External_Link_Code__c = externalLinkCode;
-        providedWOLI.Description = description;
-        providedWOLI.Dealership_Name__c = dealerName;
         return providedWOLI;
     }
 }

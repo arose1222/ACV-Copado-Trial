@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Credit Details</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Credits Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <relationshipLabel><!-- Credits Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Check --></label>
+        <name>Credit_Check__c</name>
+        <relationshipLabel><!-- Credits Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Detail Record Type Mapping --></label>
+        <name>Credit_Detail_Record_Type_Mapping__c</name>
+        <picklistValues>
+            <masterLabel>Bankruptcy</masterLabel>
+            <translation><!-- Bankruptcy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lien</masterLabel>
+            <translation><!-- Lien --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date Filed --></label>
+        <name>Date_Filed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Action --></label>
+        <name>Legal_Action__c</name>
+        <picklistValues>
+            <masterLabel>Filed</masterLabel>
+            <translation><!-- Filed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Released</masterLabel>
+            <translation><!-- Released --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Liability Amount --></label>
+        <name>Liability_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Years Value --></label>
+        <name>Number_of_Years_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Years from Date Filed --></label>
+        <name>Number_of_Years_from_Date_Filed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Principal --></label>
+        <name>Principal__c</name>
+        <relationshipLabel><!-- Credits Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status Date --></label>
+        <name>Status_Date__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Bankruptcy --></label>
+        <name>Bankruptcy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Lien --></label>
+        <name>Lien</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

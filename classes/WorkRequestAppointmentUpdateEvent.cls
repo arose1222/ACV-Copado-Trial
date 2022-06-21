@@ -5,13 +5,13 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
         List<ServiceAppointment> saLst = new List<ServiceAppointment>();
         Set<Id> saIdSet = new Set<Id>();
         Map<Id, String> oldSAStatusMap = new Map<Id, String>();
-        for ( ServiceAppointment saRec : (List<ServiceAppointment>) newMap.values() ) {
+        for ( ServiceAppointment saRec : (List<ServiceAppointment>) newMap.values() ) {                     
             if ( oldMap.get( saRec.Id ) != null ) {
                 ServiceAppointment oldSARec = (ServiceAppointment) oldMap.get( saRec.Id );
                 if ( ( saRec.DueDate != oldSARec.DueDate ||
                     saRec.EarliestStartTime != oldSARec.EarliestStartTime ||
                     saRec.SchedStartTime != oldSARec.SchedStartTime ||
-                    saRec.SchedEndTime != oldSARec.SchedEndTime ||
+                    saRec.SchedEndTime != oldSARec.SchedEndTime || 
                     ( saRec.DurationInMinutes != oldSARec.DurationInMinutes && saRec.DurationType == saRec.DurationType ) ||
                     ( saRec.Status != oldSARec.Status && saRec.StatusCategory != FSLWorkProcessUtility.SA_COMPELTED_CATEGORY && saRec.StatusCategory != FSLWorkProcessUtility.SA_INCOMPELTE_CATEGORY )
                 ) && !String.isBlank( saRec.Status ) && saRec.ParentRecordId != null ) {
@@ -26,15 +26,15 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
         if ( saLst != null && !saLst.isEmpty() ) {
             List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                     ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                        WorkType.Name, CreatedById, Cloned_for_Grouping__c
-                            FROM WorkOrderLineItems )
+                        WorkType.Name, CreatedById
+                            FROM WorkOrderLineItems ) 
                                     FROM WorkOrder WHERE Id IN :woIdToSaIdMap.keyset() ];
 
             Map<Id, List<WorkOrderLineItem>> saIdToWoliMap = new Map<Id, List<WorkOrderLineItem>>();
             Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
             for ( WorkOrder woRec : woLst ) {
                 Id saId = woIdToSaIdMap.get( woRec.Id );
-                if ( !woRec.Created_Without_Line_Items__c ) {
+                if ( !woRec.Created_Without_Line_Items__c ) { 
                     if ( saIdToWoliMap.get( saId ) == null ) {
                         saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                     }
@@ -46,7 +46,7 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
                     saIdToWoMap.put( saId, woRec );
                 }
             }
-
+            
             // Get Resource Info
             Set<String> acvUserIdSet = new Set<String>();
             Map<Id, AssignedResource> saToResourceMap = new Map<Id, AssignedResource>();
@@ -76,7 +76,7 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
             for ( ServiceAppointment saRec : saLst ) {
                 Boolean checkForResource = ( saToResourceMap != null && saToResourceMap.get( saRec.Id ) != null );
                 if ( saIdToWoliMap != null && !saIdToWoliMap.isEmpty() && saIdToWoliMap.get( saRec.Id ) != null && !saIdToWoliMap.get( saRec.Id ).isEmpty() ) {
-                    for ( WorkOrderLineItem woliRec : saIdToWoliMap.get( saRec.Id ) ) {
+                    for ( WorkOrderLineItem woliRec : saIdToWoliMap.get( saRec.Id ) ) {                                  
                         createEventLst.add( new Work_Request__e(
                             event_type__c = 'appointment-update',
                             work_Request_Id__c = woliRec.External_Record_Guid__c,
@@ -94,11 +94,11 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
                             ns_Invoice_Id__c = woliRec.External_Invoice_Id__c,
                             work_Type__c = FSLWorkProcessUtility.workTypeIdMap.get( woliRec.WorkTypeId )?.Name,
                             update_User__c = UserInfo.getName(),
-                            origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ),
+                            origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ),
                             assigned_Resource_Name__c = checkForResource ? saToResourceMap.get( saRec.Id ).ServiceResource.Name : null,
                             assigned_Resource_Id__c = checkForResource ? conIdToGuidMap.get( saToResourceMap.get( saRec.Id ).ServiceResource.RelatedRecordId ) : null,
                             legacy_Resource_Id__c = checkForResource ? saToResourceMap.get( saRec.Id ).ServiceResource.ASI_Resource_Id__c : null,
-                            legacy_System__c = checkForResource && (FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' || woliRec.Cloned_for_Grouping__c) ? 'Legacy Inspection Services' : null
+                            legacy_System__c = checkForResource && FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' ? 'Legacy Inspection Services' : null
                         ) );
                         //uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );
                     }
@@ -131,7 +131,7 @@ public class WorkRequestAppointmentUpdateEvent extends TriggerInterface {
             }
 
             if ( !createEventLst.isEmpty() ) {
-                List<Database.SaveResult> results = EventBus.publish( createEventLst );
+                List<Database.SaveResult> results = EventBus.publish( createEventLst );      
                 //FSLWorkProcessUtility.makeLogFromEvent( results, uuidLst, 'WorkRequestAppointmentUpdateEvent', '' + ACVUtility.currentLineNumber() );
             }
         }

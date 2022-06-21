@@ -68,7 +68,7 @@ public without sharing class PrivateLaneLayoutCont {
             // If thisRecordId = no need to query, we just intialize.
             if( thisRecordId != 'New' ){
                 List<Private_Lane__c> thisPrivateLane = [ SELECT Id, Lane_Id__c, Status__c, Name, Auction_Duration__c, Frequency__c, Make_Offer_Type__c, Title_Option__c, Preview_Start_Price__c, Preview_Proxy_Bidding__c, Preview_Duration__c,
-                                                            Start_Date__c, Start_Time__c, Make_Offer_Duration__c, Days_Of_The_Week__c, Payment_Options__c, Custom_Start_Price_Value__c, Custom_Start_Price_Type__c, CreatedById, CreatedBy.Id__c, Timezone__c, Sale_Format__c, Logo_Url__c,
+                                                            Start_Date__c, Start_Time__c, Make_Offer_Duration__c, Days_Of_The_Week__c, Payment_Options__c, Custom_Start_Price_Value__c, Custom_Start_Price_Type__c, CreatedById, CreatedBy.Id__c, Timezone__c, Sale_Format__c,
                                                         ( SELECT Id, Fee__c, Fee__r.Name, Amount__c, Override_Amount__c FROM Assigned_Fees__r ),
                                                         ( SELECT Id, S3_Reference__c, S3_File_Name__c, S3_URL__c, S3_File_Type__c FROM S3_Associations__r )
                                                     FROM Private_Lane__c 
@@ -132,9 +132,7 @@ public without sharing class PrivateLaneLayoutCont {
                     s3TypeTos3AssociationMap.put( PrivateLaneAPI.BRANDING_TYPE_NAME, brandAssociation );
                     s3TypeToUrlMap.put( PrivateLaneAPI.BRANDING_TYPE_NAME, String.isBlank(brandS3[0].S3_URL__c) ? '' : brandS3[0].S3_URL__c );
                 }
-                //plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf(runningUser.Id__c), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
-                plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf('1234'), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
-                
+                plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf(runningUser.Id__c), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
             }else{
                 // Updating Private Lane means we need to
                 // - Update Fee amounts on the Assigned Fee
@@ -160,7 +158,6 @@ public without sharing class PrivateLaneLayoutCont {
                 s3TypeTos3AssociationMap = rw.plw.s3TypeTos3AssociationMap;
                 if( rw.plw.brandingName != 'No Branding' ){
                     List<S3_Reference__c> s3Reference = [ SELECT Id, S3_URL__c, Type__c FROM S3_Reference__c WHERE Id = :rw.plw.brandReference[0].getId() LIMIT 1];
-                    System.debug('s3Reference' + s3Reference);
                     if( s3TypeTos3AssociationMap.get(PrivateLaneAPI.BRANDING_TYPE_NAME) == null ) s3TypeTos3AssociationMap.put(PrivateLaneAPI.BRANDING_TYPE_NAME, new S3_Association__c(Private_Lane__c = rw.plw.recordId) );
                     s3TypeTos3AssociationMap.get(PrivateLaneAPI.BRANDING_TYPE_NAME).S3_Reference__c = rw.plw.brandReference[0].getId();
                     s3TypeToUrlMap.put(PrivateLaneAPI.BRANDING_TYPE_NAME, String.isBlank(s3Reference[0].S3_URL__c) ? '' : s3Reference[0].S3_URL__c );
@@ -170,9 +167,7 @@ public without sharing class PrivateLaneLayoutCont {
                         s3TypeTos3AssociationMap.remove(PrivateLaneAPI.BRANDING_TYPE_NAME);
                     }
                 }
-                //plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf(runningUser.Id__c), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
-                plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf('1234'), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
-                System.debug('plReq' + plReq);
+                plReq = PrivateLaneAPI.createPrivateLaneRequestObj( rw.pl, Integer.valueOf(runningUser.Id__c), s3TypeToUrlMap, feeNameToAmountMap, createCronExpression( rw.pl ) );
             }
             HttpRequest req = String.isBlank(rw.plw.laneId) ? PrivateLaneAPI.createPrivateLaneNewRequest( plReq ) : PrivateLaneAPI.createPrivateLaneUpdateRequest( plReq, rw.plw.laneId );
             HttpResponse res = new Http().send(req);
@@ -186,7 +181,6 @@ public without sharing class PrivateLaneLayoutCont {
                     }
                     // Updating Private Lane does not require anything
                     rw.pl.CreatedBy = null;
-                    rw.pl.Logo_Url__c = s3TypeToUrlMap.get(PrivateLaneAPI.BRANDING_TYPE_NAME);
                     upsert rw.pl;
                     // Populate Private Lane Id on new related objects
                     for( Assigned_Fee__c af : assignedFeeMap.values() ){
@@ -535,16 +529,12 @@ public without sharing class PrivateLaneLayoutCont {
             Map<String, S3_Association__c> s3TypeTos3AssociationMap = new Map<String, S3_Association__c>();
             if( !pl.S3_Associations__r.isEmpty() ){
                 for( S3_Association__c s3File : pl.S3_Associations__r ){
-                    if(!String.isBlank(pl.Logo_Url__c) && s3File.S3_URL__c == pl.Logo_Url__c) {
-                        s3TypeTos3AssociationMap.put( s3File.S3_File_Type__c, s3File );
-                    }
+                    s3TypeTos3AssociationMap.put( s3File.S3_File_Type__c, s3File );
                 }
                 S3_Association__c brand = s3TypeTos3AssociationMap.get( PrivateLaneApi.BRANDING_TYPE_NAME );
-                 if(brand != null){
-                    brandingName = brand.S3_File_Name__c;
-                    brandReference.add( new LookupSearchResult(brand.S3_Reference__c, 'S3_Reference__c', 'standard:brand', brand.S3_File_Name__c, brand.S3_URL__c) );
-                    s3TypeTos3AssociationMap = s3TypeTos3AssociationMap;
-                }
+                brandingName = brand.S3_File_Name__c;
+                brandReference.add( new LookupSearchResult(brand.S3_Reference__c, 'S3_Reference__c', 'standard:brand', brand.S3_File_Name__c, brand.S3_URL__c) );
+                s3TypeTos3AssociationMap = s3TypeTos3AssociationMap;
             }
         }
         /**

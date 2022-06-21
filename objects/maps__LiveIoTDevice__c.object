@@ -157,6 +157,7 @@
     <fields>
         <fullName>maps__DeviceId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Device ID</label>
         <length>255</length>
@@ -170,6 +171,7 @@
         <fullName>maps__LastPositionAddress__c</fullName>
         <deprecated>false</deprecated>
         <description>The physical address the device last reported from</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The physical address the device last reported from</inlineHelpText>
         <label>Last Position Address</label>
@@ -183,6 +185,7 @@
     <fields>
         <fullName>maps__LastPositionDateTime__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Timestamp of last received Geo-location message.</inlineHelpText>
         <label>Last Position Date/Time</label>
@@ -194,6 +197,7 @@
     <fields>
         <fullName>maps__LastPositionEventRaw__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Position Event (Raw)</label>
         <length>255</length>
@@ -207,6 +211,7 @@
         <fullName>maps__LastPositionRaw__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the raw response for the last position request</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Position Raw</label>
         <length>32768</length>
@@ -218,6 +223,7 @@
     <fields>
         <fullName>maps__LastPositionUpdateDateTime__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Timestamp of this last position record updated by batch.</inlineHelpText>
         <label>Batch Date/Time of Last Position</label>
@@ -229,6 +235,7 @@
     <fields>
         <fullName>maps__LastReportedTimeZone__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Reported Time Zone</label>
         <length>255</length>
@@ -312,6 +319,7 @@
     <fields>
         <fullName>maps__VINLastUpdated__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VIN Last Updated</label>
         <required>false</required>
@@ -322,6 +330,7 @@
     <fields>
         <fullName>maps__VIN__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VIN</label>
         <length>255</length>
@@ -378,6 +387,7 @@
     </fields>
     <label>Maps Live IoT Device</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Maps Live IoT Device Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

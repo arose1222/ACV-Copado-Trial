@@ -179,6 +179,7 @@
     </fields>
     <fields>
         <fullName>ACV_Creator_VCI_id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV Creator VCI id</label>
         <length>11</length>
@@ -201,6 +202,7 @@
     </fields>
     <fields>
         <fullName>ACV_VCI_id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV VCI id</label>
         <length>11</length>
@@ -213,6 +215,7 @@
     </fields>
     <fields>
         <fullName>ACV_Vehicle_id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV Vehicle id</label>
         <length>11</length>
@@ -263,6 +266,7 @@
     <fields>
         <fullName>Auction_Lights_Concatenation__c</fullName>
         <description>Populated via a workflow rule that generates a string based upon the independent auction light checkboxes. This field is then evaluated in the Auction Lights formula to return a user-friendly image showing the Auction Lights for an Auction.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Auction Lights Concatenation</label>
         <length>10</length>
@@ -303,6 +307,7 @@
     <fields>
         <fullName>Auction_Notes__c</fullName>
         <description>A place for IST to track an issue with the auction process once marked as accepted, from payment to delivery.  This is a Covid field</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is to be used to note issues in process after Auction is Ended Accepted</inlineHelpText>
         <label>Auction Notes</label>
@@ -447,6 +452,7 @@ MOD((NOW() - DATETIMEVALUE(&apos;2017-01-02 14:00:00&apos;))*1440,1440)/60))</fo
     <fields>
         <fullName>Buyer_IST_Email__c</fullName>
         <description>This field auto populates to show the buying contact&apos;s IST Account Manager&apos;s email address.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This field auto populates to show the buying contact&apos;s IST Account Manager&apos;s email address.</inlineHelpText>
         <label>Buyer IST Email</label>
@@ -558,6 +564,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Class__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Class</label>
         <length>255</length>
@@ -703,6 +710,7 @@ This field is populated through the integration. It looks up to the condition re
     <fields>
         <fullName>Date_Delivered__c</fullName>
         <description>Duplicate of &quot;Transportation Date Delivered&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date vehicle delivered when transported by ACV</inlineHelpText>
         <label>XDate Delivered</label>
@@ -715,6 +723,7 @@ This field is populated through the integration. It looks up to the condition re
     <fields>
         <fullName>Date_Picked_Up__c</fullName>
         <description>Date picked up when transported by ACV - Covid Field - Associated with process builder</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is the date the vehicle was picked up by transporter if ACV transport was used</inlineHelpText>
         <label>Date Picked Up</label>
@@ -960,6 +969,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     </fields>
     <fields>
         <fullName>Payment_Status_Timestamp__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Payment Status Date</label>
         <required>false</required>
@@ -971,6 +981,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Prior_payment_Method__c</fullName>
         <description>used to show the original payment method selected at auction- pushed to case for the arbitration team to see if this was ever edited</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prior Payment Method</label>
         <length>255</length>
@@ -984,6 +995,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Private_Lane_Id__c</fullName>
         <description>This field holds the Private Lane uuid that is populated via the data dump. It will be deprecated once we have all Private Lane&apos;s in Salesforce via producer/consumer.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Private Lane Id</label>
         <length>36</length>
@@ -1052,6 +1064,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Release_DateTime__c</fullName>
         <description>The datetime stamp from acv_prod.auction_files for the release file.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Date</label>
         <required>false</required>
@@ -1063,6 +1076,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Release_Pickup_Phrase__c</fullName>
         <description>Pickup_Phrase from auctions_attribute table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Pickup Phrase</label>
         <length>255</length>
@@ -1117,6 +1131,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Relevant_Recommended_Price_Date__c</fullName>
         <description>Populated via workflow to stamp the Auction record with the date where the relevant pricing record was created by the pricing manager.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Relevant Recommended Price Date</label>
         <required>false</required>
@@ -1128,6 +1143,7 @@ IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 30, 30)
     <fields>
         <fullName>Saved_Auction_ID__c</fullName>
         <description>Field used to bring in the saved auction ID through integration</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Saved Auction ID</label>
         <length>18</length>
@@ -1244,6 +1260,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     <fields>
         <fullName>Seller_Inventory_Id__c</fullName>
         <description>Field populated through Inbound integration from the seller_inventory_id field found on the saved_auctions table in acv_prod</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Inventory Id</label>
         <length>255</length>
@@ -1268,6 +1285,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     </fields>
     <fields>
         <fullName>Seller_Payment_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Payment Date</label>
         <required>false</required>
@@ -1309,6 +1327,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     </fields>
     <fields>
         <fullName>Seller_Payment_Tracking_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Payment Tracking Number</label>
         <length>50</length>
@@ -1333,6 +1352,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     </fields>
     <fields>
         <fullName>Seller_Tracking_Number_For_Titles__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Tracking Number For Titles</label>
         <length>255</length>
@@ -1346,6 +1366,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     <fields>
         <fullName>Seller_Tracking_URL_for_Titles__c</fullName>
         <description>stores the tracking number for title shipments from seller to acv</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Tracking URL for Titles</label>
         <length>255</length>
@@ -1358,6 +1379,7 @@ floor_price__c &gt;= Relevant_Recommended_Floor_Price__c , floor_price__c &lt;= 
     </fields>
     <fields>
         <fullName>Source_Created_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source Created Date</label>
         <required>false</required>
@@ -1422,6 +1444,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     <fields>
         <fullName>Title_Shipping_Status_Seller_To_ACV__c</fullName>
         <description>Shipping status updated from easypost and pulled down into title case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Shipping Status Seller To ACV</label>
         <length>255</length>
@@ -1435,6 +1458,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     <fields>
         <fullName>Title_Status_1__c</fullName>
         <description>Stores the title status information. this is being pushed up from the titles case and pulled down into unwind cases</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Status</label>
         <length>255</length>
@@ -1461,6 +1485,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>Transportation_Date_Delivered__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transportation Date Delivered</label>
         <required>false</required>
@@ -1524,6 +1549,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>VIN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VIN</label>
         <length>20</length>
@@ -1548,6 +1574,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>Vehicle_Make__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Make</label>
         <length>255</length>
@@ -1560,6 +1587,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>Vehicle_Model__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Model</label>
         <length>255</length>
@@ -1572,6 +1600,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>Vehicle_Trim__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Trim</label>
         <length>255</length>
@@ -1584,6 +1613,7 @@ ROUND( 24 * ( (NOW()-end_time__c) - FLOOR((NOW()-end_time__c)) ),8)) ),0)) &amp;
     </fields>
     <fields>
         <fullName>Vehicle_Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Year</label>
         <length>5</length>
@@ -1629,6 +1659,7 @@ CONTAINS(TEXT(status__c), &quot;accepted&quot;))</formula>
     </fields>
     <fields>
         <fullName>XDate_Vehicle_Delivered__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>XDate Vehicle Delivered</label>
         <required>false</required>
@@ -1639,6 +1670,7 @@ CONTAINS(TEXT(status__c), &quot;accepted&quot;))</formula>
     </fields>
     <fields>
         <fullName>XDate_Vehicle_Picked_Up__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>XDate Vehicle Picked Up</label>
         <required>false</required>
@@ -1990,6 +2022,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>created__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source Created Date</label>
         <required>false</required>
@@ -2000,6 +2033,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>end_time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Time</label>
         <required>false</required>
@@ -2010,6 +2044,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>exterior_condition__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exterior Condition</label>
         <length>32000</length>
@@ -2045,6 +2080,7 @@ True = Auction</inlineHelpText>
         <fullName>id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>This will be the same as Auction Number (Name), but is marked as an external ID for integration purposes.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Auction ID</label>
         <length>16</length>
@@ -2057,6 +2093,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>interior_condition__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Interior Condition</label>
         <length>32768</length>
@@ -2068,6 +2105,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>mechanical_condition__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mechanical Condition</label>
         <length>32768</length>
@@ -2079,6 +2117,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>100000</length>
@@ -2104,6 +2143,7 @@ True = Auction</inlineHelpText>
     <fields>
         <fullName>payment_method__c</fullName>
         <description>Integrated field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Payment Method</label>
         <length>80</length>
@@ -2328,6 +2368,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>start_time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Time</label>
         <required>false</required>
@@ -2418,6 +2459,7 @@ True = Auction</inlineHelpText>
     </fields>
     <fields>
         <fullName>updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source Updated Date</label>
         <required>false</required>
@@ -3206,6 +3248,7 @@ True = Auction</inlineHelpText>
         <label>Vehicles in ACV&apos;s Possession</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Auction Number</label>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>

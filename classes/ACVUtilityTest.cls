@@ -449,39 +449,4 @@ public class ACVUtilityTest {
 
         //get first static resource
     }
-
-    @isTest
-    static void testBusinessDays(){
-        BusinessHours busHours = [SELECT Id FROM BusinessHours WHERE Name = '48 Hour Expiration Date Hours' LIMIT 1];
-
-        Map<DateTime, DateTime> startEndMap = new Map<DateTime, DateTime>();
-        DateTime startDateWithinWeek = DateTime.newInstance(2022, 1, 17, 12, 0, 0);
-        startEndMap.put(startDateWithinWeek, DateTime.newInstance(2022, 1, 19, 12, 0, 0));
-
-        DateTime startDateWithWeekend = DateTime.newInstance(2022, 1, 14, 12, 0, 0);
-        startEndMap.put(startDateWithWeekend, DateTime.newInstance(2022, 1, 18, 12, 0, 0));
-
-        DateTime startDateWithNewYears = DateTime.newInstance(2020, 12, 30, 12, 0, 0);
-        startEndMap.put(startDateWithNewYears, DateTime.newInstance(2021, 1, 4, 12, 0, 0));
-
-        DateTime startDateWithMemorialDay = DateTime.newInstance(2022, 5, 27, 12, 0, 0);
-        startEndMap.put(startDateWithMemorialDay, DateTime.newInstance(2022, 6, 1, 12, 0, 0));
-
-        DateTime startDateWithIntependenceDay = DateTime.newInstance(2022, 7, 1, 12, 0, 0);
-        startEndMap.put(startDateWithIntependenceDay, DateTime.newInstance(2022, 7, 6, 12, 0, 0));
-
-        DateTime startDateWithLaborDay = DateTime.newInstance(2022, 9, 2, 12, 0, 0);
-        startEndMap.put(startDateWithLaborDay, DateTime.newInstance(2022, 9, 7, 12, 0, 0));
-
-        DateTime startDateWithThanksgiving = DateTime.newInstance(2022, 11, 22, 12, 0, 0);
-        startEndMap.put(startDateWithThanksgiving, DateTime.newInstance(2022, 11, 25, 12, 0, 0));
-
-        DateTime startDateWithChristmas = DateTime.newInstance(2020, 12, 24, 12, 0, 0);
-        startEndMap.put(startDateWithChristmas, DateTime.newInstance(2020, 12, 29, 12, 0, 0));
-
-        for(DateTime startDate : startEndMap.keySet()) {
-            DateTime endDateTime = ACVUtility.addBusinessDays(startDate, 2, busHours);
-            System.assertEquals(endDateTime, startEndMap.get(startDate));
-        }
-    }
 }

@@ -93,7 +93,7 @@
     <pluralLabel>Badges</pluralLabel>
     <validationRules>
         <fullName>One_Color_Option_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>One Color Option is required. Either ACV Preset Color or Background Color AND Text Color</description>
         <errorConditionFormula>/* Can not all be empty */
 ( ISBLANK(Text_Color__c) &amp;&amp; ISBLANK(ACV_Preset_Colors__c) &amp;&amp; ISBLANK(Background_Color__c) )
@@ -109,7 +109,7 @@
     </validationRules>
     <validationRules>
         <fullName>Only_One_Logic_Field_can_be_used</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Either Class Name or Logic Criteria Equation will be used</description>
         <errorConditionFormula>NOT(ISBLANK(Criteria_Logic_Equation__c)) &amp;&amp;  NOT(ISBLANK(Class_Name__c))</errorConditionFormula>
         <errorMessage>Only one field should be populated. Criteria Logic Equation or Class Name</errorMessage>

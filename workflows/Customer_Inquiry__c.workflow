@@ -43,14 +43,14 @@
             <name>Notify_of_missing_consultant</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Customer_Inquiry__c.Should_Assign_To__c</field>
             <operation>equals</operation>
             <value>Consultant</value>
         </criteriaItems>
         <description>Sends an email alerting users that this Customer Inquiry was created without being assigned.  It should have been assigned to the title consultant</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>Need To Assign To Specialist</fullName>
@@ -58,14 +58,14 @@
             <name>Notify_of_missing_specialist</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Customer_Inquiry__c.Should_Assign_To__c</field>
             <operation>equals</operation>
             <value>Specialist</value>
         </criteriaItems>
         <description>Sends an email alerting users that this Customer Inquiry was created without being assigned.  It should have been assigned to the title specialist</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>Notify Inquiry Owner of Inquiry Resolved</fullName>
@@ -73,7 +73,7 @@
             <name>Email_CI_Owner_on_Status_Change</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Customer_Inquiry__c.Status__c</field>
             <operation>equals</operation>

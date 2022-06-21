@@ -1,10 +1,3 @@
-/**
- * 
- * @description Test class for AccountComplianceMassReevaluationBatch that checks for no errors after running through the batch process to evaluate each account for compliance status
- * @author Kendall Priebe
- * @since 4/14/2022
- * @group Sales
- */
 @isTest
 public with sharing class AccountComplianceMassReevaluationTest { //the biggest issue with this batch is that it relies on all of the docs to be marked compliant correctly, but idk about that
     public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
@@ -12,8 +5,6 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
 
     @isTest
     static void batchTest() {
-        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
-
         //need several accounts to test in the batch
         List<Account> accountList = new List<Account>();
         accountList.add(new Account(Name = 'Account1', IST_Account_Owner__c = UserInfo.getUserId(), Dealership_Id__c = '111', Active__c = true, legal_Name__c='Account1', dealer_type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US', phone= '1234567890')); //this one will have two compliant docs
@@ -28,7 +19,6 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
         accountList.add(new Account(Name = 'Account10', IST_Account_Owner__c = UserInfo.getUserId(), Dealership_Id__c = '101', Active__c = true, legal_Name__c='Account10', dealer_type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14244', BillingCountry='US', phone= '1234567890')); //this owne will have two compliant docs - control
         accountList.add(new Account(Name = 'Account11', IST_Account_Owner__c = UserInfo.getUserId(), Dealership_Id__c = '1111', Active__c = true, legal_Name__c='Account11', dealer_type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14255', BillingCountry='US', phone= '1234567890')); //this one will not have docs at all - control
         insert accountList;
-
         Contact c = TestUtility.createContact(accountList[0]);
         insert c;
 
@@ -58,7 +48,6 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
         //going to need expiration dates (maybe one in future and one in past)
         Date future = System.today().addMonths(5);
         Date past = System.today().addMonths(-5);
-
         //going to need a variety of dealer docs for these accounts
         List<Dealer_Docs__c> docList = new List<Dealer_Docs__c>();
         docList.add(new Dealer_Docs__c(Account__c = accountList[0].Id, RecordTypeId = licenseId, Document_State__c = 'FL', License_Number__c = '11111', Expiration_Date__c = future, Compliant__c = true));
@@ -76,7 +65,6 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
         docList.add(new Dealer_Docs__c(Account__c = accountList[9].Id, RecordTypeId = licenseId, Document_State__c = 'FL', License_Number__c = '13131', Expiration_Date__c = future, Compliant__c = true));
         docList.add(new Dealer_Docs__c(Account__c = accountList[9].Id, RecordTypeId = resaleId, Document_State__c = 'FL', Permit_Resale_Number__c = '14141', Expiration_Date__c = future, Compliant__c = true));
         insert docList;
-        
         //need to update some of the accounts to be incorrect with doc status
         for (Account a : accountList) {
             if (a.Name == 'Account1' || a.Name == 'Account2' || a.Name == 'Account3') {
@@ -88,12 +76,10 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
             }
         }
         update accountList;
-        
         //run batch
         //start test
         Test.startTest();
         //run batch
-            TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
             SchedulableContext sc = null;
             AccountComplianceMassReevaluationBatch batch = new AccountComplianceMassReevaluationBatch();
             Batch.execute(sc);
@@ -102,9 +88,7 @@ public with sharing class AccountComplianceMassReevaluationTest { //the biggest 
         //noooooot really sure how to check that this is running correctly since we're not updating records right now
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/browse/SI-525
-     */
+    @isTest
     static void bulkTest() {
         //create a date
         Date past = System.Today().addMonths(-5);

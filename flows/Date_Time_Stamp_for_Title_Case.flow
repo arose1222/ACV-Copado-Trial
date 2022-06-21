@@ -14,23 +14,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Field_History_Received</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Sent_Date_Time</name>
-        <label>Assign Sent Date Time</label>
-        <locationX>439</locationX>
-        <locationY>1054</locationY>
-        <assignmentItems>
-            <assignToReference>varDateTimeSent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>NowFormula</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Get_Field_History_Sent</targetReference>
+            <targetReference>Update_Case_Received</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -46,15 +30,15 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Field_History_Working</targetReference>
+            <targetReference>Update_Case</targetReference>
         </connector>
     </assignments>
     <decisions>
         <description>Determines which status the title case was updated to</description>
         <name>Status_Change</name>
         <label>Status Change</label>
-        <locationX>165</locationX>
-        <locationY>843</locationY>
+        <locationX>157</locationX>
+        <locationY>676</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Status_Changed_to_Working</name>
@@ -64,20 +48,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Working</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>RecordType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Title_Information</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -95,85 +65,13 @@
                     <stringValue>Received</stringValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>RecordType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Title_Information</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Assign_Received_Date_Time</targetReference>
             </connector>
             <label>Status changed to Received</label>
         </rules>
-        <rules>
-            <name>Status_Changed_to_48_Hour_Notice</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>48 Hour Notice</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>RecordType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Title_Information</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Field_History_48_Hour</targetReference>
-            </connector>
-            <label>Status Changed to 48 Hour Notice</label>
-        </rules>
-        <rules>
-            <name>Status_Changed_to_Sent</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Sent</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>RecordType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Title_Information</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Sent_Date_Time</targetReference>
-            </connector>
-            <label>Status Changed to Sent</label>
-        </rules>
     </decisions>
-    <description>Updates the date and time as well s who the most recent user was to update the status of a title case</description>
+    <description>Stamps the date and time the title case is moved to Working and Received</description>
     <formulas>
         <name>NowFormula</name>
         <dataType>DateTime</dataType>
@@ -203,206 +101,51 @@
     <recordLookups>
         <name>Get_Case_Records</name>
         <label>Get Case Records</label>
-        <locationX>172</locationX>
-        <locationY>497</locationY>
+        <locationX>165</locationX>
+        <locationY>501</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Status_Change</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>2 AND 4 AND (1 OR 3)</filterLogic>
         <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Case</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <description>gets the field history of who changed the status to received.</description>
-        <name>Get_Field_History_48_Hour</name>
-        <label>Get Field History 48 Hour</label>
-        <locationX>441</locationX>
-        <locationY>914</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_User_48_Hour_Notice</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Parent_Record__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Field__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Status</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>New_Value__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>48 Hour Notice</stringValue>
-            </value>
-        </filters>
-        <object>Field_History__c</object>
-        <outputAssignments>
-            <assignToReference>SobjFieldHistoryID</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varUser48HourNotice</assignToReference>
-            <field>User__c</field>
-        </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
-    </recordLookups>
-    <recordLookups>
-        <description>gets the field history of who changed the status to received.</description>
-        <name>Get_Field_History_Received</name>
-        <label>Get Field History Received</label>
-        <locationX>597</locationX>
-        <locationY>611</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_User_Received</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Parent_Record__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Field__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Status</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>New_Value__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Received</stringValue>
-            </value>
-        </filters>
-        <object>Field_History__c</object>
-        <outputAssignments>
-            <assignToReference>SobjFieldHistoryID</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varUserReceived</assignToReference>
-            <field>User__c</field>
-        </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
-    </recordLookups>
-    <recordLookups>
-        <description>Gets the field history of who changed the status to Sent.</description>
-        <name>Get_Field_History_Sent</name>
-        <label>Get Field History Sent</label>
-        <locationX>576</locationX>
-        <locationY>1053</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_User_Sent</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Parent_Record__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Field__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Status</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>New_Value__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Sent</stringValue>
-            </value>
-        </filters>
-        <object>Field_History__c</object>
-        <outputAssignments>
-            <assignToReference>SobjFieldHistoryID</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varUserSent</assignToReference>
-            <field>User__c</field>
-        </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
-    </recordLookups>
-    <recordLookups>
-        <description>gets the field history of who changed the status to received.</description>
-        <name>Get_Field_History_Working</name>
-        <label>Get Field History Working</label>
-        <locationX>571</locationX>
-        <locationY>764</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_User_Received_0</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Parent_Record__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Field__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Status</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>New_Value__c</field>
+            <field>Status</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Working</stringValue>
             </value>
         </filters>
-        <object>Field_History__c</object>
-        <outputAssignments>
-            <assignToReference>SobjFieldHistoryID</assignToReference>
+        <filters>
             <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varUserWorking</assignToReference>
-            <field>User__c</field>
-        </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Received</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Record_Type.DeveloperName</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <description>Get record type so the record type name can be used instead of the id.</description>
         <name>Get_Record_Type</name>
         <label>Get Record Type</label>
-        <locationX>172</locationX>
-        <locationY>360</locationY>
+        <locationX>165</locationX>
+        <locationY>338</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Case_Records</targetReference>
@@ -412,127 +155,22 @@
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Title_Information</stringValue>
+                <stringValue>Title_Information </stringValue>
             </value>
         </filters>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Case</stringValue>
-            </value>
-        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>RecordType</assignToReference>
-            <field>DeveloperName</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <description>Getting the user information to pull who made the update</description>
-        <name>Get_User_48_Hour_Notice</name>
-        <label>Get User 48 Hour Notice</label>
-        <locationX>641</locationX>
-        <locationY>914</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_Case_48_Hour_Notice</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varUser48HourNotice</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Full_Name__c</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <description>Getting the user information to pull who made the update</description>
-        <name>Get_User_Received</name>
-        <label>Get User Received</label>
-        <locationX>721</locationX>
-        <locationY>611</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_Case_Received</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varUserReceived</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Full_Name__c</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <description>Getting the user information to pull who made the update</description>
-        <name>Get_User_Received_0</name>
-        <label>Get User Received</label>
-        <locationX>712</locationX>
-        <locationY>764</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_Case_Working</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varUserWorking</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Full_Name__c</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <description>Getting the user information to pull who made the update</description>
-        <name>Get_User_Sent</name>
-        <label>Get User Sent</label>
-        <locationX>753</locationX>
-        <locationY>1053</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_Case_Sent</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varUserSent</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Full_Name__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Case_48_Hour_Notice</name>
-        <label>Update Case 48 Hour Notice</label>
-        <locationX>849</locationX>
-        <locationY>913</locationY>
+        <name>Update_Case</name>
+        <label>Update Case</label>
+        <locationX>586</locationX>
+        <locationY>766</locationY>
         <inputAssignments>
-            <field>Marked_48_Hour_Notice__c</field>
+            <field>Date_Time_Title_Clerked__c</field>
             <value>
-                <elementReference>varUser48HourNotice</elementReference>
+                <elementReference>VarWorkingDateTime</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -540,50 +178,12 @@
     <recordUpdates>
         <name>Update_Case_Received</name>
         <label>Update Case Received</label>
-        <locationX>849</locationX>
+        <locationX>583</locationX>
         <locationY>611</locationY>
         <inputAssignments>
             <field>Date_Time_Title_Received__c</field>
             <value>
                 <elementReference>varReceivedDateTime</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Marked_Received__c</field>
-            <value>
-                <elementReference>varUserReceived</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Case_Sent</name>
-        <label>Update Case Sent</label>
-        <locationX>874</locationX>
-        <locationY>1053</locationY>
-        <inputAssignments>
-            <field>Marked_Sent__c</field>
-            <value>
-                <elementReference>varUserSent</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Case_Working</name>
-        <label>Update Case Working</label>
-        <locationX>849</locationX>
-        <locationY>764</locationY>
-        <inputAssignments>
-            <field>Date_Time_Title_Clerked__c</field>
-            <value>
-                <elementReference>VarWorkingDateTime</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Marked_Working__c</field>
-            <value>
-                <elementReference>varUserWorking</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -594,7 +194,7 @@
         <connector>
             <targetReference>Get_Record_Type</targetReference>
         </connector>
-        <filterLogic>(1 OR 2 OR 4 OR 5 ) AND 3</filterLogic>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
         <filters>
             <field>Status</field>
             <operator>EqualTo</operator>
@@ -616,88 +216,17 @@
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>Status</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Sent</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Status</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>48 Hour Notice</stringValue>
-            </value>
-        </filters>
         <object>Case</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
-    <variables>
-        <name>RecordType</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>SobjFieldHistoryID</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varDateTimeSent</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
+    <status>Obsolete</status>
     <variables>
         <name>varReceivedDateTime</name>
         <dataType>DateTime</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varUser48HourNotice</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varUserProblem</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>pulls the user record to see ho changed the record to received</description>
-        <name>varUserReceived</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>varUserSent</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varUserWorking</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>VarWorkingDateTime</name>

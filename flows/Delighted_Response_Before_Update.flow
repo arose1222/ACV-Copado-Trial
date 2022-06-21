@@ -392,7 +392,7 @@ CONTAINS(LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl&apos;),
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;title&apos;),
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;lien&apos;),
 AND(
-     CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), {!formTA}),
+     CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;ta&apos;),
      NOT(CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transportation&apos;))),
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl attach&apos;),
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;titl absent&apos;)
@@ -413,11 +413,6 @@ CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;long deliveri&apos;)
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;deliveri&apos;),
 CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transpori&apos;)
 )</expression>
-    </formulas>
-    <formulas>
-        <name>formTA</name>
-        <dataType>String</dataType>
-        <expression>&quot; &quot; + &quot;ta&quot; + &quot; &quot;</expression>
     </formulas>
     <formulas>
         <name>trimTags</name>
@@ -475,7 +470,7 @@ CONTAINS( LOWER({!$Record.DelightedInc__Comment__c}), &apos;transpori&apos;)
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>varTags</name>
         <dataType>String</dataType>

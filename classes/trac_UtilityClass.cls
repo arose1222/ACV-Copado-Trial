@@ -124,7 +124,7 @@ public class trac_UtilityClass {
                }
             //Condition where a work type has added skill but service resource don't have any skill
             else if(mapOfWorkTypeAndSkills.containsKey(revAppRecord.Work_Type__c) && 
-                    !mapOfServiceResourceAndSkills.containsKey(revAppRecord.Service_Resource__c) && revAppRecord.Service_Resource__c != null){
+                    !mapOfServiceResourceAndSkills.containsKey(revAppRecord.Service_Resource__c)){
                         Set<String> setOfExistingWorkTypeSkills = mapOfWorkTypeAndSkills.get(revAppRecord.Work_Type__c);
                         revAppRecord.addError(Label.trac_Error_Message_Service_Resource_Skill +' '+setOfExistingWorkTypeSkills);
                     }

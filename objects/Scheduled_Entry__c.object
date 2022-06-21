@@ -155,6 +155,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Class_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Class Name</label>
         <length>255</length>
@@ -166,6 +167,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <description>Any additional details, clarification, and/or notes to provide more specifics about the scheduled job</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Any additional details, clarification, and/or notes to provide more specifics about the scheduled job</inlineHelpText>
         <label>Description</label>
@@ -244,6 +246,7 @@
     <fields>
         <fullName>Namespace_Prefix__c</fullName>
         <description>If you do not know what this is, leave it blank. It should be used for a very specific purpose around packages</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If you do not know what this is, leave it blank. It should be used for a very specific purpose around packages</inlineHelpText>
         <label>Namespace Prefix</label>
@@ -289,7 +292,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Conditionally_require_Specific_Time</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If the &quot;Specific Time&quot; option is selected for Interval, require a Specific Time to be defined</description>
         <errorConditionFormula>ISPICKVAL( Interval__c, &apos;Specific Time&apos; ) &amp;&amp; ISBLANK(  Specific_Time__c )</errorConditionFormula>
         <errorDisplayField>Specific_Time__c</errorDisplayField>

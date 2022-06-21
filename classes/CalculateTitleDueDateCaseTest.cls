@@ -1,12 +1,10 @@
 /**
  * @description https://acvauctions.atlassian.net/browse/TDO-26 requirements.
  * 
- * @author Manmeet Vaseer
+ * @author Amul
  * @date 05/10/2021
  * 
  * @history 06/09/2021 Manmeet Vaseer - Added logic to handle Legal vs Billing state.
- * 			01/11/2022 Manmeet Vaseer - Use Case.CreatedDate instead of Case.Auction_End__c date for the Due Date calculations (https://acvauctions.atlassian.net/browse/TDO-692).
- * 			02/21/2022 Manmeet Vaseer - Modify the Update Trigger to populate the Title Due Date, when Seller Dealership field changes. (https://acvauctions.atlassian.net/browse/TDO-731).
  * 
  */
 @isTest
@@ -28,38 +26,6 @@ public class CalculateTitleDueDateCaseTest {
     }
 
     @isTest
-    static void testCreateCaseWithoutSeller() {
-        
-        Auction__c auctionObj = [SELECT id,vehicle_id__c FROM Auction__c LIMIT 1];        
-        Contact conObj = [SELECT id,AccountId FROM Contact LIMIT 1];
-        Account acctObj = [SELECT id,BillingState, Legal_State__c FROM Account WHERE Id = :conObj.AccountId];
-        
-        Case testCase = TestUtility.createTitleCase(auctionObj, acctObj, conObj);
-        testCase.Title_Attached__c = true;
-        testCase.Seller_Dealership__c = null;
-        testCase.Status = 'New';
-        
-        /*
-         * This should invoke CaseCalculateTitleDueDate handler in the Case trigger.
-         * This should not populate the Title Due Date as the Seller Dealership is null.
-         */ 
-        insert testCase;
-        
-		testCase = [Select id, Title_Due_Date__c, Title_Attached__c, Seller_Dealership__c from Case where id=:testCase.ID];
-		System.assert(testCase.Seller_Dealership__c == null); 
-		System.assert(testCase.Title_Due_Date__c == null); 
-
-        // This should invoke the Update Trigger to populate the Title Due Date.
-        testCase.Seller_Dealership__c = acctObj.Id;
-        update testCase;
-
-		testCase = [Select id, Title_Due_Date__c, Title_Attached__c, Seller_Dealership__c from Case where id=:testCase.ID];
-		System.assert(testCase.Seller_Dealership__c != null); 
-		System.assert(testCase.Title_Due_Date__c != null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
-    }  
-    
-    @isTest
     static void testTitleAttachedChangeAndStatusClose() {
         
         Auction__c auctionObj = [SELECT id,vehicle_id__c FROM Auction__c LIMIT 1];        
@@ -80,21 +46,21 @@ public class CalculateTitleDueDateCaseTest {
         
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);
 
         testCase.Status = 'Closed Unwound';
         update testCase;
 
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);
         
         testCase.Title_Attached__c = false;
         update testCase;
         
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);            
     }  
     
     @isTest
@@ -117,7 +83,7 @@ public class CalculateTitleDueDateCaseTest {
         
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);
         
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -128,14 +94,14 @@ public class CalculateTitleDueDateCaseTest {
 
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(29), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(29), testCase.Title_Due_Date__c);    
         
         testCase.Title_Attached__c = false;
         update testCase;
         
 		testCase = [Select id,Title_Due_Date__c, Title_Attached__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(6), testCase.Title_Due_Date__c);            
     }  
 
     @isTest
@@ -157,7 +123,7 @@ public class CalculateTitleDueDateCaseTest {
         
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(29), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(29), testCase.Title_Due_Date__c);
     }  
 
     @isTest
@@ -180,7 +146,7 @@ public class CalculateTitleDueDateCaseTest {
         
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);
     }  
     
     @isTest
@@ -199,7 +165,7 @@ public class CalculateTitleDueDateCaseTest {
         
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		system.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        system.assert(testCase.Title_Due_Date__c == system.today().addDays(6));
     }  
     
     @isTest
@@ -219,7 +185,7 @@ public class CalculateTitleDueDateCaseTest {
         
         testCase1 = [Select id,Title_Due_Date__c from Case where id=:testCase1.ID];
 		system.assert(testCase1.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase1.Title_Due_Date__c.Date());
+        system.assert(testCase1.Title_Due_Date__c == system.today().addDays(6)); 
     }  
     
     @isTest
@@ -239,7 +205,7 @@ public class CalculateTitleDueDateCaseTest {
         
         testCase1 = [Select id,Title_Due_Date__c from Case where id=:testCase1.ID];
         system.assert(testCase1.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase1.Title_Due_Date__c.Date());
+        system.assert(testCase1.Title_Due_Date__c == system.today().addDays(44));
     }  
     
     @isTest
@@ -259,7 +225,7 @@ public class CalculateTitleDueDateCaseTest {
         
         testCase1 = [Select id,Title_Due_Date__c from Case where id=:testCase1.ID];
 		system.assert(testCase1.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(29), testCase1.Title_Due_Date__c.Date());
+        system.assert(testCase1.Title_Due_Date__c == system.today().addDays(29)); 
     } 
 
 }

@@ -30,7 +30,7 @@
             <name>Send_Request_Inspection_Fulfillment_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Email_Notification__c.User__c</field>
             <operation>notEqual</operation>
@@ -49,7 +49,7 @@
             <name>Send_Work_Order_Completed_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Email_Notification__c.User__c</field>
             <operation>notEqual</operation>

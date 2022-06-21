@@ -18,7 +18,7 @@
             <name>Stamp_Date_Time_Last_Email_Sent_on_Case</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>EmailMessage.Status</field>
             <operation>equals</operation>

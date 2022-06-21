@@ -30,7 +30,27 @@ public class ExperianCalloutServiceTest {
         Test.stopTest();
         System.assertEquals(1,exp_business_info_list.size());             
     }
-
+	
+    @isTest static void testCreateExperianBussinessInformationForValidAccountWithMultisegments(){
+        Account acc = TestUtility.createAccount('Experian');
+        acc.BillingCity = 'Costa Mesa';
+        acc.BillingState = 'CA';
+        acc.BillingStreet = '475 ANTON BLVD';
+        acc.BillingPostalCode = '92626';
+        acc.Phone = '9495673800';
+        insert acc;
+    
+        ExperianMultisegmentsMock multisegments_mock = new ExperianMultisegmentsMock();
+        ExperianMultisegmentsResponse multisegments = (ExperianMultisegmentsResponse)JSON.deserializeStrict(multisegments_mock.body, ExperianMultisegmentsResponse.class);
+		
+        Test.startTest();
+		ExperianCalloutService.createExperianBussinessInformationRecord(acc, multisegments);
+        List <EXPRN__Exp_Business_Info__c> exp_business_info_list = [SELECT Id, EXPRN__Account_Name__c 
+                                                                FROM EXPRN__Exp_Business_Info__c 
+                                                                WHERE EXPRN__Account_Name__c = :acc.Id];
+        Test.stopTest();
+        System.assertEquals(1,exp_business_info_list.size());             
+    }
    
 	static testMethod void testPostCalloutLoginFromExperian(){
     	Test.setMock(HttpCalloutMock.class, new ExperianBusinessLoginMock());  
@@ -43,11 +63,10 @@ public class ExperianCalloutServiceTest {
         insert acc;
         
     	Map<String, String> responseHeaders = new Map<String, String>{'Content-Type' => 'application/json'};
-        String body = '{"errors": [{"fault": {"faultstring": "Unexpected EOF at target","detail": {"errorcode": "messaging.adaptors.http.flow.UnexpectedEOFAtTarget"}}}]}';
-        Integer code = 400;
+        ExperianCalloutService.mockResponseBody = '{"errors": [{"fault": {"faultstring": "Unexpected EOF at target","detail": {"errorcode": "messaging.adaptors.http.flow.UnexpectedEOFAtTarget"}}}]}';
+        ExperianCalloutService.mockResponseCode = 400;
         Boolean exceptionThrown = false;
-        String status = 'Bad Request';
-        Test.setMock(HttpCalloutMock.class, New ExperianBusinessSearchMock(code, status, body, responseHeaders));
+        ExperianCalloutService.mockResponseStatus = 'Bad Request';
 
         Test.startTest();
         String json_credentials = '{'+
@@ -262,7 +281,7 @@ public class ExperianCalloutServiceTest {
     		system.assertEquals(true, exceptionThrown, 'Expected an exception to be thrown, but there was no exception');
 		}   
     }
-    
+
     @isTest static void testMakeExperianCallForAccount(){
         Boolean exceptionThrown = false;
         Account acc = TestUtility.createAccount('TEST ACCOUNT');
@@ -289,5 +308,49 @@ public class ExperianCalloutServiceTest {
         SplunkHelper.Log log_created= ExperianCalloutService.createLog( SplunkHelper.LOGLEVEL.ERROR, 'Log Created', 'Log Stack Created', ACVUtility.currentLineNumber());
         system.assertEquals('Account', log_created.sfObject);
     }
+    
+    static testMethod void testPostCalloutGetMultisegmentsWithSuccessResponse(){
+        String bin_code = 'TEST_BIN_CODE';
+        String json_credentials = '{'+
+		'  \"issued_at\"  : \"1509914612223\",'+
+		'  \"expires_in\" : \"1800\",'+
+		'  \"token_type\" : \"Bearer\",'+
+		'  \"access_token\" : \"VALIDACCESSTOKEN\",'+
+		'  \"refresh_token\" : \"VALIDREFRESHTOKEN\"'+
+		'}';
+    
+        Test.setMock(HttpCalloutMock.class, new ExperianMultisegmentsMock());
+        ExperianAuthenticateUser auth_credentials = (ExperianAuthenticateUser)JSON.deserializeStrict(json_credentials, ExperianAuthenticateUser.class);
+        
+		ExperianMultisegmentsResponse multisegments = ExperianCalloutService.getMultisegmentsResponse(bin_code, auth_credentials);
+    }
+    
+    @isTest static void testPostCalloutGetMultisegmentsWithFailedResponse(){
+        String bin_code = 'TEST_BIN_CODE';
+        Boolean exceptionThrown = false;
+    	Map<String, String> responseHeaders = new Map<String, String>{'Content-Type' => 'application/json'};
+        String body = '{"errors": [{"fault": {"faultstring": "Unexpected EOF at target","detail": {"errorcode": "messaging.adaptors.http.flow.UnexpectedEOFAtTarget"}}}]}';
+        Integer code = 400;
+        String status = 'Bad Request';
+        Test.setMock(HttpCalloutMock.class, New ExperianMultisegmentsMock(code, status, body, responseHeaders));
+
+        String json_credentials = '{'+
+		'  \"issued_at\"  : \"1509914612223\",'+
+		'  \"expires_in\" : \"1800\",'+
+		'  \"token_type\" : \"Bearer\",'+
+		'  \"access_token\" : \"VALIDACCESSTOKEN\",'+
+		'  \"refresh_token\" : \"VALIDREFRESHTOKEN\"'+
+		'}';
+        
+        ExperianAuthenticateUser auth_credentials = (ExperianAuthenticateUser)JSON.deserializeStrict(json_credentials, ExperianAuthenticateUser.class);
+        try{
+    	    ExperianMultisegmentsResponse multisegments = ExperianCalloutService.getMultisegmentsResponse(bin_code, auth_credentials);	
+	    }catch (Exception e){
+    		exceptionThrown = true;
+		}finally{
+    		system.assertEquals(true, exceptionThrown, 'Expected an exception to be thrown, but there was no exception');
+		}   
+    }
+
     
 }

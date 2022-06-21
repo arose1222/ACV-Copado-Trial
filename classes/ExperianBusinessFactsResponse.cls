@@ -319,7 +319,6 @@ public class ExperianBusinessFactsResponse {
 		}
 	}
 	
-	
 	public static ExperianBusinessFactsResponse parse(String json) {
 		System.JSONParser parser = System.JSON.createParser(json);
 		return new ExperianBusinessFactsResponse(parser);
@@ -339,9 +338,6 @@ public class ExperianBusinessFactsResponse {
 		} while (depth > 0 && parser.nextToken() != null);
 	}
 	
-
-
-
     private static List<SicCodes> arrayOfSicCodes(System.JSONParser p) {
         List<SicCodes> res = new List<SicCodes>();
         if (p.getCurrentToken() == null) p.nextToken();
@@ -351,9 +347,6 @@ public class ExperianBusinessFactsResponse {
         return res;
     }
 
-
-
-
     private static List<String> arrayOfString(System.JSONParser p) {
         List<String> res = new List<String>();
         if (p.getCurrentToken() == null) p.nextToken();
@@ -362,7 +355,6 @@ public class ExperianBusinessFactsResponse {
         }
         return res;
     }
-
 
     private static List<ExecutiveInformation> arrayOfExecutiveInformation(System.JSONParser p) {
         List<ExecutiveInformation> res = new List<ExecutiveInformation>();

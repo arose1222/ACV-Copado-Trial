@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV</letterhead>
+    <name>ACV Capital Welcome - Orange Elite 2</name>
+    <style>freeForm</style>
+    <subject>Welcome to ACV Capital</subject>
+    <textOnly>Hello {!Opportunity.Account}
+
+The ACV Capital team is thrilled to welcome you as a valued member. Our customers are the most important part of our business, and we work to ensure your complete satisfaction throughout your ACV Capital experience. We offer responsive, personalized customer service to assist you with your needs. Your dedicated customer account manager can be reached by email at capitalconcierge@acvauctions.com. Additionally, you can reach out to us by phone at (716)235-3883 and we will assist you with any further inquiries.
+
+You will now see ACV Capital payment options available when selecting a payment on eligible vehicles you purchase. At checkout, you may also select our 60 + 30D term, enabling you to extend your plan for an additional 30 days for an  additional fee at the end of the 60-day term. The 30-day extension will occur automatically if the vehicle is not paid off, and a new invoice will be generated with the additional fee included. With any ACV Capital floor plan option, the only vehicles that cannot be floored are exotic vehicles, vehicles under $1,000 or over $75,000. All payments will be automatically be pulled from the account on file once the maturity date for each vehicle is reached.
+
+To speed up finalizing an auction you’ve won, you can set your default payment method to ACV Capital in your account settings. Once logged in, click on the menu in the top right corner and go to Settings. Once in Settings, select Payment Method Settings and choose your preferred ACV Capital payment option.
+
+A daily email that summarizes the details of your floorplan account will be sent to this email {!Opportunity.Capital_Account_Rep__c}. Please confirm {!Opportunity.Capital_Account_Rep__c} is the email you want to use for statements and payment reminders. If you wish to send these email updates to another email address, reply to this email with the account you would prefer to use.
+
+ACV is always looking to improve our user experience and we are excited to share that ACV Capital will soon have an innovative and user-friendly portal that will allow you to access the details of your floorplan at any time. Please look for this exciting announcement in the near future.  In the meantime, please reference the attached document to view an example of how to make a payment on your account.
+
+Thank you again for entrusting ACV Capital with your floor plan needs.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -170,7 +170,7 @@
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
@@ -331,11 +331,6 @@
             <actionType>QuickAction</actionType>
             <sortOrder>24</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>jiffle__Jifflenow_Meetings</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>25</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -367,21 +362,6 @@
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
         <relatedList>Affiliation__c.Contact__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>jiffle__Attendee__c</fields>
-        <fields>jiffle__Attendee_Name__c</fields>
-        <fields>jiffle__Attendee_Status__c</fields>
-        <fields>jiffle__Checkin__c</fields>
-        <fields>jiffle__Company__c</fields>
-        <fields>jiffle__Event__c</fields>
-        <fields>jiffle__Meeting__c</fields>
-        <fields>jiffle__Meeting_Relations__c</fields>
-        <fields>jiffle__Meeting_Requestor__c</fields>
-        <relatedList>jiffle__Invites__c.jiffle__Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

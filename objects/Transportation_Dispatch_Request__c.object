@@ -170,6 +170,7 @@
     <fields>
         <fullName>Acv_Transportation_Request_Id__c</fullName>
         <description>MySQL id for transport requests in acv-api</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Acv Transportation Request Id</label>
         <length>255</length>
@@ -180,6 +181,7 @@
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Address</label>
         <length>100</length>
@@ -190,6 +192,7 @@
     </fields>
     <fields>
         <fullName>Alternate_Delivery_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery City</label>
         <length>60</length>
@@ -200,6 +203,7 @@
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Country</label>
         <length>55</length>
@@ -210,6 +214,7 @@
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Postal Code</label>
         <length>9</length>
@@ -220,6 +225,7 @@
     </fields>
     <fields>
         <fullName>Alternate_Delivery_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery State</label>
         <length>50</length>
@@ -231,6 +237,7 @@
     <fields>
         <fullName>Auction_Number_Searchable__c</fullName>
         <description>Auction Number (NON-SFDC ID)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Auction Number</label>
         <length>20</length>
@@ -256,6 +263,7 @@
     <fields>
         <fullName>BOL_Link__c</fullName>
         <description>AWS S3 link for BOL</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BOL Link</label>
         <required>false</required>
@@ -274,6 +282,7 @@
     <fields>
         <fullName>Buyer_Pickup_Notes__c</fullName>
         <description>Buyer Pickup Notes/Instructions - copy of field of same name from Case object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Pickup Notes</label>
         <length>2000</length>
@@ -308,6 +317,7 @@
     <fields>
         <fullName>ContactPhone__c</fullName>
         <description>Delivery Phone</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Phone</label>
         <required>false</required>
@@ -317,6 +327,7 @@
     <fields>
         <fullName>Date_Delivered_Actual__c</fullName>
         <description>Date Reported Delivered</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Delivered Actual</label>
         <required>false</required>
@@ -326,6 +337,7 @@
     <fields>
         <fullName>Date_Delivered__c</fullName>
         <description>Delivered TimeStamp</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Delivered CD</label>
         <required>false</required>
@@ -334,6 +346,7 @@
     </fields>
     <fields>
         <fullName>Date_Estimated_Pick_Up__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Estimated Pick Up</label>
         <required>false</required>
@@ -342,6 +355,7 @@
     </fields>
     <fields>
         <fullName>Date_First_Accepted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Accepted</label>
         <required>false</required>
@@ -350,6 +364,7 @@
     </fields>
     <fields>
         <fullName>Date_First_Posted_Portal__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Posted Portal</label>
         <required>false</required>
@@ -358,6 +373,7 @@
     </fields>
     <fields>
         <fullName>Date_First_Posted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Posted</label>
         <required>false</required>
@@ -366,6 +382,7 @@
     </fields>
     <fields>
         <fullName>Date_Last_Accepted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Last Accepted</label>
         <required>false</required>
@@ -374,6 +391,7 @@
     </fields>
     <fields>
         <fullName>Date_Last_Posted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Last Posted</label>
         <required>false</required>
@@ -382,6 +400,7 @@
     </fields>
     <fields>
         <fullName>Date_Picked_Up__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Picked Up</label>
         <required>false</required>
@@ -391,6 +410,7 @@
     <fields>
         <fullName>Default_Delivery_Address__c</fullName>
         <description>Delivery Address</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Address</label>
         <length>255</length>
@@ -402,6 +422,7 @@
     <fields>
         <fullName>Default_Delivery_City__c</fullName>
         <description>Delivery City</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery City</label>
         <length>60</length>
@@ -413,6 +434,7 @@
     <fields>
         <fullName>Default_Delivery_Postal_Code__c</fullName>
         <description>Delivery Zip</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Postal Code</label>
         <length>10</length>
@@ -424,6 +446,7 @@
     <fields>
         <fullName>Default_Delivery_State__c</fullName>
         <description>Delivery State</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery State</label>
         <length>50</length>
@@ -435,6 +458,7 @@
     <fields>
         <fullName>Default_Pickup_City__c</fullName>
         <description>Pickup City</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup City</label>
         <length>60</length>
@@ -446,6 +470,7 @@
     <fields>
         <fullName>Default_Pickup_Postal_Code__c</fullName>
         <description>Pickup Zip</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Postal Code</label>
         <length>10</length>
@@ -457,6 +482,7 @@
     <fields>
         <fullName>Default_Pickup_State__c</fullName>
         <description>Pickup State</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup State</label>
         <length>50</length>
@@ -492,6 +518,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <description>Delivery instructions to carrier</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -502,6 +529,7 @@
     <fields>
         <fullName>Dispatch_Comment__c</fullName>
         <description>Dispatch Comment (Carrier to us)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dispatch Comment (Carrier to ACV)</label>
         <length>32768</length>
@@ -534,6 +562,7 @@
     <fields>
         <fullName>Expected_Delivery__c</fullName>
         <description>Delivery Date/Time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expected Delivery</label>
         <required>false</required>
@@ -543,6 +572,7 @@
     <fields>
         <fullName>Expected_Pick_Up__c</fullName>
         <description>Pickup Date/Time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expected Pick Up</label>
         <required>false</required>
@@ -616,6 +646,7 @@
     <fields>
         <fullName>Pickup_Address__c</fullName>
         <description>Pickup Address</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Street</label>
         <length>255</length>
@@ -669,6 +700,7 @@
     <fields>
         <fullName>Release_Pickup_Phrase__c</fullName>
         <description>Pickup_Phrase from auctions_attribute table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Pickup Phrase</label>
         <length>255</length>
@@ -680,6 +712,7 @@
     <fields>
         <fullName>Seller_Contact_Phone__c</fullName>
         <description>Pickup Phone</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Contact Phone</label>
         <required>false</required>
@@ -715,6 +748,7 @@
     <fields>
         <fullName>Seller_Inventory_Id__c</fullName>
         <description>The Inventory Id for the vehicle on the seller lot</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Inventory Id</label>
         <length>255</length>
@@ -726,6 +760,7 @@
     <fields>
         <fullName>Seller_Pick_Up_Notes__c</fullName>
         <description>Seller Pickup Notes/Instructions - copy of field of same name from Case object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Pickup Notes</label>
         <length>2000</length>
@@ -906,6 +941,7 @@
     <fields>
         <fullName>Vehicle_Make__c</fullName>
         <description>Vehicle Make</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Make</label>
         <length>255</length>
@@ -917,6 +953,7 @@
     <fields>
         <fullName>Vehicle_Model__c</fullName>
         <description>Vehicle Model</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Model</label>
         <length>255</length>
@@ -928,6 +965,7 @@
     <fields>
         <fullName>Vehicle_Style__c</fullName>
         <description>Vehicle Class</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Style</label>
         <length>255</length>
@@ -939,6 +977,7 @@
     <fields>
         <fullName>Vehicle_Trim__c</fullName>
         <description>Vehicle Trim</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Trim</label>
         <length>255</length>
@@ -950,6 +989,7 @@
     <fields>
         <fullName>Vehicle_Vin__c</fullName>
         <description>VIN</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Vin</label>
         <length>50</length>
@@ -995,6 +1035,7 @@
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Transportation Dispatch Request Name</label>
         <type>Text</type>
     </nameField>

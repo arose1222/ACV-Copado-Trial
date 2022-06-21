@@ -1,26 +1,21 @@
 <template>
-    <lightning-card title="Cases" icon-name="standard:case">
-        <lightning-combobox
+    <lightning-card  title="Cases" icon-name="standard:case">
+        <left><lightning-combobox
             name="Case Type"
             label="Case Type"
             value={value}
             placeholder="Select Case Type"
             options={picklistOptions}
-            onchange={recordTypeChange}
-        >
-        </lightning-combobox>
-        <lightning-input type='checkbox' value={showClosed} label='Show Closed Cases' onchange={toggleCloseCase}></lightning-input>
+            onchange={recordTypeChange} ></lightning-combobox>
+        <lightning-input type='checkbox' value={showClosed} label='Show Closed Cases' onchange={toggleCloseCase}></lightning-input></left>
         <lightning-input type='text' value={filterTerm} label="Filter List By Auction, VIN, Year, Make, or Model" onchange={filterUpdate}></lightning-input>
         <table class="slds-table slds-table_cell-buffer slds-table_bordered">
             <thead>
                 <tr class="slds-line-height_reset">
                     <th>Case Number</th>
                     <th>Status</th>
-                    <th>Age in Days</th>
                     <th>Case Type</th>
-                    <th>Title Absent</th>
                     <th>Auction Number</th>
-                    <th>Auction Date</th>
                     <th>VIN</th>
                     <th>Year - Make - Model</th>
                 </tr>
@@ -30,11 +25,8 @@
                     <!-- <lightning-formatted-url value={rowCase.case.Id} label={rowCase.case.CaseNumber} onclick={navigateToRecordViewPage} ></lightning-formatted-url> -->
                     <td key={rowCase.key}><a data-value={rowCase.case.Id} data-aid={rowCase.case.Auction_Number__c} onclick={navigateToRecordViewPage}>{rowCase.case.CaseNumber}</a></td>
                     <td key={rowCase.key}>{rowCase.case.Status}</td>
-                    <td key={rowCase.key}>{rowCase.case.Age_in_Days__c}</td>
                     <td key={rowCase.key}>{rowCase.case.RecordType.Name}</td>
-                    <td key={rowCase.key}><lightning-input type='checkbox' checked={rowCase.case.Title_Attached__c} disabled></lightning-input></td>
                     <td key={rowCase.key}><lightning-formatted-url value={rowCase.auctionLink} label={rowCase.auctionNumber} target="_parent" ></lightning-formatted-url></td>
-                    <td key={rowCase.key}><lightning-formatted-date-time value={rowCase.case.Auction_Start_Time__c} year="numeric" month="numeric" day="numeric"></lightning-formatted-date-time></td>
                     <td key={rowCase.key}><lightning-formatted-url value={rowCase.vinLink} label={rowCase.vin} target="_parent" ></lightning-formatted-url></td>
                     <td key={rowCase.key}>{rowCase.yearMake}</td>
                 </tr>

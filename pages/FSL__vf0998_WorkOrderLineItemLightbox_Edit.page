@@ -43,10 +43,10 @@
                 <apex:pageBlock mode="edit">
 
                     <apex:pageBlockButtons >
-                        <apex:commandButton action="{!save}" value="{!$Label.fsl__savechanges}" />
+                        <apex:commandButton action="{!save}" value="{!$Label.FSL__SaveChanges}" />
                     </apex:pageBlockButtons>
 
-                    <apex:pageBlockSection title="{!$Label.fsl__wolifull}" columns="2">
+                    <apex:pageBlockSection title="{!$Label.FSL__WOLIFull}" columns="2">
                         <apex:repeat value="{!$ObjectType.WorkOrderLineItem.FieldSets.FSL__Gantt_Lightbox}" var="d">
                             <apex:inputField value="{!WorkOrderLineItem[d]}" required="{!d.Required}"/>
                         </apex:repeat>

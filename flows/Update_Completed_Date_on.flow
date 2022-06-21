@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
-    <formulas>
-        <name>DateValue_CompletedDateTIme</name>
-        <dataType>Date</dataType>
-        <expression>DATEVALUE({!$Record.Completed_Date_Time__c})</expression>
-    </formulas>
     <interviewLabel>Update Completed Date on {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Work Order Line Item - Update Completed Date from WO</label>
     <processMetadataValues>
@@ -45,10 +40,11 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>WorkOrderLineItem</object>
-        <outputReference>WOLI_Recordss</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Completed_Date__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <description>Update &apos;completed date&apos; on work order line item</description>
@@ -61,13 +57,13 @@
             <field>WorkOrderId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Id</elementReference>
+                <elementReference>Update_Work_Order_Line_Item</elementReference>
             </value>
         </filters>
         <inputAssignments>
             <field>Completed_Date__c</field>
             <value>
-                <elementReference>DateValue_CompletedDateTIme</elementReference>
+                <elementReference>$Record.Completed_Date_Time__c</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrderLineItem</object>
@@ -81,22 +77,14 @@
         <filterLogic>and</filterLogic>
         <filters>
             <field>Completed_Date_Time__c</field>
-            <operator>IsChanged</operator>
+            <operator>IsNull</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>WorkOrder</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
-    <variables>
-        <name>WOLI_Recordss</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-        <objectType>WorkOrderLineItem</objectType>
-    </variables>
+    <status>Draft</status>
 </Flow>

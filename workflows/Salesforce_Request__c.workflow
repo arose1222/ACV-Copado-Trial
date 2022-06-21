@@ -1256,7 +1256,7 @@
     <fieldUpdates>
         <fullName>payments_Assign</fullName>
         <field>Assigned_To__c</field>
-        <lookupValue>mczum@acvauctions.com</lookupValue>
+        <lookupValue>julia@acvauctions.com</lookupValue>
         <lookupValueType>User</lookupValueType>
         <name>payments Assign</name>
         <notifyAssignee>false</notifyAssignee>
@@ -1270,7 +1270,7 @@
             <name>Autopopulate_SF_Request_to_Submitted</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.CreatedById</field>
             <operation>notEqual</operation>
@@ -1284,7 +1284,7 @@
             <name>Assign_CS_Assigned_To</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Assigned_To__c</field>
             <operation>equals</operation>
@@ -1306,7 +1306,7 @@
             <name>Stamp_Time</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -1321,11 +1321,9 @@
             <name>Inform_SF_Request_Assignee</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Informs team member that a Salesforce ticket has been assigned to them.</description>
-        <formula>AND(RecordType.DeveloperName = &apos;Salesforce_Request&apos;|| RecordType.DeveloperName = &apos;Ops_Help&apos;, 
-NOT(ISPICKVAL( My_Request_Is_Related_To__c , &quot;Recommended Pricing, Re-Run Pricing &amp; Trim Levels&quot;)),
-ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</formula>
+        <formula>AND(RecordType.DeveloperName = &apos;Salesforce_Request&apos;|| RecordType.DeveloperName = &apos;Ops_Help&apos;,  NOT(ISPICKVAL( My_Request_Is_Related_To__c , &quot;Recommended Pricing, Re-Run Pricing &amp; Trim Levels&quot;)), ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1334,7 +1332,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Inform_SF_Request_Assignee</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Assigned_To__c</field>
             <operation>notEqual</operation>
@@ -1362,7 +1360,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_NADA</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1378,7 +1376,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>OPS help IST AM Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1411,7 +1409,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>OPS help IST PM Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1454,7 +1452,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help  Resolutions Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -1533,7 +1531,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>initial_Assignment_AM_IST</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1567,7 +1565,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>AM_Titles_Assign_Escalate</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1605,7 +1603,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Escalate_Manual_Abandon_Vehicle</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -1633,7 +1631,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_Initial_Abandon_Vehicle</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1670,7 +1668,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help Arbitration Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -1715,7 +1713,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Arbitration_Assigned_To</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -1738,7 +1736,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assigned_to_Arbitration</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1792,7 +1790,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help Collections Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -1860,7 +1858,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Collections_Initial_Assignment</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1888,7 +1886,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_Manual_Pricing_Escalate</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -1931,7 +1929,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>PM_Unwind_SF_Ticket_has_Been_Escalated</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1955,7 +1953,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_PM_IST</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1979,7 +1977,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>PM_Title_Assign_to</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -1999,7 +1997,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help Payments Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -2044,7 +2042,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Payments_Assign_To</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -2067,7 +2065,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>payments_Assign</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2090,7 +2088,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Resolutions_Assign_To</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Escalate__c</field>
             <operation>equals</operation>
@@ -2113,7 +2111,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_Resolutions</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2128,7 +2126,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help Transport Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -2173,7 +2171,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_Escalate_Transport</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2196,7 +2194,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Transport_Assigned_to</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2211,7 +2209,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops Help pricing Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>notEqual</operation>
@@ -2247,7 +2245,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_pricing_initial</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2266,7 +2264,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assign_48_Hour_Notice</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2332,7 +2330,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Assing_PM_Titles_Initial</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2352,7 +2350,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops help Titles AM Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2389,7 +2387,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
     </rules>
     <rules>
         <fullName>Ops help Titles PM Check Escalate</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
             <operation>equals</operation>
@@ -2440,7 +2438,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Notify_requestor_their_Request_was_Completed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -2460,7 +2458,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Notify_Requester_Request_was_rejected</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -2480,7 +2478,7 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             <name>Stamp_Closed_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Salesforce_Request__c.Status__c</field>
             <operation>equals</operation>

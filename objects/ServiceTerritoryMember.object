@@ -216,7 +216,7 @@
     </validationRules>
     <validationRules>
         <fullName>FSL__Secondary_STM</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>(ISPICKVAL(TerritoryType, &quot;Secondary&quot;) &amp;&amp; 
     ( ( ( ISCHANGED(Longitude) || ISCHANGED(Latitude) ) &amp;&amp; ( (NOT(ISBLANK(Longitude))) || (NOT(ISBLANK(Latitude))) )) || 
       (NOT(ISBLANK(FSL__Internal_SLR_HomeAddress_Geolocation__Latitude__s))) || 

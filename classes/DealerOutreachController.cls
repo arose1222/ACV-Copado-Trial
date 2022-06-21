@@ -8,25 +8,6 @@ public with sharing class DealerOutreachController {
     public static Boolean checkRetentionCreateAccess(){
         return Retention_Ignition__c.sObjectType.getDescribe().isCreateable();
     }
-
-    /**
-     * Given an account, this will return true if account is locked in an approval process
-     * @param accountId 
-     * @return  `Boolean` 
-     */
-    @AuraEnabled
-    public static Boolean checkForLockedAccount(Id accountId){
-        return Approval.isLocked(accountId);
-    }
-
-    /**
-     * Returns the recordtypeId for an Inside Sales task
-     * @return  `Id`
-     */
-    @AuraEnabled
-    public static Id getInsideSalesRecordTypeId(){
-        return Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('Inside_Sales').getRecordTypeId();
-    }
     
     /**
      * Inserts a retention_ignition__c record from the dealerOutreach LWC
@@ -37,7 +18,12 @@ public with sharing class DealerOutreachController {
     public static Id createRetention(String jsonString){
         try {
             NewRetentionIgnition retentionDetails = (NewRetentionIgnition)JSON.deserialize(jsonString, NewRetentionIgnition.class);
-            String activityStatus = [SELECT Id, Account_Activity_Status__c FROM Account WHERE Id = :retentionDetails.account].Account_Activity_Status__c;
+            String acvExperience = '';
+            if(retentionDetails.experience != null){
+                for (String selection : retentionDetails.experience) {
+                    acvExperience += selection + ';';
+                }
+            }
             Retention_Ignition__c retentionRecord = new Retention_Ignition__c
                 (
                     AccountName__c = retentionDetails.account,
@@ -48,8 +34,7 @@ public with sharing class DealerOutreachController {
                     No_Answer__c = retentionDetails.noAnswer,
                     Type__c = retentionDetails.callType,
                     Next_Steps__c = retentionDetails.nextSteps,
-                    Latest_ACV_Experience__c = retentionDetails.experience,
-                    Account_Activity_Status__c = activityStatus
+                    Latest_ACV_Experience__c = acvExperience
                 );
             insert retentionRecord;
 
@@ -73,7 +58,7 @@ public with sharing class DealerOutreachController {
         public String noAnswer;
         public String callType;
         public String nextSteps;
-        public String experience;
+        public List<String> experience;
     }
 
     /**

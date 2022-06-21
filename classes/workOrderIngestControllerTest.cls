@@ -86,6 +86,37 @@ public class workOrderIngestControllerTest {
     }
 
     @isTest
+    static void checkNegativeProfile(){
+        Profile p = [ SELECT Id FROM Profile WHERE Name = 'Vehicle Condition Inspector' ];
+        User u = TestUtility.createUser( p.Id );
+        insert u;
+
+        Boolean isAllowedToDisplayRevolving = TRUE;
+        Test.startTest();
+            System.runAs( u ) {
+                isAllowedToDisplayRevolving = workOrderIngestController.checkToDisplayRevolving();
+            }
+        Test.stopTest();
+
+        System.assertEquals( FALSE, isAllowedToDisplayRevolving, 'There was an unexpected permission given to see Revolving Appointment Functionality' );
+    }
+
+    @isTest
+    static void checkPositiveProfile(){
+        User u = TestUtility.createUser();
+        insert u;
+
+        Boolean isAllowedToDisplayRevolving = FALSE;
+        Test.startTest();
+            System.runAs( u ) {
+                isAllowedToDisplayRevolving = workOrderIngestController.checkToDisplayRevolving();
+            }
+        Test.stopTest();
+
+        System.assertEquals( TRUE, isAllowedToDisplayRevolving, 'There was an unexpected permission given to see Revolving Appointment Functionality' );
+    }
+
+    @isTest
     static void saveOffer(){
 
         Account acc = [SELECT Id FROM Account LIMIT 1];
@@ -96,8 +127,7 @@ public class workOrderIngestControllerTest {
             WorkTypeId = inspectionWT?.Id,
             Status = 'New',
             Priority = 'Low',
-            Processing_Offers__c = true,
-            Inspection_Number_of_Vehicles__c = 1
+            Processing_Offers__c = true
         );
         insert workOrder;
 

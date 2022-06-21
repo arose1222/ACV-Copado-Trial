@@ -17,7 +17,7 @@
             <name>Budget_25_Remaining</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Sends an email to the Owner of a budget when its less than 25% remaining</description>
         <formula>IsChanged(Current_Balance__c) &amp;&amp; Current_Balance__c / Starting_Balance__c &lt;= 0.25 &amp;&amp; PRIORVALUE(Current_Balance__c) / Starting_Balance__c &gt; 0.25</formula>
         <triggerType>onAllChanges</triggerType>

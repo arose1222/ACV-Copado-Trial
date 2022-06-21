@@ -170,6 +170,7 @@
     <fields>
         <fullName>geopointe__Custom_Assignment_Field__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is the Geopointe Assignment Area field on your Standard or Custom object that will be populated with the matching Geopointe Assignment Area record.</inlineHelpText>
         <label>Custom Assignment Field</label>
@@ -182,6 +183,7 @@
     <fields>
         <fullName>geopointe__Custom_Assignment_Object__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is an the Custom Object you create that links Geopointe Assignment Areas to the standard or custom object in your system. This object you create should have Master-Detail to Geopointe Assignment Area and your custom/standard object.</inlineHelpText>
         <label>Custom Assignment Object</label>
@@ -194,6 +196,7 @@
     <fields>
         <fullName>geopointe__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Short description for this Assignment Plan.</inlineHelpText>
         <label>Description</label>
@@ -204,6 +207,7 @@
     <fields>
         <fullName>geopointe__Geocode_Quality_Exclusion_Level__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Geocode Quality Exclusion Level</label>
         <length>60</length>
@@ -225,6 +229,7 @@
     <fields>
         <fullName>geopointe__Last_Batch_Run_Complete_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last Assignment batch job completed. This field should not be modified by users.</inlineHelpText>
         <label>Last Batch Run Completed Date</label>
@@ -235,6 +240,7 @@
     <fields>
         <fullName>geopointe__Last_Batch_Run_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last Assignment batch job ran. This field should not be modified by users.</inlineHelpText>
         <label>Last Batch Run Date</label>
@@ -245,6 +251,7 @@
     <fields>
         <fullName>geopointe__Last_Cleanup_Batch_Run_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last Assignment Plan Cleanup batch job ran. This field should not be modified by users.</inlineHelpText>
         <label>Last Cleanup Batch Run Date</label>
@@ -255,6 +262,7 @@
     <fields>
         <fullName>geopointe__Last_Inactive_Batch_Run_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last Assignment Plan Inactive batch job ran. This field should not be modified by users.</inlineHelpText>
         <label>Last Inactive Batch Run Date</label>
@@ -265,6 +273,7 @@
     <fields>
         <fullName>geopointe__Last_Unassigned_Run_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last job ran that processed all unassigned records. This field should not be modified by users.</inlineHelpText>
         <label>Last Unassigned Run Date</label>
@@ -275,6 +284,7 @@
     <fields>
         <fullName>geopointe__Map_Object__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>API Name of the Map Object this Assignment Plan will run against.</inlineHelpText>
         <label>Map Object</label>
@@ -327,6 +337,7 @@
     <fields>
         <fullName>geopointe__SOQL_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>A SOQL WHERE clause (do not include &quot;WHERE&quot;) can be entered here to add a filter to the Assignment Plan.</inlineHelpText>
         <label>SOQL Filter</label>
@@ -359,19 +370,6 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <fields>
-        <fullName>geopointe__Territory_Plan_ID__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <deprecated>false</deprecated>
-        <externalId>true</externalId>
-        <inlineHelpText>This is the Model Set ID of the Territory Plan in Ascent Cloud Territory Planner.</inlineHelpText>
-        <label>Territory Plan Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
     <label>Geopointe Assignment Plan</label>
     <listViews>
         <fullName>geopointe__All</fullName>
@@ -379,6 +377,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Assignment Plan Name</label>
         <type>Text</type>
     </nameField>

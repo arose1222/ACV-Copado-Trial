@@ -136,7 +136,7 @@
             <name>Onboarding_Handoff_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notifies the new account owner once the onboarding process has been completed</description>
         <formula>(ISBLANK(PRIORVALUE(Handoff_To__c)) == TRUE &amp;&amp; ISBLANK(Handoff_To__c) == FALSE) || (ISBLANK(Handoff_To__c) != null &amp;&amp; PRIORVALUE(Handoff_To__c)!= Handoff_To__c)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -151,7 +151,7 @@
             <name>Update_Auction_Email_sent</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(NOT( ISBLANK(Auction_ID__c ) ), !Auction_Email_Sent__c)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -161,7 +161,7 @@
             <name>Date_Completed</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Onboarding__c.Status__c</field>
             <operation>equals</operation>
@@ -203,7 +203,7 @@
             <name>Update_Territory_Manager</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Onboarding__c.Status__c</field>
             <operation>notEqual</operation>

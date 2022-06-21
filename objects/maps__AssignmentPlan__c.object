@@ -166,6 +166,7 @@
     <fields>
         <fullName>maps__CustomAssignmentField__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Custom Assignment Field</label>
         <length>40</length>
@@ -188,6 +189,7 @@
         <fullName>maps__DebugSObjectField__c</fullName>
         <deprecated>false</deprecated>
         <description>The api name of the lookup field that the debug auto assignment object points to. The field reference is used when creating debug auto assignment records.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Debug SObject Field</label>
         <length>255</length>
@@ -199,6 +201,7 @@
     <fields>
         <fullName>maps__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -210,6 +213,7 @@
         <fullName>maps__ErrorField__c</fullName>
         <deprecated>false</deprecated>
         <description>Any errors associated with Assignment Plans will be placed in this field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error</label>
         <length>255</length>
@@ -231,6 +235,7 @@
     <fields>
         <fullName>maps__LastBatchId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Batch Id</label>
         <length>18</length>
@@ -242,6 +247,7 @@
     <fields>
         <fullName>maps__LastSuccessfulBatchRun__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Successful Batch Run</label>
         <required>false</required>
@@ -252,6 +258,7 @@
         <fullName>maps__LatField__c</fullName>
         <deprecated>false</deprecated>
         <description>The api name of the latitude field on the associated sobject which will be used to determine territory intersection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Latitude Field</label>
         <length>255</length>
@@ -264,6 +271,7 @@
         <fullName>maps__LngField__c</fullName>
         <deprecated>false</deprecated>
         <description>The api name of the longitude field on the associated sobject which will be used to determine territory intersection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Longitude Field</label>
         <length>255</length>
@@ -296,6 +304,7 @@
     <fields>
         <fullName>maps__RuleLookupField__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Assignment Rule Lookup Field</label>
         <length>255</length>
@@ -307,6 +316,7 @@
     <fields>
         <fullName>maps__SOQLFilter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SOQL Filter</label>
         <length>32768</length>
@@ -318,6 +328,7 @@
         <fullName>maps__SObject_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>The label of the sobject associated with this plan.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SObject Name</label>
         <length>255</length>
@@ -330,6 +341,7 @@
         <fullName>maps__SObject__c</fullName>
         <deprecated>false</deprecated>
         <description>The api name of the sobject associated with this plan.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SObject</label>
         <length>255</length>
@@ -345,6 +357,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Maps Assignment Plan Name</label>
         <type>Text</type>
     </nameField>

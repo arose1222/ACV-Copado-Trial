@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Application Status - Submitted</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV_Application_Form</letterhead>
+    <name>ACV Application Status - Submitted</name>
+    <style>freeForm</style>
+    <subject>ACV Capital Application Update</subject>
+    <textOnly>ACV Capital Application Update
+
+Your application has been submitted
+
+Your {!Application__c.Account__c} application has been successfully submitted. Please note we will be asking for additional information to support in the application review. The additional requirements will be emailed to you.
+
+Many thanks.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

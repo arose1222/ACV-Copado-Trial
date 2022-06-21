@@ -28,26 +28,37 @@
                 <div class="slds-col slds-size_6-of-12 slds-p-left_medium">
                     <div class='slds-grid slds-gutters'>
                         <lightning-input-field data-id='directionInput' field-name="Call_Direction__c" class="slds-col slds-size_1-of-3" onchange={handleDirectionChange} value={direction} required></lightning-input-field>
-                        <lightning-input-field data-id='typeInput' field-name="Type__c" class="slds-col slds-size_1-of-3" onchange={handleCallTypeChange} value={callType} required></lightning-input-field>
-                        <lightning-input-field data-id='answerInput' field-name="No_Answer__c" class="slds-col slds-size_1-of-3" onchange={handleAnswerChange} value={noAnswerSelection} ></lightning-input-field>
+                        <lightning-input-field data-id='typeInput' field-name="Type__c" class="slds-col slds-size_1-of-3" onchange={handleCallTypeChange} required></lightning-input-field>
+                        <lightning-input-field data-id='answerInput' field-name="No_Answer__c" class="slds-col slds-size_1-of-3" onchange={handleAnswerChange} ></lightning-input-field>
                     </div>
                     <lightning-textarea data-id='commentsInput' name="dealerComments" label="Dealer Comments" onchange={handleCommentChange} required={callAnswered}></lightning-textarea>
                     <lightning-textarea data-id='nextSteps' name="nextSteps" label="Next Steps" onchange={handleNextStepsChange} required={callAnswered}></lightning-textarea>
                 </div>
-            
                 <div class="slds-col slds-size_6-of-12 slds-p-left_large">
-                    <lightning-input-field data-id='latest' field-name="Latest_ACV_Experience__c" required={callAnswered} onchange={handleLatestChange} value={latestSelectionsList}></lightning-input-field>
+                    <lightning-dual-listbox 
+                        id="selectOptions" 
+                        data-id='dualBox'
+                        size="3"
+                        disable-reordering=true
+                        name="Latest ACV Experience"
+                        label="Latest ACV Experience"
+                        source-label="Available Options"
+                        selected-label="Selected Options"
+                        options={listOptions}
+                        value={selectedOptions}
+                        onchange={handleDualChange}
+                        required={callAnswered}>
+                    </lightning-dual-listbox>
                     <br>
                     <div class="slds-grid slds-wrap">
-                        <lightning-button label="Schedule Follow-Up Task" variant="brand-outline" title="scheduleFollowUp" onclick={navigateToTaskPage} class='slds-col slds-large-size_5-of-12 slds-p-left_medium'></lightning-button>
+                        <lightning-button label="Schedule Follow-Up Event" variant="brand-outline" title="scheduleFollowUp" onclick={navigateToEventPage} class='slds-col slds-large-size_5-of-12 slds-p-left_medium'></lightning-button>
                         <div class='slds-col slds-large-size_3-of-12'></div>
                         <div class='slds-col slds-large-size_4-of-12'>
                             <lightning-button variant="destructive" label="Cancel" title="cancel" onclick={checkCancel}></lightning-button>
-                            <lightning-button variant="success" label="Submit" title="submit" onclick={handleSubmit} class="slds-var-p-left_x-small" disabled={lockedAccount}></lightning-button>
+                            <lightning-button variant="success" label="Submit" title="submit" onclick={handleSubmit} class="slds-var-p-left_x-small"></lightning-button>
                         </div>
                     </div>
-                    <span if:true={answeredErrors} class='slds-float_right slds-p-right_x-small slds-text-color_error'>All fields are required when call is answered <br></span>
-                    <span if:true={noAnswerErrors} class='slds-float_right slds-p-right_x-small slds-text-color_error'>The following fields are required when there is no answer: Account Name, Contact Name, Call Direction & Type of Call <br><br></span>
+                    <span if:true={hasErrors} class='slds-float_right slds-p-right_x-small slds-text-color_error'>Complete all required fields</span>
                 </div>
             </div>
         </lightning-record-edit-form>

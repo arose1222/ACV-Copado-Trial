@@ -169,6 +169,7 @@
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
@@ -220,6 +221,7 @@
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -252,6 +254,40 @@
             <value>LAST_N_DAYS:60</value>
         </filters>
         <label>My Recent Events</label>
+    </listViews>
+    <listViews>
+        <fullName>MyRecentEvents</fullName>
+        <columns>START_DATE_TIME</columns>
+        <columns>END_DATE_TIME</columns>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ALL_DAY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:60</value>
+        </filters>
+        <label>My Recent Events</label>
+    </listViews>
+    <listViews>
+        <fullName>MyTeamsRecentEvents</fullName>
+        <columns>START_DATE_TIME</columns>
+        <columns>END_DATE_TIME</columns>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ALL_DAY</columns>
+        <filterScope>Team</filterScope>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>My Team&apos;s Recent Events</label>
     </listViews>
     <listViews>
         <fullName>MyTeamsRecentEvents</fullName>
@@ -288,6 +324,23 @@
         <label>My Team&apos;s Upcoming Events</label>
     </listViews>
     <listViews>
+        <fullName>MyTeamsUpcomingEvents</fullName>
+        <columns>START_DATE_TIME</columns>
+        <columns>END_DATE_TIME</columns>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ALL_DAY</columns>
+        <filterScope>Team</filterScope>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY,NEXT_N_DAYS:30</value>
+        </filters>
+        <label>My Team&apos;s Upcoming Events</label>
+    </listViews>
+    <listViews>
         <fullName>MyUpcomingEvents</fullName>
         <columns>START_DATE_TIME</columns>
         <columns>END_DATE_TIME</columns>
@@ -303,6 +356,45 @@
             <value>TODAY,NEXT_N_DAYS:60</value>
         </filters>
         <label>My Upcoming Events</label>
+    </listViews>
+    <listViews>
+        <fullName>MyUpcomingEvents</fullName>
+        <columns>START_DATE_TIME</columns>
+        <columns>END_DATE_TIME</columns>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ALL_DAY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY,NEXT_N_DAYS:60</value>
+        </filters>
+        <label>My Upcoming Events</label>
+    </listViews>
+    <listViews>
+        <fullName>TodaysAgenda</fullName>
+        <columns>START_DATE_TIME</columns>
+        <columns>END_DATE_TIME</columns>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ALL_DAY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>END_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Today&apos;s Agenda</label>
     </listViews>
     <listViews>
         <fullName>TodaysAgenda</fullName>
@@ -584,10 +676,6 @@
             </values>
             <values>
                 <fullName>Sales Pitch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seller Launch</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1261,14 +1349,14 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Live_Appraisal_Required_Info</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Live Appraisal needs date &amp; Expected Apprarials in order to save when type is Live Appraisal.</description>
         <errorConditionFormula>IF(AND(ISPICKVAL(Type,&quot;Live Appraisal Event&quot;), ISBLANK(Expected_Appraisals__c)), TRUE, False)</errorConditionFormula>
         <errorMessage>Be sure Expected Appraisal field is completed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Must_populate_Other_Reason</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(ISPICKVAL(Closed_Lost_Reason__c,&quot;Other&quot;),
 ISBLANK(Other_Reason__c))</errorConditionFormula>
         <errorMessage>When &quot;Other&quot; is selected, you must enter a reason into this field.</errorMessage>

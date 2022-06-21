@@ -1,42 +1,63 @@
 //URL /services/apexrest/TitlesAutomation
 @RestResource(urlMapping='/TitlesAutomation/*')
 global class TitlesAutomationAPI {
+
     global static EasyPostComponentController.addressWrapper acctAddress;
 
-    public static Time time6pm = Time.newInstance(18,0,0,0);
-    
-    public static final Datetime today6pmGMT {
+    private static final Datetime today6pmEST {
         get{
-            Datetime dt6pm = Datetime.newInstance(Date.today(), time6pm); // in GMT
-            return dt6pm;
+            Datetime dt = DateTime.now();
+            String dayOfWeek = dt.format('EEEE');
+            Integer GMTHour = dt.hourGMT();
+            Date GMTdate = dt.dateGmt();
+            Integer offSet = 0;
+
+            if (ACVUtility.isDSTActiveInEST(dt)) {
+                offSet = 1;
+            }
+
+            if (GMTHour >= (22 + offSet)) {
+                return Datetime.newInstanceGMT(GMTdate.addDays(1), Time.newInstance(0, 0, 0, 0));
+            }
+            return Datetime.newInstanceGMT(GMTdate,Time.newInstance(22, 0, 0, 0));
         }
         set;
     }
 
-    public static final Datetime yesterday6pmGMT {
+    private static final Datetime yesterday6pmEST {
         get{
-            Datetime dt6pm = Datetime.newInstance(Date.today().addDays(-1), time6pm); // in GMT
-            return dt6pm;
+            Datetime dt = DateTime.now();
+            String dayOfWeek = dt.format('EEEE');
+            Integer GMTHour = dt.hourGMT();
+            Date GMTdate = dt.dateGmt();
+            Integer offSet = 0;
+
+            if (ACVUtility.isDSTActiveInEST(dt)) {
+                offSet = 1;
+            }
+
+            if (GMTHour >= (22 + offSet)) {
+                return Datetime.newInstanceGMT(GMTdate, Time.newInstance(22, 0, 0, 0));
+            }
+            return Datetime.newInstanceGMT(GMTdate.addDays(-1), Time.newInstance(22, 0, 0, 0));
         }
         set;
     }
 
     private static final Id TITLE_CASE_RT = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get( 'Title_Information' ).getRecordTypeId();
-    
-    @TestVisible private static Map<String, Floor_Plan_Setting__mdt> floorPlanMap = null;
-    
-    @TestVisible private static void loadFloorPlanMap()	{
-        if(floorPlanMap == null)	{
-            floorPlanMap = new Map<String, Floor_Plan_Setting__mdt>();
+
+    private static final Map<String, Floor_Plan_Setting__mdt> floorPlanMap {
+        get {
+            Map<String, Floor_Plan_Setting__mdt> floorPlanMap = new Map<String, Floor_Plan_Setting__mdt>();
             for ( Floor_Plan_Setting__mdt fp :[ SELECT Id, Send_Title_to_Buyer__c, Payment_Method_API_Name__c, Name__c, Company__c, Street1__c, Street2__c,
-                                               City__c, State__c, Zip__c, Country__c, Phone__c, Email__c, Internal_Delivery__c, Payment_Method_Group_Name__c
-                                               FROM Floor_Plan_Setting__mdt ]) 
-            {
+                                                       City__c, State__c, Zip__c, Country__c, Phone__c, Email__c
+                                                FROM Floor_Plan_Setting__mdt ]) {
                 floorPlanMap.put(fp.Payment_Method_API_Name__c, fp);
-			}
-        }        
+            }
+            return floorPlanMap;
+        }
+        set;
     }
-    
     private static final List<String> sendToBuyerPaymentMethods {
         get {
             List<String> sendToBuyerPaymentMethods = new List<String>();
@@ -59,8 +80,6 @@ global class TitlesAutomationAPI {
     @HTTPPost
     global static void validateParams( String auctionNumber, String userEmail, Datetime timestamp, String s3url, String batchId ) {
         try{
-            loadFloorPlanMap();
-            
             RestRequest req = RestContext.request;
             RestResponse res = RestContext.response;
             TitlesAutomationAPI.timestamp = timestamp;
@@ -121,12 +140,6 @@ global class TitlesAutomationAPI {
 
             checkForExceptions(auctionCase);
 
-        	Floor_Plan_Setting__mdt floorPlan = floorPlanMap.get(auctionCase.Payment_Method__c);
-            if(floorPlan != null && floorPlan.Internal_Delivery__c)	{
-                processInternalDelivery(floorPlan.Payment_Method_API_Name__c, floorPlan.Payment_Method_Group_Name__c, auctionNumber, userEmail);
-                return;
-            }
-            
             if ( String.isNotBlank(auctionCase.Payment_Method__c) && floorPlanMap.keySet().contains(auctionCase.Payment_Method__c) ) {
                 processFloorPlan(auctionNumber, userEmail, auctionCase);
                 return;
@@ -141,7 +154,8 @@ global class TitlesAutomationAPI {
                 return;
             }
 
-            TitlesAutomationAPI.generateNewLabel(auctionNumber, userEmail);            
+            TitlesAutomationAPI.generateNewLabel(auctionNumber, userEmail);
+
         }
         catch( BadRequestException exc ) {
             processResponse(400, new EasyPostResponse(auctionNumber, userEmail, exc.getMessage()), null);
@@ -171,89 +185,6 @@ global class TitlesAutomationAPI {
 
     }
 
-    /**
-     * @description The will create a dummy shipping label to group togeather Titles to be delieved internally.
-     * 
-     * Currently, it is only setup for Capital domain where we will create one shipping label per day for all the 
-     * different Cases & Auctions i.e. multiple Cases/Auctions will share this one shipping label for the whole day.
-     * 
-     * We can configure more domains for internal delivery in the Floor_Plan_Setting__mdt by setting Internal_Delivery__c=true.
-     * 
-     * The shared shipping label is tracked in the Internal_Delivery__c object. This object will have one record per domain/Payment_Method_Group_Name__c.
-     * The Payment_Method_Group_Name__c in Floor_Plan_Setting__mdt & Internal_Delivery__c must be the same when the corresponding Floor_Plan_Setting__mdt.Internal_Delivery__c field is set to True.
-     * 
-     * Payment_Method_Group_Name__c is a unique name that is used to track internal delivery shipping labels.
-     * 
-     * In the Floor Plan Settings, we can group together mulitiple Payment_Method_API_Name__c using Payment_Method_Group_Name__c so that all the 
-     * Payment Methods (i.e. all their Cases & Auctions) share the same shipping label for the whole day. Payment_Method_Group_Name__c should be same for all the
-     * Payment Methods to group them together.
-     * 
-     * A new shipping lable is generated (when requested) each day for all the Payment_Method_Group_Name__c.
-     * 
-     * Requirements: https://acvauctions.atlassian.net/browse/TDO-791
-     */ 
-    static void processInternalDelivery(String paymentMethod, String paymentMethodGroupName, String auctionNumber, String userEmail) {
-        Internal_Delivery__c internalDelivery = null;
-        List<Internal_Delivery__c> internalDeliveryList = [SELECT Shipping_Label_Created_Date__c, Easypost_Tracker__c, Easypost_Postage_Label_URL__c FROM Internal_Delivery__c WHERE Payment_Method_Group_Name__c = :paymentMethodGroupName];
-        if(internalDeliveryList.size() > 0) internalDelivery = internalDeliveryList[0];
-                
-        if(internalDelivery != null && internalDelivery.Shipping_Label_Created_Date__c > yesterday6pmGMT && internalDelivery.Shipping_Label_Created_Date__c < today6pmGMT)	{
-            /*
-             * The internal delivery shipping label already exist that was created between yesterday6pmGMT & today6pmGMT.
-             * 
-             * Reuse the existing shipping label that is stored in Internal_Delivery__c object.
-             */
-            EasyPostReturn existingEasyPostReturn = new EasyPostReturn();
-            existingEasyPostReturn.trackingCode = internalDelivery.Easypost_Tracker__c;
-            existingEasyPostReturn.link = internalDelivery.Easypost_Postage_Label_URL__c;
-            existingEasyPostReturn.isNew = false;
-            existingEasyPostReturn.generatedBy = userEmail;
-            
-            TitlesAutomationAPI.updateAuctionTitleCase(existingEasyPostReturn, TitlesAutomationAPI.runningUser.Id, existingEasyPostReturn.link, false);
-            createSplunkLog(SplunkHelper.LOGLEVEL.INFO, 'A label for this Title Case has already been generated today.', '', auctionCase.Id, SplunkHelper.INTEGRATION_DIRECTION.INBOUND);
-            processResponse(200, new EasyPostResponse(auctionNumber, userEmail, existingEasyPostReturn,'A label for this Title Case has already been generated today.'), auctionCase.Id );
-        }
-        else {
-            /*
-             * The internal delivery shipping label either does not exist or old (i.e. it was created before yesterday6pmGMT).
-             * 
-             * Generate a new internal delivery shipping label and store it in Internal_Delivery__c object.
-             */
-            Floor_Plan_Setting__mdt floorPlan = floorPlanMap.get(paymentMethod);
-            
-            TitlesAutomationAPI.acctAddress = new EasyPostComponentController.addressWrapper();
-            TitlesAutomationAPI.acctAddress.name = floorPlan.Name__c;
-            TitlesAutomationAPI.acctAddress.company = floorPlan.Company__c;
-            TitlesAutomationAPI.acctAddress.street = floorPlan.Street1__c;
-            TitlesAutomationAPI.acctAddress.street2 = floorPlan.Street2__c;
-            TitlesAutomationAPI.acctAddress.city = floorplan.City__c;
-            TitlesAutomationAPI.acctAddress.state = floorplan.State__c;
-            TitlesAutomationAPI.acctAddress.country = floorplan.Country__c;
-            TitlesAutomationAPI.acctAddress.zip = floorPlan.Zip__c;
-            
-            generateNewLabel(auctionNumber, userEmail);
-            
-            if(internalDelivery == null) {
-                // Payment method type does not exist in Internal Delivery obj so create a new one i.e. the record is being created the first time.
-                Internal_Delivery__c internalDelv = new Internal_Delivery__c(
-                    Payment_Method_API_Name__c = paymentMethod,
-                    Payment_Method_Group_Name__c = paymentMethodGroupName,
-                    Easypost_Tracker__c = auctionCase.Easypost_Tracker__c,
-                    Easypost_Postage_Label_URL__c = auctionCase.Easypost_PostageLabel_Label_URL__c,
-                    Shipping_Label_Created_Date__c = DateTime.now()
-                );
-                insert internalDelv;
-            }
-            else {
-                // Payment method type already exist in Internal Delivery obj so update it i.e. the internal delivery shipping label is older than yesterday6pmGMT.
-                internalDelivery.Easypost_Tracker__c = auctionCase.Easypost_Tracker__c;
-                internalDelivery.Easypost_Postage_Label_URL__c = auctionCase.Easypost_PostageLabel_Label_URL__c;
-                internalDelivery.Shipping_Label_Created_Date__c = DateTime.now();
-                update internalDelivery;
-            }                        
-        }
-    }
-    
     public static Id insertExc( String exceptionsFound, Case auctionCase ) {
         return insertExc(exceptionsFound, auctionCase, TitlesAutomationAPI.runningUser, TitlesAutomationAPI.s3url, TitlesAutomationAPI.batchId, 'Outbound');
     }
@@ -422,8 +353,8 @@ global class TitlesAutomationAPI {
                     FROM Case
                     WHERE RecordTypeId = :TITLE_CASE_RT
                     AND Status = 'Sent'
-                    AND ClosedDate > :yesterday6pmGMT
-                    AND ClosedDate < :today6pmGMT
+                    AND ClosedDate > :yesterday6pmEST
+                    AND ClosedDate < :today6pmEST
                     AND AccountId = :auctionCase.AccountId
                     AND (Payment_Method__c IN ('ach','check','ach_push') OR Payment_Method__c IN :sendToBuyerPaymentMethods)
                     AND EasyPost_Tracker__c != null
@@ -436,8 +367,8 @@ global class TitlesAutomationAPI {
                 FROM Case
                 WHERE RecordTypeId = :TITLE_CASE_RT
                 AND Status = 'Sent'
-                AND ClosedDate > :yesterday6pmGMT
-                AND ClosedDate < :today6pmGMT
+                AND ClosedDate > :yesterday6pmEST
+                AND ClosedDate < :today6pmEST
                 AND Payment_Method__c = :paymentMethod
                 AND EasyPost_Tracker__c != null
                 AND Digital_Title__c = false
@@ -466,6 +397,7 @@ global class TitlesAutomationAPI {
             TitlesAutomationAPI.acctAddress.state = floorplan.State__c;
             TitlesAutomationAPI.acctAddress.country = floorplan.Country__c;
             TitlesAutomationAPI.acctAddress.zip = floorPlan.Zip__c;
+            System.debug(TitlesAutomationAPI.acctAddress);
             generateNewLabel(auctionNumber, userEmail);
         }
     }
@@ -523,6 +455,7 @@ global class TitlesAutomationAPI {
 
             if ( TitlesAutomationAPI.acctAddress == null ) {
                 TitlesAutomationAPI.acctAddress = getTitleMailingAddress(auctionCase.Account);
+                System.Debug(TitlesAutomationAPI.acctAddress);
                 acctFlag = true;
             } else { // acctAddress is already set
                 acctFlag = true;
@@ -532,7 +465,10 @@ global class TitlesAutomationAPI {
             if ( acctFlag ) {
                 EasyPostComponentController EPgen = new EasyPostComponentController(true);
                 String responseMsg = EPgen.generateLabel( System.JSON.serialize( acctAddress ) );
+
+
                 EasyPostResponse returnResponse = new EasyPostResponse( auctionNumber, userEmail, responseMsg );
+
 
                 if ( responseMsg.contains( '{"trackingCode":"' ) && responseMsg.contains( '"link":"' ) ) {
                     Map<String, Object> data = (Map<String,Object>)JSON.deserializeUntyped(responseMsg);

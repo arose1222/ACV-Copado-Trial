@@ -305,6 +305,7 @@
     <fields>
         <fullName>Call_Notes__c</fullName>
         <description>The notes from the call.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Call Notes</label>
         <length>32768</length>
@@ -818,6 +819,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>This is the external id for CI records coming from the Report a Problem process in tools. It is a concatenated id made up of the auction_issues table id and the auction_issues_note table id.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>16</length>
@@ -840,6 +842,7 @@
     <fields>
         <fullName>Initial_Inquiry_Comment__c</fullName>
         <description>The first inquiry comment logged on this customer inquiry</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Initial Inquiry Comment</label>
         <length>32768</length>
@@ -851,6 +854,7 @@
     <fields>
         <fullName>Last_Ops_Call_Comments__c</fullName>
         <description>Comments from the last call logged on the related Ops Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Ops Call Comments</label>
         <length>32768</length>
@@ -862,6 +866,7 @@
     <fields>
         <fullName>Last_Ops_Call_Date__c</fullName>
         <description>The date the last call was logged on the related Ops Case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The date the last call was logged on the related Ops Case.</inlineHelpText>
         <label>Last Ops Call Date</label>
@@ -887,6 +892,7 @@
     <fields>
         <fullName>Most_Recent_Inquiry_Comment__c</fullName>
         <description>The last comment logged on this customer inquiry.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Most Recent Inquiry Comment</label>
         <length>32768</length>
@@ -935,6 +941,7 @@
     <fields>
         <fullName>Ops_Follow_Up_Date__c</fullName>
         <description>The follow up date selected on the last logged call on the related Ops Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The follow up date selected on the last logged call on the related Ops Case</inlineHelpText>
         <label>Ops Follow Up Date</label>
@@ -1009,7 +1016,7 @@
         <fullName>Seller_Link__c</fullName>
         <description>Link to the Seller Account on the related ops case.  Within Salesforce this will work in all environments.  Will only work properly from an email template when used in production.</description>
         <externalId>false</externalId>
-        <formula>IF( $Organization.Id = &apos;00D8D0000004wdm&apos;, 
+        <formula>IF( $Organization.Id = &apos;00D8G0000004f3E&apos;, 
 HYPERLINK( &quot;https://acvauctions.lightning.force.com/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;),
 HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;)
 )</formula>
@@ -1115,6 +1122,7 @@ HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Sell
     <fields>
         <fullName>Titles_Reason_for_Delay__c</fullName>
         <description>The Reason For Title Delay on the last logged call on the related Ops Case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Reason For Title Delay on the last logged call on the related Ops Case.</inlineHelpText>
         <label>Titles Reason for Delay</label>
@@ -1210,7 +1218,7 @@ HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Sell
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Cannot_Reopen_Non_Titles</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Inquiries that have a non Titles call bucket cannot be reopened</description>
         <errorConditionFormula>AND(
  !ISPICKVAL( Call_Bucket__c , &apos;Titles&apos;),

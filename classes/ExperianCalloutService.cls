@@ -1,5 +1,11 @@
 public class ExperianCalloutService {
     
+    @TestVisible
+    private static String mockResponseBody;
+    @TestVisible
+    private static Integer mockResponseCode;
+    @TestVisible
+    private static String mockResponseStatus;
     /**
      * Future callout to get experian data from Business API and create a SF Object with that information.
      * @param account_id - String - Account ID 
@@ -7,7 +13,7 @@ public class ExperianCalloutService {
      */
     @future(callout=true)
     public static void makeCallout(String account_id) {
-        
+        String bin_code;
         List <Account> accounts = [SELECT Id, Name, BillingPostalCode, BillingState, BillingStreet, 
                                    Tax_ID__c, Phone, BillingCity FROM Account WHERE Id = :account_id];
 
@@ -15,21 +21,15 @@ public class ExperianCalloutService {
         
             try{
                 ExperianAuthenticateUser auth_credentials = login();
-                String bin_code = getBinAccount(accounts[0], auth_credentials);
-                if (bin_code != null){
-                    ExperianBusinessFactsResponse business_facts = getBusinessFacts(bin_code , auth_credentials);
-                    ExperianLegalFilingsResponse legal_filings = getLegalFilings(bin_code, auth_credentials);
-                    ExperianCreditStatusResponse credit_status = getCreditStatus(bin_code, auth_credentials);
-                    ExperianScoreResponse business_score = getBusinessScore(bin_code, auth_credentials);
-                    createExperianBussinessInformationRecord(accounts[0], business_facts , legal_filings, credit_status, business_score);
-                    //Success Log
-                    if(!Test.isRunningTest()) {
-                        SplunkHelper.buildAndProcessLog( createLog( SplunkHelper.LOGLEVEL.INFO, 'Account trigger for ID: '+accounts[0].Id+' succesfully executed!', '-', ACVUtility.currentLineNumber()));
-                    }
+                bin_code = getBinAccount(accounts[0], auth_credentials);
+                ExperianMultisegmentsResponse multisegments_response = getMultisegmentsResponse(bin_code , auth_credentials);
+                createExperianBussinessInformationRecord(accounts[0], multisegments_response);
+                if(!Test.isRunningTest()) {
+                	SplunkHelper.buildAndProcessLog( createLog( SplunkHelper.LOGLEVEL.INFO, 'Account trigger succesfully executed!', '-', ACVUtility.currentLineNumber())); 
                 }
-                
-            }catch(Exception e){
+            }catch(ExperianCalloutServiceException e){
                 Account acc = accounts[0];
+                acc.FP_Trigger_RS__c = e.getMessage();
                 acc.FastPass_Approval__c = 'Error';
                 String message = 'Account: '+String.valueOf(acc.Id)+' Error:'+e.getMessage();
                 //Failure Log
@@ -79,6 +79,9 @@ public class ExperianCalloutService {
         request.setHeader('Content-type', 'application/json');
         request.setHeader('Grant_type', 'password');
         
+        if(Test.isRunningTest()){
+            Test.setMock(HttpCalloutMock.class, getAuthRequestMock());
+        }
         HttpResponse response = new HTTP().send(request);
         if (response.getStatusCode() != 200){
             throw new ExperianCalloutServiceException('Could not get auth token from Experian.');
@@ -100,7 +103,7 @@ public class ExperianCalloutService {
         String endpoint = experian_data.base_url__c+'/businessinformation/businesses/v1/search';
         
         JSONGenerator search_request = JSON.createGenerator(true);    
-		search_request.writeStartObject();      
+		search_request.writeStartObject();    
 		search_request.writeStringField('name', account.Name);
 		search_request.writeStringField('city', account.BillingCity);
 		search_request.writeStringField('state',account.BillingState);
@@ -110,7 +113,9 @@ public class ExperianCalloutService {
 		search_request.writeStringField('phone', (String)account.Phone);
         if(account.Tax_ID__c != null){
 			String taxId = account.Tax_ID__c.replaceAll('[^0-9]', '');
-			search_request.writeStringField('taxId', taxId);        
+            if (taxId.length() == 9) {
+                search_request.writeStringField('taxId', taxId);   
+            }     
         }
 		search_request.writeBooleanField('geo',true);
 		search_request.writeStringField('comments','Search-EXP');
@@ -124,6 +129,20 @@ public class ExperianCalloutService {
         request.setHeader('Content-type', 'application/json');
         request.setHeader('Authorization', 'Bearer '+ auth_credentials.access_token);
         request.setBody(json_search_request);
+
+        if(Test.isRunningTest()) {
+            Map<String, String> responseHeaders = new Map<String, String>{'Content-Type' => 'application/json'};
+            if(mockResponseBody == null) {
+            	mockResponseBody = '{"requestId": "ec55cca0-9342-11e7-bddf-ebd4476c3102", "responseMessage": "Your search did not match any records. Suggestions try adding optional fields like street address and phone to your search, check your spelling, and remember, the absence of a match can be valuable information.", "comments": "my_guid_for_tracking", "success": true, "results": [ { "bin": "800914632", "reliabilityCode": 91.02, "businessName": "EXPERIAN", "phone": "+17148307000", "address": { "street": "535 ANTON BLVD", "city": "Costa Mesa", "state": "CA", "zip": "92626", "zipExtension": "9262" }, "numberOfTradelines": 62, "financialStatementIndicator": true, "keyFactsIndicator": true, "inquiryIndicator": true, "bankDataIndicator": true, "governmentDataIndicator": true, "executiveSummaryIndicator": true, "uccIndicator": true, "matchingNameAndAddress": { "businessName": "EXPERIAN", "address": {  "street": "535 ANTON BLVD",  "city": "Costa Mesa",  "state": "CA",  "zip": "92626",  "zipExtension": "9262" } }, "businessGeocode": { "latitudeLongitudeLevel": "Roof Top Level", "latitude": 33.690764, "longitude": -117.873551, "msaCode": "5945", "censusBlkGrpCode": "2", "censusTractCode": "063907", "cottageIndicator": true, "congressionalDistrictCode": "48", "dateLastReported": "01/01/1977" } } ]}'; 
+            }
+            if(mockResponseCode == null) {
+                mockResponseCode = 200;
+            }
+            if(mockResponseStatus == null) {
+                mockResponseStatus = 'Success';
+            }
+            Test.setMock(HttpCalloutMock.class, New ExperianBusinessSearchMock(mockResponseCode, mockResponseStatus, mockResponseBody, responseHeaders));
+        }
         HttpResponse search_response = new HTTP().send(request);
         
         System.debug('Response '+ search_response.getBody());
@@ -137,6 +156,66 @@ public class ExperianCalloutService {
  	    
         throw new ExperianCalloutServiceException('getBinAccount from Experian is failing: Reason: ' + search_response.getBody());
     }
+    
+    
+    /**
+     * Get Experian Multisegments Response 
+     * @param bin - String -BIN Code related to the SF Account 
+     * @param auth_credential - ExperianAuthenticateUser Auth Credentials with JWT Token
+     * @return ExperianBusinessFactsResponse 
+     */
+    public static ExperianMultisegmentsResponse getMultisegmentsResponse(String bin,  ExperianAuthenticateUser auth_credentials){
+        System.debug('get Multisegments information in Experian');
+        
+        Fast_Pass_Experian_Credential__mdt experian_data = getExperianCustomMDT();
+        String endpoint = experian_data.base_url__c+'/businessinformation/businesses/v1/multisegments';
+       
+        System.debug('User token'+ auth_credentials.access_token);
+        JSONGenerator multisegments_request = JSON.createGenerator(true);    
+		
+		multisegments_request.writeStartObject();      
+		multisegments_request.writeStringField('bin',bin);
+		multisegments_request.writeStringField('subcode',experian_data.subcode__c);
+        multisegments_request.writeStringField('modelCode','000224');
+        multisegments_request.writeFieldName('dataPoints');
+        multisegments_request.writeStartArray();
+        multisegments_request.writeString('bankruptcySummary');
+        multisegments_request.writeString('collectionsDetail');
+        multisegments_request.writeString('collectionsSummary');
+        multisegments_request.writeString('creditStatus');
+        multisegments_request.writeString('businessFacts');
+        multisegments_request.writeString('legalFilingsCollectionsSummary');
+        multisegments_request.writeString('legalFilingsSummary');
+        multisegments_request.writeString('lienDetail');
+        multisegments_request.writeString('lienSummary');
+        multisegments_request.writeString('commercialScore');
+        multisegments_request.writeString('fsrScore');
+        multisegments_request.writeString('header');
+        multisegments_request.writeEndArray();
+		multisegments_request.writeEndObject();
+        
+        String json_multisegments_request = multisegments_request.getAsString();
+        System.debug(json_multisegments_request);
+        HttpRequest request = new HttpRequest();
+        // Set the endpoint URL.
+        request.setEndPoint(endpoint);
+        // Set the HTTP verb to POST.
+        request.setMethod('POST');
+        request.setHeader('Accept', 'application/json');
+        request.setHeader('Content-type', 'application/json');
+        request.setHeader('Authorization', 'Bearer '+ auth_credentials.access_token);
+        request.setBody(json_multisegments_request);
+        HttpResponse response = new HTTP().send(request);
+        System.debug('Response '+ response.getBody());
+        
+        if (response.getStatusCode() == 200){
+        	ExperianMultisegmentsResponse experian_response = ExperianMultisegmentsResponse.parse(response.getBody());
+        	return experian_response;   
+        }
+        throw new ExperianCalloutServiceException('Multisegments Endpoint from Experian is failing: Reason: ' + response.getBody());
+        
+    }
+    
     
     /**
      * Get Experian Business Facts Response 
@@ -451,6 +530,150 @@ public class ExperianCalloutService {
     }
     
     /**
+     * Creates Experian Business Information Record in Salesforce with MultiSegments Response 
+     * @param account - Account
+     * @param business_facts ExperianBusinessFactsResponse  
+     * @return void 
+     */
+    public static void createExperianBussinessInformationRecord(
+        Account account,
+        ExperianMultisegmentsResponse multisegments
+    ){
+        SavePoint dbSave = Database.setSavePoint();
+        try {
+            EXPRN__Exp_Business_Info__c exp_business_info = new EXPRN__Exp_Business_Info__c();
+           	exp_business_info.EXPRN__Account_Name__c = account.id;
+            //// Business Facts Fields 
+            exp_business_info.Business_Facts_Success__c =  String.valueOf(multisegments.success);
+            
+            if (multisegments.results.businessHeader!=null){
+               
+                exp_business_info.Name = multisegments.results.businessHeader.businessName;
+				exp_business_info.EXPRN__Exp_Tax_ID__c = multisegments.results.businessHeader.taxId;
+            	exp_business_info.EXPRN__Exp_Business_Name__c = multisegments.results.businessHeader.legalBusinessName;
+            	exp_business_info.EXPRN__Experian_Website__c = multisegments.results.businessHeader.websiteUrl;
+            	//exp_business_info.Foreign_Country__c = String.valueOf(multisegments.results.businessHeader.foreignCountry);
+            	//exp_business_info.Corporate_Linkage_Indicator__c = String.valueOf(multisegments.results.businessHeader.corporateLinkageIndicator);
+            
+            	//if (multisegments.results.businessHeader.matchingBranchAddress != null){
+                //    exp_business_info.Branch_Street__c = multisegments.results.businessHeader.matchingBranchAddress.street;
+                //    exp_business_info.Branch_City__c = multisegments.results.businessHeader.matchingBranchAddress.city;
+                //    exp_business_info.Branch_State__c = multisegments.results.businessHeader.matchingBranchAddress.state;
+                //    exp_business_info.Branch_Zip__c = multisegments.results.businessHeader.matchingBranchAddress.zip;
+                //    exp_business_info.Branch_Zip_Extension__c = multisegments.results.businessHeader.matchingBranchAddress.zipExtension;
+                //}
+            	if (multisegments.results.businessHeader.dbaNames != null){
+     	       		String dbaNames = String.join(multisegments.results.businessHeader.dbaNames,',');
+                    Integer maxLengh = 120;
+                    if (dbaNames.length() > maxLengh) {
+                        exp_business_info.EXPRN__DBA_Doing_Business_As__c = dbaNames.substring(0, maxLengh-10) + '...';
+                    } else {
+                        exp_business_info.EXPRN__DBA_Doing_Business_As__c = dbaNames;
+                    }
+            		
+            	}
+     
+            }
+           
+            
+            if (multisegments.results.businessFacts.sicCodes != null){
+    	        exp_business_info.EXPRN__SIC_Code__c = multisegments.results.businessFacts.sicCodes[0].code;
+            }
+            
+            if (multisegments.results.businessFacts.naicsCodes != null){
+    	        exp_business_info.EXPRN__NAICS_Code__c = multisegments.results.businessFacts.naicsCodes[0].code;
+                exp_business_info.NAICS_Description__c = multisegments.results.businessFacts.naicsCodes[0].definition;
+            }
+            
+            // Business Score
+            exp_business_info.Score_Success__c = String.valueOf(multisegments.success);
+            //exp_business_info.Score_Comments__c = multisegments.results.fsrScore.comments;
+            if (multisegments.results.fsrScore != null){
+    	        exp_business_info.fsrScore_Model_Code__c = multisegments.results.fsrScore.modelCode;
+	            exp_business_info.fsrScore_Model_Title__c = multisegments.results.fsrScore.modelTitle;
+        	    exp_business_info.fsrScore_Score__c	  =  multisegments.results.fsrScore.score;    
+    	       	exp_business_info.Percentile_Ranking__c = multisegments.results.fsrScore.percentileRanking;
+ 	           	exp_business_info.fsrScore_Recommended_Credit_Limit_Amount__c = multisegments.results.fsrScore.recommendedCreditLimitAmount;
+                if (multisegments.results.fsrScore.riskClass!= null){
+ 		       	    exp_business_info.Risk_Class_Definition__c = multisegments.results.fsrScore.riskClass.definition;
+                }
+            }
+            
+            if (multisegments.results.commercialScore != null){
+	            exp_business_info.Score__c = multisegments.results.commercialScore.score;
+    	        exp_business_info.Commercial_Score__c  = multisegments.results.commercialScore.score;        
+            }
+            
+            if (multisegments.results.commercialScoreFactors != null &&multisegments.results.commercialScoreFactors.isEmpty() == false){
+                exp_business_info.Commercial_Score_Definition__c = multisegments.results.commercialScoreFactors[0].definition;
+            }
+            
+            if (multisegments.results.fsrScoreFactors != null && multisegments.results.fsrScoreFactors.isEmpty() == false){
+                exp_business_info.fsrScoreFactors_Score_Factor_Definition__c = multisegments.results.fsrScoreFactors[0].definition;
+            }
+            
+            if (multisegments.results.fsrScoreTrends != null && multisegments.results.fsrScoreTrends.isEmpty() == false){
+                exp_business_info.fsrScoreTrends_Score_Trends_Quarter__c = multisegments.results.fsrScoreTrends[0].quarter;
+                exp_business_info.fsrScoreTrends_Score_Trends_Score__c = String.valueOf(multisegments.results.fsrScoreTrends[0].score);
+            }
+            
+            if (multisegments.results.commercialScore != null){
+                exp_business_info.fsrScoreTrends_Collection_Score__c = String.valueOf(multisegments.results.commercialScore.score);
+            	exp_business_info.fsrScoreTrends_Model_Title__c = multisegments.results.commercialScore.modelTitle;
+            	exp_business_info.fsrScoreTrends_Score__c = multisegments.results.commercialScore.score;
+            	exp_business_info.fsrScoreTrends_Percentile_Ranking__c = multisegments.results.commercialScore.percentileRanking;
+            	exp_business_info.fsrScoreTrends_Risk_Class__c = multisegments.results.commercialScore.riskClass.definition;
+            }
+            
+  
+            if (multisegments.results.commercialScoreTrends != null && multisegments.results.commercialScoreTrends.isEmpty() == false){
+                exp_business_info.Commercial_Score_Quarter__c = multisegments.results.commercialScoreTrends[0].quarter;
+                exp_business_info.Commercial_Score__c = multisegments.results.commercialScoreTrends[0].score;
+            }
+            
+             // Business Legal Filings Mapping Fields
+            exp_business_info.Legal_Filings_Success__c =  String.valueOf(multisegments.success);
+            if (multisegments.results.legalFilingsCollectionsSummary != null){
+                exp_business_info.Judgement_Count__c =  multisegments.results.legalFilingsCollectionsSummary.judgmentCount;
+                exp_business_info.Judgement_Balance__c = multisegments.results.legalFilingsCollectionsSummary.judgmentBalance;
+                exp_business_info.UCC_Filings_Count__c =  multisegments.results.legalFilingsCollectionsSummary.uccFilingsCount;
+                exp_business_info.UCC_Derogatory_Count__c = multisegments.results.legalFilingsCollectionsSummary.uccDerogatoryCount;
+                exp_business_info.EXPRN__All_Collections_Count__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.collectionCount);
+                exp_business_info.Collection_Balance__c =  multisegments.results.legalFilingsCollectionsSummary.collectionBalance;
+                exp_business_info.EXPRN__Experian_Lien_Bal__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.lienBalance);
+                exp_business_info.EXPRN__Original_Filings__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.derogatoryLegalCount);	
+                exp_business_info.EXPRN__Experian_No_Judgments__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.judgmentCount);            
+                exp_business_info.EXPRN__Experian_Judgment_Bal__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.judgmentBalance);
+                exp_business_info.EXPRN__Bankruptcy__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.bankruptcyIndicator);            
+                exp_business_info.EXPRN__Bankruptcy_Filings__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.bankruptcyCount);
+                exp_business_info.EXPRN__Experian_No_Liens__c =  String.valueOf(multisegments.results.legalFilingsCollectionsSummary.lienCount);   
+            }
+            
+            if (multisegments.results.creditStatus != null){
+            	exp_business_info.fsrScoreTrends_Credit_Status_Success__c = String.valueOf(multisegments.success);
+            	//exp_business_info.fsrScoreTrends_Credit_Status_Comments__c = multisegments.results.comments;
+	            // Business Credit Status
+    	        exp_business_info.EXPRN__Experian_No_Combined_Tradelines__c	 = String.valueOf(multisegments.results.creditStatus.combinedTradelineCount);
+        	    exp_business_info.EXPRN__Combined_Trade_Balance__c = String.valueOf(multisegments.results.creditStatus.combinedAccountBalance);
+            	exp_business_info.EXPRN__Current_DBT__c	 = String.valueOf(multisegments.results.creditStatus.currentDbt);
+            	exp_business_info.EXPRN__Combined_Trade_Recent_High_Credit__c = String.valueOf(multisegments.results.creditStatus.combinedRecentHighCreditAmount);
+            	exp_business_info.EXPRN__Years_on_File__c = String.valueOf(multisegments.results.creditStatus.yearsOnFile);
+	            //exp_business_info.Inquiry_Count__c = multisegments.results.creditStatus.inquiryCount;
+            }
+             
+            
+            System.debug('createExperianBussinessInformationRecord with multisegments');
+            insert exp_business_info;
+                       
+        }
+        catch (Exception e) {
+            Database.rollback(dbSave);
+            throw new ExperianCalloutServiceException('createExperianBussinessInformationRecord is failing. Reason: ' + e.getMessage());                
+            
+        }          
+    }
+    
+    /**
      * Creates SplunkHelper Log
      * @param loglevel - ERROR, FATAL, INFO, DEBUG, WARN, or PERFORMANCE
      * @param message - error message
@@ -471,5 +694,23 @@ public class ExperianCalloutService {
         log.setContext(SplunkHelper.CONTEXT_TYPE.LWC);
         return log;
     }
+
+    static TestingUtility.SingleRequestMock getAuthRequestMock() {
+		Map<String, String> responseHeaders = new Map<String, String>{
+			'Content-Type' => 'application/json'
+		};
+		String json = '{'+
+		'  \"issued_at\"  : \"1509914612223\",'+
+		'  \"expires_in\" : \"1800\",'+
+		'  \"token_type\" : \"Bearer\",'+
+		'  \"access_token\" : \"VALIDACCESSTOKEN\",'+
+		'  \"refresh_token\" : \"VALIDREFRESHTOKEN\"'+
+		'}';
+		TestingUtility.SingleRequestMock mock = new TestingUtility.SingleRequestMock(
+			200, 'Success', json, responseHeaders
+		);
+
+		return mock;
+	}
     
 }

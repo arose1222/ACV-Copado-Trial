@@ -155,6 +155,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Other_Details__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Details</label>
         <required>false</required>
@@ -480,31 +481,6 @@
                     <default>false</default>
                     <label>Buyer Requested Duplicate - ACV at Fault</label>
                 </value>
-                <value>
-                    <fullName>Misspelling on Title</fullName>
-                    <default>false</default>
-                    <label>Misspelling on Title</label>
-                </value>
-                <value>
-                    <fullName>Letter of Correction not Accepted in Purchaser State</fullName>
-                    <default>false</default>
-                    <label>Letter of Correction not Accepted in Purchaser State</label>
-                </value>
-                <value>
-                    <fullName>Information or Signature in Incorrect Location on Title</fullName>
-                    <default>false</default>
-                    <label>Information or Signature in Incorrect Location on Title</label>
-                </value>
-                <value>
-                    <fullName>Misspelling on Reassignment</fullName>
-                    <default>false</default>
-                    <label>Misspelling on Reassignment</label>
-                </value>
-                <value>
-                    <fullName>Information or Signature in Incorrect Location on Reassignment</fullName>
-                    <default>false</default>
-                    <label>Information or Signature in Incorrect Location on Reassignment</label>
-                </value>
             </valueSetDefinition>
             <valueSettings>
                 <controllingFieldValue>More Recently Issued Title</controllingFieldValue>
@@ -525,18 +501,6 @@
             <valueSettings>
                 <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
                 <valueName>R</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
-                <valueName>Misspelling on Title</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
-                <valueName>Letter of Correction not Accepted in Purchaser State</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Incorrect Vehicle Information on Title</controllingFieldValue>
-                <valueName>Information or Signature in Incorrect Location on Title</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Odometer Discrepancy</controllingFieldValue>
@@ -581,14 +545,6 @@
             <valueSettings>
                 <controllingFieldValue>Reassignment Error</controllingFieldValue>
                 <valueName>S</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Reassignment Error</controllingFieldValue>
-                <valueName>Misspelling on Reassignment</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Reassignment Error</controllingFieldValue>
-                <valueName>Information or Signature in Incorrect Location on Reassignment</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Missing Notary</controllingFieldValue>

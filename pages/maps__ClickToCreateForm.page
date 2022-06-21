@@ -183,14 +183,8 @@
                 </apex:outputPanel>
 
             </apex:repeat>
-            <div>
-                <div colspan="2"><span style="font-size:10px;">*= Required</span></div>
-            </div>
             <div style="display:{!IF($CurrentPage.parameters.arcgisFieldMappings == null, 'none', 'block')}">
                 <div colspan="2"><span style="font-size:10px;">@= ArcGIS fields</span></div>
-            </div>
-            <div>
-                <div colspan="2"><span style="font-size:10px;">+= Auto populated from Data Layer settings</span></div>
             </div>
         </div>
 

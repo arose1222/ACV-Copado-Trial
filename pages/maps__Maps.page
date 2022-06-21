@@ -1,7 +1,7 @@
 <apex:page standardstylesheets="false" sidebar="false" controller="maps.SalesforceMaps" title="Salesforce Maps" action="{!StartUpAction}" extensions="maps.RemoteFunctions,maps.TerritoryRemoteFunctions,maps.AdminAJAXResources,maps.MapsCustomActions,maps.AutoAssignmentController,maps.MarkerLayerBuilderController">
     <!-- SFCM-725 moved to include script to fix SF header breaking google script, please do not change  -->
     <apex:includeLightning />
-    <apex:includeScript value="{!GoogleURL}/maps/api/js?v=3.46&client=gme-cloudbiltinc&libraries=places,visualization,drawing,geometry"/>
+    <apex:includeScript value="{!GoogleURL}/maps/api/js?v=3.47&client=gme-cloudbiltinc&libraries=places,visualization,drawing,geometry"/>
 
     <script>
         window.fullcalendarKey = '{!JSENCODE(fullcalendarKey)}';
@@ -1045,8 +1045,8 @@
     <script type='text/javascript' src="{!resourcePaths['MapsJS']}/JSHelperFunctions.js"></script>
 
     <div id="ma-vue-root"></div>
-    <script src="{!resourcePaths['MapsJS']}/dist/core/bundle.js"></script>
-    <link rel="stylesheet" type="text/css" href="{!resourcePaths['MapsJS']}/dist/core/main.css"></link>
+    <script src="{!resourcePaths['VueDesktop']}/build/bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="{!resourcePaths['VueDesktop']}/build/main.css"></link>
 
 	<!--<script src="{!resourceLocator}/MACheckIn.js"></script>-->
 	<script type='text/javascript' src="{!resourcePaths['MapsJS']}/MALayers.js"></script>
@@ -1232,13 +1232,13 @@
             $('#PlottedQueriesContainer').on('click', '.legend-showhide', function () {
                 var $button = $(this);
                 var $plottedQuery = $button.closest('.PlottedRowUnit');
-                if ($button.find('.options-text').text() == "{!JSENCODE($Label.MA_Hide_Legend)}") {
-                    $button.find('.options-text').text("{!JSENCODE($Label.MA_Show_Legend)}");
+                if ($button.find('.options-text').text() == "{!JSENCODE($Label.Layers_On_The_Map_Hide_Legend)}") {
+                    $button.find('.options-text').text("{!JSENCODE($Label.Layers_On_The_Map_Show_Legend)}");
                     $button.find('.glyphicon').removeClass('glyphicon-triangle-top').addClass('glyphicon-triangle-bottom');
                     $plottedQuery.find('.legend, .legend-moreless').hide();
                 }
                 else {
-                    $button.find('.options-text').text("{!JSENCODE($Label.MA_Hide_Legend)}");
+                    $button.find('.options-text').text("{!JSENCODE($Label.Layers_On_The_Map_Hide_Legend)}");
                     $button.find('.glyphicon').removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-top');
                     $plottedQuery.find('.legend').show();
                     if ($plottedQuery.find('.legend-row.empty').length > 0) {

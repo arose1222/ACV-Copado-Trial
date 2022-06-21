@@ -19,7 +19,7 @@
             <name>Integration_Error_Template</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Integration_Result__c.Status_Code__c</field>
             <operation>notEqual</operation>

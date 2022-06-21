@@ -169,6 +169,7 @@
     <fields>
         <fullName>trailheadapp__Assigned_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Represents the date the badge is assigned for the purposes of tracking a user&apos;s activity before they start working on it</inlineHelpText>
         <label>Assigned On Date</label>
@@ -224,6 +225,7 @@
     <fields>
         <fullName>trailheadapp__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Represents the date the badge is due for the purposes of tracking the time left for a user to complete the badge.</inlineHelpText>
         <label>Due Date</label>
@@ -236,6 +238,7 @@
         <fullName>trailheadapp__External_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External ID</label>
         <length>100</length>
@@ -248,6 +251,7 @@
     <fields>
         <fullName>trailheadapp__Finished_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Finished Date</label>
         <required>false</required>
@@ -259,6 +263,7 @@
         <fullName>trailheadapp__First_Attempted_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>The date the badge was attempted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>First Attempted Date</label>
         <required>false</required>
@@ -270,6 +275,7 @@
         <fullName>trailheadapp__Last_Attempted_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the badge was last attempted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Attempted Date</label>
         <required>false</required>
@@ -282,6 +288,7 @@
         <defaultValue>&quot;Assigned&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>Three types of status, &quot;Assigned&quot;, &quot;In Progress&quot;, or &quot;Completed&quot; are available to represent the status of a user&apos;s badge. While we always expect a value, this is not a required field to enable FLS for badge assigners.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Three types of status, &quot;Assigned&quot;, &quot;In Progress&quot;, or &quot;Completed&quot; are available to represent the status of a user&apos;s badge</inlineHelpText>
         <label>Status</label>
@@ -353,14 +360,14 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>trailheadapp__User_Is_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISBLANK(  trailheadapp__User__c )</errorConditionFormula>
         <errorDisplayField>trailheadapp__User__c</errorDisplayField>
         <errorMessage>A user must exist.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>trailheadapp__Validate_Status</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures that only possible values are entered.</description>
         <errorConditionFormula>NOT(OR(trailheadapp__Status__c = &apos;Assigned&apos;,
 trailheadapp__Status__c = &apos;In-Progress&apos;, 

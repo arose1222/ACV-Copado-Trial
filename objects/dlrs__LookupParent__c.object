@@ -192,6 +192,7 @@
     <fields>
         <fullName>dlrs__Descriptions2__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Descriptions 2</label>
         <length>255</length>
@@ -203,6 +204,7 @@
     <fields>
         <fullName>dlrs__Descriptions__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Descriptions</label>
         <length>255</length>
@@ -242,6 +244,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Lookup Parent Name</label>
         <type>Text</type>
     </nameField>
@@ -250,7 +253,7 @@
     <sharingModel>Read</sharingModel>
     <validationRules>
         <fullName>dlrs__Not_42</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>dlrs__Total__c !=42</errorConditionFormula>
         <errorDisplayField>dlrs__Total__c</errorDisplayField>
         <errorMessage>The answer is not 42!</errorMessage>

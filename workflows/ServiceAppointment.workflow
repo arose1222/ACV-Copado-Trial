@@ -49,7 +49,7 @@
             <name>FSL_Emergency_flag_True</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>ServiceAppointment.Work_Type_Name__c</field>
@@ -70,7 +70,7 @@
             <name>FSL_Jeopardy_flag_True</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <criteriaItems>
             <field>ServiceAppointment.Committed__c</field>

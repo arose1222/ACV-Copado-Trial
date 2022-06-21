@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>Value__c</field>
-        <value xsi:type="xsd:string">Vehicle Condition Inspector,Off Lease Specialist</value>
+        <value xsi:type="xsd:string">Vehicle Condition Inspector</value>
     </values>
 </CustomMetadata>

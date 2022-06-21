@@ -352,6 +352,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>ACV_Created__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV Created</label>
         <required>false</required>
@@ -362,6 +363,7 @@
     <fields>
         <fullName>ACV_Dealer_Id__c</fullName>
         <description>External ID for dealer to which contact is associated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV_Dealer_Id</label>
         <length>16</length>
@@ -373,6 +375,7 @@
     </fields>
     <fields>
         <fullName>ACV_Updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ACV Updated</label>
         <required>false</required>
@@ -497,6 +500,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Annual_Unit_Sales__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Annual Unit Sales</label>
         <length>50</length>
@@ -508,11 +512,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>AssistantName</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>AssistantPhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -586,6 +592,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__MAR__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mailing Address Record Type</label>
         <length>1</length>
@@ -612,6 +619,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__MAV__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mailing Address Vacancy</label>
         <length>1</length>
@@ -624,6 +632,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__MRDI__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mailing Residential Delivery Indicator</label>
         <length>12</length>
@@ -636,6 +645,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__MTZ__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mailing Timezone</label>
         <length>48</length>
@@ -648,6 +658,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__OAR__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Address Record Type</label>
         <length>1</length>
@@ -674,6 +685,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__OAV__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Address Vacancy</label>
         <length>1</length>
@@ -686,6 +698,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__ORDI__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Residential Delivery Indicator</label>
         <length>12</length>
@@ -698,6 +711,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>CloudingoAgent__OTZ__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Timezone</label>
         <length>48</length>
@@ -709,7 +723,8 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Contact_Guid__c</fullName>
-        <externalId>true</externalId>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
         <label>User GUID</label>
         <length>255</length>
         <required>false</required>
@@ -827,6 +842,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
         <fullName>Dealership_Contact_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Indicates the unique Dealership Contact Id for this Contact record. This field will be populated only for the Dealership Contact Record types</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Dealership Contact Id</label>
         <length>255</length>
@@ -856,11 +872,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Direct_Dealership_Member_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Direct Dealership Member Id</label>
         <length>10</length>
@@ -877,6 +895,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Email</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -899,17 +918,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
                     <default>false</default>
                     <label>Organization Updates</label>
                 </value>
-                <value>
-                    <fullName>progUpdates</fullName>
-                    <default>false</default>
-                    <label>Programmatic Updates</label>
-                </value>
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Fax</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -925,6 +940,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Geocode_Quality__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Geocode Quality</label>
         <length>50</length>
@@ -948,6 +964,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>HOT_NOTES__c</fullName>
         <description>I.E NEXT GEAR, KNOWS TIM ETC</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>HOT NOTES</label>
         <length>50</length>
@@ -969,6 +986,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>HomePhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -976,6 +994,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
         <fullName>ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Used by Integration</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Contact ID</label>
         <length>255</length>
@@ -1010,6 +1029,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>IST_Discovery_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Discovery Comments</label>
         <length>32768</length>
@@ -1020,6 +1040,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>IST_Rep__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Rep</label>
         <length>255</length>
@@ -1031,6 +1052,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>IST_Todays_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Todays Date</label>
         <required>false</required>
@@ -1041,6 +1063,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>Identity_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Identity Id</label>
         <length>255</length>
@@ -1083,6 +1106,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Joined__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Joined</label>
         <required>false</required>
@@ -1122,6 +1146,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Last_Geocode_Run__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Geocode Run</label>
         <required>false</required>
@@ -1158,6 +1183,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Linked_in_Profile__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Linked in Profile</label>
         <required>false</required>
@@ -1191,11 +1217,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>MailingAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>MobilePhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -1214,6 +1242,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Name</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1242,11 +1271,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>OtherAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>OtherPhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -1258,6 +1289,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Password__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Password</label>
         <length>255</length>
@@ -1269,11 +1301,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Phone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Phone_Carrier__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Phone Carrier</label>
         <length>25</length>
@@ -1285,6 +1319,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Phone_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Phone Type</label>
         <length>25</length>
@@ -1327,6 +1362,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>PotentialMonthlyBuyVolume__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Potential Monthly Buy Volume</label>
         <length>250</length>
@@ -1364,6 +1400,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     <fields>
         <fullName>Promotion_Code__c</fullName>
         <description>Promo code used when the user signed up, this is populated via the Identity services</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Promotion Code</label>
         <length>255</length>
@@ -1432,6 +1469,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Source__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source</label>
         <length>250</length>
@@ -1443,6 +1481,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>SubmitterIP__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitter IP</label>
         <length>250</length>
@@ -1497,11 +1536,13 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Title</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Title_2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title 2</label>
         <length>64</length>
@@ -1597,6 +1638,7 @@ true,false
     </fields>
     <fields>
         <fullName>Travel_Radius__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Travel Radius</label>
         <length>255</length>
@@ -1608,6 +1650,7 @@ true,false
     </fields>
     <fields>
         <fullName>Twitter_Handle__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Twitter Handle</label>
         <length>255</length>
@@ -1619,6 +1662,7 @@ true,false
     </fields>
     <fields>
         <fullName>UnbouncePageID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unbounce Page ID</label>
         <length>250</length>
@@ -1630,6 +1674,7 @@ true,false
     </fields>
     <fields>
         <fullName>UnbouncePageVariant__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unbounce Page Variant</label>
         <length>250</length>
@@ -1641,6 +1686,7 @@ true,false
     </fields>
     <fields>
         <fullName>UnbounceSubmissionDate__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unbounce Submission Date</label>
         <required>false</required>
@@ -1650,6 +1696,7 @@ true,false
     </fields>
     <fields>
         <fullName>UnbounceSubmissionTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unbounce Submission Time</label>
         <length>250</length>
@@ -1661,6 +1708,7 @@ true,false
     </fields>
     <fields>
         <fullName>Updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Updated</label>
         <required>false</required>
@@ -1698,6 +1746,7 @@ true,false
         <fullName>alycecom__Most_Recent_Gift_Invitation_Create_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Create Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Create Date</inlineHelpText>
         <label>Most Recent Gift Invitation Create Date</label>
@@ -1710,6 +1759,7 @@ true,false
         <fullName>alycecom__Most_Recent_Gift_Invitation_Gift_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Gift Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Gift Name</inlineHelpText>
         <label>Most Recent Gift Invitation Gift Name</label>
@@ -1724,6 +1774,7 @@ true,false
         <fullName>alycecom__Most_Recent_Gift_Invitation_Sent_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Sent Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Sent Date</inlineHelpText>
         <label>Most Recent Gift Invitation Sent Date</label>
@@ -1736,6 +1787,7 @@ true,false
         <fullName>alycecom__Most_Recent_Gift_Invitation_Status__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Status</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Status</inlineHelpText>
         <label>Most Recent Gift Invitation Status</label>
@@ -1750,6 +1802,7 @@ true,false
         <fullName>alycecom__Most_Recent_Gift_Landing_Page__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Recipient Landing Page</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Recipient Landing Page</inlineHelpText>
         <label>Most Recent Gift Landing Page</label>
@@ -1776,6 +1829,7 @@ true,false
     <fields>
         <fullName>phone__c</fullName>
         <description>Phone field for this dealership. Similar to standard phone field, except this field&apos;s type is Text instead of Phone to allow for phone #s that are not formatted properly.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xPhone</label>
         <length>255</length>
@@ -1796,12 +1850,8 @@ true,false
         <columns>CONTACT.ADDRESS2_STREET</columns>
         <columns>CONTACT.ADDRESS2_CITY</columns>
         <columns>HOT_NOTES__c</columns>
+        <columns>CONTACT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Contact.ACV_User</value>
-        </filters>
         <label>All Contacts</label>
     </listViews>
     <listViews>
@@ -2099,25 +2149,6 @@ true,false
             <value>acv</value>
         </filters>
         <label>My Active Franchise Contacts</label>
-    </listViews>
-    <listViews>
-        <fullName>Prescreen_Participants</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CONTACT.EMAIL</columns>
-        <columns>Title_Picklist__c</columns>
-        <columns>ID__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CR_Review__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.ACCOUNT_ID</field>
-            <operation>equals</operation>
-            <value>0010a00001UAavU</value>
-        </filters>
-        <label>Prescreen Participants</label>
     </listViews>
     <listViews>
         <fullName>San_Anton_Indy_Reg_Contacts_acct_purchas</fullName>
@@ -3239,7 +3270,7 @@ true,false
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>ACV_User_must_have_email_address</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If the contact record is an ACV User then ensure that they have an email address</description>
         <errorConditionFormula>AND(RecordType.DeveloperName=&apos;ACV_User&apos;,
 IsBlank(Email))</errorConditionFormula>
@@ -3247,21 +3278,10 @@ IsBlank(Email))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Dealership_contact_must_have_phone</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(RecordType.DeveloperName=&apos;Dealership_Contact&apos;,
 IsBlank(Phone))</errorConditionFormula>
         <errorMessage>Dealership Contacts must have a Phone number</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>First_and_Last_Name_Required</fullName>
-        <active>true</active>
-        <description>For Dealership Contact, the First &amp; Last Name needs to be required.</description>
-        <errorConditionFormula>AND(
- ISNEW(),
- RecordType.Name = &quot;Dealership Contact&quot;,
- ISBLANK(FirstName)
-)</errorConditionFormula>
-        <errorMessage>Please make sure you have the &apos;First Name&apos; field filled out.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Lead_Conversion_Must_Be_Merged</fullName>
@@ -3275,7 +3295,7 @@ Lead_Created_Contact__c = true
     </validationRules>
     <validationRules>
         <fullName>Mailing_postal_code_must_be_valid</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Mailing_postal_code_must_be_valid</description>
         <errorConditionFormula>AND(
 OR(MailingCountry = &quot;USA&quot;, MailingCountry = &quot;US&quot;, ISBLANK(MailingCountry)),
@@ -3286,7 +3306,7 @@ NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
     </validationRules>
     <validationRules>
         <fullName>Must_have_Prescreen_with_CR_Review</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Requires Prescreen Type when CR Review is selected.</description>
         <errorConditionFormula>AND(
  CR_Review__c = TRUE,
@@ -3404,17 +3424,5 @@ NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Contact.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <description>To Book meeting from contact</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?accid={!CASESAFEID(Account.Id)}&amp;contactid={!CASESAFEID(Contact.Id)}</url>
     </webLinks>
 </CustomObject>

@@ -31,7 +31,7 @@
             <name>update_zips</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>maps__ShapeLayerGeometry__c.maps__Geometry__c</field>
             <operation>notEqual</operation>

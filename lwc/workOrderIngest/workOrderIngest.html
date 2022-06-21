@@ -1,7 +1,8 @@
 <template>
 
     <!--Navigation buttons are at bottom of page -->
-    
+
+
     <!-- Step 1 -->
         <!--Now or Later -->
 
@@ -21,7 +22,7 @@
         <template if:true={isStateRevolving}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
                 <lightning-radio-group name="radioGroup2"
-                                label="What type of appointment?"
+                                label="Revolving Term"
                                 options={revolvingAppointmentOptions}
                                 value={revolvingAppointmentSelection}
                                 type="radio"
@@ -33,13 +34,7 @@
     <!-- Step 3 -->
         <!--Revolving Appointment Wizard-->
         <template if:true={OpenRevolvingModal}>
-            <c-trac-recurring-event record-id={recordId} onclose={handleRevolvingClose} 
-                    account-billing-street={account.BillingStreet} 
-                    account-billing-city={account.BillingCity} 
-                    account-billing-country={account.BillingCountry} 
-                    account-billing-state={account.BillingState} 
-                    account-billing-postal-code={account.BillingPostalCode} 
-                    account-halt-true360-appointments={account.Halt_True360_Appointments__c}>
+            <c-trac-recurring-event record-id={recordId} onclose={handleRevolvingClose}>
             </c-trac-recurring-event>
         </template>
 
@@ -51,16 +46,8 @@
             </div>
         </template>
 
-    <!-- Step 5 -->
-        <!--Live Appraisal Wizard-->
-        <template if:true={isStateLiveAppraisal}>
-            <c-live-appraisal record-id={recordId} onclose={handleRevolvingClose} 
-                    account-rec={account} 
-                    work-order-info-rec={workOrderInfo}>
-            </c-live-appraisal>
-        </template>
 
-    <!-- Step 6 -->
+    <!-- Step 5 -->
         <!--How Many Cars?-->
         <template if:true={isStateVehicles}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
@@ -75,7 +62,7 @@
             </div>
         </template>
 
-    <!-- Step 7 -->
+    <!-- Step 6 -->
         <!--Address -->
         <template if:true={isStateAddress}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
@@ -98,7 +85,7 @@
         </template>
 
 
-    <!-- Step 8 -->
+    <!-- Step 7 -->
         <!-- Contact -->
         <template if:true={isStateContact}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
@@ -110,7 +97,7 @@
         </template>
 
 
-    <!-- Step 9 -->
+    <!-- Step 8 -->
         <!--Inspection Notes-->
         <template if:true={isStateNotes}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
@@ -118,7 +105,7 @@
             </div>
         </template>
 
-    <!-- Step 10 -->
+    <!-- Step 9 -->
         <!--Summary-->
         <template if:true={isStateSummary}>
             <div class="slds-m-top_medium slds-m-bottom_x-large lgc-bg">
@@ -246,7 +233,7 @@
         <template if:true={showLoadingSpinner}>
             <div class="slds-m-top_medium slds-m-bottom_x-large slds-p-around_x-large">
                 <div class="slds-is-relative">
-                    <lightning-spinner alternative-text="Processing Request..." variant="brand">
+                    <lightning-spinner alternative-text="Processing Request...">
                     </lightning-spinner>
                 </div>
             </div>

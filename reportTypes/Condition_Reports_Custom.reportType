@@ -248,6 +248,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>VCI_Creator__c</field>
+            <table>Condition_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Vehicle__c</field>
             <table>Condition_Report__c</table>
         </columns>
@@ -291,17 +296,6 @@
             <field>Inspection_Guid__c</field>
             <table>Condition_Report__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Sales_Region__c</field>
-            <table>Condition_Report__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Dealership: Dealer ID</displayNameOverride>
-            <field>Dealership__c.Dealership_ID__c</field>
-            <table>Condition_Report__c</table>
-        </columns>
         <masterLabel>Condition Reports</masterLabel>
     </sections>
     <sections>
@@ -318,32 +312,6 @@
             <table>Condition_Report__c</table>
         </columns>
         <masterLabel>VCI Details</masterLabel>
-    </sections>
-    <sections>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>VCI_Creator__c</field>
-            <table>Condition_Report__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>VCI Creator: ACV User</displayNameOverride>
-            <field>VCI_Creator__c.ACV_User__c</field>
-            <table>Condition_Report__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>VCI Creator: Email</displayNameOverride>
-            <field>VCI_Creator__c.Email</field>
-            <table>Condition_Report__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>VCI Creator: ACV User Id</displayNameOverride>
-            <field>VCI_Creator__c.ACV_User__c.Id__c</field>
-            <table>Condition_Report__c</table>
-        </columns>
-        <masterLabel>VCI Creator</masterLabel>
     </sections>
     <sections>
         <columns>

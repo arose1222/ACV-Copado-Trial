@@ -12,4 +12,7 @@
     <tabs>standard-Opportunity</tabs>
     <tabs>alycecom__Gift__c</tabs>
     <tabs>alycecom__Alyce</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
 </CustomApplication>

@@ -40,8 +40,8 @@
 
                                 <apex:outputPanel rendered="{!policyPickerEnabled}">
                                     <div id="PolicyChanger">
-                                        <span>{!$Label.ChangePolicy}</span>
-                                        <select ng-model="policyUsed.id" ng-change="runAgain(policyUsed.id)">
+                                        <label for="getCandidates">{!$Label.ChangePolicy}</label>
+                                        <select id="getCandidates" ng-model="policyUsed.id" ng-change="runAgain(policyUsed.id)" aria-labelledby="getCandidates">
                                             <option ng-repeat="policy in policies" value="{{policy.Id}}">{{policy.Name}} {{ getPolicyLabel(policy.Id) }}</option>
                                         </select>
                                     </div>
@@ -63,7 +63,7 @@
 
 
 
-                                <div id="AN-CurrentSchedule">
+                                <div id="AN-CurrentSchedule" tabindex="0" fsl-key-press="fsl-key-press">
                                     <div id="AN-CurrentText">
                                         {!$Label.Current_Schedule}
                                     </div>

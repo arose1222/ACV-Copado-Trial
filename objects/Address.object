@@ -145,6 +145,7 @@
         <fullName>Address_Guid__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>Unique Guid for this address record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Address Guid</label>
         <length>36</length>
@@ -199,14 +200,14 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Street_must_be_filled_in</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Street must be filled in to save a Address record</description>
         <errorConditionFormula>ISBLANK(Street)</errorConditionFormula>
         <errorMessage>Street must be filled in to save a Address record</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Valid_Country</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Country must be 2 character Country code</description>
         <errorConditionFormula>OR(
 LEN(Country) = 1,
@@ -234,7 +235,7 @@ UPPER(Country))))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Valid_Postal_Code</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Verifies that Postal Code is Valid</description>
         <errorConditionFormula>AND(
 OR(Country = &quot;USA&quot;, Country = &quot;US&quot;, ISBLANK(Country)),
@@ -244,7 +245,7 @@ NOT(REGEX(PostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
     </validationRules>
     <validationRules>
         <fullName>Valid_State</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Verifies that the State is a Valid 2 character</description>
         <errorConditionFormula>AND (
 OR(Country = &quot;US&quot;, ISBLANK(Country)), 

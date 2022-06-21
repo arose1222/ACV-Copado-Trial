@@ -182,6 +182,16 @@
         <fullName>Priority</fullName>
         <inlineHelpText>Enter a policy priority number. Must be unique. When the bundle policies are evaluated with automatic bundling, the priority determines the order that the policies are applied.</inlineHelpText>
     </fields>
+    <listViews>
+        <fullName>All_ApptBundlePolicies</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All Appointment Bundle Policies</label>
+    </listViews>
+    <listViews>
+        <fullName>My_ApptBundlePolicies</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Appointment Bundle Policies</label>
+    </listViews>
     <searchLayouts>
         <customTabListAdditionalFields>Priority</customTabListAdditionalFields>
         <customTabListAdditionalFields>IsManualBundling</customTabListAdditionalFields>

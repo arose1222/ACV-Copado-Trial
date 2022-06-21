@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>CAP - 456
+
+This permission set allows users to see the fields:  &apos;Scoring_Logic__c&apos; and &apos;Scoring_Logic_Summary__c&apos; and edit the field &apos;final_audit_score__c&apos; on work order and work order line items.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>WorkOrder.Final_Audit_Score__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WorkOrder.Scoring_Logic_Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WorkOrderLineItem.Scoring_Logic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Scoring Logic Fields Visible/Edit WO/WOLI</label>
+</PermissionSet>

@@ -7,7 +7,7 @@ global class WorkAPI {
     private final static String POST_MIX_SUCCESS = 'Mixed success and failures, please look at the processedReturns for individual results by provided id';
     private final static String POST_SUCCESS = 'All records have been successfully processed';
 
-    private final static Map<String, Integer> POST_RESPONSE_CODE_MAP = new Map<String, Integer>{
+    private final static Map<String, Integer> POST_RESPONSE_CODE_MAP = new Map<String, Integer>{ 
         POST_ERROR => 400,
         POST_PROCESS_ERROR => 400,
         POST_MIX_SUCCESS => 207,
@@ -19,12 +19,12 @@ global class WorkAPI {
     private final static String GET_MIX_SUCCESS = 'Mixed success and failures, please look at the apiResponse for individual results by provided id';
     private final static String GET_SUCCESS = 'Records successfully located';
 
-    private final static Map<String, Integer> GET_RESPONSE_CODE_MAP = new Map<String, Integer>{
+    private final static Map<String, Integer> GET_RESPONSE_CODE_MAP = new Map<String, Integer>{ 
         GET_ERROR => 400,
         GET_MIX_SUCCESS => 207,
         GET_SUCCESS => 200
     };
-
+    
     /*
     * createWork
     *   GIVEN a List of Work-line based structures
@@ -45,7 +45,7 @@ global class WorkAPI {
         ErrorInfo errorRec; // Only utilized if Critical Error hit
         try {
 
-            // Exclude
+            // Exclude 
             Set<String> uuidSet = new Set<String>();
             for ( Integer index = 0; index < newWork.size(); index++ ) {
                 WorkObject workRec = newwork[index];
@@ -62,7 +62,7 @@ global class WorkAPI {
                 }
             }
 
-            Set<String> existingRecSet = new Set<String>();
+            Set<String> existingRecSet = new Set<String>();         
             for ( WorkOrderLineItem woliRec : [ SELECT Id, External_Record_guid__c FROM WorkOrderLineItem WHERE External_Record_guid__c IN :uuidSet ] ) {
                 existingRecSet.add( woliRec.External_Record_guid__c );
             }
@@ -75,7 +75,7 @@ global class WorkAPI {
                     if ( !returnMissingFields.isEmpty() ) {
                         WorkObject removedWork = newWork.remove( index );
                         index--;
-
+                        
                         List<String> missingFieldErrLst = new List<String>();
                         for ( String missingField : returnMissingFields ) {
                             missingFieldErrLst.add( 'The given structure has an issue with a required field: ' + missingField );
@@ -100,7 +100,7 @@ global class WorkAPI {
             if ( !newWork.isEmpty() ) {
                 returnLst.addAll( FSLWorkProcess.commitWork( FSLWorkProcess.groupWork( newWork ) ) );
             }
-
+                    
             Boolean hasError = FALSE;
             Boolean hasSuccess = FALSE;
 
@@ -127,9 +127,9 @@ global class WorkAPI {
             }
 
             // Add Log
-        } catch ( exception e ) {
+        } catch ( exception e ) {  
             system.debug( e.getStackTraceString() );
-            system.debug( e.getMessage() );
+            system.debug( e.getMessage() );            
 
             message = POST_ERROR + '' + e.getMessage();
             responseCode = POST_RESPONSE_CODE_MAP.get( POST_PROCESS_ERROR );
@@ -146,7 +146,7 @@ global class WorkAPI {
         makeLog( errorRec, orReturn, goodReturnLst, badReturnLst, message, responseCode );
 
         // Set REST Return
-        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse(
+        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse( 
             orReturn,
             new WorkAPIResponse( goodReturnLst, badReturnLst ),
             message,
@@ -164,7 +164,7 @@ global class WorkAPI {
         String returnMsg;
         Integer responseCode;
         OriginalRequest orReturn = new OriginalRequest( new List<SearchWorkObject>( findWorkLst ) );
-
+        
         Map<String, String> uuidConfirmationMap = new Map<String, String>();
         Map<String, SearchWorkObject> requestRefMap = new Map<String, SearchWorkObject>();
         if ( findWorkLst != null && !findWorkLst.isEmpty() ) {
@@ -180,11 +180,11 @@ global class WorkAPI {
                     index--;
                 }
             }
-
+        
             Boolean hasSuccess = FALSE;
             Boolean hasError = FALSE;
 
-            for ( WorkOrderLineItem checkWoliRec : [ SELECT Id, Stock_Number__c, Street, City, State, PostalCode, Country, vin__c, year__c, make__c, model__c, color__c, Title_Status__c, Title_with_Dealer__c, Dealer_Contact__c, Residential__c, Add_To_Run_List__c, Floor_Price__c, Date_Inspected__c, WorkTypeId, WorkType.Name, External_Record_guid__c, WorkOrder.Account.Dealership_ID__c, WorkOrder.Origin__c, Earliest_Start_Date__c, Due_Date__c, Status, Transport_Status__c, Job_Notes__c, Dealership_Name__c, External_Invoice_Id__c, Inspection_Location__c, Series__c, External_Assignment_Id__c,
+            for ( WorkOrderLineItem checkWoliRec : [ SELECT Id, Stock_Number__c, Street, City, State, PostalCode, Country, vin__c, year__c, make__c, model__c, color__c, Title_Status__c, Title_with_Dealer__c, Dealer_Contact__c, Residential__c, Add_To_Run_List__c, Floor_Price__c, Date_Inspected__c, WorkTypeId, WorkType.Name, External_Record_guid__c, WorkOrder.Account.Dealership_ID__c, WorkOrder.Origin__c, Earliest_Start_Date__c, Due_Date__c, Status, Transport_Status__c, Job_Notes__c, Dealership_Name__c, External_Invoice_Id__c, Inspection_Location__c, Series__c, External_Assignment_Id__c, 
             Is_In_Jeopardy__c, Jeopardy_State__c, Lesse_Name__c, Open_Date__c, Maturity_Date__c, Contact_Name__c, Contact_Phone_Number__c, Contact_Mobile_Number__c, Contact_Email__c,
             Customer_Email__c, Driving_Directions__c, WorkType.Work_Type_Unique_ID__c
             FROM WorkOrderLineItem WHERE External_Record_guid__c IN :uuidConfirmationMap.keyset() AND vin__c IN :new Set<String>( uuidConfirmationMap.values() ) ] ) {
@@ -271,7 +271,7 @@ global class WorkAPI {
             responseCode = 400;
         }
 
-        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse(
+        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse( 
             orReturn,
             new GetWorkResponse( goodRequests, badRequests ),
             returnMsg,
@@ -284,7 +284,7 @@ global class WorkAPI {
 
     @HTTPGet
     global static void getWorkInfo() {
-
+        
         List<String> badRequests = new List<String>();
         List<WorkObject> goodRequests = new List<WorkObject>();
         Map<String, WorkObject> goodRequestMap = new Map<String, WorkObject>();
@@ -309,7 +309,7 @@ global class WorkAPI {
             Map<Id, String> woIdToGuidMap = new Map<Id, String>();
             queryUUIDSet = new Set<String>( request.params.get( 'uuid' ).split( ',' ) );
 
-            for ( WorkOrderLineItem checkWoliRec : [ SELECT Id, Stock_Number__c, Street, City, State, PostalCode, Country, vin__c, year__c, make__c, model__c, color__c, Title_Status__c, Title_with_Dealer__c, Dealer_Contact__c, Residential__c, Add_To_Run_List__c, Floor_Price__c, Date_Inspected__c, WorkTypeId, WorkType.Name, External_Record_guid__c, WorkOrder.Account.Dealership_ID__c, WorkOrder.Origin__c, Earliest_Start_Date__c, Due_Date__c, Status, Transport_Status__c, Job_Notes__c, Dealership_Name__c, External_Invoice_Id__c, Inspection_Location__c, Series__c, External_Assignment_Id__c,
+            for ( WorkOrderLineItem checkWoliRec : [ SELECT Id, Stock_Number__c, Street, City, State, PostalCode, Country, vin__c, year__c, make__c, model__c, color__c, Title_Status__c, Title_with_Dealer__c, Dealer_Contact__c, Residential__c, Add_To_Run_List__c, Floor_Price__c, Date_Inspected__c, WorkTypeId, WorkType.Name, External_Record_guid__c, WorkOrder.Account.Dealership_ID__c, WorkOrder.Origin__c, Earliest_Start_Date__c, Due_Date__c, Status, Transport_Status__c, Job_Notes__c, Dealership_Name__c, External_Invoice_Id__c, Inspection_Location__c, Series__c, External_Assignment_Id__c, 
             Is_In_Jeopardy__c, Jeopardy_State__c, Lesse_Name__c, Open_Date__c, Maturity_Date__c, Contact_Name__c, Contact_Phone_Number__c, Contact_Mobile_Number__c, Contact_Email__c,
             Customer_Email__c, Driving_Directions__c, WorkType.Work_Type_Unique_ID__c, WorkOrderId
             FROM WorkOrderLineItem WHERE External_Record_guid__c IN :queryUUIDSet ] ) {
@@ -372,13 +372,12 @@ global class WorkAPI {
             }
 
             if ( !woIdToGuidMap.isEmpty() ) {
-                for ( ServiceAppointment sa : [ SELECT Id, Status, ParentRecordId, ServiceTerritoryId, Bundled__c FROM ServiceAppointment WHERE ParentRecordId IN : woIdToGuidMap.keySet() ] ) {
+                for ( ServiceAppointment sa : [ SELECT Id, Status, ParentRecordId, ServiceTerritoryId FROM ServiceAppointment WHERE ParentRecordId IN : woIdToGuidMap.keySet() ] ) {
                     String uuid = woIdToGuidMap.get( sa.ParentRecordId );
                     WorkObject updateRec = goodRequestMap.get( uuid );
                     if ( updateRec != null ) {
                         updateRec.workDetail.status = sa.Status;
                         updateRec.workDetail.hasTerritoryAssignment = sa.ServiceTerritoryId != null ? 'true' : 'false';
-                        updateRec.workDetail.isBundled = String.valueOf(sa.Bundled__c);
                         goodRequestMap.put( uuid, updateRec );
                     }
                 }
@@ -413,7 +412,7 @@ global class WorkAPI {
             responseCode = 200;
         }
 
-        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse(
+        ACVAPIHelper.SFResponse returnResponse = new ACVAPIHelper.SFResponse( 
             orReturn,
             new GetWorkResponse( goodRequests, badRequests ),
             returnMsg,
@@ -482,7 +481,7 @@ global class WorkAPI {
             infoLog.message = e.message;
             infoLog.stackTrace = e.stackTrace;
         } else {
-            infoLog.logLevel = badReturnLst.isEmpty() ? SplunkHelper.LOGLEVEL.INFO : SplunkHelper.LOGLEVEL.ERROR;
+            infoLog.logLevel = badReturnLst.isEmpty() ? SplunkHelper.LOGLEVEL.INFO : SplunkHelper.LOGLEVEL.ERROR; 
             infoLog.location = 'WorkAPI:' + ACVUtility.currentLineNumber();
             infoLog.message = badReturnLst.isEmpty() ? 'WorkAPI ran without issue to report' : 'WorkAPI had some issues processing, seeing the results for specifics';
             infoLog.stackTrace = 'WorkAPI:' + ACVUtility.currentLineNumber();
@@ -511,14 +510,14 @@ global class WorkAPI {
         }
 
         HTTPResponse res = new HTTPResponse();
-        res.setBody( JSON.serialize( new ACVAPIHelper.SFResponse(
+        res.setBody( JSON.serialize( new ACVAPIHelper.SFResponse( 
             orReturn,
             new WorkAPIResponse( goodReturnLst, badReturnLst ),
             message,
             responseCode
             ) ) );
         res.setStatusCode( responseCode );
-
+        
         HTTPRequest req = new HTTPRequest();
         req.setBody( JSON.serialize( orReturn ) );
         req.setMethod( 'POST' );

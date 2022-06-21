@@ -16,7 +16,7 @@
             <name>Activity_Type</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Event.Type</field>
             <operation>notEqual</operation>

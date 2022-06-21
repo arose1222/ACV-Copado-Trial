@@ -168,6 +168,7 @@
         <fullName>maps__ActivityDateFieldOnCompletedVisit__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the date field on the visit record used to determine date of activity</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Activity Date Field on Completed Visit</label>
         <length>255</length>
@@ -180,6 +181,7 @@
         <fullName>maps__ActivityDateFieldOnFutureVisit__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the date field on the future visit record used to determine date of activity</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Activity Date Field on Future Visit</label>
         <length>255</length>
@@ -192,6 +194,7 @@
         <fullName>maps__ActivityEndDateFieldOnFutureVisit__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the end date field on the future visit record used to determine date of activity</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Activity End Date Field on Future Visit</label>
         <length>255</length>
@@ -231,6 +234,7 @@
     <fields>
         <fullName>maps__BaseFilterFilters__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Base Filter Filters</label>
         <length>32768</length>
@@ -251,6 +255,7 @@
     <fields>
         <fullName>maps__BaseFilterLogicOrder__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Base Filter Logic Order</label>
         <length>32768</length>
@@ -261,6 +266,7 @@
     <fields>
         <fullName>maps__BaseFilterWhereClause__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Base Filter Where Clause</label>
         <length>32768</length>
@@ -307,6 +313,7 @@
         <description>This will be an array of numbers.  Each number will correspond to a tab on the template builder.  If a number is missing, it is assumed that that tab has not been completed yet for this template;
 
 Using a text field instead of a multi select picklist, in case we add more tabs later on.  I don&apos;t believe new picklist values will get pushed in a managed package.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Tabs</label>
         <length>255</length>
@@ -319,6 +326,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__CompletedVisitFilters__c</fullName>
         <deprecated>false</deprecated>
         <description>This is a JSON object containing the visit filter information</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Visit Filters</label>
         <length>32768</length>
@@ -330,6 +338,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__CompletedVisitObject__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the object that describes a visit</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Visit Object</label>
         <length>255</length>
@@ -342,6 +351,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__CompletedVisitOrderOfOperations__c</fullName>
         <deprecated>false</deprecated>
         <description>This holds the order of operations for the visit logic</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Visit Order of Operations</label>
         <length>255</length>
@@ -354,6 +364,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__CompletedVisitsQuery__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the query to determine an object has been visited</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Visits Query</label>
         <length>32768</length>
@@ -365,6 +376,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__CoreBaseObjectId__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the core base object associated to the template</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Core Base Object Id</label>
         <length>255</length>
@@ -484,6 +496,7 @@ Using a text field instead of a multi select picklist, in case we add more tabs 
         <fullName>maps__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>A short description of the template</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>A short description of the template
 Max Length: 255</inlineHelpText>
@@ -496,6 +509,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__EndDate__c</fullName>
         <deprecated>false</deprecated>
         <description>The date the template ends on</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -506,6 +520,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__FrequencyStartDate__c</fullName>
         <deprecated>false</deprecated>
         <description>This will be the date that all frequency calculations should start on</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Frequency Start Date</label>
         <required>false</required>
@@ -527,6 +542,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__FutureVisitFilters__c</fullName>
         <deprecated>false</deprecated>
         <description>This is a JSON object containing the visit filter information</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Future Visit Filters</label>
         <length>32768</length>
@@ -538,6 +554,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__FutureVisitLogicOrderOfOperations__c</fullName>
         <deprecated>false</deprecated>
         <description>This holds the order of operations for the future visit logic</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Future Visit Logic Order of Operations</label>
         <length>255</length>
@@ -550,6 +567,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__FutureVisitObject__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the object that describes a future visit</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Future Visit Object</label>
         <length>255</length>
@@ -562,6 +580,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__FutureVisitsQuery__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the query to determine an objects future visits</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Future Visits Query</label>
         <length>32768</length>
@@ -722,6 +741,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__RepeatUntilDate__c</fullName>
         <deprecated>false</deprecated>
         <description>This date is the date  a repeating template will stop being used</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Repeat Until Date</label>
         <required>false</required>
@@ -833,6 +853,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__SavedQueryId__c</fullName>
         <deprecated>false</deprecated>
         <description>This will be the id of the related Saved Query record for Maps</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Saved Query Id</label>
         <length>255</length>
@@ -887,6 +908,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__StartDate__c</fullName>
         <deprecated>false</deprecated>
         <description>The date the template starts on</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -897,6 +919,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TemplateObjectFieldOnCompletedVisit__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the field on the visit record that relates the visit to the template object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Template Object Field on Completed Visit</label>
         <length>255</length>
@@ -909,6 +932,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TemplateObjectFieldOnFutureVisit__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the field on the future visit record that relates the visit to the template object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Template Object Field on Future Visit</label>
         <length>255</length>
@@ -921,6 +945,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TemplateObjectLatitudeField__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the field that holds the latitude on the template object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Template Object Latitude Field</label>
         <length>255</length>
@@ -933,6 +958,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TemplateObjectLongitudeField__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the longitude field on the template object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Template Object Longitude Field</label>
         <length>255</length>
@@ -945,6 +971,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TemplateObject__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the object that the template will process</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Template Object</label>
         <length>255</length>
@@ -1452,6 +1479,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__TooltipFieldApis__c</fullName>
         <deprecated>false</deprecated>
         <description>This field holds a JSON array of field apis to be used for tooltips</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Tooltip Field Apis</label>
         <length>32768</length>
@@ -1463,6 +1491,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__UserField__c</fullName>
         <deprecated>false</deprecated>
         <description>This is the field that will be compared on the object to determine if that object is owned/maintained by a route template user</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>User Field</label>
         <length>255</length>
@@ -1475,6 +1504,7 @@ Max Length: 255</inlineHelpText>
         <fullName>maps__VisitType__c</fullName>
         <deprecated>false</deprecated>
         <description>This is for determining which visit windows should be used based on visit type</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Visit Type</label>
         <length>255</length>
@@ -1485,6 +1515,7 @@ Max Length: 255</inlineHelpText>
     </fields>
     <label>Maps Advanced Route Template</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Maps Advanced Route Template Name</label>
         <type>Text</type>
     </nameField>

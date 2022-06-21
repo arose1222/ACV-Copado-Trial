@@ -13,7 +13,7 @@
     </alerts>
     <rules>
         <fullName>Success Reminder</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Release_Survey__c.Release_Date__c</field>
             <operation>notEqual</operation>

@@ -8,7 +8,7 @@
         <protected>false</protected>
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>System_Notifications/Admin_Profile_Alert</template>
+        <template>unfiled$public/Admin_Profile_Alert</template>
     </alerts>
     <fieldUpdates>
         <fullName>Update_Deactivated_Date_Field</fullName>
@@ -27,7 +27,7 @@
             <name>Admin_Profile_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow rule triggers whenever a user is given an admin profile</description>
         <formula>Profile.Name = &quot;System Administrator&quot;</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -38,7 +38,7 @@
             <name>Update_Deactivated_Date_Field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Sets date on user record when active is changed to false</description>
         <formula>ISCHANGED(IsActive)</formula>
         <triggerType>onAllChanges</triggerType>

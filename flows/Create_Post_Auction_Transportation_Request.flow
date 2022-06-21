@@ -1102,6 +1102,7 @@ Adding retry loop for unsuccessful Case creation</description>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
+        <limit>50</limit>
         <object>AssociatedLocation</object>
         <outputAssignments>
             <assignToReference>SelectedAssocaitedLocation.Id</assignToReference>
@@ -1541,7 +1542,6 @@ Adding retry loop for unsuccessful Case creation</description>
 )</expression>
     </formulas>
     <interviewLabel>Create Post-Auction Transportation Request {!$Flow.CurrentDateTime}</interviewLabel>
-    <isAdditionalPermissionRequiredToRun>true</isAdditionalPermissionRequiredToRun>
     <label>Create Post-Auction Transportation Request</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -2238,8 +2238,8 @@ Adding retry loop for unsuccessful Case creation</description>
     <screens>
         <name>Do_not_create_Transpo_Case</name>
         <label>Do not create Transpo Case</label>
-        <locationX>2312</locationX>
-        <locationY>1463</locationY>
+        <locationX>2316</locationX>
+        <locationY>1408</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2256,9 +2256,9 @@ Adding retry loop for unsuccessful Case creation</description>
         <label>Do you want to create this Transportation Case?</label>
         <locationX>2195</locationX>
         <locationY>1221</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <allowPause>true</allowPause>
         <connector>
             <targetReference>Create_Transpo_Case_Decision</targetReference>
         </connector>
@@ -2871,7 +2871,7 @@ You will need to know the price that will be charged to the dealership that is r
             <targetReference>Get_Auction</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>AllAssociatedLocationSellerOther</name>
         <dataType>SObject</dataType>

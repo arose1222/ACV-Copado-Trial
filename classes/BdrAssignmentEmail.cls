@@ -48,12 +48,6 @@ public without sharing class BdrAssignmentEmail extends TriggerInterface {
      * Lead QueueIds for which Email should not be sent
      */
     public static Map<Id, Group> dontSendEmailQueueMap = new Map<Id, Group>();
-    
-    //static init block added as part of IO-1646 - refactoring code
-    static{
-        dontSendEmailQueues = new Set<String>( System.Label.Dont_Send_BDR_Email_Queues.split(',') );
-        dontSendEmailQueueMap = new Map<Id, Group>([Select Id, DeveloperName from Group where DeveloperName IN:dontSendEmailQueues]);
-    }
 
     /**
      * BeforeUpdate for Trigger
@@ -63,32 +57,27 @@ public without sharing class BdrAssignmentEmail extends TriggerInterface {
      */
     public override void beforeUpdate( Map<Id,sObject> oldMap, Map<Id,sObject> newMap){
         Set<Id> ownerIdSet = new Set<Id>();
-        /* commented as part of IO-1646 - refactoring code, moved to static block
         dontSendEmailQueues =  new Set<String>( System.Label.Dont_Send_BDR_Email_Queues.split(',') );
-        dontSendEmailQueueMap = new Map<Id, Group>([Select Id, DeveloperName from Group where DeveloperName IN:dontSendEmailQueues]);*/
-        List<Lead> leadsTofollowUp = new List<Lead>();
+        dontSendEmailQueueMap = new Map<Id, Group>([Select Id, DeveloperName from Group where DeveloperName IN:dontSendEmailQueues]);
         for( Lead l : (List<Lead>)newMap.values() ){
             Lead oldLead = (Lead)oldMap.get(l.Id);
             if(oldLead.OwnerId != l.OwnerId && l.RecordTypeId == ORGANIZATION_LEAD_RECORD_ID && l.OwnerId.getSobjectType() == Schema.User.SObjectType) {
                 l.IST_Account_Owner__c= l.OwnerId;
             } 
-            
-            if((!l.Dont_Send_BDR_Email__c && l.OwnerId != null && oldLead.OwnerId != null && !l.BDR_Email_Sent__c && l.RecordTypeId == ORGANIZATION_LEAD_RECORD_ID && !FromDontSendEmailQueue(oldLead)) && 
-              (l.Assigned_On_Insert__c || ownerChangedToUser(oldLead, l))) {
-                 ownerIdSet.add(l.OwnerId);
-                 leadsToFollowUp.add(l);
-             }
+            if(!l.Dont_Send_BDR_Email__c && l.OwnerId != null && oldLead.OwnerId != null && ownerChangedToUser(oldLead, l)
+             && !l.BDR_Email_Sent__c && l.RecordTypeId == ORGANIZATION_LEAD_RECORD_ID && !FromDontSendEmailQueue(oldLead))
+             ownerIdSet.add(l.OwnerId);
         }
         if( !ownerIdSet.isEmpty() ){
             processingOwnerMap = new Map<Id,User>( [ SELECT Id, Calendly_Link__c, Email FROM User WHERE Id IN :ownerIdSet ] );
-            for( Lead l : leadsToFollowUp ){
+            for( Lead l : (List<Lead>)newMap.values() ){
                 Lead oldLead = (Lead)oldMap.get(l.Id);
                 if( processingOwnerMap.get(l.OwnerId) != null && String.isNotBlank( processingOwnerMap.get(l.OwnerId).Calendly_Link__c ) ){
                     l.BDR_Email_Sent__c = true;
-                    l.Assigned_On_Insert__c = false; // Setting this false so we don't send email a second time for any that had this as true
                     processingLeadSet.add(l);
                     String strState = l.State;
                     String strStateUpperCase = strState.toUpperCase();
+                    System.debug('strStateUpperCase--'+strStateUpperCase);
                     processingLeadStateSet.add(RESALE_CERTIFICATE_CONTENT_DOCUMENT_TITLE_PREFIX+strStateUpperCase);
                 }else{
                     l.addError('This BDR does not have a Calendly Link. Please update this on their user before assigning them a lead.');
@@ -157,7 +146,6 @@ public without sharing class BdrAssignmentEmail extends TriggerInterface {
      * @return  `Boolean` - whether the owner has changed to a user
      */
     public static Boolean ownerChangedToUser( Lead oldLead, Lead newLead ){
-        Boolean changed = newLead.OwnerId != oldLead.OwnerId && oldLead.OwnerId.getSobjectType() == Schema.Group.SObjectType && newLead.OwnerId.getSobjectType() == Schema.User.SObjectType;
         return newLead.OwnerId != oldLead.OwnerId && oldLead.OwnerId.getSobjectType() == Schema.Group.SObjectType && newLead.OwnerId.getSobjectType() == Schema.User.SObjectType;
     }
 

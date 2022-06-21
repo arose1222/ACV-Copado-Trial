@@ -221,6 +221,7 @@
     <fields>
         <fullName>Expiration_Date__c</fullName>
         <description>Date set 30 days out from creation of record for when the price will expire.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
@@ -231,6 +232,7 @@
     <fields>
         <fullName>External_Notes_to_Seller__c</fullName>
         <description>The notes that are to be made available publicly and to be surfaced to the ACV App user.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Input notes that are essential for the ACV App User, as these notes will be made available publicly.</inlineHelpText>
         <label>External Notes to Seller</label>
@@ -242,6 +244,7 @@
     <fields>
         <fullName>Internal_Notes__c</fullName>
         <description>Internal notes regarding the pricing adjustment/recommendation.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Internal Notes</label>
         <required>false</required>
@@ -388,6 +391,7 @@
     </fields>
     <fields>
         <fullName>Saved_Auction_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Saved Auction Id</label>
         <length>255</length>
@@ -451,6 +455,7 @@
     <fields>
         <fullName>id__c</fullName>
         <description>External Id used for integrations</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>id</label>
         <length>50</length>
@@ -492,13 +497,13 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Floor_can_not_be_greater_than_ceiling</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF(Validate_Price_Ceiling__c &lt;= Validate_Price_Floor__c, TRUE, FALSE)</errorConditionFormula>
         <errorMessage>The Pricing Ceiling can not be less than the Pricing Floor!</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Price_Floor_Recommendation_Already_Exist</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If there a prior value existed in the Price Floor field, then the record cannot be saved.</description>
         <errorConditionFormula>PRIORVALUE( Price_Floor__c)!= Null</errorConditionFormula>
         <errorMessage>Whoops. It looks like someone already has already recommended a price, therefor double entry is prohibited.</errorMessage>

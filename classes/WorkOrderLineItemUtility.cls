@@ -70,7 +70,7 @@ public class WorkOrderLineItemUtility {
      */
     public static void processParentStatus( Set<Id> workOrderIdSet ) {
         if ( !workOrderIdSet.isEmpty() ) {
-            List<WorkOrder> workOrderLst = [ SELECT Id, StatusCategory, ServiceTerritoryId, Status, WorkTypeId, (SELECT Id, Bundled__c FROM ServiceAppointments LIMIT 1), (SELECT Id, StatusCategory FROM WorkOrderLineItems) FROM WorkOrder WHERE Id IN :workOrderIdSet ];
+            List<WorkOrder> workOrderLst = [ SELECT Id, StatusCategory, ServiceTerritoryId, Status, WorkTypeId, (SELECT Id, StatusCategory FROM WorkOrderLineItems) FROM WorkOrder WHERE Id IN :workOrderIdSet ];
 
             if( containsProperWorkTypes(workOrderLst) ) {
                 List<WorkOrder> workOrderUpdateLst = new List<WorkOrder>();
@@ -90,10 +90,6 @@ public class WorkOrderLineItemUtility {
                     inProgressFlag = FALSE;
                     canceledFlag = FALSE;
                     cannotCompleteFlag = FALSE;
-
-                    if (workRecord.ServiceAppointments[0]?.Bundled__c == true) {
-                        continue;
-                    }
 
                     for ( WorkOrderLineItem workItemRecord : workRecord.WorkOrderLineItems ) {
                         /* Flag Logic:
@@ -167,16 +163,16 @@ public class WorkOrderLineItemUtility {
         //build a map of work order ids to statuses
         //build a list of service appointments that have parents in the map above
         List<ServiceAppointment> saList = new list<ServiceAppointment>();
-        saList = [SELECT Id, ActualStartTime, ActualEndTime, SchedEndTime, SchedStartTime, WorkType.EstimatedDuration, Status, ParentRecordId, WorkTypeId, Allow_Change_From_Flow__c FROM ServiceAppointment WHERE ParentRecordId IN : woStatusMap.keySet()];
+        saList = [SELECT Id, ActualStartTime, ActualEndTime, SchedEndTime, SchedStartTime, WorkType.EstimatedDuration, Status, ParentRecordId, WorkTypeId, Allow_VCI_Status_Change__c FROM ServiceAppointment WHERE ParentRecordId IN : woStatusMap.keySet()];
         if(containsProperWorkTypes(saList)){
             // assign mmatching statuses for every service appointment that was in the list
 
             for (ServiceAppointment sa : saList){
 
-                if (sa.Allow_Change_From_Flow__c == TRUE) {
-                    sa.Allow_Change_From_Flow__c = FALSE;
+                if (sa.Allow_VCI_Status_Change__c == TRUE) {
+                    sa.Allow_VCI_Status_Change__c = FALSE;
                 } else {
-                    sa.Allow_Change_From_Flow__c = TRUE;
+                    sa.Allow_VCI_Status_Change__c = TRUE;
                 }
 
                 //No need to go further if the status is not changed.
@@ -194,10 +190,8 @@ public class WorkOrderLineItemUtility {
                     if ( sa.ActualStartTime == null ) { sa.ActualStartTime = now.addMinutes( Integer.valueOf( ( (-1) * sa.WorkType.EstimatedDuration ) ) ); }
                     if ( sa.ActualEndTime == null ) { sa.ActualEndTime = now; }
 
-                    // if ( sa.SchedStartTime == null ) { sa.SchedStartTime = now.addMinutes( Integer.valueOf( ( (-1) * sa.WorkType.EstimatedDuration ) ) ); }
-                    // if ( sa.SchedEndTime == null ) { sa.SchedEndTime = now; }
-                    sa.SchedStartTime = sa.ActualStartTime;
-                    sa.SchedEndTime   = sa.ActualEndTime;
+                    if ( sa.SchedStartTime == null ) { sa.SchedStartTime = now.addMinutes( Integer.valueOf( ( (-1) * sa.WorkType.EstimatedDuration ) ) ); }
+                    if ( sa.SchedEndTime == null ) { sa.SchedEndTime = now; }
                 }
 
             }

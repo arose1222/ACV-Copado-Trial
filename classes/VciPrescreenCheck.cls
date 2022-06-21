@@ -21,7 +21,6 @@ public class VciPrescreenCheck extends ClassInterface{
         for(PrescreenServiceHelper.InspectionWrapper wrapper : wrapperMap.values()){
             if(crReviewIds.contains(wrapper.idef.inspectorIdentityId)){
                 wrapper.prescreenReasons.add(crt.Prescreen_Reason__c);
-                wrapper.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper(crt.Prescreen_Reason__c, crt.Is_Aux_Reason__c));
             }
         }
 

@@ -160,6 +160,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Additional_Details_Regarding_My_Request__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Please provide as much detail as possible to help us help you! Links to records, screenshots, etc. If you would like to upload any files, navigate to the related list to create an attachment.</inlineHelpText>
         <label>Additional Details Regarding My Request</label>
@@ -382,6 +383,7 @@
     </fields>
     <fields>
         <fullName>Customer_Feedback__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Customer Feedback</label>
         <length>1000</length>
@@ -393,6 +395,7 @@
     </fields>
     <fields>
         <fullName>Customer_Success_Resolution__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Customer Success Resolution</label>
         <length>2000</length>
@@ -405,6 +408,7 @@
     <fields>
         <fullName>Date_Requested__c</fullName>
         <description>When a customer reported the issue to someone leading up to involving the Customer Experience team</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Requested</label>
         <required>false</required>
@@ -416,6 +420,7 @@
     <fields>
         <fullName>Date_Time_Closed__c</fullName>
         <description>Workflow controlled stamp when Status = Closed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Closed</label>
         <required>false</required>
@@ -509,6 +514,7 @@
     </fields>
     <fields>
         <fullName>Escalation_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Escalation Date</label>
         <required>false</required>
@@ -643,6 +649,7 @@
     </fields>
     <fields>
         <fullName>Jira_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If request has been sent to Jira, this will be populated with the link to that ticket.</inlineHelpText>
         <label>Jira Link</label>
@@ -654,6 +661,7 @@
     </fields>
     <fields>
         <fullName>Jira_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This will be populated with status of Jira ticket if one exists</inlineHelpText>
         <label>Jira Status</label>
@@ -696,6 +704,7 @@
     <fields>
         <fullName>Manager_Email__c</fullName>
         <defaultValue>$User.Email</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Manager Email</label>
         <required>false</required>
@@ -883,26 +892,6 @@
                     <label>Re-Run, Pricing or Trim</label>
                 </value>
                 <value>
-                    <fullName>Case Finalized Incorrectly</fullName>
-                    <default>false</default>
-                    <label>Case Finalized Incorrectly</label>
-                </value>
-                <value>
-                    <fullName>Transport Issue Adjustment</fullName>
-                    <default>false</default>
-                    <label>Transport Issue Adjustment</label>
-                </value>
-                <value>
-                    <fullName>Damage Claim</fullName>
-                    <default>false</default>
-                    <label>Damage Claim</label>
-                </value>
-                <value>
-                    <fullName>Factoring Company</fullName>
-                    <default>false</default>
-                    <label>Factoring Company</label>
-                </value>
-                <value>
                     <fullName>Analytics, reporting &amp; list views</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
@@ -981,6 +970,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     <fields>
         <fullName>Previous_Asignee__c</fullName>
         <defaultValue>$User.Email</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Previous Assignee</label>
         <required>false</required>
@@ -1073,6 +1063,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     <fields>
         <fullName>Region_of_Employee__c</fullName>
         <description>Region of the employee related to this request</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Region of the employee related to this request</inlineHelpText>
         <label>Region of Employee</label>
@@ -1087,6 +1078,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     <fields>
         <fullName>Rejected_Reason__c</fullName>
         <description>When rejected the rejected reason must be filled out has a validation rule associated with this</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Why was the request rejected</inlineHelpText>
         <label>Rejected Reason</label>
@@ -1412,6 +1404,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     </fields>
     <fields>
         <fullName>Report_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Use this field to enter a link to the report</inlineHelpText>
         <label>Report Link</label>
@@ -1790,11 +1783,6 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
                     <label>85% Compliance Reached</label>
                 </value>
                 <value>
-                    <fullName>Late Title Fee Inquiry</fullName>
-                    <default>false</default>
-                    <label>Late Title Fee Inquiry</label>
-                </value>
-                <value>
                     <fullName>48 Hour Notice</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
@@ -2005,10 +1993,6 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
             <valueSettings>
                 <controllingFieldValue>Titles</controllingFieldValue>
                 <valueName>85% Compliance Reached</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Titles</controllingFieldValue>
-                <valueName>Late Title Fee Inquiry</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Transportation</controllingFieldValue>
@@ -2261,6 +2245,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     </fields>
     <fields>
         <fullName>System_Admin_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Only those with a System Admin profile can see this field.  Use for conversation that is not appropriate for Chatter, as all users can see comments made there.</inlineHelpText>
         <label>System Admin Notes</label>
@@ -2274,6 +2259,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     <fields>
         <fullName>Territory_of_Employee__c</fullName>
         <description>Territory of the employee related to this request</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Territory of the employee related to this request</inlineHelpText>
         <label>Territory of Employee</label>
@@ -2288,6 +2274,7 @@ ROUND( 24 * (d2subd1__c - FLOOR(d2subd1__c) ),8)) ),0)) &amp; &quot; min &quot;
     <fields>
         <fullName>Ticket_Outcome_Details__c</fullName>
         <description>This field is required before the request can be marked as Closed.  Intended use is to provide detail on what was done in regards to the ticket - formulas, workflows, report links, etc.  If a ticket is closed without action, explain why here.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This field is required before the request can be marked as Closed.  Intended use is to provide detail on what was done in regards to the ticket - formulas, workflows, report links, etc.  If a ticket is closed without action, explain why here.</inlineHelpText>
         <label>Ticket Outcome Details</label>
@@ -2732,12 +2719,12 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>Status__c</field>
             <operation>equals</operation>
-            <value>Submitted,Under Consideration,In Progress,Ready for Review</value>
+            <value>Submitted,In Progress</value>
         </filters>
         <filters>
             <field>Assigned_Owner__c</field>
             <operation>equals</operation>
-            <value>dorothy robertson</value>
+            <value>Dorothy Robertson</value>
         </filters>
         <label>All Open Requests</label>
     </listViews>
@@ -2750,6 +2737,8 @@ Employment Status Request - Select which days in a week to have employee work</i
         <columns>Escalate__c</columns>
         <columns>My_Request_Is_Related_To__c</columns>
         <columns>Status__c</columns>
+        <columns>Owner_Full_Name__c</columns>
+        <columns>Requester_Profile__c</columns>
         <columns>LAST_UPDATE</columns>
         <columns>Created_By_Profile__c</columns>
         <columns>CREATEDBY_USER</columns>
@@ -2762,13 +2751,8 @@ Employment Status Request - Select which days in a week to have employee work</i
         </filters>
         <filters>
             <field>Status__c</field>
-            <operation>equals</operation>
+            <operation>notEqual</operation>
             <value>Closed</value>
-        </filters>
-        <filters>
-            <field>My_Request_Is_Related_To__c</field>
-            <operation>equals</operation>
-            <value>&quot;Re-Run, Pricing or Trim&quot;</value>
         </filters>
         <label>All Ops Help Requests and Inquiries</label>
     </listViews>
@@ -2795,11 +2779,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <field>My_Request_Is_Related_To__c</field>
             <operation>notEqual</operation>
             <value>&quot;Analytics, Reporting, and List Views&quot;,Field Service Lightning,Duplicate Account</value>
-        </filters>
-        <filters>
-            <field>Assigned_To__c</field>
-            <operation>notEqual</operation>
-            <value>Kelley Bartlett</value>
         </filters>
         <label>All Open Salesforce Requests</label>
     </listViews>
@@ -2919,14 +2898,18 @@ Employment Status Request - Select which days in a week to have employee work</i
         <columns>Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Assigned_To__c</field>
-            <operation>equals</operation>
-            <value>Ashley Reilly</value>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
         </filters>
         <filters>
-            <field>Status__c</field>
+            <field>Assigned_To__c</field>
             <operation>equals</operation>
-            <value>Submitted</value>
+            <value>ashley reilly</value>
+        </filters>
+        <filters>
+            <field>Jira_Link__c</field>
+            <operation>equals</operation>
         </filters>
         <label>Ashley&apos;s Assigned Tickets</label>
         <sharedTo>
@@ -2979,43 +2962,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Bryant Herzog</value>
         </filters>
         <label>Bryant&apos;s - Closed Pricing Requests</label>
-    </listViews>
-    <listViews>
-        <fullName>COPY_New_SF_Request_Tickets</fullName>
-        <columns>CREATEDBY_USER</columns>
-        <columns>Owner_Full_Name__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>NAME</columns>
-        <columns>My_Request_Is_Related_To__c</columns>
-        <columns>Assigned_To__c</columns>
-        <columns>Related_Field__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Salesforce_Request</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted</value>
-        </filters>
-        <filters>
-            <field>My_Request_Is_Related_To__c</field>
-            <operation>notEqual</operation>
-            <value>&quot;Analytics, Reporting, and List Views&quot;,Field Service Lightning</value>
-        </filters>
-        <filters>
-            <field>Assigned_To__c</field>
-            <operation>equals</operation>
-            <value>Submitted Request</value>
-        </filters>
-        <filters>
-            <field>Jira_Link__c</field>
-            <operation>equals</operation>
-        </filters>
-        <label>COPY New SF Request Tickets</label>
     </listViews>
     <listViews>
         <fullName>Chase_s_SF_Tickets</fullName>
@@ -3091,36 +3037,6 @@ Employment Status Request - Select which days in a week to have employee work</i
         <label>Collections Open Requests &amp; Inquiries</label>
     </listViews>
     <listViews>
-        <fullName>Commercial_Open_Unwind_Requests</fullName>
-        <columns>NAME</columns>
-        <columns>Related_Account__c</columns>
-        <columns>Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Assigned_To__c</columns>
-        <columns>Additional_Details_Regarding_My_Request__c</columns>
-        <columns>Buyer_Aware__c</columns>
-        <columns>Vehicle_Location_Confirmed__c</columns>
-        <columns>OWNER.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Closed</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Unwind</value>
-        </filters>
-        <filters>
-            <field>OWNER.LAST_NAME</field>
-            <operation>contains</operation>
-            <value>Davis,Delpriore,Dietzen,Olsen,Rigler,Schmitz,Siedlecki,Valvo</value>
-        </filters>
-        <label>Commercial - Open Unwind Requests</label>
-    </listViews>
-    <listViews>
         <fullName>Copy_of_Mark_s_Closed_Pricing_Requests</fullName>
         <columns>CREATEDBY_USER</columns>
         <columns>NAME</columns>
@@ -3167,7 +3083,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>contains</operation>
-            <value>Sciandra,Patszalek,Hagerty,Luraschi,Burnett,Cavuoto,Bitner,Dorr,Cecchini,Jaszka</value>
+            <value>Patszalek,Hagerty,Luraschi,Burnett,Cavuoto,Bitner,Dorr,Cecchini</value>
         </filters>
         <label>Steph&apos;s Team Open Unwind Requests</label>
     </listViews>
@@ -3441,28 +3357,6 @@ Employment Status Request - Select which days in a week to have employee work</i
         <label>Deniss&apos;s Assigned Tickets</label>
     </listViews>
     <listViews>
-        <fullName>Dorothy_All_Open_Requests</fullName>
-        <columns>NAME</columns>
-        <columns>Status__c</columns>
-        <columns>Assigned_To__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>My_Request_Is_Related_To__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted,In Progress</value>
-        </filters>
-        <filters>
-            <field>Assigned_Owner__c</field>
-            <operation>equals</operation>
-            <value>Dorothy Robertson</value>
-        </filters>
-        <label>Dorothy All Open Requests</label>
-    </listViews>
-    <listViews>
         <fullName>Duplicate_Accounts_Requests</fullName>
         <columns>NAME</columns>
         <columns>Assigned_To__c</columns>
@@ -3474,6 +3368,33 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Duplicate Account</value>
         </filters>
         <label>Duplicate Account Requests</label>
+    </listViews>
+    <listViews>
+        <fullName>Emily_s_Tickets</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Assigned_To__c</columns>
+        <columns>Created_By_Profile__c</columns>
+        <columns>My_Request_Is_Related_To__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Salesforce_Request__c.Salesforce_Request</value>
+        </filters>
+        <filters>
+            <field>Related_Departments__c</field>
+            <operation>includes</operation>
+            <value>ACV Capital</value>
+        </filters>
+        <filters>
+            <field>Assigned_To_Flag__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>ACV Capital Tickets</label>
     </listViews>
     <listViews>
         <fullName>FSL_Tickets</fullName>
@@ -3648,7 +3569,7 @@ Employment Status Request - Select which days in a week to have employee work</i
             <role>Inside_Sales_Director</role>
             <role>Inside_Sales_Manager</role>
             <role>Inside_Sales_Manager_Kevin</role>
-            <role>Major_Accounts_Director</role>
+            <role>Inside_Sales_Manager_Ryan</role>
             <role>System_Admin</role>
         </sharedTo>
     </listViews>
@@ -3725,7 +3646,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>equals</operation>
-            <value>Doyle,Gardner,Netto,Pearson,Proehl,Gilbert,Cuddahee,Gothan,Yates</value>
+            <value>Doyle,Gardner,Netto,Pearson,Proehl,Gilbert,Cuddahee</value>
         </filters>
         <label>Jenna&apos;s Team Open Unwind Requests</label>
     </listViews>
@@ -3777,7 +3698,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>equals</operation>
-            <value>Schaper,Cywilko,Galante,Pusateri,Rizzo,Klonowski,Albini,Mancini,Collard,Netto,Gilbert,Yates,Cuddahee</value>
+            <value>Schaper,Cywilko,Galante,Pusateri,Rizzo,Klonowski,Albini,Mancini</value>
         </filters>
         <label>Joe&apos;s Team Open Unwind Requests</label>
     </listViews>
@@ -3972,7 +3893,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>contains</operation>
-            <value>Derrico,Kitzen,Sherman,Bacon,Divita,Guetti,forster,Towart,Reddy,Bertozzi,Matyas,Stasiak</value>
+            <value>Bacon,Divita,Guetti,Mancini,Towart,Reddy,Bertozzi,Matyas,Stasiak,Dietzen,Wieand,Beckstrand,Jaszka,Darrow,Haseley,Rodriguez,Mercado,Yates,Gothan,Brace</value>
         </filters>
         <label>Kim&apos;s Team Open Unwind Requests</label>
     </listViews>
@@ -4001,34 +3922,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Salesforce_Request__c.Ops_Help</value>
         </filters>
         <label>Kim&apos;s Team - Requests and Inquiries</label>
-    </listViews>
-    <listViews>
-        <fullName>Late_Title_Fee_Open_Requests_Inquiries</fullName>
-        <columns>NAME</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>My_Request_Is_Related_To__c</field>
-            <operation>equals</operation>
-            <value>Titles</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Ops_Help</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted,In Progress</value>
-        </filters>
-        <filters>
-            <field>Request_Reasons__c</field>
-            <operation>equals</operation>
-            <value>85% Compliance Reached,Late Title Fee Inquiry</value>
-        </filters>
-        <label>Late Title Fee Open Requests &amp; Inquiries</label>
     </listViews>
     <listViews>
         <fullName>Lenny_Wong_Closed_Pricing_Requests</fullName>
@@ -4067,11 +3960,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <field>Assigned_To__c</field>
             <operation>equals</operation>
             <value>Mackenzie Myott</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Closed</value>
         </filters>
         <label>Mackenzie&apos;s Tickets</label>
     </listViews>
@@ -4115,9 +4003,9 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>contains</operation>
-            <value>Bass,Doust,Eaton,Erbacher,Limoncelli,Montes,Murphy,Naylor,Risner,Vielhauer,Ziewicki</value>
+            <value>Story,Siedlecki,Dietzen,Valvo,Schmitz,Murphy,Montes,Dualeh,Risner,Wright,Bass,Naylor,Davis,Eaton,Lomenzo,Bartley,Eady,Ziewicki,Rigler,Vielhauer,Olsen,Delpriore</value>
         </filters>
-        <label>Major Accounts Open Unwind Requests</label>
+        <label>Majors &amp; Commercial Open Unwind Requests</label>
     </listViews>
     <listViews>
         <fullName>Mark_s_Closed_Pricing_Requests</fullName>
@@ -4191,36 +4079,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Michael Barsuch</value>
         </filters>
         <label>Michael&apos;s - Closed Pricing Requests</label>
-    </listViews>
-    <listViews>
-        <fullName>Mike_s_Team_Open_Unwind_Requests</fullName>
-        <columns>NAME</columns>
-        <columns>Related_Account__c</columns>
-        <columns>Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Assigned_To__c</columns>
-        <columns>Additional_Details_Regarding_My_Request__c</columns>
-        <columns>Buyer_Aware__c</columns>
-        <columns>Vehicle_Location_Confirmed__c</columns>
-        <columns>OWNER.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Closed</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Unwind</value>
-        </filters>
-        <filters>
-            <field>OWNER.LAST_NAME</field>
-            <operation>contains</operation>
-            <value>Burns,Dickinson,Forster,Maloney,Masi,Royce,Derrico</value>
-        </filters>
-        <label>Mike&apos;s Team Open Unwind Requests</label>
     </listViews>
     <listViews>
         <fullName>My_Closed_Recommended_Pricing_Requests</fullName>
@@ -4312,25 +4170,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Salesforce_Request__c.Ops_Help,Salesforce_Request__c.Salesforce_Request</value>
         </filters>
         <label>My Requests and Inquiries</label>
-    </listViews>
-    <listViews>
-        <fullName>Myriah_s_R_I_Tickets</fullName>
-        <columns>CREATED_DATE</columns>
-        <columns>NAME</columns>
-        <columns>My_Request_Is_Related_To__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_To__c</field>
-            <operation>equals</operation>
-            <value>Myriah Boulet</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Salesforce_Request</value>
-        </filters>
-        <label>Myriah&apos;s R&amp;I Tickets</label>
     </listViews>
     <listViews>
         <fullName>NADA</fullName>
@@ -4480,35 +4319,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <value>Arbitration,Dealer Documents,Payments and Collections,Resolutions,Titles,Transportation</value>
         </filters>
         <label>New Tableau Analytics Requests - Ops</label>
-    </listViews>
-    <listViews>
-        <fullName>Open_Arbitration_R_I_Requests</fullName>
-        <columns>NAME</columns>
-        <columns>Assigned_To__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Ops_Help</value>
-        </filters>
-        <filters>
-            <field>My_Request_Is_Related_To__c</field>
-            <operation>equals</operation>
-            <value>Arbitration</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted</value>
-        </filters>
-        <filters>
-            <field>Assigned_To__c</field>
-            <operation>equals</operation>
-            <value>Nicholas Ryan</value>
-        </filters>
-        <label>Open Arbitration R&amp;I Requests</label>
     </listViews>
     <listViews>
         <fullName>Open_Employment_Status_Requests</fullName>
@@ -4987,7 +4797,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>Assigned_to_Manager__c</field>
             <operation>equals</operation>
-            <value>Megan Mahon</value>
+            <value>Ryan Story</value>
         </filters>
         <filters>
             <field>Status__c</field>
@@ -5104,10 +4914,6 @@ Employment Status Request - Select which days in a week to have employee work</i
             <field>Assigned_To__c</field>
             <operation>equals</operation>
             <value>Submitted Request</value>
-        </filters>
-        <filters>
-            <field>Jira_Link__c</field>
-            <operation>equals</operation>
         </filters>
         <label>New SF Request Tickets</label>
         <sharedTo>
@@ -5386,26 +5192,6 @@ Employment Status Request - Select which days in a week to have employee work</i
         <label>Tom&apos;s Team - Requests and Inquiries</label>
     </listViews>
     <listViews>
-        <fullName>Transport_Payments_Requests</fullName>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>My_Request_Is_Related_To__c</columns>
-        <columns>NAME</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Salesforce_Request__c.Transport_Payments</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Closed</value>
-        </filters>
-        <label>Transport Payments Requests</label>
-    </listViews>
-    <listViews>
         <fullName>Transportation_Open_Requests_Inquiries</fullName>
         <columns>NAME</columns>
         <columns>Assigned_To__c</columns>
@@ -5502,7 +5288,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>OWNER.LAST_NAME</field>
             <operation>equals</operation>
-            <value>Rhodes,Spencer,Arcoraci,Mackowski,Limoncelli</value>
+            <value>Albini,Collard,Masi,Rhodes,Spencer,Arcoraci,Derrico,Limoncelli</value>
         </filters>
         <label>Tyler&apos;s Team Open Unwind Requests</label>
     </listViews>
@@ -5625,6 +5411,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <label>New 48 Hour Notices</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Brief Request Description</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
@@ -7310,10 +7097,6 @@ Employment Status Request - Select which days in a week to have employee work</i
                 <default>false</default>
             </values>
             <values>
-                <fullName>Late Title Fee Inquiry</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Lost Title</fullName>
                 <default>false</default>
             </values>
@@ -8750,778 +8533,6 @@ Employment Status Request - Select which days in a week to have employee work</i
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Transport_Payments</fullName>
-        <active>true</active>
-        <description>Used for Transportation team to request payment related updates to credits and invoices.</description>
-        <label>Transport Payments</label>
-        <picklistValues>
-            <picklist>Buyer_Aware__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Completed_the_escalation_checklist__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Customer_Feedback_Attitude__c</picklist>
-            <values>
-                <fullName>Negative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Neutral</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Positive</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Domain_Related_Data__c</picklist>
-            <values>
-                <fullName>Business Ops%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Demand%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FSL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Identity%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply%2C</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Escalation_was_brought_to_me_via__c</picklist>
-            <values>
-                <fullName>Google Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operations Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Regional Sales Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sales Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Importance__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>My_Request_Is_Related_To__c</picklist>
-            <values>
-                <fullName>Case Finalized Incorrectly</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Damage Claim</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Factoring Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transport Issue Adjustment</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Problem_Area__c</picklist>
-            <values>
-                <fullName>Account Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Duplicate title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lien Release</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Miscommunication</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>State DMV</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Related_Departments__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ASI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Analytics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arbitration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CR Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Covid</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer Documents</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HR and Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inside Sales</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Major Accounts CSM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marketing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outside Sales</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Payments and Collections</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pricing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Recruiting</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Resolutions</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telephony</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Titles</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transportation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TrueFrame</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Related_Field__c</picklist>
-            <values>
-                <fullName>Account%3A Primary_Contact</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3A cell%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3ABillingAddress%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3ACompliant_Dealer_License%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3ADealership_Notes%5F%5Fc%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3ALegal_Address%5F%5Fc%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account%3APickup_Notes%5F%5Fc%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Auction%3A Buyer_Payment_Method</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Auction%3A odometer%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Date_Delivered_Actual%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Date_Transporter_Paid%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Empty Records</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Missing Arb Case</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Title Case Not Created</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Vehicle%5F%5Fc%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3A Year_Make_Model%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3ASeller_Contact%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Case%3ASeller_Dealership%5F%5Fc%2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Contact%3A phone%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cose%3APosted_Price%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IST_Rep_Account_Manager%5F%5Fc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Report_Source__c</picklist>
-            <values>
-                <fullName>Delighted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Netsuite</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesforce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tableau</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Request_Reasons__c</picklist>
-            <values>
-                <fullName>85%25 Compliance Reached</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACH Setup</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV Relist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV Transport</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account Activation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Account Manager Request</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arb Policy Dispute</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arbitration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Auction Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buyer Arranged Shipment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CR Question</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Call escalation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Collections Inquiry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Contesting Arb Decision</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Credits</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Current Arb Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Customer Feedback</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Damaged Vehicle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer Account Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Disclosure Dispute</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DocuSign POA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Double  Sale</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Double Sale</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ETA Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Expired Dealer Documents</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Feedback</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan Delay</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Goodwill</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Goodwill CS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Late Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mileage Discrepancy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mis-Clerked Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Missing Keys</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Missing Vehicle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Payment Hold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Payments Status Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pickup ETA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pickup%2FDelivery Address Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Post-Auction Transport Request</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Priority Pick-Up Request</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Problem Clarification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Problem Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Questions%2FResearch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Re-Inspection Complete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Re-Run Request%2FPricing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Recommended Pricing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Refund%2C Credit%2C Fee Waiver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Relaunch Request</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Request for Arb</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Single Point of Contact Requests</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Status Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transport</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transportation Delays</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transporter Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trim Level Clarification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unhappy Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unwind Refund</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unwind Request</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Update on Title</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Requested_Employment_Status__c</picklist>
-            <values>
-                <fullName>Full Furlough</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Full Time</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reduced Hours</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Root_Causes__c</picklist>
-            <values>
-                <fullName>ACV Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buyer Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seller Error</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submitted</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Training_Type_Days_Prefered__c</picklist>
-            <values>
-                <fullName>Friday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Off-lease %28ASI%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Retail %28Trueframe%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saturday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sunday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Thursday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tuesday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wednesday</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WholeSale %28CR%29</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Urgency__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Vehicle_Location_Confirmed__c</picklist>
-            <values>
-                <fullName>Picked-up by buyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>With seller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
         <fullName>Unwind</fullName>
         <active>true</active>
         <description>Used for processing an unwind request</description>
@@ -10057,14 +9068,14 @@ Employment Status Request - Select which days in a week to have employee work</i
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Add_Related_Field_Before_Closing</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Must add the field the Request and Inquiry was related to before closing out the ticket.</description>
         <errorConditionFormula>IF(AND(TEXT( My_Request_Is_Related_To__c) = &apos;Incorrect or missing data&apos; ,  TEXT(Status__c)=  &apos;Closed&apos;,  TEXT(Related_Field__c) = null) , True, False)</errorConditionFormula>
         <errorMessage>Please fill out the field this request was related to. If not related to a field, select None in the Related Field Picklist.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CS_Close_Request</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND( RecordType.DeveloperName = &quot;Customer_Success&quot;,
 ISPICKVAL(Status__c ,&quot;Closed&quot;),
 OR( ISBLANK(Related_Account__c),
@@ -10075,7 +9086,7 @@ ISPICKVAL(Root_Causes__c, &quot;&quot;)
     </validationRules>
     <validationRules>
         <fullName>Keep_and_Delete_Account_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When selecting Duplicate Account you must fill out the Keep and Remove account fields.</description>
         <errorConditionFormula>AND(
 ISBLANK( Keep_Account__c  ),ISBLANK(  RemoveAccount__c   ),
@@ -10093,7 +9104,7 @@ ISPICKVAL( My_Request_Is_Related_To__c , &quot;Duplicate Account&quot; )
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Employee_Name</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures a Employee name is selected before submitting ticket</description>
         <errorConditionFormula>AND(
 ISBLANK(  Employee_Name__c  ),
@@ -10103,7 +9114,7 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Employee_Status</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures Request employee status is filled out when requests are in rejected status</description>
         <errorConditionFormula>AND(
  ISBLANK(TEXT(Requested_Employment_Status__c)),
@@ -10114,7 +9125,7 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Region_of_Employee</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures a Region of Employee is selected before submitting ticket</description>
         <errorConditionFormula>AND(
 ISBLANK(   Region_of_Employee__c   ),
@@ -10124,7 +9135,7 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Rejection_Reason</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures rejection reason is filled out when requests are in rejected status</description>
         <errorConditionFormula>AND(
 ISBLANK(   Rejected_Reason__c   ),
@@ -10135,7 +9146,7 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Request_Reasons</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures a request reason is selected before submitting ticket</description>
         <errorConditionFormula>AND(
 ISBLANK( Request_Reasons__c ),
@@ -10146,7 +9157,7 @@ RecordType.DeveloperName = &quot;Ops_Help&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Territory_of_Employee</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures a Territory of Employee is selected before submitting ticket</description>
         <errorConditionFormula>AND(
 ISBLANK(  Territory_of_Employee__c   ),
@@ -10156,7 +9167,7 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Training_and_Days</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Must fill in the select pick list field for workforce management record type</description>
         <errorConditionFormula>AND(
 ISBLANK(  Training_Type_Days_Prefered__c  ),
@@ -10173,16 +9184,8 @@ RecordType.DeveloperName = &quot;Inspector_Workforce_Management&quot;
         <errorMessage>Please select answer Has the vehicle location been confirmed? before saving.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Prevent_Empty_Brief_Descriptions</fullName>
-        <active>true</active>
-        <description>Validation rule that will prevent users from submitting an R&amp;I with the &quot;brief description&quot; field filled in including instances where users will add a few spaces to bypass the current &quot;IsBlank&quot; requirement.</description>
-        <errorConditionFormula>AND(RecordType.DeveloperName = &quot;Salesforce_Request&quot;,
-OR(LEN(Additional_Details_Regarding_My_Request__c) = 0))</errorConditionFormula>
-        <errorMessage>Field &quot;Additional Details Regarding My Request&quot; must contain a valid text. Spaces and/or no entry within this field is not permitted</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Related_Departments</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validates that after Sumbitted status the report source is filled out.</description>
         <errorConditionFormula>AND(
   ISPICKVAL( Status__c , &quot;in progress&quot; )|| ISPICKVAL( Status__c , &quot;Under Consideration&quot; )|| ISPICKVAL( Status__c , &quot;Ready for Review&quot; )|| ISPICKVAL( Status__c , &quot;Closed&quot; ),
@@ -10193,7 +9196,7 @@ ISPICKVAL(  My_Request_Is_Related_To__c , &quot;Analytics, Reporting, and List V
     </validationRules>
     <validationRules>
         <fullName>Report_Source</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validates that after Sumbitted status the report source is filled out.</description>
         <errorConditionFormula>AND( 
 ISPICKVAL( Status__c , &quot;in progress&quot; )|| ISPICKVAL( Status__c , &quot;Under Consideration&quot; )|| ISPICKVAL( Status__c , &quot;Ready for Review&quot; )|| ISPICKVAL( Status__c , &quot;Closed&quot; ), 
@@ -10204,7 +9207,7 @@ ISPICKVAL( My_Request_Is_Related_To__c , &quot;Analytics, Reporting, and List Vi
     </validationRules>
     <validationRules>
         <fullName>Ticket_Outcome_Details</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>To move Status to &quot;Closed&quot; Ticket Outcome details must be entered</description>
         <errorConditionFormula>AND (ISPICKVAL(Status__c ,&quot;Closed&quot;),  RecordType.DeveloperName = &quot;Salesforce Request&quot;, Ticket_Outcome_Details__c =&quot;&quot;)</errorConditionFormula>
         <errorMessage>Add Ticket Outcome Details before changing Status to closed</errorMessage>

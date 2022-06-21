@@ -2065,6 +2065,7 @@
                     console.warn('Couldn\'t update service. ' + err[2]);
                     utils.addNotification(customLabels.Action_Could_Not_Be_Performed, err[2] || err[0].message.substr(err[0].message.indexOf(',') + 1) || customLabels.user_is_not_allowed_to_perform_action);
                     scheduler.parse([err[1]], 'json');
+                    TimePhasedDataService.serviceAppointments()[err[1].id] = err[1];
                 });
             });
         });

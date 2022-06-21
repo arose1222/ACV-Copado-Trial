@@ -159,6 +159,7 @@
     <fields>
         <fullName>ACV_Territory_ID__c</fullName>
         <description>Field to store the external ID of the Territory in ACV&apos;s product database.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Territory ID</label>
         <length>10</length>
@@ -182,6 +183,7 @@
         <fullName>geopointe__Center_Label__c</fullName>
         <deprecated>false</deprecated>
         <description>The center label for shape field circles.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Center Label</label>
         <length>131072</length>
@@ -204,6 +206,7 @@
     <fields>
         <fullName>geopointe__Color__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The hexadecimal color for this shape, such as #8ce013.</inlineHelpText>
         <label>Color</label>
@@ -216,6 +219,7 @@
     <fields>
         <fullName>geopointe__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>A short description for this shape.</inlineHelpText>
         <label>Description</label>
@@ -258,6 +262,7 @@
     <fields>
         <fullName>geopointe__Geometry_Last_Modified__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date and time the last Shape geometry was modified. This field should not be modified by users.</inlineHelpText>
         <label>Geometry Last Modified</label>
@@ -268,6 +273,7 @@
     <fields>
         <fullName>geopointe__Invalid_Reason__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Invalid Reason</label>
         <required>false</required>
@@ -299,6 +305,7 @@
         <fullName>geopointe__Lat_Lng_10__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 10</label>
         <length>131072</length>
@@ -310,6 +317,7 @@
         <fullName>geopointe__Lat_Lng_1__c</fullName>
         <deprecated>false</deprecated>
         <description>These fields contains longitude and latitude data for shapes. The structure follows the GeoJSON spec for coordinates: [[[lng, lat], [lng, lat]]] . IMPORTANT: Field name is Lat_Lng_n__c but GeoJSON stores ongitude first, latitude second. If array of lng/lat points is too long for one field it should be split across mutliple Lat_Lng_n__c fields.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 1</label>
         <length>131072</length>
@@ -321,6 +329,7 @@
         <fullName>geopointe__Lat_Lng_2__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 2</label>
         <length>131072</length>
@@ -332,6 +341,7 @@
         <fullName>geopointe__Lat_Lng_3__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 3</label>
         <length>131072</length>
@@ -343,6 +353,7 @@
         <fullName>geopointe__Lat_Lng_4__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 4</label>
         <length>131072</length>
@@ -354,6 +365,7 @@
         <fullName>geopointe__Lat_Lng_5__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 5</label>
         <length>131072</length>
@@ -365,6 +377,7 @@
         <fullName>geopointe__Lat_Lng_6__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 6</label>
         <length>131072</length>
@@ -376,6 +389,7 @@
         <fullName>geopointe__Lat_Lng_7__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 7</label>
         <length>131072</length>
@@ -387,6 +401,7 @@
         <fullName>geopointe__Lat_Lng_8__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 8</label>
         <length>131072</length>
@@ -398,6 +413,7 @@
         <fullName>geopointe__Lat_Lng_9__c</fullName>
         <deprecated>false</deprecated>
         <description>See Coordinates 1 field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Coordinates 9</label>
         <length>131072</length>
@@ -506,18 +522,6 @@
         <label>Straddles 180th Meridian</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>geopointe__Territory_Plan_ID__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>true</externalId>
-        <inlineHelpText>This is the Territory Plan ID of the Territory Plan in Ascent Cloud Territory Planner.</inlineHelpText>
-        <label>Territory Plan Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>geopointe__Type__c</fullName>
@@ -690,6 +694,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Shape Name</label>
         <type>Text</type>
     </nameField>

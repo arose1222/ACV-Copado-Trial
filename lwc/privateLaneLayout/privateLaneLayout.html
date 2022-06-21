@@ -24,7 +24,6 @@
                 </lightning-layout-item>
                 <lightning-layout-item size=5>
                     <template if:true={isEditOnly}>
-												
                         <c-lookup custom-key="master" data-item="master" selection={brandSelection} errors={errors.branding}
                             onsearch={handleBrandingLookup} onselectionchange={handleBrandingSelectionChange}
                             label="Branding" name="brandReference" placeholder="Pick a Brand logo">
@@ -32,27 +31,7 @@
                         <div class="slds-has-error slds-form-element__help redText" role="alert">
                             {errors.branding}
                         </div>
-												<template if:true={s3Urlpreview}>
-                            	<img src={s3Urlpreview} width="150">
-                        </template>
-												<template if:true={showS3Component}>
-														<br>
-														<span>Upload New Brand Logo</span>
-														
-														<c-s3-file-upload 
-																							s3-bucket={s3Bucket} 
-																							s3-file-path={s3FilePath}  
-																							allow-multiple="false" 
-																							junction-object-type="Private_Lane__c"
-																							junction-object-id={recordId}
-																							s3-reference-type="Private Lane - Branding"
-																							upload-button-text = {uploadButtonText}
-																							cdn-url={cdnUrl}
-																							onsupload={handleS3Upload}
-																							></c-s3-file-upload>
-												</template>
                     </template>
-                    
                     <template if:true={isReadOnly}>
                         <lightning-input read-only={isReadOnly} type="text" value={thisPrivateLane.brandingName} label="Branding"></lightning-input>
                     </template>

@@ -49,7 +49,7 @@
             <name>Update_Awaiting_Floor_Price</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Updated awaiting Floor price checkbox once CR review is compelete</description>
         <formula>AND(  CR_Created__c=True,  CR_Doc_Complete__c=True,  OR(Floor_Price__c&lt;20, Floor_Price__c&gt;=999999))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -60,7 +60,7 @@
             <name>Update_CR_in_Review</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When CR_doc_complete (launchable) and floor price is null</description>
         <formula>AND( CR_Created__c=True, CR_Doc_Complete__c=True, Floor_Price__c=Null)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

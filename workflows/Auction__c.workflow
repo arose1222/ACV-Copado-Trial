@@ -146,7 +146,7 @@ IF(
             <name>Stamp_Buyer_s_IST_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Auction__c.CreatedDate</field>
             <operation>notEqual</operation>
@@ -160,7 +160,7 @@ IF(
             <name>Inform_Buying_Contact_s_IST_AM_That_Multi_Store_Buyer_Needs_To_Select_Dealership</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Auction__c.X4_Hours_No_Buyer__c</field>
             <operation>equals</operation>
@@ -179,7 +179,7 @@ IF(
             <name>Prior_Payment_Method_Updated</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Looks to Buyer payment method to place prior value of that field on the auction  - it is then pulled to the case via a checkbox field called Buyer Payment Changed</description>
         <formula>ISCHANGED( payment_method__c)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -198,7 +198,7 @@ IF(
             <name>Stamp_Relevant_RP_Floor</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Auction__c.id__c</field>
             <operation>notEqual</operation>

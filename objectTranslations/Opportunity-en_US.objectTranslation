@@ -97,6 +97,14 @@
         <name>Average_Monthly_Sales__c</name>
     </fields>
     <fields>
+        <label><!-- Average Turn Time in Days --></label>
+        <name>Average_Turn_Time_in_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Units on lot --></label>
+        <name>Average_Units_on_lot__c</name>
+    </fields>
+    <fields>
         <label><!-- Average Wholesale Vehicle Price --></label>
         <name>Average_Wholesale_Vehicle_Price__c</name>
     </fields>
@@ -170,6 +178,10 @@
         <relationshipLabel><!-- Opportunities (Capital Account Rep) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Capital Credit Decisioning --></label>
+        <name>Capital_Credit_Decisioning__c</name>
+    </fields>
+    <fields>
         <help><!-- Flag to show if this is an Opportunity for an Orange Elite Dealer --></help>
         <label><!-- Capital Dealer Flag --></label>
         <name>Capital_Dealer_Flag__c</name>
@@ -228,10 +240,6 @@
         <picklistValues>
             <masterLabel>New Opportunity Created</masterLabel>
             <translation><!-- New Opportunity Created --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>No Interest</masterLabel>
-            <translation><!-- No Interest --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Not Credit Worthy</masterLabel>
@@ -519,6 +527,11 @@
         <name>Intelliscore_Plus_Risk_Class__c</name>
     </fields>
     <fields>
+        <help><!-- Dealer has shown interest in Daily Fee. --></help>
+        <label><!-- Interest in Daily Fee --></label>
+        <name>Interest_in_Daily_Fee__c</name>
+    </fields>
+    <fields>
         <label><!-- Inventory Turn Time --></label>
         <name>Inventory_Turn_Time__c</name>
     </fields>
@@ -576,6 +589,10 @@
     <fields>
         <label><!-- Management Meeting Scheduled --></label>
         <name>Management_Meeting_Scheduled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Line Limit Elegible --></label>
+        <name>Max_Line_Limit_Elegible__c</name>
     </fields>
     <fields>
         <label><!-- Next Step, Issues, or Objections --></label>
@@ -644,16 +661,8 @@
         <label><!-- Price Book --></label>
         <name>Price_Book__c</name>
         <picklistValues>
-            <masterLabel>2021 Price Book</masterLabel>
-            <translation><!-- 2021 Price Book --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>60 for 60 Tax Season 2022</masterLabel>
-            <translation><!-- 60 for 60 Tax Season 2022 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>A /  Orange Elite Pricing 9.28.21</masterLabel>
-            <translation><!-- A /  Orange Elite Pricing 9.28.21 --></translation>
+            <masterLabel>A / Orange Elite Pricing 9.28.21</masterLabel>
+            <translation><!-- A / Orange Elite Pricing 9.28.21 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>AAA Pricebook 9.23.21</masterLabel>
@@ -712,8 +721,68 @@
             <translation><!-- Advantage - $75 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>May 25 2021 Price Book</masterLabel>
-            <translation><!-- May 25 2021 Price Book --></translation>
+            <masterLabel>April 2022 - Daily Fee - A</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - B</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - C</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - D</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - E</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Gold</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Orange Elite</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Silver</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - A</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - B</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - C</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - D</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - E</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Gold</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Orange Elite</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Silver</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Silver --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -787,10 +856,6 @@
             <translation><!-- 60 Days for $60 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>60 for 60 Tax Season 2022</masterLabel>
-            <translation><!-- 60 for 60 Tax Season 2022 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>California Blitz Priority</masterLabel>
             <translation><!-- California Blitz Priority --></translation>
         </picklistValues>
@@ -842,6 +907,42 @@
     <fields>
         <label><!-- Report Recipients --></label>
         <name>Report_Recipients__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Grade --></label>
+        <name>Risk_Grade__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Orange Elite</masterLabel>
+            <translation><!-- Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Seller Dealership ID --></label>
@@ -1071,6 +1172,14 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
         <name>ACV_Capital_Year_Incorporated</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- you don&apos;t have enough permissions to update this field --></errorMessage>
+        <name>ACV_Capital_field_Risk_Grade</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- you don&apos;t have enough permissions to update this field --></errorMessage>
+        <name>AV_Capital_Max_Line_Limit_Eligible</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- The Account associated with this opportunity is not compliant.  Once the account becomes compliant the opportunity stage can be updated. --></errorMessage>
         <name>FastPass_Cant_move_Stage_Until_Compliant</name>
     </validationRules>
@@ -1101,6 +1210,10 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
     <validationRules>
         <errorMessage><!-- This Account already has an Open ACV Capital Referral Opportunity. --></errorMessage>
         <name>One_Open_ACV_Capital_Oppty_per_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Before moving past the &apos;Under Review&apos; stage, please ensure that &quot;Risk Grade&quot;, &quot;Price Book&quot;, &quot;Credit Product&quot; and &quot;Max Line Limit Ineligible&quot; are not blank --></errorMessage>
+        <name>Opportunity_VL_for_risk_strategy</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- When Tax Lien is yes, comments must be entered to save record --></errorMessage>
@@ -1135,6 +1248,10 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
         <name>MA_MapIt_a04j000000Mqzj4AAB</name>
     </webLinks>
     <webLinks>
+        <label><!-- New_Application --></label>
+        <name>New_Application</name>
+    </webLinks>
+    <webLinks>
         <label><!-- Map --></label>
         <name>geopointe__Map</name>
     </webLinks>
@@ -1149,9 +1266,5 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
     <webLinks>
         <label><!-- Map_newWindow --></label>
         <name>geopointe__Map_newWindow</name>
-    </webLinks>
-    <webLinks>
-        <label><!-- Jifflenow_Meetings --></label>
-        <name>jiffle__Jifflenow_Meetings</name>
     </webLinks>
 </CustomObjectTranslation>

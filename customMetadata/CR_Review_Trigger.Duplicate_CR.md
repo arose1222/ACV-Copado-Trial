@@ -27,10 +27,6 @@
         <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
-        <field>Is_Aux_Reason__c</field>
-        <value xsi:type="xsd:boolean">false</value>
-    </values>
-    <values>
         <field>Prescreen_Reason__c</field>
         <value xsi:type="xsd:string">Duplicate CR</value>
     </values>

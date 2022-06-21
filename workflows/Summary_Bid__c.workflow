@@ -17,7 +17,7 @@
             <name>Update_Last_Bid_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR(ISCHANGED( Latest_Bid__c ), ISNEW())</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

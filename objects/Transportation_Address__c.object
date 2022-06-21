@@ -156,6 +156,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>64</length>
@@ -167,6 +168,7 @@
     </fields>
     <fields>
         <fullName>Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Enter a valid ISO 3166 two-letter country code. Ex: MX = Mexico</inlineHelpText>
         <label>Country</label>
@@ -182,6 +184,7 @@
         <description>Additional information about the address. Usually contains hours at which the location is open or any special instructions that a carrier may need to know when dropping off or picking up a vehicle.
 
 This filed is mapped from transportation_address.notes in tools. The field in MySQL is mediumtext and can contain up to 16 million character but this field can only hold 131,072 in Salesforce.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Additional Instructions that can be useful for a carrier to know.</inlineHelpText>
         <label>Notes</label>
@@ -193,6 +196,7 @@ This filed is mapped from transportation_address.notes in tools. The field in My
     </fields>
     <fields>
         <fullName>Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Zip/Postal Code</label>
         <length>32</length>
@@ -204,6 +208,7 @@ This filed is mapped from transportation_address.notes in tools. The field in My
     </fields>
     <fields>
         <fullName>State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>State</label>
         <length>64</length>
@@ -215,6 +220,7 @@ This filed is mapped from transportation_address.notes in tools. The field in My
     </fields>
     <fields>
         <fullName>Street__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Street</label>
         <length>255</length>
@@ -228,6 +234,7 @@ This filed is mapped from transportation_address.notes in tools. The field in My
         <fullName>id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>external id used for integration with ACV System</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Transportation Address Id</label>
         <length>20</length>
@@ -251,6 +258,7 @@ This filed is mapped from transportation_address.notes in tools. The field in My
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

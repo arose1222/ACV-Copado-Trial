@@ -131,6 +131,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Employee_Approval_Submitted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Employee Approval Submitted</label>
         <required>false</required>
@@ -232,6 +233,7 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Type</label>
         <length>255</length>
@@ -258,6 +260,11 @@
         <filterScope>Mine</filterScope>
         <label>My Time Sheets</label>
     </listViews>
+    <listViews>
+        <fullName>My_TimeSheets</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Time Sheets</label>
+    </listViews>
     <searchLayouts>
         <customTabListAdditionalFields>LastModifiedDate</customTabListAdditionalFields>
         <customTabListAdditionalFields>LastModifiedBy</customTabListAdditionalFields>
@@ -275,7 +282,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Post_Approval_Lockdown</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND($Profile.Name != &apos;System Administrator&apos;, ISPICKVAL(Status, &apos;Approved&apos;))</errorConditionFormula>
         <errorMessage>Time Sheets cannot be edited after being approved.</errorMessage>
     </validationRules>

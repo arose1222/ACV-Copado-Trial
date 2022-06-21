@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Endpoint_URL__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Endpoint URL</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>environment__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>environment</label>
+        <length>5</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>ACV Credit decision</label>
+    <listViews>
+        <fullName>automated_credit_decision</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>environment__c</columns>
+        <columns>Endpoint_URL__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>automated_credit_decision</label>
+    </listViews>
+    <pluralLabel>ACV Credit decisions</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

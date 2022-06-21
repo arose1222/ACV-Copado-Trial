@@ -128,16 +128,22 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Work_Order_LEX</content>
         <formFactor>Large</formFactor>
-        <type>Default</type>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Work_Order_LEX</content>
         <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>ACV_Work_Order_Compact_Layout</compactLayoutAssignment>
@@ -962,6 +968,7 @@
     </fields>
     <fields>
         <fullName>Address</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1007,6 +1014,7 @@
     <fields>
         <fullName>Assigned_Date_Time__c</fullName>
         <description>Stores the DateTime of the most recent time when the Status was set to &quot;Assigned&quot;. Automatically populated by a Process Builder. Used to calculate the following fields: New to Assigned (Hours); and, Assigned to Completed (Hours). Not meant to be on the page layout.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Assigned Date/Time</label>
         <required>false</required>
@@ -1026,19 +1034,6 @@
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Auditor_Name__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>CAP-456: Used by Netsuite Integration (Celigo) to track Audit Information</description>
-        <externalId>false</externalId>
-        <label>Auditor Name</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Work_Orders</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Beta_Flag__c</fullName>
@@ -1066,6 +1061,7 @@ BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
     <fields>
         <fullName>Completed_Date_Time__c</fullName>
         <description>Stores the most recent DateTime when the Status was set to &quot;Completed&quot;. Automatically populated by a Process Builder. Used to calculate the following fields: Assigned to Completed (Hours); and, New to Completed (Hours). Not meant to be on the page layout.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date/Time</label>
         <required>false</required>
@@ -1114,6 +1110,7 @@ BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -1157,6 +1154,7 @@ BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
     <fields>
         <fullName>External_Record_guid__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Record guid</label>
         <length>255</length>
@@ -1218,14 +1216,15 @@ BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
         <fullName>Final_Audit_Score__c</fullName>
         <description>This field reads the score from &apos;Scoring Logic Summary&apos;, but can be overwritten by a user with the permission set:  &apos;Final_Audit_score__c editable on Work Order&apos;.  All other profiles have this field set to &apos;read-only&apos;
 
-JIRA:  CAP - 456</description>
+Only viewable/editable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</description>
         <externalId>false</externalId>
+        <inlineHelpText>Only viewable/editable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</inlineHelpText>
         <label>Final Audit Score</label>
         <precision>1</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1243,6 +1242,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Initiative__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Initiative</label>
         <length>255</length>
@@ -1306,6 +1306,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Launch_Term_Details__c</fullName>
         <description>Stores the additional information on the Account&apos;s Vehicle Launch Terms especially when it is set to Future Date/Time, Run List or Other.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Provide additional information on the Vehicle Launch Terms especially when it is set to Future Date/Time, Run List or Other.</inlineHelpText>
         <label>Launch Term Details</label>
@@ -1550,11 +1551,13 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Scoring_Logic_Summary__c</fullName>
-        <description>This is a roll-up summary field which takes all the Work Order Line Items and takes the MAX value of &apos;scoring_logic__c&apos; and applies it to work order.
+        <description>This is a roll-up summary field which takes all the Work Order Line Items and takes the MAX value of &apos;scoring_logic__c&apos; and applies it to work order
 
-JIRA:  CAP - 456</description>
+Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</description>
         <externalId>false</externalId>
-        <inlineHelpText>Roll-up Summary field calculating MAX Value of Work Order Line Items</inlineHelpText>
+        <inlineHelpText>Roll-up Summary field calculating MAX Value of Work Order Line Items.
+
+Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</inlineHelpText>
         <label>Scoring Logic Summary</label>
         <summarizedField>WorkOrderLineItem.Scoring_Logic__c</summarizedField>
         <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
@@ -1596,6 +1599,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Special_Instructions__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Special Instructions</label>
         <length>255</length>
@@ -1623,6 +1627,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1709,6 +1714,21 @@ JIRA:  CAP - 456</description>
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>WOLI_Completed_Record_Count__c</fullName>
+        <description>Count of Completed WOLI Records</description>
+        <externalId>false</externalId>
+        <label>WOLI Completed Record Count</label>
+        <summaryFilterItems>
+            <field>WorkOrderLineItem.StatusCategory</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>WOLI_Completed_Status_Category_Cnt__c</fullName>
         <description>WOLI Completed Status Category Record Count</description>
         <externalId>false</externalId>
@@ -1718,6 +1738,16 @@ JIRA:  CAP - 456</description>
             <operation>equals</operation>
             <value>Completed</value>
         </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>WOLI_Record_Count__c</fullName>
+        <description>Count of WOLI Records</description>
+        <externalId>false</externalId>
+        <label>WOLI Record Count</label>
         <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -2633,6 +2663,11 @@ JIRA:  CAP - 456</description>
         <label>My Work Orders</label>
     </listViews>
     <listViews>
+        <fullName>My_WorkOrders</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Work Orders</label>
+    </listViews>
+    <listViews>
         <fullName>NY_CT_Metro_WorkOrder</fullName>
         <filterScope>Queue</filterScope>
         <label>NY/CT Metro</label>
@@ -3241,30 +3276,16 @@ JIRA:  CAP - 456</description>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
-        <fullName>Prevent_True360_appointments</fullName>
-        <active>true</active>
-        <description>Prevents the creation of True360 Work Orders based on the Account&apos;s &quot;Halt True360 Appointments&quot; field.</description>
-        <errorConditionFormula>AND(WorkType.Work_Type_Unique_ID__c = &apos;true360&apos;,  Account.Halt_True360_Appointments__c,  ISNEW())</errorConditionFormula>
-        <errorMessage>This dealership is not approved for any True 360 inspections at this time.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Prevent_VCIs_LCs_from_Canceling_WO_Jobs</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevent VCI&apos;s from Canceling WO Jobs.
 Prevent LC&apos;s from Canceling some WO Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
         <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
         <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Prevent_Work_Type_Change</fullName>
-        <active>true</active>
-        <description>Prevent Work Type from being changed</description>
-        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
-        <errorMessage>Work Type CANNOT be changed.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Require_Launch_Term_Details</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures that users fill in the Field: Launch Term Details if the Field: Vehicle Launch Terms is set to either of the following: Future Date/Time, Run List, or Other.</description>
         <errorConditionFormula>AND(
 OR(

@@ -163,6 +163,7 @@
     </fields>
     <fields>
         <fullName>Atlassian_link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Atlassian link</label>
         <required>false</required>
@@ -171,6 +172,7 @@
     </fields>
     <fields>
         <fullName>Backfilled_Object__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Please capitalize first letter for the sake of consistent reporting! Use commas to separate multiple object entries</inlineHelpText>
         <label>Backfilled Object(s)</label>
@@ -183,6 +185,7 @@
     <fields>
         <fullName>Brief_Functionality_Description__c</fullName>
         <description>Describe this release at a high level for context</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Describe this release at a high level for context</inlineHelpText>
         <label>Brief Functionality Description</label>
@@ -192,6 +195,7 @@
     </fields>
     <fields>
         <fullName>Change_Set_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Change Set Link</label>
         <required>false</required>
@@ -200,6 +204,7 @@
     </fields>
     <fields>
         <fullName>Demo_provided_date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Demo provided date</label>
         <required>false</required>
@@ -213,7 +218,7 @@
         <externalId>false</externalId>
         <inlineHelpText>By default, select Successful until another condition applies</inlineHelpText>
         <label>Deployment Status</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -265,29 +270,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Estimated_Days_to_Build__c</fullName>
-        <description>manually entered field to represent the estimated number of days to complete the proposed work</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Estimated number of days it will take to complete the proposed work - Start of work to Prod</inlineHelpText>
-        <label>Estimated Days to Build</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Estimated_Start_Date__c</fullName>
-        <description>manually entered field that is reflective of the date the submitter is expecting to start working on proposed work</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Date submitter expects to begin working on submitted work</inlineHelpText>
-        <label>Estimated Start Date</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Fix_for_Previous_Release__c</fullName>
@@ -461,6 +443,7 @@
     <fields>
         <fullName>Issue_Described__c</fullName>
         <description>Briefly Describe the issue when a Release Survey is marked as anything besides &quot;Successful&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Briefly Describe the issue when a Release Survey is marked as anything besides &quot;Successful&quot;</inlineHelpText>
         <label>Issue Described</label>
@@ -560,151 +543,11 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Other__c</fullName>
-        <description>Used in conjunction with the proposed tools field- this field is required to identify the other tools that may be utilized. Linked to a validation</description>
-        <externalId>false</externalId>
-        <label>Other</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Pre_Development_Survey__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>User to link the Pre-Development survey to the Deployment survey.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Required for the Deployment survey - this field should link back to that record</inlineHelpText>
-        <label>Pre-Development Survey</label>
-        <referenceTo>Release_Survey__c</referenceTo>
-        <relationshipLabel>Release Surveys (Pre-Development Survey)</relationshipLabel>
-        <relationshipName>Release_Surveys1</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Problem_to_Solve__c</fullName>
-        <description>This is a user entered field where they are to provide details on the issue they are tying to solve for</description>
-        <externalId>false</externalId>
-        <label>Problem to Solve</label>
-        <length>13000</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Proposed_Solution__c</fullName>
-        <description>Users are to provide a summary of the solution you are looking to implement</description>
-        <externalId>false</externalId>
-        <label>Proposed Solution</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Proposed_Tools__c</fullName>
-        <description>User selected fields indicating the types of tools that will be used in proposed solution  -Linked to validation rule that requires &quot;Other&quot; field to be populated when it is selected</description>
-        <externalId>false</externalId>
-        <label>Proposed Tools</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Flow</fullName>
-                    <default>false</default>
-                    <label>Flow</label>
-                </value>
-                <value>
-                    <fullName>Process Builder</fullName>
-                    <default>false</default>
-                    <label>Process Builder</label>
-                </value>
-                <value>
-                    <fullName>Workflow Rule</fullName>
-                    <default>false</default>
-                    <label>Workflow Rule</label>
-                </value>
-                <value>
-                    <fullName>Apex</fullName>
-                    <default>false</default>
-                    <label>Apex</label>
-                </value>
-                <value>
-                    <fullName>Validation Rule</fullName>
-                    <default>false</default>
-                    <label>Validation Rule</label>
-                </value>
-                <value>
-                    <fullName>Permission Sets</fullName>
-                    <default>false</default>
-                    <label>Permission Sets</label>
-                </value>
-                <value>
-                    <fullName>Custom Field</fullName>
-                    <default>false</default>
-                    <label>Custom Field</label>
-                </value>
-                <value>
-                    <fullName>Custom Object</fullName>
-                    <default>false</default>
-                    <label>Custom Object</label>
-                </value>
-                <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
-                </value>
-                <value>
-                    <fullName>API Endpoint</fullName>
-                    <default>false</default>
-                    <label>API Endpoint</label>
-                </value>
-                <value>
-                    <fullName>Trigger</fullName>
-                    <default>false</default>
-                    <label>Trigger</label>
-                </value>
-                <value>
-                    <fullName>API Call Out</fullName>
-                    <default>false</default>
-                    <label>API Call Out</label>
-                </value>
-                <value>
-                    <fullName>Consumer</fullName>
-                    <default>false</default>
-                    <label>Consumer</label>
-                </value>
-                <value>
-                    <fullName>LWC</fullName>
-                    <default>false</default>
-                    <label>LWC</label>
-                </value>
-                <value>
-                    <fullName>Record Types</fullName>
-                    <default>false</default>
-                    <label>Record Types</label>
-                </value>
-                <value>
-                    <fullName>List View/Reporting</fullName>
-                    <default>false</default>
-                    <label>List View/Reporting</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
         <fullName>Release_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Date</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -754,19 +597,6 @@ if( ISPICKVAL( Lines_of_Code__c, &apos;1500+&apos; ),
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Released_on_Behalf_of__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Adding a new field to the &apos;Release Survey Object&apos; page layout; that is in correspondence to a lookup relationship with an existing field named, &apos;Sign Off Provided By&apos;. The new field is to be placed under, &apos;Sign Off Provided By&apos; creating a need a way to be able to indicate a release is being done on behalf of another individual.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicate a release is being done on behalf of another individual - typically a contractor</inlineHelpText>
-        <label>Released on Behalf of</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Release_Surveys3</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Requests_Inquiries__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -777,39 +607,6 @@ if( ISPICKVAL( Lines_of_Code__c, &apos;1500+&apos; ),
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Review_Status__c</fullName>
-        <description>This field is used to track the status of the Pre-Deployment Survey</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Pending = yet to be reviewed
-Approved = Good to start work
-Re-Evaluate = Work with team mates to discuss further - move back to pending o re-submit.</inlineHelpText>
-        <label>Review Status</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Pending</fullName>
-                    <default>true</default>
-                    <label>Pending</label>
-                </value>
-                <value>
-                    <fullName>Approved</fullName>
-                    <default>false</default>
-                    <label>Approved</label>
-                </value>
-                <value>
-                    <fullName>Re-Evaluate</fullName>
-                    <default>false</default>
-                    <label>Re-Evaluate</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Schema_Changes__c</fullName>
@@ -870,19 +667,6 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <label>Sign-off provided by</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Release_Surveys</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Sponsor__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>User who is sponsoring the solution</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Who has assigned the work for this issue or who has identified the problem? (Typically PM)</inlineHelpText>
-        <label>Sponsor</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Release_Surveys2</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1093,10 +877,11 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <fullName>Training__c</fullName>
         <externalId>false</externalId>
         <label>Training</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
+            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -1144,22 +929,6 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>Capital_Releases</fullName>
-        <columns>NAME</columns>
-        <columns>Brief_Functionality_Description__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Team__c</columns>
-        <columns>Atlassian_link__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Team__c</field>
-            <operation>equals</operation>
-            <value>ACV Capital</value>
-        </filters>
-        <label>Capital Releases</label>
-    </listViews>
-    <listViews>
         <fullName>Not_Successful_Deployments</fullName>
         <columns>NAME</columns>
         <columns>Deployment_Status__c</columns>
@@ -1183,583 +952,15 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Release Surveys</pluralLabel>
-    <recordTypes>
-        <fullName>Deployment_Survey</fullName>
-        <active>true</active>
-        <description>This survey is used for final release and deployment</description>
-        <label>Deployment Survey</label>
-        <picklistValues>
-            <picklist>Deployment_Status__c</picklist>
-            <values>
-                <fullName>Broke other functionality</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bug identified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New requirements identified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requirement missed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reverted deployment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Successful</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Functionality_Age__c</picklist>
-            <values>
-                <fullName>Existing Only</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New %26 Existing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Only</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lines_of_Code__c</picklist>
-            <values>
-                <fullName>1 - 100</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>101 - 250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1500%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251 - 750</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>751 - 1500</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Number_of_Components__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11 - 20</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>150%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2 - 10</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21 - 35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36 - 70</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>71 - 150</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Proposed_Tools__c</picklist>
-            <values>
-                <fullName>Apex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Custom Field</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Custom Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Permission Sets</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Process Builder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Validation Rule</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Workflow Rule</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Review_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Re-Evaluate</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Schema_Changes__c</picklist>
-            <values>
-                <fullName>Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field and Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field and New Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Object and Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Team__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Business Operations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enterprise Applications Core Team</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Identity %26 Orgs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inspection Platform</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marketplace%2C vAuto %26 Private Auctions</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quality Engineering</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sales Domain</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transportation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unaligned Work</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Valuation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle Integration</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Training__c</picklist>
-            <values>
-                <fullName>Training not provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training not required</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training provided</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Pre_Development_Survey</fullName>
-        <active>true</active>
-        <description>This is a survey used for before work is started</description>
-        <label>Pre-Development Survey</label>
-        <picklistValues>
-            <picklist>Deployment_Status__c</picklist>
-            <values>
-                <fullName>Broke other functionality</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bug identified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New requirements identified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requirement missed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reverted deployment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Successful</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Functionality_Age__c</picklist>
-            <values>
-                <fullName>Existing Only</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New %26 Existing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Only</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lines_of_Code__c</picklist>
-            <values>
-                <fullName>1 - 100</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>101 - 250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1500%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251 - 750</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>751 - 1500</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Number_of_Components__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11 - 20</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>150%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2 - 10</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21 - 35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36 - 70</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>71 - 150</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Proposed_Tools__c</picklist>
-            <values>
-                <fullName>API Call Out</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>API Endpoint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Apex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Consumer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Custom Field</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Custom Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LWC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>List View%2FReporting</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Permission Sets</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Process Builder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Record Types</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trigger</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Validation Rule</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Workflow Rule</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Review_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Re-Evaluate</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Schema_Changes__c</picklist>
-            <values>
-                <fullName>Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field and Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Field and New Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Object</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Object and Field Type Change</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Team__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Business Operations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enterprise Applications Core Team</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Identity %26 Orgs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inspection Platform</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marketplace%2C vAuto %26 Private Auctions</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quality Engineering</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sales Domain</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transportation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unaligned Work</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Valuation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle Integration</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Training__c</picklist>
-            <values>
-                <fullName>Training not provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training not required</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training provided</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
-        <fullName>Proposed_Tools_Includes_Other</fullName>
-        <active>true</active>
-        <description>You must fill out the field &quot;Other&quot; when selecting the other option in proposed tools field.</description>
-        <errorConditionFormula>INCLUDES(Proposed_Tools__c, &quot;Other&quot;) &amp;&amp; ISBLANK( Other__c)</errorConditionFormula>
-        <errorMessage>You must fill out the field &quot;Other&quot; when selecting the other option in proposed tools field.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Require_Issue_Description</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When selecting a Deployment Status other then &apos;Successful&apos;, you need to provide additional details in the Issue Described Field</description>
         <errorConditionFormula>!ISPICKVAL( Deployment_Status__c , &apos;Successful&apos; ) &amp;&amp; ISBLANK(  Issue_Described__c )</errorConditionFormula>
         <errorDisplayField>Deployment_Status__c</errorDisplayField>
         <errorMessage>When selecting a Deployment Status other then &apos;Successful&apos;, you need to provide additional details in the Issue Described Field</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Require_RI_Ticket_or_Atlassian_Link</fullName>
-        <active>true</active>
-        <description>This rule ensures that either &quot;Atlassian Link&quot; or &quot;Requests &amp; Inquiries&quot; field is populated.</description>
-        <errorConditionFormula>AND( 
-RecordType.DeveloperName = &quot;Deployment_Survey&quot;,  
-LEN(Requests_Inquiries__c) = 0,
-IF(ISBLANK(Atlassian_link__c), TRUE,FALSE)
-)</errorConditionFormula>
-        <errorMessage>Please add a link to either the &quot;Atlassian Link&quot; or &quot;Request &amp; Inquiries&quot; field.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>

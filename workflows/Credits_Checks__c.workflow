@@ -100,7 +100,7 @@
             <name>Credit_Check_Done_Failed_Temp_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>ISCHANGED(Approval_Status__c) &amp;&amp; ISPICKVAL(Approval_Status__c,&apos;Done Failed&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

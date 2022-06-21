@@ -409,6 +409,7 @@
     <fields>
         <fullName>End_Date__c</fullName>
         <description>Date of when the Private Lane will End</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -470,6 +471,7 @@
     <fields>
         <fullName>Lane_Id__c</fullName>
         <description>External Id of the Private Lane Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Lane Id</label>
         <length>255</length>
@@ -478,16 +480,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Logo_Url__c</fullName>
-        <description>to store logo s3 url</description>
-        <externalId>false</externalId>
-        <label>Logo Url</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Url</type>
     </fields>
     <fields>
         <fullName>Make_Offer_Duration__c</fullName>
@@ -622,6 +614,7 @@
     <fields>
         <fullName>Start_Date__c</fullName>
         <description>Date the Private Lane will start</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -733,14 +726,16 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Frequency__c</columns>
+        <columns>Preview_Duration__c</columns>
         <columns>Auction_Duration__c</columns>
         <columns>Sale_Format__c</columns>
         <columns>Make_Offer_Duration__c</columns>
         <columns>Payment_Options__c</columns>
+        <columns>Title_Option__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>LAST_UPDATE</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>Custom_Start_Price__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -778,6 +773,7 @@
         <label>All Open Lanes</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Private Lane Name</label>
         <trackHistory>true</trackHistory>
         <type>Text</type>

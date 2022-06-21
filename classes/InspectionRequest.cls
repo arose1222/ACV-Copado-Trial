@@ -2,7 +2,7 @@ public with sharing class InspectionRequest {
 
     public static Id createInspectionRequest(Id accountId, Map<Id, Integer> vehicleCountMap, String timeSelection){
 
-        Map<String,String> timeSelectionMap = new Map<String,String>{'Later' => 'A specific date in the future', 'ASAP' => 'As soon as possible', 'Now' => 'Self assign now', 'Revolving Appointment' => 'Revolving Appointment', 'Live Appraisal' => 'Live Appraisal'};
+        Map<String,String> timeSelectionMap = new Map<String,String>{'Later' => 'A specific date in the future', 'ASAP' => 'As soon as possible', 'Now' => 'Self assign now', 'Revolving Appointment' => 'Revolving Appointment'};
 
         Inspection_Request__c inspecReq = new Inspection_Request__c(
             Account__c = accountId,

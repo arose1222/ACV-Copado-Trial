@@ -11,7 +11,7 @@ public class SetDuplicateCheckerRecordTypeTest {
 
         Test.startTest();
         Lead leadRec = TestUtility.createLead();
-        leadRec.State = 'AK';
+        leadRec.State = 'NY';
         leadRec.EIN_Number__c= '456123';
         leadRec.RecordTypeId = orgLeadRTId;
         leadRec.Dealer_Type__c='Franchise';
@@ -39,7 +39,7 @@ public class SetDuplicateCheckerRecordTypeTest {
 
         Test.startTest();
         Lead leadRec = TestUtility.createLead();
-        leadRec.State = 'AK';
+        leadRec.State = 'NY';
         leadRec.EIN_Number__c= '456123';
         leadRec.RecordTypeId = orgLeadRTId;
         leadRec.Dealer_Type__c='Franchise';

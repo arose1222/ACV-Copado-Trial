@@ -228,16 +228,6 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Arb_Risk_Categories__c</fullName>
-        <externalId>false</externalId>
-        <label>Arb Risk Categories</label>
-        <length>32768</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
         <fullName>Aux_Prescreen_Status__c</fullName>
         <externalId>false</externalId>
         <label>Aux Prescreen Status</label>
@@ -292,6 +282,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Aux_Reviewed_Time_Stamp__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Aux Reviewed Time Stamp</label>
         <required>false</required>
@@ -332,6 +323,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     <fields>
         <fullName>Aux_Under_Review_Time_Stamp__c</fullName>
         <description>Time to be stamped when Auxiliary Status reaches Under Review</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Aux Under Review Time Stamp</label>
         <required>false</required>
@@ -437,6 +429,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
+            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -454,6 +447,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Closed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -484,6 +478,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Escalation_Date_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Escalation Date/Time</label>
         <required>false</required>
@@ -502,6 +497,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_Make__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data Make</label>
         <length>255</length>
@@ -513,6 +509,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_Model__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data Model</label>
         <length>255</length>
@@ -524,6 +521,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_Trim__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data Trim</label>
         <length>255</length>
@@ -535,6 +533,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_VIN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data VIN</label>
         <length>17</length>
@@ -546,6 +545,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_Vehicle_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data Vehicle ID</label>
         <length>255</length>
@@ -557,6 +557,7 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     </fields>
     <fields>
         <fullName>Inspection_Data_Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Data Year</label>
         <length>4</length>
@@ -569,11 +570,12 @@ if((Closed_Date__c - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Red_Statu
     <fields>
         <fullName>Inspection_Id__c</fullName>
         <description>Inspection GUID</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Inspection Id</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -628,6 +630,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     <fields>
         <fullName>Prescreen_GUID__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Prescreen GUID</label>
         <length>40</length>
@@ -639,6 +642,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     </fields>
     <fields>
         <fullName>Prescreen_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prescreen Type</label>
         <length>20</length>
@@ -682,6 +686,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     </fields>
     <fields>
         <fullName>Question_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>32768</length>
@@ -692,6 +697,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     </fields>
     <fields>
         <fullName>Reason__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reason</label>
         <length>255</length>
@@ -746,6 +752,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     </fields>
     <fields>
         <fullName>Status_Last_Updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Status Last Updated</label>
         <required>false</required>
@@ -785,6 +792,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     <fields>
         <fullName>TM_Email__c</fullName>
         <description>This field is populated by a workflow - meant to only be filled in when the pre-screen has related questions(aka errors) - This email field allows the tm to be added to the CRR Closed emial template</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>TM for the Account - only filled in when these are related questions</inlineHelpText>
         <label>TM Email</label>
@@ -839,6 +847,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     <fields>
         <fullName>VCI_Creator_Email__c</fullName>
         <description>Email address of the VCI Creator</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VCI Creator Email</label>
         <required>false</required>
@@ -886,6 +895,7 @@ HYPERLINK(&apos;https://inspection-viewer.internal.acvauctions.com/inspections/&
     <fields>
         <fullName>VCI_Submitter_Email__c</fullName>
         <description>Represents the email address of the VCI field on the CR object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VCI Submitter Email</label>
         <required>false</required>
@@ -963,6 +973,7 @@ BR() &amp;
     <fields>
         <fullName>Virtual_Lift_Image_URL__c</fullName>
         <description>Used for displaying VL Image to Prescreeners</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Virtual Lift Image URL</label>
         <length>255</length>
@@ -1003,12 +1014,11 @@ BR() &amp;
         <columns>Link_To_CR__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Status__c</columns>
-        <columns>OWNER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CREATED_DATE</field>
+            <field>NAME</field>
             <operation>equals</operation>
-            <value>LAST_N_DAYS:7</value>
+            <value>CRR-0650778</value>
         </filters>
         <label>All</label>
         <sharedTo>
@@ -1040,15 +1050,19 @@ BR() &amp;
         <label>Aux Further Review</label>
     </listViews>
     <listViews>
-        <fullName>Auxiliary_Prescreen_Bumper_Lights_Condition_Report_Prescreen</fullName>
+        <fullName>Auxiliary_Prescreen_Automatic_Manual_Condition_Report_Prescreen</fullName>
         <columns>NAME</columns>
         <columns>Age_in_Minutes__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Inspection_Data_Year__c</columns>
-        <columns>Inspection_Data_Make__c</columns>
-        <columns>Inspection_Data_Model__c</columns>
         <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
         <filters>
             <field>CR_Review_Timeout__c</field>
             <operation>equals</operation>
@@ -1058,10 +1072,63 @@ BR() &amp;
             <field>VCI__c</field>
             <operation>notEqual</operation>
         </filters>
+        <label>Auxiliary Prescreen: Automatic/Manual</label>
+        <queue>Auxiliary_Prescreen_Automatic_Manual</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Auxiliary_Prescreen_Bumper_Bumper_Trim_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
             <operation>notEqual</operation>
-            <value>Under Review,Reviewed - No Issues,Reviewed - Sent to Prescreen</value>
+        </filters>
+        <label>Auxiliary Prescreen: Bumper/Bumper Trim</label>
+        <queue>Auxiliary_Prescreen_Bumper_Bumper_Trim</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Auxiliary_Prescreen_Bumper_Lights_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
         </filters>
         <label>Auxiliary Prescreen: Bumper/Lights</label>
         <queue>Auxiliary_Prescreen_Bumper_Lights</queue>
@@ -1074,11 +1141,15 @@ BR() &amp;
         <columns>NAME</columns>
         <columns>Age_in_Minutes__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Inspection_Data_Year__c</columns>
-        <columns>Inspection_Data_Make__c</columns>
-        <columns>Inspection_Data_Model__c</columns>
         <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
         <filters>
             <field>CR_Review_Timeout__c</field>
             <operation>equals</operation>
@@ -1088,11 +1159,6 @@ BR() &amp;
             <field>VCI__c</field>
             <operation>notEqual</operation>
         </filters>
-        <filters>
-            <field>Aux_Prescreen_Status__c</field>
-            <operation>notEqual</operation>
-            <value>Under Review,Reviewed - No Issues,Reviewed - Sent to Prescreen</value>
-        </filters>
         <label>Auxiliary Prescreen: Exterior Cosmetic</label>
         <queue>Auxiliary_Prescreen_Exterior_Cosmetic</queue>
         <sharedTo>
@@ -1100,19 +1166,114 @@ BR() &amp;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CR_Queue_Condition_Report_Prescreen</fullName>
+        <fullName>Auxiliary_Prescreen_Glass_Condition_Report_Prescreen</fullName>
         <columns>NAME</columns>
         <columns>Age_in_Minutes__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
-            <field>CREATED_DATE</field>
+            <field>Aux_Prescreen_Status__c</field>
             <operation>equals</operation>
-            <value>LAST_N_DAYS:7</value>
+            <value>Pending</value>
         </filters>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Auxiliary Prescreen: Glass</label>
+        <queue>Auxiliary_Prescreen_Glass</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Auxiliary_Prescreen_Headlamps_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Aux_Prescreen_Status__c</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Aux_Prescreen_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>CR_Review_Timeout__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>VCI__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Auxiliary Prescreen: Headlamps</label>
+        <queue>Auxiliary_Prescreen_Headlamps</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Queue_Condition_Report_Prescreen</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>CR Queue</label>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Queue_Condition_Report_Review</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Queue</filterScope>
         <label>CR Queue</label>
         <queue>CR_Queue</queue>
+        <sharedTo>
+            <role>Arbitration_Administrator</role>
+            <role>Arbitration_Experience_Manager</role>
+            <role>Arbitration_Experience_Rep</role>
+            <role>Arbitration_Manager</role>
+            <role>System_Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Closed_Prescreen_CRs</fullName>
+        <columns>NAME</columns>
+        <columns>Age_in_Minutes__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Link_To_CR__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Vin__c</columns>
+        <columns>VCI__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>Aux_Queue__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Closed Prescreen CRs</label>
         <sharedTo>
             <role>Arbitration_Administrator</role>
             <role>Arbitration_Experience_Manager</role>
@@ -1139,8 +1300,8 @@ BR() &amp;
         </filters>
         <filters>
             <field>OWNER.ALIAS</field>
-            <operation>notContain</operation>
-            <value>Aux</value>
+            <operation>equals</operation>
+            <value>CR Queue</value>
         </filters>
         <filters>
             <field>VCI__c</field>
@@ -1179,16 +1340,6 @@ BR() &amp;
             <role>Arbitration_Manager</role>
             <role>System_Admin</role>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>SIA_Aux_Queue</fullName>
-        <columns>NAME</columns>
-        <columns>Age_in_Minutes__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>OWNER.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>SIA Aux Queue</label>
-        <queue>SIA_Aux_Queue</queue>
     </listViews>
     <listViews>
         <fullName>SIA_CRs_to_be_screened</fullName>
@@ -1270,15 +1421,16 @@ BR() &amp;
         <fullName>Missing_Photos_True_when_No_Issues</fullName>
         <active>false</active>
         <description>Incomplete/Missing Photos can only be true when Aux Prescreen status is set to Reviewed - No Issues</description>
-        <errorConditionFormula>AND( 
-Incomplete_Missing_Photos__c = TRUE,
+        <errorConditionFormula>AND( Incomplete_Missing_Photos__c = TRUE,
+AND(
 NOT(ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - No Issues&apos;)),
-OR ($Profile.Name  &lt;&gt;  &quot;Arbitration&quot;))</errorConditionFormula>
-        <errorMessage>Incomplete/Missing Photos can only be checked when Aux Prescreen status is set to Reviewed - No Issues or when Arbitration profiles is editing.</errorMessage>
+Aux_Queue__c = TRUE)
+)</errorConditionFormula>
+        <errorMessage>Incomplete/Missing Photos can only be checked when Aux Prescreen status is set to Reviewed - No Issues</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Must_have_Question_for_Aux_and</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND (  
    ISPICKVAL( Aux_Prescreen_Status__c , &apos;Reviewed - Sent to Prescreen&apos;),
     Question_Count__c &lt; 1)</errorConditionFormula>
@@ -1286,7 +1438,7 @@ OR ($Profile.Name  &lt;&gt;  &quot;Arbitration&quot;))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Must_identify_if_changes_made_to_CR</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>used to verify if the Changes made to CR by pre-screener field is populated</description>
         <errorConditionFormula>Aux_Queue__c = FALSE &amp;&amp;
 ISCHANGED(Status__c) &amp;&amp;

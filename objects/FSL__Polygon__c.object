@@ -157,6 +157,7 @@
     <fields>
         <fullName>FSL__Color__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Color</label>
         <length>7</length>
@@ -168,6 +169,7 @@
     <fields>
         <fullName>FSL__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -178,6 +180,7 @@
     <fields>
         <fullName>FSL__KML__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>KML Details</label>
         <length>131072</length>
@@ -257,6 +260,7 @@
     <fields>
         <fullName>Polygon_Unique_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Polygon Unique Id</label>
         <length>255</length>
@@ -274,7 +278,6 @@
         <columns>FSL__KML__c</columns>
         <columns>LAST_UPDATE</columns>
         <columns>UPDATEDBY_USER</columns>
-        <columns>FSL__Color__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -291,6 +294,7 @@
         <label>Polygons Mapped to Inactive Territories</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Polygon Name</label>
         <type>Text</type>
     </nameField>
@@ -299,7 +303,7 @@
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>FSL__Polygon_Color_HEX_Format</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>(!ISBLANK(FSL__Color__c)) &amp;&amp; (NOT(REGEX(FSL__Color__c, &quot;#[a-fA-F0-9]{6}&quot;)))</errorConditionFormula>
         <errorDisplayField>FSL__Color__c</errorDisplayField>
         <errorMessage>Polygon color must be in hexadecimal format: (for example: #ffffff)</errorMessage>

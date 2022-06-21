@@ -3,7 +3,7 @@
     <assignments>
         <name>Assign_Status</name>
         <label>Assign Status</label>
-        <locationX>3151</locationX>
+        <locationX>2920</locationX>
         <locationY>407</locationY>
         <assignmentItems>
             <assignToReference>SA.Status</assignToReference>
@@ -19,8 +19,8 @@
     <assignments>
         <name>Auction_DryRun_Reason</name>
         <label>Auction DryRun Reason</label>
-        <locationX>2013</locationX>
-        <locationY>1277</locationY>
+        <locationX>1813</locationX>
+        <locationY>1138</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -35,8 +35,8 @@
     <assignments>
         <name>CannotCompleteNotes_Reason_Notes</name>
         <label>CannotCompleteNotes Reason Notes</label>
-        <locationX>2257</locationX>
-        <locationY>2393</locationY>
+        <locationX>2024</locationX>
+        <locationY>2323</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -59,8 +59,8 @@
         <description>Assign  CannotCompleteNotes SchedEnd ActualEnd</description>
         <name>CannotCompleteNotes_SchedEnd_ActualEnd</name>
         <label>CannotCompleteNotes SchedEnd ActualEnd</label>
-        <locationX>2355</locationX>
-        <locationY>1171</locationY>
+        <locationX>2151</locationX>
+        <locationY>1083</locationY>
         <assignmentItems>
             <assignToReference>SA.Completed_Canceled_Notes__c</assignToReference>
             <operator>Assign</operator>
@@ -87,36 +87,12 @@
         </connector>
     </assignments>
     <assignments>
-        <description>Adjust the Arrival Window to allow the VCI to start early.</description>
-        <name>Change_Arrival_Window</name>
-        <label>Change Arrival Window</label>
-        <locationX>1378</locationX>
-        <locationY>764</locationY>
-        <assignmentItems>
-            <assignToReference>SA.ArrivalWindowStartTime</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>SA.ArrivalWindowEndTime</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FourHoursFromNow</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>OSchedStart_OSchedEnd_NextStatus_tsestatus</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Change_to_False</name>
         <label>Change to False</label>
-        <locationX>2999</locationX>
+        <locationX>2768</locationX>
         <locationY>321</locationY>
         <assignmentItems>
-            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <assignToReference>SA.Allow_VCI_Status_Change__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -129,10 +105,10 @@
     <assignments>
         <name>Change_to_True</name>
         <label>Change to True</label>
-        <locationX>3004</locationX>
+        <locationX>2773</locationX>
         <locationY>486</locationY>
         <assignmentItems>
-            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <assignToReference>SA.Allow_VCI_Status_Change__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
@@ -145,8 +121,8 @@
     <assignments>
         <name>Completed_Canceled_Notes</name>
         <label>Completed Canceled Notes</label>
-        <locationX>2128</locationX>
-        <locationY>2065</locationY>
+        <locationX>1895</locationX>
+        <locationY>1995</locationY>
         <assignmentItems>
             <assignToReference>SA.Completed_Canceled_Notes__c</assignToReference>
             <operator>Assign</operator>
@@ -159,40 +135,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>CPOFR_Duration_NextStatus_tseststatus</name>
-        <label>CPOFR Duration NextStatus tseststatus</label>
-        <locationX>1677</locationX>
-        <locationY>1196</locationY>
-        <assignmentItems>
-            <assignToReference>NextStatus</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>In_Progress_Status_Choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>tsestatus</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Work in Progress</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>SA.Duration</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>420.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>SchedEnd</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Dealer_DryRun_Reason</name>
         <label>Dealer DryRun Reason</label>
-        <locationX>2017</locationX>
-        <locationY>1396</locationY>
+        <locationX>1813</locationX>
+        <locationY>1281</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -207,8 +153,8 @@
     <assignments>
         <name>Dry_Run_Reason_Selected</name>
         <label>Dry Run Reason Selected</label>
-        <locationX>2492</locationX>
-        <locationY>1553</locationY>
+        <locationX>2288</locationX>
+        <locationY>1465</locationY>
         <assignmentItems>
             <assignToReference>SA.Completed_Canceled_Notes__c</assignToReference>
             <operator>Assign</operator>
@@ -237,8 +183,8 @@
     <assignments>
         <name>DryRun_NextStatus_Reason_Notes</name>
         <label>DryRun NextStatus Reason Notes</label>
-        <locationX>1492</locationX>
-        <locationY>2372</locationY>
+        <locationX>1259</locationX>
+        <locationY>2302</locationY>
         <assignmentItems>
             <assignToReference>SA.Dry_Run__c</assignToReference>
             <operator>Assign</operator>
@@ -275,8 +221,8 @@
         <description>Assign DryRun NextStatus SchedStart ActualStart</description>
         <name>DryRun_NextStatus_tseStatus</name>
         <label>DryRun NextStatus tseStatus</label>
-        <locationX>1429</locationX>
-        <locationY>1478</locationY>
+        <locationX>1225</locationX>
+        <locationY>1390</locationY>
         <assignmentItems>
             <assignToReference>SA.Dry_Run__c</assignToReference>
             <operator>Assign</operator>
@@ -306,8 +252,8 @@
         <description>Assign DryRun NextStatus tsestatus</description>
         <name>DryRun_NextStatus_tsestatus_ValidZero</name>
         <label>DryRun NextStatus tseStatus</label>
-        <locationX>1622</locationX>
-        <locationY>1689</locationY>
+        <locationX>1439</locationX>
+        <locationY>1601</locationY>
         <assignmentItems>
             <assignToReference>SA.Dry_Run__c</assignToReference>
             <operator>Assign</operator>
@@ -337,8 +283,8 @@
         <description>Update Duration from Scheduled End - Scheduled Start</description>
         <name>Duration_Calc_from_SchedEnd_SchedStart</name>
         <label>Duration Calc from SchedEnd SchedStart</label>
-        <locationX>2639</locationX>
-        <locationY>2199</locationY>
+        <locationX>2406</locationX>
+        <locationY>2129</locationY>
         <assignmentItems>
             <assignToReference>SA.Duration</assignToReference>
             <operator>Assign</operator>
@@ -353,8 +299,8 @@
     <assignments>
         <name>Duration_NextStatus_tsestatus</name>
         <label>Duration NextStatus tsestatus</label>
-        <locationX>1669</locationX>
-        <locationY>852</locationY>
+        <locationX>1481</locationX>
+        <locationY>809</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -383,8 +329,8 @@
     <assignments>
         <name>Duration_NextStatus_tsestatus_NotDryRun</name>
         <label>Duration NextStatus tsestatus</label>
-        <locationX>1432</locationX>
-        <locationY>1887</locationY>
+        <locationX>1228</locationX>
+        <locationY>1799</locationY>
         <assignmentItems>
             <assignToReference>SA.Duration</assignToReference>
             <operator>Assign</operator>
@@ -413,8 +359,8 @@
     <assignments>
         <name>DurationCalc_NextStatus_tsestatus</name>
         <label>DurationCalc NextStatus tsestatus</label>
-        <locationX>1672</locationX>
-        <locationY>971</locationY>
+        <locationX>1483</locationX>
+        <locationY>932</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -444,8 +390,8 @@
         <description>Assign Duration DurationType</description>
         <name>DurationType_Duration</name>
         <label>DurationType Duration</label>
-        <locationX>2013</locationX>
-        <locationY>757</locationY>
+        <locationX>1873</locationX>
+        <locationY>716</locationY>
         <assignmentItems>
             <assignToReference>SA.DurationType</assignToReference>
             <operator>Assign</operator>
@@ -467,8 +413,8 @@
     <assignments>
         <name>GMFIA_Duration_NextStatus_tsestatus</name>
         <label>GMFIA Duration NextStatus tsestatus</label>
-        <locationX>1675</locationX>
-        <locationY>1083</locationY>
+        <locationX>1485</locationX>
+        <locationY>1064</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -487,7 +433,7 @@
             <assignToReference>SA.Duration</assignToReference>
             <operator>Assign</operator>
             <value>
-                <numberValue>480.0</numberValue>
+                <numberValue>420.0</numberValue>
             </value>
         </assignmentItems>
         <connector>
@@ -497,8 +443,8 @@
     <assignments>
         <name>NextStatus_Completed</name>
         <label>NextStatus</label>
-        <locationX>1418</locationX>
-        <locationY>2050</locationY>
+        <locationX>1185</locationX>
+        <locationY>1980</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -513,8 +459,8 @@
     <assignments>
         <name>NextStatus_Completed_or_Cannot_Complete</name>
         <label>NextStatus</label>
-        <locationX>1432</locationX>
-        <locationY>2206</locationY>
+        <locationX>1199</locationX>
+        <locationY>2136</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -529,8 +475,8 @@
     <assignments>
         <name>NextStatus_Reason_Notes</name>
         <label>NextStatus Reason Notes</label>
-        <locationX>1651</locationX>
-        <locationY>2372</locationY>
+        <locationX>1418</locationX>
+        <locationY>2302</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -559,8 +505,8 @@
     <assignments>
         <name>NextStatus_to_Acknowledged</name>
         <label>NextStatus to Acknowledged</label>
-        <locationX>933</locationX>
-        <locationY>167</locationY>
+        <locationX>702</locationX>
+        <locationY>205</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -575,8 +521,8 @@
     <assignments>
         <name>NextStatus_tsestatus_to_Travel</name>
         <label>NextStatus tsestatus to Travel</label>
-        <locationX>2007</locationX>
-        <locationY>422</locationY>
+        <locationX>1777</locationX>
+        <locationY>432</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -598,8 +544,8 @@
     <assignments>
         <name>OSchedStart_OSchedEnd_NextStatus_tsestatus</name>
         <label>OSchedStart OSchedEnd NextStatus tsestatus</label>
-        <locationX>1378</locationX>
-        <locationY>609</locationY>
+        <locationX>1231</locationX>
+        <locationY>639</locationY>
         <assignmentItems>
             <assignToReference>NextStatus</assignToReference>
             <operator>Assign</operator>
@@ -635,8 +581,8 @@
     <assignments>
         <name>Remaining_DryRun_Reason</name>
         <label>Remaining DryRun Reason</label>
-        <locationX>2024</locationX>
-        <locationY>1560</locationY>
+        <locationX>1816</locationX>
+        <locationY>1420</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -652,8 +598,8 @@
         <description>Assign Sched End</description>
         <name>Sched_End</name>
         <label>Sched End</label>
-        <locationX>2013</locationX>
-        <locationY>607</locationY>
+        <locationX>1873</locationX>
+        <locationY>574</locationY>
         <assignmentItems>
             <assignToReference>SA.SchedEndTime</assignToReference>
             <operator>Assign</operator>
@@ -668,8 +614,8 @@
     <assignments>
         <name>SchedEnd</name>
         <label>SchedEnd</label>
-        <locationX>1892</locationX>
-        <locationY>1020</locationY>
+        <locationX>1688</locationX>
+        <locationY>932</locationY>
         <assignmentItems>
             <assignToReference>SA.SchedEndTime</assignToReference>
             <operator>Assign</operator>
@@ -684,8 +630,8 @@
     <assignments>
         <name>SchedEnd_NotDryRun</name>
         <label>SchedEnd</label>
-        <locationX>1623</locationX>
-        <locationY>1887</locationY>
+        <locationX>1444</locationX>
+        <locationY>1799</locationY>
         <assignmentItems>
             <assignToReference>SA.SchedEndTime</assignToReference>
             <operator>Assign</operator>
@@ -701,8 +647,8 @@
         <description>Assign SchedStart ActualStart</description>
         <name>SchedStart_ActualStart</name>
         <label>SchedStart ActualStart</label>
-        <locationX>1589</locationX>
-        <locationY>672</locationY>
+        <locationX>1400</locationX>
+        <locationY>639</locationY>
         <assignmentItems>
             <assignToReference>SA.SchedStartTime</assignToReference>
             <operator>Assign</operator>
@@ -725,8 +671,8 @@
         <description>Assign ScheduledEnd</description>
         <name>ScheduledEnd</name>
         <label>ScheduledEnd</label>
-        <locationX>2257</locationX>
-        <locationY>2199</locationY>
+        <locationX>2024</locationX>
+        <locationY>2129</locationY>
         <assignmentItems>
             <assignToReference>SA.SchedEndTime</assignToReference>
             <operator>Assign</operator>
@@ -739,27 +685,10 @@
         </connector>
     </assignments>
     <assignments>
-        <description>Sets the Number of Vehicles from the Inspection - Number of Vehicles field on the Work Order.</description>
-        <name>Set_Of_Vehicles</name>
-        <label>Set # Of Vehicles</label>
-        <locationX>1036</locationX>
-        <locationY>1689</locationY>
-        <assignmentItems>
-            <assignToReference>DefaultNumberOfVehicles</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>var_GetWorkOrder.Inspection_Number_of_Vehicles__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Get_Vehicle_Count</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <description>Assign Special Instructions Acknowledged</description>
         <name>Special_Instructions_to_Acknowledged</name>
         <label>Special Instructions to Acknowledged</label>
-        <locationX>1776</locationX>
+        <locationX>1545</locationX>
         <locationY>481</locationY>
         <assignmentItems>
             <assignToReference>SA.Special_Instructions_Acknowledged__c</assignToReference>
@@ -775,8 +704,8 @@
     <assignments>
         <name>Standard_SiriusXM_True360_DryRun_Reason</name>
         <label>Standard SiriusXM True360 DryRun Reason</label>
-        <locationX>2085</locationX>
-        <locationY>1681</locationY>
+        <locationX>1821</locationX>
+        <locationY>1593</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -791,8 +720,8 @@
     <assignments>
         <name>tsestatus_ActualEnd</name>
         <label>tsestatus ActualEnd</label>
-        <locationX>1570</locationX>
-        <locationY>2206</locationY>
+        <locationX>1337</locationX>
+        <locationY>2136</locationY>
         <assignmentItems>
             <assignToReference>tsestatus</assignToReference>
             <operator>Assign</operator>
@@ -814,8 +743,8 @@
     <assignments>
         <name>Vehicle_Count_Entered_assignment</name>
         <label>Vehicle Count Entered</label>
-        <locationX>1293</locationX>
-        <locationY>1689</locationY>
+        <locationX>1089</locationX>
+        <locationY>1601</locationY>
         <assignmentItems>
             <assignToReference>var_GetWorkOrder.Inspection_Number_of_Vehicles__c</assignToReference>
             <operator>Assign</operator>
@@ -830,8 +759,8 @@
     <assignments>
         <name>WOLIs_marked_Cannot_Complete</name>
         <label>WOLIs marked Cannot Complete</label>
-        <locationX>2429</locationX>
-        <locationY>1331</locationY>
+        <locationX>2225</locationX>
+        <locationY>1243</locationY>
         <assignmentItems>
             <assignToReference>SA.Completed_Canceled_Notes__c</assignToReference>
             <operator>Assign</operator>
@@ -1185,8 +1114,8 @@
     <decisions>
         <name>Are_Notes_Empty</name>
         <label>Are Notes Empty?</label>
-        <locationX>2251</locationX>
-        <locationY>1432</locationY>
+        <locationX>2047</locationX>
+        <locationY>1344</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Notes_Empty_WOLIs_Cannot_Complete</name>
@@ -1272,57 +1201,15 @@
     <decisions>
         <name>Are_WOLIs_Completed</name>
         <label>Are WOLIs Completed</label>
-        <locationX>1276</locationX>
-        <locationY>2208</locationY>
+        <locationX>1044</locationX>
+        <locationY>2138</locationY>
         <defaultConnector>
             <targetReference>NextStatus_Completed_or_Cannot_Complete</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>WOLIs_NOT_Completed</name>
-            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6) AND 7 AND 8</conditionLogic>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>inspection</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>verification</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>promo work</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>true360</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>arbitration inspection</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Bundled__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
+            <conditionLogic>1 AND 2 AND (3 OR 4 OR 5 OR 6)</conditionLogic>
             <conditions>
                 <leftValueReference>Completion_Status</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1337,6 +1224,34 @@
                     <elementReference>var_GetWorkOrder.LineItemCount</elementReference>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Standard</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Asset</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Promo</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>True</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Complete_ALL_WOLIs</targetReference>
             </connector>
@@ -1346,8 +1261,8 @@
     <decisions>
         <name>Cannot_Complete_Reason_Choice</name>
         <label>Cannot Complete Reason Choice</label>
-        <locationX>1723</locationX>
-        <locationY>2208</locationY>
+        <locationX>1490</locationX>
+        <locationY>2138</locationY>
         <defaultConnector>
             <targetReference>ScheduledEnd</targetReference>
         </defaultConnector>
@@ -1363,10 +1278,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>promo work</stringValue>
+                    <stringValue>Promo Work</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1419,57 +1334,10 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Change the Arrival Window on FBI/ACV Anywhere Service Appointments if the VCI arrives early.</description>
-        <name>Check_FBI_ACV_Anywhere_Arrival_Window</name>
-        <label>Check FBI/ACV Anywhere Arrival Window</label>
-        <locationX>1131</locationX>
-        <locationY>677</locationY>
-        <defaultConnector>
-            <targetReference>OSchedStart_OSchedEnd_NextStatus_tsestatus</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>FBI_ACV_Anywhere_Arrival_Window</name>
-            <conditionLogic>(1 OR 2) AND (3 OR 4)</conditionLogic>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>acvhome</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>fbi</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.ArrivalWindowStartTime</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <elementReference>$Flow.CurrentDateTime</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Flow.CurrentDate</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <elementReference>SA.ArrivalWindowEndTime</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Change_Arrival_Window</targetReference>
-            </connector>
-            <label>FBI/ACV Anywhere Arrival Window</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Check_for_In_Progress_Work</name>
         <label>Check for In Progress Work</label>
-        <locationX>1253</locationX>
-        <locationY>423</locationY>
+        <locationX>820</locationX>
+        <locationY>435</locationY>
         <defaultConnector>
             <targetReference>Check_for_Special_Instructions</targetReference>
         </defaultConnector>
@@ -1484,13 +1352,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>var_getInspectionRequest.Request_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Self assign now</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Close_In_Progress_Work</targetReference>
             </connector>
@@ -1500,8 +1361,8 @@
     <decisions>
         <name>Check_for_New_WOLIs</name>
         <label>Check for New WOLIs</label>
-        <locationX>1166</locationX>
-        <locationY>2506</locationY>
+        <locationX>933</locationX>
+        <locationY>2436</locationY>
         <defaultConnector>
             <targetReference>Work_Order_Line_Items_are_marked_Cannot_Complete</targetReference>
         </defaultConnector>
@@ -1526,8 +1387,8 @@
         <description>Check for Special Instructions</description>
         <name>Check_for_Special_Instructions</name>
         <label>Check for Special Instructions</label>
-        <locationX>1375</locationX>
-        <locationY>425</locationY>
+        <locationX>1075</locationX>
+        <locationY>435</locationY>
         <defaultConnector>
             <targetReference>NextStatus_tsestatus_to_Travel</targetReference>
         </defaultConnector>
@@ -1551,8 +1412,8 @@
     <decisions>
         <name>Check_WOLI_Count_to_Update_Duration</name>
         <label>Check WOLI Count to Update Duration</label>
-        <locationX>1422</locationX>
-        <locationY>1019</locationY>
+        <locationX>1215</locationX>
+        <locationY>933</locationY>
         <defaultConnector>
             <targetReference>DurationCalc_NextStatus_tsestatus</targetReference>
         </defaultConnector>
@@ -1576,10 +1437,10 @@
             <name>GMFIA_2_WOLIs</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>gmfia</stringValue>
+                    <stringValue>GMFIA</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1594,34 +1455,12 @@
             </connector>
             <label>GMFIA 2 WOLIs</label>
         </rules>
-        <rules>
-            <name>CPOFR_2_WOLIs</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>cpofr</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>var_GetWorkOrder.LineItemCount</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>2.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>CPOFR_Duration_NextStatus_tseststatus</targetReference>
-            </connector>
-            <label>CPOFR 2 WOLIs</label>
-        </rules>
     </decisions>
     <decisions>
         <name>Check_WOLI_Vehicles</name>
         <label>Check # WOLI &amp; # Vehicles</label>
-        <locationX>1564</locationX>
-        <locationY>2500</locationY>
+        <locationX>1331</locationX>
+        <locationY>2430</locationY>
         <defaultConnector>
             <targetReference>NextStatus_Reason_Notes</targetReference>
         </defaultConnector>
@@ -1651,88 +1490,53 @@
     </decisions>
     <decisions>
         <description>Check if the Work Type is FBI, CPO, or GMFIA.  If it is, the Cannot Complete option is NOT available.</description>
-        <name>If_CPO_combo_or_WOLIs_Cannot_Complete</name>
-        <label>If CPO combo or WOLIs Cannot Complete</label>
-        <locationX>917</locationX>
-        <locationY>2207</locationY>
+        <name>If_FBI_CPO_GMFIA_ACVHome</name>
+        <label>If FBI CPO GMFIA ACVHome</label>
+        <locationX>684</locationX>
+        <locationY>2137</locationY>
         <defaultConnector>
             <targetReference>Choose_Completion</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>FBI_CPO_VCPO_GMFIA_ACVHome_NOT_Bundled</name>
-            <conditionLogic>(1 OR 2 OR 3 OR 4) AND 5</conditionLogic>
+            <name>FBI_CPO_VCPO_GMFIA_ACVHome</name>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>acvhome</stringValue>
+                    <stringValue>FBI</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
-                    <stringValue>cpo</stringValue>
+                    <stringValue>CPO</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>fbi</stringValue>
+                    <stringValue>GMFIA</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>gmfia</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Bundled__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>ACV Home</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Choose_Completed</targetReference>
             </connector>
-            <label>FBI CPO VCPO GMFIA ACVHome &amp; NOT Bundled</label>
+            <label>FBI CPO VCPO GMFIA ACVHome</label>
         </rules>
         <rules>
             <name>Yes_WOLIs_Cannot_Complete</name>
-            <conditionLogic>(1 OR 2 OR 3 OR 4) AND 5</conditionLogic>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>inspection</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>siriusxm</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>true360</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SA.Bundled__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
             <conditions>
                 <leftValueReference>var_GetWorkOrder.WOLI_Cannot_Complete_Status_Category_Cnt__c</leftValueReference>
                 <operator>GreaterThan</operator>
@@ -1740,17 +1544,38 @@
                     <numberValue>0.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard Inspection</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sirius XM</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>True 360</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Check_for_New_WOLIs</targetReference>
             </connector>
-            <label>Yes WOLIs = Cannot Complete</label>
+            <label>Yes - WOLIs = Cannot Complete?</label>
         </rules>
     </decisions>
     <decisions>
         <name>In_Progress_or_Dry_Run_or_Standard</name>
         <label>In Progress or Dry Run or Standard</label>
-        <locationX>975</locationX>
-        <locationY>1254</locationY>
+        <locationX>771</locationX>
+        <locationY>1166</locationY>
         <defaultConnector>
             <targetReference>Check_WOLI_Count_to_Update_Duration</targetReference>
         </defaultConnector>
@@ -1766,52 +1591,52 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>arbitration inspection</stringValue>
+                    <stringValue>Arbitration Inspection</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>verification</stringValue>
+                    <stringValue>Asset Verification</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>StartsWith</operator>
                 <rightValue>
-                    <stringValue>auction</stringValue>
+                    <stringValue>Auction</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>buyer signup</stringValue>
+                    <stringValue>Buyer Signup</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>dealer</stringValue>
+                    <stringValue>Dealer</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>promo work</stringValue>
+                    <stringValue>Promo Work</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>unwind inspection</stringValue>
+                    <stringValue>Unwind Inspection</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1823,28 +1648,28 @@
             <name>StandardInspection_SiriusXM_True360</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>inspection</stringValue>
+                    <stringValue>Standard Inspection</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>siriusxm</stringValue>
+                    <stringValue>Sirius XM</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>true360</stringValue>
+                    <stringValue>True 360</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_Number_Of_Vehicles</targetReference>
+                <targetReference>Get_Vehicle_Count</targetReference>
             </connector>
             <label>Standard SiriusXM True360</label>
         </rules>
@@ -1859,24 +1684,24 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>inspection</stringValue>
+                    <stringValue>Standard Inspection</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>siriusxm</stringValue>
+                    <stringValue>Sirius XM</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>true360</stringValue>
+                    <stringValue>True 360</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1886,9 +1711,9 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_Checkbox_True_Allow_Change_from_Flow</name>
-        <label>Is Checkbox True - Allow Change from Flow</label>
-        <locationX>2759</locationX>
+        <name>Is_Checkbox_True_Allow_VCI_Status_change</name>
+        <label>Is Checkbox True - Allow VCI Status change</label>
+        <locationX>2528</locationX>
         <locationY>404</locationY>
         <defaultConnector>
             <targetReference>Change_to_True</targetReference>
@@ -1898,7 +1723,7 @@
             <name>Checkbox_IS_True</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Allow_Change_From_Flow__c</leftValueReference>
+                <leftValueReference>SA.Allow_VCI_Status_Change__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1914,8 +1739,8 @@
         <description>Is Duration Type Hours</description>
         <name>Is_Duration_Type_Hours</name>
         <label>Is Duration Type Hours?</label>
-        <locationX>1752</locationX>
-        <locationY>674</locationY>
+        <locationX>1563</locationX>
+        <locationY>641</locationY>
         <defaultConnector>
             <targetReference>Sched_End</targetReference>
         </defaultConnector>
@@ -1940,8 +1765,8 @@
         <description>Is this a Dry Run</description>
         <name>Is_this_a_Dry_Run</name>
         <label>Is this a Dry Run?</label>
-        <locationX>1421</locationX>
-        <locationY>1255</locationY>
+        <locationX>1217</locationX>
+        <locationY>1167</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Yes_Dry_Run</name>
@@ -1977,8 +1802,8 @@
     <decisions>
         <name>Is_Vehicle_Count_Zero</name>
         <label>Is Vehicle Count Zero?</label>
-        <locationX>1422</locationX>
-        <locationY>1691</locationY>
+        <locationX>1218</locationX>
+        <locationY>1603</locationY>
         <defaultConnector>
             <targetReference>Duration_NextStatus_tsestatus_NotDryRun</targetReference>
         </defaultConnector>
@@ -2038,8 +1863,8 @@
     <decisions>
         <name>SA_Update_Status_Choice</name>
         <label>SA Update Status Choice</label>
-        <locationX>925</locationX>
-        <locationY>670</locationY>
+        <locationX>694</locationX>
+        <locationY>668</locationY>
         <defaultConnector>
             <targetReference>Unable_to_Change_Status_Screen</targetReference>
         </defaultConnector>
@@ -2091,7 +1916,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Inspection_Request</targetReference>
+                <targetReference>Check_for_In_Progress_Work</targetReference>
             </connector>
             <label>Ack --&gt; Travel</label>
         </rules>
@@ -2106,7 +1931,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_FBI_ACV_Anywhere_Arrival_Window</targetReference>
+                <targetReference>OSchedStart_OSchedEnd_NextStatus_tsestatus</targetReference>
             </connector>
             <label>Travel -&gt; Arrived</label>
         </rules>
@@ -2136,49 +1961,16 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>If_CPO_combo_or_WOLIs_Cannot_Complete</targetReference>
+                <targetReference>If_FBI_CPO_GMFIA_ACVHome</targetReference>
             </connector>
             <label>In Progress -&gt; Completed/Cannot Complete</label>
         </rules>
     </decisions>
     <decisions>
-        <description>Sets a default value for the number of vehicles.</description>
-        <name>Set_Number_Of_Vehicles</name>
-        <label>Set Number Of Vehicles</label>
-        <locationX>1028</locationX>
-        <locationY>1482</locationY>
-        <defaultConnector>
-            <targetReference>Get_Vehicle_Count</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>No_WOLI_Count</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>var_GetWorkOrder.LineItemCount</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>var_GetWorkOrder.LineItemCount</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_Of_Vehicles</targetReference>
-            </connector>
-            <label>No WOLI Count</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Which_Dry_Run_Work_Type</name>
         <label>Which Dry Run Work Type</label>
-        <locationX>1608</locationX>
-        <locationY>1480</locationY>
+        <locationX>1404</locationX>
+        <locationY>1392</locationY>
         <defaultConnector>
             <targetReference>Remaining_Work_Types_Dry_Run_Reasons</targetReference>
         </defaultConnector>
@@ -2187,10 +1979,10 @@
             <name>Auction</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>StartsWith</operator>
                 <rightValue>
-                    <stringValue>auction</stringValue>
+                    <stringValue>Auction</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -2202,10 +1994,10 @@
             <name>Dealer</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>dealer</stringValue>
+                    <stringValue>Dealer</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -2217,24 +2009,24 @@
             <name>Standard_Inspection_Sirius_XM_True_360</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>inspection</stringValue>
+                    <stringValue>Standard Inspection</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>siriusxm</stringValue>
+                    <stringValue>Sirius XM</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>SA.Work_Type_Unique_ID__c</leftValueReference>
+                <leftValueReference>SA.Work_Type_Name__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>true360</stringValue>
+                    <stringValue>True 360</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -2243,7 +2035,7 @@
             <label>Standard Inspection Sirius XM True 360</label>
         </rules>
     </decisions>
-    <description>ID-3561 Allow VCI to instantly status self assigned appointments, despite there being work in progress.</description>
+    <description>ID-3323 Remove Documentation Gathering Work Type.</description>
     <dynamicChoiceSets>
         <name>CantCompleteReason</name>
         <dataType>Picklist</dataType>
@@ -2271,12 +2063,6 @@
         <dataType>Number</dataType>
         <expression>({!SA.SchedEndTime} - {!SA.SchedStartTime}) * 24 * 60</expression>
         <scale>2</scale>
-    </formulas>
-    <formulas>
-        <description>4 hours in the future</description>
-        <name>FourHoursFromNow</name>
-        <dataType>DateTime</dataType>
-        <expression>{!$Flow.CurrentDateTime} + (4/24)</expression>
     </formulas>
     <formulas>
         <name>OneMinuteFromNow</name>
@@ -2330,7 +2116,7 @@
     <recordCreates>
         <name>Create_TSE_Req</name>
         <label>Create TSE Req</label>
-        <locationX>3519</locationX>
+        <locationX>3288</locationX>
         <locationY>407</locationY>
         <inputAssignments>
             <field>Action__c</field>
@@ -2365,33 +2151,10 @@
         <object>TSE_Request__c</object>
     </recordCreates>
     <recordLookups>
-        <description>Gets the Inspection Request from the work order.</description>
-        <name>Get_Inspection_Request</name>
-        <label>Get Inspection Request</label>
-        <locationX>1073</locationX>
-        <locationY>421</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_for_In_Progress_Work</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>var_GetWorkOrder.Inspection_Request__c</elementReference>
-            </value>
-        </filters>
-        <object>Inspection_Request__c</object>
-        <outputReference>var_getInspectionRequest</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Request_Type__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Service_Appointment</name>
         <label>Get Service Appointment</label>
-        <locationX>633</locationX>
-        <locationY>668</locationY>
+        <locationX>435</locationX>
+        <locationY>666</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Work_Orders</targetReference>
@@ -2413,6 +2176,7 @@
         <queriedFields>SchedEndTime</queriedFields>
         <queriedFields>SchedStartTime</queriedFields>
         <queriedFields>WorkTypeId</queriedFields>
+        <queriedFields>Work_Type_Name__c</queriedFields>
         <queriedFields>Work_Order__c</queriedFields>
         <queriedFields>ActualDuration</queriedFields>
         <queriedFields>Work_Type_Duration__c</queriedFields>
@@ -2420,20 +2184,16 @@
         <queriedFields>Street</queriedFields>
         <queriedFields>PostalCode</queriedFields>
         <queriedFields>ServiceTerritoryId</queriedFields>
+        <queriedFields>Allow_VCI_Status_Change__c</queriedFields>
         <queriedFields>Assigned_Resource_Has_In_Progress_Work__c</queriedFields>
         <queriedFields>Special_Instructions_Acknowledged__c</queriedFields>
-        <queriedFields>Work_Type_Unique_ID__c</queriedFields>
-        <queriedFields>ArrivalWindowStartTime</queriedFields>
-        <queriedFields>ArrivalWindowEndTime</queriedFields>
-        <queriedFields>Allow_Change_From_Flow__c</queriedFields>
-        <queriedFields>Bundled__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <description>Get Work Order fields</description>
         <name>Get_Work_Orders</name>
         <label>Get Work Orders</label>
-        <locationX>791</locationX>
-        <locationY>668</locationY>
+        <locationX>566</locationX>
+        <locationY>666</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>SA_Update_Status_Choice</targetReference>
@@ -2454,12 +2214,11 @@
         <queriedFields>WOLI_Completed_Status_Category_Cnt__c</queriedFields>
         <queriedFields>WOLI_Cannot_Complete_Status_Category_Cnt__c</queriedFields>
         <queriedFields>Inspection_Number_of_Vehicles__c</queriedFields>
-        <queriedFields>Inspection_Request__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Service_Appointment</name>
         <label>Update Service Appointment</label>
-        <locationX>3266</locationX>
+        <locationX>3035</locationX>
         <locationY>407</locationY>
         <connector>
             <targetReference>Update_Work_Order</targetReference>
@@ -2469,7 +2228,7 @@
     <recordUpdates>
         <name>Update_Work_Order</name>
         <label>Update Work Order</label>
-        <locationX>3391</locationX>
+        <locationX>3160</locationX>
         <locationY>407</locationY>
         <connector>
             <targetReference>Create_TSE_Req</targetReference>
@@ -2494,8 +2253,8 @@
         <description>Continue to In Progress or Select Dry Run.</description>
         <name>Ask_if_Dry_Run</name>
         <label>Ask if Dry Run</label>
-        <locationX>1306</locationX>
-        <locationY>1253</locationY>
+        <locationX>1102</locationX>
+        <locationY>1165</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2518,8 +2277,8 @@
     <screens>
         <name>Auction_Off_Lease_Auction_Site_Dry_Run_Reasons</name>
         <label>Auction Off-Lease &amp; Auction Site Dry Run Reasons</label>
-        <locationX>1901</locationX>
-        <locationY>1277</locationY>
+        <locationX>1700</locationX>
+        <locationY>1138</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2550,8 +2309,8 @@
     <screens>
         <name>Cannot_Complete_Notes</name>
         <label>Cannot Complete Notes</label>
-        <locationX>2119</locationX>
-        <locationY>2393</locationY>
+        <locationX>1886</locationX>
+        <locationY>2323</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2576,8 +2335,8 @@
         <description>Cannot Complete Reason Screen</description>
         <name>Cannot_Complete_Reason_Screen</name>
         <label>Cannot Complete Reason Screen</label>
-        <locationX>1987</locationX>
-        <locationY>2393</locationY>
+        <locationX>1754</locationX>
+        <locationY>2323</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2604,8 +2363,8 @@
     <screens>
         <name>Choose_Completed</name>
         <label>Choose Completed</label>
-        <locationX>1168</locationX>
-        <locationY>2050</locationY>
+        <locationX>913</locationX>
+        <locationY>1980</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2631,8 +2390,8 @@
     <screens>
         <name>Choose_Completion</name>
         <label>Choose Completed or Cannot Complete</label>
-        <locationX>1162</locationX>
-        <locationY>2206</locationY>
+        <locationX>929</locationX>
+        <locationY>2136</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2660,8 +2419,8 @@
     <screens>
         <name>Close_In_Progress_Work</name>
         <label>Close In Progress Work</label>
-        <locationX>1264</locationX>
-        <locationY>253</locationY>
+        <locationX>828</locationX>
+        <locationY>238</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2676,8 +2435,8 @@
     <screens>
         <name>Complete_ALL_WOLIs</name>
         <label>Complete ALL WOLIs</label>
-        <locationX>1285</locationX>
-        <locationY>2353</locationY>
+        <locationX>1052</locationX>
+        <locationY>2283</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2692,8 +2451,8 @@
     <screens>
         <name>Complete_Notes_Required</name>
         <label>Complete Notes Required</label>
-        <locationX>2007</locationX>
-        <locationY>2065</locationY>
+        <locationX>1774</locationX>
+        <locationY>1995</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2718,8 +2477,8 @@
     <screens>
         <name>Dealer_Dry_Run_Reasons</name>
         <label>Dealer Dry Run Reasons</label>
-        <locationX>1902</locationX>
-        <locationY>1396</locationY>
+        <locationX>1701</locationX>
+        <locationY>1281</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2754,8 +2513,8 @@
     <screens>
         <name>Dry_Run_Notes</name>
         <label>Dry Run Notes</label>
-        <locationX>2145</locationX>
-        <locationY>1430</locationY>
+        <locationX>1941</locationX>
+        <locationY>1342</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2774,8 +2533,8 @@
     <screens>
         <name>Get_Vehicle_Count</name>
         <label>Get Vehicle Count</label>
-        <locationX>1175</locationX>
-        <locationY>1689</locationY>
+        <locationX>939</locationX>
+        <locationY>1601</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2791,7 +2550,7 @@
             <name>Vehicle_Count_Entered</name>
             <dataType>Number</dataType>
             <defaultValue>
-                <elementReference>DefaultNumberOfVehicles</elementReference>
+                <elementReference>var_GetWorkOrder.LineItemCount</elementReference>
             </defaultValue>
             <fieldText>Enter Vehicle Count</fieldText>
             <fieldType>InputField</fieldType>
@@ -2804,8 +2563,8 @@
     <screens>
         <name>Remaining_Work_Types_Dry_Run_Reasons</name>
         <label>Remaining Work Types Dry Run Reasons</label>
-        <locationX>1902</locationX>
-        <locationY>1560</locationY>
+        <locationX>1698</locationX>
+        <locationY>1420</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2830,7 +2589,7 @@
         <description>Special Instructions Confirmation</description>
         <name>Special_Instructions_Confirmation</name>
         <label>Special Instructions Confirmation</label>
-        <locationX>1612</locationX>
+        <locationX>1381</locationX>
         <locationY>481</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -2863,8 +2622,8 @@
     <screens>
         <name>Standard_SiriusXM_True360_Dry_Run_Reasons</name>
         <label>Standard SiriusXM True360 Dry Run Reasons</label>
-        <locationX>1903</locationX>
-        <locationY>1681</locationY>
+        <locationX>1699</locationX>
+        <locationY>1593</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2889,14 +2648,14 @@
     <screens>
         <name>Status_ALL_WOLIs</name>
         <label>Status ALL WOLIs</label>
-        <locationX>1175</locationX>
-        <locationY>2715</locationY>
+        <locationX>942</locationX>
+        <locationY>2645</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>DisplayText_Complete_ALL_WOLIs_0</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Please Status all Work Order Line Items before Updating the Status on the Work Order.  (Work Order Line Item Statuses should equal Completed or Cannot Complete.)&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Please Status all Work Order Line Items before Updating the Status on the Work Order.  (No Work Order Line Item Statuses should equal New.)&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -2905,13 +2664,13 @@
     <screens>
         <name>Status_Confirmation</name>
         <label>Status Confirmation</label>
-        <locationX>2621</locationX>
+        <locationX>2390</locationX>
         <locationY>402</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Is_Checkbox_True_Allow_Change_from_Flow</targetReference>
+            <targetReference>Is_Checkbox_True_Allow_VCI_Status_change</targetReference>
         </connector>
         <fields>
             <name>Choice_Confirmation_Message</name>
@@ -2924,8 +2683,8 @@
     <screens>
         <name>Time_Confirmation</name>
         <label>Time Confirmation</label>
-        <locationX>2549</locationX>
-        <locationY>1887</locationY>
+        <locationX>2345</locationX>
+        <locationY>1799</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2943,8 +2702,8 @@
     <screens>
         <name>Time_Confirmation_0</name>
         <label>Time Confirmation</label>
-        <locationX>2272</locationX>
-        <locationY>1020</locationY>
+        <locationX>2068</locationX>
+        <locationY>931</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2962,8 +2721,8 @@
     <screens>
         <name>Unable_to_Change_Status_Screen</name>
         <label>Unable to Change Status Screen</label>
-        <locationX>798</locationX>
-        <locationY>423</locationY>
+        <locationX>561</locationX>
+        <locationY>436</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2978,8 +2737,8 @@
     <screens>
         <name>Work_Order_Line_Items_are_marked_Cannot_Complete</name>
         <label>Work Order Line Items are marked Cannot Complete</label>
-        <locationX>1366</locationX>
-        <locationY>2505</locationY>
+        <locationX>1133</locationX>
+        <locationY>2435</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2995,13 +2754,13 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>244</locationX>
-        <locationY>649</locationY>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Get_Service_Appointment</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>Completed_or_Cannot_Complete</name>
         <dataType>String</dataType>
@@ -3010,18 +2769,6 @@
         <isOutput>true</isOutput>
         <value>
             <stringValue>Cannot Complete</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <description>Default Number Of Vehicles to display to the user.</description>
-        <name>DefaultNumberOfVehicles</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-        <value>
-            <elementReference>var_GetWorkOrder.LineItemCount</elementReference>
         </value>
     </variables>
     <variables>
@@ -3068,15 +2815,6 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Inspection Request from the work order.</description>
-        <name>var_getInspectionRequest</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Inspection_Request__c</objectType>
     </variables>
     <variables>
         <description>Get Work Order fields</description>

@@ -174,6 +174,7 @@
     <fields>
         <fullName>docebo_v3__Date_End__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date End</label>
         <required>false</required>
@@ -184,6 +185,7 @@
     <fields>
         <fullName>docebo_v3__Date_Start__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Start</label>
         <required>false</required>
@@ -205,6 +207,7 @@
     <fields>
         <fullName>docebo_v3__DeletionDate__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DeletionDate</label>
         <required>false</required>
@@ -216,6 +219,7 @@
         <fullName>docebo_v3__Name__c</fullName>
         <deprecated>false</deprecated>
         <description>The session name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name</label>
         <length>255</length>
@@ -230,6 +234,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>The LMS session Id.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Session External Id</label>
         <length>32</length>
@@ -263,6 +268,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Session Id</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -272,7 +278,7 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>docebo_v3__CourseMustBeCompatibleWithSessions</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This makes sure that the session course has a type wich allows sessions (e.g. webinar and ilt classrooms)</description>
         <errorConditionFormula>NOT(
   ISPICKVAL(docebo_v3__Course__r.docebo_v3__Type__c, &quot;webinar&quot;) 

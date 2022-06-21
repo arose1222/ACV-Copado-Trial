@@ -33,15 +33,15 @@
 
         <div class="slds-notify_container">
             <div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
-                <span class="slds-assistive-text">Error</span>
+                <span class="slds-assistive-text">{!$Label.MA_Error}</span>
                 <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
                     <img class="slds-button__icon slds-button__icon--large mm-close-error" src="{!URLFOR($Resource.MapsStyles,'img/close.svg')}" />
-                <span class="slds-assistive-text">Close</span>
+                <span class="slds-assistive-text">{!$Label.MA_Close}</span>
                 </button>
                 <div class="slds-notify__content slds-grid">
                     <img class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex" src="{!URLFOR($Resource.MapsStyles,'img/warning.svg')}" />
                 <div class="slds-col slds-align-middle ma-align-text-middle">
-                    <h2 class="slds-text-heading--small">You encountered some errors when trying to load your MiniMap.</h2>
+                    <h2 class="slds-text-heading--small">{!$Label.Nearby_Encountered_Error}</h2>
                     <div id="miniMapErrors"></div>
                 </div>
                 </div>
@@ -75,7 +75,7 @@
                         <div>
                             <i class="ma-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 52 52"><path fill="#fff" d="m36 20c0-2.2-1.8-4-4-4h-26c-2.2 0-4 1.8-4 4v26c0 2.2 1.8 4 4 4h26c2.2 0 4-1.8 4-4v-26z m7-18h-26c-3.9 0-7 3.1-7 7v3h26c2.2 0 4 1.8 4 4v26h3c3.9 0 7-3.1 7-7v-26c0-3.9-3.1-7-7-7z"></path></svg></i>
                         </div>
-                        <div>Layers</div>
+                        <div>{!$Label.MA_Layers}</div>
                         <div class="flex-grow-1"></div>
                         <div class="expand-layers">
                             <button class="slds-button slds-button--icon-border-inverse mm-toggle-button" title="settings">
@@ -83,7 +83,7 @@
                                     <svg class="layer-close" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 52 52"><path fill="#fff" d="m48.8 2h-15.5c-1 0-1.3 0.9-0.5 1.7l4.9 4.9-9 9c-0.5 0.5-0.5 1.3 0 1.9l3.7 3.7c0.5 0.5 1.3 0.5 1.9 0l9.1-9.1 4.9 4.9c0.8 0.8 1.7 0.5 1.7-0.5v-15.4c0-0.6-0.6-1.1-1.2-1.1z m-45.3 48h15.4c1 0 1.3-1.1 0.5-1.9l-4.9-5 9-9.1c0.5-0.5 0.5-1.4 0-1.9l-3.7-3.7c-0.5-0.5-1.3-0.5-1.9 0l-9 9-5-4.9c-0.9-0.8-1.9-0.5-1.9 0.5v15.4c0 0.7 0.8 1.6 1.5 1.6z"></path></svg>
                                     <svg class="layer-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 52 52"><path fill="#fff" d="m29.6 23.9h15.4c1 0 1.3-1.1 0.5-1.9l-4.9-5 9-9.1c0.5-0.5 0.5-1.4 0-1.9l-3.7-3.7c-0.5-0.4-1.3-0.4-1.9 0.1l-9 9-5.1-4.9c-0.8-0.8-1.9-0.5-1.9 0.5v15.4c0 0.7 0.9 1.5 1.6 1.5z m-7.2 4.1h-15.4c-1 0-1.3 1.1-0.5 1.9l4.9 5-9 9.1c-0.5 0.5-0.5 1.4 0 1.9l3.7 3.7c0.5 0.5 1.3 0.5 1.9 0l9.1-9.1 5.1 4.9c0.7 0.9 1.8 0.6 1.8-0.4v-15.3c0-0.7-0.9-1.7-1.6-1.7z"></path></svg>
                                 </i>
-                                <span class="slds-assistive-text">Settings</span>
+                                <span class="slds-assistive-text">{!$Label.MapsSetting_Settings}</span>
                             </button>
                         </div>
                     </div>
@@ -105,8 +105,8 @@
                     </div>
                 </div>
                 <div id="errorExample" class="error-message" style="display:none">
-                    <b>Error:</b>
-                    Layer failed to load
+                    <b>{!$Label.Nearby_Error_Title}</b>
+                    {!$Label.Nearby_Failed_To_Load}
                 </div>
             </div>
         </div>

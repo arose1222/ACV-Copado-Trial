@@ -7,6 +7,10 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SchedulingConstraintId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -37,10 +41,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Employment_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SchedulingConstraintId</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -108,6 +108,15 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>SchedulingConstraintId</fields>
+    </miniLayout>
+    <relatedLists>
+        <fields>Start</fields>
+        <fields>End</fields>
+        <fields>Type</fields>
+        <relatedList>ResourceAbsences</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>ServiceAppointment</fields>
         <fields>Name</fields>
@@ -117,18 +126,11 @@
         <relatedList>ServiceAppointments</relatedList>
     </relatedLists>
     <relatedLists>
+        <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <relatedList>Timeline__c.Service_Resource__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>Start</fields>
-        <fields>End</fields>
-        <fields>Type</fields>
-        <relatedList>ResourceAbsences</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

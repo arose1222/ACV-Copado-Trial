@@ -246,35 +246,35 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>FSL__Dependency_Is_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISPICKVAL(FSL__Dependency__c , &apos;&apos;)</errorConditionFormula>
         <errorDisplayField>FSL__Dependency__c</errorDisplayField>
         <errorMessage>Select a dependency type.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Root_Is_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISBLANK(FSL__Root_Service_Appointment__c)</errorConditionFormula>
         <errorDisplayField>FSL__Root_Service_Appointment__c</errorDisplayField>
         <errorMessage>Root service appointment is required.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Same_Resource_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(ISPICKVAL(FSL__Dependency__c , &apos;Immediately Follow&apos;), FSL__Same_Resource__c = FALSE)</errorConditionFormula>
         <errorDisplayField>FSL__Dependency__c</errorDisplayField>
         <errorMessage>Immediately Follow dependency requires Same Resource</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Service_Appointment_2_Is_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISBLANK(FSL__Service_Appointment_2__c)</errorConditionFormula>
         <errorDisplayField>FSL__Service_Appointment_2__c</errorDisplayField>
         <errorMessage>Service appointment 2 is required.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Service_Appointment_2_Not_Changed</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISCHANGED(FSL__Service_Appointment_2__c)</errorConditionFormula>
         <errorDisplayField>FSL__Service_Appointment_2__c</errorDisplayField>
         <errorMessage>It is not allowed to change any of the service appointments in the relationship</errorMessage>

@@ -72,7 +72,7 @@
             <name>VCI_Notification_of_VL_Graduation</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Contact.Successful_Virtual_Lift_Prescreens__c</field>
             <operation>equals</operation>
@@ -87,7 +87,7 @@
             <name>Set_Prescreen_Type_to_None</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Contact.CR_Review__c</field>
             <operation>equals</operation>
@@ -116,7 +116,7 @@
             <name>Update_Policy_Email_Status</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Contact.Policy_Email_Status__c</field>
             <operation>equals</operation>
@@ -130,12 +130,9 @@
             <name>Update_Standard_Title</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Update the standard contact title field from the custom title picklist field, this will help keep other logic in line, SOT Change</description>
-        <formula>OR(
-ISCHANGED( Title_Picklist__c ),
-IsNew()
-)</formula>
+        <formula>OR( ISCHANGED( Title_Picklist__c ), IsNew() )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

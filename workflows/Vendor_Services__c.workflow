@@ -16,7 +16,7 @@
             <name>Set_VenderServices_Name</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>NOT(ISNULL(Vendor_Name__r.Name))</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>

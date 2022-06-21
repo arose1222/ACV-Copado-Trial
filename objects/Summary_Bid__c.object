@@ -185,6 +185,7 @@
     <fields>
         <fullName>First_Bid__c</fullName>
         <description>The First Bid of the associated Account</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>First Bid</label>
         <required>false</required>
@@ -195,6 +196,7 @@
     <fields>
         <fullName>Latest_Bid__c</fullName>
         <description>The Latest Bid of the associated Account, populated through the Bids table in acv_prod</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Latest Bid</label>
         <required>false</required>
@@ -219,6 +221,7 @@
         <fullName>Summary_Bid_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Unique External Id used to identify a Dealer&apos;s Summary bid record.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Summary Bid Id</label>
         <length>36</length>
@@ -230,6 +233,7 @@
     </fields>
     <label>Summary Bid</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Summary Bid Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

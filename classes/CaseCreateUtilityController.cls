@@ -69,6 +69,7 @@ public without sharing class CaseCreateUtilityController {
      */
     @AuraEnabled
     public static Id logAnInteraction(Id accountId, Id inquiryOwner, String contactId, String jsonString) {
+        System.debug('json: '+jsonString);
         List<newCustInq> newInqList = new List<newCustInq>();
         List<Inquiry_Comment__c> newInqComments = new List<Inquiry_Comment__c>();
         List<Customer_Inquiry__c> existingCustInqs = new List<Customer_Inquiry__c>();
@@ -225,7 +226,8 @@ public without sharing class CaseCreateUtilityController {
 
             insert supportCase;
 
-            newInqList = getAssignedTo(newInqList);
+            newInqList = getAssignedTo(newInqList, aucIdSet, accountId);
+System.debug('newInqList: ' + newInqList);
 
             for (newCustInq c : newInqList) {
                 if(String.isBlank(c.auctionId)) {
@@ -236,6 +238,7 @@ public without sharing class CaseCreateUtilityController {
                     newCI.First_Call_Resolution__c = true;
                     newCi.Status__c = 'Closed';
                 }
+System.debug('newCustInq: ' + newCI);
                 newCustInqList.add(newCI);
             }
             allCustInqs.addAll(newCustInqList);
@@ -247,32 +250,25 @@ public without sharing class CaseCreateUtilityController {
         }
 
         newCustInqList.addAll(existingCustInqs); //concat the two lists for one DML call
+System.debug(newCustInqList.size());
         upsert newCustInqList;
 
+System.debug(supportCase.Id);
         return supportCase.Id;
     }
 
     /**
-     * Determines who Inquiry should be assigned to upon creation or when a CI is reopened as called from CustomerInquiryUpdateHandler
-     * @param newInqList    List of new Inquiries to be evaluated
+     * Determines who Inquiry should be assigned to upon creation
+     * @param newInqList    List of new Inquiries to be created
+     * @param aucIdSet      Set of all auction ids from Interaction
+     * @param accountId     Account logged on Interaction
      * @return  `List<newCustInq>`
      */
-    public static List<newCustInq> getAssignedTo(List<newCustInq> newInqList) { 
-        Set<Id> aucIdSet = new Set<Id>();
-        Set<Id> accountIdSet = new Set<Id>();
-        Id currentUser = UserInfo.getUserId();
-        for (newCustInq nci : newInqList) {
-            if(!String.isBlank(nci.auctionId)){
-                aucIdSet.add(nci.auctionId);
-            }
-            accountIdSet.add(nci.relatedAccount);
-        }
-        Map<Id,Account> accountMap = new Map<Id,Account>([SELECT Id, Customer_Success_Advocate__c, Title_Specialist__c, IST_Account_Owner__c FROM Account WHERE Id = :accountIdSet]);
+    public static List<newCustInq> getAssignedTo(List<newCustInq> newInqList, Set<Id> aucIdSet, Id accountId) {
         Map<Id, Case> relCases = new Map<Id, Case>();
         Set<String> specialistStatusSet = new Set<String>{'Problem', 'Return to Seller', 'Closed Unwound', 'Returned to Seller Unwound', 'Title at ACV Unwound'};
         Set<String> otherStatusSet = new Set<String>{'Working', 'Received', 'New', '48 Hour Notice', 'Sent'};
-        
-        // Add the most recent title case to map with auctionId as key
+        Account a = [SELECT Id, Customer_Success_Advocate__c, Title_Specialist__c, IST_Account_Owner__c FROM Account WHERE Id = :accountId];
         for (Case c : [SELECT Id, Status, Seller_Dealership__r.Customer_Success_Advocate__c, Seller_Dealership__r.Title_Specialist__c, CreatedDate, Auction_Number__c, Account.IST_Account_Owner__c FROM Case WHERE RecordType.DeveloperName = 'Title_Information' AND Auction_Number__c IN :aucIdSet]) {
             if (relCases.containsKey(c.Auction_Number__c)) {
                 if (c.CreatedDate > relCases.get(c.Auction_Number__c).CreatedDate) {
@@ -287,13 +283,19 @@ public without sharing class CaseCreateUtilityController {
         for (newCustInq inq : newInqList) {
             if (inq.AuctionId != null && inq.AuctionId != '') {
                 if ( ( (inq.callType == 'Buyer Title Status' || inq.callType == 'Seller Title Status') && specialistStatusSet.contains(relCases.get(inq.AuctionId)?.Status) ) || inq.callType == 'Buyer Reported Problem') {
-                    inq = setAssignedTo(inq, relCases, accountMap.get(inq.relatedAccount), 'Title_Specialist__c');
+                    inq = setAssignedTo(inq, relCases, a, 'Title_Specialist__c');
                     if (inq.assignedTo == null) {
                         inq.shouldAssignTo = 'Specialist';
                     }
                 }
+                // else if ( (inq.callType == 'Buyer Title Status' && otherStatusSet.contains(relCases.get(inq.AuctionId)?.Status) ) || inq.callType == '48 Hour Submit' || inq.callType == '48 Hour Update' || (inq.callBucket == 'Title_Information' && inq.callType == 'Other')) {
+                //     inq = setAssignedTo(inq, relCases, a, 'Customer_Success_Advocate__c');
+                //     if (inq.assignedTo == null) {
+                //         inq.shouldAssignTo = 'Consultant';
+                //     }
+                // }
                 else if ( (inq.callType == 'Buyer Title Status' && otherStatusSet.contains(relCases.get(inq.AuctionId)?.Status) ) || (inq.callBucket == 'Title_Information' && inq.callType == 'Other')) {
-                    inq = setAssignedTo(inq, relCases, accountMap.get(inq.relatedAccount), 'Customer_Success_Advocate__c');
+                    inq = setAssignedTo(inq, relCases, a, 'Customer_Success_Advocate__c');
                     if (inq.assignedTo == null) {
                         inq.shouldAssignTo = 'Consultant';
                     }
@@ -307,49 +309,28 @@ public without sharing class CaseCreateUtilityController {
                         inq.assignedTo = relCases.get(inq.auctionId).Account.IST_Account_Owner__c;
                     }
                     else {
-                        inq.assignedTo = assignToCreator(inq, currentUser);
+                        inq.assignedTo = UserInfo.getUserId();
                     }
                 }
-                else if (accountMap.get(inq.relatedAccount).IST_Account_Owner__c != null) {
-                    inq.assignedTo = accountMap.get(inq.relatedAccount).IST_Account_Owner__c;
+                else if (a.IST_Account_Owner__c != null) {
+                    inq.assignedTo = a.IST_Account_Owner__c;
                 }
-                else if (accountMap.get(inq.relatedAccount).IST_Account_Owner__c == null) {
-                    inq.assignedTo = assignToCreator(inq, currentUser);
+                else if (a.IST_Account_Owner__c == null) {
+                    inq.assignedTo = UserInfo.getUserId();
                 }
             }
-            else if(inq.relatedAccount != '' && inq.relatedAccount != null) { // this could only be null if this method is called on an update to an old customer_inquiry__c that did not have an account association.  All new ones should have this populated
-                // if this inquiry is not related to an auction set assigned to as IST Account Owner
-                if (accountMap.get(inq.relatedAccount).IST_Account_Owner__c != null) {
-                    inq.assignedTo = accountMap.get(inq.relatedAccount).IST_Account_Owner__c;
-                }
-                // if this inquiry is not related to an auction and there is no IST Account Owner, set assigned to as creating user
-                else if (accountMap.get(inq.relatedAccount).IST_Account_Owner__c == null) {
-                    inq.assignedTo = assignToCreator(inq, currentUser);
-                }
-                
+            // if this inquiry is not related to an auction set assigned to as IST Account Owner
+            else if (a.IST_Account_Owner__c != null) {
+                inq.assignedTo = a.IST_Account_Owner__c;
+            }
+            // if this inquiry is not related to an auction and there is no IST Account Owner, set assigned to as creating user
+            else if (a.IST_Account_Owner__c == null) {
+                inq.assignedTo = UserInfo.getUserId();
             }
             
         } 
         return newInqList;
     }
-
-    /**
-     * determines if the current newCustInq should be assigned to the original creator or the current user
-     * @param ci 
-     * @param currentUser 
-     * @return  `Id`
-     */
-    public static Id assignToCreator(newCustInq ci, Id currentUser) {
-        Id creatorId;
-        if (ci.initialCreator == null) { // initialCreator is populated from CustomerInquiryUpdateHandler on update, but will be null when CI is created from log an interaction
-            creatorId = currentUser;
-        }
-        else {
-            creatorId = ci.initialCreator;
-        }
-        return creatorId;
-    }
-
 
     /**
      * Sets assigned to on inquiries that should take sellers title consultant or specialist
@@ -385,7 +366,6 @@ public without sharing class CaseCreateUtilityController {
         public String callBucketLabel;
         public String assignedTo;
         public String shouldAssignTo;
-        public String initialCreator; // used when called by CustomerInquiryUpdateHandler
     }
 
     /**

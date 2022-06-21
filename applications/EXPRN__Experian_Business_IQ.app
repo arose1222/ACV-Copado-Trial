@@ -15,4 +15,7 @@
     <tabs>EXPRN__Experian_Alert__c</tabs>
     <tabs>EXPRN__Exp_Business_Info__c</tabs>
     <tabs>Opportunity_Stage_History__c</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
 </CustomApplication>

@@ -47,6 +47,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         $scope.currentlySavingTerritories = false;
         $scope.searchResultText = window.customLabels.TerritoriesFoundInSearch;
 
+        // W-10429684
+        $scope.isRTL = StateService.isRtlDirection();
+
         $scope.getParentTerritory = function (id) {
 
             var territory = ResourcesAndTerritoriesService.territories()[id];
@@ -159,9 +162,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         // this object will make the indentations on the tree UI
         $scope.styleForLocationTree = function (depth) {
-            return {
-                'margin-left': depth * 20 + 'px'
-            };
+
+            // W-10429684
+            var marginDirection = $scope.isRTL ? 'margin-right' : 'margin-left',
+                result = {};
+
+            result[marginDirection] = depth * 20 + 'px';
+
+            return result;
         };
 
         $scope.switchToTerritory = function (id) {
@@ -419,6 +427,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     finish.setDate(finish.getDate() + 1);
 
                     TimePhasedDataService.getTimePhasedObjects(start, finish).then(function () {
+                        if (servicesService.filter.searchOnServer && TimePhasedDataService.serviceAppointments(servicesService.filter.searchOnServer)) {
+                            $rootScope.$broadcast('gotNewTimePhasedObjects', { start: start, finish: finish, serviceAppointments: TimePhasedDataService.serviceAppointments(servicesService.filter.searchOnServer) });
+                        }
                         $scope.currentlySavingTerritories = false;
                         updateViewDebounced();
                         $rootScope.$broadcast('gotNewResources', { show: showLocations });

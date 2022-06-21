@@ -80,6 +80,60 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Task</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Principal_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Principal_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Floor_Plan_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Floorplan__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Floor_Plan_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Floorplan__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Application_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Application_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <logoVersion>1</logoVersion>
@@ -94,255 +148,57 @@
     <navType>Console</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital Sales</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital Sales</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
+        <profile>System Admin Limited</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
+        <content>Principal_Record_Page</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
+        <pageOrSobjectType>Principal__c</pageOrSobjectType>
+        <recordType>Principal__c.ACV_Capital_Principal</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Titles_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Title_Information</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Titles_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Title_Information</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Titles_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Title_Information</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Vendor</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.WLS_Test</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
+        <profile>System Admin Limited</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -634,6 +490,279 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Transporters</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Vendor</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Titles_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Title_Information</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Titles_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Title_Information</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Titles_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Title_Information</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>Titles_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Case</pageOrSobjectType>
@@ -671,8 +800,18 @@
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ACV_Capital_Account_LEX</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.WLS_Test</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ACV_Capital_Account_LEX</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital</profile>
     </profileActionOverrides>
@@ -681,31 +820,7 @@
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital Sales</profile>
     </profileActionOverrides>
@@ -714,25 +829,7 @@
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital Sales</profile>
     </profileActionOverrides>
@@ -741,32 +838,7 @@
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ACV_Capital_Account_LEX</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
         <profile>ACV Capital With Unwind</profile>
     </profileActionOverrides>
@@ -775,7 +847,7 @@
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
+        <recordType>Account.Vendor</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
@@ -784,27 +856,27 @@
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
-        <profile>Admin</profile>
+        <profile>ACV Capital With Unwind</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ACV_Capital_Account_LEX</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Transporters</recordType>
+        <recordType>Account.WLS_Test</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>standard-Feed</tabs>
@@ -815,13 +887,33 @@
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Case</tabs>
     <tabs>Auction__c</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>Credit_Check__c</tabs>
+    <tabs>Credit_Details__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>ACV_Capital_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
+            <tab>Application__c</tab>
+        </mappings>
+        <mappings>
             <tab>Auction__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Credit_Check__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Credit_Details__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Floorplan__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Principal__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

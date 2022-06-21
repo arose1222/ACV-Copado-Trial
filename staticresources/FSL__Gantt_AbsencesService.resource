@@ -31,7 +31,8 @@
 
             // snapToId, snapToType, snapDirection
 
-            sfdcService.saveChangesToAbsence(changedAbsence.id, changedAbsence.getGanttResource(), policyUsed, start, end, changedAbsence.absenceType, changedAbsence.ganttLabel, changedAbsence.snapToId || null, changedAbsence.snapToType || null, changedAbsence.snapDirection || null).then(function (updatedObjects) {
+            sfdcService.saveChangesToAbsence(changedAbsence.id, changedAbsence.getGanttResource(), policyUsed, start, end, null, //we do not want to set the label instead of the API name of the Type field picklist value
+            changedAbsence.ganttLabel, changedAbsence.snapToId || null, changedAbsence.snapToType || null, changedAbsence.snapDirection || null).then(function (updatedObjects) {
 
                 var shouldCheckRules = window.__gantt.checkRulesMode !== 'On Demand';
                 DeltaService.handleDeltaResponse(updatedObjects, shouldCheckRules);

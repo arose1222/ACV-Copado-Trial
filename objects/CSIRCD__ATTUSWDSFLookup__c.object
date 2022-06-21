@@ -159,6 +159,7 @@
     <fields>
         <fullName>CSIRCD__Address_Type__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Address Type</label>
         <length>20</length>
@@ -170,6 +171,7 @@
     <fields>
         <fullName>CSIRCD__Comment__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comment</label>
         <required>false</required>
@@ -179,6 +181,7 @@
     <fields>
         <fullName>CSIRCD__Company__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Company</label>
         <length>100</length>
@@ -203,6 +206,7 @@
     <fields>
         <fullName>CSIRCD__Last_Reviewed__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Reviewed</label>
         <length>50</length>
@@ -214,6 +218,7 @@
     <fields>
         <fullName>CSIRCD__List_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>List Date</label>
         <required>false</required>
@@ -223,6 +228,7 @@
     <fields>
         <fullName>CSIRCD__List_Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>List Description</label>
         <length>100</length>
@@ -234,6 +240,7 @@
     <fields>
         <fullName>CSIRCD__Lookup_By__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Lookup By</label>
         <length>50</length>
@@ -245,6 +252,7 @@
     <fields>
         <fullName>CSIRCD__Name_Searched__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name Searched</label>
         <length>100</length>
@@ -268,6 +276,7 @@
     <fields>
         <fullName>CSIRCD__Result_Node__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Result Node</label>
         <length>100000</length>
@@ -307,6 +316,7 @@
     <fields>
         <fullName>CSIRCD__Search_City__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Search City</label>
         <length>50</length>
@@ -318,6 +328,7 @@
     <fields>
         <fullName>CSIRCD__Search_Country__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Search Country</label>
         <length>50</length>
@@ -329,6 +340,7 @@
     <fields>
         <fullName>CSIRCD__Search_Postal_Code__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Search Postal Code</label>
         <length>20</length>
@@ -340,6 +352,7 @@
     <fields>
         <fullName>CSIRCD__Search_State__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Search State</label>
         <length>50</length>
@@ -351,6 +364,7 @@
     <fields>
         <fullName>CSIRCD__Search_Street__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Search Street</label>
         <length>100</length>
@@ -408,7 +422,7 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>CSIRCD__Review_status_is_No_Match_if_Hits_Are_0</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Review Status must remain No Match if number of hits is 0.</description>
         <errorConditionFormula>AND ( CSIRCD__Number_of_Hits__c =0, NOT( ISPICKVAL( CSIRCD__Review_Status__c , &quot;No Match&quot;) ))</errorConditionFormula>
         <errorMessage>Changes to Review Status field aren&apos;t allowed if number of hits is 0. Review Status must be No Match if number of hits is 0.</errorMessage>

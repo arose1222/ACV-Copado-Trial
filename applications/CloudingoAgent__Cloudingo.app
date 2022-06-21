@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>CloudingoAgent__Cloudingo</defaultLandingTab>
+    <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
@@ -22,4 +23,7 @@
     <tabs>maps__DebugLog__c</tabs>
     <tabs>Inventory_Life_Cycle__c</tabs>
     <tabs>Opportunity_Stage_History__c</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
 </CustomApplication>

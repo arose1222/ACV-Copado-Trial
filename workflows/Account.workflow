@@ -87,11 +87,28 @@
         <description>FastPass Welcome Email</description>
         <protected>false</protected>
         <recipients>
+            <field>ACV_Capital_Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
             <field>Primary_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>system@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>ACV_Capital_Sales_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IST_Account_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
         <template>ACVCapital/Fastpass_Welcome_Email_1648059673344</template>
     </alerts>
     <alerts>
@@ -122,16 +139,6 @@
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/West_Dealer_ID</template>
-    </alerts>
-    <alerts>
-        <fullName>Notify_AM_upon_Lead_Conversion</fullName>
-        <description>Notify AM upon Lead Conversion</description>
-        <protected>false</protected>
-        <recipients>
-            <type>accountOwner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Notify_AM_upon_Lead_Conversion</template>
     </alerts>
     <alerts>
         <fullName>Pat_Feeley_email_alert</fullName>
@@ -258,6 +265,26 @@
         <field>Preferred_buyer__c</field>
         <literalValue>1</literalValue>
         <name>ACV Capital - Preferred Buyer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ACV_Capital_Relationship_Customer</fullName>
+        <field>xACV_Capital_Relationship__c</field>
+        <literalValue>Customer</literalValue>
+        <name>ACV Capital Relationship - Customer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ACV_Capital_Relationship_Prospect</fullName>
+        <field>xACV_Capital_Relationship__c</field>
+        <literalValue>Prospect</literalValue>
+        <name>ACV Capital Relationship - Prospect</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -609,7 +636,7 @@ Id))</formula>
             <name>ACV_Capital_Account_Blacklisted_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.ACV_Capital_Customer__c</field>
             <operation>greaterOrEqual</operation>
@@ -629,7 +656,7 @@ Id))</formula>
             <name>ACV_Capital_Address_Change_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Alerts Capital users when ACV Capital Title Email Address Changes</description>
         <formula>AND( OR( AND( ISCHANGED(BillingAddress),  Title_Mailing_Street__c =NULL), ISCHANGED(Title_Address__c)),   ACV_Capital_Customer__c  &lt;&gt;0)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -640,13 +667,21 @@ Id))</formula>
             <name>ACV_Capital_Preferred_Buyer</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <actions>
+            <name>ACV_Capital_Relationship_Customer</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
         <formula>ISCHANGED(ACV_Capital_Customer__c )&amp;&amp; ACV_Capital_Customer__c &lt;&gt; 0</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>ACV Capital Relationship - Prospect</fullName>
-        <active>true</active>
+        <actions>
+            <name>ACV_Capital_Relationship_Prospect</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Open_ACV_Capital_Opptys__c</field>
             <operation>notEqual</operation>
@@ -665,7 +700,7 @@ Id))</formula>
             <name>Update_Reviewed_By_Compliance_Flag</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When the account&apos;s Documentation date or check boxes are updated we need legal to review the account</description>
         <formula>IF(  Reviewed_By_Compliance__c == TRUE &amp;&amp;(ISCHANGED(Document_Resale_Cert__c) || ISCHANGED(Document_Resale_Cert_Expires__c) ||  ISCHANGED(Document_Dealer_Cert__c)  || ISCHANGED(Document_Dealer_Cert_Expires__c)) , TRUE, FALSE)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -680,7 +715,7 @@ Id))</formula>
             <name>Clear_back_in_good_Standing</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Date_Do_Not_Send_Titles__c</field>
             <operation>notEqual</operation>
@@ -703,7 +738,7 @@ Id))</formula>
             <name>Make_Inactive_Reason_Blank</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Active__c</field>
             <operation>equals</operation>
@@ -737,7 +772,7 @@ Id))</formula>
             <name>Email_IST_To_Consider_Activating_Doc_Compliant_Dealer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Active__c</field>
             <operation>equals</operation>
@@ -793,7 +828,7 @@ Id))</formula>
             <name>Stamp_Date_back_in_good_Standing</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Title_Hold__c</field>
             <operation>equals</operation>
@@ -808,7 +843,7 @@ Id))</formula>
             <name>Stamp_Compliant_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Dealer_Doc_Compliance__c</field>
             <operation>equals</operation>
@@ -867,7 +902,7 @@ Id))</formula>
             <name>EXPRN__Update_Bin_Status_Code</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Update Bin status code whenever an Account record is associated with business.</description>
         <formula>(ISPICKVAL( EXPRN__BIN_Status_Code__c , &apos;N&apos;) ||ISPICKVAL(EXPRN__BIN_Response_Code__c , &apos;-1&apos;)) &amp;&amp;  !(ISNULL(EXPRN__BIN_formula__c) || ISBLANK( EXPRN__BIN_formula__c ))</formula>
         <triggerType>onAllChanges</triggerType>
@@ -900,7 +935,7 @@ Id))</formula>
             <name>This_alert_informs_the_dealership_s_TM_that_a_first_purchase_has_been_made</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This rule looks to the Date of First Purchase field for notification to TM that a dealership has made their first purchase.</description>
         <formula>isChanged(Date_of_First_Buy__c) &amp;&amp; NOT(ISBLANK(Date_of_First_Buy__c))</formula>
         <triggerType>onAllChanges</triggerType>
@@ -911,7 +946,7 @@ Id))</formula>
             <name>Set_Standard_Record_Type</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Account_Record_type_Conversion__c</field>
             <operation>equals</operation>
@@ -926,7 +961,7 @@ Id))</formula>
             <name>Set_Transporters_Record_Type</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Account_Record_type_Conversion__c</field>
             <operation>equals</operation>
@@ -941,7 +976,7 @@ Id))</formula>
             <name>Lot_Sweep_Join_Date_Stamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Lot_Sweep_Participant__c</field>
             <operation>equals</operation>
@@ -956,7 +991,7 @@ Id))</formula>
             <name>Stamp_Lot_Sweep_End_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Lot_Sweep_Join_Date__c</field>
             <operation>notEqual</operation>
@@ -974,7 +1009,7 @@ Id))</formula>
             <name>New_WI_Dealer_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.BillingState</field>
             <operation>equals</operation>
@@ -1039,8 +1074,7 @@ Id))</formula>
             <operation>equals</operation>
             <value>1</value>
         </criteriaItems>
-        <description>Workflow for when new franchise dealers in the West are created to notify biz ops
-(Deactivated 2/8/2022 per Kyle Holmberg&apos;s comment here: https://acvauctions.lightning.force.com/lightning/r/Salesforce_Request__c/a3C5b000000InqCEAS/view)</description>
+        <description>Workflow for when new franchise dealers in the West are created to notify biz ops</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1049,7 +1083,7 @@ Id))</formula>
             <name>Populate_Netsuite_ID</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.RecordTypeId</field>
             <operation>equals</operation>
@@ -1072,7 +1106,7 @@ Id))</formula>
             <name>Prior_Action_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Populates the Prior Action field with the previous value of the Action Needed field.</description>
         <formula>ISCHANGED(Next_Action__c)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1103,7 +1137,7 @@ Id))</formula>
             <name>Title_Hold_Release_for_Dealer_Docs</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Dealer_Doc_Compliance__c</field>
             <operation>equals</operation>
@@ -1123,7 +1157,7 @@ Id))</formula>
             <name>Update_Account_Name_Legal_DBA</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Set the account name field based on the Legal Name and DBA Trade Name. Use DBA Trade Name unless blank, then use Legal Name.</description>
         <formula>ISCHANGED( dba_trade_name__c ) || ISCHANGED( legal_name__c )</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1134,7 +1168,7 @@ Id))</formula>
             <name>Date_Stamp_Do_Not_Send_Titles</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Title_Hold__c</field>
             <operation>equals</operation>
@@ -1148,7 +1182,7 @@ Id))</formula>
             <name>Inform_TM_their_dealer_is_enrolled_in_Late_Fee_Program</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Late_Title_Fee_Eligible__c</field>
             <operation>equals</operation>
@@ -1172,7 +1206,7 @@ Id))</formula>
             <name>Remove_Timestamp_Doc_Compliance</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Dealer_Doc_Compliance__c</field>
             <operation>equals</operation>
@@ -1187,7 +1221,7 @@ Id))</formula>
             <name>loyal_checkbox</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Platform_Status__c</field>
             <operation>equals</operation>

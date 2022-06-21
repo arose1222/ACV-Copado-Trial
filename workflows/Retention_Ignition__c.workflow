@@ -18,7 +18,7 @@
             <name>Potential_Monthly_Buy_Volume_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Retention_Ignition__c.CreatedDate</field>
             <operation>notEqual</operation>

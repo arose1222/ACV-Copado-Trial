@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Application Status - Email Reminder Pending more information</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ACV_Application_Form</letterhead>
+    <name>ACV Application Status - Reminder Pending more information</name>
+    <style>freeForm</style>
+    <subject>ACV Capital Application Update</subject>
+    <textOnly>ACV Capital Application Update
+
+Incomplete Application Information Reminder
+
+Just a friendly reminder that there is missing or incomplete information regarding your application. See the details below:
+{!Application__c.Additional_Comments__c}
+In order to proceed, please provide the needed information so we can continue reviewing your application.
+Many thanks.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

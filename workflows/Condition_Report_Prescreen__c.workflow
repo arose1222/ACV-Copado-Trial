@@ -125,16 +125,11 @@
             <name>Notify_VCI_of_CR_Review_Decision</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Status__c</field>
             <operation>equals</operation>
             <value>Closed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Aux_Queue__c</field>
-            <operation>equals</operation>
-            <value>False</value>
         </criteriaItems>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Timed_Out__c</field>
@@ -142,14 +137,9 @@
             <value>False</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Exterior Cosmetic</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Bumper/Lights</value>
+            <field>Condition_Report_Prescreen__c.Aux_Queue__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -170,43 +160,25 @@
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Bumper/Lights</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Exterior Cosmetic</value>
-        </criteriaItems>
         <description>Sends notification emails out to VCIs</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
+            <actions>
+                <name>Condition_Report_Review_Completed</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Set_CR_Review_Status_Closed</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Set_CR_Review_Timeout_TRUE</name>
+                <type>FieldUpdate</type>
+            </actions>
             <offsetFromField>Condition_Report_Prescreen__c.CR_Review_Created_Time_Minus_30__c</offsetFromField>
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>Condition Report Review Email Notifications - After TimeOut</fullName>
-        <actions>
-            <name>Condition_Report_Review_Completed</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Status__c</field>
-            <operation>equals</operation>
-            <value>New,Closed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.CR_Review_Timeout__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>Sends notification emails out to VCIs</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>Populate Account</fullName>
@@ -221,11 +193,9 @@
             <name>Prescreen_Type_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Updating prescreen type from Contact provided Report Prescreen isn&apos;t Closed</description>
-        <formula>ISNEW() ||
-AND( ISCHANGED( VCI__c ),       
-NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) )</formula>
+        <formula>ISNEW() || AND( ISCHANGED( VCI__c ),        NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -234,7 +204,7 @@ NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) )</formula>
             <name>Stamp_Prescreen_Closed_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Stamp the close date on CR Prescreen records when closed is reached</description>
         <formula>ISCHANGED(Status__c) &amp;&amp; ISPICKVAL(Status__c,&apos;Closed&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -245,7 +215,7 @@ NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) )</formula>
             <name>Stamp_TM_on_Prescreen</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Question_Count__c</field>
             <operation>equals</operation>
@@ -269,7 +239,7 @@ NOT(ISPICKVAL(Status__c, &apos;Closed&apos;)) )</formula>
             <name>Stamp_VCI_Submitter_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.CreatedDate</field>
             <operation>notEqual</operation>

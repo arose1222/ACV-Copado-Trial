@@ -3,8 +3,8 @@
     <assignments>
         <name>Update_Cannot_Complete_Reason</name>
         <label>Update Cannot Complete Reason</label>
-        <locationX>1334</locationX>
-        <locationY>255</locationY>
+        <locationX>844</locationX>
+        <locationY>464</locationY>
         <assignmentItems>
             <assignToReference>WOLI_Record.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -17,19 +17,19 @@
         </connector>
     </assignments>
     <assignments>
-        <name>WOLI_Status</name>
-        <label>WOLI Status</label>
-        <locationX>793</locationX>
-        <locationY>69</locationY>
+        <name>Update_Status</name>
+        <label>Update Status</label>
+        <locationX>173</locationX>
+        <locationY>507</locationY>
         <assignmentItems>
             <assignToReference>WOLI_Record.Status</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Line_Item_Completion_Status</elementReference>
+                <elementReference>Line_Item_Status</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Is_WOLI_Completed</targetReference>
+            <targetReference>WOLI_Status_Split</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -41,69 +41,40 @@
         </value>
     </choices>
     <choices>
-        <description>WOLI_Status_Completed</description>
-        <name>WOLI_Status_Completed</name>
-        <choiceText>Completed</choiceText>
+        <description>WOLI_Status_Complete</description>
+        <name>WOLI_Status_Complete</name>
+        <choiceText>Complete</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Complete</stringValue>
         </value>
     </choices>
     <decisions>
-        <name>Is_WOLI_Completed</name>
-        <label>Is WOLI Completed</label>
-        <locationX>904</locationX>
-        <locationY>71</locationY>
+        <name>WOLI_Status_Split</name>
+        <label>WOLI Status Split</label>
+        <locationX>383</locationX>
+        <locationY>510</locationY>
         <defaultConnector>
             <targetReference>Update_WOLI</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Yes (Default)</defaultConnectorLabel>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>WOLI_Cannot_Complete</name>
+            <name>Cannot_Complete_Status</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Line_Item_Completion_Status</leftValueReference>
+                <leftValueReference>Line_Item_Status</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Cannot Complete</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SelectedServiceAppointment.Bundled__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Cannot_Complete_Reason</targetReference>
             </connector>
-            <label>WOLI Cannot Complete</label>
-        </rules>
-        <rules>
-            <name>Bundled_and_WOLI_Cannot_Complete</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Line_Item_Completion_Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Cannot Complete</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SelectedServiceAppointment.Bundled__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Bundled_Cannot_Complete_Reason</targetReference>
-            </connector>
-            <label>Bundled and WOLI Cannot Complete</label>
+            <label>Cannot Complete Status</label>
         </rules>
     </decisions>
-    <description>ID-3539 CPO Bundling - Allow WOLI to be status&apos;d from FSL mobile.</description>
+    <description>FSL Flow to Update the status of a single work order line item.  Added Complete choice.</description>
     <dynamicChoiceSets>
         <name>WOLI_Picklist_Status</name>
         <dataType>Picklist</dataType>
@@ -135,35 +106,13 @@
     </processMetadataValues>
     <processType>FieldServiceMobile</processType>
     <recordLookups>
-        <name>Get_Service_Appt</name>
-        <label>Get Service Appt</label>
-        <locationX>534</locationX>
-        <locationY>69</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Choose_Completed_or_Cannot_Complete</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Work_Order__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>WOLI_Record.WorkOrderId</elementReference>
-            </value>
-        </filters>
-        <object>ServiceAppointment</object>
-        <outputReference>SelectedServiceAppointment</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Bundled__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>WOLI</name>
         <label>WOLI</label>
-        <locationX>405</locationX>
-        <locationY>69</locationY>
+        <locationX>178</locationX>
+        <locationY>181</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Service_Appt</targetReference>
+            <targetReference>Line_Item_Status_Update</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -179,46 +128,19 @@
         <queriedFields>Status</queriedFields>
         <queriedFields>VIN__c</queriedFields>
         <queriedFields>Year_and_Make_and_Model__c</queriedFields>
-        <queriedFields>WorkOrderId</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_WOLI</name>
         <label>Update WOLI</label>
-        <locationX>1545</locationX>
-        <locationY>70</locationY>
+        <locationX>845</locationX>
+        <locationY>688</locationY>
         <inputReference>WOLI_Record</inputReference>
     </recordUpdates>
     <screens>
-        <name>Bundled_Cannot_Complete_Reason</name>
-        <label>Bundled Cannot Complete Reason</label>
-        <locationX>1140</locationX>
-        <locationY>263</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Update_Cannot_Complete_Reason</targetReference>
-        </connector>
-        <fields>
-            <name>Bundled_Cannot_Complete_Display_Text</name>
-            <fieldText>&lt;p&gt;Contact the CPO Team and inform them that this Assignment will NOT be Completed.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Bundled_Cannot_Complete_Reason_Text</name>
-            <dataType>String</dataType>
-            <fieldText>Bundled Cannot Complete Reason</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
         <name>Cannot_Complete_Reason</name>
         <label>Cannot Complete Reason</label>
-        <locationX>1191</locationX>
-        <locationY>138</locationY>
+        <locationX>850</locationX>
+        <locationY>322</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -236,22 +158,22 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Choose_Completed_or_Cannot_Complete</name>
-        <label>Choose Completed or Cannot Complete</label>
-        <locationX>679</locationX>
-        <locationY>69</locationY>
+        <name>Line_Item_Status_Update</name>
+        <label>Line Item Status Update</label>
+        <locationX>174</locationX>
+        <locationY>337</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>WOLI_Status</targetReference>
+            <targetReference>Update_Status</targetReference>
         </connector>
         <fields>
-            <name>Line_Item_Completion_Status</name>
-            <choiceReferences>WOLI_Status_Completed</choiceReferences>
+            <name>Line_Item_Status</name>
             <choiceReferences>WOLI_Status_Cannot_Complete</choiceReferences>
+            <choiceReferences>WOLI_Status_Complete</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Line Item Completion Status</fieldText>
+            <fieldText>Line Item Status</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
@@ -265,21 +187,13 @@
             <targetReference>WOLI</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>Id</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>SelectedServiceAppointment</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>ServiceAppointment</objectType>
     </variables>
     <variables>
         <name>WOLI_Record</name>

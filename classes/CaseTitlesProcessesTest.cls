@@ -6,7 +6,6 @@ public class CaseTitlesProcessesTest {
 
     @TestSetup
     static void makeData(){
-        Test.startTest();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         List<Account> accountList = New List<Account>();
         accountList.add(new Account(Dealership_ID__c = '456', Name='seller',IST_Account_Owner__c =UserInfo.getUserId(),BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US', legal_Name__c='seller', dealer_type__c='1'));
@@ -37,7 +36,6 @@ public class CaseTitlesProcessesTest {
         System.runAs(new User(Id = UserInfo.getUserId())) {
             insert new PermissionSetAssignment(AssigneeId = u.id, PermissionSetId = ps.Id);
         }
-        Test.stopTest();
     }
 
     @isTest

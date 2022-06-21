@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"
-      xmlns:n1="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>CallHighlightAction</actionName>
         <type>Default</type>
@@ -262,7 +261,6 @@
         <fields>IST_Account_Owner__c</fields>
         <fields>Dealership_ID__c</fields>
         <fields>Primary_Contact__c</fields>
-        <fields>Account_Activity_Status__c</fields>
         <fields>Recent_FTB__c</fields>
         <label>IST Account Compact Layout</label>
     </compactLayouts>
@@ -794,21 +792,12 @@
     <fields>
         <fullName>ACH_on_File__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Field populated with integration from celiego Added per Sarah Bostock</description>
+        <description>Field populated with integration from celiego</description>
         <externalId>false</externalId>
         <label>ACH on File</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>ACV_Anywhere_Registration_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>ACV Anywhere Registration Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>ACV_Capital_Customer2__c</fullName>
@@ -866,6 +855,7 @@
     <fields>
         <fullName>ACV_Capital_NS_Portfolio_ID__c</fullName>
         <description>CAP-916.  Filled by Celigo with Netsuite Data</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Shows the Capital Portfolio ID from NetSuite</inlineHelpText>
         <label>ACV Capital NS Portfolio ID</label>
@@ -934,7 +924,7 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
         <relationshipName>Accounts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -951,6 +941,7 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
     </fields>
     <fields>
         <fullName>AFC__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AFC</label>
         <required>false</required>
@@ -960,6 +951,7 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
     </fields>
     <fields>
         <fullName>ALT_PHONE__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ALT PHONE</label>
         <required>false</required>
@@ -979,46 +971,6 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Account_Activity_Status__c</fullName>
-        <description>P0: New Customer = Joined in last 60; P1: Lapsed = no activity last 30; P2: Declining = last 30 activity is less than half average 30 day activity; P3: Churned = no activity last 90; Normal = regular activity based on monthly average</description>
-        <externalId>false</externalId>
-        <formula>IF(  (TODAY() - DATEVALUE(Date_Joined__c)) &lt; 60, &quot;P0: New Customer&quot;,
- IF(  ISBLANK(Date_of_Last_Sale__c) &amp;&amp;  ISBLANK(Date_of_Last_Purchase__c), &quot;&quot;, 
-  IF( 
-   OR(
-    Date_of_Last_Sale__c &lt; (TODAY() - 90) &amp;&amp; Date_of_Last_Purchase__c &lt; (TODAY() - 90),
-    Date_of_Last_Sale__c &lt; (TODAY() - 90) &amp;&amp; ISBLANK(Date_of_Last_Purchase__c),
-    Date_of_Last_Purchase__c &lt; (TODAY() - 90) &amp;&amp; ISBLANK(Date_of_Last_Sale__c)
-   ),
-   &quot;P3: Churned&quot;,
-
-   IF(
-    OR(
-    Date_of_Last_Sale__c &lt; (TODAY() - 30) &amp;&amp; Date_of_Last_Purchase__c &lt; (TODAY() - 30),
-    Date_of_Last_Sale__c &lt; (TODAY() - 30) &amp;&amp; ISBLANK(Date_of_Last_Purchase__c),
-    Date_of_Last_Purchase__c &lt; (TODAY() - 30) &amp;&amp; ISBLANK(Date_of_Last_Sale__c)
-   ),
-   &quot;P1: Lapsed&quot;,
-
-    IF(
-     (Last_30_Days_Bought__c + Actual_Rolling_30_Day_Sales_Volume__c) &lt; ((Purchases_All_Time__c + Wholesale_Units_Sold__c) / ((TODAY() - 
-     DATEVALUE(Date_Joined__c)) / 30) / 2), 
-     &quot;P2: Declining&quot;,
-
-     &quot;Normal&quot;)))))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>P0: New Customer = Joined in last 60; 
-P1: Lapsed = no activity last 30; 
-P2: Declining = last 30 activity is less than half average 30 day activity; 
-P3: Churned = no activity last 90; 
-Normal = regular activity based on monthly average</inlineHelpText>
-        <label>Account Activity Status</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Account_Count__c</fullName>
         <externalId>false</externalId>
         <formula>1</formula>
@@ -1034,6 +986,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Account_Management_Next_Steps__c</fullName>
         <description>Used to track the next steps needed on this account.  Is populated/overwritten each time a retention &amp; ignition record is logged on an account</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Management Next Steps</label>
         <length>32768</length>
@@ -1045,6 +998,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Account_Record_type_Conversion__c</fullName>
         <description>Record Type Id captured from Lead during conversion</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Record type (Conversion)</label>
         <length>25</length>
@@ -1263,7 +1217,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Actual_Rolling_30_Day_Sales_Volume__c</fullName>
-        <description>Used in a declarative roll up summary to determine how many sales have been made the past 30 days. DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
+        <description>Used in a declarative roll up summary to determine how many sales have been made the past 30 days</description>
         <externalId>false</externalId>
         <inlineHelpText>Count of the number of Successful Auctions the last 30 days</inlineHelpText>
         <label>Actual Rolling 30 Day Sales Volume</label>
@@ -1349,9 +1303,8 @@ Normal = regular activity based on monthly average</inlineHelpText>
         <defaultValue>45</defaultValue>
         <description>Used by Capital to indicate the Advantage Terms</description>
         <externalId>false</externalId>
-        <inlineHelpText>Used by Capital to indicate the Advantage Terms</inlineHelpText>
         <label>Advantage Terms</label>
-        <precision>3</precision>
+        <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1440,6 +1393,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Alternate_Transport_City__c</fullName>
         <description>Alternate transport city - used in Alternate Transport Address Formula</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Transport City</label>
         <length>255</length>
@@ -1452,6 +1406,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Alternate_Transport_Country__c</fullName>
         <description>Alternate transport country - used in Alternate Transport Address Formula</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Transport Country</label>
         <length>255</length>
@@ -1464,6 +1419,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Alternate_Transport_State__c</fullName>
         <description>Alternate transport state - used in Alternate Transport Address Formula</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Transport State</label>
         <length>255</length>
@@ -1476,6 +1432,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Alternate_Transport_Street__c</fullName>
         <description>Alternate transport street - used in Alternate Transport Address Formula</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Transport Street</label>
         <length>255</length>
@@ -1488,6 +1445,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Alternate_Transport_Zipcode__c</fullName>
         <description>Alternate transport zipcode - used in Alternate Transport Address Formula</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Transport Zip Code</label>
         <length>255</length>
@@ -1515,6 +1473,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Annual_Unit_Purchased__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Annual Unit Purchased</label>
         <length>50</length>
@@ -1526,6 +1485,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Annual_Unit_Sales__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Annual Unit Sales</label>
         <length>50</length>
@@ -1600,6 +1560,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Association_Membership__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Enter the name of the Association(s) the Dealer is a member of. i.e. NADA, NIADA, NABD</inlineHelpText>
         <label>Association Membership</label>
@@ -1646,6 +1607,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>BillingAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1661,6 +1623,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Brand__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Brand</label>
         <length>25</length>
@@ -1672,22 +1635,12 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Business_Hours__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Business Hours</label>
         <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Buy_Fee_Rate_Card_Name__c</fullName>
-        <description>OMS-111 Displays the Rate Card name associated with the account.  Field created by Pablo Suter and deployed by Ashley Reilly</description>
-        <externalId>false</externalId>
-        <formula>Buy_Fee_Rate_Card__r.Display_Name__c</formula>
-        <label>Buy Fee Rate Card Name</label>
-        <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
@@ -1736,6 +1689,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Buyer_Profile_from_ACV__c</fullName>
         <description>Value pushed from Tools</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Indicates the Dealer needs to be reviewed before moving forward with Auction.</inlineHelpText>
         <label>Buyer Profile</label>
@@ -1869,6 +1823,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_1__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 1</label>
         <required>false</required>
@@ -1879,6 +1834,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 2</label>
         <required>false</required>
@@ -1889,6 +1845,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_3__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 3</label>
         <required>false</required>
@@ -1904,7 +1861,6 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
 IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageServer?id=01501000000HfAq&amp;oid=00D010000004b0z&amp;lastMod=1633012136000&quot;, &quot;Orange&quot;, 30, 30),NULL
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Flag to indicate if this is an Orange Elite Dealer</inlineHelpText>
         <label>Capital Dealer Flag</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1924,6 +1880,21 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Bronze</fullName>
+                    <default>false</default>
+                    <label>Bronze</label>
+                </value>
+                <value>
+                    <fullName>Gold</fullName>
+                    <default>false</default>
+                    <label>Gold</label>
+                </value>
+                <value>
+                    <fullName>Silver</fullName>
+                    <default>false</default>
+                    <label>Silver</label>
+                </value>
+                <value>
                     <fullName>Capital Orange Elite</fullName>
                     <default>false</default>
                     <label>Capital Orange Elite</label>
@@ -1942,24 +1913,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Carrier_Has_Insurance__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Carrier Has Insurance</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Carrier_Insurance_Expiration__c</fullName>
-        <externalId>false</externalId>
-        <label>Carrier Insurance Expiration</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Carrier_Status__c</fullName>
@@ -2047,6 +2000,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Close_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Close Date</label>
         <required>false</required>
@@ -2057,6 +2011,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__BAR__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Address Record Type</label>
         <length>1</length>
@@ -2083,6 +2038,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__BAV__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Address Vacancy</label>
         <length>1</length>
@@ -2095,6 +2051,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__BRDI__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Residential Delivery Indicator</label>
         <length>12</length>
@@ -2107,6 +2064,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__BTZ__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Timezone</label>
         <length>48</length>
@@ -2119,6 +2077,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__SAR__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Shipping Address Record Type</label>
         <length>1</length>
@@ -2145,6 +2104,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__SAV__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Shipping Address Vacancy</label>
         <length>1</length>
@@ -2157,6 +2117,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__SRDI__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Shipping Residential Delivery Indicator</label>
         <length>12</length>
@@ -2169,6 +2130,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>CloudingoAgent__STZ__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Shipping Timezone</label>
         <length>48</length>
@@ -2180,6 +2142,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Commercial_Acct_Location__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>For commercial client use, only.  Indicates lot number, city, dealership - whatever it is the commercial client uses to identify specific location.</inlineHelpText>
         <label>Commercial Acct Location</label>
@@ -2191,6 +2154,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Commercial_BK__c</fullName>
         <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Commercial BK</label>
         <length>255</length>
@@ -2201,96 +2165,8 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Commercial_Sub_Type__c</fullName>
-        <description>Used to further categorize Commercial accounts  - access to edit is given in permission set: Visibility of Commercial Sub-Type field - Will only have options when dealer type = Commercial</description>
-        <externalId>false</externalId>
-        <label>Commercial Sub-Type</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <controllingField>Dealer_Type__c</controllingField>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Financial Institutions (Banks, Credit Unions or Private Lenders)</fullName>
-                    <default>false</default>
-                    <label>Financial Institutions (Banks, Credit Unions or Private Lenders)</label>
-                </value>
-                <value>
-                    <fullName>Rental Car Companies</fullName>
-                    <default>false</default>
-                    <label>Rental Car Companies</label>
-                </value>
-                <value>
-                    <fullName>Fleet Management Companies</fullName>
-                    <default>false</default>
-                    <label>Fleet Management Companies</label>
-                </value>
-                <value>
-                    <fullName>OEM&apos;s</fullName>
-                    <default>false</default>
-                    <label>OEM&apos;s</label>
-                </value>
-                <value>
-                    <fullName>Captive Finance Companies</fullName>
-                    <default>false</default>
-                    <label>Captive Finance Companies</label>
-                </value>
-                <value>
-                    <fullName>Third Party Remarketing Companies</fullName>
-                    <default>false</default>
-                    <label>Third Party Remarketing Companies</label>
-                </value>
-                <value>
-                    <fullName>Repossession Forwarder&apos;s</fullName>
-                    <default>false</default>
-                    <label>Repossession Forwarder&apos;s</label>
-                </value>
-                <value>
-                    <fullName>Dealer based Finance Companies</fullName>
-                    <default>false</default>
-                    <label>Dealer based Finance Companies</label>
-                </value>
-            </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Financial Institutions (Banks, Credit Unions or Private Lenders)</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Rental Car Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Fleet Management Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>OEM&apos;s</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Captive Finance Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Third Party Remarketing Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Repossession Forwarder&apos;s</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Dealer based Finance Companies</valueName>
-            </valueSettings>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Competitors_In_Play__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Enter where the Franchise Dealer is sending their Wholesale cars that they are not sending to ACV</inlineHelpText>
         <label>Competitors In Play</label>
@@ -2355,18 +2231,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         </valueSet>
     </fields>
     <fields>
-        <fullName>Copado_Test__c</fullName>
-        <description>testing new field</description>
-        <externalId>false</externalId>
-        <label>Copado Test</label>
-        <length>12</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Count_of_Vehicles_Listed__c</fullName>
         <description>Populates with value from Declarative Roll up that counts how many vehicles a seller has listed throughout their history on ACV</description>
         <externalId>false</externalId>
@@ -2381,6 +2245,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>County__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>County</label>
         <length>25</length>
@@ -2429,6 +2294,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Current_Stage__c</fullName>
         <description>Stage that dealership currently is in i.e: APP DL (app hs been downloaded) NOT DL (not downloaded) FOLLOW UP (dealership has a question or issue using app) etc etc</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Stage</label>
         <length>50</length>
@@ -2565,6 +2431,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>DBA__c</fullName>
         <description>Doing Business As</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DBA</label>
         <length>50</length>
@@ -2599,6 +2466,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>DOT_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOT Number</label>
         <length>100</length>
@@ -2611,6 +2479,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>D_B_ID__c</fullName>
         <description>Dealers Dun &amp; Bradstreet ID</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Dealers Dun &amp; Bradstreet ID</inlineHelpText>
         <label>D&amp;B ID</label>
@@ -2646,6 +2515,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Back_in_Good_Standing__c</fullName>
         <description>Date that the back in good standing option was selected for the Title hold field</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Back in Good Standing</label>
         <required>false</required>
@@ -2656,6 +2526,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Do_Not_Send_Titles__c</fullName>
         <description>Date that the title hold field is marked as do not send titles</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Do Not Send Titles</label>
         <required>false</required>
@@ -2675,6 +2546,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_License_Received__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date License # Received</label>
         <required>false</required>
@@ -2684,6 +2556,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Most_Recent_Arb__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Most Recent Arb</label>
         <required>false</required>
@@ -2693,6 +2566,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Registered__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Registered</label>
         <required>false</required>
@@ -2703,6 +2577,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Submitted__c</fullName>
         <description>Date that the documents were posted for review</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Submitted</label>
         <required>false</required>
@@ -2712,6 +2587,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Tax_ID_Received__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Tax ID Received</label>
         <required>false</required>
@@ -2722,6 +2598,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Compliant__c</fullName>
         <description>The date a dealer becomes document compliant.  If they fall out of compliance, the field goes blank, and re-fills when they become compliant again.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The date a dealer becomes document compliant.  If they fall out of compliance, the field goes blank, and will re-populate when/if they become compliant again.</inlineHelpText>
         <label>Date Time Compliant</label>
@@ -2732,6 +2609,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_of_Demo__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Demo</label>
         <required>false</required>
@@ -2742,6 +2620,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_of_Deny__c</fullName>
         <description>Date Buyer&apos;s Assurance Upsell picklist is set to &quot;Date of Deny&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Deny</label>
         <required>false</required>
@@ -2751,6 +2630,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_of_First_Buy__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of First Purchase</label>
         <required>false</required>
@@ -2761,6 +2641,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_of_First_Sale__c</fullName>
         <description>The date an account first sold a vehicle.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of First Sale</label>
         <required>false</required>
@@ -2771,6 +2652,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_of_Goodwill__c</fullName>
         <description>Date Buyer&apos;s Assurance Upsell picklist is set to &quot;Goodwill&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Goodwill</label>
         <required>false</required>
@@ -2780,6 +2662,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_of_Last_Purchase__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Last Purchase</label>
         <required>false</required>
@@ -2789,6 +2672,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_of_Last_Sale__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Last Sale</label>
         <required>false</required>
@@ -2799,6 +2683,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_of_Retro_Charge__c</fullName>
         <description>Date Buyer&apos;s Assurance Upsell picklist is set to &quot;Retro Charge&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Retro Charge</label>
         <required>false</required>
@@ -2872,6 +2757,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dealer_Bank_Account_Owner_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Bank Account Owner Email</label>
         <required>false</required>
@@ -2882,6 +2768,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dealer_Bank_Account_Owner_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Bank Account Owner First Name</label>
         <length>255</length>
@@ -2893,6 +2780,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dealer_Bank_Account_Owner_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Bank Account Owner Last Name</label>
         <length>255</length>
@@ -2929,6 +2817,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dealer_Docs_Email_Wave__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Docs Email Wave</label>
         <required>false</required>
@@ -3031,6 +2920,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Dealership_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Dealer ID from Tools</inlineHelpText>
         <label>Dealer ID</label>
@@ -3043,6 +2933,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dealership_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealership Notes</label>
         <length>2000</length>
@@ -3139,6 +3030,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Demo_Completed_By__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Demo Completed By</label>
         <length>50</length>
@@ -3180,11 +3072,13 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Discovery_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Discovery Comments</label>
         <length>32768</length>
@@ -3237,6 +3131,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Document_Dealer_Cert_Expires__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xDealership Cert Expiration</label>
         <required>false</required>
@@ -3255,6 +3150,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Document_Resale_Cert_Expires__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xResale Cert Expiration</label>
         <required>false</required>
@@ -3318,6 +3214,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>Duplicate_Checker_Record_Type__c</fullName>
         <description>This field is used in Matching Rules and is populated by a trigger with the DeveloperName of the Record Type</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Duplicate Checker Record Type</label>
         <length>255</length>
@@ -3355,6 +3252,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EIN_Number__c</fullName>
         <description>A Taxpayer Identification Number is an identifying number used for tax purposes in the United States and is used for transporters that ship vehicles for ACV.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>EIN Number</label>
         <required>false</required>
@@ -3365,6 +3263,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EXPRN__Account_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Experian Account Number</label>
         <length>255</length>
@@ -3458,6 +3357,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EXPRN__Batch_Scoring_Model__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Batch Scoring Model</label>
         <length>10</length>
@@ -3471,6 +3371,7 @@ Field to be deprecated. - MM 11/8/21</description>
         <fullName>EXPRN__Credit_Policy__c</fullName>
         <deprecated>false</deprecated>
         <description>Credit policy used for batch decision</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Credit Policy</label>
         <length>35</length>
@@ -3483,6 +3384,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EXPRN__Date_Added__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Added</label>
         <required>false</required>
@@ -3493,6 +3395,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EXPRN__Exp_Business_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Experian Business Name</label>
         <length>120</length>
@@ -3542,6 +3445,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>EXPRN__Most_Recent_Decision_Status__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Most Recent Decision Status</label>
         <length>50</length>
@@ -3574,6 +3478,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <defaultValue>&quot;N&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>Required to Mark Records that are picked for Business Refresh by SFDC_BIQ_Business_Refresh_Request Job</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SFDC Sync Flag</label>
         <length>1</length>
@@ -3586,6 +3491,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
     <fields>
         <fullName>EXPRN__Scoring_Model__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scoring Model</label>
         <length>60</length>
@@ -3598,6 +3504,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
     <fields>
         <fullName>EXPRN__Source__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source</label>
         <length>255</length>
@@ -3611,6 +3518,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <fullName>EXPRN__Unique_ID__c</fullName>
         <caseSensitive>true</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unique ID</label>
         <length>255</length>
@@ -3760,6 +3668,18 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Experian_Credit_Report_Date__c</fullName>
+        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Shows the date when the most recent Credit Report was pulled from Experian</inlineHelpText>
+        <label>Experian Credit Report Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Experian_FICO__c</fullName>
         <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
         <externalId>false</externalId>
@@ -3783,16 +3703,6 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Experian_Test__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Used to test FastPass Credit Approval Automation</description>
-        <externalId>false</externalId>
-        <label>Experian Test</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Extended_Arbitration_Type__c</fullName>
@@ -3828,6 +3738,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
     <fields>
         <fullName>FP_Trigger_RS__c</fullName>
         <description>Used for Fast Pass tracking purpose</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>FP Trigger RS</label>
         <length>255</length>
@@ -3861,7 +3772,7 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
                 <sorted>false</sorted>
                 <value>
                     <fullName>New</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>New</label>
                 </value>
                 <value>
@@ -3947,6 +3858,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>FastPass_Status_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>FastPass Status Date</label>
         <required>false</required>
@@ -3956,6 +3868,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Fax</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -3985,6 +3898,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Flagged_for_Unwind_Batch__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Flagged for Unwind Batch</label>
         <length>15</length>
@@ -4718,6 +4632,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>GCLID__c</fullName>
         <description>Google Click Identifier, is a unique tracking parameter that Google uses to transfer information between your Google Ads account and your Google Analytics account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>GCLID</label>
         <length>255</length>
@@ -4754,6 +4669,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Google_Place_Id__c</fullName>
         <description>Field references Google Place Id used to create organization.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Google Place Id</label>
         <length>255</length>
@@ -4766,6 +4682,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>HOT_NOTES__c</fullName>
         <description>I.E. NEXT GEAR, KNOWS TIM, ETC</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>HOT NOTES</label>
         <length>50</length>
@@ -4774,17 +4691,6 @@ Blank = FastPass not offered</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Halt_True360_Appointments__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Manually controlled field to prevent the creation of any more True360 Service Appointments.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Manually controlled field to prevent the creation of any more True360 Service Appointments.</inlineHelpText>
-        <label>Halt True360 Appointments</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Has_Logged_in_30_Days__c</fullName>
@@ -4862,6 +4768,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>IST_Rep_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Phone number for IST Rep</inlineHelpText>
         <label>IST Rep Phone</label>
@@ -5217,6 +5124,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>In_Business_Since__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>In Business Since</label>
         <required>false</required>
@@ -5328,6 +5236,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Initial_Activation_Date__c</fullName>
         <description>This field will populate upon initial activation of an account</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Initial Activation Date</label>
         <required>false</required>
@@ -5337,6 +5246,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Inspection_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Notes</label>
         <length>32768</length>
@@ -5347,6 +5257,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Insurance_Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Insurance Expiration Date</label>
         <required>false</required>
@@ -5382,6 +5293,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Interests__c</fullName>
         <description>Price range, age range, type of vehicle etc etc</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Interests</label>
         <length>50</length>
@@ -5440,32 +5352,6 @@ Blank = FastPass not offered</inlineHelpText>
         <fullName>Jigsaw</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>Language_Preference__c</fullName>
-        <description>The preferred language for this account.  Field is mapped from Lead preferred language.</description>
-        <externalId>false</externalId>
-        <label>Language Preference</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>English</fullName>
-                    <default>false</default>
-                    <label>English</label>
-                </value>
-                <value>
-                    <fullName>Spanish</fullName>
-                    <default>false</default>
-                    <label>Spanish</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Last_30_Days_Bought__c</fullName>
@@ -5563,6 +5449,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Last_Bid_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Bid Date</label>
         <required>false</required>
@@ -5573,6 +5460,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Last_Bought__c</fullName>
         <description>The date and time this dealership last recorded a relevant sale.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Bought</label>
         <required>false</required>
@@ -5583,6 +5471,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Last_Call_Logged__c</fullName>
         <description>Field that tracks the last call made to a Dealer Account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Call Logged</label>
         <required>false</required>
@@ -5592,6 +5481,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Last_Contacted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Contacted</label>
         <required>false</required>
@@ -5602,6 +5492,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Last_Dealership_Activity__c</fullName>
         <description>Records the date and time of this dealership&apos;s last relevant transaction.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Dealership Activity</label>
         <required>false</required>
@@ -5623,6 +5514,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Last_Listed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Listed Date</label>
         <required>false</required>
@@ -5632,6 +5524,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Last_Listing_As_Of_11_18_19__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Listing As Of 11/18/19</label>
         <required>false</required>
@@ -5661,23 +5554,13 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Late_Title_Fee_Start_Date__c</fullName>
         <description>Used with the late Title Fee Field  - will be populated via with manual data loads and now individuals in the permission set &quot;Late Title Fee Access&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If dealer is charged a late fee, it will only be for auctions that ended on or after this date</inlineHelpText>
         <label>Late Title Fee Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>Late_Title_Fee_Unenrollment_Date__c</fullName>
-        <description>This field captures the date that the Account has been unenrolled in the late fee program - Populated via late Title Fee Unenrollment Flow</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Most recent date the Account has been unenrolled in the late fee program</inlineHelpText>
-        <label>Late Title Fee Unenrollment Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -5728,6 +5611,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_Address_Note__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Address Note</label>
         <length>2000</length>
@@ -5738,6 +5622,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal City</label>
         <length>200</length>
@@ -5749,6 +5634,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Country</label>
         <length>10</length>
@@ -5760,6 +5646,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal State</label>
         <length>32</length>
@@ -5771,6 +5658,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_Street__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Street</label>
         <length>128</length>
@@ -5782,6 +5670,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Legal_Zip_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Zip Code</label>
         <length>10</length>
@@ -5805,6 +5694,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>License_Expiration__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date License Expires</inlineHelpText>
         <label>xLicense Expiration</label>
@@ -5815,6 +5705,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Number</label>
         <length>50</length>
@@ -5826,6 +5717,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>License_S3_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License S3 Link</label>
         <length>255</length>
@@ -5916,6 +5808,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Lot_Sweep_End_Date__c</fullName>
         <description>Automatically populated via workflow, which date stamps when a dealership goes from being a participant to not (Lot Sweep Participant field). This assists with ensuring dealers are charged for participation up until termination date, but not after.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date that participation in the Lot Sweep program is ended.</inlineHelpText>
         <label>Lot Sweep End Date</label>
@@ -5927,6 +5820,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>Lot_Sweep_Join_Date__c</fullName>
         <description>Indicates the date a selling dealership signed up to participate in Lot Sweep.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Indicates the date a selling dealership signed up to participate in Lot Sweep.</inlineHelpText>
         <label>Lot Sweep Join Date</label>
@@ -5958,6 +5852,7 @@ Blank = FastPass not offered</inlineHelpText>
     <fields>
         <fullName>MC_Number__c</fullName>
         <description>Used for transportation tracking of transporter MC number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>MC Number</label>
         <length>255</length>
@@ -5993,27 +5888,6 @@ Blank = FastPass not offered</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>MV_Field__c</fullName>
-        <description>mv field test</description>
-        <externalId>false</externalId>
-        <label>MV Field</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Major_Account__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Major Account</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Maps_Sales_Region_Name__c</fullName>
@@ -6218,6 +6092,18 @@ Blank = FastPass not offered</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Monthly_Sell_Percent__c</fullName>
+        <description>Field can be depreciated.</description>
+        <externalId>false</externalId>
+        <formula>Last_30_Days_Sold__c   /  Potential_Monthly_Sell_Volume__c</formula>
+        <label>x_Monthly Sell Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>Months_on_Platform__c</fullName>
         <externalId>false</externalId>
         <formula>IF(
@@ -6252,12 +6138,14 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Name</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Netsuite_ID__c</fullName>
         <description>Corresponding vendor id for Netsuite. We use this to process payments for transport.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Netsuite ID</label>
         <length>255</length>
@@ -6493,6 +6381,20 @@ Field to be deprecated. - MM 11/8/21</description>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OFAC__c</fullName>
+        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if this dealer is under sanctions by the Office of Federal Asset Control</inlineHelpText>
+        <label>OFAC</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -6911,6 +6813,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>Organization_Credit_Id__c</fullName>
         <description>Used in the CreditAPI for account_Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Used in the CreditAPI for account_Id</inlineHelpText>
         <label>Organization Credit Id</label>
@@ -6925,6 +6828,7 @@ Field to be deprecated. - MM 11/8/21</description>
         <fullName>Organization_Guid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>This is the unique Organization Guid for Standard Dealership Accounts</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Organization Guid</label>
         <length>36</length>
@@ -6936,6 +6840,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Original_Date_Joined__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Original Date Joined</label>
         <required>false</required>
@@ -6945,6 +6850,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Other_Ad_Syndication_Provider__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Ad &amp; Syndication Provider</label>
         <length>255</length>
@@ -6957,6 +6863,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>Other_COVID__c</fullName>
         <description>Field area for users to input more details for what is currently happening to a Dealership in relation to the COVID-19 Pandemic</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If you selected &quot;Other - COVID Related&quot; in the field Reason for Idle, please fill in those details here.</inlineHelpText>
         <label>Other COVID Related Idle Reason</label>
@@ -6968,6 +6875,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Other_IMS__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>List Other Inventory Management System</inlineHelpText>
         <label>Other IMS</label>
@@ -6981,6 +6889,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>Other_Idle_Reason__c</fullName>
         <description>This is a text box to describe the current performance status of the account. Name change was requested and was determined not to mess with the API name.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is a text box to describe the current performance status of the account.</inlineHelpText>
         <label>Current Performance Status</label>
@@ -7281,6 +7190,7 @@ Field to be deprecated. - MM 11/8/21</description>
     <fields>
         <fullName>Permit_Resale_Number__c</fullName>
         <description>The most recent resale number for the account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Permit/Resale Number</label>
         <length>50</length>
@@ -7292,6 +7202,7 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Permit_Resale_S3_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Permit Resale S3 Link</label>
         <length>255</length>
@@ -7303,11 +7214,13 @@ Field to be deprecated. - MM 11/8/21</description>
     </fields>
     <fields>
         <fullName>Phone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Pickup_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Notes</label>
         <length>2000</length>
@@ -7315,17 +7228,6 @@ Field to be deprecated. - MM 11/8/21</description>
         <trackHistory>true</trackHistory>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Pipeline_Test__c</fullName>
-        <externalId>false</externalId>
-        <label>Pipeline Test</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Platform_Status__c</fullName>
@@ -7432,6 +7334,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     </fields>
     <fields>
         <fullName>Preferred_Run__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Preferred Run</label>
         <length>32768</length>
@@ -7487,6 +7390,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     </fields>
     <fields>
         <fullName>Primary_Vendor_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Primary Vendor Email</label>
         <required>false</required>
@@ -7498,6 +7402,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     <fields>
         <fullName>Principal__c</fullName>
         <description>Indicates the Principal at the Dealership. This field is populated with data from Internal Tools during the Source of Truth Data migration</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Principal</label>
         <length>128</length>
@@ -7510,6 +7415,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     <fields>
         <fullName>Prior_Action__c</fullName>
         <description>Prior Action is the previous value of the Next Action field when changed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prior Action</label>
         <length>100</length>
@@ -7595,6 +7501,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     </fields>
     <fields>
         <fullName>REFERENCE__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>REFERENCE</label>
         <length>50</length>
@@ -7631,6 +7538,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     </fields>
     <fields>
         <fullName>Rates_Summary__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Rates Summary</label>
         <length>32768</length>
@@ -7648,6 +7556,7 @@ Idle if not giving any cars to ACV</inlineHelpText>
     <fields>
         <fullName>Reason_For_Reactivation__c</fullName>
         <description>This is a field used in the reactivation request approval process.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reason For Reactivation</label>
         <required>false</required>
@@ -7757,6 +7666,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     <fields>
         <fullName>Referral_Code__c</fullName>
         <description>Populated upon lead convert</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Referral Code</label>
         <length>255</length>
@@ -7849,6 +7759,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Registered_Agent_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Registered Agent First Name</label>
         <length>255</length>
@@ -7860,6 +7771,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Registered_Agent_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Registered Agent Last Name</label>
         <length>255</length>
@@ -7880,6 +7792,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Registered_Business_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Registered Business Name</label>
         <length>255</length>
@@ -7953,6 +7866,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     <fields>
         <fullName>Required_Docs_Uploaded__c</fullName>
         <description>The date/time that all required docs were uploaded for this account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Required Docs Uploaded</label>
         <required>false</required>
@@ -7971,6 +7885,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Restrictions__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Restrictions</label>
         <length>32768</length>
@@ -8016,7 +7931,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Rolling_3_Month_Avg__c</fullName>
-        <description>Rolling Average of the past 90 days of Vehicles Sold...  DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
+        <description>Rolling Average of the past 90 days of Vehicles Sold</description>
         <externalId>false</externalId>
         <formula>Total_Sold_the_Past_90_Days__c  / 3</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -8058,6 +7973,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>SIC__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SIC</label>
         <required>false</required>
@@ -8398,6 +8314,7 @@ IF(
     <fields>
         <fullName>Set_Active_Account_Check_Date__c</fullName>
         <description>This is the day that an Active account should be reviewed to see whether or not they have their dealer docs.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Set Active Account Check Date</label>
         <required>false</required>
@@ -8408,6 +8325,7 @@ IF(
     <fields>
         <fullName>Set_for_Deactivation_Date__c</fullName>
         <description>This is the day that an Out of Compliance account should be marked as Deactivate in Tools. This date will likely change.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Set for Deactivation Date</label>
         <required>false</required>
@@ -8417,6 +8335,7 @@ IF(
     </fields>
     <fields>
         <fullName>ShippingAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -8442,6 +8361,7 @@ IF(
     </fields>
     <fields>
         <fullName>Site</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -8456,6 +8376,7 @@ IF(
     </fields>
     <fields>
         <fullName>Source_Last_Activity__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source Last Activity</label>
         <required>false</required>
@@ -8731,6 +8652,7 @@ IF(
     </fields>
     <fields>
         <fullName>Sq_Foot__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sq. Footage</label>
         <length>10</length>
@@ -8777,6 +8699,7 @@ IF(
     </fields>
     <fields>
         <fullName>State_Tax_ID_Exp_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>State Tax ID Exp Date</label>
         <required>false</required>
@@ -8786,6 +8709,7 @@ IF(
     </fields>
     <fields>
         <fullName>State_Tax_ID_issue_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>State Tax ID issue Date</label>
         <required>false</required>
@@ -8796,6 +8720,7 @@ IF(
     <fields>
         <fullName>Status_Notes__c</fullName>
         <description>Text area used for note taking related to the registration process related to the Status field (status__c). This field is mapped to the dealerships table in acv_prod on the status_notes fields</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Status Notes</label>
         <length>5000</length>
@@ -8866,6 +8791,7 @@ IF(
     </fields>
     <fields>
         <fullName>Summary_of_Operation__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Summary of Operation</label>
         <length>32768</length>
@@ -8899,6 +8825,7 @@ IF(
     <fields>
         <fullName>Synced_to_TrueFrame_Datetime__c</fullName>
         <description>When was this record synced to the trueframe servers</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Synced to TrueFrame Datetime</label>
         <required>false</required>
@@ -8929,6 +8856,7 @@ IF(
     </fields>
     <fields>
         <fullName>Tax_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Federal Tax ID</label>
         <length>255</length>
@@ -8951,6 +8879,7 @@ IF(
     </fields>
     <fields>
         <fullName>Territory_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Territory Name</label>
         <length>255</length>
@@ -9042,6 +8971,19 @@ Title_Mailing_Zip_Code__c</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Title_Compliance__c</fullName>
+        <description>Title compliance percentage over the last 60 days.  Updated nightly via batch.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Title compliance percentage over the last 60 days</inlineHelpText>
+        <label>Title Compliance</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>Title_Hold__c</fullName>
         <description>This field is manually populated by revenue Recovery, and validation rule will fire to not allow title case to be moved to working if &quot;Do not Send Titles&quot; is selected. Once moved to &quot;Back in good Standing&quot; process builder will fire to send chatter to titles team.</description>
         <externalId>false</externalId>
@@ -9080,6 +9022,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_Address_Note__c</fullName>
         <description>Field related to the Payment notes which is mapped to the dealership_addresses table in acv_prod under the &apos;title_mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Mailing Address Note</label>
         <length>2000</length>
@@ -9091,6 +9034,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_City__c</fullName>
         <description>Field related to the title mailing city which is mapped to the dealership_addresses table in acv_prod under the &apos;Title_Mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Mailing City</label>
         <length>200</length>
@@ -9103,6 +9047,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_Country__c</fullName>
         <description>Field related to the Title_Mailing country which is mapped to the dealership_addresses table in acv_prod under the &apos;Title_Mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Mailing Country</label>
         <length>10</length>
@@ -9115,6 +9060,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_State__c</fullName>
         <description>Field related to the Title_Mailing state which is mapped to the dealership_addresses table in acv_prod under the &apos;Title_Mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Mailing State</label>
         <length>32</length>
@@ -9127,6 +9073,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_Street__c</fullName>
         <description>Field related to the Title_Mailing street which is mapped to the dealership_addresses table in acv_prod under the &apos;Title_Mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This address is optional, if it is populated all Titles will be mailed to the Title Mailing address. If it is blank the titles will be mailed to the billing address</inlineHelpText>
         <label>Title Mailing Street</label>
@@ -9140,6 +9087,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>Title_Mailing_Zip_Code__c</fullName>
         <description>Field related to the Title_Mailing Zip code which is mapped to the dealership_addresses table in acv_prod under the &apos;Title_Mailing&apos; type.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Mailing Zip Code</label>
         <length>10</length>
@@ -9238,6 +9186,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Total_Sales__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Total Sales</label>
         <length>10</length>
@@ -9249,7 +9198,6 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Total_Sold_the_Past_90_Days__c</fullName>
-        <description>DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
         <externalId>false</externalId>
         <label>Total Sold the Past 90 Days</label>
         <precision>18</precision>
@@ -9709,6 +9657,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Type_of_Trucks__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Type of Trucks</label>
         <required>false</required>
@@ -9719,6 +9668,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>URL__c</fullName>
         <description>URL field for this dealership. Similar to standard website field, except this field is Text instead of URL to allow for URLs that are not formatted properly.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Website</label>
         <length>255</length>
@@ -9945,6 +9895,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Website</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -10070,6 +10021,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Why_Don_t_You_buy_online__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Why Don&apos;t You buy online</label>
         <length>100</length>
@@ -10108,6 +10060,7 @@ Title_Mailing_Zip_Code__c</formula>
         <fullName>alycecom__Initial_Gift_Invitation_Create_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Initial Gift Invitation Create Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Initial Gift Invitation Create Date</inlineHelpText>
         <label>Initial Gift Invitation Create Date</label>
@@ -10120,6 +10073,7 @@ Title_Mailing_Zip_Code__c</formula>
         <fullName>alycecom__Initial_Gift_Invitation_Sent_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Initial Gift Invitation Sent Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Initial Gift Invitation Sent Date</inlineHelpText>
         <label>Initial Gift Invitation Sent Date</label>
@@ -10132,6 +10086,7 @@ Title_Mailing_Zip_Code__c</formula>
         <fullName>alycecom__Most_Recent_Gift_Invitation_Create_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Create Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Create Date</inlineHelpText>
         <label>Most Recent Gift Invitation Create Date</label>
@@ -10144,6 +10099,7 @@ Title_Mailing_Zip_Code__c</formula>
         <fullName>alycecom__Most_Recent_Gift_Invitation_Sent_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Alyce Most Recent Gift Invitation Sent Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Alyce Most Recent Gift Invitation Sent Date</inlineHelpText>
         <label>Most Recent Gift Invitation Sent Date</label>
@@ -10169,6 +10125,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>cell__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Phone (cell)</label>
         <required>false</required>
@@ -10179,6 +10136,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>dba_trade_name__c</fullName>
         <description>Doing Business As</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DBA Trade Name</label>
         <length>255</length>
@@ -10190,6 +10148,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Netsuite Email</label>
         <required>false</required>
@@ -10216,6 +10175,7 @@ Title_Mailing_Zip_Code__c</formula>
     <fields>
         <fullName>last_buyer_payment_method__c</fullName>
         <description>short-term field for deal doc collection project</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>short-term field for deal doc collection project</inlineHelpText>
         <label>Last Buyer Payment Method as of 10.28</label>
@@ -10228,6 +10188,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>legal_name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Name</label>
         <length>255</length>
@@ -10264,7 +10225,19 @@ Title_Mailing_Zip_Code__c</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>test_field__c</fullName>
+        <externalId>false</externalId>
+        <formula>ACV_Capital_Primary_Contact__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>test field</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>utm_campaign__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>utm_campaign</label>
         <length>255</length>
@@ -10276,6 +10249,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>utm_content__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>utm_content</label>
         <length>255</length>
@@ -10287,6 +10261,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>utm_medium__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>utm_medium</label>
         <length>255</length>
@@ -10298,6 +10273,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>utm_source__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>utm_source</label>
         <length>255</length>
@@ -10309,6 +10285,7 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>utm_term__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>utm_term</label>
         <length>255</length>
@@ -10318,15 +10295,52 @@ Title_Mailing_Zip_Code__c</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>xACV_Capital_Relationship__c</fullName>
+        <description>Created for ACV Capital Reporting. Prospect and Customer are updated by workflow.  Deprecated and replaced by formula field</description>
+        <externalId>false</externalId>
+        <label>xACV Capital Relationship</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No Relationship</fullName>
+                    <default>true</default>
+                    <label>No Relationship</label>
+                </value>
+                <value>
+                    <fullName>Prospect</fullName>
+                    <default>false</default>
+                    <label>Prospect</label>
+                </value>
+                <value>
+                    <fullName>Customer</fullName>
+                    <default>false</default>
+                    <label>Customer</label>
+                </value>
+                <value>
+                    <fullName>Former Customer</fullName>
+                    <default>false</default>
+                    <label>Former Customer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <listViews>
         <fullName>ACV_Capital_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>Dealership_ID__c</columns>
+        <columns>ACV_Capital_Relationship__c</columns>
+        <columns>Actual_Rolling_30_Day_Sales_Volume__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
         <columns>ACCOUNT.ADDRESS1_CITY</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
-        <columns>Rate_of_Travel__c</columns>
         <columns>ACV_Capital_Sales_Rep__c</columns>
-        <columns>ACCOUNT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -10345,11 +10359,6 @@ Title_Mailing_Zip_Code__c</formula>
             <field>ACCOUNT.ADDRESS1_STATE</field>
             <operation>notEqual</operation>
         </filters>
-        <filters>
-            <field>Dealership_ID__c</field>
-            <operation>equals</operation>
-            <value>71862</value>
-        </filters>
         <label>ACV Capital - All Accounts</label>
         <sharedTo>
             <role>ACV_Capital</role>
@@ -10361,7 +10370,9 @@ Title_Mailing_Zip_Code__c</formula>
         <fullName>ACV_Capital_My_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>Dealership_ID__c</columns>
-        <columns>Rate_of_Travel__c</columns>
+        <columns>ACV_Capital_Relationship__c</columns>
+        <columns>Actual_Rolling_30_Day_Sales_Volume__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
         <columns>ACCOUNT.ADDRESS1_CITY</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACV_Capital_Sales_Rep__c</columns>
@@ -10372,13 +10383,17 @@ Title_Mailing_Zip_Code__c</formula>
             <value>Account.Standard</value>
         </filters>
         <filters>
-            <field>ACCOUNT.ADDRESS1_STATE</field>
-            <operation>notEqual</operation>
-        </filters>
-        <filters>
             <field>My_ACV_Capital_Account__c</field>
             <operation>equals</operation>
             <value>1</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_CITY</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>notEqual</operation>
         </filters>
         <label>ACV Capital - My Accounts</label>
         <sharedTo>
@@ -10467,6 +10482,16 @@ Title_Mailing_Zip_Code__c</formula>
         <columns>UPDATEDBY_USER.ALIAS</columns>
         <columns>ACCOUNT.ADDRESS1_ZIP</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
         <label>All Accounts</label>
     </listViews>
     <listViews>
@@ -10507,21 +10532,6 @@ Title_Mailing_Zip_Code__c</formula>
             <value>1</value>
         </filters>
         <label>Dealers Awaiting IST Assignment</label>
-    </listViews>
-    <listViews>
-        <fullName>Drivably_Accounts</fullName>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>Dealership_ID__c</columns>
-        <columns>ACCOUNT.PHONE1</columns>
-        <columns>Drivably_Account__c</columns>
-        <columns>Primary_Contact__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Drivably_Account__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>Drivably Accounts</label>
     </listViews>
     <listViews>
         <fullName>EXPRN__Monitored_Accounts</fullName>
@@ -10616,6 +10626,33 @@ Title_Mailing_Zip_Code__c</formula>
             <value>dup</value>
         </filters>
         <label>IST My Accounts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>Active__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>Seller_Engagement_Level__c</columns>
+        <columns>All_Time_Sales_Gross__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
+        <columns>Date_of_Last_Sale__c</columns>
+        <columns>Prior_Action__c</columns>
+        <columns>Next_Action__c</columns>
+        <columns>Potential_Monthly_Sell_Volume__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
+        <filters>
+            <field>Inactive_Sub_Status__c</field>
+            <operation>notEqual</operation>
+            <value>3,10</value>
+        </filters>
+        <label>My Accounts - TM</label>
     </listViews>
     <listViews>
         <fullName>MyAccountsFranchised</fullName>
@@ -11322,7 +11359,19 @@ Title_Mailing_Zip_Code__c</formula>
         <picklistValues>
             <picklist>Capital_Dealer_Type__c</picklist>
             <values>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Capital Orange Elite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11353,41 +11402,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11501,10 +11515,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer Group %28Parent Account%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11889,7 +11899,7 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>New</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -12954,17 +12964,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14732,6 +14731,25 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Transporters</fullName>
@@ -15059,41 +15077,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -15181,26 +15164,6 @@ Title_Mailing_Zip_Code__c</formula>
         </picklistValues>
         <picklistValues>
             <picklist>Dealer_Type__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Dealer Group %28Parent Account%29</fullName>
                 <default>false</default>
@@ -16500,17 +16463,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17947,6 +17899,25 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18317,41 +18288,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -19910,17 +19846,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -21708,6 +21633,25 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>WLS_Test</fullName>
@@ -21999,41 +21943,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -22135,10 +22044,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -23580,17 +23485,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -25262,13 +25156,32 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
         <customTabListAdditionalFields>Monthly_Buy_Percent__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields n1:nil="true" />
+        <customTabListAdditionalFields>Monthly_Sell_Percent__c</customTabListAdditionalFields>
         <listViewButtons>geopointe__Map_Records_Account</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
@@ -25297,7 +25210,7 @@ Title_Mailing_Zip_Code__c</formula>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Active_Account_must_have_billing_address</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(Ischanged(Active__c),
 Active__c = true,
 ISBLANK(BillingStreet),
@@ -25307,7 +25220,7 @@ RecordType.DeveloperName=&apos;Standard&apos;
     </validationRules>
     <validationRules>
         <fullName>Active_Account_must_have_phone</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation rule requiring an active account to have a phone number populated</description>
         <errorConditionFormula>AND(Active__c = true,
 ISBLANK(Phone),
@@ -25325,7 +25238,7 @@ RecordType.DeveloperName=&apos;Standard&apos;
     </validationRules>
     <validationRules>
         <fullName>Associated_Locations_Deletion_prevention</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
   $Profile.Name != &apos;System Administrator&apos;,
  ISCHANGED(Val_Total_Locations__c), 
@@ -25334,20 +25247,8 @@ RecordType.DeveloperName=&apos;Standard&apos;
         <errorMessage>You cannot delete Associated Locations. If you are replacing this with a new address, please use Address Management. If a particular address isn&apos;t being replaced and no longer of use, set the Active to Date/Time.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Carrier_Insurance_Expiration_Is_Empty</fullName>
-        <active>true</active>
-        <description>Carrier Expiration can not be blank if the Account record Type = “Transporter” &amp; “Carrier has Insurance” = TRUE.</description>
-        <errorConditionFormula>AND(
-RecordType.DeveloperName = &quot;Transporters&quot;,
-Carrier_Has_Insurance__c,
-ISBLANK(Carrier_Insurance_Expiration__c)
-)</errorConditionFormula>
-        <errorDisplayField>Carrier_Insurance_Expiration__c</errorDisplayField>
-        <errorMessage>This field must be fill.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Child_Account_must_be_Dealership</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Requires a Child account that is assigning a parent to have a Dealership Id</description>
         <errorConditionFormula>AND(NOT(IsBlank(ParentId)),
 OR(RecordType.DeveloperName!=&apos;Standard&apos;,
@@ -25358,7 +25259,7 @@ IsBlank(Dealership_ID__c)
     </validationRules>
     <validationRules>
         <fullName>DOT_Number_for_Transporter_Accounts</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>DOT Number is required for all Accounts of type Transporters unless No DOT is true</description>
         <errorConditionFormula>IF(
     AND(ISNEW(), RecordType.Name = &apos;Transporters&apos;),
@@ -25381,7 +25282,7 @@ OR ($Profile.Name &lt;&gt; &quot;Major Accounts CSM&quot;),( $Profile.Name &lt;&
     </validationRules>
     <validationRules>
         <fullName>Disable_Lead_Conversion_to_new_accounts</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Throwing an error when a Lead is attempted to be converted into a New account record instead of an existing one</description>
         <errorConditionFormula>AND(
 ISNEW(),
@@ -25393,7 +25294,7 @@ NOT(ISPICKVAL(Lead_Convert_Status__c , &apos;Converting&apos;))
     </validationRules>
     <validationRules>
         <fullName>EIN_Regex</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Only accept format 02-0123456 or 169-69-6969. Must be valid EIN or SSN</description>
         <errorConditionFormula>AND(
 $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
@@ -25411,7 +25312,7 @@ REGEX(EIN_Number__c , &quot;^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-
     </validationRules>
     <validationRules>
         <fullName>Fill_In_Covid_Reason_Text_Box</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Rule that ensures users fill in the details field for Reason for Idle if they selected the value of &quot;Other - Covide Related&quot; in the Reason for Idle Field.</description>
         <errorConditionFormula>AND(TEXT( Reason_for_Idle__c) =&quot;Other - COVID Related&quot;, ISBLANK( Other_COVID__c))</errorConditionFormula>
         <errorDisplayField>Other_COVID__c</errorDisplayField>
@@ -25419,7 +25320,7 @@ REGEX(EIN_Number__c , &quot;^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-
     </validationRules>
     <validationRules>
         <fullName>Inactive_If_Insurance_Expired</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Insurance Expiration Date is before today,</description>
         <errorConditionFormula>AND(
 $Profile.Name != &quot;System Administrator&quot;,
@@ -25441,7 +25342,7 @@ NOT($Permission.Inactive_Reason_Selling_Arb_Offender_Picklist_Option))</errorCon
     </validationRules>
     <validationRules>
         <fullName>Inactive_must_have_reason</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When an account is changes to inactive the inactive reason field must be filled in.</description>
         <errorConditionFormula>AND(
 ISCHANGED( Active__c ),
@@ -25452,7 +25353,7 @@ ISCHANGED( Active__c ),
     </validationRules>
     <validationRules>
         <fullName>Lead_Conversion_Only_for_Transporter</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Transporter Accounts can only be created using lead conversion unless created by a System Admin</description>
         <errorConditionFormula>OR(AND(
   ISNEW(),
@@ -25477,7 +25378,7 @@ ISCHANGED( Active__c ),
     </validationRules>
     <validationRules>
         <fullName>Must_Select_FastPass_Decline_Reason</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When Fastpass Opt in field equals no the FastPass Decline Reason must be filled in</description>
         <errorConditionFormula>IF(AND
 (ISPICKVAL( FastPass_Opt_In__c,&quot;no&quot;),
@@ -25486,7 +25387,7 @@ ISPICKVAL(FastPass_Declined_Reason__c, &quot;&quot;)),True, false)</errorConditi
     </validationRules>
     <validationRules>
         <fullName>Other_Ad_and_Syndication_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Rule that ensures users fill in the &quot;Other Ad &amp; Syndication Provider&quot; field if the value of &quot;Other&quot; is selected in the &quot;Ad &amp; Syndication Provider&quot; picklist field.</description>
         <errorConditionFormula>AND(ISPICKVAL(Ad_Syndication_Provider__c ,&quot;Other&quot;),
 ISBLANK(Other_Ad_Syndication_Provider__c))</errorConditionFormula>
@@ -25495,7 +25396,7 @@ ISBLANK(Other_Ad_Syndication_Provider__c))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Other_IMS_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Rule that ensures users fill in the Other IMS field if they select the value of &quot;Other&quot; in the Inventory Management System field.</description>
         <errorConditionFormula>AND(ISPICKVAL(Inventory_Management_System__c ,&quot;Other&quot;),
 ISBLANK(Other_IMS__c ))</errorConditionFormula>
@@ -25504,7 +25405,7 @@ ISBLANK(Other_IMS__c ))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Parent_Account_must_be_Dealership</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Check to see that Parent Account is a valid ACV Dealership</description>
         <errorConditionFormula>AND(NOT(IsBlank(ParentId)),
    OR(Parent.RecordType.DeveloperName!=&apos;Standard&apos;,  
@@ -25515,7 +25416,7 @@ ISBLANK(Other_IMS__c ))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Prevent_Manual_Change_of_Account_Name</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This is an I&amp;O Requirement where we do not allow the name to change on it&apos;s own, DBA or Legal Name updates must update the Name field with WFRs</description>
         <errorConditionFormula>RecordType.DeveloperName=&apos;Standard&apos; &amp;&amp;
 ISCHANGED(Name) &amp;&amp;  (Name !=  DBA__c || Name !=  legal_name__c)</errorConditionFormula>
@@ -25523,7 +25424,7 @@ ISCHANGED(Name) &amp;&amp;  (Name !=  DBA__c || Name !=  legal_name__c)</errorCo
     </validationRules>
     <validationRules>
         <fullName>Standard_Account_Required_fields</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>These are the Standard Account fields that are required to save a record and push those changes into Datahub</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName=&apos;Standard&apos;
@@ -25541,7 +25442,7 @@ Dealer Type, Legal Name</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Tax_id_validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Tax Id must be: 
 Digits-only
 Nine digits long</description>
@@ -26273,17 +26174,6 @@ alert(&quot;Experian Binning is not done. Binning occurs overnight for new accou
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Account.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?accid={!CASESAFEID(Account.Id)}</url>
     </webLinks>
     <webLinks>
         <fullName>maps__AdvRouteVisitWindows</fullName>

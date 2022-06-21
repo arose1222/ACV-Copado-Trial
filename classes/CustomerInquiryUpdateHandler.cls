@@ -5,41 +5,15 @@ public with sharing class CustomerInquiryUpdateHandler extends TriggerInterface 
     static final String amFollowUp = 'AM Follow Up';
     static final String closed = 'Closed';
 
-    // 'public class newCustInq { //object for inbound data
-    //     public String uuid;
-    //     public String auctionId;
-    //     public String callBucket;
-    //     public String callType;
-    //     public String callNotes;
-    //     public Boolean resolved;
-    //     public String relatedAccount;
-    //     public String relatedOpsCase;
-    //     public String callBucketLabel;
-    //     public String assignedTo;
-    //     public String shouldAssignTo;
-    //     public String initialCreator;
-    // }
-
     public override void beforeUpdate(Map<Id, sObject> oldMap, Map<Id, sObject> newMap) {
         Map<Id, Customer_Inquiry__c> oldCIMap = (Map<Id, Customer_Inquiry__c>)oldMap;
         Map<Id, Customer_Inquiry__c> newCIMap = (Map<Id, Customer_Inquiry__c>)newMap;
         Set<String> resolvedProfiles = new Set<String>{'Titles', 'Title Manager', 'Customer Success Team'};
-        Map<String, Customer_Inquiry__c> stringToInquiryMap = new Map<String, Customer_Inquiry__c>();
-        List<CaseCreateUtilityController.newCustInq> custInqList = new List<CaseCreateUtilityController.newCustInq>();
-
+    
         for (Customer_Inquiry__c c : newCIMap.values()) { 
             // If status changes from closed to anything, Priority is set to high
             if (c.Status__c != closed && oldCIMap.get(c.Id).Status__c == closed) {
                 c.Priority__c = 'High';
-
-                CaseCreateUtilityController.newCustInq custInq = new CaseCreateUtilityController.newCustInq();
-                custInq.auctionId = c.Auction__c;
-                custInq.callBucket = c.Call_Bucket__c;
-                custInq.callType = c.Call_Type__c;
-                custInq.relatedAccount = c.Account__c;
-                custInq.initialCreator = c.CreatedById;
-                custInqList.add(custInq);
-                stringToInquiryMap.put(c.Auction__c + c.Call_Bucket__c + c.Call_Type__c + c.Account__c, c); 
             }
             // If status goes from AM Follow Up to new or working, increase priority one level
             else if ((c.Status__c == newStatus || c.Status__c == working) && oldCIMap.get(c.Id).Status__c == amFollowUp) {
@@ -67,24 +41,6 @@ public with sharing class CustomerInquiryUpdateHandler extends TriggerInterface 
                 }
             }
 
-        }
-
-        if (custInqList.size() > 0) {
-            for(CaseCreateUtilityController.newCustInq nci : CaseCreateUtilityController.getAssignedTo(custInqList)) {
-                String key = nci.AuctionId + nci.callBucket + nci.callType + nci.relatedAccount;
-                if (nci.assignedTo != null) {
-                    stringToInquiryMap.get(key).Assigned_To__c = nci.assignedTo;
-                }
-                else if (nci.shouldAssignTo != null) { // if we couldn't find anyone to assign to, then assign to the creator of the CI
-                    stringToInquiryMap.get(key).Assigned_To__c = nci.initialCreator;
-                    stringToInquiryMap.get(key).Should_Assign_To__c = nci.shouldAssignTo; // this will kick off one of two workflows "Need To Assign to consultant" or "Need to Assign To Specialist"
-                }
-                else { // if we didn't find anyone to assign to and shouldAssign to is false
-                    stringToInquiryMap.get(key).Assigned_To__c = nci.initialCreator;
-                }
-            }
-
-            
         }
     }
 

@@ -17,7 +17,7 @@
             <name>Field_Trip__Send_Processing_Complete_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>ISCHANGED( Field_Trip__Last_Analyzed__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

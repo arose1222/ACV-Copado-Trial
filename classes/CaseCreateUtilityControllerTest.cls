@@ -402,19 +402,19 @@ public class CaseCreateUtilityControllerTest {
 
     @isTest
     static void testCheckTitle48HourSubmitValidation2() {
-        Test.startTest();
         Case c = [SELECT Id, CaseNumber, Auction_Number__c, AccountId, Status, Auction_Number__r.Name FROM Case WHERE RecordType.DeveloperName = 'Title_Information'];
         c.Seller_Dealership__c = c.AccountId;
         c.Title_Sent_Date__c = System.today().addDays(-5);
         c.Status = 'Problem';
         update c;
-        
+
         Auction__c auc = new Auction__c(Id = c.Auction_Number__c, Blue_Light__c = true);
         update auc;
         
         Account acc = new Account(Id = c.AccountId, BillingState = 'CA');
         update acc;
 
+        Test.startTest();
         CaseCreateUtilityController.TitleWrapper result = CaseCreateUtilityController.checkTitle(c.Id); //, '48 Hour Notice Request'
         Test.stopTest();
 
@@ -550,31 +550,31 @@ public class CaseCreateUtilityControllerTest {
     @isTest
     static void testAssignedToNullSellerStatusSet1SellerPopulated() {
         Test.startTest();
-            User specialist = TestUtility.createUser();
-            insert specialist;
-            Account acc = TestUtility.createAccount('Test 2');
-            acc.Title_Specialist__c = specialist.Id;
-            insert acc;
-            Auction__c auc = [SELECT Id FROM Auction__c];
-            Auction__c newAuc = auc.clone();
-            insert newAuc;
-            Case newCase = [SELECT Id, AccountId, Auction_Number__c, Status, Seller_Dealership__c FROM Case WHERE RecordType.DeveloperName = 'Title_Information'];
-            newCase.Status = 'Problem';
-            newCase.Seller_Dealership__c = newCase.AccountId;
-            update newCase;
-            Case newCase2 = newCase.clone();
-            newCase2.ACV_Titles_External_Id__c = ACVUtility.NewGuid();
-            newCase2.Seller_Dealership__c = acc.Id;
-            newCase2.Status = 'Closed Unwound';
-            newCase2.Auction_Number__c = newAuc.Id;
-            insert newCase2;
-            
-            String jsonString = '[{"uuid":"d7ea313d-eda8-435f-a97c-6397ed81c1f0","auctionId":"' + newCase.Auction_Number__c + '","callBucket":"Title_Information","callType":"Seller Title Status","callNotes":"notes1","resolved":false,' +
-                                '"relatedAccount":"' + newCase.AccountId + '","relatedOpsCase":"' + newCase.Id + '","callBucketLabel":"Titles","callBucketOptions":[],"callTypeOptions":[]}]';
-            String jsonString2 = '[{"uuid":"d7ea313d-eda8-435f-a97c-6397ed83c1f1","auctionId":"' + newCase2.Auction_Number__c + '","callBucket":"Title_Information","callType":"Buyer Title Status","callNotes":"notes1","resolved":false,' +
+        User specialist = TestUtility.createUser();
+        insert specialist;
+        Account acc = TestUtility.createAccount('Test 2');
+        acc.Title_Specialist__c = specialist.Id;
+        insert acc;
+        Auction__c auc = [SELECT Id FROM Auction__c];
+        Auction__c newAuc = auc.clone();
+        insert newAuc;
+        Case newCase = [SELECT Id, AccountId, Auction_Number__c, Status, Seller_Dealership__c FROM Case WHERE RecordType.DeveloperName = 'Title_Information'];
+        newCase.Status = 'Problem';
+        newCase.Seller_Dealership__c = newCase.AccountId;
+        update newCase;
+        Case newCase2 = newCase.clone();
+        newCase2.ACV_Titles_External_Id__c = ACVUtility.NewGuid();
+        newCase2.Seller_Dealership__c = acc.Id;
+        newCase2.Status = 'Closed Unwound';
+        newCase2.Auction_Number__c = newAuc.Id;
+        insert newCase2;
+        
+        String jsonString = '[{"uuid":"d7ea313d-eda8-435f-a97c-6397ed81c1f0","auctionId":"' + newCase.Auction_Number__c + '","callBucket":"Title_Information","callType":"Seller Title Status","callNotes":"notes1","resolved":false,' +
+                            '"relatedAccount":"' + newCase.AccountId + '","relatedOpsCase":"' + newCase.Id + '","callBucketLabel":"Titles","callBucketOptions":[],"callTypeOptions":[]}]';
+        String jsonString2 = '[{"uuid":"d7ea313d-eda8-435f-a97c-6397ed83c1f1","auctionId":"' + newCase2.Auction_Number__c + '","callBucket":"Title_Information","callType":"Buyer Title Status","callNotes":"notes1","resolved":false,' +
                             '"relatedAccount":"' + newCase2.AccountId + '","relatedOpsCase":"' + newCase2.Id + '","callBucketLabel":"Titles","callBucketOptions":[],"callTypeOptions":[]}]';
 
-
+//        Test.startTest();
             Id supportCaseId = CaseCreateUtilityController.logAnInteraction(newCase.AccountId, UserInfo.getUserId(), '', jsonString);
             Id supportCaseId2 = CaseCreateUtilityController.logAnInteraction(acc.Id, UserInfo.getUserId(), '', jsonString2);
         Test.stopTest();

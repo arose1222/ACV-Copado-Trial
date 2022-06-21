@@ -134,7 +134,7 @@ global class PrescreenServiceMarkForArbGuardPrescreen {
                         conditionReportsToUpdate.add(cReport);
 
                         //PRESCREEN AND REASON GENERATION     
-                        Condition_Report_Prescreen__c prescreen = new Condition_Report_Prescreen__c(Condition_Report__c = cReport.id, VCI__c = cReport.VCI_Creator__c, Seller_Dealership__c = cReport.Dealership__c, Vehicle__c = cReport.Vehicle__c, Arb_Risk_Categories__c = JSON.serialize(arbGuardRequest.categories));
+                        Condition_Report_Prescreen__c prescreen = new Condition_Report_Prescreen__c(Condition_Report__c = cReport.id, VCI__c = cReport.VCI_Creator__c, Seller_Dealership__c = cReport.Dealership__c, Vehicle__c = cReport.Vehicle__c);
 
                         prescreensToInsertMap.put(cReport.ACV_Saved_Auction_Id__c,prescreen);
                         prescreenReasonsToInsertMap.put(cReport.ACV_Saved_Auction_Id__c,new Prescreen_Reason__c(Name = ARB_GUARD_PRESCREEN_NAME/*, Condition_Report_Prescreen__c = npw.prescreen.Id*/));

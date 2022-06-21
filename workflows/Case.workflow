@@ -38,6 +38,17 @@
         <template>ACV_Capital_Email_Templates/ACV_Capital_Borrowed_Title_Dealer_Notification</template>
     </alerts>
     <alerts>
+        <fullName>ACV_Capital_Notify_Buyer_of_Received_Title</fullName>
+        <description>ACV Capital - Notify Buyer of Received Title</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ACV_Capital_Primary_Contact_Email_Text__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ACVCapital/ACV_Capital_Notify_Buyer_of_Received_Title_1648226011515</template>
+    </alerts>
+    <alerts>
         <fullName>ACV_Capital_Title_Received_Alert</fullName>
         <description>ACV Capital Title Received Alert</description>
         <protected>false</protected>
@@ -901,16 +912,6 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Clear_Out_Transporter_Name</fullName>
-        <description>When the transporter account name is blank the Transporter name should also be blank.</description>
-        <field>Transporter_Name__c</field>
-        <name>Clear Out Transporter Name</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Null</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Date_Stamp_Capital_Borrowed</fullName>
         <field>Capital_Title_Borrowed_Date__c</field>
         <formula>now()</formula>
@@ -1146,39 +1147,6 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Title_Complexity_High</fullName>
-        <description>Updates title complexity to high</description>
-        <field>Title_Complexity_Score__c</field>
-        <literalValue>High</literalValue>
-        <name>Title Complexity High</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Title_Complexity_LOW</fullName>
-        <description>Update title complexity score to Low</description>
-        <field>Title_Complexity_Score__c</field>
-        <literalValue>Low</literalValue>
-        <name>Title Complexity LOW</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Title_Complexity_Medium</fullName>
-        <description>Updates title complexity score to medium</description>
-        <field>Title_Complexity_Score__c</field>
-        <literalValue>Medium</literalValue>
-        <name>Title Complexity Medium</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Title_Owner_Resolutions</fullName>
         <field>OwnerId</field>
         <lookupValue>Resolutions_Queue</lookupValue>
@@ -1314,7 +1282,7 @@
     </fieldUpdates>
     <rules>
         <fullName>48 Hour Expired Email Notification to Buyer</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1339,7 +1307,7 @@
     </rules>
     <rules>
         <fullName>48 Hour Notice Expired</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow informs the selling dealership that the 48 hour notice placed by the buyer has expired and the auction is now at risk of being unwound.</description>
         <formula>AND( ISPICKVAL(Status, &quot;48 Hour Notice&quot;),  Date_Time_of_48_Hour_Notice__c  &gt;  DATETIMEVALUE(&quot;2019-08-13 23:59:00&quot;), Account.Dealership_ID__c &lt;&gt; &quot;4308&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1359,17 +1327,14 @@
             <name>Forty_Eight_Hour_Notification_received</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow sends when a title goes from 48 Hour Notice to Received prior to the 48 Hour Expiration hitting.</description>
-        <formula>AND( 
-Buyer_Called_to_Request_48_Hour_Notice__c = true, 
-ISPICKVAL(Status, &quot;Received&quot;), 
- X48_Hour_Expiration__c  &gt; now())</formula>
+        <formula>AND(  Buyer_Called_to_Request_48_Hour_Notice__c = true,  ISPICKVAL(Status, &quot;Received&quot;),   X48_Hour_Expiration__c  &gt; now())</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>48 Hour Notice Start</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1403,7 +1368,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>X48_Hour_Unwind_to_Seller_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Unwind_Reason__c</field>
             <operation>equals</operation>
@@ -1442,7 +1407,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>X48_notification_to_Buyer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1465,7 +1430,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ACV_Capital_Advantage_Email_Sent_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(ISCHANGED( Email_Sent__c ),Email_Sent__c=TRUE)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -1479,7 +1444,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ACV_Capital_Payment_Execution_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Updates fields when Payment Executed = True</description>
         <formula>AND(ISCHANGED(Capital_Payment_Executed__c),Capital_Payment_Executed__c=TRUE)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1490,14 +1455,14 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ACV_Capital_Status_Updated_By</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When Capital Title status is changed, mark who made the change</description>
         <formula>ISCHANGED( ACV_Capital_Title_Status__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>ACV Capital Title Borrowed</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -1525,7 +1490,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ACV_Capital_Title_Received_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1553,7 +1518,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Capital_Title_Sent_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When ‘Status&apos; ISCHANGED TO ‘Sent’ AND Buyer_Payment_Method__c contains ’acv_capital, THEN ACV_Capital_Title_Status = ‘Sent’</description>
         <formula>ISCHANGED(Status) &amp;&amp;   ISPICKVAL(Status, &quot;Sent&quot;)&amp;&amp; CONTAINS(   Payment_Method__c  , &quot;acv_capital&quot;) &amp;&amp;   RecordType.Name  = &apos;Title Information&apos;</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1564,7 +1529,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Case_Clear_Buyer_Response_Due</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>notEqual</operation>
@@ -1668,7 +1633,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Case_Auction_ID_Searchable</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Necessary to provide an Auction ID that is searchable on the Case object (Arb)</description>
         <formula>TRUE</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1679,7 +1644,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ArbReviewedBy</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1693,7 +1658,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Case_Owner_Titles_Queue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
@@ -1708,7 +1673,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Informs_transport_team_that_an_auction_with_ACV_transport_has_been_unwound</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -1750,7 +1715,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Buyer_Pick_Up_Notes_from_Acct</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Pickup_Notes__c</field>
             <operation>notEqual</operation>
@@ -1768,7 +1733,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Capital_Title_Sent_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -1793,7 +1758,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Case_Send_to_ACV_True</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(  RecordType.DeveloperName= &quot;Unwind&quot;,ISCHANGED(Status), TEXT(Status) = &quot;Unwound&quot;, NOT(ISCHANGED(Send_to_ACV__c )),  NOT(CONTAINS($User.Username, &apos;integration@acvauctions.com&apos;)) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -1814,21 +1779,10 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Date_Time_Removed_from_Queue_NOW</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This rule fires when case is removed from a queue and is assigned to a user.</description>
         <formula>LEFT(PRIORVALUE(OwnerId), 3) = &apos;00G&apos; &amp;&amp; LEFT(OwnerId, 3) &lt;&gt; &apos;00G&apos;</formula>
         <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Clear Transporter Name</fullName>
-        <actions>
-            <name>Clear_Out_Transporter_Name</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>When Transporter Account is listed as blank, clear out transporter name field</description>
-        <formula>AND( NOT(ISBLANK(Transporter_Name__c)), ISBLANK(Transporter_Account__c )  )</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>Create a task when Unwind is Created</fullName>
@@ -1861,7 +1815,7 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Status_Change_to_Closed_No_title</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>If the Title_Deleted box is checked, then change status to Closed (No title)</description>
         <formula>Title_Deleted__c  = True</formula>
         <triggerType>onAllChanges</triggerType>
@@ -1872,15 +1826,9 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Stamp_Date_Time_Denial_Review_Completed</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Stamps the time the denial review was completed</description>
-        <formula>AND(
-ISCHANGED(Denial_Status__c),
-OR(
-ISPICKVAL(Denial_Status__c,&quot;IST to Handle&quot;),
-ISPICKVAL(Denial_Status__c,&quot;ARB to Handle&quot;),
-ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
-))</formula>
+        <formula>AND( ISCHANGED(Denial_Status__c), OR( ISPICKVAL(Denial_Status__c,&quot;IST to Handle&quot;), ISPICKVAL(Denial_Status__c,&quot;ARB to Handle&quot;), ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;) ))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1889,7 +1837,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Double_Sale_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
@@ -1914,13 +1862,9 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Notify_Arb_Case_Owner</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow rule will fire an email alert to the Arb Case Owner once the status moves from &quot;Under Review&quot; to &quot;Reviewed&quot;</description>
-        <formula>AND(
-    ISCHANGED(Status),
-    ISPICKVAL(PRIORVALUE(Status),&quot;Under Review&quot;),
-    ISPICKVAL(Status,&quot;Reviewed&quot;)
-)</formula>
+        <formula>AND(     ISCHANGED(Status),     ISPICKVAL(PRIORVALUE(Status),&quot;Under Review&quot;),     ISPICKVAL(Status,&quot;Reviewed&quot;) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1949,7 +1893,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Tell_Unwind_Owner_Prescreen_is_Completed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Manual_Relaunch_ID__c</field>
             <operation>notEqual</operation>
@@ -1963,7 +1907,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Notify_of_New_Commercial_Assignment_Case</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
@@ -1982,7 +1926,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Notification_to_Seller_for_Digital_Title_Received_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Digital_Title__c</field>
             <operation>equals</operation>
@@ -2018,7 +1962,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Arb_Claim_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
@@ -2033,7 +1977,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>IST_Follow_DateTime_Populate</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -2052,7 +1996,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>IsEscalated_True</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When buyer or seller has Title Priority, Escalated is checked to limit title scan process for internal priority</description>
         <formula>RecordType.DeveloperName = &quot;Title_Information&quot;  &amp;&amp; OR( Account.Titles_Priority__c = TRUE, Seller_Dealership__r.Titles_Priority__c = TRUE)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -2101,7 +2045,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Project_Butter_TWD_TA</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Title_Attached__c</field>
             <operation>equals</operation>
@@ -2156,7 +2100,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Project_Butter_TWD_TA</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow fires an email when a &quot;title absent&quot; auction takes place but the title has not been received 31 days after auction end, and the seller is not based in California.</description>
         <formula>AND( Title_Attached__c = True,  Age_in_Days__c &gt; 30,  Auction_End__c &gt; DATETIMEVALUE(&quot;2019-8-13 23:59:00&quot;), ISPICKVAL(Status, &quot;New&quot;),   Account.Date_Time_Compliant__c &gt; DATETIMEVALUE(&quot;2020-8-31 23:59:00&quot;), RecordType.DeveloperName = &quot;Title Information&quot;,  Account.IST_Account_Owner__r.FirstName = &quot;Nicole Klonowski&quot;|| Account.IST_Account_Owner__r.FirstName = &quot;Corey Guetti&quot;|| Account.IST_Account_Owner__r.FirstName = &quot;Jake Murray&quot;|| Account.IST_Account_Owner__r.FirstName = &quot;Jenna Roessler&quot;|| Account.IST_Account_Owner__r.FirstName =&quot;Lee Lomenzo&quot;|| Account.IST_Account_Owner__r.FirstName = &quot;Krista Glownia&quot;, Seller_State__c  &lt;&gt; (&quot;CA, California&quot;), Account.Dealership_ID__c &lt;&gt; &quot;7960&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -2167,7 +2111,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Project_Butter_TWD_TA</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Title_Attached__c</field>
             <operation>equals</operation>
@@ -2217,7 +2161,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Stamp_Seller_Contact_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Name</field>
             <operation>notEqual</operation>
@@ -2231,7 +2175,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Stamp_Seller_s_TM_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Name</field>
             <operation>notEqual</operation>
@@ -2245,7 +2189,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Send_Seller_Shipping_Label</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Digital_Title__c</field>
             <operation>equals</operation>
@@ -2275,7 +2219,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Title_Problem_Original</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -2295,7 +2239,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Set_Buyer_Confusion_No</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow sets the Buyer Confusion field to &quot;No&quot; upon case creation for non-arbitration case record types</description>
         <formula>RecordType.Name != &quot;Arbitration Claim&quot;</formula>
         <triggerType>onCreateOnly</triggerType>
@@ -2320,7 +2264,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Stamp_Buyer_s_IST_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Name</field>
             <operation>notEqual</operation>
@@ -2334,7 +2278,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Date_Stamp_Capital_Borrowed</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -2348,7 +2292,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Date_Stamp_Received_Capital</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -2362,7 +2306,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Date_Stamp_capital_Sent</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -2376,7 +2320,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Date_Stamp_Capital_Sent_to_Floor</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
@@ -2390,7 +2334,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Stamp_Date_time_Working_Now</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
@@ -2440,7 +2384,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Informs_user_that_their_title_will_be_delayed_TA_TWD</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Title_Attached__c</field>
             <operation>equals</operation>
@@ -2490,7 +2434,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Informs_user_that_their_title_will_be_delayed_TA_TWD</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This workflow fires an email when a &quot;title absent&quot; auction takes place but the title has not been received 31 days after auction end, and the seller is not based in California.</description>
         <formula>AND( Title_Attached__c = True,  Age_in_Days__c &gt; 30,  Auction_End__c &gt; DATETIMEVALUE(&quot;2019-8-13 23:59:00&quot;),  ISPICKVAL(Status, &quot;New&quot;),  RecordType.DeveloperName = &quot;Title Information&quot;,  Account.IST_Account_Owner__r.FirstName &lt;&gt;&quot;Nicole Klonowski&quot;||  Account.IST_Account_Owner__r.FirstName &lt;&gt; &quot;Corey Guetti&quot;|| Account.IST_Account_Owner__r.FirstName &lt;&gt; &quot;Jake Murray&quot;|| Account.IST_Account_Owner__r.FirstName &lt;&gt; &quot;Jenna Roessler&quot;|| Account.IST_Account_Owner__r.FirstName &lt;&gt; &quot;Lee Lomenzo&quot;|| Account.IST_Account_Owner__r.FirstName &lt;&gt; &quot;Krista Glownia&quot;, Seller_State__c  &lt;&gt; (&quot;CA, California&quot;),  Account.Dealership_ID__c &lt;&gt; &quot;7960&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -2501,7 +2445,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>TA_Delay_Follow_Up_CA_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND( Title_Attached__c = true, NOT(ISBLANK(Date_Time_of_48_Hour_Notice__c)),  Seller_State__c = &quot;CA&quot;,  (DATETIMEVALUE( TODAY() ) - Auction_End__c) &gt; 45,  Auction_End__c &gt; DATETIMEVALUE(&quot;2019-11-05 10:00:00&quot;),  ISPICKVAL( Status, &apos;Received&apos;),  Account.Dealership_ID__c &lt;&gt; &quot;7960&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -2511,7 +2455,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>TA_Delay_Follow_Up_Non_CA_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND( Title_Attached__c = true, NOT(ISBLANK(Date_Time_of_48_Hour_Notice__c)),  Seller_State__c  &lt;&gt; &quot;CA&quot;,  ( DATETIMEVALUE( TODAY() ) - Auction_End__c) &gt; 30,  Auction_End__c &gt; DATETIMEVALUE(&quot;2019-11-05 10:00:00&quot;),  ISPICKVAL( Status, &apos;Received&apos;),   Account.Dealership_ID__c &lt;&gt; &quot;7960&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -2521,7 +2465,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Informs_user_that_their_title_will_be_delayed_TA_TWD</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Title_Attached__c</field>
             <operation>equals</operation>
@@ -2566,7 +2510,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>TWD_Delay_Follow_Up_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND( Title_Attached__c  = false,    NOT(ISBLANK(Date_Time_of_48_Hour_Notice__c)), ( DATETIMEVALUE( TODAY() ) - Auction_End__c) &gt; 7,   Auction_End__c &gt;  DATETIMEVALUE(&quot;2019-11-05 10:00:00&quot;),   ISPICKVAL( Status, &apos;Received&apos;),  Account.Dealership_ID__c &lt;&gt; &quot;7960&quot;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -2576,7 +2520,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Stamp_Unwind_Approval_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -2591,7 +2535,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Relaunch_Info_Posted</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.RecordTypeId</field>
@@ -2606,41 +2550,8 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Title Complexity High</fullName>
-        <actions>
-            <name>Title_Complexity_High</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Updates title complexity score to High</description>
-        <formula>AND(    Account.BillingState &lt;&gt; Seller_Dealership__r.BillingState,    Seller_Dealership__r.BillingState &lt;&gt;  Title_State_Abbreviation__c  ,    Account.BillingState &lt;&gt;   Title_State_Abbreviation__c, NOT(ISBLANK(TEXT( Title_State__c )))   )</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Title Complexity Medium</fullName>
-        <actions>
-            <name>Title_Complexity_Medium</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Updates the title complexity score to medium</description>
-        <formula>OR(      AND(          Account.BillingState = Seller_Dealership__r.BillingState,          Title_State_Abbreviation__c &lt;&gt; Account.BillingState, NOT(ISBLANK(TEXT( Title_State__c )))),      AND(           Seller_Dealership__r.BillingState = Title_State_Abbreviation__c,          Account.BillingState &lt;&gt; Title_State_Abbreviation__c, NOT(ISBLANK(TEXT( Title_State__c )))),      AND(          Account.BillingState = Title_State_Abbreviation__c,          Seller_Dealership__r.BillingState &lt;&gt;           Title_State_Abbreviation__c, NOT(ISBLANK(TEXT( Title_State__c )))) )</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Title Complexity Score LOW</fullName>
-        <actions>
-            <name>Title_Complexity_LOW</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Updates the Title Complexity score to Low</description>
-        <formula>AND(    Account.BillingState = Seller_Dealership__r.BillingState,    Seller_Dealership__r.BillingState = Title_State_Abbreviation__c, NOT(ISBLANK(TEXT( Title_State__c )))    )</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Title Late Fee  2 days until Start</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Used to trigger email alert so that seller and seller tm can be informed that a title is 2 days out from  being charged late fees</description>
         <formula>AND ( Seller_Dealership__r.Late_Title_Fee_Eligible__c = true, Seller_Dealership__r.Late_Title_Fee_Start_Date__c &lt; CreatedDate,    ISBLANK(Title_Received_Date__c ),  NOT( OR(ISPICKVAL(Status, &quot;ACV Unwound&quot;),  ISPICKVAL(Status, &quot;Returned to Seller Unwound&quot;), ISPICKVAL(Status, &quot;Closed Unwound&quot;))))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -2656,9 +2567,9 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
     </rules>
     <rules>
         <fullName>Title Late Fee Start Notification</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Used to trigger email alert so that seller and seller tm can be informed that a title is now late and being charged late fees</description>
-        <formula>AND ( Seller_Dealership__r.Late_Title_Fee_Eligible__c = true, Seller_Dealership__r.Late_Title_Fee_Start_Date__c &lt; CreatedDate, ISBLANK(Title_Received_Date__c ), NOT( OR(ISPICKVAL(Status, &quot;ACV Unwound&quot;), ISPICKVAL(Status, &quot;Returned to Seller Unwound&quot;), ISPICKVAL(Status, &quot;Closed Unwound&quot;))))</formula>
+        <formula>AND (Seller_Dealership__r.Late_Title_Fee_Eligible__c = true, Seller_Dealership__r.Late_Title_Fee_Start_Date__c &lt; CreatedDate,   ISBLANK(Title_Received_Date__c ))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -2713,12 +2624,9 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Case_Owner_Titles_Queue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This rule fires when a Titles Case is created and is owned by the ACV Integration user. This is in a workflow rule, not an assignment rule, because Titles Cases get created via Bulk API Integration, and there is not setting to run assignment rule via Bulk</description>
-        <formula>AND( 
-RecordType.DeveloperName=&quot;Title_Information&quot;, 
-OwnerId=&quot;0050a00000HqbIl&quot; 
-)</formula>
+        <formula>AND(  RecordType.DeveloperName=&quot;Title_Information&quot;,  OwnerId=&quot;0050a00000HqbIl&quot;  )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -2727,7 +2635,7 @@ OwnerId=&quot;0050a00000HqbIl&quot;
             <name>Transportation_Finalized</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -2753,12 +2661,9 @@ OwnerId=&quot;0050a00000HqbIl&quot;
             <name>Update_Date_First_Posted_Portal</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>stamping the date first posted portal on a transportation case when the status changes to posted</description>
-        <formula>AND(ISCHANGED(Status), 
-ISPICKVAL( Status , &apos;Posted&apos;), 
-ISNULL( Date_First_Posted_Portal__c ), 
-RecordType.Name = &apos;Transportation&apos;)</formula>
+        <formula>AND(ISCHANGED(Status),  ISPICKVAL( Status , &apos;Posted&apos;),  ISNULL( Date_First_Posted_Portal__c ),  RecordType.Name = &apos;Transportation&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -2767,7 +2672,7 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
             <name>Transportation_Status_Closed_Dry_Run</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Dry_Run_Fee__c</field>
             <operation>notEqual</operation>
@@ -2790,9 +2695,9 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
             <name>Check_Send_to_ACV_Trans</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Triggers when transportation case status is changed to certain value supported by ACV platform</description>
-        <formula>AND(RecordType.DeveloperName=&quot;Transportation&quot;, ISCHANGED(Status), NOT(ISCHANGED(Send_to_ACV__c)), OR(TEXT(Status)=&quot;Assigned&quot;,  TEXT(Status)=&quot;Picked-Up&quot;,  TEXT(Status)=&quot;Delivered&quot;,  TEXT(Status)=&quot;Posted&quot;, TEXT(Status) = &quot;Cancelled by Transporter&quot;, TEXT(Status) = &quot;Awaiting Release&quot;,TEXT(Status) = &quot;Finalized&quot;, TEXT(Status) = &quot;Unwind Transportation Requested&quot;, TEXT(Status) = &quot;Failed Post&quot;, TEXT(Status) = &quot;Locked&quot;, TEXT(Status) = &quot;Sent to Third-Party&quot;, TEXT(Status) = &quot;Closed Dry Run&quot;, TEXT(Status) = &quot;Cancelled by ACV&quot;, TEXT(Status) = &quot;Accepted&quot;, TEXT(Status) = &quot;Hold&quot;, TEXT(Status) = &quot;Staged&quot;, TEXT(Status) = &quot;Non-Responsive-Unpaid&quot;))</formula>
+        <formula>AND(RecordType.DeveloperName=&quot;Transportation&quot;, ISCHANGED(Status), NOT(ISCHANGED(Send_to_ACV__c)), NOT(CONTAINS($User.Username, &apos;integration@acvauctions.com&apos;)), OR(TEXT(Status)=&quot;Assigned&quot;,  TEXT(Status)=&quot;Picked-Up&quot;,  TEXT(Status)=&quot;Delivered&quot;,  TEXT(Status)=&quot;Posted&quot;, TEXT(Status) = &quot;Cancelled by Transporter&quot;, TEXT(Status) = &quot;Awaiting Release&quot;,TEXT(Status) = &quot;Finalized&quot;, TEXT(Status) = &quot;Unwind Transportation Requested&quot;, TEXT(Status) = &quot;Failed Post&quot;, TEXT(Status) = &quot;Locked&quot;, TEXT(Status) = &quot;Sent to Third-Party&quot;, TEXT(Status) = &quot;Closed Dry Run&quot;, TEXT(Status) = &quot;Cancelled by ACV&quot;, TEXT(Status) = &quot;Accepted&quot;, TEXT(Status) = &quot;Hold&quot;, TEXT(Status) = &quot;Staged&quot;, TEXT(Status) = &quot;Non-Responsive-Unpaid&quot;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -2812,7 +2717,7 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
             <name>Unwind_case_was_Rewound</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -2827,7 +2732,7 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
             <name>UpdateStatus</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>User.Can_Unwind__c</field>
             <operation>equals</operation>
@@ -2860,10 +2765,7 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
         </actions>
         <active>false</active>
         <description>Update the Case Status if the Release_Available__c equals true and current status = &quot;Awaiting Release&quot;</description>
-        <formula>AND(
-RecordType.Name = &apos;Transportation&apos;,
-ISPICKVAL(Status,&quot;Awaiting Release&quot;),
-Release_Available__c = True)</formula>
+        <formula>AND( RecordType.Name = &apos;Transportation&apos;, ISPICKVAL(Status,&quot;Awaiting Release&quot;), Release_Available__c = True)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <tasks>

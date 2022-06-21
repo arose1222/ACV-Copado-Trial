@@ -220,6 +220,7 @@ Leave this field empty if you don&apos;t want to create breaks.</inlineHelpText>
     <fields>
         <fullName>FSL__Break_Start__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Determines the minimum break start time (in the format: {HH:MM}) to create breaks. 
 Leave this field empty if you don&apos;t want to create breaks.</inlineHelpText>
@@ -324,6 +325,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
     <fields>
         <fullName>FSL__CustomFieldName__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The API name of the custom field on the count object.</inlineHelpText>
         <label>Custom Field Name</label>
@@ -349,6 +351,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
     <fields>
         <fullName>FSL__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>255</length>
@@ -370,6 +373,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
         <fullName>FSL__Enhanced_Match_Linking_Object__c</fullName>
         <deprecated>false</deprecated>
         <description>Represents the junction object used to link service resources to the object that the service appointment matching field references</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The junction object used to link service resources to the object that the service appointment matching field references</inlineHelpText>
         <label>Linking Object</label>
@@ -474,6 +478,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
     <fields>
         <fullName>FSL__Object_Group_Field__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Group Field</label>
         <length>255</length>
@@ -494,6 +499,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
     <fields>
         <fullName>FSL__Resource_Group_Field__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Resource Group Field</label>
         <length>255</length>
@@ -530,6 +536,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
         <fullName>FSL__Service_Appointment_Matching_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>Represents the service appointment field that you&apos;re matching. The field must be of type Lookup</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The service appointment lookup field that you&apos;re matching</inlineHelpText>
         <label>Service Appointment Matching Field</label>
@@ -543,6 +550,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
         <fullName>FSL__Service_Linking_Object_Reference_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>Represents the reference field on the linking object that is matched with the service appointment matching field</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The reference field on the linking object that is matched with the service appointment matching field</inlineHelpText>
         <label>Linking Object Reference Field</label>
@@ -717,6 +725,7 @@ Otherwise, compare the Minimum Crew Size to the Crew Size field on the Service C
         <fullName>FSL__Start_of_Day__c</fullName>
         <defaultValue>&quot;00:00&quot;</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start of Day</label>
         <length>5</length>
@@ -757,6 +766,7 @@ When empty, any amount of travel following the end of work day is valid.</inline
         <fullName>FSL__WorkRule_End_DateTime_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>Represents the DateTime field name used by Time-Phased work rules as a end value. Required if Time-Phased equals true</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Date-Time field name on the Linking Object which represents its end time</inlineHelpText>
         <label>End Date Field Name</label>
@@ -770,6 +780,7 @@ When empty, any amount of travel following the end of work day is valid.</inline
         <fullName>FSL__WorkRule_Start_DateTime_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>Represents the DateTime field name used by Time-Phased work rules as a start value. Required if Time-Phased equals true</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Date-Time field name on the Linking Object which represents its start time</inlineHelpText>
         <label>Start Date Field Name</label>
@@ -808,6 +819,7 @@ When empty, any amount of travel following the end of work day is valid.</inline
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Work Rule Name</label>
         <type>Text</type>
     </nameField>
@@ -3089,28 +3101,28 @@ When empty, any amount of travel following the end of work day is valid.</inline
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>FSL__Check_time_rule</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If record type is Time_Rule_Service, Service_Schedule_Time_Property__c is SchedEndTime, then Service_Time_Operator__c must be &quot;Before or Equal to&quot;</description>
         <errorConditionFormula>RecordType.DeveloperName  = &apos;Time_Rule_Service&apos; &amp;&amp;  ISPICKVAL(FSL__Service_Schedule_Time_Property__c, &apos;SchedEndTime&apos;)  &amp;&amp; (  !ISPICKVAL(FSL__Service_Time_Operator__c , &apos;Before or Equal to&apos;)  )</errorConditionFormula>
         <errorMessage>Time Operator should be &apos;Before or Equal To&apos; when Service Schedule Time Property is &apos;SchedEndTime&apos;</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Greater_than_zero</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>RecordType.DeveloperName = &apos;Gap_Rule_Service&apos; &amp;&amp;  FSL__Break_Duration__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>FSL__Break_Duration__c</errorDisplayField>
         <errorMessage>Duration must be positive</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Maximum_Travel_Must_Be_Positive</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>RecordType.DeveloperName = &apos;Max_Travel_From_Home_To_Service&apos; &amp;&amp; FSL__Maximum_Travel_From_Home__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>FSL__Maximum_Travel_From_Home__c</errorDisplayField>
         <errorMessage>Maximum Travel from Home must be positive.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FSL__Minimum_Gap_Positive</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Resource availability, min gap shouldn&apos;t be negative</description>
         <errorConditionFormula>RecordType.DeveloperName  = &apos;Gap_Rule_Service&apos;  &amp;&amp;  FSL__Minimum_Gap__c &lt; 0</errorConditionFormula>
         <errorDisplayField>FSL__Minimum_Gap__c</errorDisplayField>
@@ -3118,7 +3130,7 @@ When empty, any amount of travel following the end of work day is valid.</inline
     </validationRules>
     <validationRules>
         <fullName>FSL__Start_Of_Day_Time_Format</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
 LEN ( FSL__Start_of_Day__c ) != 0, 
 NOT( 
@@ -3130,7 +3142,7 @@ REGEX( FSL__Start_of_Day__c , &quot;^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$&quot;)
     </validationRules>
     <validationRules>
         <fullName>FSL__Time_Format</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
 LEN ( FSL__Break_Start__c ) != 0, 
 NOT( 

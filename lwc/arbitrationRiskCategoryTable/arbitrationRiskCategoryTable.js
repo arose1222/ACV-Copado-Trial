@@ -1,9 +1,8 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-import ARB_RISK_CATEGORY_JSON from '@salesforce/schema/Condition_Report_Prescreen__c.Arb_Risk_Categories__c';
-import ARB_RISK_CATEGORY_CONDITION_REPORT_JSON from '@salesforce/schema/Condition_Report_Prescreen__c.Condition_Report__r.Arb_Risk_Categories__c';
+import ARB_RISK_CATEGORY_JSON from '@salesforce/schema/Condition_Report_Prescreen__c.Condition_Report__r.Arb_Risk_Categories__c';
 
-const FIELDS = [ARB_RISK_CATEGORY_JSON,ARB_RISK_CATEGORY_CONDITION_REPORT_JSON];
+const FIELDS = [ARB_RISK_CATEGORY_JSON];
 
 export default class ArbitrationRiskCategoryTable extends LightningElement {
     @api recordId;
@@ -14,13 +13,8 @@ export default class ArbitrationRiskCategoryTable extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     prescreenRecord({error, data}){
         if(data){  
-
-            if(getFieldValue(data, ARB_RISK_CATEGORY_CONDITION_REPORT_JSON) !== null){
-                this.rows = JSON.parse( getFieldValue(data, ARB_RISK_CATEGORY_CONDITION_REPORT_JSON) );
-            }else if(getFieldValue(data, ARB_RISK_CATEGORY_JSON) !== null){
-                this.rows = JSON.parse( getFieldValue(data, ARB_RISK_CATEGORY_JSON) );
-            }
-
+            this.rows = JSON.parse( getFieldValue(data, ARB_RISK_CATEGORY_JSON) );
+            console.log(JSON.stringify(this.rows));
         }
         else if(error){ console.log(JSON.stringify(error)); }
         this.hideSpinner();
@@ -54,8 +48,8 @@ export default class ArbitrationRiskCategoryTable extends LightningElement {
                         break;
 
                     case 'dollarRisk':
-                        columnA = a['dollarRisk'];
-                        columnB = b['dollarRisk'];
+                        columnA = a['dollarRisk'].toString().toUpperCase();
+                        columnB = b['dollarRisk'].toString().toUpperCase();
                         break;
 
                     default:

@@ -4,6 +4,6 @@
     <protected>false</protected>
     <values>
         <field>Priority__c</field>
-        <value xsi:type="xsd:double">1500.0</value>
+        <value xsi:type="xsd:double">2000.0</value>
     </values>
 </CustomMetadata>

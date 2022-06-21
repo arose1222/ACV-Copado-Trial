@@ -70,16 +70,6 @@
         <relationshipLabel><!-- Release Surveys (Enterprise App Approver) --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Estimated number of days it will take to complete the proposed work - Start of work to Prod --></help>
-        <label><!-- Estimated Days to Build --></label>
-        <name>Estimated_Days_to_Build__c</name>
-    </fields>
-    <fields>
-        <help><!-- Date submitter expects to begin working on submitted work --></help>
-        <label><!-- Estimated Start Date --></label>
-        <name>Estimated_Start_Date__c</name>
-    </fields>
-    <fields>
         <help><!-- This link defines this release as a fix for a previous release --></help>
         <label><!-- Fix for Previous Release --></label>
         <name>Fix_for_Previous_Release__c</name>
@@ -225,92 +215,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Other --></label>
-        <name>Other__c</name>
-    </fields>
-    <fields>
-        <help><!-- Required for the Deployment survey - this field should link back to that record --></help>
-        <label><!-- Pre-Development Survey --></label>
-        <name>Pre_Development_Survey__c</name>
-        <relationshipLabel><!-- Release Surveys (Pre-Development Survey) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Problem to Solve --></label>
-        <name>Problem_to_Solve__c</name>
-    </fields>
-    <fields>
-        <label><!-- Proposed Solution --></label>
-        <name>Proposed_Solution__c</name>
-    </fields>
-    <fields>
-        <label><!-- Proposed Tools --></label>
-        <name>Proposed_Tools__c</name>
-        <picklistValues>
-            <masterLabel>API Call Out</masterLabel>
-            <translation><!-- API Call Out --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>API Endpoint</masterLabel>
-            <translation><!-- API Endpoint --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Apex</masterLabel>
-            <translation><!-- Apex --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Consumer</masterLabel>
-            <translation><!-- Consumer --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Custom Field</masterLabel>
-            <translation><!-- Custom Field --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Custom Object</masterLabel>
-            <translation><!-- Custom Object --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Flow</masterLabel>
-            <translation><!-- Flow --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LWC</masterLabel>
-            <translation><!-- LWC --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>List View/Reporting</masterLabel>
-            <translation><!-- List View/Reporting --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Permission Sets</masterLabel>
-            <translation><!-- Permission Sets --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Process Builder</masterLabel>
-            <translation><!-- Process Builder --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Record Types</masterLabel>
-            <translation><!-- Record Types --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Trigger</masterLabel>
-            <translation><!-- Trigger --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Validation Rule</masterLabel>
-            <translation><!-- Validation Rule --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Workflow Rule</masterLabel>
-            <translation><!-- Workflow Rule --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Release Date --></label>
         <name>Release_Date__c</name>
     </fields>
@@ -319,34 +223,9 @@
         <name>Release_Survey_Score__c</name>
     </fields>
     <fields>
-        <help><!-- Indicate a release is being done on behalf of another individual - typically a contractor --></help>
-        <label><!-- Released on Behalf of --></label>
-        <name>Released_on_Behalf_of__c</name>
-        <relationshipLabel><!-- Release Surveys (Released on Behalf of) --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Requests &amp; Inquiries --></label>
         <name>Requests_Inquiries__c</name>
         <relationshipLabel><!-- Release Surveys --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Pending = yet to be reviewed
-Approved = Good to start work
-Re-Evaluate = Work with team mates to discuss further - move back to pending o re-submit. --></help>
-        <label><!-- Review Status --></label>
-        <name>Review_Status__c</name>
-        <picklistValues>
-            <masterLabel>Approved</masterLabel>
-            <translation><!-- Approved --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Pending</masterLabel>
-            <translation><!-- Pending --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Re-Evaluate</masterLabel>
-            <translation><!-- Re-Evaluate --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <help><!-- Schema Changes references changes to Salesforce Objects and their respective fields, not the data or validations around them --></help>
@@ -386,12 +265,6 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <label><!-- Sign-off provided by --></label>
         <name>Sign_off_provided_by__c</name>
         <relationshipLabel><!-- Release Surveys (Sign-off provided by) --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Who has assigned the work for this issue or who has identified the problem? (Typically PM) --></help>
-        <label><!-- Sponsor --></label>
-        <name>Sponsor__c</name>
-        <relationshipLabel><!-- Release Surveys (Sponsor) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Successful Release Status? --></label>
@@ -477,27 +350,9 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
         <label><!-- Was it Reviewed for Mobile? --></label>
         <name>Was_it_Reviewed_for_Mobile__c</name>
     </fields>
-    <recordTypes>
-        <description><!-- This survey is used for final release and deployment --></description>
-        <label><!-- Deployment Survey --></label>
-        <name>Deployment_Survey</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- This is a survey used for before work is started --></description>
-        <label><!-- Pre-Development Survey --></label>
-        <name>Pre_Development_Survey</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
-    <validationRules>
-        <errorMessage><!-- You must fill out the field &quot;Other&quot; when selecting the other option in proposed tools field. --></errorMessage>
-        <name>Proposed_Tools_Includes_Other</name>
-    </validationRules>
     <validationRules>
         <errorMessage><!-- When selecting a Deployment Status other then &apos;Successful&apos;, you need to provide additional details in the Issue Described Field --></errorMessage>
         <name>Require_Issue_Description</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Please add a link to either the &quot;Atlassian Link&quot; or &quot;Request &amp; Inquiries&quot; field. --></errorMessage>
-        <name>Require_RI_Ticket_or_Atlassian_Link</name>
     </validationRules>
 </CustomObjectTranslation>

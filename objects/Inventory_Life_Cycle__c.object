@@ -239,6 +239,7 @@ IF( UPPER(RIGHT(Status__c,4)) = &apos;SOLD&apos; &amp;&amp; TODAY() - DATEVALUE(
     <fields>
         <fullName>Dealer_Id_Text__c</fullName>
         <description>Used on dataloads</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Id Text</label>
         <length>255</length>
@@ -292,6 +293,7 @@ TEXT(Client__r.Dealer_Type__c))</formula>
     </fields>
     <fields>
         <fullName>Key__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Key</label>
         <length>255</length>
@@ -400,6 +402,7 @@ TEXT(Client__r.Dealer_Type__c))</formula>
     <fields>
         <fullName>Processing_Status__c</fullName>
         <description>This is a field that holds a temp status in between Condition Report and Auction. For example, when you take a bulk action on Inventory Rows, it will set the status, while we are waiting for the data to be added into Salesforce</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Processing Status</label>
         <length>255</length>
@@ -513,6 +516,7 @@ TEXT(Most_Recent_Work_Order_Line_Item__r.Status)),
     <fields>
         <fullName>VIN__c</fullName>
         <description>Vin Number of the Vehicle. This will be populated either when a WOLI is created or a Vehicle is created.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>VIN</label>
         <length>255</length>
@@ -574,13 +578,14 @@ TEXT(Most_Recent_Work_Order_Line_Item__r.Status)),
         <columns>Lights__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Dealer_Id__c</field>
-            <operation>equals</operation>
-            <value>1257018</value>
+            <field>Client__c</field>
+            <operation>contains</operation>
+            <value>LaFontaine wholesale</value>
         </filters>
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Inventory Life Cycle Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

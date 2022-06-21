@@ -59,11 +59,6 @@ public class RevolvingGenerator {
                         Work_Order__r.Occurrence__r.End_Time__c,
                         Work_Order__r.Occurrence__r.Timeline__r.Service_Resource__r.Id,
                         Work_Order__r.Occurrence__r.Timeline__r.Service_Resource__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Street__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.City__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.State__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Country__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Postal_Code__c,
                         Work_Order__r.Duration,
                         Account.BillingLatitude,
                         Account.BillingLongitude,
@@ -133,8 +128,7 @@ public class RevolvingGenerator {
             //sa.EarliestStartTime = Datetime.newInstance(sa.Work_Order__r.StartDate.date(), (sa.Work_Order__r.Occurrence__r.Start_Time__c != null ? sa.Work_Order__r.Occurrence__r.Start_Time__c : defaultStartTime));
             //sa.DueDate = Datetime.newInstance(sa.Work_Order__r.EndDate.date(), (sa.Work_Order__r.Occurrence__r.End_Time__c != null ? sa.Work_Order__r.Occurrence__r.End_Time__c : defaultEndTime));
 
-            if((sa.Work_Order__r.Occurrence__r.Timeline__r.Street__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.City__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.Postal_Code__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.State__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.Country__c == null)
-                && sa.Account.BillingLatitude != null && sa.Account.BillingLongitude != null) {
+            if ( sa.Account.BillingLatitude != null && sa.Account.BillingLongitude != null ) {
                 sa.Latitude = sa.Account.BillingLatitude;
                 sa.Longitude = sa.Account.BillingLongitude;
             }
@@ -257,35 +251,20 @@ public class RevolvingGenerator {
                 Occurrence__c = occ.Id,
                 WorkTypeId = (occ.Timeline__r.Work_Type__c == NULL) ? currentWorkType.Id : occ.Timeline__r.Work_Type__c,
                 Origin__c = 'Revolving Term',
+                Street = occ.Timeline__r.Account__r?.BillingStreet,
+                City = occ.Timeline__r.Account__r?.BillingCity,
+                PostalCode = occ.Timeline__r.Account__r?.BillingPostalCode,
+                State = occ.Timeline__r.Account__r?.BillingState,
+                Country = occ.Timeline__r.Account__r?.BillingCountry,
+                Latitude = occ.Timeline__r.Account__r?.BillingLatitude,
+                Longitude = occ.Timeline__r.Account__r?.BillingLongitude,
                 Inspection_Number_of_Vehicles__c = occ.Timeline__r.Average_Number_Cars__c,
                 Created_Without_Line_Items__c = TRUE,
                 DueDate_Adjustment_Engine_Bypass__c = TRUE
             );
-
-            setAddress(woRec, occ);
-
             wos.add(woRec);
         }
         return wos;
-    }
-
-    public static void setAddress(WorkOrder woRec, Occurrence__c occ) {
-        if(occ.Timeline__r.Street__c == null || occ.Timeline__r.City__c == null || occ.Timeline__r.Postal_Code__c == null || occ.Timeline__r.State__c == null || occ.Timeline__r.Country__c == null) {
-            woRec.Street = occ.Timeline__r.Account__r?.BillingStreet;
-            woRec.City = occ.Timeline__r.Account__r?.BillingCity;
-            woRec.PostalCode = occ.Timeline__r.Account__r?.BillingPostalCode;
-            woRec.State = occ.Timeline__r.Account__r?.BillingState;
-            woRec.Country = occ.Timeline__r.Account__r?.BillingCountry;
-            woRec.Latitude = occ.Timeline__r.Account__r?.BillingLatitude;
-            woRec.Longitude = occ.Timeline__r.Account__r?.BillingLongitude;
-        }
-        else {
-            woRec.Street = occ.Timeline__r.Street__c;
-            woRec.City = occ.Timeline__r.City__c;
-            woRec.PostalCode = occ.Timeline__r.Postal_Code__c;
-            woRec.State = occ.Timeline__r.State__c;
-            woRec.Country = occ.Timeline__r.Country__c;
-        }
     }
 
     public static ResourcePreference createData( ServiceAppointment sa ) {

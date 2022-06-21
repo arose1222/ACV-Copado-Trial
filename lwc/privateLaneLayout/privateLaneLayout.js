@@ -13,8 +13,6 @@ import customStartPriceSubtext from '@salesforce/label/c.Custom_Start_Price_Stat
 import customStartPriceHelptext from '@salesforce/label/c.Custom_Start_Price_Static_Helptext';
 import makeOfferDurationSubtext from '@salesforce/label/c.Make_Offer_Duration_Static_Subtext';
 import previewDurationSubtext from '@salesforce/label/c.Preview_Duration_Static_Subtext';
-import s3CdnUrl from '@salesforce/label/c.PRIVATE_LANE_LOGO_S3_CDN_URL';
-import s3BucketName from '@salesforce/label/c.PRIVATE_LANE_LOGO_S3_BUCKET_NAME';
 const frequencyOptions = [{label:'Recurring', value:'Recurring'},{label:'One-Time', value:'One-Time'},{label:'Perpetual',value:'Perpetual'}];
 const frequencyTypeOptions = [{label:'Daily', value:'Daily'},{label:'Weekly', value:'Weekly'}/*,{label:'Bi-Weekly',value:'BiWeekly'},{label:'Monthly',value:'Monthly'}*/];
 const frequencyScheduleVariables = { 
@@ -83,16 +81,6 @@ export default class PrivateLaneLayout extends NavigationMixin(LightningElement)
     @track saleFormatPicklistOptions = [];
     @track makeOfferTypePicklistOptions = [];
     @track toPicklistOptions = [];
-		@track showS3Component = true;
-		@api junctionObjectType;
-    @api junctionObjectId;
-    @api s3ReferenceType;
-    @api s3Bucket = s3BucketName;
-		@api uploadButtonText = 'Select Files';
-		@api cdnUrl = s3CdnUrl;
-		@track s3Urlpreview;
-		
-    @api s3FilePath = '';
     /***********************Intialization****************************/
     connectedCallback(){
         this.toggleSpinner();
@@ -122,15 +110,12 @@ export default class PrivateLaneLayout extends NavigationMixin(LightningElement)
         ;
         if( this.recordId == 'New' ){
             this.toggleViewStateMode();
-						this.showS3Component = false;
         }
     }
     // Sets pages variables on Initialize, Save, Cancel
     intializePage(){
         Object.assign( this.thisPrivateLane, this.originalPrivateLane );
-				console.log(this.thisPrivateLane);
         this.brandSelection = this.thisPrivateLane.brandReference;
-				this.s3Urlpreview = this.brandSelection.length > 0 ? this.brandSelection[0].subtitle : '';
         this.setFreqAndTypeVariables( this.thisPrivateLane.frequency, this.thisPrivateLane.frequencyType );
         this.setDaysOfWeek();
         this.setReadOnlyTextField( 'auctionDuration', {auctionDuration: this.thisPrivateLane.auctionDuration, auctionDurationType:this.thisPrivateLane.auctionDurationType} );
@@ -171,7 +156,6 @@ export default class PrivateLaneLayout extends NavigationMixin(LightningElement)
                             this.sendCloseTab();
                         }else{
                             this.originalPrivateLane = data.plw;
-														console.log(this.originalPrivateLane);
                             this.intializePage();
                             // If updating, toggle view state
                             this.toggleViewStateMode();
@@ -194,7 +178,6 @@ export default class PrivateLaneLayout extends NavigationMixin(LightningElement)
         var key = event.detail.dataitem;
         apexSearch(event.detail)
             .then(results => {
-								console.log(results);
                 var allLookups = this.template.querySelectorAll("c-lookup");
                 allLookups.forEach(element => {
                     element.errors = [];
@@ -218,20 +201,7 @@ export default class PrivateLaneLayout extends NavigationMixin(LightningElement)
         this.updateThisPrivateLane( event.target.name, brandReference );
         this.updateThisPrivateLane( 'brandingName', brandingName );
         this.brandSelection = event.target.getSelection();
-				console.log(this.brandSelection);
-				console.log(brandingName);
-				this.s3Urlpreview = this.brandSelection.length > 0 ? this.brandSelection[0].subtitle : '';
     }
-		
-		handleS3Upload(event){
-				// updating brandselect after upload from s3 component
-				const data = [JSON.parse(JSON.stringify(event.detail))];
-				this.updateThisPrivateLane( 'brandReference', data );
-        this.updateThisPrivateLane( 'brandingName', data[0].title );
-        this.brandSelection = data;
-				this.s3Urlpreview = data[0].subtitle;
-		}
-		
     // Runs on Custom Start Price Change - needs to update Custom Start Price Text for Read Only Mode
     handleCustomStartPriceChange( event ){
         this.updateThisPrivateLane( event.target.name, event.detail.value );

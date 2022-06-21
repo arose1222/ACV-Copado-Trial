@@ -172,6 +172,7 @@
     <fields>
         <fullName>Batch_Id__c</fullName>
         <description>The Batch Id generated when the Title was scanned. Combination of the user id in the Titles CRON, the scanner Id, current date, and current time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Batch Id</label>
         <length>72</length>
@@ -266,6 +267,7 @@
     <fields>
         <fullName>Date_Signed__c</fullName>
         <description>Date the document was signed by the state. Also the date that the Expiration Date is calculated from if no explicit expiration date is listed on the document.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Signed</label>
         <required>false</required>
@@ -276,6 +278,7 @@
     <fields>
         <fullName>Dealer_ID__c</fullName>
         <description>The ACV Id of the dealership the document is associated with.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer ID</label>
         <length>16</length>
@@ -287,6 +290,7 @@
     </fields>
     <fields>
         <fullName>Document_Created_By_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Document Created By Id</label>
         <length>255</length>
@@ -299,6 +303,7 @@
     <fields>
         <fullName>Document_Notes__c</fullName>
         <description>Field for any notes about the document.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Document Notes</label>
         <length>32768</length>
@@ -352,6 +357,7 @@
     <fields>
         <fullName>Email_Subject__c</fullName>
         <description>Subject of the Email that was going to be sent to the ops inbox</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Subject</label>
         <length>255</length>
@@ -364,6 +370,7 @@
     <fields>
         <fullName>Exceptions_Found__c</fullName>
         <description>List of exceptions found for specific case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exceptions Found</label>
         <required>false</required>
@@ -374,6 +381,7 @@
     <fields>
         <fullName>Expiration_Date_Dealer_Entered__c</fullName>
         <description>The date the document is set to expire as entered by the dealer.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23.</inlineHelpText>
         <label>Expiration Date Dealer Entered</label>
@@ -385,6 +393,7 @@
     <fields>
         <fullName>Expiration_Date_ML__c</fullName>
         <description>The date the document is set to expire as entered by ML.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23.</inlineHelpText>
         <label>Expiration Date ML</label>
@@ -396,6 +405,7 @@
     <fields>
         <fullName>Expiration_Date__c</fullName>
         <description>The date the document is set to expire.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>You must enter an expiration date. If no expiration date is listed, it is this far out: AL = 1yr, AZ = 4yrs, MI = 4yrs, ME = 3yrs, LA = 3yrs, NE = 3yrs, WA = 4yrs, FL = 1yr. Ex: Document state = AZ; signature date = 2/28/19; expiration date = 2/28/23.</inlineHelpText>
         <label>Expiration Date</label>
@@ -417,6 +427,7 @@
     <fields>
         <fullName>IST_Account_Manager_Email__c</fullName>
         <description>Field containing the IST rep&apos;s email for the related account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Account Manager Email</label>
         <required>false</required>
@@ -428,6 +439,7 @@
     <fields>
         <fullName>Images_Location__c</fullName>
         <description>S3 Bucket Folder location for JPEG images</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Images Location</label>
         <length>255</length>
@@ -439,6 +451,7 @@
     </fields>
     <fields>
         <fullName>Insurance_Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Insurance Company Name</label>
         <length>255</length>
@@ -462,6 +475,7 @@
     <fields>
         <fullName>License_Number_Dealer_Entered__c</fullName>
         <description>The license number of the document as entered by the dealer.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Number Dealer Entered</label>
         <required>false</required>
@@ -472,6 +486,7 @@
     <fields>
         <fullName>License_Number_ML__c</fullName>
         <description>The license number of the document as entered by ML.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Number ML</label>
         <required>false</required>
@@ -482,6 +497,7 @@
     <fields>
         <fullName>License_Number__c</fullName>
         <description>The license number of the document.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Number</label>
         <required>false</required>
@@ -524,6 +540,7 @@
     <fields>
         <fullName>Outbound_Batch_Id__c</fullName>
         <description>Batch Id referenced when scanning a title through the ML Automation for outbound. Combination of the user id in the Titles CRON, the scanner Id, current date, and current time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Outbound Batch Id</label>
         <length>72</length>
@@ -536,6 +553,7 @@
     <fields>
         <fullName>Permit_Resale_Number__c</fullName>
         <description>The resale or permit number of the document.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Permit/Resale Number</label>
         <required>false</required>
@@ -546,6 +564,7 @@
     <fields>
         <fullName>Primary_Contact_Email__c</fullName>
         <description>Field containing the primary contact&apos;s email for the related account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Primary Contact Email</label>
         <required>false</required>
@@ -557,6 +576,7 @@
     <fields>
         <fullName>Related_Account_Name__c</fullName>
         <description>Holds the name of the related account for use by the business document confirmation emails.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Related Account Name</label>
         <length>255</length>
@@ -695,6 +715,7 @@
     <fields>
         <fullName>Scanner_Model_Name__c</fullName>
         <description>Model Name of Scanner used</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scanner Model Name</label>
         <length>128</length>
@@ -733,6 +754,7 @@
     <fields>
         <fullName>TM_Email__c</fullName>
         <description>Field containing the TM&apos;s email for the related account.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TM Email</label>
         <required>false</required>
@@ -1046,11 +1068,6 @@
             <operation>equals</operation>
             <value>Exception__c.Certificate_of_Insurance</value>
         </filters>
-        <filters>
-            <field>Insurance_Company_Name__c</field>
-            <operation>notContain</operation>
-            <value>not acv cap</value>
-        </filters>
         <label>ACV Capital - Certificate of Insurance</label>
     </listViews>
     <listViews>
@@ -1132,17 +1149,17 @@
         <filters>
             <field>Status__c</field>
             <operation>equals</operation>
-            <value>Open,Closed</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>1/28/2022 12:00 AM</value>
+            <value>Open</value>
         </filters>
         <filters>
             <field>Title_Scanned_By__c</field>
             <operation>contains</operation>
-            <value>alyssa</value>
+            <value>james d</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
         </filters>
         <label>Exceptions Filter</label>
     </listViews>
@@ -1210,50 +1227,9 @@
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Exception__c.ML_Titles</value>
+            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
         </filters>
         <label>ML Exceptions</label>
-    </listViews>
-    <listViews>
-        <fullName>ML_Exceptions_not_closed</fullName>
-        <columns>NAME</columns>
-        <columns>Email_Subject__c</columns>
-        <columns>Related_Auction__c</columns>
-        <columns>Related_Case__c</columns>
-        <columns>Scanner_Model_Name__c</columns>
-        <columns>Status__c</columns>
-        <columns>Title_Scanned_By__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Exceptions_Found__c</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Exception__c.ML_Titles</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Open,Closed</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_WEEK</value>
-        </filters>
-        <filters>
-            <field>Related_Case__c</field>
-            <operation>notContain</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_By__c</field>
-            <operation>contains</operation>
-            <value>paige</value>
-        </filters>
-        <label>ML Exceptions not closed</label>
     </listViews>
     <listViews>
         <fullName>My_Exceptions</fullName>
@@ -1323,14 +1299,19 @@
         <columns>Dealer_ID__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2020 12:00 AM</value>
+        </filters>
+        <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Exception__c.Titles</value>
         </filters>
         <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
+            <field>Exceptions_Found__c</field>
+            <operation>contains</operation>
+            <value>priority title</value>
         </filters>
         <label>Priorirty Title Exceptions</label>
     </listViews>
@@ -1422,6 +1403,7 @@
         <label>Exceptions not linked</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Exception Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -6120,7 +6102,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>AL_Sales_Tax_must_have_AL_and_Resale</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If AL_Sales_Tax field is true, State must be AL AND Type must be Resale Cert.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6132,7 +6114,7 @@ RecordType.DeveloperName = &apos;Dealer_License&apos;))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Cannot_have_AL_Sales_Tax_AND_MTC_true</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>AL_Sales_Tax__c and MTC__c cannot both be marked as true.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6142,7 +6124,7 @@ MTC__c = true)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Cannot_mark_No_Expiration_with_Date</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Throws an error if user sets &quot;No Expiration&quot; to true and they have an Expiration Date filled in.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6154,7 +6136,7 @@ ISNULL(Expiration_Date__c)
     </validationRules>
     <validationRules>
         <fullName>ExpDate_Cannot_be_in_Past_if_Compliant</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot have an expiration date in the past if the document is compliant.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6165,7 +6147,7 @@ NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
     </validationRules>
     <validationRules>
         <fullName>Expiration_Date_Validation_for_Resale</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Document Type = Resale Certificate, and Document State = AZ, MI, NE, WA, ME, LA, IA, IL, or FL, force user to enter data in the Expiration Date field.</description>
         <errorConditionFormula>OR(
 AND(
@@ -6197,7 +6179,7 @@ AL_Sales_Tax__c == True))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Fill_out_Expiration_Field_for_License</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Document Type = Dealer License, force user to enter data in the Expiration Date field. Error msg: &quot;You must enter an expiration date for this document.&quot;</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6214,7 +6196,7 @@ TEXT(Document_State__c) != &apos;VT&apos;)
     </validationRules>
     <validationRules>
         <fullName>Fill_out_No_Expiration_Field_for_License</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Must select No Expiration for VT and AZ Licenses. (This is handled through code for dealer doc records. This is a new validation rule.)</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6231,7 +6213,7 @@ TEXT(Document_State__c) = &apos;AZ&apos;
     </validationRules>
     <validationRules>
         <fullName>Fill_out_No_Expiration_Field_for_Resale</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Document Type = Resale Certificate, and Document State not equal to AZ, LA, ME, MI, NE, WA, IA, IL, or FL, force user to select &quot;true&quot; on the No Expiration field.</description>
         <errorConditionFormula>OR(
 AND(
@@ -6265,7 +6247,7 @@ AL_Sales_Tax__c = false))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>If_Compliant_True_no_Compliance_issue</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation rule that ensures if the Complaint checkbox is true there are no values selected in the Compliance Issues picklist.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),
@@ -6275,7 +6257,7 @@ ISNULL(Compliance_Issues__c )!=True)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>License_and_Resale_Numbers_Match_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Makes sure that Licenses have a license number an dno resale number and Resale docs have a resale number and no license number.</description>
         <errorConditionFormula>IF(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations)
@@ -6318,7 +6300,7 @@ False))))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>MTC_True_For_Non_MTC_States</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Do NOT allow the MTC field to be marked as &apos;true&apos; for the following states:
 AK, DE, DC, IN, LA, MA, MS, MT, NH, NY, OR, PR, VA, WV, WY.</description>
         <errorConditionFormula>IF(MTC__c == true &amp;&amp;
@@ -6342,7 +6324,7 @@ TEXT(Document_State__c) =&apos;WY&apos;), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>MTC_True_wo_ExpDate_for_Required_States</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Use of MTC in this state has expiration: IL and NE = 3 years from signature; MI and WA = 4 years from signature. (Expiration Date is required in these states.)</description>
         <errorConditionFormula>IF(
 AND(
@@ -6365,7 +6347,7 @@ FALSE))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Review_Decision_Must_be_Populated</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>The review decision field must be populated on close for dealer docs record types.</description>
         <errorConditionFormula>AND(
 OR(
@@ -6377,7 +6359,7 @@ TEXT(Status__c) = &apos;Closed&apos;)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Review_Status_Complete</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Review status can not be marked as complete unless the Complaint check box is marked to true.</description>
         <errorConditionFormula>AND(
 NOT($Permission.Bypass_Dealer_Doc_Exception_Validations),

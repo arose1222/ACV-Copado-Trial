@@ -12,20 +12,20 @@ public class WorkRequestIncompleteEvent extends TriggerInterface {
                     saIdSet.add( saRec.Id );
                     woIdToSaIdMap.put( saRec.ParentRecordId, saRec.Id );
             }
-        }
+        }   
 
         if ( woIdToSaIdMap != null && !woIdToSaIdMap.isEmpty() ) {
             List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                     ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                        WorkType.Name, CreatedById, Cloned_for_Grouping__c
-                            FROM WorkOrderLineItems )
+                        WorkType.Name, CreatedById
+                            FROM WorkOrderLineItems ) 
                                     FROM WorkOrder WHERE Id IN :woIdToSaIdMap.keyset() ];
 
             Map<Id, List<WorkOrderLineItem>> saIdToWoliMap = new Map<Id, List<WorkOrderLineItem>>();
             Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
             for ( WorkOrder woRec : woLst ) {
                 Id saId = woIdToSaIdMap.get( woRec.Id );
-                if ( !woRec.Created_Without_Line_Items__c ) {
+                if ( !woRec.Created_Without_Line_Items__c ) { 
                     if ( saIdToWoliMap.get( saId ) == null ) {
                         saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                     }
@@ -47,7 +47,7 @@ public class WorkRequestIncompleteEvent extends TriggerInterface {
                     saToResourceMap.put( arRec.ServiceAppointmentId, arRec );
                     acvUserIdSet.add( arRec.ServiceResource.RelatedRecordId );
                 }
-
+    
                 Map<String, String> conIdToGuidMap = new Map<String, String>();
                 if ( !acvUserIdSet.isEmpty() ) {
                     Id acvUserRTId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('ACV_User').getRecordTypeId();
@@ -83,10 +83,10 @@ public class WorkRequestIncompleteEvent extends TriggerInterface {
                                 assigned_Resource_Name__c = saToResourceMap.get( saRec.Id ) != null ? saToResourceMap.get( saRec.Id ).ServiceResource.Name : null,
                                 assigned_Resource_Id__c = saToResourceMap.get( saRec.Id ) != null ? conIdToGuidMap.get( saToResourceMap.get( saRec.Id ).ServiceResource.RelatedRecordId ) : null,
                                 legacy_Resource_Id__c = saToResourceMap.get( saRec.Id ) != null ? saToResourceMap.get( saRec.Id ).ServiceResource.ASI_Resource_Id__c : null,
+                                legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' ? 'Legacy Inspection Services' : null,
+                                origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ),
                                 comment__c = !String.isBlank( saRec.Completed_Canceled_Notes__c ) ? saRec.Completed_Canceled_Notes__c : 'Comment not provided',
-                                contact_Name__c = saRec.Contact_Name__c,
-                                legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' || woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : null,
-                                origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
+                                contact_Name__c = saRec.Contact_Name__c
                             ) );
                             //uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );
                         }

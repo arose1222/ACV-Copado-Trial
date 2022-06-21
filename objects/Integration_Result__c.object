@@ -155,6 +155,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Endpoint_URL__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Endpoint URL</label>
         <length>255</length>
@@ -166,6 +167,7 @@
     </fields>
     <fields>
         <fullName>Integration_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Integration Name</label>
         <length>255</length>
@@ -177,6 +179,7 @@
     </fields>
     <fields>
         <fullName>Integration_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Integration Type</label>
         <length>255</length>
@@ -188,6 +191,7 @@
     </fields>
     <fields>
         <fullName>Request_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Request Message</label>
         <length>131072</length>
@@ -198,6 +202,7 @@
     </fields>
     <fields>
         <fullName>Sobject_name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sobject Name</label>
         <length>255</length>
@@ -221,6 +226,7 @@
     </fields>
     <fields>
         <fullName>Status_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Status Message</label>
         <length>255</length>
@@ -232,6 +238,7 @@
     </fields>
     <fields>
         <fullName>recordId__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>recordId</label>
         <length>255</length>
@@ -243,6 +250,7 @@
     </fields>
     <fields>
         <fullName>response_message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Response Message</label>
         <length>131072</length>
@@ -357,6 +365,11 @@
             <field>Integration_Name__c</field>
             <operation>equals</operation>
             <value>Create Pricing</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>11/16/2019 12:00 AM</value>
         </filters>
         <label>Create Pricing</label>
         <sharedTo>
@@ -496,14 +509,14 @@
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
+            <field>Integration_Name__c</field>
+            <operation>contains</operation>
+            <value>User</value>
         </filters>
         <filters>
-            <field>CREATEDBY_USER</field>
+            <field>CREATED_DATE</field>
             <operation>equals</operation>
-            <value>Jake Bass</value>
+            <value>LAST_N_DAYS:21</value>
         </filters>
         <label>Group Events</label>
     </listViews>
@@ -659,11 +672,6 @@
             <field>Status_Code__c</field>
             <operation>greaterThan</operation>
             <value>299</value>
-        </filters>
-        <filters>
-            <field>Integration_Name__c</field>
-            <operation>contains</operation>
-            <value>Transportation</value>
         </filters>
         <label>Transportation Errors</label>
     </listViews>

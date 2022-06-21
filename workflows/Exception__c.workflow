@@ -130,7 +130,7 @@
             <name>Send_Historical_Auto_Converted_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -155,7 +155,7 @@
             <name>Send_Historical_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -175,7 +175,7 @@
             <name>Send_Incomplete_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -195,7 +195,7 @@
             <name>Send_Invalid_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -215,7 +215,7 @@
             <name>Send_Poor_Quality_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -235,7 +235,7 @@
             <name>Send_Valid_Auto_Converted_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>
@@ -260,7 +260,7 @@
             <name>Send_Valid_Document_Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Exception__c.Review_Decision__c</field>
             <operation>equals</operation>

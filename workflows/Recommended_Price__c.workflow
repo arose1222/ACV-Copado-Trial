@@ -87,7 +87,7 @@
             <name>RP_is_Active</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Recommended_Price__c.Pricing_Status__c</field>
             <operation>equals</operation>
@@ -102,7 +102,7 @@
             <name>Send_to_ACV_True</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This rule will fire anytime a recommended price is touched</description>
         <formula>AND(NOT(ISBLANK(CreatedDate)),  NOT(CONTAINS($User.Username, &apos;integration@acvauctions.com&apos;)),  NOT(ISCHANGED(Send_to_ACV__c)))</formula>
         <triggerType>onAllChanges</triggerType>

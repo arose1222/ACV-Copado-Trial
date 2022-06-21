@@ -6,7 +6,7 @@
         <name>Assignment_Duration</name>
         <label>Calculate &amp; Assign Duration</label>
         <locationX>50</locationX>
-        <locationY>455</locationY>
+        <locationY>431</locationY>
         <assignmentItems>
             <assignToReference>VariableDuration</assignToReference>
             <operator>Assign</operator>
@@ -23,7 +23,7 @@
         <name>Calculate_Assign_Actual_Duration</name>
         <label>Calculate &amp; Assign Actual Duration</label>
         <locationX>50</locationX>
-        <locationY>911</locationY>
+        <locationY>887</locationY>
         <assignmentItems>
             <assignToReference>VariableActualDuration</assignToReference>
             <operator>Assign</operator>
@@ -40,11 +40,11 @@
         <name>ActualStartTime_or_ActualEndTime_Changed</name>
         <label>ActualStartTime or ActualEndTime Changed</label>
         <locationX>182</locationX>
-        <locationY>791</locationY>
+        <locationY>767</locationY>
         <defaultConnectorLabel>Did Not Changed</defaultConnectorLabel>
         <rules>
             <name>Actual_Start_Or_End_Changed</name>
-            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.ActualStartTime</leftValueReference>
                 <operator>IsChanged</operator>
@@ -59,20 +59,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>$Record.SchedStartTime</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.SchedEndTime</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Calculate_Assign_Actual_Duration</targetReference>
             </connector>
@@ -84,14 +70,14 @@
         <name>SchedStartTime_or_SchedEndtime_Changed</name>
         <label>SchedStartTime or SchedEndtime Changed</label>
         <locationX>182</locationX>
-        <locationY>335</locationY>
+        <locationY>311</locationY>
         <defaultConnector>
             <targetReference>ActualStartTime_or_ActualEndTime_Changed</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Did not Change</defaultConnectorLabel>
         <rules>
             <name>Scheduled_Start_or_End_Changed</name>
-            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.SchedStartTime</leftValueReference>
                 <operator>IsChanged</operator>
@@ -104,20 +90,6 @@
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.SchedStartTime</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.SchedEndTime</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -126,7 +98,7 @@
             <label>Changed</label>
         </rules>
     </decisions>
-    <description>ID-3519 In the flow FSL Update Duration or Actual Duration, do not update Duration or Actual Duration if Sched Start or Sched end is NULL</description>
+    <description>Update Duration if Scheduled Start or End change or Update Actual Duration if Actual Start or End change in the Service Appointment record.</description>
     <formulas>
         <description>Calculate Actual Duration from Actual End and Actual Start</description>
         <name>ActualDurationCalcfromActualEndAndStart</name>
@@ -167,7 +139,7 @@
         <name>Update_Actual_Duration</name>
         <label>Update Actual Duration</label>
         <locationX>50</locationX>
-        <locationY>1031</locationY>
+        <locationY>1007</locationY>
         <inputAssignments>
             <field>ActualDuration</field>
             <value>
@@ -181,7 +153,7 @@
         <name>Update_Duration</name>
         <label>Update Duration</label>
         <locationX>50</locationX>
-        <locationY>575</locationY>
+        <locationY>551</locationY>
         <connector>
             <targetReference>ActualStartTime_or_ActualEndTime_Changed</targetReference>
         </connector>
@@ -238,7 +210,7 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <description>Variable to store the Actual Duration calculated from Actual End and Actual Start.</description>
         <name>VariableActualDuration</name>

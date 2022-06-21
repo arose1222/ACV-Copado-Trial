@@ -640,17 +640,6 @@
         <label>Transportation Compact</label>
     </compactLayouts>
     <compactLayouts>
-        <fullName>Transportation_Compact_Layout_New</fullName>
-        <fields>Status</fields>
-        <fields>Auction_Number__c</fields>
-        <fields>Transporter_Account__c</fields>
-        <fields>Expected_Pick_Up__c</fields>
-        <fields>Expected_Delivery__c</fields>
-        <fields>Default_Pickup_State__c</fields>
-        <fields>Default_Delivery_State__c</fields>
-        <label>Transportation Compact Layout - New</label>
-    </compactLayouts>
-    <compactLayouts>
         <fullName>Unwind_Compact_Layout</fullName>
         <fields>CaseNumber</fields>
         <fields>Auction_Number__c</fields>
@@ -661,6 +650,33 @@
     </compactLayouts>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>ReadWriteTransfer</externalSharingModel>
+    <fields>
+        <fullName>ACV_Capital_Primary_Contact_Email_Text__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ACV Capital Primary Contact Email Text</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACV_Capital_Primary_Contact_Email_del__c</fullName>
+        <description>Pulls the ACV Capital Primary Contact Email from the corresponding account.  This is needed for a the buyer notification email alert sent to buyers when capital title status = received. 
+
+Refer:  https://acvauctions.atlassian.net/browse/CPO-9</description>
+        <externalId>false</externalId>
+        <formula>IF( Account.Active__c = TRUE, Account.ACV_Capital_Primary_Contact__r.Email, Account.Primary_Contact__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACV Capital Primary Contact Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>ACV_Capital_Title_Status__c</fullName>
         <description>This field represents the status of a title when ACV Capital is the Buyer&apos;s payment method.</description>
@@ -742,6 +758,7 @@
     <fields>
         <fullName>ACV_EasyPost_ID__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV EasyPost ID</label>
         <length>255</length>
@@ -766,6 +783,7 @@
         <fullName>ACV_Titles_External_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>external id to identify title cases</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Titles External ID</label>
         <length>255</length>
@@ -800,6 +818,7 @@
     <fields>
         <fullName>ACV_Transportation_Request_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Transportation Request Id</label>
         <length>255</length>
@@ -914,6 +933,7 @@
     <fields>
         <fullName>Additional_Detils__c</fullName>
         <description>Additional details regarding the collections case and reason for it</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>What are additional details related to this collections case? (Do not list Auction numbers)</inlineHelpText>
         <label>Additional Details</label>
@@ -948,21 +968,10 @@ if((ClosedDate - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Redlight&quot
     <fields>
         <fullName>Age__c</fullName>
         <externalId>false</externalId>
-        <formula>if(IsClosed = false,
-
-if(Age_in_Days__c&gt;14,
-
-if((NOW() -   Last_Touched__c )*24 &lt;= 48, IMAGE(&quot;/resource/GreenPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if( (NOW() - Last_Touched__c)*24 &gt; 48 &amp;&amp; (NOW() - LastModifiedDate)*24 &lt; 72, IMAGE(&quot;/resource/YellowPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/RedPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null))),
-
+        <formula>if(IsClosed = false, 
 if((NOW() -   Last_Touched__c )*24 &lt;= 48, IMAGE(&quot;/resource/Greenlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
 if( (NOW() - Last_Touched__c)*24 &gt; 48 &amp;&amp; (NOW() - LastModifiedDate)*24 &lt; 72, IMAGE(&quot;/resource/Yellowlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/Redlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null)))
-
-),
-
-null)</formula>
+if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/Redlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null))),null)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Age</label>
         <required>false</required>
@@ -987,6 +996,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Address</label>
         <length>255</length>
@@ -999,6 +1009,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Alternate_Delivery_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery City</label>
         <length>60</length>
@@ -1011,6 +1022,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Country</label>
         <length>55</length>
@@ -1023,6 +1035,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Alternate_Delivery_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery Postal Code</label>
         <length>9</length>
@@ -1035,6 +1048,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Alternate_Delivery_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alternate Delivery State</label>
         <length>50</length>
@@ -1089,6 +1103,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Arb_Close_Date_for_Titles__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Arb Close Date for Titles</label>
         <required>false</required>
@@ -1154,6 +1169,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Arb_Reviewed_By__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Arb Reviewed By</label>
         <length>255</length>
@@ -1272,6 +1288,7 @@ null)))</formula>
     <fields>
         <fullName>Arbitration_Extension_Reason__c</fullName>
         <description>Is required when an arbitration claims is opened on an Auction that ended more than 7 days ago.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If you are opening a claim on an Auction that falls outside of an arbitration eligibility window, please explain why.</inlineHelpText>
         <label>Arbitration Extension Reason</label>
@@ -1297,6 +1314,7 @@ null)))</formula>
     <fields>
         <fullName>Arbitrator__c</fullName>
         <description>Field to enter the arbitrator on unwind record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Arbitrator</label>
         <length>255</length>
@@ -1456,6 +1474,7 @@ null)))</formula>
     <fields>
         <fullName>Auction_ID_s__c</fullName>
         <description>Auction Id(s) related to Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Auction ID(s) related to Case</inlineHelpText>
         <label>Auction ID(s)</label>
@@ -1492,6 +1511,7 @@ null)))</formula>
     <fields>
         <fullName>Auction_Number_Searchable__c</fullName>
         <description>This field is filled by a workflow. It was created to provide a searchable Auction Number field since the Lookup and Formula Auction Number fields are not.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Auction Number</label>
         <length>20</length>
@@ -1567,6 +1587,7 @@ null)))</formula>
     <fields>
         <fullName>BOL_Link__c</fullName>
         <description>Link to BOL stored on AWS S3</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BOL Link</label>
         <required>false</required>
@@ -1711,6 +1732,7 @@ IF(ISPICKVAL(Back_End_Status_Seller__c, &quot;No Payment Necessary&quot;), IMAGE
     <fields>
         <fullName>Batch_Id__c</fullName>
         <description>The Batch Id generated by the Titles Cron when a title is sent to the entitled-beta inbox from a user scanning it. It uses the current time, user, scanner, and current date. Primarily used to mass assign titles to a specific user.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inbound Batch Id</label>
         <length>72</length>
@@ -1957,6 +1979,7 @@ MOD((Date_Time_Removed_from_Queue__c - DATETIMEVALUE(&apos;2017-01-02 14:00:00&a
     <fields>
         <fullName>Buyer_IST_Email__c</fullName>
         <description>Auto populates via workflow to stamp the buying dealership&apos;s IST account manager.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer IST Email</label>
         <required>false</required>
@@ -2006,6 +2029,7 @@ Account.BillingCountry</formula>
     <fields>
         <fullName>Buyer_Notes__c</fullName>
         <description>Field to enter buyer notes on unwinds case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Notes</label>
         <length>131072</length>
@@ -2068,6 +2092,7 @@ Account.BillingCountry</formula>
     </fields>
     <fields>
         <fullName>Buyer_Pickup_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Pickup Notes</label>
         <length>2000</length>
@@ -2122,6 +2147,7 @@ Account.BillingCountry</formula>
     <fields>
         <fullName>Buyer_Refund_Date__c</fullName>
         <description>Field to enter buyer refund date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Buyer Refund Date</label>
         <required>false</required>
@@ -2145,6 +2171,7 @@ Account.BillingCountry</formula>
     <fields>
         <fullName>Buyer_Response_Due_Date__c</fullName>
         <description>Used in workflow Rule</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The buyer has been asked to provide information, if status is still &quot;Awaiting Buyer Response&quot; on this date, buyer will receive notification that we are waiting for a response</inlineHelpText>
         <label>Buyer Response Due Date</label>
@@ -2169,6 +2196,7 @@ Account.BillingCountry</formula>
     <fields>
         <fullName>Buyer_Tracking_Number__c</fullName>
         <description>Tracking Number for the Buyer to track the title arrival</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Tracking Number for the Buyer to track the title arrival</inlineHelpText>
         <label>Buyer Tracking Number</label>
@@ -2283,6 +2311,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_1__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 1</label>
         <required>false</required>
@@ -2294,6 +2323,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 2</label>
         <required>false</required>
@@ -2305,6 +2335,7 @@ Third time offense = &quot;Deny&quot;</inlineHelpText>
     </fields>
     <fields>
         <fullName>Capital_Alt_Email_3__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Alt Email 3</label>
         <required>false</required>
@@ -2331,6 +2362,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Payment_Executed_By__c</fullName>
         <description>Created as part of CAP-465 - Used by Capital to track when payments have been executed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Payment Executed By</label>
         <length>255</length>
@@ -2344,6 +2376,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Payment_Executed_Date__c</fullName>
         <description>Created as part of CAP-465</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Payment Executed Date</label>
         <required>false</required>
@@ -2366,6 +2399,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Title_Borrowed_Date__c</fullName>
         <description>Date ACV Capital Title status marked as Borrowed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date ACV Capital Title status marked as Borrowed</inlineHelpText>
         <label>Capital Title Borrowed Date</label>
@@ -2378,6 +2412,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Title_Received_Date__c</fullName>
         <description>Date ACV Capital Title status marked as Received</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date ACV Capital Title status marked as Received</inlineHelpText>
         <label>Capital Title Received  Date</label>
@@ -2436,6 +2471,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Title_Sent_Date__c</fullName>
         <description>Date the Status of ACV Capital title was marked as sent</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date the Status of ACV Capital title was marked as sent</inlineHelpText>
         <label>Capital Title Sent Date</label>
@@ -2448,6 +2484,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Title_Sent_to_Floor_Plan_Date__c</fullName>
         <description>Date ACV Capital Title status marked as Sent to Floor Plan</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date ACV Capital Title status marked as Sent to Floor Plan</inlineHelpText>
         <label>Capital Title Sent to Floor Plan Date</label>
@@ -2460,6 +2497,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Capital_Title_Status_Last_Updated_By__c</fullName>
         <description>updated by workflow rule.  visible only to capital profiles</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Capital Title Status Last Updated By</label>
         <length>255</length>
@@ -2511,6 +2549,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <fullName>Case_guid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>GUID generated in Salesforce to identify this unique Case Record across Datahub systems</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Case guid</label>
         <length>36</length>
@@ -2524,6 +2563,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Claim_Manually_Submitted_Date__c</fullName>
         <description>If a dealer makes an arbitration claim via the app, this will auto populate to the case created date.  If they submit via phone or email and an employee manually creates the arb case, the user will be required to enter the true date that the claim was requested.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>When manually entering an arb claim, please fill in the date the dealer made the request - the date they placed the phone call or email.</inlineHelpText>
         <label>Claim Manually Submitted Date</label>
@@ -2669,6 +2709,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Delivered_Actual__c</fullName>
         <description>Date on which transportation job was delivered as stated in the content of the CD &quot;Delivered&quot; email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>True, actual date of delivery. Often populated days or weeks after delivery was made.</inlineHelpText>
         <label>Date Delivered Actual</label>
@@ -2680,6 +2721,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Delivered__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Portal Delivery Date</label>
         <required>false</required>
@@ -2691,6 +2733,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Estimated_Pick_Up__c</fullName>
         <description>Estimated Pick up date for transportation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Estimated Pick Up</label>
         <required>false</required>
@@ -2702,6 +2745,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_First_Accepted__c</fullName>
         <description>Date when it was first accepted in Central Dispatch</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Accepted</label>
         <required>false</required>
@@ -2712,6 +2756,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_First_Posted_Portal__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Posted Portal</label>
         <required>false</required>
@@ -2722,6 +2767,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_First_Posted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date First Posted</label>
         <required>false</required>
@@ -2733,6 +2779,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Last_Accepted__c</fullName>
         <description>date when case / job was last accepted in CD. Value will be different than &apos;Date First Accepted&apos; if job has been cancelled after being accepted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Last Accepted</label>
         <required>false</required>
@@ -2743,6 +2790,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Last_Posted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Last Posted</label>
         <required>false</required>
@@ -2753,6 +2801,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Picked_Up__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Picked Up</label>
         <required>false</required>
@@ -2763,6 +2812,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Referred_to_Collections_Agency__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Required if Referred to Collections Agency Box is checked</inlineHelpText>
         <label>Date Referred to Collections Agency</label>
@@ -2774,6 +2824,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Referred_to_Investigator__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Required when the Referred to Investigator Box is Checked</inlineHelpText>
         <label>Date Referred to Investigator</label>
@@ -2786,6 +2837,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Relaunch_Sale_Posted__c</fullName>
         <description>Populated via workflow when either Relaunch Auction ID or Relaunch Sale Price are populated on the case record.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Relaunch Sale Posted</label>
         <required>false</required>
@@ -2796,6 +2848,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Signed_Document_Returned__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date the Signed Repayment Plan Document was Returned to ACV</inlineHelpText>
         <label>Date Signed Document Returned</label>
@@ -2808,6 +2861,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Assigned_to_Queue__c</fullName>
         <description>Updated via workflow rule to identify when a Case was assigned to a queue.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Assigned to Queue</label>
         <required>false</required>
@@ -2819,6 +2873,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Case_Denial_Enters_Pending__c</fullName>
         <description>Process builder stamps this field with the date/time the denial approval begins.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Case Denial Enters Pending</label>
         <required>false</required>
@@ -2830,6 +2885,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Case_Denial_Review_Completed__c</fullName>
         <description>Process stamps the date/time a case has finished the denial review process</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Case Denial Review Completed</label>
         <required>false</required>
@@ -2841,6 +2897,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Case_Status_Reviewed__c</fullName>
         <description>Captures the Date/Time a Case Status is set to &quot;Reviewed&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Case Status Reviewed</label>
         <required>false</required>
@@ -2852,6 +2909,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Case_Status_Under_Review__c</fullName>
         <description>Captures the Date/Time the case status is changed to &quot;Under Review&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Case Status Under Review</label>
         <required>false</required>
@@ -2863,6 +2921,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Finalized__c</fullName>
         <description>Date &amp; time the transportation case is moved to the finalized status  -this field is populated via record triggered flow &quot;Date time finalized&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The most recent date &amp; time the case was finalized.</inlineHelpText>
         <label>Date Time Finalized</label>
@@ -2875,6 +2934,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Last_Email_Sent__c</fullName>
         <description>Captures the Date/Time the last email related to this case was sent</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Last Email Sent</label>
         <required>false</required>
@@ -2886,6 +2946,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Removed_from_Queue__c</fullName>
         <description>Updated via workflow rule that identifies when a Case has been removed from a queue.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Removed from Queue</label>
         <required>false</required>
@@ -2897,6 +2958,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Title_Clerked__c</fullName>
         <description>Captures the Date/Time a title is clerked AKA moved to the status of working</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Captures the Date/Time a title is clerked AKA moved to the status of working</inlineHelpText>
         <label>Date Time Title Clerked</label>
@@ -2909,6 +2971,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Date_Time_Title_Received__c</fullName>
         <description>Flow used to populate the date time the title case was marked as received</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Time Title Received</label>
         <required>false</required>
@@ -2918,19 +2981,9 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>Date_Time_Title_Sent__c</fullName>
-        <description>Date time the title case was marked as sent - populated  via the &quot;Date Time Tile Stamp&quot; Flow</description>
-        <externalId>false</externalId>
-        <label>Date Time Title Sent</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>Date_Time_Working__c</fullName>
         <description>Date time the Standard case is marked as working  - created using workflow rule</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time Working</label>
         <required>false</required>
@@ -2941,6 +2994,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Time_of_48_Hour_Notice__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date/Time of 48 Hour Notice</label>
         <required>false</required>
@@ -2951,6 +3005,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Transporter_Charged__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Transporter Charged</label>
         <required>false</required>
@@ -2961,6 +3016,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Transporter_Paid__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Transporter Paid</label>
         <required>false</required>
@@ -2971,6 +3027,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Unwind_Approved__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Automatically timestamped when Status = Unwound</inlineHelpText>
         <label>Date Unwind Approved</label>
@@ -2982,6 +3039,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_of_NSF_Demand__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of NSF Demand</label>
         <required>false</required>
@@ -3138,6 +3196,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_Address_Line2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Address Line 2</label>
         <length>100</length>
@@ -3150,6 +3209,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Address</label>
         <length>255</length>
@@ -3162,6 +3222,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery City</label>
         <length>60</length>
@@ -3174,6 +3235,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Country</label>
         <length>55</length>
@@ -3186,6 +3248,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Postal Code</label>
         <length>10</length>
@@ -3198,6 +3261,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Delivery_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery State</label>
         <length>50</length>
@@ -3210,6 +3274,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Pickup_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup City</label>
         <length>60</length>
@@ -3222,6 +3287,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Pickup_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Country</label>
         <length>55</length>
@@ -3234,6 +3300,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Pickup_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Postal Code</label>
         <length>10</length>
@@ -3246,6 +3313,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Default_Pickup_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup State</label>
         <length>50</length>
@@ -3287,6 +3355,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Delivery_Address_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Address Name</label>
         <length>255</length>
@@ -3375,6 +3444,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3382,6 +3452,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Details__c</fullName>
         <description>Details section meant to hold the reason for why user selected &quot;Other&quot; under Titles Problems</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Details</label>
         <length>32768</length>
@@ -3394,6 +3465,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Digital_Title_Problem_Reason__c</fullName>
         <description>Description of the problem that occurred while trying to process a digital title.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Digital Title Problem Reason</label>
         <length>255</length>
@@ -3427,6 +3499,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Dispatch_Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dispatch Comment (Carrier to ACV)</label>
         <length>32768</length>
@@ -3438,6 +3511,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Documentation_Case_Closed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Documentation Case Closed Date</label>
         <required>false</required>
@@ -3488,6 +3562,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>ETA_to_Obtain_Title__c</fullName>
         <description>ETA to obtain the title from the Sellers Title Clerk</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>ETA to obtain the title from the Sellers Title Clerk</inlineHelpText>
         <label>Title ETA</label>
@@ -3500,6 +3575,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>EasyPost_Rate_ID__c</fullName>
         <description>The rate id generated by easypost when creating a postage label</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>EasyPost Rate Id</label>
         <length>255</length>
@@ -3513,6 +3589,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>EasyPost_Shipment_Id__c</fullName>
         <description>The shipment id provided by easypost when creating a postage label</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>EasyPost Shipment Id</label>
         <length>255</length>
@@ -3555,6 +3632,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <fullName>Easypost_Parcel_Predefined_Package__c</fullName>
         <defaultValue>&apos;FedExEnvelope&apos;</defaultValue>
         <description>Predefined package type for easypost integration</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Easypost Parcel Predefined Package</label>
         <length>255</length>
@@ -3582,6 +3660,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Easypost_PostageLabel_Label_URL__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Postage Label URL</label>
         <required>false</required>
@@ -3593,6 +3672,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     <fields>
         <fullName>Easypost_Tracker_URL__c</fullName>
         <description>URL for tracking easypost packages from ACV to Buyer</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title URL</label>
         <required>false</required>
@@ -3603,6 +3683,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Easypost_Tracker__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Tracking Code</label>
         <length>255</length>
@@ -3669,6 +3750,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Email_Sent_By__c</fullName>
         <description>Created as part of CAP-465.  Updated by Workflow Rule</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Sent By</label>
         <length>255</length>
@@ -3682,6 +3764,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Email_Sent_Date__c</fullName>
         <description>Created as part of CAP-465 - Updated by Workflow</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Sent Date</label>
         <required>false</required>
@@ -3701,8 +3784,29 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>End_Date_to_Received__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND((5 - (CASE(MOD( 	DATEVALUE(Auction_End__c) - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)) &lt; (CASE(MOD(  Title_Received_Date__c  - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0)) ), 
+((( Title_Received_Date__c  -   	DATEVALUE(Auction_End__c) ) + 1) &lt; 7)), 
+((CASE(MOD(  Title_Received_Date__c  - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0)) - (5 - (CASE(MOD(  	DATEVALUE(Auction_End__c)  - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)))),
+(((FLOOR((( Title_Received_Date__c  -  	DATEVALUE(Auction_End__c) ) - (CASE(MOD(  Title_Received_Date__c  - DATE(1900, 1, 6), 7), 0, 0, 1, 6, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0))) / 7)) * 5) +
+(CASE(MOD(  Title_Received_Date__c  - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)) + 
+(CASE(MOD(  Title_Received_Date__c  - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field calculates business days (M-F)</inlineHelpText>
+        <label>Auction End to Title Received (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Escalation_Date_Time__c</fullName>
         <description>Updated via workflow to record the date that either IsEscalated OR Manually_Escalated__c is set to true.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Escalation Date/Time</label>
         <required>false</required>
@@ -3713,6 +3817,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     </fields>
     <fields>
         <fullName>Escalation_Reason__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Please enter the reason for escalating this case (limit 255 characters).</inlineHelpText>
         <label>Escalation Reason</label>
@@ -3735,6 +3840,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Expected_Delivery__c</fullName>
         <description>Date vehicle is expected to be delivered to buyer address by carrier</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expected Delivery</label>
         <required>false</required>
@@ -3746,6 +3852,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Expected_Pick_Up__c</fullName>
         <description>Date and time vehicle is expected to be picked up from seller by carrier</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expected Pick Up</label>
         <required>false</required>
@@ -3757,6 +3864,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Explanation_of_other_Vehicle_Location__c</fullName>
         <description>Field to explain other vehicle location, must be filled out when selecting &quot;Other&quot; on vehicle location</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Explanation of other Vehicle Location</label>
         <required>false</required>
@@ -3852,6 +3960,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Hold_For_Payment__c</fullName>
         <description>Developed as part of the Digital Titles process in response to COVID19 State Closures</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Hold For Payment</label>
         <required>false</required>
@@ -3876,6 +3985,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     </fields>
     <fields>
         <fullName>IST_Follow_Up_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IST Follow Up DateTime</label>
         <required>false</required>
@@ -3887,6 +3997,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>IST_Last_Call_Date__c</fullName>
         <description>The date of the last Log a Call on the Support Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Automatically set by Log a Call entries on this Support Case, reflecting last saved record.</inlineHelpText>
         <label>IST Last Call Date</label>
@@ -3912,6 +4023,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Image_Location__c</fullName>
         <description>Location of Title Image</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Image Location</label>
         <length>1028</length>
@@ -3934,18 +4046,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Inop_Alert__c</fullName>
-        <description>Field used to make it clear the Inop field is true - this is pulling form an image saved in asset library and linked in a custom metadata type called Image URL</description>
-        <externalId>false</externalId>
-        <formula>IF(Inop__c, IMAGE( $CustomMetadata.Image_URL__mdt.ImageLink.Link__c , &quot;Image&quot;),&quot;&quot;)</formula>
-        <label>Inop Alert</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Inop__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -3958,6 +4058,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Inspection_Completion_Date__c</fullName>
         <description>Field for inspection completion date on unwind records</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Completion Date</label>
         <required>false</required>
@@ -3969,6 +4070,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Inspection_Request_Date__c</fullName>
         <description>Field for inspection request date on unwind record case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Request Date</label>
         <required>false</required>
@@ -4012,6 +4114,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Invoice_Date__c</fullName>
         <description>Date of Invoice</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date of Invoice</inlineHelpText>
         <label>Invoice Date</label>
@@ -4024,6 +4127,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Invoice_s__c</fullName>
         <description>Invoice numbers associated with Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Used by Collections. Invoice Numbers Associated with Case.</inlineHelpText>
         <label>Invoice Number(s)</label>
@@ -4117,6 +4221,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <fullName>Last_Touched__c</fullName>
         <defaultValue>NOW()</defaultValue>
         <description>Used to determine how long it has been since someone other than an admin has updated the record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Touched</label>
         <required>false</required>
@@ -4193,6 +4298,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     </fields>
     <fields>
         <fullName>Manual_Relaunch_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This field is for use by the Resolutions team, who places a relaunch ID here to indicate to the CR Prescreen team that they need to complete a CR review for relaunch auction.</inlineHelpText>
         <label>Manual Relaunch ID</label>
@@ -4212,21 +4318,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Marked_48_Hour_Notice__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>user who most recently marked the title case as 48 hour notice - populated via &quot;Flow date time stamp for Title Case&quot;</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Last user to mark case as 48 Hour Notice</inlineHelpText>
-        <label>Marked 48 Hour Notice</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Cases7</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Marked_Picked_Up_in_CD__c</fullName>
@@ -4254,51 +4345,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Marked_Received__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field used to capture the user who last marked a title case as received. Populated via the &quot;Date Time Title Stamp&quot; Flow</description>
-        <externalId>false</externalId>
-        <inlineHelpText>User who last marked a title case as received.</inlineHelpText>
-        <label>Marked Received</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Cases5</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Marked_Sent__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>User who most recently marked title case as Sent - via the &quot;Date Time Tile Stamp&quot; Flow</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Moot recent user to mark title case as Sent</inlineHelpText>
-        <label>Marked Sent</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Cases9</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Marked_Working__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field used to capture the user who last marked a title case as received. populated via flow for title case date time stamp</description>
-        <externalId>false</externalId>
-        <inlineHelpText>User who last updated the title case to Working</inlineHelpText>
-        <label>Marked Working</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Cases6</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Market_value__c</fullName>
@@ -4400,6 +4446,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Netsuite_Id__c</fullName>
         <description>The Id of the case reflected as an invoice in Netsuite. Used specifically to generate invoices and pay carriers on transportation cases.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Netsuite Id</label>
         <length>25</length>
@@ -4424,6 +4471,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Next_Follow_Up__c</fullName>
         <description>Written from the Follow Up Date from Log A Call</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Automatically set by data entered on Log a Call. Should only be manually overwritten if decision to alter date is not a result of conversation with dealer.</inlineHelpText>
         <label>Next Follow Up</label>
@@ -4436,6 +4484,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Next_Steps__c</fullName>
         <description>This field was created at the request of the Arbitration Adminitrators to match useful functionality that existed in the Auction Manager arb list.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Next Steps</label>
         <length>255</length>
@@ -4449,6 +4498,7 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
     <fields>
         <fullName>Non_EasyPost_Tracking_Number__c</fullName>
         <description>Used on the titles case to store tracking number when the team does not use EasyPost to generate tracking information</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This field should only be used if the tracking number is generated through the Fedex site or a floorplan sends us a slip.</inlineHelpText>
         <label>Non EasyPost Tracking Number</label>
@@ -4461,9 +4511,10 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Notes_for_Inspector_Old__c</fullName>
+        <fullName>Notes_for_Inspector__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Notes for Inspector Old</label>
+        <label>Notes for Inspector</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4471,18 +4522,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Notes_for_Inspector__c</fullName>
-        <description>Notes for Inspector - New field with Data Type = Text Area (Long)</description>
-        <externalId>false</externalId>
-        <label>Notes for Inspector</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Number_of_Arbs_for_Auction__c</fullName>
@@ -4605,6 +4644,7 @@ AND(NOT(ISBLANK(ParentId)), RecordType.DeveloperName = &quot;Arbitration_Claim&q
     <fields>
         <fullName>Odom_Statement_Received_Date__c</fullName>
         <description>Will automatically update to today when Status is changed to received</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Will automatically update to today when Status is changed to received</inlineHelpText>
         <label>Odom Statement Received Date</label>
@@ -4665,6 +4705,7 @@ AND(NOT(ISBLANK(ParentId)), RecordType.DeveloperName = &quot;Arbitration_Claim&q
     <fields>
         <fullName>Odometer_Reading__c</fullName>
         <description>Odometer Reading written by a flow, with information pulled from the vehicle record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Odometer Reading</label>
         <length>30</length>
@@ -4785,6 +4826,7 @@ ROUND((NOW() - CreatedDate),0))</formula>
     </fields>
     <fields>
         <fullName>Ops_Handoff_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Ops Handoff DateTime</label>
         <required>false</required>
@@ -4796,6 +4838,7 @@ ROUND((NOW() - CreatedDate),0))</formula>
     <fields>
         <fullName>Ops_Last_Call_Date__c</fullName>
         <description>The date of the last Log a Call on the Title Case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Automatically set by Log a Call entries on the Title Case, reflecting last saved record.</inlineHelpText>
         <label>Ops Last Call Date</label>
@@ -4915,6 +4958,7 @@ ROUND((NOW() - CreatedDate),0))</formula>
     <fields>
         <fullName>Outbound_Batch_Id__c</fullName>
         <description>Batch Id referenced when scanning a title through the ML Automation for outbound. Combination of the user id in the Titles CRON, the scanner Id, current date, and current time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Outbound Batch Id</label>
         <length>72</length>
@@ -4964,7 +5008,22 @@ ROUND((NOW() - CreatedDate),0))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Pecks_Book__c</fullName>
+        <description>Pecks Title Book Link to Sign On</description>
+        <externalId>false</externalId>
+        <formula>hyperlink (&quot;http://www.peckstitlebook.com/&quot;, &quot;Click here&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Link to open Pecks Title Book to log in</inlineHelpText>
+        <label>Pecks Book</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Pick_Up_Address_Line_2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pick Up Address Line 2</label>
         <length>100</length>
@@ -4991,6 +5050,7 @@ ROUND((NOW() - CreatedDate),0))</formula>
     </fields>
     <fields>
         <fullName>Pickup_Address_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Address Name</label>
         <length>255</length>
@@ -5003,6 +5063,7 @@ ROUND((NOW() - CreatedDate),0))</formula>
     </fields>
     <fields>
         <fullName>Pickup_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Pickup Street</label>
         <length>255</length>
@@ -5109,6 +5170,7 @@ null
     <fields>
         <fullName>Previous_Last_Posted_Date__c</fullName>
         <description>Field used to capture the last posted date before a batch email is sent out and the field updated. If the job fails to post, the last posted date field will be updated to the value of this field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Previous Last Posted Date</label>
         <required>false</required>
@@ -5246,6 +5308,7 @@ null
     <fields>
         <fullName>Reason_for_Out_of_Process_Send__c</fullName>
         <description>For users outside of the Titles team that update the Status to Sent</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reason for Out of Process Send</label>
         <required>false</required>
@@ -5417,6 +5480,7 @@ null)</formula>
         <fullName>Relaunch_Auction_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>When unwind case is relaunched, the new auction ID is displayed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Relaunch Auction ID</label>
         <length>16</length>
@@ -5440,6 +5504,7 @@ null)</formula>
     <fields>
         <fullName>Relaunch_Status__c</fullName>
         <description>Field used to determine relaunch status, displays error message if any</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Relaunch Status</label>
         <length>1000</length>
@@ -5472,6 +5537,7 @@ null)</formula>
     </fields>
     <fields>
         <fullName>Release_Datetime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Slip Date</label>
         <required>false</required>
@@ -5483,6 +5549,7 @@ null)</formula>
     <fields>
         <fullName>Release_Pickup_Phrase__c</fullName>
         <description>Pickup_Phrase from auctions_attribute table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release Pickup Phrase</label>
         <length>255</length>
@@ -5793,6 +5860,7 @@ MOD((ClosedDate - DATETIMEVALUE(&apos;2017-01-02 14:00:00&apos;))*1440,1440)/60)
     <fields>
         <fullName>Seller_Contact_Email__c</fullName>
         <description>This field is auto-populated via apex code to stamp the selling dealership&apos;s primary contact&apos;s email. Coed done by Manmeet Vasser</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Contact Email</label>
         <required>false</required>
@@ -5892,6 +5960,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_Invoiced_Date__c</fullName>
         <description>Field to enter the date seller was invoiced</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Invoiced Date</label>
         <required>false</required>
@@ -5930,6 +5999,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_Notes__c</fullName>
         <description>Field for seller notes</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Notes</label>
         <length>2000</length>
@@ -5942,6 +6012,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_Paid_Date__c</fullName>
         <description>Field for entering a date the seller was paid</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Paid Date</label>
         <required>false</required>
@@ -5964,6 +6035,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_Payment_Method__c</fullName>
         <description>Populated from Auction</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Payment Method</label>
         <length>20</length>
@@ -5976,6 +6048,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     </fields>
     <fields>
         <fullName>Seller_Payment_Tracking_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Payment Tracking Number</label>
         <length>50</length>
@@ -6014,6 +6087,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     </fields>
     <fields>
         <fullName>Seller_Pick_Up_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Pick Up Notes</label>
         <length>2000</length>
@@ -6061,6 +6135,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_TM_Email__c</fullName>
         <description>Auto-populates selling dealership&apos;s territory manager&apos;s email.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller TM Email</label>
         <required>false</required>
@@ -6098,6 +6173,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Seller_Title_Clerk_Email__c</fullName>
         <description>Populated via code to push the most recently created contact on the selling dealership&apos;s account that has a title of Title Clerk.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Seller Title Clerk Email</label>
         <required>false</required>
@@ -6267,6 +6343,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     </fields>
     <fields>
         <fullName>Status_Last_Updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Status Last Updated</label>
         <required>false</required>
@@ -6277,24 +6354,10 @@ Seller_Dealership__r.Dealership_ID__c</description>
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-    </fields>
-    <fields>
-        <fullName>Submitted_By_ID__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Int identifier of the contact who created the arbitration</description>
-        <externalId>false</externalId>
-        <label>Submitted By ID</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Cases (Submitted By ID)</relationshipLabel>
-        <relationshipName>Cases1</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>SuppliedCompany</fullName>
@@ -6379,6 +6442,7 @@ Seller_Dealership__r.Dealership_ID__c</description>
     <fields>
         <fullName>Take_Case_Id__c</fullName>
         <description>This field is set via an Action, and will store the Id of the user that is clicking the action button. It is then used by a Process Builder to make the acting user the Case Owner.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Take Case Id</label>
         <length>18</length>
@@ -6563,6 +6627,7 @@ Buyer_Legal_Address__c )</formula>
     </fields>
     <fields>
         <fullName>Title_Clerked_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Stamps the date that the Title Case status moved to Working</inlineHelpText>
         <label>Title Clerked Date</label>
@@ -6650,6 +6715,7 @@ Buyer_Legal_Address__c )</formula>
     </fields>
     <fields>
         <fullName>Title_Due_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Due Date</label>
         <required>false</required>
@@ -6892,31 +6958,6 @@ Account.Title_Mailing_Country__c, null ))</formula>
                     <default>false</default>
                     <label>Incorrect Address on Reassignment</label>
                 </value>
-                <value>
-                    <fullName>Misspelling on Title</fullName>
-                    <default>false</default>
-                    <label>Misspelling on Title</label>
-                </value>
-                <value>
-                    <fullName>Letter of Correction not Accepted in Purchaser State</fullName>
-                    <default>false</default>
-                    <label>Letter of Correction not Accepted in Purchaser State</label>
-                </value>
-                <value>
-                    <fullName>Information or Signature in Incorrect Location on Title</fullName>
-                    <default>false</default>
-                    <label>Information or Signature in Incorrect Location on Title</label>
-                </value>
-                <value>
-                    <fullName>Misspelling on Reassignment</fullName>
-                    <default>false</default>
-                    <label>Misspelling on Reassignment</label>
-                </value>
-                <value>
-                    <fullName>Information or Signature in Incorrect Location on Reassignment</fullName>
-                    <default>false</default>
-                    <label>Information or Signature in Incorrect Location on Reassignment</label>
-                </value>
             </valueSetDefinition>
         </valueSet>
         <visibleLines>5</visibleLines>
@@ -7007,6 +7048,7 @@ Account.Title_Mailing_Country__c, null ))</formula>
     <fields>
         <fullName>Title_Problems_Date__c</fullName>
         <description>Date field that will capture the date when title status=problems</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Problems Date</label>
         <required>false</required>
@@ -7018,6 +7060,7 @@ Account.Title_Mailing_Country__c, null ))</formula>
     <fields>
         <fullName>Title_Received_Date__c</fullName>
         <description>Date title was received from the Seller</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date title was received from the Seller</inlineHelpText>
         <label>Title Received Date</label>
@@ -7097,6 +7140,7 @@ Account.Title_Mailing_Country__c, null ))</formula>
     <fields>
         <fullName>Title_Scanned_Time__c</fullName>
         <description>Time at which the Title was scanned</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Scanned Time</label>
         <required>false</required>
@@ -7121,6 +7165,7 @@ Account.Title_Mailing_Country__c, null ))</formula>
     <fields>
         <fullName>Title_Sent_Date__c</fullName>
         <description>Date the title was sent to Buyer</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date the title was sent to Buyer</inlineHelpText>
         <label>Title Sent Date</label>
@@ -7168,6 +7213,18 @@ Account.Title_Mailing_Country__c, null ))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title_Shipping_Status_Seller_To_ACV__c</fullName>
+        <externalId>false</externalId>
+        <formula>Auction_Number__r.Title_Shipping_Status_Seller_To_ACV__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Title Shipping Status Seller To ACV</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -7517,22 +7574,6 @@ Account.Title_Mailing_Country__c, null ))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Title__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>New Title object for Physical &amp; Digital titles</description>
-        <externalId>false</externalId>
-        <inlineHelpText>New Title object for Physical &amp; Digital titles</inlineHelpText>
-        <label>Title</label>
-        <referenceTo>Title__c</referenceTo>
-        <relationshipLabel>Cases</relationshipLabel>
-        <relationshipName>Cases</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Titles_Unpaid__c</fullName>
         <description>This field will populate as true when the title case is in working status and the payment status is not equal to Approved, Deposited, Paid. Used for reporting.</description>
         <externalId>false</externalId>
@@ -7653,38 +7694,6 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Transport_Request_Type__c</fullName>
-        <description>TDO - 1157 - defined in Non-captive transportation flow.</description>
-        <externalId>false</externalId>
-        <label>Transport Request Type</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Commercial Pass-Through</fullName>
-                    <default>false</default>
-                    <label>Commercial Pass-Through</label>
-                </value>
-                <value>
-                    <fullName>Marshalling</fullName>
-                    <default>false</default>
-                    <label>Marshalling</label>
-                </value>
-                <value>
-                    <fullName>Non-Captive</fullName>
-                    <default>true</default>
-                    <label>Non-Captive</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Transport_Spread__c</fullName>
         <externalId>false</externalId>
         <formula>Price_Pre_Promotion__c-Posted_Price__c</formula>
@@ -7737,6 +7746,7 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
     <fields>
         <fullName>Transportation_Notes__c</fullName>
         <description>Field to enter transportation notes on unwind case record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transportation Notes</label>
         <required>false</required>
@@ -7813,6 +7823,7 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
     </fields>
     <fields>
         <fullName>Transporter_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transporter Email</label>
         <required>false</required>
@@ -7824,6 +7835,7 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
     </fields>
     <fields>
         <fullName>Transporter_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transporter Name</label>
         <length>128</length>
@@ -7836,6 +7848,7 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
     </fields>
     <fields>
         <fullName>Transporter_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transporter Phone</label>
         <required>false</required>
@@ -8182,6 +8195,7 @@ null
     <fields>
         <fullName>Unwind_Team_Notes__c</fullName>
         <description>General notes fields for an unwinds case used by the unwinds team</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unwind Team Notes</label>
         <length>32768</length>
@@ -8194,6 +8208,7 @@ null
     <fields>
         <fullName>Unwind_Title_Notes__c</fullName>
         <description>Field for notes about title on unwind cases</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unwind Title Notes</label>
         <required>false</required>
@@ -8444,6 +8459,7 @@ null
     <fields>
         <fullName>User_Submitted_Details__c</fullName>
         <description>User Submitted Details regarding the case</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>User Submitted Details</label>
         <length>32768</length>
@@ -8468,6 +8484,7 @@ null
     <fields>
         <fullName>VCI_Reinspection__c</fullName>
         <description>VCI reinspecting the vehicle for unwinds</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reinspection VCI</label>
         <length>255</length>
@@ -8663,6 +8680,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>Vehicle_Location_Territory__c</fullName>
         <description>Field used on unwinds to show a vehicle location territory based on vehicle&apos;s location</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Location Territory</label>
         <length>255</length>
@@ -8720,6 +8738,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>Vehicle_Make__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Make</label>
         <length>255</length>
@@ -8732,6 +8751,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>Vehicle_Model_1__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Model</label>
         <length>30</length>
@@ -8744,6 +8764,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>Vehicle_Model__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Model</label>
         <length>255</length>
@@ -8756,6 +8777,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>Vehicle_Style__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Style</label>
         <length>255</length>
@@ -8768,6 +8790,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>Vehicle_Trim__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle Trim</label>
         <length>255</length>
@@ -8781,6 +8804,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>Vehicle_VIN_Last_6__c</fullName>
         <description>Gets stamped with the LAST 6 VIN CHARACTERS from the Cases related Vehicle so that is can be searched in Lightning List Views. Is updated via a Process Builder that stamps Auction and Vehicle details on a Case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle VIN Last 6</label>
         <length>50</length>
@@ -8794,6 +8818,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>Vehicle_VIN__c</fullName>
         <description>Gets stamped with the VIN from the Cases related Vehicle so that is can be searched in Lightning List Views. Is updated via a Process Builder that stamps Auction and Vehicle details on a Case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Vehicle VIN</label>
         <length>50</length>
@@ -8885,6 +8910,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>X48_Hour_Expiration__c</fullName>
         <description>This falls two business days after the request is made, always at 5:00 p.m.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This falls two business days after the request is made, always at 5:00 p.m.</inlineHelpText>
         <label>48 Hour Expiration</label>
@@ -8909,6 +8935,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>X48_Hour_R__c</fullName>
         <description>used in flow to tell why this 48 hour notice exception is being submitted</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>48 Hour Reason</label>
         <length>255</length>
@@ -8956,6 +8983,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>delivery_address_id__c</fullName>
         <description>external id used for integration with ACVs transportation_address table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Delivery Address ID</label>
         <length>50</length>
@@ -8986,6 +9014,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Field used for integration</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Arbitration ID</label>
         <length>255</length>
@@ -9013,6 +9042,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <fields>
         <fullName>pickup_address_id__c</fullName>
         <description>external id used for integration with ACVs transportation_address table</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Pickup Address ID</label>
         <length>50</length>
@@ -9049,6 +9079,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     </fields>
     <fields>
         <fullName>updated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xSource Updated Date</label>
         <required>false</required>
@@ -9393,7 +9424,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>Unwound,Inspection</value>
+            <value>Unwound,Parked,Ready for Relaunch</value>
         </filters>
         <filters>
             <field>OWNER_NAME</field>
@@ -9475,7 +9506,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CREATEDBY_USER.ALIAS</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Notes_for_Inspector_Old__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -10133,37 +10163,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>Problem,48 Hour Notice,Return to Seller</value>
         </filters>
         <label>CSM Problem Titles</label>
-    </listViews>
-    <listViews>
-        <fullName>CS_New_Titles_Cases_JoLynda</fullName>
-        <columns>Seller_Name__c</columns>
-        <columns>Open_Customer_Inquiry__c</columns>
-        <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Age_in_Days__c</columns>
-        <columns>Title_Attached__c</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Auction_Number_Case__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Seller_s_Customer_Success_Advocate__c</field>
-            <operation>equals</operation>
-            <value>JoLynda Lawecki</value>
-        </filters>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,48 Hour Notice</value>
-        </filters>
-        <label>CS - New Titles Cases - JoLynda</label>
     </listViews>
     <listViews>
         <fullName>Cancelled_Jobs</fullName>
@@ -10938,12 +10937,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Seller_Name__c</field>
             <operation>contains</operation>
-            <value>open road</value>
+            <value>Autolegends</value>
         </filters>
         <filters>
             <field>Date_Time_Title_Received__c</field>
             <operation>equals</operation>
-            <value>1/24/2022 12:00 AM</value>
+            <value>1/14/2022 12:00 AM</value>
         </filters>
         <label>Inbound Seller Tracking</label>
     </listViews>
@@ -11734,39 +11733,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Buyer_Name__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Sent_Date__c</field>
-            <operation>equals</operation>
-            <value>1/13/2022</value>
-        </filters>
-        <filters>
-            <field>Buyer_payment_Method_1__c</field>
-            <operation>contains</operation>
-            <value>carbucks</value>
-        </filters>
-        <label>Outbound Tracking by Floorplan</label>
-    </listViews>
-    <listViews>
-        <fullName>Outbound_buyer_Tracking</fullName>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>Easypost_Tracker__c</columns>
+        <columns>Date_Time_Title_Clerked__c</columns>
         <columns>Title_Scanner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -11782,12 +11749,43 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Title_Scanned_Time__c</field>
             <operation>equals</operation>
-            <value>12/16/2021 12:00 AM</value>
+            <value>1/4/2022 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_payment_Method_1__c</field>
+            <operation>contains</operation>
+            <value>Auto_Use</value>
+        </filters>
+        <label>Outbound Tracking by Floorplan</label>
+    </listViews>
+    <listViews>
+        <fullName>Outbound_buyer_Tracking</fullName>
+        <columns>Auction_Number__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Buyer_Name__c</columns>
+        <columns>Title_Scanned_Time__c</columns>
+        <columns>Title_Scanner__c</columns>
+        <columns>Easypost_Tracker__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Case.Title_Information</value>
+        </filters>
+        <filters>
+            <field>QC__c</field>
+            <operation>notEqual</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Title_Scanned_Time__c</field>
+            <operation>equals</operation>
+            <value>12/14/2021 12:00 AM</value>
         </filters>
         <filters>
             <field>Buyer_Name__c</field>
             <operation>contains</operation>
-            <value>Riverview</value>
+            <value>avis</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -12031,49 +12029,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <label>QC</label>
     </listViews>
     <listViews>
-        <fullName>QC_Report_outbound</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>Leila</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <label>QC Report (outbound)</label>
-    </listViews>
-    <listViews>
         <fullName>Quick_Clerk</fullName>
         <columns>Open_Arbitration_Cases__c</columns>
         <columns>Vehicle_VIN__c</columns>
@@ -12138,7 +12093,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Batch_Id__c</field>
             <operation>equals</operation>
-            <value>20220201-MFP13471483-1002-2001</value>
+            <value>20210719-MFP11753601-1023-1422</value>
         </filters>
         <label>Quick Clerk</label>
     </listViews>
@@ -12233,7 +12188,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Back_End_Status_Seller__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Date_Unwind_Approved__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -12411,9 +12365,8 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>Case.Transportation</value>
         </filters>
         <filters>
-            <field>Send_to_ACV__c</field>
+            <field>ACV_Transportation_Request_Id__c</field>
             <operation>equals</operation>
-            <value>1</value>
         </filters>
         <label>TRanspo request fix</label>
     </listViews>
@@ -12620,7 +12573,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Payment_Status__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Seller_s_Title__c</columns>
-        <columns>Marked_Received__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -12828,8 +12780,13 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <listViews>
         <fullName>Titles_Working</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>VIN__c</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Business_Days_Since_Opened__c</columns>
+        <columns>Seller_Contact__c</columns>
+        <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
+        <columns>Buyer_Territory__c</columns>
         <columns>Payment_Status__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
@@ -12842,11 +12799,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>Working</value>
-        </filters>
-        <filters>
-            <field>CASES.CREATED_DATE_DATE_ONLY</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/1/2022 12:00 AM</value>
         </filters>
         <label>Titles - Working</label>
     </listViews>
@@ -12983,7 +12935,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>Dry_Run_Fee__c</columns>
         <columns>Date_Transporter_Paid__c</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -13058,17 +13009,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>0</value>
         </filters>
         <label>Transportation BOL Review</label>
-    </listViews>
-    <listViews>
-        <fullName>Unpaid_Check</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <label>Unpaid Check</label>
     </listViews>
     <listViews>
         <fullName>Unreceived_Titles_Bucket_Call_List</fullName>
@@ -13184,11 +13124,8 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Seller_Territory__c</columns>
-        <columns>Buyer_Territory__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Unwind_Type__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -13431,34 +13368,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>X2022_Quick_Clerking</fullName>
-        <columns>Open_Arbitration_Cases__c</columns>
-        <columns>Title_Complexity_Score__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>Buyer_Payment__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Title_Address__c</columns>
-        <columns>Auction_End__c</columns>
-        <columns>ACV_Power_of_Attorney__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Received</value>
-        </filters>
-        <label>2022 Quick Clerking</label>
-    </listViews>
-    <listViews>
         <fullName>X2_Unreceived_Titles_Bucket_Call_List</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number_Case__c</columns>
@@ -13601,54 +13510,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <label>Zach QC</label>
     </listViews>
     <listViews>
-        <fullName>Zach_s_Sent_Titles_Daily</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Title_Address__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>Zachary</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <filters>
-            <field>Title_Sent_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <label>Zach&apos;s Sent Titles Daily</label>
-    </listViews>
-    <listViews>
         <fullName>batch_id_search</fullName>
         <columns>QC__c</columns>
         <columns>Auction_Number__c</columns>
@@ -13675,49 +13536,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <label>batch id search</label>
     </listViews>
     <listViews>
-        <fullName>leila_QC_Report_outbound</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>oksana</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <label>leila QC Report (outbound)</label>
-    </listViews>
-    <listViews>
         <fullName>manual_QC</fullName>
         <columns>QC__c</columns>
         <columns>Auction_Number__c</columns>
@@ -13730,8 +13548,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Payment_Method__c</columns>
         <columns>Easypost_Tracker__c</columns>
         <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -13746,17 +13562,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Title_Scanner__c</field>
             <operation>contains</operation>
-            <value>Leila</value>
+            <value>james d</value>
         </filters>
         <filters>
             <field>Title_Scanned_Time__c</field>
             <operation>equals</operation>
             <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
         </filters>
         <label>QC Report</label>
     </listViews>
@@ -14539,21 +14350,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -14687,10 +14483,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -15974,21 +15766,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -16122,10 +15899,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -16612,22 +16385,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
             <values>
                 <fullName>2020</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2021</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2022</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2023</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2024</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17413,21 +17170,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration Awards Held</fullName>
@@ -17561,10 +17303,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -18847,21 +18585,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -18995,10 +18718,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -20312,21 +20031,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -20512,10 +20216,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -21807,21 +21507,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -21991,10 +21676,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -23012,14 +22693,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
                 <default>false</default>
             </values>
             <values>
-                <fullName>Information or Signature in Incorrect Location on Reassignment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information or Signature in Incorrect Location on Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>J</fullName>
                 <default>false</default>
             </values>
@@ -23029,10 +22702,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
             <values>
                 <fullName>L</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Letter of Correction not Accepted in Purchaser State</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -23049,14 +22718,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
             <values>
                 <fullName>Missing Owner POA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Misspelling on Reassignment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Misspelling on Title</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -23386,21 +23047,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -23546,10 +23192,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -24848,21 +24490,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -25020,10 +24647,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -25516,25 +25139,13 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
                 <fullName>2021</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>2022</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2023</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2024</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Transportation</fullName>
         <active>true</active>
         <businessProcess>Transportation Process</businessProcess>
-        <compactLayoutAssignment>Transportation_Compact_Layout_New</compactLayoutAssignment>
+        <compactLayoutAssignment>Transportation_Compact</compactLayoutAssignment>
         <description>Cases for handling transportation request</description>
         <label>Transportation</label>
         <picklistValues>
@@ -26307,21 +25918,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -26467,10 +26063,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -27750,21 +27342,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -28534,7 +28111,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <sharingModel>ReadWriteTransfer</sharingModel>
     <validationRules>
         <fullName>ACV_Capital_Titles</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When scanning throws error to place in capital pile</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Title_Information&apos;,
@@ -28562,7 +28139,7 @@ ISBLANK(Arbitration_Extension_Reason__c)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Arb_Status_without_complaint</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This will not allow the user to change the status of an arb case without entering a complaint</description>
         <errorConditionFormula>AND(
 $Profile.Name != &quot;System Administrator&quot;,
@@ -28574,7 +28151,7 @@ Total_Complaint_Count__c = 0)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Arb_needs_complaint_reviewed</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If the avoidable and valid checkboxes are not checked on the complaint this  error will trigger - Each Complaint will be checked as reviewed and then populate 1 on the case record - when the Total complaint Count is not equal to the review count.</description>
         <errorConditionFormula>AND(
 OR(ISPICKVAL(Status,&apos;Reviewed&apos;),ISPICKVAL(Status,&apos;Closed&apos;)),
@@ -28586,29 +28163,13 @@ Reviewed__c &lt;&gt; Total_Complaint_Count__c)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>CRR_Complaint_for_avoidable</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>RecordType.Name = &apos;CR Review&apos; &amp;&amp; Total_Complaint_Count__c &lt; 1 &amp;&amp; NOT(isPickval(Review_Classification__c,&apos;&apos;)) &amp;&amp;  IsClosed</errorConditionFormula>
         <errorMessage>Please add a Complaint record as to why this CR is Avoidable</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Can_not_Finalize_if_Central_Dispatch</fullName>
-        <active>true</active>
-        <description>When the Transporter name is Central Dispatch and Status is Finalized rule will trigger https://acvauctions.lightning.force.com/lightning/r/Salesforce_Request__c/a3C5b000000JGhnEAG/view</description>
-        <errorConditionFormula>AND (
-      RecordType.DeveloperName = &quot;Transportation&quot;, 
-      OR(
-      Transporter_Name__c = &quot;Central Dispatch&quot;,
-      Transporter_Name__c = &quot;Local Tow&quot;
-      ),
-      ISPICKVAL(Status,&quot;Finalized&quot;),
-      $Profile.Name != &quot;System Administrator&quot;,
-      $Profile.Name != &quot;System Admin Limited&quot;
-    )</errorConditionFormula>
-        <errorMessage>Status can not be finalized when Transporter Name is Central Dispatch or Local Tow.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Cannot_put_a_Case_back_in_the_Arb_Queue</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule prevents a user from putting a Case back into the Arbitration Queue.</description>
         <errorConditionFormula>PRIORVALUE(OwnerId) &lt;&gt; &apos;00G2F000001fW51&apos; &amp;&amp;
 OwnerId = &apos;00G2F000001fW51&apos; &amp;&amp;
@@ -28631,7 +28192,7 @@ ISPICKVAL(Status, &quot;Sent&quot;), NOT( $Profile.Name = &quot;Title Manager&qu
     </validationRules>
     <validationRules>
         <fullName>Cant_change_title_status_if_status_sent</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>once a Title status = sent cannot change the status.</description>
         <errorConditionFormula>if($Profile.Name != &quot;System Administrator&quot; &amp;&amp;
 $Profile.Name != &quot;Resolutions&quot; &amp;&amp;
@@ -28653,7 +28214,7 @@ ISCHANGED(Status)
     </validationRules>
     <validationRules>
         <fullName>Cant_change_title_status_if_unwound</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>once a Title status = unwound cannot change the status.</description>
         <errorConditionFormula>if($Profile.Name != &quot;System Administrator&quot; &amp;&amp; $Profile.Name != &quot;Resolutions&quot; &amp;&amp; $Profile.Name != &quot;Title Manager&quot; &amp;&amp; $Profile.Name != &quot;Inside Sales - Managers&quot; &amp;&amp; $Profile.Name != &quot;Arbitration&quot; &amp;&amp; $Profile.Name != &quot;Revenue Recovery&quot;&amp;&amp;
 $Profile.Name != &quot;Transportation User W/Unwind&quot;&amp;&amp;
@@ -28676,7 +28237,7 @@ ISCHANGED(Status)
     </validationRules>
     <validationRules>
         <fullName>Cant_change_title_status_problem</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Not allowing users to change Title Case Status to problem manually</description>
         <errorConditionFormula>AND(   $Setup.TitleProblemStatus__c.DisableValidation__c = FALSE,
         $Profile.Name &lt;&gt; &apos;System Administrator&apos;,
@@ -28691,7 +28252,7 @@ ISCHANGED(Status)
     </validationRules>
     <validationRules>
         <fullName>Claim_Manually_Submitted_Not_Editable</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Claim Manually Submitted Date should not be editable if it was populated automatically. (By the ACV SF Admin user).</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Arbitration_Claim&apos;,
@@ -28716,7 +28277,7 @@ $Profile.Name != &quot;System Administrator&quot;,
     </validationRules>
     <validationRules>
         <fullName>Date_Delivered_boundaries</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Date Delivered can not greater than today and can not be less than the created date</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &quot;Transportation&quot;,
@@ -28760,7 +28321,7 @@ $Profile.Name  != &apos;Inside Sales Acct. Managers Legal Review&apos;))</errorC
     </validationRules>
     <validationRules>
         <fullName>Dry_Run_Fee_and_Closed_Dry_Run</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Ensures Dry Run Fee is filled in when Closed Dry Run is selected as Status</description>
         <errorConditionFormula>AND( 
 RecordType.DeveloperName = &quot;Transportation&quot;, 
@@ -28772,7 +28333,7 @@ ISBLANK(Dry_Run_Fee__c)
     </validationRules>
     <validationRules>
         <fullName>Fill_in_Reason_for_Payout_Update</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation rule that will fire if a field is changed and the reason for update field is blank.</description>
         <errorConditionFormula>AND(ISCHANGED( Posted_Price__c ), TEXT( Reason_for_Transporter_Payout_Update__c)=&apos;&apos;, $Profile.Name != &apos;System Administrator&apos;, OR(TEXT(Status) = &apos;Delivered&apos;, TEXT(Status) = &apos;Finalized&apos;,TEXT(Status) = &apos;Accepted&apos;, TEXT(Status) = &apos;Picked-Up&apos;,TEXT(Status) = &apos;Assigned&apos;, TEXT(Status) = &apos;Awaiting Release&apos;))</errorConditionFormula>
         <errorDisplayField>Reason_for_Transporter_Payout_Update__c</errorDisplayField>
@@ -28780,7 +28341,7 @@ ISBLANK(Dry_Run_Fee__c)
     </validationRules>
     <validationRules>
         <fullName>Force_User_to_Enter_Manual_Claim_Date</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If an arbitration case is manually created by a user, they will be forced to enter data in the Claim Manually Submitted Date field.</description>
         <errorConditionFormula>AND(RecordType.DeveloperName = &apos;Arbitration_Claim&apos;,
 ISNULL(Claim_Manually_Submitted_Date__c),  $Profile.Name != &apos;System Administrator&apos;)</errorConditionFormula>
@@ -28788,7 +28349,7 @@ ISNULL(Claim_Manually_Submitted_Date__c),  $Profile.Name != &apos;System Adminis
     </validationRules>
     <validationRules>
         <fullName>Forty_Eight_Hour_Deadline_Required</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule forces the user changing a title case status to &apos;48 Hour Notice&apos; to also enter data in the 48 Hour Deadline field.</description>
         <errorConditionFormula>AND( 
 ISCHANGED (Status), 
@@ -28798,7 +28359,7 @@ ISBLANK (X48_Hour_Expiration__c))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Limit_Title_Status_Access</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>These profiles should not be able to change Title case status at all.</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Title_Information&apos;,
@@ -28820,7 +28381,7 @@ AND(
     </validationRules>
     <validationRules>
         <fullName>Must_Be_New_If_Owned_By_Queue</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule prevents a Case that is owned by the Arbitration Queue from being in any status other than New.</description>
         <errorConditionFormula>Owner:Queue.DeveloperName = &apos;Arbitration_Queue&apos; &amp;&amp;
 NOT(ISPICKVAL(Status, &apos;New&apos;)) &amp;&amp;
@@ -28830,7 +28391,7 @@ RecordType.DeveloperName = &apos;Arbitration_Claim&apos;</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Must_Have_Auction_Number_If_Not_New</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule forces a user to input an Auction before they can take an Arb Case out of the New status. This is so that Aunction data can get pulled into the Case and used in automated email sends.</description>
         <errorConditionFormula>NOT(ISPICKVAL(Status, &apos;New&apos;)) &amp;&amp;
 ISBLANK(Auction_Number__c) &amp;&amp;
@@ -28864,7 +28425,7 @@ ISBLANK(ParentId)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Open_Complaints_Greater_Than_Zero</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule requires that there are no Complaints with a Resolution Count of zero when trying to update the status of a Case to Closed.</description>
         <errorConditionFormula>Open_Complaint_Count__c &gt; 0 &amp;&amp;
 Total_Complaint_Count__c &gt; 0 &amp;&amp;
@@ -28878,7 +28439,7 @@ CreatedById &lt;&gt; &apos;0050a00000JEacJ&apos;</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Pickup_and_Delivery_Address_Country</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This rule ensures that the country code entered is only 2 characters so that it works with Easypost and other Application API&apos;s</description>
         <errorConditionFormula>OR(
  AND(
@@ -28894,14 +28455,14 @@ CreatedById &lt;&gt; &apos;0050a00000JEacJ&apos;</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Prevent_Case_Creation_without_RecordType</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Need to prevent the creation of cases without a record type, this can cause issues with producers and consumers. This should also just never happen because we need to know who is owning the Case via the Record Type</description>
         <errorConditionFormula>ISBLANK( RecordTypeId )</errorConditionFormula>
         <errorMessage>Record Type is required to create a case, if you continue to see this message please create an R&amp;I</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Prevent_Manual_Close_Of_Support_Cases</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Support cases will auto close when all child Customer Inquiries are closed.  So we prevent manual status change to closed.</description>
         <errorConditionFormula>AND(
  RecordType.DeveloperName = &quot;Support&quot;,
@@ -28914,7 +28475,7 @@ CreatedById &lt;&gt; &apos;0050a00000JEacJ&apos;</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Prevent_Use_of_Transportation_Status</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevent user selection of transportation status of: Locked, Staged, Hold, Finalized</description>
         <errorConditionFormula>AND( 
 RecordType.DeveloperName = &quot;Transportation&quot;, 
@@ -28940,7 +28501,7 @@ Transportation_Finalized__c = TRUE
     </validationRules>
     <validationRules>
         <fullName>Priority_Exception</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation is used to keep priority titles in house and moved to one title clerk to handle.</description>
         <errorConditionFormula>AND(
 $User.Full_Name__c = &quot;Titles Integration&quot;||
@@ -28954,13 +28515,13 @@ ISPICKVAL(Status, &quot;Received&quot;))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Resolutions_Unwind_Block</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF( RecordType.Name == &apos;Unwind&apos; &amp;&amp;  isPickVal(Status ,&apos;Unwound&apos;) &amp;&amp; isChanged(Status) &amp;&amp; isBlank(Saved_Auction_ID__c), TRUE, FALSE)</errorConditionFormula>
         <errorMessage>Saved Auction Id Required to Unwind</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Return_to_Seller_to_Sent_Not_Allowed</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Titles integration user can not move a title case from Returned to Seller to Sent.</description>
         <errorConditionFormula>AND(
 $User.Full_Name__c  = &quot;Titles Integration&quot;, 
@@ -28971,7 +28532,7 @@ ISPICKVAL(Status,&quot;Sent&quot;)
     </validationRules>
     <validationRules>
         <fullName>Status_Restrictions_Customer_Advocate</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Customer Success Advocates should only be able to change title status to Problem, Sent or 48 Hour Notice</description>
         <errorConditionFormula>AND(
  $UserRole.Name = &apos;Customer Success Advocate&apos;,
@@ -29080,7 +28641,7 @@ INCLUDES( Title_Problem_Subset__c , &apos;Seller&apos;))
     </validationRules>
     <validationRules>
         <fullName>Title_Case_must_have_unique_External_Id</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>All Title cases must have an ACV unique external Id</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName=&apos;Title_Information&apos;,
@@ -29090,7 +28651,7 @@ ISBLANK(ACV_Titles_External_ID__c)
     </validationRules>
     <validationRules>
         <fullName>Title_Hold_on_Delinquent_Accounts</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This will fire when A Do not Send title option is selected on a Buyers account, not allowing the title case to be changed to working.</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Title_Information&apos;,
@@ -29101,7 +28662,7 @@ ISPICKVAL(Status, &quot;Working&quot;)|| ISPICKVAL(Status, &quot;Sent&quot;))</e
     </validationRules>
     <validationRules>
         <fullName>Title_Hold_on_Non_Compliant_Accounts</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Title hold when non compliant dealer status is active or new and the documents are out of compliance.</description>
         <errorConditionFormula>AND(
 RecordType.DeveloperName = &apos;Title_Information&apos;,
@@ -29112,7 +28673,7 @@ ISPICKVAL(Status, &quot;Sent&quot;))</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Titles_Changed_to_sent_outside_of_Team</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Making sure users that put title in Sent status that are not apart of the titles team</description>
         <errorConditionFormula>$Profile.Name != &quot;System Administrator&quot; &amp;&amp;
 $Profile.Name != &quot;Title Manager&quot; &amp;&amp;
@@ -29131,13 +28692,13 @@ $Profile.Name != &quot;Payments&quot;&amp;&amp;
     </validationRules>
     <validationRules>
         <fullName>Titles_can_not_be_sent_when_buyer_is_out</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF(  (Seller_Dealership__r.Buyer_Compliance_Required__c &amp;&amp; (Account.Out_of_Document_Compliance__c ||  Account.Reviewed_By_Compliance__c == FALSE)) &amp;&amp;  ISPICKVAL(Status,&apos;SENT&apos;) &amp;&amp; ISCHANGED(Status) &amp;&amp;  RecordType.DeveloperName == &apos;Title_Information&apos; ,TRUE, FALSE)</errorConditionFormula>
         <errorMessage>We can not send titles to Buyers whose documents are out of compliance for this Seller. Please contact the Buyer&apos;s IST Account Manager for status updates.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Trans_Required_for_Finalization</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Fields required for Finalization of Transportation Case: &quot;Transporter Account&quot;,&quot;Date Delivered Actual&quot;, &quot;Posted Price&quot;</description>
         <errorConditionFormula>AND( 
 RecordType.DeveloperName = &quot;Transportation&quot;, 
@@ -29152,7 +28713,7 @@ OR(
     </validationRules>
     <validationRules>
         <fullName>Transportation_Prevent_Buyer_Price_updat</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevent Update of Buyer Price on Transportation Cases that were created in-app</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;Transportation&apos; &amp;&amp;
 Transportation_Requested_In_App__c = TRUE &amp;&amp;
@@ -29174,7 +28735,7 @@ NOT(ISPICKVAL(PRIORVALUE(Status),&quot;Finalized&quot;))
     </validationRules>
     <validationRules>
         <fullName>x48HourStatus_Validation_No_Title</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation for moving a Title Information Case to 48 Hour Notice status. This rule runs when the Title is Absent.</description>
         <errorConditionFormula>$UserRole.DeveloperName != &apos;Titles_Manager&apos; &amp;&amp;  
 $UserRole.DeveloperName != &apos;Customer_Success&apos; &amp;&amp; 
@@ -29196,7 +28757,7 @@ OR(
     </validationRules>
     <validationRules>
         <fullName>x48HourStatus_Validation_with_Title_InCA</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation for moving a Title Information Case to 48 Hour Notice status. This rule runs when the Title is present and the Seller State is California.</description>
         <errorConditionFormula>$UserRole.DeveloperName != &apos;Titles_Manager&apos; &amp;&amp;  
 $UserRole.DeveloperName != &apos;Customer_Success&apos; &amp;&amp; 
@@ -29217,7 +28778,7 @@ OR(
     </validationRules>
     <validationRules>
         <fullName>x48HourStatus_Validation_with_Title_NoCA</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation for moving a Title Information Case to 48 Hour Notice status. This rule runs when the Title is present but the Seller State is not California.</description>
         <errorConditionFormula>$UserRole.DeveloperName != &apos;Titles_Manager&apos; &amp;&amp;  
 $UserRole.DeveloperName != &apos;Customer_Success&apos; &amp;&amp;

@@ -39,7 +39,7 @@
             <name>updateNoteField</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Task.Description</field>
             <operation>notEqual</operation>
@@ -52,7 +52,7 @@
             <name>Stamp_Document_On_Subject</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Stamps documents needed to the subject line</description>
         <formula>NOT(ISBLANK(TEXT(Documents_Items_Needed__c)))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -63,7 +63,7 @@
             <name>Update_Activity_Comments</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This copies the standard Comments (Description) field from Task to a custom field to be used in the chatter feed display. Note: This operation will Truncate the data to 256 characters.</description>
         <formula>NOT(ISBLANK(Description))</formula>
         <triggerType>onAllChanges</triggerType>

@@ -16,7 +16,7 @@ public class WorkRequestPinnedEvent extends TriggerInterface {
         if ( !woIdToSaIdMap.isEmpty() ) {
             List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                     ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                        WorkType.Name, CreatedById, Cloned_for_Grouping__c
+                        WorkType.Name, CreatedById
                             FROM WorkOrderLineItems )
                                     FROM WorkOrder WHERE Id IN :woIdToSaIdMap.keyset() ];
 
@@ -24,7 +24,7 @@ public class WorkRequestPinnedEvent extends TriggerInterface {
             Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
             for ( WorkOrder woRec : woLst ) {
                 Id saId = woIdToSaIdMap.get( woRec.Id );
-                if ( !woRec.Created_Without_Line_Items__c ) {
+                if ( !woRec.Created_Without_Line_Items__c ) { 
                     if ( saIdToWoliMap.get( saId ) == null ) {
                         saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                     }
@@ -56,7 +56,7 @@ public class WorkRequestPinnedEvent extends TriggerInterface {
                                 scheduled_Start__c = saRec.SchedStartTime,
                                 local_Scheduled_Start__c = saRec.SchedStartTime != null ? saRec.SchedStartTime.format('yyyy-MM-dd\'T\'HH:mm:ss', apptTimezoneMap.get( saRec.Id ) ) : null,
                                 work_Type__c = FSLWorkProcessUtility.workTypeIdMap.get( woliRec.WorkTypeId ) != null ? FSLWorkProcessUtility.workTypeIdMap.get( woliRec.WorkTypeId ).Name : null,
-                                origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ),
+                                origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ),
                                 pinned_Time__c = pinnedTime,
                                 local_Pinned_Time__c = pinnedTime.format('yyyy-MM-dd\'T\'HH:mm:ss', apptTimezoneMap.get( saRec.Id ) )
                             ) );

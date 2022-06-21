@@ -48,8 +48,8 @@
     <recordLookups>
         <name>GetCaseRecords</name>
         <label>Get Case Records</label>
-        <locationX>171</locationX>
-        <locationY>351</locationY>
+        <locationX>174</locationX>
+        <locationY>326</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Seller_Needed_QCs_Count</targetReference>
@@ -64,9 +64,9 @@
         </filters>
         <filters>
             <field>Seller_Assistance_Needed__c</field>
-            <operator>EqualTo</operator>
+            <operator>NotEqualTo</operator>
             <value>
-                <stringValue>Yes</stringValue>
+                <stringValue>No</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -105,17 +105,17 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Seller_Assistance_Needed__c</field>
+            <field>Case__c</field>
             <operator>NotEqualTo</operator>
             <value>
-                <stringValue>No</stringValue>
+                <stringValue></stringValue>
             </value>
         </filters>
         <object>Quality_Control__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>CurCase</name>
         <dataType>SObject</dataType>

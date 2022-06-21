@@ -1,9 +1,3 @@
-/**
- * @description Test class for RevolvingGenerator that ensures revolving work orders and service appointments are being created successfully
- * @author Adam Richbart
- * @since 3/29/2022
- * @group Inspector Dispatch
- */
 @isTest
 global class RevolvingTest {
 
@@ -107,7 +101,7 @@ global class RevolvingTest {
         tl1.Account__c = ac2.Id;
         tl1.Is_Active__c = TRUE;
         tl1.Start_Date__c = Date.newInstance(2020,6,15);
-        tl1.Average_Number_Cars__c = 2;
+        tl1.Average_Number_Cars__c = 1;
 		tl1.Work_Type__c = wt2.Id;
         tl1.Is_Active__c = true;
         timelines.add(tl1);
@@ -211,14 +205,10 @@ global class RevolvingTest {
         System.assert(genereatedWOs.size() > 0);
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/browse/SI-521
-     */
     @IsTest
     static void testGenerate_07() {
         List<Occurrence__c> occs = getOccurrences( 'testocc6' );
         Test.startTest();
-        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         RevolvingGenerator.generate(occs,Date.today(),Date.today().addMonths(1));
         Test.stopTest();
         Occurrence__c occ = [SELECT Id FROM Occurrence__c WHERE TestName__c = 'testocc6'];
@@ -258,23 +248,17 @@ global class RevolvingTest {
             occ.Is_Active__c = false;
         }
         RevolvingCleaner.deleteChangedRecords(occList);
-        //RevolvingCleaner.removeInactiveRecords(occList);
-        occList = new List<Occurrence__c>([SELECT Id, Is_Active__c, (SELECT Id FROM Work_Orders__r) FROM Occurrence__c WHERE TestName__c = 'testocc1' ]);
-        for(Occurrence__c occ : occList) {
-            System.assertEquals(false, occ.Is_Active__c);
-            System.assertEquals(0, occ.Work_Orders__r.size());
-        }
+        RevolvingCleaner.removeInactiveRecords(occList);
+        occList = new List<Occurrence__c>([SELECT Id FROM Occurrence__c WHERE TestName__c = 'testocc1' ]);
+        system.assert(occList.size() == 0);
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/browse/SI-516
-     */
     @isTest
     static void runBatches() {
         Test.startTest();
-        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         RevolvingCleanUpBatch cleanUpBatch = new RevolvingCleanUpBatch(true, 10, true);
         Database.executeBatch(cleanUpBatch, 10);
+
         Test.stopTest();
 
         List<WorkOrder> wos = [SELECT Id,EndDate,StartDate FROM WorkOrder];
@@ -308,11 +292,6 @@ global class RevolvingTest {
                 Timeline__r.Average_Number_Cars__c,
                 Timeline__r.Work_Type__c,
                 Timeline__r.Work_Type__r.DurationInMinutes,
-                Timeline__r.Street__c,
-                Timeline__r.City__c,
-                Timeline__r.Postal_Code__c,
-                Timeline__r.State__c,
-                Timeline__r.Country__c,
                 Timeline__r.Account__r.BillingStreet,
                 Timeline__r.Account__r.BillingCity,
                 Timeline__r.Account__r.BillingPostalCode,
@@ -364,59 +343,5 @@ global class RevolvingTest {
         List<WorkOrder> genereatedWOs = [SELECT Id,StartDate,EndDate,Origin__c FROM WorkOrder WHERE Occurrence__c = :occ.Id];
 
         System.assert(genereatedWOs.size() == 0);
-    }
-    
-    @IsTest
-    static void testUseTimelineAddress() {
-        Timeline__c timeline = [SELECT Id, Account__c, Account__r.Name, Street__c, City__c, State__c, Postal_Code__c, Country__c FROM Timeline__c WHERE Account__r.Name = 'vciTest' LIMIT 1];
-        timeline.Street__c = '123 fake st';
-        timeline.City__c = 'TestCity';
-        timeline.State__c = 'NY';
-        timeline.Postal_Code__c = '12345';
-        timeline.Country__c = 'US';
-        update timeline;
-
-        List<Occurrence__c> occs = getOccurrences( 'testocc1' );
-
-        Test.startTest();
-        RevolvingGenerator.generate(occs,Date.today(),Date.today().addMonths(6));
-        Test.stopTest();
-
-        Occurrence__c occ = [SELECT Id FROM Occurrence__c WHERE TestName__c = 'testocc1'];
-        List<WorkOrder> genereatedWOs = [SELECT Id,Street,City,State,PostalCode,Country FROM WorkOrder WHERE Occurrence__c = :occ.Id];
-
-        System.assert(genereatedWOs.size() > 0);
-        System.assertEquals(genereatedWOs[0].Street, timeline.Street__c);
-        System.assertEquals(genereatedWOs[0].City, timeline.City__c);
-        System.assertEquals(genereatedWOs[0].State, timeline.State__c);
-        System.assertEquals(genereatedWOs[0].Country, timeline.Country__c);
-        System.assertEquals(genereatedWOs[0].PostalCode, timeline.Postal_Code__c);
-    }
-
-    @IsTest
-    static void testUseAccountAddress() {
-        Timeline__c timeline = [SELECT Id, Street__c, City__c, State__c, Postal_Code__c, Country__c,
-                                Account__c, Account__r.BillingStreet, Account__r.BillingCity, Account__r.BillingPostalCode, Account__r.BillingState, Account__r.BillingCountry FROM Timeline__c WHERE Account__r.Name = 'vciTest' LIMIT 1];
-        timeline.Street__c = '123 fake st';
-        timeline.City__c = 'TestCity';
-        timeline.Postal_Code__c = '12345';
-        timeline.Country__c = 'US';
-        update timeline;
-
-        List<Occurrence__c> occs = getOccurrences( 'testocc1' );
-
-        Test.startTest();
-        RevolvingGenerator.generate(occs,Date.today(),Date.today().addMonths(6));
-        Test.stopTest();
-
-        Occurrence__c occ = [SELECT Id FROM Occurrence__c WHERE TestName__c = 'testocc1'];
-        List<WorkOrder> genereatedWOs = [SELECT Id,Street,City,State,PostalCode,Country FROM WorkOrder WHERE Occurrence__c = :occ.Id];
-
-        System.assert(genereatedWOs.size() > 0);
-        System.assertEquals(genereatedWOs[0].Street, timeline.Account__r.BillingStreet);
-        System.assertEquals(genereatedWOs[0].City, timeline.Account__r.BillingCity);
-        System.assertEquals(genereatedWOs[0].State, timeline.Account__r.BillingState);
-        System.assertEquals(genereatedWOs[0].Country, timeline.Account__r.BillingCountry);
-        System.assertEquals(genereatedWOs[0].PostalCode, timeline.Account__r.BillingPostalCode);
     }
 }

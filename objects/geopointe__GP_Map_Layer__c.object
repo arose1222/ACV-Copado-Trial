@@ -182,6 +182,7 @@
     <fields>
         <fullName>geopointe__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -191,6 +192,7 @@
     <fields>
         <fullName>geopointe__Detail__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Detail</label>
         <length>32768</length>
@@ -201,6 +203,7 @@
     <fields>
         <fullName>geopointe__Fields__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fields</label>
         <length>32768</length>
@@ -236,6 +239,7 @@
     <fields>
         <fullName>geopointe__Geometry__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Geometry</label>
         <length>32768</length>
@@ -246,6 +250,7 @@
     <fields>
         <fullName>geopointe__Last_Sync_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Sync Date</label>
         <required>false</required>
@@ -255,6 +260,7 @@
     <fields>
         <fullName>geopointe__Legend__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legend</label>
         <length>32768</length>
@@ -306,6 +312,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>GP Map Layer Name</label>
         <type>Text</type>
     </nameField>
@@ -314,7 +321,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>geopointe__Data_Layer_Detail_Check</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
 	LOWER(TEXT(geopointe__Type__c)) = &apos;datalayer&apos;,
 	ISBLANK(geopointe__Detail__c)
@@ -324,7 +331,7 @@
     </validationRules>
     <validationRules>
         <fullName>geopointe__Data_Layer_Folder_Check</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
 	LOWER(TEXT(geopointe__Type__c)) = &apos;datalayer&apos;,
 	AND(NOT(geopointe__Personal__c), ISBLANK(geopointe__Folder__c))

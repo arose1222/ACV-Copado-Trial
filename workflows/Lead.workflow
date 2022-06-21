@@ -39,17 +39,6 @@
         <template>Unfiled_Non_Public_Templates/VP_Email_when_Lead_is_assigned</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Lead_Record_Type_Mapping</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>ACV_Capital</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Lead Record Type Mapping</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Update_Duplicate_Checker_Record_Type_Fie</fullName>
         <field>Duplicate_Checker_Record_Type__c</field>
         <formula>RecordType.DeveloperName</formula>
@@ -61,7 +50,7 @@
     </fieldUpdates>
     <rules>
         <fullName>Demo Request Reminder Email Handler</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Lead.OwnerId</field>
             <operation>equals</operation>
@@ -85,26 +74,12 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>Lead Record Type Mapping</fullName>
-        <actions>
-            <name>Lead_Record_Type_Mapping</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Record_Type_Mapping__c</field>
-            <operation>equals</operation>
-            <value>ACV Capital</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
         <fullName>Update Duplicate Checker Record Type Field</fullName>
         <actions>
             <name>Update_Duplicate_Checker_Record_Type_Fie</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Updates the Duplicate Checker Record Type field with the Record Types Developer Name</description>
         <formula>IsChanged(RecordTypeId) || ISBLANK(Duplicate_Checker_Record_Type__c)</formula>
         <triggerType>onAllChanges</triggerType>

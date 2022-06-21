@@ -1,20 +1,12 @@
 public class SalesforceGatewayUserupdateLogic extends TriggerInterface{
-    //added as part of IO-1646 - refactoring code
-    private static List<LoginHistory> lh;
-    private static List<Contact> runningUserContact;
-    //static init block
-    static{
-        lh = [SELECT Id, SourceIp,Browser FROM LoginHistory WHERE UserId = :UserInfo.getUserId() ORDER BY LoginTime DESC LIMIT 1];
-        runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];
-    }
+    
     public override void afterUpdate(Map<Id,sObject> oldMap, Map<Id,sObject> newMap){
         Map<Id,Contact> newConMap = (Map<Id,Contact>) newMap;
         Map<Id,Contact> oldConMap = (Map<Id,Contact>) oldMap;
         Map<Id,SalesforceGatewayUpdateUserQeueable.usernameUpdate> outboundList = new Map<Id, SalesforceGatewayUpdateUserQeueable.usernameUpdate>();
         Map<Id,SalesforceGatewayUpdateUserQeueable.usernameUpdate> outboundList2 = new Map<Id, SalesforceGatewayUpdateUserQeueable.usernameUpdate>();
-        /* commented as part of IO-1646 - refactoring code, moved to static block
         List<LoginHistory> lh = [SELECT Id, SourceIp,Browser FROM LoginHistory WHERE UserId = :UserInfo.getUserId() ORDER BY LoginTime DESC LIMIT 1];
-        List<Contact> runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];*/
+        List<Contact> runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];
         Integer jobSizeCounter = 1;
         //this list is empty check has a limited usecase, basically if we are creating a user in code for tests, or if we are logging into a user from a refreshed sandbox login history will not exist causing failures
         if(!lh.isEmpty()){

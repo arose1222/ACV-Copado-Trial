@@ -799,6 +799,7 @@
     </fieldSets>
     <fields>
         <fullName>ACV_Inspection_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>ACV Inspection Id</label>
         <length>255</length>
@@ -831,6 +832,7 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
     </fields>
     <fields>
         <fullName>Address</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -848,6 +850,7 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
     </fields>
     <fields>
         <fullName>Cannot_Complete_Reason__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cannot Complete Reason</label>
         <length>255</length>
@@ -858,16 +861,8 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Cloned_for_Grouping__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Cloned for Grouping</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Color__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Color</label>
         <length>255</length>
@@ -881,8 +876,8 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
         <fullName>Completed_Date__c</fullName>
         <description>***DO NOT DELETE***
 
-field used in scoring_logic__c
-JIRA:  CAP - 456</description>
+field used in scoring_logic__c</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -893,6 +888,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Completed_Time__c</fullName>
         <description>Date time value of when the records was put into a completed status category</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Time</label>
         <required>false</required>
@@ -902,6 +898,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Contact_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Email</label>
         <required>false</required>
@@ -912,6 +909,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Contact_Mobile_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Mobile Number</label>
         <required>false</required>
@@ -921,6 +919,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Contact_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Name</label>
         <length>255</length>
@@ -932,6 +931,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Contact_Phone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Phone Number</label>
         <required>false</required>
@@ -941,6 +941,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Customer_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Customer Email</label>
         <required>false</required>
@@ -951,6 +952,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Date_Inspected__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Inspected</label>
         <required>false</required>
@@ -973,6 +975,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Dealer_Contact__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealer Contact</label>
         <length>255</length>
@@ -1021,6 +1024,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Dealership_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dealership Name</label>
         <length>255</length>
@@ -1032,6 +1036,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1042,6 +1047,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Driving_Directions__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Driving Directions</label>
         <required>false</required>
@@ -1051,6 +1057,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Due_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -1083,6 +1090,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Earliest_Start_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Earliest Start Date</label>
         <required>false</required>
@@ -1106,6 +1114,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>External_Assignment_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Assignment Id</label>
         <length>255</length>
@@ -1117,6 +1126,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>External_Invoice_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Invoice Id</label>
         <length>255</length>
@@ -1128,6 +1138,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>External_Link_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Link Code</label>
         <length>255</length>
@@ -1139,6 +1150,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>External_Link__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Link</label>
         <required>false</required>
@@ -1149,6 +1161,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>External_Record_guid__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Record guid</label>
         <length>36</length>
@@ -1185,6 +1198,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Finance_Source__c</fullName>
         <description>Finance Source</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Finance Source</label>
         <length>255</length>
@@ -1209,6 +1223,7 @@ JIRA:  CAP - 456</description>
         <fullName>Inspection_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>This is a unique Id owned by ACV Inspection Database &amp; App</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Inspection Id</label>
         <length>255</length>
@@ -1220,6 +1235,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Inspection_Location__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspection Location</label>
         <length>255</length>
@@ -1361,6 +1377,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Job_Notes__c</fullName>
         <businessStatus>Active</businessStatus>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Job Notes</label>
         <required>false</required>
@@ -1370,6 +1387,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Last_Status_Set_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Status Set Time</label>
         <required>false</required>
@@ -1379,6 +1397,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Lesse_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Lesse Name</label>
         <length>255</length>
@@ -1411,6 +1430,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Make__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Make</label>
         <length>255</length>
@@ -1422,6 +1442,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Maturity_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Maturity Date</label>
         <required>false</required>
@@ -1446,6 +1467,7 @@ JIRA:  CAP - 456</description>
     </fields>
     <fields>
         <fullName>Model__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Model</label>
         <length>255</length>
@@ -1458,6 +1480,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Off_Lot_Notes__c</fullName>
         <description>Contains notes for Work Order Line Items with a Status set to &quot;At Other Location&quot;. May be populated by the Flow: Asset Verification.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Off-Lot Notes</label>
         <required>false</required>
@@ -1468,6 +1491,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Open_Date__c</fullName>
         <description>When the request was open in an external system (if supplied)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Open Date</label>
         <required>false</required>
@@ -1621,6 +1645,7 @@ JIRA:  CAP - 456</description>
     <fields>
         <fullName>Sale_Date__c</fullName>
         <description>May be populated by the Flow: Asset Verification.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sale Date</label>
         <required>false</required>
@@ -1657,6 +1682,7 @@ Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WO
     </fields>
     <fields>
         <fullName>Series__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Series</label>
         <length>255</length>
@@ -1699,6 +1725,7 @@ Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WO
     </fields>
     <fields>
         <fullName>Stock_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Stock Number</label>
         <length>255</length>
@@ -1710,6 +1737,7 @@ Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WO
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1723,6 +1751,7 @@ Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WO
     </fields>
     <fields>
         <fullName>Task__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Task</label>
         <length>255</length>
@@ -1753,6 +1782,7 @@ IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standar
     </fields>
     <fields>
         <fullName>Title_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title Status</label>
         <length>255</length>
@@ -1810,6 +1840,7 @@ IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standar
     </fields>
     <fields>
         <fullName>VIN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>VIN</label>
         <length>255</length>
@@ -1891,6 +1922,7 @@ IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standar
     </fields>
     <fields>
         <fullName>Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Year</label>
         <length>4</length>
@@ -1927,18 +1959,11 @@ IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standar
     </validationRules>
     <validationRules>
         <fullName>Prevent_VCIs_LCs_from_Canceling_WOLIs</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevent VCI&apos;s from Canceling WOLI Jobs.
 Prevent LC&apos;s from Canceling some WOLI Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
         <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
         <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Prevent_Work_Type_Change</fullName>
-        <active>true</active>
-        <description>Prevent Work Type from being changed</description>
-        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
-        <errorMessage>Work Type CANNOT be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Require_Sale_Date_if_In_Sold_Status</fullName>

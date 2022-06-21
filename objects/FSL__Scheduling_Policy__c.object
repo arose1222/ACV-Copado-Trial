@@ -197,6 +197,7 @@
     <fields>
         <fullName>FSL__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -253,6 +254,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Scheduling Policy Name</label>
         <type>Text</type>
     </nameField>
@@ -263,7 +265,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>FSL__Deny_Objectives_Negative_Weight</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>OR(FSL__Service_Clustering_Weight__c &lt; 0,FSL__Service_Priority_Weight__c &lt; 0)</errorConditionFormula>
         <errorMessage>Policy objectives weight can not be negative</errorMessage>
     </validationRules>

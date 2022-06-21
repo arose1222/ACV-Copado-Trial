@@ -16,7 +16,7 @@
             <name>Update_Duplicate_Checker</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>updates the duplicate checker field on Private Lane Access</description>
         <formula>ISBLANK(Duplicate_Checker__c) &amp;&amp; NOT(ISBLANK(Private_Lane__c)) &amp;&amp; NOT(ISBLANK(Organization_Group__c))</formula>
         <triggerType>onAllChanges</triggerType>

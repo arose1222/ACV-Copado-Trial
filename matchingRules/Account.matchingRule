@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MatchingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <matchingRules>
+        <fullName>ACV_Capital_Lead_Account_Matching_matching_rule</fullName>
+        <description>Matches on Dealer ID for Capital Leads</description>
+        <label>ACV_Capital Lead/Account Matching matching rule</label>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>Dealership_ID__c</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <ruleStatus>Active</ruleStatus>
+    </matchingRules>
+    <matchingRules>
         <fullName>Custom_Standard_Account_Matching_Rule</fullName>
         <booleanFilter>8 AND ((1 AND 2) OR (1 AND 3 AND 4) OR (1 AND 5) OR (1 AND 6) OR (7 AND 6) OR (7 AND 2))</booleanFilter>
         <description>This custom rule tries to match the standard account rule. This rule is created to extend standard matching rule functionality to find matches with in the record type.</description>
@@ -86,7 +97,7 @@
             <fieldName>Duplicate_Checker_Record_Type__c</fieldName>
             <matchingMethod>Exact</matchingMethod>
         </matchingRuleItems>
-        <ruleStatus>Active</ruleStatus>
+        <ruleStatus>ActivationFailed</ruleStatus>
     </matchingRules>
     <matchingRules>
         <fullName>New_Duplicate_Transportation_Account_matching_rule</fullName>

@@ -236,7 +236,7 @@
     <pluralLabel>Timeline Configurations</pluralLabel>
     <validationRules>
         <fullName>bmpyrckt__No_Big_Objects_Allowed</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Timeline is not a good option for BigObjects</description>
         <errorConditionFormula>IF (  CONTAINS( bmpyrckt__Object_Name__c, &apos;__b&apos;), true, false)</errorConditionFormula>
         <errorDisplayField>bmpyrckt__Object_Name__c</errorDisplayField>
@@ -244,7 +244,7 @@
     </validationRules>
     <validationRules>
         <fullName>bmpyrckt__No_External_Objects_Allowed</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Timeline is not a good option for External Objects</description>
         <errorConditionFormula>IF ( CONTAINS( bmpyrckt__Object_Name__c, &apos;__x&apos;), true, false)</errorConditionFormula>
         <errorDisplayField>bmpyrckt__Object_Name__c</errorDisplayField>

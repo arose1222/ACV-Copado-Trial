@@ -53,7 +53,7 @@
             <name>Update_Reason</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1</booleanFilter>
         <criteriaItems>
             <field>Complaint__c.CreatedById</field>
@@ -68,7 +68,7 @@
             <name>Complaint_Timestamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Complaint__c.CreatedDate</field>
             <operation>notEqual</operation>

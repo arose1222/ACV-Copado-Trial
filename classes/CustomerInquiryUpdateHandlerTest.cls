@@ -8,19 +8,9 @@ public with sharing class CustomerInquiryUpdateHandlerTest {
 
     @TestSetup
     static void makeData() {
-
-        List<User> newUsers = new List<User>();
-        User titleSpecialist = TestUtility.createUser();
-        newUsers.add(titleSpecialist);
-        User accOwner = TestUtility.createUser();
-        newUsers.add(accOwner);
-        insert newUsers;
-
         List<Account> acctList = new List<Account>();
         List<Case> caseList = new List<Case>();
         Account acc = TestUtility.createAccount('Test 1');
-        acc.Title_Specialist__c = newUsers[0].Id;
-        acc.IST_Account_Owner__c = newUsers[1].Id;
         acctList.add(acc);
         Account acc2 = TestUtility.createAccount('Test 2');
         acctList.add(acc2);
@@ -33,11 +23,11 @@ public with sharing class CustomerInquiryUpdateHandlerTest {
         insert caseList;
 
         List<Customer_Inquiry__c> ciList = new List<Customer_Inquiry__c>();
-        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Account__c = acctList[0].Id, Call_Bucket__c = 'Titles', Call_Type__c = 'Buyer Title Status', Status__c = closed));
-        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Account__c = acctList[0].Id, Call_Bucket__c = 'Sales', Call_Type__c = 'Dealmaker', Status__c = amFollowUp, Priority__c = 'Low'));
-        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Account__c = acctList[0].Id, Call_Bucket__c = 'Helpdesk', Call_Type__c = 'Ghost Bid', Status__c = amFollowUp, Priority__c = 'Medium'));
-        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Account__c = acctList[1].Id, Call_Bucket__c = 'Arbitration', Call_Type__c = 'Case Status', Status__c = newStatus));
-        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'ACV Transport', Call_Type__c = 'Cost Inquiry', Status__c = working));
+        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'Titles', Status__c = closed));
+        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'Sales', Status__c = amFollowUp, Priority__c = 'Low'));
+        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'Helpdesk', Status__c = amFollowUp, Priority__c = 'Medium'));
+        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'Arbitration', Status__c = newStatus));
+        ciList.add(new Customer_Inquiry__c(Support_Case__c = caseList[0].Id, Call_Bucket__c = 'ACV Transport', Status__c = working));
         insert ciList;
     }
 
@@ -336,55 +326,6 @@ public with sharing class CustomerInquiryUpdateHandlerTest {
 
         for (Customer_Inquiry__c c : [SELECT Id, Assigned_To__c FROM Customer_Inquiry__c WHERE Id = :ci.Id]) {
             System.assertEquals(csUser.Id, c.Assigned_To__c); 
-        }
-    }
-
-    @isTest
-    static void openMultipleClosedInquiries() {
-
-        Account acc = [SELECT Id, Title_Specialist__c, IST_Account_Owner__c FROM Account WHERE Name = 'Test 1'];
-        
-        Contact con = TestUtility.createContact(acc);
-        insert con;
-        Vehicle__c v = TestUtility.createVehicle();
-        insert v;
-        Auction__c auc = TestUtility.createAuction(acc,con,v);
-        insert auc;
-        Case titleCase = TestUtility.createTitleCase(auc,acc,con);
-        titleCase.Status = 'Closed Unwound';
-        titleCase.Seller_Dealership__c = acc.Id;
-        insert titleCase;
-
-        List<Customer_Inquiry__c> allInquiries = [SELECT Id, Call_Bucket__c FROM Customer_Inquiry__c];
-        for (Customer_Inquiry__c ci : allInquiries) { // titles needs a title case with an auction that has the same auction as this CI
-            if (ci.Call_Bucket__c == 'Titles') {
-                ci.Auction__c = auc.Id;
-                ci.Ops_Case__c = titleCase.Id;
-                ci.Assigned_To__c = UserInfo.getUserId();
-            }
-            ci.Status__c = closed;
-        }
-        update allInquiries;
-
-        for (Customer_Inquiry__c ci : allInquiries) {
-            ci.Status__c = newStatus;
-        }
-        Test.startTest();
-        update allInquiries;
-        Test.stopTest();
-
-        for (Customer_Inquiry__c ci : [SELECT Id, Call_Bucket__c, Assigned_To__c FROM Customer_Inquiry__c]) {
-            if (ci.Call_Bucket__c == 'Titles') {
-                system.assertEquals(acc.Title_Specialist__c, ci.Assigned_To__c);
-            }
-            else if (ci.Call_Bucket__c == 'Arbitration' || ci.Call_Bucket__c == 'ACV Transport') {
-
-                system.assertEquals(UserInfo.getUserId(), ci.Assigned_To__c);
-            }
-            else {
-
-                system.assertEquals(acc.IST_Account_Owner__c, ci.Assigned_To__c);
-            }
         }
     }
 

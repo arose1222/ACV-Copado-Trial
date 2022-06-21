@@ -9,7 +9,7 @@ public with sharing class PrescreenReasonProcesses {
         
         for(Prescreen_Reason__c pr : newPrescreenReasonsMap.values()){ prescreenIds.add(pr.Condition_Report_Prescreen__c); }
 
-        List<Condition_Report_Prescreen__c> existingPrescreens = [SELECT Id, OwnerId, Aux_Prescreen_Status__c, Status__c, (select Id, Name from Prescreen_Reasons__r) FROM  Condition_Report_Prescreen__c WHERE Id IN: prescreenIds AND (Status__c = 'New' OR Aux_Prescreen_Status__c = 'Reviewed - No Issues')];
+        List<Condition_Report_Prescreen__c> existingPrescreens = [SELECT Id, OwnerId, Aux_Prescreen_Status__c, Status__c, (select Id, Name from Prescreen_Reasons__r) FROM  Condition_Report_Prescreen__c WHERE Id IN: prescreenIds AND (Status__c = 'New' OR Aux_Prescreen_Status__c = 'Reviewed - No Issues') AND Inspection_Id__c = null];
 
         for(Condition_Report_Prescreen__c prescreen : existingPrescreens){
             for(Prescreen_Reason__c reason : prescreen.Prescreen_Reasons__r){

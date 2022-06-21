@@ -13,20 +13,20 @@ public class WorkRequestCompleteEvent extends TriggerInterface {
                         woIdToSaIdMap.put( saRec.ParentRecordId, saRec.Id );
                 }
             }
-        }
+        }    
 
         if ( saLst != null && !saLst.isEmpty() ) {
             List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                     ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                        WorkType.Name, CreatedById, Cloned_for_Grouping__c
-                            FROM WorkOrderLineItems )
+                        WorkType.Name, CreatedById
+                            FROM WorkOrderLineItems ) 
                                     FROM WorkOrder WHERE Id IN :woIdToSaIdMap.keyset() ];
 
             Map<Id, List<WorkOrderLineItem>> saIdToWoliMap = new Map<Id, List<WorkOrderLineItem>>();
             Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
             for ( WorkOrder woRec : woLst ) {
                 Id saId = woIdToSaIdMap.get( woRec.Id );
-                if ( !woRec.Created_Without_Line_Items__c ) {
+                if ( !woRec.Created_Without_Line_Items__c ) { 
                     if ( saIdToWoliMap.get( saId ) == null ) {
                         saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                     }
@@ -58,9 +58,9 @@ public class WorkRequestCompleteEvent extends TriggerInterface {
 
             List<Work_Request__e> createEventLst = new List<Work_Request__e>();
             //List<String> uuidLst = new List<String>();
-            for ( ServiceAppointment saRec : saLst ) {
+            for ( ServiceAppointment saRec : saLst ) {    
                 if ( saIdToWoliMap != null && !saIdToWoliMap.isEmpty() && saIdToWoliMap.get( saRec.Id ) != null && !saIdToWoliMap.get( saRec.Id ).isEmpty() ) {
-                    for ( WorkOrderLineItem woliRec : saIdToWoliMap.get( saRec.Id ) ) {
+                    for ( WorkOrderLineItem woliRec : saIdToWoliMap.get( saRec.Id ) ) {            
                         createEventLst.add( new Work_Request__e(
                             event_type__c = 'complete',
                             work_Request_Id__c = woliRec.External_Record_Guid__c,
@@ -85,8 +85,8 @@ public class WorkRequestCompleteEvent extends TriggerInterface {
                             assigned_Resource_Name__c = saToResourceMap.get( saRec.Id ) != null ? saToResourceMap.get( saRec.Id ).ServiceResource.Name : null,
                             assigned_Resource_Id__c = saToResourceMap.get( saRec.Id ) != null ? conIdToGuidMap.get( saToResourceMap.get( saRec.Id ).ServiceResource.RelatedRecordId ) : null,
                             legacy_Resource_Id__c = saToResourceMap.get( saRec.Id ) != null ? saToResourceMap.get( saRec.Id ).ServiceResource.ASI_Resource_Id__c : null,
-                            legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' || woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : null,
-                            origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
+                            legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' ? 'Legacy Inspection Services' : null,
+                            origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
                         ) );
                         //uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );
                     }

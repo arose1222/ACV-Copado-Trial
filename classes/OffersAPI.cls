@@ -178,57 +178,25 @@ global class OffersAPI {
 
     @AuraEnabled
     public static Response retrieveOffers(Id workOrderId){
-        system.debug('In retrieveOffers');
-        system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
 
         Response resp = new Response();
 
         ServiceAppointment saRec = [ SELECT Id, Status, ServiceTerritoryId, Duration, EarliestStartTime, DueDate, ServiceTerritory.OperatingHoursId,
-                                ServiceTerritory.OperatingHours.TimeZone, WorkTypeId, WorkType.Work_Type_Unique_ID__c, WorkType.EstimatedDuration, Account.Dealership_ID__c, latitude, longitude
+                                ServiceTerritory.OperatingHours.TimeZone, WorkTypeId, WorkType.Work_Type_Unique_ID__c, WorkType.EstimatedDuration, Account.Dealership_ID__c
                                 FROM ServiceAppointment WHERE ParentRecordId = :workOrderId LIMIT 1 ];
 
         if ( saRec != null ) {
-            system.debug(saRec);
             if ( saRec.ServiceTerritoryId != null ) {
-                System.debug(saRec.ServiceTerritoryId);
                 FSLWorkProcessUtility.setupUniqueWorkHourStructs();
                 Boolean hasUniqueHours = FSLWorkProcessUtility.workTypesWithUniqueHoursSet.contains( saRec.WorkType.Work_Type_Unique_Id__c );
                 system.debug( 'Does it have Unique Hours Identified? - ' + hasUniqueHours );
 
                 if ( hasUniqueHours ) {
-                    system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
-                    System.debug(hasUniqueHours);
                     // FSL Policy Grabbing Information
                     FSL__Scheduling_Policy__c policy = FSLWorkProcessUtility.PROPER_POLICY;
-                    System.debug(policy);
-                    system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
                     FSL.GradeSlotsService mySlotService = new FSL.GradeSlotsService( policy.Id, saRec.Id );
-                    System.debug(mySlotService);
-                    system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
                     FSL.AdvancedGapMatrix myResultMatrix = mySlotService.getGradedMatrix(FALSE);
-                    System.debug(myResultMatrix);
-                    system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
                     Map<Id, FSL.ResourceScheduleData> mySRGradedTimeSlotMap = myResultMatrix.ResourceIDToScheduleData;
-                    System.debug(mySRGradedTimeSlotMap);
-                    system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
 
                     //Get Work Type Filters
                     Set<Date> skipDaySet = getDownDays( saRec.WorkTypeId );
@@ -265,15 +233,11 @@ global class OffersAPI {
                     }
 
                     if ( !mySRGradedTimeSlotMap.isEmpty() ) {
-                        System.debug('XXX');
                         for ( Id thisresourceid : mySRGradedTimeSlotMap.keySet() ) {
-                            System.debug(thisresourceid);
                             Id resourceUserId = resourceIdToUserIdMap.get( thisresourceid );
                             if ( ( !ACVUtility.isProd() ) || ( !String.isBlank( resourceUserId ) && conCheckSet.contains( resourceUserId ) ) ) {
-                                System.debug('YYY');
                                 for ( FSL.SchedulingOption thisso : mySRGradedTimeSlotMap.get( thisresourceid ).SchedulingOptions ) {
                                     if ( !skipDaySet.contains( thisso.Interval.Start?.date() ) ) {
-                                        System.debug('ZZZ');
                                         // Times returned here are pure GMT with Daylight savings time in consideration, so in November it is 5 hours off EST
                                         processSlotData = processSlotData(
                                             currentUserTz, thisso.Grade, thisresourceId,
@@ -296,44 +260,25 @@ global class OffersAPI {
                         resp.statusMsg = GET_SUCCESS;
                     } else {
                         resp.statusMsg = GET_NO_RESULTS;
-                        System.debug('else 1');
                     }
                 } else {
                     resp.statusMsg = GET_NO_RESULTS;
-                    System.debug('else 2');
                 }
             } else {
                 resp.statusMsg = GET_TERRITORY_ERROR;
                 resp.errorLineNum = '' + ACVUtility.currentLineNumber();
                 resp.errorMessage = resp.statusMsg;
                 resp.errorTrace = 'OffersAPI: ' + resp.errorLineNum;
-                System.debug('else 3');
             }
         } else {
             resp.statusMsg = GET_GENERAL_ERROR;
             resp.errorLineNum = '' + ACVUtility.currentLineNumber();
             resp.errorMessage = resp.statusMsg;
             resp.errorTrace = 'OffersAPI: ' + resp.errorLineNum;
-            System.debug('else 4');
         }
 
-        if ( resp.slotLst != null && resp.slotLst.isEmpty() ) {
-            resp.statusMsg = GET_NO_RESULTS;
-            System.debug('empty');
-        }
+        if ( resp.slotLst != null && resp.slotLst.isEmpty() ) { resp.statusMsg = GET_NO_RESULTS; }
 
-        system.debug('CPU time used');
-        system.debug(LIMITs.getCpuTime());
-        system.debug('CPU time limit');
-        system.debug(LIMITs.getLimitCpuTime());
-
-        System.debug(resp);
-        System.debug(resp.statusMsg);
-        System.debug(resp.errorLineNum);
-        System.debug(resp.errorMessage);
-        System.debug(resp.errorTrace);
-        System.debug(resp.slotLst);
-        System.debug(resp.savedOfferMap);
         return resp;
 
     }

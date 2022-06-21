@@ -162,6 +162,7 @@
     <fields>
         <fullName>ACV_To_Buyer_Label__c</fullName>
         <description>ACV to Buyer Postage Label.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>ACV to Buyer Postage Label.</inlineHelpText>
         <label>ACV To Buyer Label</label>
@@ -173,6 +174,7 @@
     <fields>
         <fullName>ACV_To_Buyer_Tracking_Code__c</fullName>
         <description>ACV to Buyer Tracking Code.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>ACV to Buyer Tracking Code.</inlineHelpText>
         <label>ACV To Buyer Tracking Code</label>
@@ -186,6 +188,7 @@
     <fields>
         <fullName>ACV_To_Seller_Label__c</fullName>
         <description>ACV to Seller Postage Label.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>ACV to Seller Postage Label.</inlineHelpText>
         <label>ACV To Seller Label</label>
@@ -197,6 +200,7 @@
     <fields>
         <fullName>ACV_To_Seller_Tracking_Code__c</fullName>
         <description>ACV to Seller Tracking Code.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>ACV to Seller Tracking Code.</inlineHelpText>
         <label>ACV To Seller Tracking Code</label>
@@ -206,18 +210,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Additional_Details__c</fullName>
-        <description>This is a manually entered field populated by the user who is creating the Quality control record via the New QC Flow.  This field will also be editable outside of the flow so updates can be made.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Field for elaborating on the title problems selected and adding color to the issues beyond the selections.</inlineHelpText>
-        <label>Additional Details</label>
-        <length>32768</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Auction__c</fullName>
@@ -243,6 +235,7 @@
     <fields>
         <fullName>Buyer_To_ACV_Label__c</fullName>
         <description>Buyer To ACV Postage Label.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Buyer To ACV Postage Label.</inlineHelpText>
         <label>Buyer To ACV Label</label>
@@ -254,6 +247,7 @@
     <fields>
         <fullName>Buyer_To_ACV_Tracking_Code__c</fullName>
         <description>Buyer To ACV Tracking Code.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Buyer To ACV Tracking Code.</inlineHelpText>
         <label>Buyer To ACV Tracking Code</label>
@@ -337,16 +331,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Date_Time_QC_Closed__c</fullName>
-        <description>Date time the quality control record is closed  - populated via QC Date time closed date</description>
-        <externalId>false</externalId>
-        <label>Date Time QC Closed</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Error_Count__c</fullName>
@@ -532,6 +516,7 @@ IF( Other__c = True, 1, 0)</formula>
     </fields>
     <fields>
         <fullName>Other_Details__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Details</label>
         <required>false</required>
@@ -557,22 +542,6 @@ IF( Other__c = True, 1, 0)</formula>
             <field>QC_Problem_Identified__c.Status__c</field>
             <operation>notEqual</operation>
             <value>Resolved, Invalid</value>
-        </summaryFilterItems>
-        <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Problems_Resolved__c</fullName>
-        <description>Number of problem identified records associated with the quality Control record that are closed - used in validation rule to check that all problems are resolved before allowing the QC record to be marked as closed.</description>
-        <externalId>false</externalId>
-        <label>Problems Resolved</label>
-        <summaryFilterItems>
-            <field>QC_Problem_Identified__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Resolved</value>
         </summaryFilterItems>
         <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
@@ -613,6 +582,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Return_Address_Postage_Label_URL__c</fullName>
         <description>Return Address Postage Label URL to ACV.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Return Address Postage Label URL to ACV.</inlineHelpText>
         <label>Return Address Postage Label URL</label>
@@ -624,6 +594,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Return_Address_Tracking_Code__c</fullName>
         <description>Return Address Tracking Code to ACV.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Return Address Tracking Code to ACV.</inlineHelpText>
         <label>Return Address Tracking Code</label>
@@ -637,6 +608,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Return_Postage_Label_Contact_Name__c</fullName>
         <description>Buyer/FloorPlan contact name used in the Title email template.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Buyer/FloorPlan contact name used in the Title email template.</inlineHelpText>
         <label>Return Postage Label Contact Name</label>
@@ -650,6 +622,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Return_Postage_Label_Email__c</fullName>
         <description>Email for either buyer/floorplan</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Email for either buyer/floorplan</inlineHelpText>
         <label>Return Postage Label Email</label>
@@ -657,19 +630,6 @@ IF( Other__c = True, 1, 0)</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Seller_Account__c</fullName>
-        <description>Selling dealership on the title case related to this QC record - used in the Update QC Owner Flow.</description>
-        <externalId>false</externalId>
-        <formula>CASESAFEID(Case__r.Seller_Dealership__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Seller Account</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -700,6 +660,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Seller_To_ACV_Label__c</fullName>
         <description>Seller To ACV Postage Label.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Seller To ACV Postage Label.</inlineHelpText>
         <label>Seller To ACV Label</label>
@@ -711,6 +672,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Seller_To_ACV_Tracking_Code__c</fullName>
         <description>Seller To ACV Tracking Code.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Seller To ACV Tracking Code.</inlineHelpText>
         <label>Seller To ACV Tracking Code</label>
@@ -735,6 +697,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Ship_To_Postage_Label_URL_del__c</fullName>
         <description>Postage Label URL to send the package to buyer/seller.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Postage Label URL to send the package to buyer/seller.</inlineHelpText>
         <label>Ship To Postage Label URL</label>
@@ -746,6 +709,7 @@ IF( Other__c = True, 1, 0)</formula>
     <fields>
         <fullName>Ship_To_Tracking_Code__c</fullName>
         <description>Tracking Code for the package shipped to buyer/seller.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Tracking Code for the package shipped to buyer/seller.</inlineHelpText>
         <label>Ship To Tracking Code</label>
@@ -798,17 +762,6 @@ IF( Other__c = True, 1, 0)</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Total_Problem_Count__c</fullName>
-        <description>Total number of problem Identified Records associated with the Quality Control record regardless of status.  used in Validation rule on QC object.</description>
-        <externalId>false</externalId>
-        <label>Total Problem Count</label>
-        <summaryForeignKey>QC_Problem_Identified__c.Quality_Control__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
     </fields>
     <fields>
         <fullName>UserReportFilter__c</fullName>
@@ -1398,15 +1351,5 @@ OR(  Caused_Missed_Error__c =  $User.Id,  $Profile.Name = &apos;Title Manager&ap
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-    <validationRules>
-        <fullName>Can_not_close_QC_with_Open_QCPI_Records</fullName>
-        <active>true</active>
-        <description>The Quality Control Record Can not be placed in a closed status if any associated problem Identified records are unresolved.</description>
-        <errorConditionFormula>AND(
-ISCHANGED( Status__c),
-ISPICKVAL(Status__c, &quot;Closed&quot;),
-Total_Problem_Count__c  &lt;&gt;  Problems_Resolved__c)</errorConditionFormula>
-        <errorMessage>Please be sure all QC Problem Identified records are marked as Resolved - Use the Update Problem Status(es) button at the top right to resolve those issues.</errorMessage>
-    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>

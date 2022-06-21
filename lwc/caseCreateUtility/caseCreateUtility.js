@@ -71,7 +71,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
     index = 0;
     key = '';
     invalid48HrMapping = new Map();
-    duplicateRows = false;
 
     initTypeOptions = [{label: 'Please select Call Bucket first', value: 'Please select Call Bucket first'}];
     // auctionRequiredBuckets = ['Buyer Arranged Shipment', 'Sales', 'Title_Information', 'Arbitration_Claim', 'Transportation', 'Unwind'];
@@ -286,8 +285,7 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
             relatedOpsCase: opsVal,
             callBucketLabel: labelVal,
             callBucketOptions: this.bucketOptions,
-            callTypeOptions: this.initTypeOptions,
-            duplicate: false
+            callTypeOptions: this.initTypeOptions
         }
     }
     
@@ -395,64 +393,33 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         this.rows.forEach(item=> {
             if (evt.currentTarget.dataset.key === item.uuid) {
                 item.auctionId = evt.target.value;
-            
-                if (evt.target.value != '' && item.callBucket != '') {
-
-                    this.checkForDuplicateRows();
-                    
-                    if (item.callBucket in this.opsTypeObj) {
-                        setOpsCase({currentBucket:item.callBucket, currentAuction: evt.target.value})
-                        .then(results => {
-                            item.relatedOpsCase = results;
-                        })
-                    }
+                if (item.auctionId != '' && item.callBucket != '' && item.callBucket in this.opsTypeObj) {
+                    setOpsCase({currentBucket:item.callBucket, currentAuction: evt.target.value})
+                    .then(results => {
+                        item.relatedOpsCase = results;
+                    })
                 }
             }
         });
     }
 
-    // this was old version before checkForDuplicateRows was created
-    // handleAuctionChange(evt) {
-
-    //     this.rows.forEach(item=> {
-    //         if (evt.currentTarget.dataset.key === item.uuid) {
-    //             item.auctionId = evt.target.value;
-    //             if (item.auctionId != '' && item.callBucket != '' && item.callBucket in this.opsTypeObj) {
-    //                 setOpsCase({currentBucket:item.callBucket, currentAuction: evt.target.value})
-    //                 .then(results => {
-    //                     item.relatedOpsCase = results;
-    //                 })
-    //             }
-    //         }
-    //     });
-    // }
-
     handleBucketChange(evt) {
-
         this.counter = 0;
         var isOpsCase = false;
         this.rows.forEach(item=> {
             if (evt.currentTarget.dataset.key === item.uuid) {
-
+                if (evt.target.value in this.opsTypeObj && item.auctionId != '') {
+                    this.index = this.counter;
+                    this.auction = item.auctionId;
+                    isOpsCase = true;
+                }
                 item.callBucket = evt.target.value;
                 item.callBucketLabel = evt.target.options.find(opt => opt.value === evt.detail.value).label;
                 item.callTypeOptions = this.callTypeDependencies[evt.target.value];
                 this.template.querySelector('[data-id="'+item.uuid+'"]').disabled = false;
-
-                if (item.auctionId != '') {
-
-                    this.checkForDuplicateRows();
-
-                    if (evt.target.value in this.opsTypeObj) {
-                        this.index = this.counter;
-                        this.auction = item.auctionId;
-                        isOpsCase = true;
-                    }
-                }
             }
             this.counter += 1;
         });
-
         if(isOpsCase) {
             setOpsCase({currentBucket:evt.target.value, currentAuction: this.auction})
                 .then(results => {
@@ -460,75 +427,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
                 }
             )
         }
-    }
-
-    // this was old version before checkForDuplicateRows was created
-    // handleBucketChange(evt) {
-    //     this.counter = 0;
-    //     var isOpsCase = false;
-    //     this.rows.forEach(item=> {
-    //         if (evt.currentTarget.dataset.key === item.uuid) {
-    //             if (evt.target.value in this.opsTypeObj && item.auctionId != '') {
-    //                 this.index = this.counter;
-    //                 this.auction = item.auctionId;
-    //                 isOpsCase = true;
-    //             }
-    //             item.callBucket = evt.target.value;
-    //             item.callBucketLabel = evt.target.options.find(opt => opt.value === evt.detail.value).label;
-    //             item.callTypeOptions = this.callTypeDependencies[evt.target.value];
-    //             this.template.querySelector('[data-id="'+item.uuid+'"]').disabled = false;
-    //         }
-    //         this.counter += 1;
-    //     });
-    //     if(isOpsCase) {
-    //         setOpsCase({currentBucket:evt.target.value, currentAuction: this.auction})
-    //             .then(results => {
-    //                 this.rows[this.index].relatedOpsCase = results;
-    //             }
-    //         )
-    //     }
-    // }
-
-    checkForDuplicateRows() {
-        // first set all row duplicates to false behind the scenes
-        // then cycle through all rows and mark any remaining duplicates
-        this.rows.forEach(row=> {
-            row.duplicate = false;
-        });
-        var redColor = "background:#c70438";
-        var foundDuplicates = false;
-        this.rows.forEach(rowA=> {
-            this.rows.forEach(rowB=> {
-                if (rowA.auctionId != '' && rowA.auctionId == rowB.auctionId && rowA.callBucket != '' && rowA.callBucket == rowB.callBucket && rowA.callType != '' && rowA.callType == rowB.callType && rowA.uuid != rowB.uuid) {  // don't need to check for null on rowB since we are comparing A and B
-                    // these are duplicates
-                    rowA.duplicate = true;
-                    rowB.duplicate = true;
-                    this.duplicateRows = true;
-                    foundDuplicates = true;
-                }
-            });
-        });
-
-        // loop over all rows and either mark them red or clear error
-        let counter = 0;
-        this.rows.forEach(item=> {
-            this.key = '[data-tr-id="'+item.uuid+'"]';
-            if (item.duplicate) {
-                this.template.querySelector(this.key).style=redColor;
-            } 
-            else if (counter%2 == 1) { //reset the odd rows to white
-                this.template.querySelector(this.key).style="background:#F5F5F5";
-            }
-            else { //reset the even rows to grey
-                this.template.querySelector(this.key).style="background:#ffffff";
-            }
-            counter++;
-        });
-
-        if (!foundDuplicates) {
-            this.duplicateRows = false;
-        }
-        
     }
 
     onTypeOpen(evt) {
@@ -570,8 +468,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         this.rows.forEach(item=> {
             if (evt.currentTarget.dataset.key === item.uuid) {
                 item.callType = evt.target.value;
-                this.checkForDuplicateRows();
-                
                 this.key = '[data-id="'+item.uuid+'"]';
                 // set resolved to false at first so we can re-evaluate
                 item.resolved = false;
@@ -836,7 +732,6 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
     removeRow() {
         this.rows.splice(this.index, 1);
         this.deleteRowCheck = false;
-        this.checkForDuplicateRows();
     }
 
     checkSubmit() {

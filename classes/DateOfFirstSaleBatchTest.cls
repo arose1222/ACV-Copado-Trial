@@ -37,7 +37,7 @@ public class DateOfFirstSaleBatchTest {
         system.assertEquals(null, checkAccountList[2].date_of_first_sale__c);
     }
 
-    //@isTest
+    @isTest
     static void bulkTest(){
         //need date
         Date today = System.Today();

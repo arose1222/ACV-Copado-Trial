@@ -131,6 +131,8 @@
 
         var settings = {
 
+            isO2EngineOn: {!isO2EngineOn},
+
             onBoardingLink: '{!$Page.OnboardingWizard}',
             healthCheckLink: '{!$Page.Integrity_Checker}',
             ganttPic: '{!$Resource.ganttPic}',
@@ -274,8 +276,8 @@
                             title:  '{!JSENCODE($Label.SchedulingBundling)}',
                             items: [],
                             tabName: 'scheduling_bundling',
-                            directive: 'scheduling-bundling',  
-                            dynamicClass : 'hide-bundle' // this is hidden until is getIsBundleFieldsDeployed is checked
+                            directive: 'scheduling-bundling'  
+                           // dynamicClass : 'hide-bundle' //  this is hidden until is getIsBundleFieldsDeployed is checked
                         }
                     ]
                 },
@@ -357,7 +359,15 @@
                             title: '{!JSENCODE($Label.Scheduled1Jobs)}',
                             items: [],
                             tabName: 'optimization_jobs',
-                            directive: 'optimization-jobs'
+                            directive: 'optimization-jobs',
+                            dynamicClass : 'hide-scheduled-jobs' 
+                        },
+                        {
+                            title: '{!JSENCODE($Label.Scheduled1Jobs)}',
+                            items: [],
+                            tabName: 'optimization_jobs_enhancements',
+                            directive: 'optimization-jobs-enhancements',
+                            dynamicClass : 'hide-scheduled-jobs-enhancements' 
                         },
                         {
                             title: '{!JSENCODE($Label.Advanced1Parameters)}',
@@ -365,6 +375,7 @@
                             tabName: 'optimization_advanced',
                             directive: 'optimization-parameters'
                         },
+                      
                     ]
                 },
 
@@ -470,6 +481,7 @@
             });
         });
 
+        /*
         isSchedulingBundlingFieldEnabled = false;
 
         Visualforce.remoting.Manager.invokeAction("{!$RemoteAction.SettingsController.getIsBundleFieldsDeployed}" ,function(res) {
@@ -482,13 +494,39 @@
                 $('.hide-bundle.menu-setting-item').css('display','block');
                 
             }
-        }, function(e) { });       
+        }, function(e) { });   
+        */
+        
+        isEnableScheduledJobsEnhancements = false;
+
+        Visualforce.remoting.Manager.invokeAction("{!$RemoteAction.SettingsController.getIsEnableScheduledJobsEnhancements}" ,function(res) {
+          
+          isEnableScheduledJobsEnhancements = res;
+
+          if(isEnableScheduledJobsEnhancements) {
+
+              $('.hide-scheduled-jobs-enhancements.tab-setting-item').css('display','inline-block');
+              $('.hide-scheduled-jobs-enhancements.menu-setting-item').css('display','block');
+              
+          } else {
+              // old
+              $('.hide-scheduled-jobs.tab-setting-item').css('display','inline-block');
+              $('.hide-scheduled-jobs.menu-setting-item').css('display','block');
+
+          }
+      }, function(e) { });
+
 
         var remoteActions = {
 
+            setLiveBundleFeatureActive:         '{!$RemoteAction.SettingsController.setLiveBundleFeatureActive}',
+            getIsLiveBundleFeatureActive:       '{!$RemoteAction.SettingsController.getIsLiveBundleFeatureActive}',
+            setLiveBundleWaitTime:              '{!$RemoteAction.SettingsController.setLiveBundleWaitTime}',
+            getLiveBundleWaitTime:              '{!$RemoteAction.SettingsController.getLiveBundleWaitTime}',
             getIsBundlerFeatureActiveAndActive: '{!$RemoteAction.SettingsController.getIsBundlerFeatureActiveAndActive}',
             getIsBundlerFeatureActive:          '{!$RemoteAction.SettingsController.getIsBundlerFeatureActive}',
             getIsBundleFieldsDeployed:          '{!$RemoteAction.SettingsController.getIsBundleFieldsDeployed}',
+            getIsEnableScheduledJobsEnhancements:'{!$RemoteAction.SettingsController.getIsEnableScheduledJobsEnhancements}',
             sharingLoadData:                    '{!$RemoteAction.SettingsSharingController.loadData}',
             saveSettings:                       '{!$RemoteAction.SettingsController.saveSettings}',
             restoreDefaultSettings:             '{!$RemoteAction.SettingsController.restoreDefaultSettings}',
@@ -500,6 +538,7 @@
             updateBundleCacheRedis:             '{!$RemoteAction.SettingsController.updateBundleCacheRedis}',
             toggleBundleNightlyTrigger:         '{!$RemoteAction.SettingsController.toggleBundleNightlyTrigger}',
             nightlyBundleTriggerStatus:         '{!$RemoteAction.SettingsController.nightlyBundleTriggerStatus}',
+            checkBundleConfigPolicy:            '{!$RemoteAction.SettingsController.checkBundleConfigPolicy}',
             getBundleNightlyCronExp:            '{!$RemoteAction.SettingsController.getBundleNightlyCronExp}',
             getApexClassesAndVisualForce:       '{!$RemoteAction.SettingsController.getApexClassesAndVisualForce}',
             shouldRefreshSLRToken:              '{!$RemoteAction.SettingsController.shouldRefreshSLRToken}',
@@ -541,6 +580,7 @@
 
             // SchedulingRecipesController
             loadSchedulingRecipesData:          '{!$RemoteAction.SchedulingRecipesController.loadSchedulingRecipesData}',
+            loadOptimizationJobsEnhancementsData: '{!$RemoteAction.SchedulingRecipesController.loadOptimizationJobsEnhancementsData}',
             deleteSchedulingRecipe:             '{!$RemoteAction.SchedulingRecipesController.deleteSchedulingRecipe}',
             saveSchedulingRecipe:               '{!$RemoteAction.SchedulingRecipesController.saveSchedulingRecipe}',
             saveSchedulingRecipes:              '{!$RemoteAction.SchedulingRecipesController.saveSchedulingRecipes}',
@@ -587,6 +627,7 @@
             ServiceTerritory: {
                 System_Jobs__c: '{!$ObjectType.ServiceTerritory.Fields.System_Jobs__c.Name}',
                 ParentTerritoryId: '{!$ObjectType.ServiceTerritory.Fields.ParentTerritoryId.Name}',
+                O2_Enabled__c: '{!$ObjectType.ServiceTerritory.Fields.O2_Enabled__c.Name}', 
                 TopLevelTerritoryId: '{!$ObjectType.ServiceTerritory.Fields.TopLevelTerritoryId.Name}'
             },
 
@@ -615,6 +656,8 @@
                 Scheduling_Policy_Id__c: '{!$ObjectType.Automator_Config__c.Fields.Scheduling_Policy_Id__c.Name}',
                 Time_Span_Backward__c: '{!$ObjectType.Automator_Config__c.Fields.Time_Span_Backward__c.Name}',
                 Time_Span_Forward__c: '{!$ObjectType.Automator_Config__c.Fields.Time_Span_Forward__c.Name}',
+                Horizons__c: '{!$ObjectType.Automator_Config__c.Fields.Horizons__c.Name}',
+                Secondary_Type__c: '{!$ObjectType.Automator_Config__c.Fields.Secondary_Type__c.Name}',
                 Notification_Username__c: '{!$ObjectType.Automator_Config__c.Fields.Notification_Username__c.Name}',
                 Timezone__c: '{!$ObjectType.Automator_Config__c.Fields.Timezone__c.Name}',
                 Is_Decompose_Territories__c:  '{!$ObjectType.Automator_Config__c.Fields.Is_Decompose_Territories__c.Name}',

@@ -10,16 +10,17 @@
                             <value>Case.Capital_Title_Update</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Delete</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Case.Title_Task</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Global.Log_a_Call_Title_Case</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>FeedItem.TextPost</value>
+                            <value>Case.Report_Problem</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$User.Profile.Name}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>System Administrator</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
@@ -34,7 +35,13 @@
                             <value>Case.Request_Vendor</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Case._LightningUpdateCase</value>
+                            <value>FeedItem.TextPost</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Case.Title_Task</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -60,24 +67,6 @@
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>fieldAPIName1</name>
-                    <value>Status</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>objectName</name>
-                    <value>Case</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>panelTitle</name>
-                    <value>Additional Info</value>
-                </componentInstanceProperties>
-                <componentName>displayRecInfoPanel</componentName>
-                <identifier>displayRecInfoPanel</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -278,12 +267,6 @@
                 <identifier>flexipage_tabset</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>previousAuctionAlert</componentName>
-                <identifier>c_previousAuctionAlert1</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -328,10 +311,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>isQualityControl</name>
-                    <value>false</value>
-                </componentInstanceProperties>
                 <componentName>caseTitleS3Image</componentName>
                 <identifier>caseTitleS3Image</identifier>
             </componentInstance>

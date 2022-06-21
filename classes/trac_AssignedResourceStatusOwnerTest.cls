@@ -289,7 +289,7 @@ private class trac_AssignedResourceStatusOwnerTest {
             ServiceAppointment serviceAppointment1 = getServiceAppointment('1');
             serviceAppointment1.SchedStartTime = Datetime.now().addHours(1);
             serviceAppointment1.SchedEndTime = Datetime.now().addHours(12);
-            serviceAppointment1.Allow_Change_From_Flow__c = TRUE;
+            serviceAppointment1.Allow_VCI_Status_Change__c = TRUE;
             update serviceAppointment1;
 
             WorkOrder workOrder1 = getWorkOrder(serviceAppointment1.Id);
@@ -323,12 +323,12 @@ private class trac_AssignedResourceStatusOwnerTest {
                 ServiceAppointment serviceAppointment1 = getServiceAppointment('1');
                 serviceAppointment1.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment1.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment1.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment1.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment1 );
                 ServiceAppointment serviceAppointment2 = getServiceAppointment('2');
                 serviceAppointment2.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment2.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment2.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment2.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment2 );
 
                 update saLst;
@@ -350,7 +350,7 @@ private class trac_AssignedResourceStatusOwnerTest {
                 ServiceAppointment serviceAppointment3 = getServiceAppointment('3');
                 serviceAppointment3.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment3.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment3.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment3.Allow_VCI_Status_Change__c = TRUE;
                 update serviceAppointment3;
 
                 List<AssignedResource> assignedResources2 = new List<AssignedResource>();
@@ -385,7 +385,7 @@ private class trac_AssignedResourceStatusOwnerTest {
         System.runAs(user2) {
             ServiceAppointment serviceAppointment6 = getServiceAppointment('6');
             serviceAppointment6.Status = 'New';
-            serviceAppointment6.Allow_Change_From_Flow__c = TRUE;
+            serviceAppointment6.Allow_VCI_Status_Change__c = TRUE;
             update serviceAppointment6;
 
             Test.startTest();
@@ -509,22 +509,22 @@ private class trac_AssignedResourceStatusOwnerTest {
                 ServiceAppointment serviceAppointment1 = getServiceAppointment('1');
                 serviceAppointment1.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment1.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment1.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment1.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment1 );
                 ServiceAppointment serviceAppointment2 = getServiceAppointment('2');
                 serviceAppointment2.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment2.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment2.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment2.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment2 );
                 ServiceAppointment serviceAppointment4 = getServiceAppointment('4');
                 serviceAppointment4.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment4.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment4.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment4.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment4 );
                 ServiceAppointment serviceAppointment8 = getServiceAppointment('8');
                 serviceAppointment8.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment8.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment8.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment8.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment8 );
                 update saLst;
 
@@ -557,17 +557,17 @@ private class trac_AssignedResourceStatusOwnerTest {
                 ServiceAppointment serviceAppointment3 = getServiceAppointment('3');
                 serviceAppointment3.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment3.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment3.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment3.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment3 );
                 ServiceAppointment serviceAppointment6 = getServiceAppointment('6');
                 serviceAppointment6.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment6.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment6.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment6.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment6 );
                 ServiceAppointment serviceAppointment9 = getServiceAppointment('9');
                 serviceAppointment9.SchedStartTime = Datetime.now().addHours(1);
                 serviceAppointment9.SchedEndTime = Datetime.now().addHours(12);
-                serviceAppointment9.Allow_Change_From_Flow__c = TRUE;
+                serviceAppointment9.Allow_VCI_Status_Change__c = TRUE;
                 saLst.add( serviceAppointment9 );
                 update saLst;
 

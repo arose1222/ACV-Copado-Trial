@@ -6,7 +6,7 @@ public class SalesforceGatewayCreateUserTests {
         insert TestUtility.createAccount();
 
         Lead leadRec = TestUtility.createLead();
-        leadRec.State = 'AK';
+        leadRec.State = 'NY';
         leadRec.EIN_Number__c= '456123';
         leadRec.RecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
         leadRec.Dealer_Type__c='Franchise';

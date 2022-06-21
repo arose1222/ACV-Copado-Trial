@@ -87,7 +87,7 @@
             <name>VCI_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Resolution__c.VCI_Email__c</field>
             <operation>equals</operation>
@@ -100,7 +100,7 @@
             <name>Arb_Populate_TM_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>ISBLANK(Territory_Manager_Email__c)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -110,7 +110,7 @@
             <name>Stamp_Parts_and_Labor_Cost_in_Amount</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Resolution__c.Amount__c</field>
             <operation>equals</operation>
@@ -124,7 +124,7 @@
             <name>Avoidable_Resolution_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Complaint__c.avoidable__c</field>
             <operation>equals</operation>
@@ -139,7 +139,7 @@
             <name>Mark_Checkbox_if_Fastlane</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Resolution__c.Fastlane__c</field>
             <operation>equals</operation>
@@ -154,7 +154,7 @@
             <name>lock_Resolution</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Resolution__c.Credit_Check_Created__c</field>
             <operation>equals</operation>
@@ -169,7 +169,7 @@
             <name>Resolution_Created_Timstamp</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Resolution__c.CreatedDate</field>
             <operation>notEqual</operation>

@@ -11,4 +11,7 @@
     <tabs>maps__DebugLog__c</tabs>
     <tabs>Inventory_Life_Cycle__c</tabs>
     <tabs>Opportunity_Stage_History__c</tabs>
+    <tabs>Application__c</tabs>
+    <tabs>Floorplan__c</tabs>
+    <tabs>Principal__c</tabs>
 </CustomApplication>

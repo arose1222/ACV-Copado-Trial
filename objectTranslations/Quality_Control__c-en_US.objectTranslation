@@ -29,11 +29,6 @@
         <name>ACV_To_Seller_Tracking_Code__c</name>
     </fields>
     <fields>
-        <help><!-- Field for elaborating on the title problems selected and adding color to the issues beyond the selections. --></help>
-        <label><!-- Additional Details --></label>
-        <name>Additional_Details__c</name>
-    </fields>
-    <fields>
         <label><!-- Auction --></label>
         <name>Auction__c</name>
     </fields>
@@ -81,10 +76,6 @@
         <label><!-- Caused/Missed Error --></label>
         <name>Caused_Missed_Error__c</name>
         <relationshipLabel><!-- Quality Control (Caused/Missed Error) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Date Time QC Closed --></label>
-        <name>Date_Time_QC_Closed__c</name>
     </fields>
     <fields>
         <label><!-- Error Count --></label>
@@ -179,10 +170,6 @@
         <name>Problems_Open__c</name>
     </fields>
     <fields>
-        <label><!-- Problems Resolved --></label>
-        <name>Problems_Resolved__c</name>
-    </fields>
-    <fields>
         <label><!-- Reported By --></label>
         <name>Reported_By__c</name>
         <picklistValues>
@@ -217,10 +204,6 @@
         <help><!-- Email for either buyer/floorplan --></help>
         <label><!-- Return Postage Label Email --></label>
         <name>Return_Postage_Label_Email__c</name>
-    </fields>
-    <fields>
-        <label><!-- Seller Account --></label>
-        <name>Seller_Account__c</name>
     </fields>
     <fields>
         <label><!-- Seller Assistance Needed --></label>
@@ -281,10 +264,6 @@
         <relationshipLabel><!-- Quality Control (Title Scanner) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Total Problem Count --></label>
-        <name>Total_Problem_Count__c</name>
-    </fields>
-    <fields>
         <label><!-- UserReportFilter --></label>
         <name>UserReportFilter__c</name>
     </fields>
@@ -310,8 +289,4 @@
         <name>Titles_QC</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
-    <validationRules>
-        <errorMessage><!-- Please be sure all QC Problem Identified records are marked as Resolved - Use the Update Problem Status(es) button at the top right to resolve those issues. --></errorMessage>
-        <name>Can_not_close_QC_with_Open_QCPI_Records</name>
-    </validationRules>
 </CustomObjectTranslation>

@@ -146,7 +146,7 @@
             <name>Capital_Update_Primary_Contact_Email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -161,7 +161,7 @@
             <name>Capital_Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -181,7 +181,7 @@
             <name>Capital_Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Thirty_Day_Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -201,7 +201,7 @@
             <name>Capital_Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Forty_Five_Day_Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -221,7 +221,7 @@
             <name>Email_IST_re_Dealer_Doc_Help_Needed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Review_Status__c</field>
             <operation>equals</operation>
@@ -236,7 +236,7 @@
             <name>Expiring_Dealer_Docs_14_Day_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule for 14 day dealer doc expiration email to dealer.</description>
         <formula>Expiration_Date__c = TODAY() + 14</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -247,7 +247,7 @@
             <name>Expiring_Dealer_Docs_21_Day_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule for 21 day dealer doc expiration email to dealer.</description>
         <formula>Expiration_Date__c = TODAY() + 21</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -258,7 +258,7 @@
             <name>Expiring_Dealer_Docs_30_Day_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule for 30 day dealer doc expiration email to dealer.</description>
         <formula>Expiration_Date__c = TODAY() + 30</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -269,7 +269,7 @@
             <name>Expiring_Dealer_Docs_7_Day_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule for 7 day dealer doc expiration email to dealer.</description>
         <formula>Expiration_Date__c = TODAY() + 7</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -280,7 +280,7 @@
             <name>Mark_Dealer_Doc_As_Complete_When_Complia</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Compliant__c</field>
             <operation>equals</operation>
@@ -294,7 +294,7 @@
             <name>Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -314,7 +314,7 @@
             <name>Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Thirty_Day_Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -334,7 +334,7 @@
             <name>Send_Doc_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Forty_Five_Day_Reminder_Email_Sent__c</field>
             <operation>equals</operation>
@@ -369,7 +369,7 @@
             <name>Send_VT_Expiration_Email_to_IST_Account_Manager</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Dealer_Docs__c.Document_State__c</field>
             <operation>equals</operation>
