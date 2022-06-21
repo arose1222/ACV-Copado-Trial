@@ -9,12 +9,10 @@ import FIELD_ACCOUNT_COUNTRY from '@salesforce/schema/Account.BillingCountry';
 import FIELD_ACCOUNT_STREET from '@salesforce/schema/Account.BillingStreet';
 import FIELD_ACCOUNT_NAME from '@salesforce/schema/Account.Name';
 import FIELD_ACCOUNT_SERVICE_TERRITORY from '@salesforce/schema/Account.Service_Territory__c';
-import FIELD_ACCOUNT_LIVE_APPRAISAL_SELLER from '@salesforce/schema/Account.Live_Appraisal_Seller__c';
-import FIELD_ACCOUNT_HALT_TRUE360_APPOINTMENTS from '@salesforce/schema/Account.Halt_True360_Appointments__c';
 
 import submitWOs from '@salesforce/apex/workOrderIngestController.submitWorkOrders';
 import getContacts from '@salesforce/apex/workOrderIngestController.getContacts';
-import checkRevolvingAppt from '@salesforce/apex/workOrderIngestPermissions.checkToDisplayRevolving';
+import checkRevolvingAppt from '@salesforce/apex/workOrderIngestController.checkToDisplayRevolving';
 import retrieveOffers from '@salesforce/apex/OffersAPI.retrieveOffers';
 import saveOffer from '@salesforce/apex/workOrderIngestController.saveOffer';
 import saveOfferNoAvailability from '@salesforce/apex/workOrderIngestController.saveOfferNoAvailability';
@@ -33,8 +31,6 @@ const ACCOUNT_FIELDS = [
     FIELD_ACCOUNT_COUNTRY,
     FIELD_ACCOUNT_STREET,
     FIELD_ACCOUNT_SERVICE_TERRITORY,
-    FIELD_ACCOUNT_LIVE_APPRAISAL_SELLER,
-    FIELD_ACCOUNT_HALT_TRUE360_APPOINTMENTS,
 ];
 
 export default class workOrderIngest extends LightningElement {
@@ -45,26 +41,35 @@ export default class workOrderIngest extends LightningElement {
     workOrderInfo = {};
 
     isMultiEntry = false;
-    @track displayLiveAppraisal = true;
     @track initialSelection = [];
     @track errors = [];
     @track selectedList;
     today;
     showLoadingSpinner = false;
-    
+
+    //Runs on Page Load
+    async renderedCallback(){
+        await checkRevolvingAppt()
+            .then(result => {
+                this.displayRevolvingAppts = result;
+            })
+            .catch(error => {
+                console.error( 'Lookup error', JSON.stringify(error));
+                this.errors = [error];
+            })
+        ;
+    }
+
     toggleSpinner() {
         this.showLoadingSpinner = !this.showLoadingSpinner;
     }
 
     @wire(getRecord, { recordId: '$recordId', fields: ACCOUNT_FIELDS })
-    wiredAccountRecord(result) {
+    wiredRecord(result) {
         if(result.data) {
             this.account['Id'] = this.recordId;
             for(let prop in result.data.fields) {
                 this.account[prop] = result.data.fields[prop].value;
-            }
-            if(this.account.Live_Appraisal_Seller__c == false) {
-                this.displayLiveAppraisal = false;
             }
         } else if(result.error) {
             alert('error loading fields for account.');
@@ -80,23 +85,10 @@ export default class workOrderIngest extends LightningElement {
         this.initialSelection.push({"icon":"standard:avatar","id":this.account.Primary_Contact__c,"sObjectType":"Contact","subtitle":"","title":"Default Contact"});
         this.workOrderInfo.contact = this.account.Primary_Contact__c;
         this.workOrderInfo.userId = Id;
-    };
 
-    @wire(checkRevolvingAppt, { })
-    handleRevolvingApptResult(result) {
-        if(result.data != null) {
-            this.displayRevolvingAppts = result.data;
-            if(result.data == false) {
-                this.displayLiveAppraisal = false;
-            }
-        } else if(result.error) {
-            this.errors = [result.error];
-            alert('error loading Revolving Appointment priveledges');
-        }
     };
 
     connectedCallback(){
-        this.currentState = 'Time';
         this.isMultiEntry = false;
 
         var now = new Date();
@@ -104,6 +96,8 @@ export default class workOrderIngest extends LightningElement {
         var mm = String(now.getMonth() + 1).padStart(2, '0');
         var yyyy = now.getFullYear();
         this.today = yyyy + '-' + mm + '-' + dd;
+
+        this.currentState = 'Time';
 
         this.workOrderInfo.accountId = this.recordId;
         this.workOrderInfo.WSCount = '0';
@@ -113,6 +107,8 @@ export default class workOrderIngest extends LightningElement {
         this.workOrderInfo.BSUCheck = false;
         this.workOrderInfo.date = this.today;
         this.workOrderInfo.NotificationRequest = false;
+
+        // this.dynamicTest = 'redColor';
     }
 
     handleContactSearch(event){
@@ -129,7 +125,6 @@ export default class workOrderIngest extends LightningElement {
                 this.errors = [error];
             });
     }
-
     handleContact(){
         var selectedValue = this.template.querySelector('c-lookup').getSelection();
         if(selectedValue[0]){
@@ -215,9 +210,6 @@ export default class workOrderIngest extends LightningElement {
     get isStateDay(){
         return (this.currentState == 'Day');
     }
-    get isStateLiveAppraisal(){
-        return (this.currentState == 'Appraisal');
-    }
     get isStateVehicles(){
         return (this.currentState == 'Vehicles');
     }
@@ -264,7 +256,7 @@ export default class workOrderIngest extends LightningElement {
         return (this.siriusxmOffers.length > 0);
     }
     get isHideButtons(){
-        return (this.currentState == 'Inspection' || this.currentState == 'True360' || this.currentState == 'SiriusXM' || this.currentState == 'Appraisal');
+        return (this.currentState == 'Inspection' || this.currentState == 'True360' || this.currentState == 'SiriusXM');
     }
     get isInspectionUnavailable(){
         return (!this.inspectionAMOffer && !this.inspectionPMOffer);
@@ -320,7 +312,6 @@ export default class workOrderIngest extends LightningElement {
         var lst = [];
         lst.push( { label:'Single Appointment', value:'Single' } );
         if ( this.displayRevolvingAppts ) { lst.push( { label:'Revolving Appointments', value:'Revolving' } ); }
-        if( this.displayLiveAppraisal ) lst.push( { label:'Live Appraisal', value:'Live' } );
         return lst;
     }
 
@@ -354,9 +345,6 @@ export default class workOrderIngest extends LightningElement {
         this.workOrderInfo.T360Count = event.detail.value;
         if(this.workOrderInfo.T360Count == ""){
             this.workOrderInfo.T360Count = 0;
-        }
-        else if(this.account.Halt_True360_Appointments__c && event.detail.value > 0) {
-            this.displayToast('True 360', 'This dealership is not approved for any True 360 inspections at this time. Please direct the dealer to call (716) 954-9515 or email ar@true360.com with questions.', 'error', 'sticky');
         }
     }
     handleSXM(event){
@@ -394,7 +382,7 @@ export default class workOrderIngest extends LightningElement {
                 }
                 if(this.timeSelection === 'Later'){
                     this.workOrderInfo.time = 'Later';
-                    if ( this.displayRevolvingAppts  || this.displayLiveAppraisal) {
+                    if ( this.displayRevolvingAppts ) {
                         this.currentState = 'Revolving';
                     } else {
                         this.currentState = 'Day';
@@ -410,9 +398,6 @@ export default class workOrderIngest extends LightningElement {
                 if(this.revolvingAppointmentSelection === 'Single'){
                     this.currentState = 'Day';
                 }
-                if(this.revolvingAppointmentSelection === 'Live'){
-                    this.currentState = 'Appraisal';
-                }
                 //do stuff
                 break;
 
@@ -427,8 +412,6 @@ export default class workOrderIngest extends LightningElement {
                     // Error
                     var message = 'You need to select at least 1 job type';
                     this.displayToast('Warning', message, 'warning', 'dismissable');
-                } else if(this.workOrderInfo.T360Count > 0 && this.account.Halt_True360_Appointments__c) {
-                    this.displayToast('True 360', 'This dealership is not approved for any True 360 inspections at this time. Please direct the dealer to call (716) 954-9515 or email ar@true360.com with questions.', 'error', 'sticky');
                 } else {
                     this.currentState = 'Address';
                 }

@@ -1,141 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>ACV_Capital_Opportunity_Re_assigned_Notification</fullName>
-        <description>ACV Capital:  Opportunity Re-assigned Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>ACV_Capital_Email_Templates/IST_Created_an_Opportunity_Fo_rACV_Capital</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_Accelerate</fullName>
-        <description>ACV Capital Welcome - Accelerate</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Accelerate_1635870219164</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_Advantage</fullName>
-        <description>ACV Capital Welcome - Advantage</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Advantage_1635868671467</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_Advantage_Accelerate_Follow_Up</fullName>
-        <description>ACV Capital Welcome - Advantage_Accelerate - Follow-Up</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Advantage_Accelerate_Follow_Up_1646427747390</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_Advantage_Accelerate_Initial</fullName>
-        <description>ACV Capital Welcome - Advantage_Accelerate - Initial</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Advantage_Accelerate_Initial_Email_1646427474565</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_FloorPlan_Accelerate_Follow_Up</fullName>
-        <description>ACV Capital Welcome - FloorPlan_Accelerate - Follow-Up</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_FloorPlan_Accelerate_Follow_Up_1646425767657</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_FloorPlan_Accelerate_Initial</fullName>
-        <description>ACV Capital Welcome - FloorPlan_Accelerate - Initial</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_FloorPlan_Accelerate_Initial_1646425160637</template>
-    </alerts>
-    <alerts>
-        <fullName>ACV_Capital_Welcome_Floorplan</fullName>
-        <description>ACV Capital Welcome - Floorplan</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>Capital_Account_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>acvadvance@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Floorplan_1635868148832</template>
-    </alerts>
-    <alerts>
         <fullName>Capital_Opportunity_Approved</fullName>
         <description>Capital Opportunity Approved</description>
         <protected>false</protected>
         <recipients>
-            <recipient>ekorzenski@acvauctions.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
             <recipient>emilywirth@acvauctions.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>grainville@acvauctions.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>
@@ -152,10 +22,6 @@
         </recipients>
         <recipients>
             <recipient>jstephenson@acvauctions.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>kmagruder@acvauctions.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>

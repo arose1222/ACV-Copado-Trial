@@ -652,53 +652,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>S3_Migration_Status__c</fullName>
-        <description>This is used to check whether legacy Dealer Doc attachments are migrated to S3 or not.</description>
-        <externalId>false</externalId>
-        <label>S3 Migration Status</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Migrated</fullName>
-                    <default>false</default>
-                    <label>Migrated</label>
-                </value>
-                <value>
-                    <fullName>Upload Failed</fullName>
-                    <default>false</default>
-                    <label>Upload Failed</label>
-                </value>
-                <value>
-                    <fullName>No Files</fullName>
-                    <default>false</default>
-                    <label>No Files</label>
-                </value>
-                <value>
-                    <fullName>Multiple Files</fullName>
-                    <default>false</default>
-                    <label>Multiple Files</label>
-                </value>
-                <value>
-                    <fullName>Invalid File Type</fullName>
-                    <default>false</default>
-                    <label>Invalid File Type</label>
-                </value>
-                <value>
-                    <fullName>Bigger File</fullName>
-                    <default>false</default>
-                    <label>Bigger File</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>TM_Email__c</fullName>
         <externalId>false</externalId>
         <label>TM Email</label>
@@ -754,9 +707,6 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>IST_Account_Manager__c</columns>
-        <columns>Document_Type__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Related_Dealer_License__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -778,11 +728,6 @@
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Dealer_Docs__c.Certificate_of_Insurance</value>
-        </filters>
-        <filters>
-            <field>Thirty_Day_Reminder_Email_Sent__c</field>
-            <operation>equals</operation>
-            <value>1</value>
         </filters>
         <label>ACV Capital - Certificate of Insurance</label>
     </listViews>
@@ -1372,29 +1317,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Dealer_License</fullName>
@@ -1657,33 +1579,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Bigger File</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>License_Renewal_Confirmation</fullName>
@@ -1771,29 +1666,6 @@
             </values>
             <values>
                 <fullName>Requires BDR</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2084,33 +1956,6 @@
             </values>
             <values>
                 <fullName>Requires BDR</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>S3_Migration_Status__c</picklist>
-            <values>
-                <fullName>Bigger File</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invalid File Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Migrated</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multiple Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Files</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Upload Failed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

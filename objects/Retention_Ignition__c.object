@@ -86,13 +86,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>DealerOutreachContainer</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>LightningComponent</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
+        <formFactor>Large</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -205,19 +203,6 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Account_Activity_Status__c</fullName>
-        <description>This is the Activity Bucket the related Account fell in at time of Retention call. Populated by Dealer Outreach</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This is the Activity Bucket the related Account fell in at time of Retention call.</inlineHelpText>
-        <label>Account Activity Status</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>All_Time_Arb_Rate__c</fullName>
@@ -501,7 +486,6 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <valueSet>
-            <controllingField>Type__c</controllingField>
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
@@ -550,106 +534,7 @@
                     <default>false</default>
                     <label>Valid Business Reason</label>
                 </value>
-                <value>
-                    <fullName>Pricing Too High</fullName>
-                    <default>false</default>
-                    <label>Pricing Too High</label>
-                </value>
-                <value>
-                    <fullName>Lack of Inventory in Area</fullName>
-                    <default>false</default>
-                    <label>Lack of Inventory in Area</label>
-                </value>
-                <value>
-                    <fullName>Forgot About ACV</fullName>
-                    <default>false</default>
-                    <label>Forgot About ACV</label>
-                </value>
-                <value>
-                    <fullName>No Time to Bid</fullName>
-                    <default>false</default>
-                    <label>No Time to Bid</label>
-                </value>
-                <value>
-                    <fullName>Disagree with ACV Policy</fullName>
-                    <default>false</default>
-                    <label>Disagree with ACV Policy</label>
-                </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Buy Fee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Good experience with ACV</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Arbitration</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Titles</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Payments</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Transportation</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Unwind</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Competition</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Retention</controllingFieldValue>
-                <controllingFieldValue>NPS</controllingFieldValue>
-                <controllingFieldValue>Introduction</controllingFieldValue>
-                <valueName>Valid Business Reason</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Ignition</controllingFieldValue>
-                <valueName>Pricing Too High</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Ignition</controllingFieldValue>
-                <valueName>Lack of Inventory in Area</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Ignition</controllingFieldValue>
-                <valueName>Forgot About ACV</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Ignition</controllingFieldValue>
-                <valueName>No Time to Bid</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Ignition</controllingFieldValue>
-                <valueName>Disagree with ACV Policy</valueName>
-            </valueSettings>
         </valueSet>
         <visibleLines>4</visibleLines>
     </fields>
@@ -1135,6 +1020,11 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Buy Fee Task</fullName>
+                    <default>false</default>
+                    <label>Buy Fee Task</label>
+                </value>
+                <value>
                     <fullName>Retention</fullName>
                     <default>false</default>
                     <label>Retention</label>
@@ -1153,12 +1043,6 @@
                     <fullName>Introduction</fullName>
                     <default>false</default>
                     <label>Introduction</label>
-                </value>
-                <value>
-                    <fullName>Buy Fee Task</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Buy Fee Task</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1295,7 +1179,6 @@
     </nameField>
     <pluralLabel>Retentions &amp; Ignitions</pluralLabel>
     <searchLayouts>
-        <excludedStandardButtons>New</excludedStandardButtons>
         <searchResultsAdditionalFields>DateofCall__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ContactName__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>No_Purchase_Reason__c</searchResultsAdditionalFields>

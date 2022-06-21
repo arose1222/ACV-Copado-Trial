@@ -1,10 +1,3 @@
-/**
- * Test class that works with the Import Manager LWC controller.
- * Bill Sutton modified the number of records we are processing and disabled the Trigger Framework in an effort to decrease test time
- * @author Adam Richbart
- * @since 2022
- * @group Inspector Dispatch
- */
 @isTest
 public with sharing class ImportManagerBatchTest {
     private static final String BUFFALO_ST = 'Buffalo';
@@ -14,8 +7,8 @@ public with sharing class ImportManagerBatchTest {
     private static Integer IMPORT_BATCH_SIZE {
         get {
             if ( IMPORT_BATCH_SIZE == null ) {
-                //Salesforce_Setting__mdt batchSize = [ SELECT Value__c FROM Salesforce_Setting__mdt WHERE DeveloperName = 'Import_Manager_Batch_Size' LIMIT 1 ];
-                IMPORT_BATCH_SIZE = 10; //Integer.valueOf( batchSize.Value__c );
+                Salesforce_Setting__mdt batchSize = [ SELECT Value__c FROM Salesforce_Setting__mdt WHERE DeveloperName = 'Import_Manager_Batch_Size' LIMIT 1 ];
+                IMPORT_BATCH_SIZE = Integer.valueOf( batchSize.Value__c );
             }
             return IMPORT_BATCH_SIZE;
         }
@@ -24,7 +17,6 @@ public with sharing class ImportManagerBatchTest {
 
     @TestSetup
     static void makeData(){
-        TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
         Account a = new Account(Name='test', Dealership_Id__c = DEALER_ID, legal_Name__c='test', dealer_type__c='1' );
         insert a;
 
@@ -59,7 +51,6 @@ public with sharing class ImportManagerBatchTest {
         }
 
         Test.startTest();
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             Id importJobId =  assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         Test.stopTest();
 
@@ -106,7 +97,6 @@ public with sharing class ImportManagerBatchTest {
         createLineLst[0].vin = null;
 
         Test.startTest();
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             Id importJobId =  assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         Test.stopTest();
 
@@ -146,7 +136,6 @@ public with sharing class ImportManagerBatchTest {
 
 
         Test.startTest();
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             Id importJobId =  assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         Test.stopTest();
 
@@ -187,7 +176,6 @@ public with sharing class ImportManagerBatchTest {
         createLineLst.add( newRec );
 
         Test.startTest();
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             Id importJobId =  assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         Test.stopTest();
 
@@ -259,7 +247,6 @@ public with sharing class ImportManagerBatchTest {
         Test.startTest();
         Id importJobId;
         System.runAs(u) {
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             importJobId = assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         }
              
@@ -301,7 +288,6 @@ public with sharing class ImportManagerBatchTest {
         createLineLst.add( newRec );
 
         Test.startTest();
-            TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
             Id importJobId =  assignmentManagerCreateWorkLinesCont.processMassRows( JSON.serialize( createLineLst ) );
         Test.stopTest();
 

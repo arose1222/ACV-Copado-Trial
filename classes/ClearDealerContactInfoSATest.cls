@@ -30,7 +30,6 @@ public class ClearDealerContactInfoSATest {
         System.assert( sa.ContactId == null, 'The contact information was not properly removed' );
     }
 
-    /*  2/26/2022 - COMMENTED OUT - Work Type Validation Rule prevents changes.
     @IsTest
     static void updateSA(){
         WorkType fbi = [ SELECT Id, Name, EstimatedDuration, DurationType, Work_Type_Unique_ID__c FROM WorkType WHERE Work_Type_Unique_Id__c = :WORK_TYPE_UNIQUE_NAME LIMIT 1 ];
@@ -51,5 +50,4 @@ public class ClearDealerContactInfoSATest {
 
         System.assert( sa.ContactId == null, 'The contact information was not properly removed' );
     }
-    */
 }

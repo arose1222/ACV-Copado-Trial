@@ -238,7 +238,7 @@ public class ProactiveWorkTest {
 
         List<WorkOrder> workOrderList = new List<WorkOrder>();
 
-        WorkType cpoWorkType = [SELECT Id, EstimatedDuration, DurationType FROM WorkType WHERE Work_Type_Unique_ID__c = 'CPOBM'];
+        WorkType cpoWorkType = [SELECT Id, EstimatedDuration, DurationType FROM WorkType WHERE Work_Type_Unique_ID__c = 'cpo120'];
 
         WorkOrder workOrder = new WorkOrder(
             AccountId = accountRec.Id,
@@ -276,7 +276,7 @@ public class ProactiveWorkTest {
 
         List<WorkOrder> workOrderList = new List<WorkOrder>();
 
-        WorkType cpoWorkType = [SELECT Id, EstimatedDuration, DurationType FROM WorkType WHERE Work_Type_Unique_ID__c = 'CPOBM'];
+        WorkType cpoWorkType = [SELECT Id, EstimatedDuration, DurationType FROM WorkType WHERE Work_Type_Unique_ID__c = 'cpo120'];
 
         WorkOrder workOrder = new WorkOrder(
             AccountId = accountRec.Id,

@@ -46,11 +46,6 @@ global class RevolvingGenerationBatch implements Database.Batchable<SObject>, Da
                                 'Is_Active__c,'+
                                 'Timeline__c,' +
                                 'Timeline__r.Account__c,' +
-                                'Timeline__r.City__c,' +
-                                'Timeline__r.Country__c,' +
-                                'Timeline__r.Postal_Code__c,' +
-                                'Timeline__r.State__c,' +
-                                'Timeline__r.Street__c,' +
                                 'Timeline__r.Account__r.BillingCity,' +
                                 'Timeline__r.Account__r.BillingCountry,' +
                                 'Timeline__r.Account__r.BillingLatitude,' +
@@ -63,14 +58,13 @@ global class RevolvingGenerationBatch implements Database.Batchable<SObject>, Da
         						'Timeline__r.Work_Type__c,'+
         						'Timeline__r.Work_Type__r.DurationInMinutes,'+
                                 'Timeline__r.Account__r.Service_Territory__c,' +
-                                'Timeline__r.Account__r.Service_Territory__r.OperatingHours.TimeZone,' +
                                 'Timeline__r.Average_Number_Cars__c,' +
                                 'Start_Time__c,End_Time__c,' +
                                 'Farthest_Date_Generated__c ' +
                             'FROM Occurrence__c ' +
                             'WHERE Is_Active__c = TRUE ' +
                             'AND Timeline__c != NULL ' +
-                            'AND (Timeline__r.Street__c != NULL OR Timeline__r.Account__r.BillingStreet != NULL) ' +
+                            'AND Timeline__r.Account__r.BillingStreet != NULL ' +
                             'AND (Timeline__r.End_Date__c = NULL OR Timeline__r.End_Date__c >= ' + dateString + ' ) ' +
                             'AND (Farthest_Date_Generated__c < :horizon OR Farthest_Date_Generated__c = null)';
 

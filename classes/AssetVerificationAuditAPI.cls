@@ -119,7 +119,7 @@ global class AssetVerificationAuditAPI {
                                                     FROM Invoice__c WHERE Status__c = 'Open' AND Account__r.Dealership_Id__c IN :dealershipIdSet 
                                                     AND Invoice_Id__c NOT IN :invoiceNumberSet ] ) 
                 {
-                    if ( invoiceRec.Work_Order_Line_Items__r.size() > 0 ) {
+                    if ( invoiceRec.Work_Order_Line_Items__r != null ) {
                         WorkOrderLineItem woli = invoiceRec.Work_Order_Line_Items__r[0]; // Most Recent Work Order created
                         AuditObject auditRec = auditRefMap.get( woli.WorkOrder.Account.Dealership_ID__c );
                         if ( auditRec != null ) {

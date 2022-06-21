@@ -56,7 +56,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
+                <field>Drivably_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -202,10 +202,6 @@
                 <behavior>Edit</behavior>
                 <field>TrueFrame_Dealership__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Major_Account__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -322,12 +318,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>primary_contact__c</fields>
-        <fields>Active__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>Type__c</fields>
-        <fields>id__c</fields>
         <relatedList>Affiliation__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -375,6 +365,7 @@
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
         <fields>Monthly_Buy_Percent__c</fields>
+        <fields>Monthly_Sell_Percent__c</fields>
         <relatedList>Account.Duplicate_Of__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>

@@ -3,8 +3,8 @@
     <actionCalls>
         <name>FlowErrorHandling</name>
         <label>FlowErrorHandling</label>
-        <locationX>2362</locationX>
-        <locationY>1853</locationY>
+        <locationX>2536</locationX>
+        <locationY>2221</locationY>
         <actionName>FlowErrorHandling</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -28,7 +28,7 @@
         <connector>
             <targetReference>ResponseDecision</targetReference>
         </connector>
-        <flowTransactionModel>NewTransaction</flowTransactionModel>
+        <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
             <name>inputList</name>
             <value>
@@ -60,7 +60,7 @@
             <name>transpoGuid</name>
         </outputParameters>
     </actionCalls>
-    <apiVersion>51.0</apiVersion>
+    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>Assign_Other_Delivery_Contact</name>
         <label>Assign Other Delivery Contact</label>
@@ -263,8 +263,8 @@
     <assignments>
         <name>AssignFlowError</name>
         <label>AssignFlowError</label>
-        <locationX>2536</locationX>
-        <locationY>1846</locationY>
+        <locationX>2391</locationX>
+        <locationY>2214</locationY>
         <assignmentItems>
             <assignToReference>FaultCollection</assignToReference>
             <operator>Assign</operator>
@@ -601,14 +601,6 @@
         </value>
     </choices>
     <choices>
-        <name>no</name>
-        <choiceText>no</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>no</stringValue>
-        </value>
-    </choices>
-    <choices>
         <name>SellerBilling</name>
         <choiceText>{!fmSellerBillingChoiceDisplay}</choiceText>
         <dataType>String</dataType>
@@ -630,14 +622,6 @@
         <dataType>String</dataType>
         <value>
             <stringValue>Other</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>yes_1</name>
-        <choiceText>yes</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>yes</stringValue>
         </value>
     </choices>
     <constants>
@@ -866,43 +850,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Create_Transpo_Case_decision</name>
-        <label>Create Transpo Case?</label>
-        <locationX>2355</locationX>
-        <locationY>2223</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>DoYouWantToCreateThisCase</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Create_Transpo_Case_Decision_1</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>yes_1</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Transpo_Case</targetReference>
-            </connector>
-            <label>Create Transpo Case</label>
-        </rules>
-        <rules>
-            <name>Do_not_create_case</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Create_Transpo_Case_Decision_1</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>no</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Do_not_create_Transpo_Case</targetReference>
-            </connector>
-            <label>Do not create case</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Delivery_Other_was_Selected</name>
         <label>Delivery Other was Selected</label>
         <locationX>700</locationX>
@@ -957,31 +904,6 @@
                 <targetReference>Delivery_Contact_Select</targetReference>
             </connector>
             <label>DeliveryAdminFound</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Find_Existing_Legacy_Id_Decision</name>
-        <label>Find Existing Legacy Id Decision</label>
-        <locationX>2223</locationX>
-        <locationY>2005</locationY>
-        <defaultConnector>
-            <targetReference>Do_you_want_to_create_this_Transportation_Case</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Legacy Id Does not Exist</defaultConnectorLabel>
-        <rules>
-            <name>Legacy_Id_Exists</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Find_Existing_Legacy_ID.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Go_to_existing_Case</targetReference>
-            </connector>
-            <label>Legacy Id Exists</label>
         </rules>
     </decisions>
     <decisions>
@@ -1092,6 +1014,40 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Transpo_Created_within_Last_6_Mins</name>
+        <label>Transpo Created within Last 6 Mins</label>
+        <locationX>1481</locationX>
+        <locationY>1867</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yup</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fmCaseCreatedwithin6minsLen</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>X6min_Error</targetReference>
+            </connector>
+            <label>Yup</label>
+        </rules>
+        <rules>
+            <name>Nope</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fmCaseCreatedwithin6minsLen</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <label>Nope</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_delivery_address</name>
         <label>Which delivery address?</label>
         <locationX>1125</locationX>
@@ -1116,8 +1072,7 @@
             <label>Other</label>
         </rules>
     </decisions>
-    <description>Use this flow to create a transpo request without an auction ID
-Adding Retry loop outside of callout to transport api</description>
+    <description>Use this flow to create a transpo request without an auction ID</description>
     <dynamicChoiceSets>
         <name>AssociatedLocationGetRecordSet</name>
         <dataType>String</dataType>
@@ -1355,14 +1310,6 @@ Adding Retry loop outside of callout to transport api</description>
             <field>Notes__c</field>
         </outputAssignments>
         <valueField>Full_Location_Address__c</valueField>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>Picklist_Transport_Request_Type</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
-        <picklistField>Transport_Request_Type__c</picklistField>
-        <picklistObject>Case</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>Pickup_Contact_Choice_set</name>
@@ -1621,8 +1568,8 @@ Adding Retry loop outside of callout to transport api</description>
     <recordCreates>
         <name>Create_Transpo_Case</name>
         <label>Create Transpo Case</label>
-        <locationX>2529</locationX>
-        <locationY>2233</locationY>
+        <locationX>2209</locationX>
+        <locationY>2215</locationY>
         <assignRecordIdToReference>objTranspoCase.Id</assignRecordIdToReference>
         <connector>
             <targetReference>Get_Transpo_Case</targetReference>
@@ -1727,12 +1674,6 @@ Adding Retry loop outside of callout to transport api</description>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Description</field>
-            <value>
-                <elementReference>Transportation_Case_Notes</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Origin</field>
             <value>
                 <stringValue>NON_CAPTIVE</stringValue>
@@ -1796,6 +1737,12 @@ Adding Retry loop outside of callout to transport api</description>
             <field>Transportation_Distance__c</field>
             <value>
                 <elementReference>respDistance</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Transportation_Notes__c</field>
+            <value>
+                <elementReference>Transportation_Case_Notes</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1869,27 +1816,6 @@ Adding Retry loop outside of callout to transport api</description>
         <object>Vehicle__c</object>
     </recordCreates>
     <recordLookups>
-        <name>Find_Existing_Legacy_ID</name>
-        <label>Find Existing Legacy ID</label>
-        <locationX>2058</locationX>
-        <locationY>2015</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Find_Existing_Legacy_Id_Decision</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>ACV_Transportation_Request_Id__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>respLegacyId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Case</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Auction</name>
         <label>Get Auction</label>
         <locationX>539</locationX>
@@ -1956,8 +1882,8 @@ Adding Retry loop outside of callout to transport api</description>
     <recordLookups>
         <name>Get_Transpo_Case</name>
         <label>Get Transpo Case</label>
-        <locationX>2532</locationX>
-        <locationY>2426</locationY>
+        <locationX>2218</locationX>
+        <locationY>2448</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Confirmation</targetReference>
@@ -2011,6 +1937,46 @@ Adding Retry loop outside of callout to transport api</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>CaseNumber</queriedFields>
         <queriedFields>Status</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Check for a related transportation case again</description>
+        <name>Get_Transpo_Cases_Again</name>
+        <label>Get Transpo Cases Again</label>
+        <locationX>1492</locationX>
+        <locationY>1728</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Transpo_Created_within_Last_6_Mins</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Auction_Number__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>objCaseRTID.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>X6_Minutes_from_Creation__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+        <outputReference>CaseCreatedwithin6mins</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>CaseNumber</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <name>Get_Transportation_RTID</name>
@@ -2292,11 +2258,11 @@ Adding Retry loop outside of callout to transport api</description>
     <recordLookups>
         <name>GetTranspoQueueId</name>
         <label>GetTranspoQueueId</label>
-        <locationX>2057</locationX>
-        <locationY>2225</locationY>
+        <locationX>2062</locationX>
+        <locationY>2218</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Find_Existing_Legacy_ID</targetReference>
+            <targetReference>Create_Transpo_Case</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -2320,8 +2286,8 @@ Adding Retry loop outside of callout to transport api</description>
     <screens>
         <name>Buyer_Pickup_Location</name>
         <label>Buyer Pickup Location</label>
-        <locationX>1127</locationX>
-        <locationY>881</locationY>
+        <locationX>1136</locationX>
+        <locationY>855</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2424,8 +2390,8 @@ Adding Retry loop outside of callout to transport api</description>
     <screens>
         <name>Confirmation</name>
         <label>Confirmation</label>
-        <locationX>2532</locationX>
-        <locationY>2587</locationY>
+        <locationX>2436</locationX>
+        <locationY>2449</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2476,45 +2442,6 @@ Adding Retry loop outside of callout to transport api</description>
             <fieldText>Select Delivery Contact</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>false</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Do_not_create_Transpo_Case</name>
-        <label>Do not create Transpo Case</label>
-        <locationX>2365</locationX>
-        <locationY>2425</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>ChosenNottoCreateCase</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;You have chosen not to create a transportation case. The Transportation Integration will create the case for you, please refresh the related Cases associated with this auction.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Do_you_want_to_create_this_Transportation_Case</name>
-        <label>Do you want to create this Transportation Case?</label>
-        <locationX>2229</locationX>
-        <locationY>2223</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Create_Transpo_Case_decision</targetReference>
-        </connector>
-        <fields>
-            <name>Create_Transpo_Case_Decision_1</name>
-            <choiceReferences>yes_1</choiceReferences>
-            <choiceReferences>no</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Do you want to create this Transportation Case?</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2694,14 +2621,11 @@ Adding Retry loop outside of callout to transport api</description>
     <screens>
         <name>Error_Message</name>
         <label>Error Message</label>
-        <locationX>2064</locationX>
-        <locationY>1854</locationY>
+        <locationX>2709</locationX>
+        <locationY>2221</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Find_Existing_Legacy_ID</targetReference>
-        </connector>
         <fields>
             <name>errorHandler</name>
             <fieldText>&lt;p&gt;Please reach out to a Salesforce Admin with the following error message:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 15px; font-family: Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; color: rgb(0, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -2760,22 +2684,6 @@ Adding Retry loop outside of callout to transport api</description>
         <fields>
             <name>FailedAuctionDisplayText</name>
             <fieldText>ALERT: The Auction does not have a successful status. The current Auction status is {!objAuction.status__c}. Please review the Auction.</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Go_to_existing_Case</name>
-        <label>Go to existing Case</label>
-        <locationX>2420</locationX>
-        <locationY>2005</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>TextForExistingCase</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;This transportation case has already been created here: &lt;/span&gt;&lt;a href=&quot;https://acvauctions--alexdev.lightning.force.com/%7B!Find_existing_Legacy_ID.Id%7D&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Find_Existing_Legacy_ID.CaseNumber}&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -2876,17 +2784,6 @@ You will need to know the price that will be charged to the dealership that is r
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <scale>2</scale>
-        </fields>
-        <fields>
-            <name>Transport_Request_Type</name>
-            <choiceReferences>Picklist_Transport_Request_Type</choiceReferences>
-            <dataType>String</dataType>
-            <defaultValue>
-                <stringValue>Non-Captive</stringValue>
-            </defaultValue>
-            <fieldText>Transport Request Type</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
         </fields>
         <fields>
             <name>Transportation_Case_Notes</name>
@@ -3161,6 +3058,57 @@ You will need to know the price that will be charged to the dealership that is r
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Test</name>
+        <label>APITestScreen</label>
+        <locationX>1831</locationX>
+        <locationY>2070</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>STATCode</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respCode</elementReference>
+            </defaultValue>
+            <fieldText>STATCode</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>GUID</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respGuid</elementReference>
+            </defaultValue>
+            <fieldText>GUID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>ResponseCode</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respCode</elementReference>
+            </defaultValue>
+            <fieldText>Response</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>ERRORMESSAGE</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respErrorMessage</elementReference>
+            </defaultValue>
+            <fieldText>ERRORMESSAGE</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Vehicle_Data</name>
         <label>Vehicle Data</label>
         <locationX>1147</locationX>
@@ -3290,6 +3238,22 @@ You will need to know the price that will be charged to the dealership that is r
         <fields>
             <name>VehicleCreationFault</name>
             <fieldText>&lt;p&gt;&lt;b&gt;Vehicle Creation Failure&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please reach out to a Salesforce Admin with the following error message:&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 15px; font-family: Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; color: rgb(0, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>X6min_Error</name>
+        <label>6min Error</label>
+        <locationX>1488</locationX>
+        <locationY>2078</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>DisplayTextfor6MinError</name>
+            <fieldText>&lt;p&gt;Please check that another team member hasn&apos;t already created a transportation case for this Auction within the last 6 minutes. If another transportation case is needed for this auction, please wait 6 minutes and try again.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!CaseCreatedwithin6mins.Id}&quot; target=&quot;_blank&quot;&gt;Link to Auction&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>

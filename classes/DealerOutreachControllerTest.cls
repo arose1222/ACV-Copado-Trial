@@ -4,21 +4,17 @@ public class DealerOutreachControllerTest {
     @isTest
     static void testCreateRetention() {
         Account acc = TestUtility.createAccount('Test');
-        acc.Last_30_Days_Bought__c = 5;
-        acc.Purchases_All_Time__c = 5;
-        acc.Date_of_Last_Sale__c = System.today().addDays(-3);
-        acc.CreatedDate = System.today().addDays(-70);
         insert acc;
         Contact con = TestUtility.createContact(acc);
         insert con;
 
-        String jsonString = '{"account":"' + acc.Id + '","contact":"' + con.Id + '","comments":"test comments","direction":"Outbound","noAnswer":"No answer","callType":"Retention","experience":"Arbitration;Payments","nextSteps":"test"}';
+        String jsonString = '{"account":"' + acc.Id + '","contact":"' + con.Id + '","comments":"test comments","direction":"Outbound","noAnswer":"No answer","callType":"Retention","experience":["Arbitration","Payments"],"nextSteps":"test"}';
         
         Test.startTest();
         DealerOutreachController.createRetention(jsonString);
         Test.stopTest();
 
-        Retention_Ignition__c retentionRecord = [SELECT Id, AccountName__c, ContactName__c, Dealer_Comments__c, Call_Direction__c, No_Answer__c, Type__c, Latest_ACV_Experience__c, Next_Steps__c, Account_Activity_Status__c FROM Retention_Ignition__c];
+        Retention_Ignition__c retentionRecord = [SELECT Id, AccountName__c, ContactName__c, Dealer_Comments__c, Call_Direction__c, No_Answer__c, Type__c, Latest_ACV_Experience__c, Next_Steps__c FROM Retention_Ignition__c];
         System.assertEquals(acc.Id, retentionRecord.AccountName__c);
         System.assertEquals(con.Id, retentionRecord.ContactName__c);
         System.assertEquals('test comments', retentionRecord.Dealer_Comments__c);
@@ -27,7 +23,6 @@ public class DealerOutreachControllerTest {
         System.assertEquals('Retention', retentionRecord.Type__c);
         System.assertEquals('Arbitration;Payments', retentionRecord.Latest_ACV_Experience__c);
         System.assertEquals('test', retentionRecord.Next_Steps__c);
-        System.assertEquals('Normal', retentionRecord.Account_Activity_Status__c);
 
         acc = [SELECT Id, Account_Management_Next_Steps__c FROM Account WHERE Id = :acc.Id];
         System.assertEquals('test', acc.Account_Management_Next_Steps__c);
@@ -75,21 +70,4 @@ public class DealerOutreachControllerTest {
         System.assertEquals(true,hasAccess, 'System Admin should have access to create Retention_Ignition__c records');
     }
 
-    @isTest
-    static void testLockedAccount(){
-        Test.startTest();
-            Account acc = TestUtility.createAccount();
-            insert acc;
-        Test.stopTest();
-
-        System.assertEquals(false, DealerOutreachController.checkForLockedAccount(acc.Id));
-
-
-    }
-
-    @isTest
-    static void getISTTaskRecordTypeId() {
-        Id istRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('Inside_Sales').getRecordTypeId();
-        System.assertEquals(istRecordTypeId, DealerOutreachController.getInsideSalesRecordTypeId());
-    }
 }

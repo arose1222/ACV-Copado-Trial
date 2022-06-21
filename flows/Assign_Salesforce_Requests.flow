@@ -130,13 +130,13 @@
                 <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Transport_Payments </stringValue>
+                    <stringValue>Transport_Payments</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_13_A1</targetReference>
             </connector>
-            <label>Assign Transport Payments</label>
+            <label>Assign Transportation Requests</label>
         </rules>
     </decisions>
     <decisions>
@@ -388,61 +388,6 @@
                 <leftValueReference>myVariable_current.My_Request_Is_Related_To__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Field Service Lightning</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_7_A1</targetReference>
-            </connector>
-            <label>Assign Dorothy</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>4.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision8</name>
-        <label>myDecision8</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision10</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_9</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.My_Request_Is_Related_To__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
                     <stringValue>Territory zip code changes</stringValue>
                 </rightValue>
             </conditions>
@@ -540,9 +485,64 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_9_A1</targetReference>
+                <targetReference>myRule_7_A1</targetReference>
             </connector>
             <label>Assign Kelley Bartlet</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision10</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.My_Request_Is_Related_To__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Field Service Lightning</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>Assign Dorothy</label>
         </rules>
     </decisions>
     <description>This process automatically assigns someone to a Salesforce Request, based on what the request is related to.</description>
@@ -557,7 +557,7 @@
         <dataType>Boolean</dataType>
         <expression>{!myVariable_current.Assigned_To__c} &lt;&gt; null</expression>
     </formulas>
-    <interviewLabel>Assign_Salesforce_Requests-22_InterviewLabel</interviewLabel>
+    <interviewLabel>Assign_Salesforce_Requests-21_InterviewLabel</interviewLabel>
     <label>Assign Salesforce Requests</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -697,7 +697,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_13_A1</name>
-        <label>Assign Kathleen</label>
+        <label>Assign Kathleen Daley</label>
         <locationX>1300</locationX>
         <locationY>200</locationY>
         <filterLogic>and</filterLogic>
@@ -1039,95 +1039,8 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_7_A1</name>
-        <label>Assign Dorothy</label>
-        <locationX>700</locationX>
-        <locationY>200</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Assigned To</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>User</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideLabel</name>
-                <value>
-                    <stringValue>Dorothy Robertson</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>User</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Assigned_To__c</field>
-            <value>
-                <stringValue>0050a00000MknrhAAB</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Salesforce_Request__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[Salesforce_Request__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_9_A1</name>
         <label>Assign Alex</label>
-        <locationX>900</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1183,6 +1096,93 @@
             <field>Assigned_To__c</field>
             <value>
                 <stringValue>0050a00000JEYxYAAX</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Salesforce_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Salesforce_Request__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Assign Dorothy</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Assigned To</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideLabel</name>
+                <value>
+                    <stringValue>Dorothy Robertson</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>User</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Assigned_To__c</field>
+            <value>
+                <stringValue>0050a00000MknrhAAB</stringValue>
             </value>
         </inputAssignments>
         <object>Salesforce_Request__c</object>

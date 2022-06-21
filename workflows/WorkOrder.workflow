@@ -11,17 +11,6 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>Unfiled_Non_Public_Templates/Work_Order_Needs_Assignment</template>
     </alerts>
-    <fieldUpdates>
-        <fullName>Update_Final_Audit_Score</fullName>
-        <description>The value of this field is equivalent to &apos;Scoring Logic Summary&apos; on work order object.</description>
-        <field>Final_Audit_Score__c</field>
-        <formula>Scoring_Logic_Summary__c</formula>
-        <name>Update &apos;Final Audit Score&apos;</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
     <rules>
         <fullName>Work Order Assignment Notification</fullName>
         <actions>

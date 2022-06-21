@@ -3,7 +3,7 @@ public without sharing class ISTCaseListController {
     @AuraEnabled(cacheable = true)
     public static List<Case> getAllCases(String accountId, Boolean asSeller){
         // if asSeller = true - query seller dealership relationship
-        String queryString = 'Select Id, CaseNumber, Status, Age_in_Days__c, RecordType.Name, RecordTypeId, Title_Attached__c, Auction_Number__r.Name, Auction_Start_Time__c, Vehicle__c,Vehicle_VIN__c, isClosed, Vehicle__r.Year_Make_Model_Trim__c FROM Case WHERE ';
+        String queryString = 'Select Id, CaseNumber, Status, RecordType.Name, RecordTypeId, Auction_Number__r.Name, Vehicle__c,Vehicle_VIN__c, isClosed, Vehicle__r.Year_Make_Model_Trim__c FROM Case WHERE ';
         if (asSeller) {
             queryString += 'Seller_Dealership__c = :accountId';
         }

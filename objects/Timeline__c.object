@@ -187,39 +187,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>City__c</fullName>
-        <externalId>false</externalId>
-        <label>City</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Country__c</fullName>
-        <externalId>false</externalId>
-        <label>Country</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Deactivated_by_Halt_True360_Checkbox__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This Revolving Appointment was deactivated by the Halt True360 Checkbox on the Account.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This Revolving Appointment was deactivated by the Halt True360 Checkbox on the Account.</inlineHelpText>
-        <label>Deactivated by Halt True360 Checkbox</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>End_Date__c</fullName>
         <description>Date that the timeline ends. This can be left null for an indefinite timeline</description>
         <externalId>false</externalId>
@@ -259,17 +226,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Postal_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>Postal Code</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Run_Date_of_Previous_Batch__c</fullName>
@@ -329,30 +285,6 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>State__c</fullName>
-        <externalId>false</externalId>
-        <label>State</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Street__c</fullName>
-        <description>Street Address for all Service Appointments and Work Orders.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Street Address for all Service Appointments and Work Orders.</inlineHelpText>
-        <label>Street</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>User__c</fullName>
@@ -437,13 +369,6 @@ OR(
 ISBLANK( CreatedDate ), 
 !ISBLANK( CreatedDate ) &amp;&amp; DateValue(CreatedDate) &gt; DATE( 2021, 01, 22 ) )</errorConditionFormula>
         <errorMessage>You must fill in the Average Number of Cars for a Revolving Appointment</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Prevent_True360_appointments</fullName>
-        <active>true</active>
-        <description>Prevents the creation of True360 Revolving Appointments based on the Account&apos;s &quot;Halt True360 Appointments&quot; field.</description>
-        <errorConditionFormula>And( Work_Type__r.Work_Type_Unique_ID__c = &apos;true360&apos;,  Account__r.Halt_True360_Appointments__c,  ISNEW())</errorConditionFormula>
-        <errorMessage>This dealership is not approved for any True 360 inspections at this time.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>

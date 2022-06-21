@@ -32,14 +32,6 @@
                 <behavior>Edit</behavior>
                 <field>Description</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Live_Appraisal_Event__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bundled__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -61,6 +53,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Dry_Run__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Dry_Run_Reason__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -375,15 +371,6 @@
         <fields>CreatedBy</fields>
         <fields>CreatedDate</fields>
         <relatedList>ServiceReportRelatedList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Service_Resource__c</fields>
-        <fields>Start_Time__c</fields>
-        <fields>Scheduled_Start__c</fields>
-        <fields>End_Time__c</fields>
-        <fields>Grade__c</fields>
-        <relatedList>Appointment_Offer__c.Service_Appointment__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>ServiceResource</fields>

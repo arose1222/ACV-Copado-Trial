@@ -847,8 +847,7 @@ AND(ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;),
 ISBLANK( Amount__c ))</description>
         <errorConditionFormula>AND((ISPICKVAL(complaint_id__r.valid__c, &quot;Yes&quot;)), 
 AND (NOT(ISPICKVAL(Resolution__c, &quot;ACV to Re-List&quot;))), 
-AND (NOT(ISPICKVAL(Resolution__c, &quot;Unwound Back To Seller&quot;))),
-AND (NOT(ISPICKVAL(Resolution__c, &quot;None&quot;))), 
+AND (NOT(ISPICKVAL(Resolution__c, &quot;Unwound Back To Seller&quot;))), 
 AND(ISPICKVAL( Estimate_Provided__c , &quot;no&quot;)),
 (ISBLANK( Amount__c )))</errorConditionFormula>
         <errorDisplayField>Amount__c</errorDisplayField>

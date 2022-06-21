@@ -34,11 +34,6 @@
         <name>Assigned_To_Completed_Hours__c</name>
     </fields>
     <fields>
-        <label><!-- Auditor Name --></label>
-        <name>Auditor_Name__c</name>
-        <relationshipLabel><!-- Work Orders --></relationshipLabel>
-    </fields>
-    <fields>
         <help><!-- Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories). --></help>
         <label><!-- Beta Flag --></label>
         <name>Beta_Flag__c</name>
@@ -87,10 +82,6 @@
         <label><!-- Visiting Hours --></label>
         <name>FSL__VisitingHours__c</name>
         <relationshipLabel><!-- Work Orders --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Final Audit Score --></label>
-        <name>Final_Audit_Score__c</name>
     </fields>
     <fields>
         <label><!-- Has Required Resource --></label>
@@ -178,11 +169,6 @@
         <name>Revolving_Appointment_Resource__c</name>
     </fields>
     <fields>
-        <help><!-- Roll-up Summary field calculating MAX Value of Work Order Line Items --></help>
-        <label><!-- Scoring Logic Summary --></label>
-        <name>Scoring_Logic_Summary__c</name>
-    </fields>
-    <fields>
         <help><!-- Added formula field for report grouping purposes while Asset Verification 2.0 is being implemented. --></help>
         <label><!-- Request Account&apos;s Service Territory --></label>
         <name>Service_Territory__c</name>
@@ -225,8 +211,16 @@
         <name>WOLI_Cannot_Complete_Status_Category_Cnt__c</name>
     </fields>
     <fields>
+        <label><!-- WOLI Completed Record Count --></label>
+        <name>WOLI_Completed_Record_Count__c</name>
+    </fields>
+    <fields>
         <label><!-- WOLI Completed Status Category Cnt --></label>
         <name>WOLI_Completed_Status_Category_Cnt__c</name>
+    </fields>
+    <fields>
+        <label><!-- WOLI Record Count --></label>
+        <name>WOLI_Record_Count__c</name>
     </fields>
     <fields>
         <label><!-- Work Order Scheduling Priority --></label>
@@ -237,16 +231,8 @@
         <name>X90_Day_Sell_Thru_Rate__c</name>
     </fields>
     <validationRules>
-        <errorMessage><!-- This dealership is not approved for any True 360 inspections at this time. --></errorMessage>
-        <name>Prevent_True360_appointments</name>
-    </validationRules>
-    <validationRules>
         <errorMessage><!-- Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI. --></errorMessage>
         <name>Prevent_VCIs_LCs_from_Canceling_WO_Jobs</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Work Type CANNOT be changed. --></errorMessage>
-        <name>Prevent_Work_Type_Change</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Please fill in the Launch Terms Details for Future Date/Time, Run List or Other terms. --></errorMessage>

@@ -30,5 +30,4 @@ public class InspectionDetails {
     public String hasTerritoryAssignment;
     public String externalLink;
     public String externalLinkCode;
-    public String isBundled;
 }

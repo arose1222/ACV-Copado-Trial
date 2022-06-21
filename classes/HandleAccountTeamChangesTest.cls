@@ -1,14 +1,5 @@
-/**
- * 
- * @description Test class for HandleAccountTeamChanges that ensures correct updates happen dependent on different scenarios
- * @author Aaron Richbart
- * @since 4/1/2022
- * @group Sales
- */
 @isTest
 public class HandleAccountTeamChangesTest {
-
-    public static Integer RECORD_COUNT = 5;
 
     @TestSetup
     static void makeData(){
@@ -230,7 +221,6 @@ public class HandleAccountTeamChangesTest {
     @isTest
     static void testAddTitleSpecialistInquiryWithOps(){
 
-        Test.StartTest();
         Account sellerAcc = TestUtility.createAccount('Seller');
         insert sellerAcc;
         
@@ -246,11 +236,13 @@ public class HandleAccountTeamChangesTest {
         update inqBefore;
         
         User newUser = [SELECT Id FROM User WHERE Profile.Name = 'Inside Sales - Account Managers Unwind' AND UserName LIKE 'testuser%@test.com'];
+        
+        Test.StartTest();
         sellerAcc.Title_Specialist__c = newUser.Id;
         update sellerAcc;
-    
-        Customer_Inquiry__c inqAfterAdd = [SELECT Id, Assigned_To__c FROM Customer_Inquiry__c WHERE Id = :inqBefore.Id]; 
         Test.StopTest();
+
+        Customer_Inquiry__c inqAfterAdd = [SELECT Id, Assigned_To__c FROM Customer_Inquiry__c WHERE Id = :inqBefore.Id]; 
         System.assertEquals(newUser.Id,inqAfterAdd.Assigned_To__c,'Assigned To should be updated to new value of Title Specialist');
     }
 
@@ -376,7 +368,6 @@ public class HandleAccountTeamChangesTest {
 
     @isTest
     static void testSpecialistUpdatedRelatedArb_ciCreatedBy(){
-        Test.StartTest();
         Account sellerAcc = TestUtility.createAccount('Seller');
         insert sellerAcc;
         
@@ -397,13 +388,12 @@ public class HandleAccountTeamChangesTest {
         
         User newUser = [SELECT Id FROM User WHERE Profile.Name = 'Inside Sales - Account Managers Unwind' AND UserName LIKE 'testuser%@test.com'];
         
-        
+        Test.StartTest();
         sellerAcc.Title_Specialist__c = newUser.Id;
         update sellerAcc;
-        
-        Customer_Inquiry__c inqAfterAdd = [SELECT Id, Assigned_To__c FROM Customer_Inquiry__c WHERE Id = :inqBefore.Id]; 
-       
         Test.StopTest();
+
+        Customer_Inquiry__c inqAfterAdd = [SELECT Id, Assigned_To__c FROM Customer_Inquiry__c WHERE Id = :inqBefore.Id]; 
         System.assertEquals(inqBefore.CreatedById, inqAfterAdd.Assigned_To__c,'Assigned To should be updated to the creator of the CI');
         
     }
@@ -421,49 +411,33 @@ public class HandleAccountTeamChangesTest {
         System.assertNotEquals(null,inqAfterNull.Assigned_To__c,'Assigned To should not be changed to null');
     }
 
-    /**
-     * @see https://acvauctions.atlassian.net/browse/SI-568
-     */
     @isTest
     static void testBulkAccountISTRepChangesToSupportCase() {
-        String mockMetaDataString = '';
-        mockMetaDataString += '{"DeveloperName": "AccountTriggerHandlerBeforeUpdate", '
-            + '"NamespacePrefix": "",'
-            + '"Before_Update__c": "true", '
-            + '"sObject__c": "Account", "Class_Name__c": "AccountTriggerHandler"},';
-        mockMetaDataString = '[' + mockMetaDataString.substringBeforeLast(',') + ']';
-        TriggerFrameWork.mockMetaData = (List<TriggerHandler__mdt>) JSON.deserializeStrict(mockMetaDataString, List<TriggerHandler__mdt>.class);
-
+        Integer i = 0;
         List<Account> acctList = new List<Account>();
         List<Case> caseList = new List<Case>();
-
-        for (Integer i = 0; i < RECORD_COUNT; i ++) {
+        for (i = 0; i < 25; i ++) {
             acctList.add(TestUtility.createAccount('Test ' + i));
             acctList[i].IST_Account_Owner__c = UserInfo.getUserId();
         }
         insert acctList;
-        
-        for (Integer i = 0; i < RECORD_COUNT; i ++) {
+        //insert cases
+        for (i = 0; i < 25; i ++) {
             caseList.add(TestUtility.createSupportCase(acctList[i]));
         }
         insert caseList;
-
         User u = [SELECT Id FROM User WHERE Profile.Name = 'Inside Sales - Account Managers Unwind' AND UserName LIKE 'testuser%@test.com'];
-        
         for (Account a : acctList) {
             a.IST_Account_Owner__c = u.Id;
         }
-        // need an account that doesn't update
-        acctList[RECORD_COUNT / 2].IST_Account_Owner__c = UserInfo.getUserId();
-        
+        acctList[10].IST_Account_Owner__c = UserInfo.getUserId(); //want to have one that doesn't update
         Test.startTest();
-            TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
             update acctList;
         Test.stopTest();
 
         caseList = [SELECT Id, OwnerId, Account.Name FROM Case WHERE Account.Name != 'With Owner' AND RecordType.Name = 'Support' ORDER BY Account.Name ASC];
         for (Case c : caseList) {
-            if (c.Account.Name == 'Test ' + RECORD_COUNT / 2) {
+            if (c.Account.Name == 'Test 10') {
                 System.assertEquals(UserInfo.getUserId(), c.OwnerId);
             }
             else {
@@ -501,7 +475,7 @@ public class HandleAccountTeamChangesTest {
         for (Account a : acctList) {
             a.IST_Account_Owner__c = u.Id; // 0050q0000038EHJAA2
         }
-        Test.startTest();    
+        Test.startTest();
             update acctList;
         Test.stopTest();
 

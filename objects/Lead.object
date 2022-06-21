@@ -624,16 +624,6 @@ TEXT(ROUND((((MOD(((NOW() - CreatedDate) - (FLOOR(NOW() - CreatedDate))) , 1) * 
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Assigned_On_Insert__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Will be marked true by LeadOwnerAssignmentBDR class if a user is assigned as the owner on insert.  If it stays false, it was assigned to a queue on insert.</description>
-        <externalId>false</externalId>
-        <label>Assigned On Insert</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Association_Membership__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Enter the name of the Association(s) the Dealer is a member of. i.e. NADA, NIADA, NABD</inlineHelpText>
@@ -774,7 +764,6 @@ TEXT(ROUND((((MOD(((NOW() - CreatedDate) - (FLOOR(NOW() - CreatedDate))) , 1) * 
     </fields>
     <fields>
         <fullName>Campaign_Message__c</fullName>
-        <description>Used by Capital to indicate what message was displayed in Checkout</description>
         <externalId>false</externalId>
         <label>Campaign Message</label>
         <required>false</required>
@@ -788,16 +777,6 @@ TEXT(ROUND((((MOD(((NOW() - CreatedDate) - (FLOOR(NOW() - CreatedDate))) , 1) * 
                     <fullName>Checkout Campaign</fullName>
                     <default>false</default>
                     <label>Checkout Campaign</label>
-                </value>
-                <value>
-                    <fullName>Digital-Floorplan-2 Waived Fees</fullName>
-                    <default>false</default>
-                    <label>Digital-Floorplan-2 Waived Fees</label>
-                </value>
-                <value>
-                    <fullName>Digital-Floorplan-Spring Savings 60for60 Tax Season</fullName>
-                    <default>false</default>
-                    <label>Digital-Floorplan-Spring Savings 60for60 Tax Season</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1319,7 +1298,6 @@ BHBR Trade Show</description>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -1328,19 +1306,14 @@ BHBR Trade Show</description>
                     <label>Franchise</label>
                 </value>
                 <value>
-                    <fullName>Independent</fullName>
-                    <default>false</default>
-                    <label>Independent</label>
-                </value>
-                <value>
-                    <fullName>Independent - ACV Certified</fullName>
-                    <default>false</default>
-                    <label>Independent - ACV Certified</label>
-                </value>
-                <value>
                     <fullName>Wholesaler</fullName>
                     <default>false</default>
                     <label>Wholesaler</label>
+                </value>
+                <value>
+                    <fullName>Independent</fullName>
+                    <default>false</default>
+                    <label>Independent</label>
                 </value>
                 <value>
                     <fullName>Dealer Group (Parent Account)</fullName>
@@ -1351,174 +1324,6 @@ BHBR Trade Show</description>
                     <fullName>Commercial</fullName>
                     <default>false</default>
                     <label>Commercial</label>
-                </value>
-                <value>
-                    <fullName>Asbury</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Asbury</label>
-                </value>
-                <value>
-                    <fullName>Bayway Group</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Bayway Group</label>
-                </value>
-                <value>
-                    <fullName>DLN</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLN</label>
-                </value>
-                <value>
-                    <fullName>DLNDLUDLW</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLNDLUDLW</label>
-                </value>
-                <value>
-                    <fullName>DLNDLW</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLNDLW</label>
-                </value>
-                <value>
-                    <fullName>DLQ</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLQ</label>
-                </value>
-                <value>
-                    <fullName>DLU</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLU</label>
-                </value>
-                <value>
-                    <fullName>DLUDLW</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLUDLW</label>
-                </value>
-                <value>
-                    <fullName>DLW</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>DLW</label>
-                </value>
-                <value>
-                    <fullName>Fanchise</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Fanchise</label>
-                </value>
-                <value>
-                    <fullName>Frachise</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Frachise</label>
-                </value>
-                <value>
-                    <fullName>Franchise/Indy</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Franchise/Indy</label>
-                </value>
-                <value>
-                    <fullName>Granchise</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Granchise</label>
-                </value>
-                <value>
-                    <fullName>Greenway</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Greenway</label>
-                </value>
-                <value>
-                    <fullName>Gurley leep</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Gurley leep</label>
-                </value>
-                <value>
-                    <fullName>Indendent</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Indendent</label>
-                </value>
-                <value>
-                    <fullName>Indeoendent</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Indeoendent</label>
-                </value>
-                <value>
-                    <fullName>Independent/Rental</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Independent/Rental</label>
-                </value>
-                <value>
-                    <fullName>Indepent</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Indepent</label>
-                </value>
-                <value>
-                    <fullName>Indepndent</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Indepndent</label>
-                </value>
-                <value>
-                    <fullName>Individual</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Individual</label>
-                </value>
-                <value>
-                    <fullName>Inependent</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Inependent</label>
-                </value>
-                <value>
-                    <fullName>Ken garff</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Ken garff</label>
-                </value>
-                <value>
-                    <fullName>Penske</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Penske</label>
-                </value>
-                <value>
-                    <fullName>Sonic</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Sonic</label>
-                </value>
-                <value>
-                    <fullName>Van horn</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Van horn</label>
-                </value>
-                <value>
-                    <fullName>Wholesale</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Wholesale</label>
-                </value>
-                <value>
-                    <fullName>carousel.</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>carousel.</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1854,15 +1659,6 @@ IF(EXPRN__Most_Recent_Decision_Status_Lead__c == &quot;Manual Review&quot;,EXPRN
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Follow_Up_Task_Created_On__c</fullName>
-        <externalId>false</externalId>
-        <label>Follow Up Task Created On</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Full_Demo_Completed__c</fullName>
@@ -2396,7 +2192,6 @@ IF(EXPRN__Most_Recent_Decision_Status_Lead__c == &quot;Manual Review&quot;,EXPRN
     </fields>
     <fields>
         <fullName>Language_Preference__c</fullName>
-        <defaultValue>&apos;English&apos;</defaultValue>
         <description>Used on Web to Lead Form</description>
         <externalId>false</externalId>
         <label>Language Preference</label>
@@ -2459,38 +2254,6 @@ IF(EXPRN__Most_Recent_Decision_Status_Lead__c == &quot;Manual Review&quot;,EXPRN
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Lead_DeveloperName__c</fullName>
-        <externalId>false</externalId>
-        <formula>RecordType.DeveloperName</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Lead DeveloperName</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Lead_Record_Type_Mapping__c</fullName>
-        <description>used by Capital integration</description>
-        <externalId>false</externalId>
-        <label>Lead Record Type Mapping</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>ACV Capital</fullName>
-                    <default>false</default>
-                    <label>ACV Capital</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Lead_Record_type_Conversion__c</fullName>
@@ -2606,16 +2369,6 @@ IF(EXPRN__Most_Recent_Decision_Status_Lead__c == &quot;Manual Review&quot;,EXPRN
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Market_Place_Report_User__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This field is created to grant access to market place. This will be populated by create lead endpoint. Upon conversion, the &quot;Role&quot; field on the Contact record will be set to &quot;Read Only&quot;</description>
-        <externalId>false</externalId>
-        <label>Market Place Report User</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MobilePhone</fullName>
@@ -2954,11 +2707,6 @@ Owner:User.Phone,
                     <fullName>Email</fullName>
                     <default>false</default>
                     <label>Email</label>
-                </value>
-                <value>
-                    <fullName>Webinar</fullName>
-                    <default>false</default>
-                    <label>Webinar</label>
                 </value>
                 <value>
                     <fullName>Referred by Someone</fullName>
@@ -4500,9 +4248,14 @@ Owner:User.Phone,
             <operation>equals</operation>
             <value>Lead.ACV_Capital</value>
         </filters>
+        <filters>
+            <field>LEAD.STATE</field>
+            <operation>equals</operation>
+            <value>NY</value>
+        </filters>
         <label>ACV Capital - All Leads</label>
         <sharedTo>
-            <role>ACV_Capital_Sales_Management</role>
+            <roleAndSubordinates>ACV_Capital</roleAndSubordinates>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4882,6 +4635,11 @@ Owner:User.Phone,
             <operation>equals</operation>
             <value>0</value>
         </filters>
+        <filters>
+            <field>LEAD.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Lead.Sales</value>
+        </filters>
         <label>My Open Leads</label>
     </listViews>
     <listViews>
@@ -4975,6 +4733,28 @@ Owner:User.Phone,
             <value>Lead.True360</value>
         </filters>
         <label>My Open True360 Leads</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Untouched_Leads</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.COMPANY</columns>
+        <columns>LEAD.STATE</columns>
+        <columns>LEAD.STATUS</columns>
+        <columns>LEAD.UNREAD</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Untouched</value>
+        </filters>
+        <filters>
+            <field>number_of_Locations__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>My Untouched Leads</label>
     </listViews>
     <listViews>
         <fullName>NABD_2021_Leads</fullName>
@@ -5143,20 +4923,6 @@ Owner:User.Phone,
         <label>Transportation Leads</label>
     </listViews>
     <listViews>
-        <fullName>True360_Lead_Queue</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>LEAD.EMAIL</columns>
-        <columns>LEAD.COMPANY</columns>
-        <columns>LEAD.STATE</columns>
-        <columns>LEAD.STATUS</columns>
-        <columns>LEAD.UNREAD</columns>
-        <columns>LEAD.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>True360 Lead Queue</label>
-        <queue>True360_Lead_Queue</queue>
-    </listViews>
-    <listViews>
         <fullName>leadscreatedtoday</fullName>
         <columns>FULL_NAME</columns>
         <columns>LEAD.COMPANY</columns>
@@ -5214,10 +4980,6 @@ Owner:User.Phone,
             <picklist>Campaign_Message__c</picklist>
             <values>
                 <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital-Floorplan-Spring Savings 60for60 Tax Season</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5353,10 +5115,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>Independent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent - ACV Certified</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5877,10 +5635,6 @@ Owner:User.Phone,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Checkout - Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Landing Page</fullName>
                 <default>false</default>
             </values>
@@ -5890,13 +5644,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>web form</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5953,31 +5700,19 @@ Owner:User.Phone,
         <picklistValues>
             <picklist>Reason_for_No_Interest__c</picklist>
             <values>
-                <fullName>Credit Behavior Concerns</fullName>
+                <fullName>Happy With Current Solution</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Duplicate Lead</fullName>
+                <fullName>Other %2F See Notes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Other</fullName>
+                <fullName>Wants to Touch%2FFeel Car</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pricing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product Features</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unable to Contact</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unhappy with ACV</fullName>
+                <fullName>Wrong Contact</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6799,6 +6534,1656 @@ Owner:User.Phone,
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>Capital</fullName>
+        <active>true</active>
+        <businessProcess>Sales</businessProcess>
+        <description>Used for capturing ACV Capital Leads</description>
+        <label>Capital</label>
+        <picklistValues>
+            <picklist>CSIRCD__WatchDOGResult__c</picklist>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>True Match</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Campaign_Message__c</picklist>
+            <values>
+                <fullName>Checkout Campaign</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Capital_Product_Interest__c</picklist>
+            <values>
+                <fullName>ACV_Accelerate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV_Advantage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floorplan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contact_Method_Preference__c</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>Call in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dormant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fresh Leads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2FSee Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scranton</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source_del__c</picklist>
+            <values>
+                <fullName>Buyer - Sales Introduction Email - Offer 9%2F5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call in progress list</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cars%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dealer Rater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dormant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fresh Leads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>InfoUSA-SR1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>InfoUSA-SR2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Bidders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2FSee notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pittsburgh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scranton</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Dealer_Type__c</picklist>
+            <values>
+                <fullName>Dealer Group %28Parent Account%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franchise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Demo_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Do_you_buy_online__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2FSee Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Document_Status__c</picklist>
+            <values>
+                <fullName>Attached For Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Received</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Reviewed- Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reviewed- Not Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Fleet_Lease_Blocker__c</picklist>
+            <values>
+                <fullName>AutoIMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damage %24 CR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need Land</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Plan_Provider__c</picklist>
+            <values>
+                <fullName>AFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Allied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Next Gear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IST_Rep__c</picklist>
+            <values>
+                <fullName>Adam Siedlecki</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alisha Netto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amanda Terhaar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austin Dorr</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blake Reckley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAM Great Lakes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAM Northeast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chad Dupray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Christina Caito</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cory Bertozzi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Daniel Erbacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>David Farley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eli Matheny</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elisa Galante</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emily Germaine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glenn Wood</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jake Bass</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jake Murray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jared McHenry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jason Bartz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joe Kostek</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joe Naylor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Luraschi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Josh Bové</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Julia Davis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kaley Doyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Karen Dusky</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kevin Ruggerio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kylie Eaton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisa Burnett</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marirose Brucato</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marisa Borrello</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Matt Scheff</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Matthew Gelia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Max Kaplan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Megan Condon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Melissa Epolito</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Michael Annese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Michael Wirth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paige Cuddihy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pat Feeley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paul Incorvaia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Robert Mattern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ron Mancinelli</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ryan Story</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sam Musler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sean Rigler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stephanie Czechowski</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stephanie Shahin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steve Gardner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Susan O%27Rourke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabetha Huling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Territory Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tiffany Mundell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tim Olsen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tyler Beresford</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Incentive__c</picklist>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2FSee Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Interested_in_Meeting__c</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Language_Preference__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>ACVwebcontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CIADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Covid - Closed Physical Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DMV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flooring Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>From TM or VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Event List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal BDM found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas NADA 2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NADA 2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourced List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIADA 2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>coupon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>demo organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>marketing paid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>sales organic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>tiada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>web form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mild</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Today</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untouched</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_No_Interest__c</picklist>
+            <values>
+                <fullName>Happy With Current Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other %2F See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wants to Touch%2FFeel Car</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wrong Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Referral__c</picklist>
+            <values>
+                <fullName>Dealer Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media Coverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone call from ACV representative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print Ad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referred by Someone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Associate %28TM%2C VCI%2C Blitz%2C etc%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Search engines %28Google%2C Bing%2C etc%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media Post%2FAd %28LinkedIn%2C Facebook%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow%2FEvent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Registration_Status__c</picklist>
+            <values>
+                <fullName>Fully Registered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Has Not Registered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting on Paperwork</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Per_Month__c</picklist>
+            <values>
+                <fullName>Large %2850%2B%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium %2825-50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small %281-24%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Temperature__c</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untouched</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Territory__c</picklist>
+            <values>
+                <fullName>Akron%2C OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albuquerque%2C NM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arizona - North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arizona - South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athens%2C GA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Atlanta South%2C GA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austin - North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austin%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BSW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baltimore North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baltimore%2C MD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baton Rouge%2C LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biloxi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Birmingham%2C AL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boca Raton%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boise%2C ID</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston - North%2C MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston - West%2C MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston South%2C MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buffalo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cedar Rapids%2C IA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central Illinois</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central Missouri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charleston%2C SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charlotte South%2C NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charlotte%2C NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chicago - North%2C IL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chicago - South%2C IL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chicago West%2C IL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cincinnati%2C OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearwater%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cleveland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cleveland East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colorado Springs%2C CO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbia%2C SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbus%2C OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corpus Christi%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC Metro North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dallas-Fort Worth - East%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dallas-Fort Worth - West%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dayton%2C OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Daytona Beach%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denver%2C CO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Des Moines%2C IA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Detroit East%2C MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Detroit%2C MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East Texas Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Paso%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Erie%2C PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eugene%2C OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Everett%2C WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fargo%2C ND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flint%2C MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fort Collins%2C CO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fort Lauderdale%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fort Myers%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fort Smith%2C AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fort Wayne%2C IN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grand Rapids%2C MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Harrisburg%2C PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hartford- South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hartford-New Haven%2C CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hayward%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Houston - North%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Houston - South%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Huntsville%2C AL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indianapolis South%2C IN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indianapolis%2C IN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jackson%2C MS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jacksonville%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kansas City%2C MO%2FKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knoxville%2C TN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas%2C NV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lexington%2C KY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Little Rock%2C AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Island Metro%2C NY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Island%2C NY East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisville%2C KY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lubbock%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marietta%2C GA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Melbourne%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Memphis%2C TN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami South%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minnesota - North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minnesota - South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NJ- Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NJ-North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NJ-South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NY%2FCT Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NY- Hudson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nashville%2C TN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Hampshire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Jersey - Shore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Jersey- Northeast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Orleans%2C LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norfolk-Portsmth-Newpt Nws%2C VA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oklahoma City%2C OK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Olympia%2C WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omaha%2C NE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orange County%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orlando North%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orlando%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panhandle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pasadena%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philadelphia - South%2C PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philadelphia%2C PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pittsburgh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pittsburgh North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portland%2C OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raleigh - East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raleigh-Durham%2C NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Redding%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reno%2C NV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Richmond-Petersburg%2C VA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rio Grande Valley%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Riverside%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Roanoke%2FLynchburg%2C VA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rochester</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sacramento%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salt Lake City%2C UT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Antonio West</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Antonio%2C TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Bernadino%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Diego%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Francisco%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Santa Cruz%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Santa Rosa%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sarasota%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seattle%2C WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shreveport%2C LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spokane%2C WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St Louis%2C MO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St%2E Louis - North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stockton%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Syracuse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tallahassee%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tampa-St%2E Petersburg%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toledo%2C OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Torrance%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tulsa%2C OK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuscaloosa%2C AL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ventura North%2C CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vermont</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Palm Beach%2C FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wichita%2C KS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wilmington%2C NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wyoming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youngstown%2C OH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vehicle__c</picklist>
+            <values>
+                <fullName>Car</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Domestic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2F See notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over 20k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under 10k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under 20k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under 5k</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Where_do_you_Acquire_Inventory__c</picklist>
+            <values>
+                <fullName>Other_Online_Auction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PhysicalAuction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>Organization_Lead</fullName>
         <active>true</active>
         <businessProcess>Sales</businessProcess>
@@ -6958,10 +8343,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>Independent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent - ACV Certified</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7647,13 +9028,6 @@ Owner:User.Phone,
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Name</picklist>
             <values>
                 <fullName>Dr%2E</fullName>
@@ -7766,10 +9140,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>Tradeshow%2FEvent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Webinar</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9347,13 +10717,6 @@ Owner:User.Phone,
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Name</picklist>
             <values>
                 <fullName>Dr%2E</fullName>
@@ -10402,10 +11765,6 @@ Owner:User.Phone,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Independent - ACV Certified</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Wholesaler</fullName>
                 <default>false</default>
             </values>
@@ -11068,13 +12427,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>web form</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12111,10 +13463,6 @@ Owner:User.Phone,
         <picklistValues>
             <picklist>Dealer_Type__c</picklist>
             <values>
-                <fullName>Commercial</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Dealer Group %28Parent Account%29</fullName>
                 <default>false</default>
             </values>
@@ -12124,10 +13472,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>Independent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent - ACV Certified</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12745,13 +14089,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>web form</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13572,10 +14909,6 @@ Owner:User.Phone,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Independent - ACV Certified</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Wholesaler</fullName>
                 <default>false</default>
             </values>
@@ -14238,13 +15571,6 @@ Owner:User.Phone,
             </values>
             <values>
                 <fullName>web form</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -15134,1663 +16460,6 @@ Owner:User.Phone,
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
-        <fullName>xCapital</fullName>
-        <active>false</active>
-        <businessProcess>Sales</businessProcess>
-        <description>Used for capturing ACV Capital Leads</description>
-        <label>xCapital</label>
-        <picklistValues>
-            <picklist>CSIRCD__WatchDOGResult__c</picklist>
-            <values>
-                <fullName>No Match</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Potential Match</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True Match</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Contact_Method_Preference__c</picklist>
-            <values>
-                <fullName>Call</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Text</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Data_Source__c</picklist>
-            <values>
-                <fullName>Call in Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dormant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fresh Leads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other%2FSee Notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scranton</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Data_Source_del__c</picklist>
-            <values>
-                <fullName>Buyer - Sales Introduction Email - Offer 9%2F5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Call in progress list</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cars%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer Rater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dormant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fresh Leads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive List</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>InfoUSA-SR1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>InfoUSA-SR2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Research</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Online Bidders</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other%2FSee notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pittsburgh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scranton</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Dealer_Type__c</picklist>
-            <values>
-                <fullName>Dealer Group %28Parent Account%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Franchise</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Demo_Status__c</picklist>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Do_you_buy_online__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other%2FSee Notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Document_Status__c</picklist>
-            <values>
-                <fullName>Attached For Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Received</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Reviewed- Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reviewed- Not Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Some Received</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Lease_Blocker__c</picklist>
-            <values>
-                <fullName>AutoIMS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Damage %24 CR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Legal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Need Land</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Floor_Plan_Provider__c</picklist>
-            <values>
-                <fullName>AFC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Allied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Next Gear</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IST_Rep__c</picklist>
-            <values>
-                <fullName>Adam Siedlecki</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Alisha Netto</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Amanda Terhaar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Austin Dorr</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Blake Reckley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CAM Great Lakes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CAM Northeast</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chad Dupray</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Christina Caito</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cory Bertozzi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Daniel Erbacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>David Farley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eli Matheny</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Elisa Galante</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Emily Germaine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Glenn Wood</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jake Bass</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jake Murray</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jared McHenry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jason Bartz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Joe Kostek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Joe Naylor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>John Luraschi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Josh Bové</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Julia Davis</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kaley Doyle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Karen Dusky</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kevin Ruggerio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kylie Eaton</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Louisa Burnett</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marirose Brucato</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marisa Borrello</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Matt Scheff</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Matthew Gelia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Max Kaplan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Megan Condon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Melissa Epolito</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Michael Annese</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Michael Wirth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paige Cuddihy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pat Feeley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paul Incorvaia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Robert Mattern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ron Mancinelli</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ryan Story</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sam Musler</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sean Rigler</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stephanie Czechowski</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stephanie Shahin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Steve Gardner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Susan O%27Rourke</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tabetha Huling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Territory Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tiffany Mundell</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tim Olsen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tyler Beresford</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Incentive__c</picklist>
-            <values>
-                <fullName>Fees</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gift Card</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other%2FSee Notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PMP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transport</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Industry</picklist>
-            <values>
-                <fullName>Agriculture</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Apparel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Banking</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biotechnology</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemicals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Communications</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Construction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Consulting</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Education</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electronics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Energy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Entertainment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Environmental</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Food %26 Beverage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Government</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Healthcare</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hospitality</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Insurance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machinery</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not For Profit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Recreation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Retail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shipping</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Technology</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telecommunications</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transportation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Utilities</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Interested_in_Meeting__c</picklist>
-            <values>
-                <fullName>Maybe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>LeadSource</picklist>
-            <values>
-                <fullName>ACVwebcontact</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Blitz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CIADA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Capital Lead</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Covid - Closed Physical Auction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DMV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Direct Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Facebook</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flooring Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>From TM or VCI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Industry Event List</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Internal BDM found</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Las Vegas NADA 2018</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Linkedin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NADA 2019</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIADA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourced List</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TIADA 2021</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tradeshow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>coupon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>demo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>demo organic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>marketing paid</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>sales organic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>tiada</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>web form</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Lead_Record_Type_Mapping__c</picklist>
-            <values>
-                <fullName>ACV Capital</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Name</picklist>
-            <values>
-                <fullName>Dr%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mr%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mrs%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ms%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prof%2E</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Rating</picklist>
-            <values>
-                <fullName>Hot</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mild</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Today</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prospect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Untouched</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Reason_for_No_Interest__c</picklist>
-            <values>
-                <fullName>Happy With Current Solution</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other %2F See Notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wants to Touch%2FFeel Car</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wrong Contact</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Referral__c</picklist>
-            <values>
-                <fullName>Dealer Association</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mailer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Media Coverage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone call from ACV representative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Print Ad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Referred by Someone</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sales Associate %28TM%2C VCI%2C Blitz%2C etc%2E%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Search engines %28Google%2C Bing%2C etc%2E%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media Post%2FAd %28LinkedIn%2C Facebook%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tradeshow%2FEvent</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Registration_Status__c</picklist>
-            <values>
-                <fullName>Fully Registered</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Has Not Registered</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waiting on Paperwork</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Sales_Per_Month__c</picklist>
-            <values>
-                <fullName>Large %2850%2B%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medium %2825-50%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Small %281-24%29</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Temperature__c</picklist>
-            <values>
-                <fullName>Cold</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Hot</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prospect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Untouched</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Warm</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Territory__c</picklist>
-            <values>
-                <fullName>Akron%2C OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Albany</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Albuquerque%2C NM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arizona - North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arizona - South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Athens%2C GA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Atlanta South%2C GA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Austin - North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Austin%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BSW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baltimore North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baltimore%2C MD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baton Rouge%2C LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biloxi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Birmingham%2C AL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boca Raton%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boise%2C ID</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boston - North%2C MA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boston - West%2C MA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boston South%2C MA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buffalo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cedar Rapids%2C IA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Central Illinois</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Central Missouri</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Central PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charleston%2C SC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charlotte South%2C NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charlotte%2C NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chicago - North%2C IL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chicago - South%2C IL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chicago West%2C IL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cincinnati%2C OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clearwater%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cleveland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cleveland East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Colorado Springs%2C CO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Columbia%2C SC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Columbus%2C OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Corpus Christi%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC Metro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC Metro North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dallas-Fort Worth - East%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dallas-Fort Worth - West%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dayton%2C OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Daytona Beach%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denver%2C CO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Des Moines%2C IA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detroit East%2C MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detroit%2C MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>East Texas Central</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>El Paso%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Erie%2C PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eugene%2C OR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Everett%2C WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fargo%2C ND</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flint%2C MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fort Collins%2C CO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fort Lauderdale%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fort Myers%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fort Smith%2C AR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fort Wayne%2C IN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grand Rapids%2C MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Harrisburg%2C PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hartford- South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hartford-New Haven%2C CT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hayward%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Houston - North%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Houston - South%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Huntsville%2C AL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Indianapolis South%2C IN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Indianapolis%2C IN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jackson%2C MS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jacksonville%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kansas City%2C MO%2FKS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knoxville%2C TN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Las Vegas%2C NV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lexington%2C KY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Little Rock%2C AR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Long Island Metro%2C NY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Long Island%2C NY East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Louisville%2C KY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lubbock%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Maine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marietta%2C GA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Melbourne%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Memphis%2C TN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Miami South%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Miami%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minnesota - North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minnesota - South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Montana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NJ- Central</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NJ-North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NJ-South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NY%2FCT Metro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NY- Hudson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nashville%2C TN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Hampshire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Jersey - Shore</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Jersey- Northeast</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Orleans%2C LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New York</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Norfolk-Portsmth-Newpt Nws%2C VA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oklahoma City%2C OK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Olympia%2C WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Omaha%2C NE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Orange County%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Orlando North%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Orlando%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Panhandle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pasadena%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Philadelphia - South%2C PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Philadelphia%2C PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pittsburgh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pittsburgh North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portland%2C OR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Raleigh - East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Raleigh-Durham%2C NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Redding%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reno%2C NV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Richmond-Petersburg%2C VA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rio Grande Valley%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Riverside%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Roanoke%2FLynchburg%2C VA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rochester</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sacramento%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salt Lake City%2C UT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Antonio West</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Antonio%2C TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Bernadino%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Diego%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Francisco%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Santa Cruz%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Santa Rosa%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sarasota%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seattle%2C WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shreveport%2C LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spokane%2C WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St Louis%2C MO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2E Louis - North</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stockton%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Syracuse</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tallahassee%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tampa-St%2E Petersburg%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Toledo%2C OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Torrance%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tulsa%2C OK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tuscaloosa%2C AL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ventura North%2C CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vermont</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>West Palm Beach%2C FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wichita%2C KS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wilmington%2C NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wyoming</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Youngstown%2C OH</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Type__c</picklist>
-            <values>
-                <fullName>Buyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Vehicle__c</picklist>
-            <values>
-                <fullName>Car</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Domestic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Foreign</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other%2F See notes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Over 20k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SUV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Truck</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Under 10k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Under 20k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Under 5k</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Where_do_you_Acquire_Inventory__c</picklist>
-            <values>
-                <fullName>Other_Online_Auction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PhysicalAuction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesalers</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>FULL_NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>LEAD.COMPANY</customTabListAdditionalFields>
@@ -17163,28 +16832,5 @@ alert(&apos;Experian Address Information is not configured for Experian Search. 
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Lead.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>sidebar</openType>
-        <page>jiffle__JNValidateLeads</page>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Schedule_Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?source=leadFlow&amp;lead_ids={!CASESAFEID(Lead.Id)}&amp;isLeadDetail=true</url>
     </webLinks>
 </CustomObject>

@@ -11,7 +11,7 @@ public class RevolvingCleaner {
         set;
     }
 
-    /*public static List<String> removeInactiveRecords(List<Occurrence__c> occurrenceList){
+    public static List<String> removeInactiveRecords(List<Occurrence__c> occurrenceList){
 
         List<Occurrence__c> occurrencesToDelete = new List<Occurrence__c>();
         List<String> returnDebug = new List<String>();
@@ -27,7 +27,7 @@ public class RevolvingCleaner {
         returnDebug.add((occurrencesToDelete.size() - occErrors.size()) + ' Occurrences successfully deleted');
         returnDebug.addAll(occErrors);
         return returnDebug;
-    }*/
+    }
 
 
     public static List<String> deleteChangedRecords(List<Occurrence__c> occurrenceList) {

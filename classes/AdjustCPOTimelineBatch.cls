@@ -1,5 +1,3 @@
-//runs in the evening prior to bundler batches
-
 global class AdjustCPOTimelineBatch extends SchedulingInterface implements Database.Batchable<sObject>, Database.AllowsCallouts {
 
     private static Integer CPOExpandDateRange {
@@ -36,8 +34,8 @@ global class AdjustCPOTimelineBatch extends SchedulingInterface implements Datab
         query += 'WHERE Status IN ( \'New\',  \'Offer Attempted\') ';
         //All CPO work types
         query +=    'AND ((WorkType.Work_Type_Unique_ID__c IN ';
-        query +=        '(\'cpobm\', \'cpofr\', \'cpolnc\', \'cpogm\', \'cpogmcomp\', \'cpohnice\', \'cpohn04\', \'cpohn06\', \'cpohn08\', \'cpohn10\', \'cpohn12\', ';
-        query +=        '\'cpohn14\', \'cpohn16\', \'cpohn18\', \'cpohn20\', \'cpopo\', ';
+        query +=        '(\'cpobd\', \'cpobm\', \'cpofr\', \'cpolnc\', \'cpogm\', \'cpogmcomp\', \'cpohnice\', \'cpojlr\', \'cpohn04\', \'cpohn06\', \'cpohn08\', \'cpohn10\', \'cpohn12\', ';
+        query +=        '\'cpohn14\', \'cpohn16\', \'cpohn18\', \'cpohn20\', \'cpopo\', \'cpo90\', \'cpo120\', \'cpo150\', \'cpo180\', \'cpo240\', \'cpo270\', \'cpo300\', ';
         //All VCPO work types
         query +=        '\'vcpofr\', \'vcpogm\', \'vcpohn\', \'vcpopo\') ';
         query +=        'AND EarliestStartTime < :cpoFutureDateRange) ';
@@ -56,7 +54,7 @@ global class AdjustCPOTimelineBatch extends SchedulingInterface implements Datab
 
     global void execute(Database.BatchableContext bc, List<ServiceAppointment> scope){
         //batch process
-        Map<String, DateTime> WorkTypeAdjustedDateTimeMap = new Map<String, DateTime>{'cpo' => System.today().addDays( CPOExpandDateRange + 1 ), 'gmfia' => System.today().addDays( GMFIAExpandDateRange + 1 )};
+        Map<String, DateTime> WorkTypeAdjustedDateTimeMap = new Map<String, DateTime>{'cpo' => System.today().addDays( CPOExpandDateRange ), 'gmfia' => System.today().addDays( GMFIAExpandDateRange )};
         for (ServiceAppointment sa : scope) {
             sa.FSL__InJeopardy__c = TRUE;
             DateTime adjustedDate = sa.WorkType.Work_Type_Unique_ID__c == 'gmfia' ? WorkTypeAdjustedDateTimeMap.get('gmfia') : WorkTypeAdjustedDateTimeMap.get('cpo');

@@ -132,24 +132,14 @@
             <value>Closed</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Aux_Queue__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <criteriaItems>
             <field>Condition_Report_Prescreen__c.Timed_Out__c</field>
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Exterior Cosmetic</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Bumper/Lights</value>
+            <field>Condition_Report_Prescreen__c.Aux_Queue__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -159,7 +149,7 @@
             <name>Condition_Report_Review_Submitted</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Status__c</field>
             <operation>equals</operation>
@@ -170,43 +160,25 @@
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Bumper/Lights</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Reason__c</field>
-            <operation>notContain</operation>
-            <value>Exterior Cosmetic</value>
-        </criteriaItems>
         <description>Sends notification emails out to VCIs</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
+            <actions>
+                <name>Condition_Report_Review_Completed</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Set_CR_Review_Status_Closed</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Set_CR_Review_Timeout_TRUE</name>
+                <type>FieldUpdate</type>
+            </actions>
             <offsetFromField>Condition_Report_Prescreen__c.CR_Review_Created_Time_Minus_30__c</offsetFromField>
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>Condition Report Review Email Notifications - After TimeOut</fullName>
-        <actions>
-            <name>Condition_Report_Review_Completed</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.Status__c</field>
-            <operation>equals</operation>
-            <value>New,Closed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Condition_Report_Prescreen__c.CR_Review_Timeout__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>Sends notification emails out to VCIs</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>Populate Account</fullName>

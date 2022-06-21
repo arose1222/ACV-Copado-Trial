@@ -214,6 +214,233 @@
 })();
 'use strict';
 
+function Criteria(obj) {
+
+    if (!obj) {
+        this.Id = undefined;
+        this.User_Type__c = [];
+        this.Object_Type__c = undefined;
+        this.Logic__c = { custom: { type: undefined, logic: undefined } };
+        this.Criteria_Items__c = { custom: [], mandatory: { statusCategory: [] } };
+        this.Territories__c = [];
+        this.Work_Types__c = [];
+        return;
+    }
+
+    this.Id = obj.Id;
+    this.Object_Type__c = obj[fieldNames.Criteria__c.Object_Type__c];
+    this.User_Type__c = obj[fieldNames.Criteria__c.User_Type__c] ? obj[fieldNames.Criteria__c.User_Type__c].split(';') : [];
+
+    try {
+        this.Logic__c = JSON.parse(obj[fieldNames.Criteria__c.Logic__c]);
+    } catch (e) {
+        this.Logic__c = { custom: { type: undefined, logic: undefined } };
+    }
+
+    try {
+        this.Criteria_Items__c = JSON.parse(obj[fieldNames.Criteria__c.Criteria_Items__c]);
+    } catch (e) {
+        this.Criteria_Items__c = { custom: [], mandatory: { statusCategory: [] } };
+    }
+
+    try {
+
+        this.Territories__c = JSON.parse(obj[fieldNames.Criteria__c.Territories__c]);
+
+        if (!Array.isArray(this.Territories__c)) {
+            this.Territories__c = [];
+        }
+    } catch (e) {
+        this.Territories__c = [];
+    }
+
+    try {
+
+        this.Work_Types__c = JSON.parse(obj[fieldNames.Criteria__c.Work_Types__c]);
+
+        if (!Array.isArray(this.Work_Types__c)) {
+            this.Work_Types__c = [];
+        }
+    } catch (e) {
+        this.Work_Types__c = [];
+    }
+}
+
+function CriteriaItem(index, field, operator, value) {
+    this.field = field;
+    this.operator = operator;
+    this.value = value;
+    this.index = index;
+}
+'use strict';
+
+function ExpectedBehavior(description, serviceType) {
+
+    this.description = description;
+    this.serviceType = serviceType ? serviceType : OPTIMIZATION_TYPE_RDO;
+
+    this.serviceConfig = {
+        clearGantt: false,
+        keepSameOrder: false
+    };
+}
+
+var KEEP_SCHEDULE_1 = 'Try and keep the existing schedule while try to add more SA\'s';
+var KEEP_SCEDULE_2 = 'Try and keep the existing schedule (move tasks to the right)';
+var REORDER_DAY_BECAUSE_EMERGENCY = 'Reorganize the rest of the day after an Emergency was scheduling - while keeping minimum travel-time';
+
+var OPTIMIZATION_TYPE_RSO = 'RSO';
+var OPTIMIZATION_TYPE_RDO = 'RDO';
+var OPTIMIZATION_TYPE_INDAY = 'IN_DAY';
+var DISPATCH = '';
+"use strict";
+
+function ObjectMapping(name, label) {
+    var sobject = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+
+    for (var field in fieldNames.ObjectMapping__c) {
+        this[fieldNames.ObjectMapping__c[field]] = sobject[fieldNames.ObjectMapping__c[field]] || null;
+    }
+
+    this.Id = sobject.Id || null;
+
+    this.Name = name;
+    this[fieldNames.ObjectMapping__c.label__c] = label;
+    this.isOpen = false;
+}
+"use strict";
+
+function SchedulingRecipe(obj) {
+
+    if (!obj) {
+        this.Id = undefined;
+        this.Name = undefined;
+        this.Semi_Automated__c = true;
+        this.Active__c = false;
+        this.Criteria__r = new Criteria();
+        this.Expected_Behavior__c = undefined;
+        this.Priority__c = undefined;
+        this.Scenario_Specific__c = 10;
+        this.Scenario_Type__c = undefined;
+        this.Scheduling_Policy__c = undefined;
+        this.Description__c = undefined;
+        this.LKL_Threshold__c = 0;
+        this.parsePostAction(undefined);
+        return;
+    }
+
+    this.Id = obj.Id;
+    this.Name = obj.Name;
+    this.Semi_Automated__c = obj[fieldNames.SchedulingRecipe__c.Semi_Automated__c];
+    this.Active__c = obj[fieldNames.SchedulingRecipe__c.Active__c];
+    this.Criteria__r = new Criteria(obj[fieldNames.SchedulingRecipe__c.Criteria__r]);
+    this.Expected_Behavior__c = obj[fieldNames.SchedulingRecipe__c.Expected_Behavior__c];
+    this.Priority__c = obj[fieldNames.SchedulingRecipe__c.Priority__c];
+    this.Scenario_Specific__c = obj[fieldNames.SchedulingRecipe__c.Scenario_Specific__c] ? obj[fieldNames.SchedulingRecipe__c.Scenario_Specific__c] : 10;
+    this.Scenario_Type__c = obj[fieldNames.SchedulingRecipe__c.Scenario_Type__c];
+    this.Scheduling_Policy__c = obj[fieldNames.SchedulingRecipe__c.Scheduling_Policy__c];
+    this.Description__c = obj[fieldNames.SchedulingRecipe__c.Description__c];
+    this.LKL_Threshold__c = obj[fieldNames.SchedulingRecipe__c.LKL_Threshold__c] ? obj[fieldNames.SchedulingRecipe__c.LKL_Threshold__c] : 0;
+    this.parsePostAction(obj[fieldNames.SchedulingRecipe__c.Post_Actions__c]);
+}
+
+SchedulingRecipe.prototype.parsePostAction = function (actionString) {
+
+    try {
+
+        var parsedAction = JSON.parse(actionString);
+        this.Post_Actions__c = {};
+        this.Post_Actions__c.ScheduledSAs = parsedAction.ScheduledSAs ? parsedAction.ScheduledSAs : { keepSameStatus: true, Status: undefined };
+        this.Post_Actions__c.UnscheduledSAs = parsedAction.UnscheduledSAs ? parsedAction.UnscheduledSAs : { PutInJepordy: false, InJepordyReason: undefined };
+    } catch (e) {
+
+        this.Post_Actions__c = {};
+        this.Post_Actions__c.ScheduledSAs = { keepSameStatus: true, Status: undefined };
+        this.Post_Actions__c.UnscheduledSAs = { PutInJepordy: false, InJepordyReason: undefined };
+    }
+};
+"use strict";
+
+function booleanDescriptor(sobject) {
+    settingDescriptor.call(this, sobject);
+}
+
+booleanDescriptor.prototype = Object.create(settingDescriptor.prototype);
+"use strict";
+
+function booleanTextDescriptor(sobject, booleanValue) {
+    settingDescriptor.call(this, sobject);
+
+    this.booleanValue = booleanValue;
+}
+
+booleanTextDescriptor.prototype = Object.create(settingDescriptor.prototype);
+
+booleanTextDescriptor.prototype.setValue = function () {
+    this.value = this.booleanValue ? "1" : "0";
+};
+"use strict";
+
+function multiPicklistDescriptor(sobject) {
+    settingDescriptor.call(this, sobject);
+    this.options = sobject.options;
+    this.value = this.value;
+}
+
+multiPicklistDescriptor.prototype = Object.create(settingDescriptor.prototype);
+"use strict";
+
+function numberDescriptor(sobject, min, max) {
+    settingDescriptor.call(this, sobject);
+
+    this.min = sobject.min || min || 0;
+    this.max = sobject.max || max || 0;
+}
+
+numberDescriptor.prototype = Object.create(settingDescriptor.prototype);
+"use strict";
+
+function picklistDescriptor(sobject) {
+    settingDescriptor.call(this, sobject);
+    this.options = sobject.options;
+    this.value = this.value || this.options[0] && this.options[0].value || null;
+}
+
+picklistDescriptor.prototype = Object.create(settingDescriptor.prototype);
+"use strict";
+
+// pass sobject with value/label or directly add label/value
+
+function picklistOption(sobjectOrLabel, value) {
+
+    if (value) {
+        this.label = sobjectOrLabel;
+        this.value = value;
+    } else {
+        this.value = sobjectOrLabel.value;
+        this.label = sobjectOrLabel.label;
+    }
+}
+'use strict';
+
+function settingDescriptor(sobject) {
+    this.id = 'settingDescriptor' + (Math.random() * 10000000000000000).toString();
+    this.label = sobject.label;
+    this.value = sobject.value;
+    this.dirty = false;
+    this.customSettingType = sobject.type;
+}
+"use strict";
+
+function textDescriptor(sobject, maxlength) {
+    settingDescriptor.call(this, sobject);
+    this.maxlength = sobject.maxlength || maxlength || null;
+}
+
+textDescriptor.prototype = Object.create(settingDescriptor.prototype);
+'use strict';
+
 (function () {
 
     angular.module('SettingsApp').directive('objectSharingStatusDirective', objectSharingStatusDirective);
@@ -349,6 +576,1514 @@
                   template: template
             };
       }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('autTreeMemember', function ($compile) {
+
+        controllerFunction.$inject = ['$scope'];
+
+        function controllerFunction($scope) {
+
+            if ($scope.member) {
+
+                $scope.member.children.sort(function (a, b) {
+                    return a.Name > b.Name ? 1 : -1;
+                });
+            }
+
+            $scope.isFiltered = function () {
+                return $scope.member.filter || !$scope.filterOn;
+            };
+
+            $scope.iso2 = function (id) {
+
+                return $scope.o2Territories.indexOf(id) != -1;
+            };
+
+            $scope.isDisabled = function (name, id) {
+
+                if ($scope.o2Territories.indexOf(id) == -1 || $scope.inGroupsTerritories[name.toLowerCase()] && $scope.inGroupsTerritories[name.toLowerCase()][id]) {
+                    return true;
+                }
+                return false;
+            };
+
+            $scope.hasChildren = function () {
+
+                //console.log($scope.member.Name + ' ' + $scope.member.children.length); 
+                return $scope.member && $scope.member.children && $scope.member.children.length > 0;
+            };
+
+            $scope.getChecked = function () {
+
+                var t = $scope.checkedTerritories[$scope.automator.Name.toLowerCase()][$scope.member.Id];
+            };
+
+            $scope.treelocationSelected = function (territory, automator, checked) {
+                var checkForMaxTerritories = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
+
+                var checkedTerritories = $scope.checkedTerritories[automator.Name.toLowerCase()],
+                    countTerritories = 0;
+
+                for (var id in checkedTerritories) {
+                    checkedTerritories[id] && countTerritories++;
+                }
+
+                var jobsStr = territory[fieldNames.ServiceTerritory.System_Jobs__c] || '',
+                    jobs = jobsStr.split(';'),
+                    automatorName = automator.Name.toLowerCase();
+
+                if (checked) {
+                    $scope.selectedlist[territory.Id] = true;
+                    if (jobs.indexOf(automatorName) === -1) {
+                        this.$parent.numberOfTerritories++;
+                    }
+                } else {
+                    $scope.selectedlist[territory.Id] = false;
+                    var index = jobs.indexOf(automatorName);
+
+                    if (index !== -1) {
+                        this.$parent.numberOfTerritories--;
+                    }
+                }
+
+                automator.modifiedDeleteMeInCronExp = true;
+            };
+
+            $scope.toggleCheckbox = function (checked) {
+
+                var automatorName = $scope.automator.Name.toLowerCase();
+
+                if (checked) {
+
+                    $scope.settings.Territories.forEach(function (territory) {
+
+                        if (territory.Id == $scope.member.Id) {
+
+                            $scope.treelocationSelected(territory, $scope.automator, true);
+                        }
+                    });
+
+                    if (!!$scope.member.children) {
+
+                        var territories = [];
+
+                        for (var i = 0; i < $scope.member.children.length; i++) {
+                            territories.unshift($scope.member.children[i]);
+                        }
+
+                        while (territories.length > 0) {
+                            var territory = territories.pop();
+
+                            if (!!territory.children) {
+                                for (var _i = 0; _i < territory.children.length; _i++) {
+                                    territories.unshift(territory.children[_i]);
+                                }
+                            }
+
+                            $scope.selected[territory.Id] = true;
+
+                            if ($scope.isDisabled(automatorName, territory.Id) == false) {
+
+                                $scope.checkedTerritories[automatorName][territory.Id] = true; // // set checked to true
+                            }
+                        }
+                    }
+                } else {
+
+                    $scope.settings.Territories.forEach(function (territory) {
+
+                        if (territory.Id == $scope.member.Id) {
+
+                            $scope.treelocationSelected(territory, $scope.automator, false, false);
+                        }
+                    });
+
+                    if (!!$scope.member.children) {
+
+                        var _territories = [];
+
+                        for (var _i2 = 0; _i2 < $scope.member.children.length; _i2++) {
+                            _territories.unshift($scope.member.children[_i2]);
+                        }
+
+                        while (_territories.length > 0) {
+                            var _territory = _territories.pop();
+
+                            if (!!_territory.children) {
+                                for (var _i3 = 0; _i3 < _territory.children.length; _i3++) {
+                                    _territories.unshift(_territory.children[_i3]);
+                                }
+                            }
+
+                            if (!!$scope.selected[_territory.Id]) {
+                                delete $scope.selected[_territory.Id];
+                                $scope.checkedTerritories[automatorName][_territory.Id] = false; // set checked to false
+                            }
+                        }
+                    }
+
+                    delete $scope.selected[$scope.member.Id];
+                }
+            };
+        }
+
+        return {
+            controller: controllerFunction,
+            restrict: "E",
+            replace: true,
+            scope: {
+                member: '=',
+                topLevelId: '=',
+                parentId: '=',
+                label: '=',
+                automator: '=',
+                settings: '=',
+                checkedTerritories: '=',
+                inGroupsTerritories: '=',
+                o2Territories: '=',
+                selected: '=',
+                selectedlist: '=',
+                filterOn: '='
+            },
+            template: '<li class="slds-nav-vertical__item" ng-show="isFiltered()">\n                            <div class="slds-tree__item" style="align-items: center;">\n                                <button style="width: 11px;" class="slds-button slds-button_icon slds-button_icon slds-m-right_x-small" ng-click="member.isOpen = !member.isOpen" ng-if="member.children && member.children.length > 0">\n                                    <i ng-show="hasChildren()" ng-class="{\'fa fa-angle-down\' : member.isOpen , \'fa fa-angle-right\': !member.isOpen}">  </i>\n                                </button>\n\n                                <div ng-if="member.children && member.children.length == 0" style="width: 19px;display: inline-block;">\n                                </div>\n                                \n                                <div class="slds-checkbox">\n                                    <label class="slds-checkbox__label">\n                                        <input ng-disabled="isDisabled(automator.Name,member.Id)" id="{{member.Id}}" type="checkbox" ng-change="toggleCheckbox(checkedTerritories[automator.Name.toLowerCase()][member.Id])"  ng-model="checkedTerritories[automator.Name.toLowerCase()][member.Id]"/> <!-- ng-model="selected[member.Id]" -->\n                                        <span class="slds-checkbox_faux"></span>\n                                    </label>\n                                </div> \n                                <label class="slds-m-left--x-small" title="Tree Branch" for="{{member.Id}}"><span ng-if="iso2(member.Id) == false">(Optimization) </span>{{member[label]}}  </label>\n                            </div>\n                        </li>',
+
+            link: function link(scope, element, attrs) {
+                if (angular.isArray(scope.member.children)) {
+                    element.append('<aut-tree-enhancement-collection class="slds-m-left_x-large" style="" collection=\'member.children\' o2-territories="o2Territories"  in-groups-territories="inGroupsTerritories" checked-territories=\'checkedTerritories\' selectedlist=\'selectedlist\' settings=\'settings\' automator=\'automator\' label="label" ng-if="member.children && member.children.length > 0" ng-show="member.isOpen && isFiltered()" selected="selected" top-level-id="topLevelId" parent-id="parentId" filter-on="filterOn"></aut-tree-enhancement-collection>');
+                    $compile(element.contents())(scope);
+                }
+            }
+        };
+    });
+
+    angular.module('SettingsApp').directive('autTreeEnhancementCollection', function () {
+
+        controllerFunction.$inject = ['$scope'];
+
+        function controllerFunction($scope) {}
+
+        return {
+            controller: controllerFunction,
+            restrict: "E",
+            replace: true,
+            scope: {
+                collection: '=',
+                label: '=',
+                selected: '=',
+                topLevelId: '=',
+                parentId: '=',
+                checkedTerritories: '=',
+                inGroupsTerritories: '=',
+                o2Territories: '=',
+                automator: '=',
+                settings: '=',
+                selectedlist: '=',
+                filterOn: '='
+            },
+            template: '<ul class="slds-tree">\n                         <aut-tree-memember ng-repeat=\'member in collection | orderBy:member.Name\' o2-territories="o2Territories" in-groups-territories="inGroupsTerritories" checked-territories=\'checkedTerritories\' settings=\'settings\' selectedlist=\'selectedlist\' automator=\'automator\'  member=\'member\' label="label" selected="selected" top-level-id="topLevelId" parent-id="parentId" filter-on="filterOn"></aut-tree-memember>\n                       </ul>'
+        };
+    });
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('automatorEnhancementsGeneral', automatorEnhancementsGeneral);
+
+    automatorEnhancementsGeneral.$inject = [];
+
+    function automatorEnhancementsGeneral(dataService) {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', '$q', 'settingsUtils'];
+
+        function controllerFunction($scope, dataService, primitiveType, $q, settingsUtils) {
+
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+            $scope.rawObjectFromArray = [];
+            $scope.rawObjectToArray = [];
+            $scope.maxHorizonValue = 0;
+
+            $scope.usersCache = {};
+
+            $scope.searchUsers = function (inputValue) {
+
+                var deferred = $q.defer();
+
+                settingsUtils.callRemoteAction(remoteActions.searchUsers, [inputValue]).then(function (users) {
+                    var userNames = [];
+
+                    for (var i = 0; i < users.length; i++) {
+                        userNames.push(users[i].Name);
+
+                        $scope.usersCache[users[i].Name] = users[i].Email;
+                    }
+
+                    deferred.resolve(userNames);
+                });
+
+                return deferred.promise;
+            };
+
+            $scope.filterInput = function (inputValue, automator) {
+                var fromCache = $scope.usersCache[inputValue];
+
+                if (!fromCache) {
+                    fromCache = inputValue;
+                }
+
+                var currVal = automator[fieldNames.Automator_Config__c.Notification_Username__c];
+
+                //if (currVal != undefined || fromCache != null) {
+                if (currVal) {
+                    automator[fieldNames.Automator_Config__c.Notification_Username__c] = fromCache;
+                }
+
+                return fromCache;
+            };
+
+            $scope.addToRawObjectArray = function (arr, lable, value) {
+
+                arr.push(new numberDescriptor({
+                    label: lable,
+                    value: value,
+                    min: 0, // -30
+                    max: 9999
+                }));
+            };
+
+            $scope.buildTimeSpanArray = function () {
+
+                $scope.maxHorizonValue = 0;
+                var horizonsString = '';
+                $scope.rawObjectFromArray.map(function (obj, index) {
+
+                    if ($scope.rawObjectFromArray && $scope.rawObjectFromArray[index] && $scope.rawObjectToArray && $scope.rawObjectToArray[index]) {
+
+                        if ($scope.rawObjectFromArray[index].value > $scope.rawObjectToArray[index].value) {
+                            $scope.rawObjectToArray[index].value = $scope.rawObjectFromArray[index].value;
+                        }
+
+                        $scope.maxHorizonValue = $scope.rawObjectToArray[index].value > $scope.maxHorizonValue ? $scope.rawObjectToArray[index].value : $scope.maxHorizonValue;
+                        horizonsString += $scope.rawObjectFromArray[index].value + ',' + $scope.rawObjectToArray[index].value + ';';
+                    }
+                });
+
+                $scope.automator[fieldNames.Automator_Config__c.Horizons__c] = horizonsString;
+
+                dataService.getModifiedAutomators()[$scope.automator.Name] = true;
+
+                $scope.maxHorizonValue++;
+            };
+
+            $scope.removeHorizonsPair = function (index) {
+
+                $scope.rawObjectFromArray.splice(index, 1);
+                $scope.rawObjectToArray.splice(index, 1);
+
+                $scope.buildTimeSpanArray();
+            };
+
+            $scope.addHorizonsPair = function () {
+
+                $scope.maxHorizonValue = $scope.maxHorizonValue > 9999 ? 9999 : $scope.maxHorizonValue;
+
+                $scope.addToRawObjectArray($scope.rawObjectFromArray, 'From Day', $scope.maxHorizonValue);
+                $scope.addToRawObjectArray($scope.rawObjectToArray, 'To Day', $scope.maxHorizonValue);
+
+                $scope.maxHorizonValue++;
+
+                $scope.buildTimeSpanArray();
+            };
+
+            $scope.$watch('rawObjectToArray', function (newVal, oldVal) {
+
+                for (var e in newVal) {
+                    if (newVal[e].value == null) {
+                        newVal[e].value = 0;
+                    }
+
+                    if ($scope.rawObjectToArray[e].value - $scope.rawObjectFromArray[e].value > 30) {
+
+                        if ($scope.rawObjectToArray[e].value >= 9999) {
+                            $scope.rawObjectToArray[e].value = 9999;
+                        }
+
+                        if (oldVal && oldVal[e].value < newVal[e].value) {
+                            $scope.rawObjectFromArray[e].value = $scope.rawObjectToArray[e].value - 30;
+                        }
+                    }
+                }
+                $scope.buildTimeSpanArray();
+            }, true);
+
+            $scope.$watch('rawObjectFromArray', function (newVal, oldVal) {
+
+                for (var e in newVal) {
+                    if (newVal[e].value == null) {
+                        newVal[e].value = 0;
+                    }
+
+                    if ($scope.rawObjectToArray[e].value - $scope.rawObjectFromArray[e].value > 30) {
+
+                        if (oldVal && oldVal[e].value < newVal[e].value) {
+
+                            if ($scope.rawObjectToArray[e].value >= 9999) {
+                                $scope.rawObjectFromArray[e].value = 9999 - 30;
+                            } else {
+                                $scope.rawObjectToArray[e].value = $scope.rawObjectFromArray[e].value + 30;
+                            }
+                        }
+                        if (oldVal && oldVal[e].value > newVal[e].value) {
+                            $scope.rawObjectToArray[e].value = newVal[e].value + 30;
+                        }
+                    }
+
+                    if ($scope.rawObjectFromArray[e].value >= 9999 - 30) {
+                        $scope.rawObjectFromArray[e].value = 9999 - 30;
+                    }
+                }
+                $scope.buildTimeSpanArray();
+            }, true);
+
+            createFormulaAndPoliciesOptionsArray();
+
+            function createFormulaAndPoliciesOptionsArray() {
+                dataService.getSettingsPromise().then(function () {
+                    $scope.formulaOptions = dataService.serviceBooleanFields;
+                    $scope.policies = dataService.policies;
+                });
+            }
+
+            var automatorHorizonsPairs = [],
+                automatorHorizons = void 0;
+
+            automatorHorizons = $scope.automator[fieldNames.Automator_Config__c.Horizons__c] || '';
+
+            if (automatorHorizons == '' || automatorHorizons == '0,0') {
+
+                // translate from old LS  data too O2
+
+                if ($scope.automator[fieldNames.Automator_Config__c.Time_Span_Forward__c] != 0) {
+
+                    $scope.addToRawObjectArray($scope.rawObjectFromArray, 'From Day', 1);
+                    $scope.addToRawObjectArray($scope.rawObjectToArray, 'To Day', 1); //parseInt($scope.automator[fieldNames.Automator_Config__c.Time_Span_Forward__c] ) );
+
+                    $scope.maxHorizonValue = 2;
+
+                    $scope.automator[fieldNames.Automator_Config__c.Time_Span_Forward__c] = null;
+                } else {
+
+                    $scope.addHorizonsPair();
+                }
+            } else {
+
+                automatorHorizonsPairs = automatorHorizons.split(';');
+
+                automatorHorizonsPairs.map(function (obj) {
+
+                    var automatorHorizonsPair = obj.split(',');
+
+                    if (automatorHorizonsPair.length > 1) {
+
+                        $scope.addToRawObjectArray($scope.rawObjectFromArray, 'From Day', parseInt(automatorHorizonsPair[0]));
+                        $scope.addToRawObjectArray($scope.rawObjectToArray, 'To Day', parseInt(automatorHorizonsPair[1]));
+
+                        $scope.maxHorizonValue = $scope.maxHorizonValue <= parseInt(automatorHorizonsPair[0]) ? parseInt(automatorHorizonsPair[0]) + 1 : $scope.maxHorizonValue;
+
+                        $scope.maxHorizonValue = $scope.maxHorizonValue <= parseInt(automatorHorizonsPair[1]) ? parseInt(automatorHorizonsPair[1]) + 1 : $scope.maxHorizonValue;
+
+                        $scope.maxHorizonValue = $scope.maxHorizonValue > 9999 ? 9999 : $scope.maxHorizonValue;
+                    }
+                });
+            }
+        }
+
+        var template = '\n        <div class="automatorEnhancementsGeneral">\n\n        <!--\n            <div ng-if="rawObjectToArray.length >= 10" class="automatorEnhancementsErrorMsg">\n                <main-content>\n                <i style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>\n                You cannot add more than 10 time periods per scheduled job.\n                </main-content>\n            </div>\n-->\n           <div class="automatorEnhancementsGeneralLeftContent">\n\n                <div>Time Periods <tooltip>Add up to 10 time periods.</tooltip> </div>\n                <div ng-repeat="rawObjectFrom in rawObjectFromArray">\n                    <div class="automatorEnhancementsGeneralTimePeriodsData">\n                        <div class="automatorEnhancementsGeneralTimePeriodsDataBox" >\n                            <number-setting  ng-model="rawObjectFromArray[$index]" ng-change="onObjectChange()"  object="rawObjectFromArray[$index]"></number-setting>\n                        </div>\n                        <div class="automatorEnhancementsGeneralTimePeriodsDataBox" >\n                            <number-setting  ng-model="rawObjectToArray[$index]"  ng-change="onObjectChange()"  object="rawObjectToArray[$index]" ></number-setting>\n                        </div>\n                        <div ng-if="rawObjectToArray.length > 1" class="newAutomator automatorButton settingsButton whiteButton automatorEnhancementsButton" title="Delete time period" ng-click="removeHorizonsPair($index)"> <i class="fa fa-trash-o territory-enhance-groups-remove-i" ></i> </div>\n                        <div ng-if="($index == rawObjectToArray.length - 1) && (rawObjectToArray.length < 10)" class="newAutomator automatorButton settingsButton whiteButton automatorEnhancementsButton" title="Add time period" ng-click="addHorizonsPair()"><i class="fa fa-solid fa-plus territory-enhance-groups-remove-i"></i></div>\n                    </div>\n                </div>\n              \n            </div> <!-- automatorLeftContent -->\n        <div class="automatorEnhancementsGeneralRightContent" >\n           <!-- <div>Job Parameters</div> -->\n                <custom-settings-wrapper  options="policies" primitive-type="primitiveType.picklist" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy_Id__c\'" setting="automator" ></custom-settings-wrapper>\n                <custom-settings-wrapper  options="formulaOptions" primitive-type="primitiveType.picklist" label="\'Filter by Criteria\'" value-field-name="\'Filter_Field__c\'" setting="automator" ></custom-settings-wrapper>\n                <custom-settings-wrapper  filter-input="filterInput(inputValue, automator)" get-suggestions="searchUsers(inputValue)" primitive-type="primitiveType.autoComplete" tooltip-text="Enter the username and then select from the list. The field displays the email address." label="\'Notification Recipient\'" value-field-name="\'Notification_Username__c\'" setting="automator" ng-hide="noChange"></custom-settings-wrapper> \n            </div> <!-- automatorRightContent -->\n        </div>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '=',
+                automator: '=',
+                warnings: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('automatorEnhancementsSchedule', automatorEnhancementsSchedule);
+
+    automatorEnhancementsSchedule.$inject = [];
+
+    function automatorEnhancementsSchedule(dataService) {
+
+        controllerFunction.$inject = ['$scope', 'dataService', '$rootScope'];
+
+        function controllerFunction($scope, dataService, $rootScope) {
+
+            $scope.getAutomatorFieldName = function (field) {
+                return window.fieldNames.Automator_Config__c[field];
+            };
+        }
+
+        var template = '\n        <div class="automatorEnhancementsSchedule">\n            <div>\n             <cron-exp-enhancements warnings="warnings" automator="automator" expression="automator[getAutomatorFieldName(\'Cron_Expression__c\')]" valid="valid" is-disabled="noChange"></cron-exp>\n            </div>\n        </div>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '=',
+                automator: '=',
+                warnings: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('automatorEnhancementsTerritory', automatorEnhancementsTerritory);
+
+    automatorEnhancementsTerritory.$inject = [];
+
+    var GROUP_DELIMITER = '##group##'; // lower case // _group_
+    var BREAK_DELIMITER = ';';
+
+    function automatorEnhancementsTerritory(dataService) {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', 'settingsUtils', '$q', '$timeout', '$rootScope'];
+
+        function controllerFunction($scope, dataService, primitiveType, settingsUtils, $q, $timeout, $rootScope) {
+
+            $scope.settings = dataService.getDraftSettings();
+            $scope.primitiveType = primitiveType;
+            $scope.selectedlist = {};
+            $scope.groupsList = {};
+            $scope.groupsListMax = {};
+            $scope.labelField = fieldNames.Automator_Config__c.Label__c;
+            $scope.checkedTerritories = {};
+            $scope.inGroupsTerritories = {};
+            $scope.searchTerritory = { Name: "" };
+            $scope.usersCache = {};
+            $scope.manyTerritories = dataService.getManyTerritories;
+            $scope.manyTerritoriesAddedDraft = {};
+            $scope.groupTerritories = {};
+            $scope.o2Territories = [];
+            $scope.territoriesLookupArray = [];
+            $scope.currentResults = [];
+            $scope.cachedTerritoriesQueryResults = {};
+            $scope.allTerritoriesQueried = {};
+            $scope.territoriesIdsToNames = {};
+            $scope.selectedTerritoriesInLb = {};
+            $scope.savedSelectedTerritoriesInLb = {};
+            $scope.currentlyLoading = false;
+            $scope.notO2TerritoriesInGroup = false;
+            $scope.dataSet = false;
+            $scope.dataLoaded = false;
+
+            $scope.openTerritorySearchLightbox = function (automator) {
+                $scope.lastAutomatorOpened = automator;
+            };
+
+            $scope.searchTerritoryOnServer = function (searchText, automator) {
+
+                // search is empty, mark "none" and validate
+                if (searchText === "") {
+
+                    $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()] = $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()] || new Set();
+
+                    $scope.currentResults.forEach(function (territory) {
+
+                        if ($scope.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()] && $scope.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()][territory.Id]) {
+                            $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()].add(territory);
+                        }
+                    });
+
+                    $scope.currentResults = [];
+                    $scope.showResults = false;
+                    $scope.noTerritoriesFoundOnSearch = false;
+                    return;
+                }
+
+                // check if cached
+                // removed cache logic
+
+                //   if ($scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()]) {
+
+                //   console.log('from cached ' );
+                //  console.log($scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()] );
+                //    $scope.currentResults = $scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()];
+                //     $scope.showResults = true;
+                //    $scope.noTerritoriesFoundOnSearch = $scope.currentResults.length === 0;
+
+                //   return;
+                //  }
+
+
+                $scope.currentlyLoading = true;
+
+                $scope.updateCurentlySelectedName = function (automator) {
+
+                    $scope.selectedTerritoriesInLb = $scope.selectedTerritoriesInLb || {};
+                    // CFSL1474
+                    $scope.manyTerritoriesAddedDraft[automator] = $scope.manyTerritoriesAddedDraft[automator] || new Set();
+
+                    $scope.currentResults.forEach(function (territory) {
+
+                        if ($scope.selectedTerritoriesInLb[automator][territory.Id]) {
+                            $scope.manyTerritoriesAddedDraft[automator].add(territory);
+                        }
+                    });
+                };
+
+                $scope.updateCurentlySelected = function (automator, e) {
+
+                    $scope.$parent.selectedTerritoriesInLb = $scope.$parent.selectedTerritoriesInLb || {};
+                    $scope.$parent.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()] = $scope.$parent.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()] || {};
+                    $scope.selectedTerritoriesInLb = $scope.selectedTerritoriesInLb || {};
+                    $scope.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()] = $scope.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()] || {};
+
+                    // CFSL1474
+                    $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()] = $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()] || new Set();
+
+                    $scope.currentResults.forEach(function (territory) {
+
+                        $scope.$parent.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()][territory.Id] = $scope.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()][territory.Id];
+
+                        if ($scope.$parent.selectedTerritoriesInLb[automator.Name.toLocaleLowerCase()][territory.Id]) {
+                            $scope.manyTerritoriesAddedDraft[automator.Name.toLocaleLowerCase()].add(territory);
+                        }
+                    });
+                };
+
+                // query from server
+                window.Visualforce.remoting.Manager.invokeAction(window.remoteActions.searchTerritories, searchText, function (result, ev) {
+
+                    if (ev.status) {
+
+                        var allTerritories = dataService.getAllTerritories();
+                        result.forEach(function (t) {
+                            return allTerritories[t.Id] = allTerritories[t.Id] || t;
+                        });
+
+                        settingsUtils.safeApply($scope, function () {
+
+                            // cache
+                            $scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()] = result;
+                            $scope.showResults = true;
+
+                            // not synced with current value
+                            // if ($scope.searchText !== searchText) {
+                            //     return;
+                            // }
+
+                            $scope.currentlyLoading = false;
+                            $scope.currentResults = result;
+
+                            if (result.length === 0) {
+                                $scope.noTerritoriesFoundOnSearch = true;
+                            } else {
+                                $scope.noTerritoriesFoundOnSearch = false;
+
+                                result.forEach(function (t) {
+
+                                    if (t[fieldNames.ServiceTerritory.O2_Enabled__c] == true) {
+
+                                        $scope.o2Territories.push(t.Id);
+                                        $scope.territoriesLookup[t.Id] = t.Name;
+                                    }
+
+                                    $scope.allTerritoriesQueried[t.Label] = t;
+                                    $scope.territoriesIdsToNames[t.Id] = t.Label;
+
+                                    // add to parent territoriesMap. merge search result with loaded territories
+                                    // System_Jobs__c is used when updating territories
+                                    var arr1 = $scope.$parent.territoriesMap[t.Id] ? $scope.$parent.territoriesMap[t.Id][fieldNames.ServiceTerritory.System_Jobs__c].split(';') : [];
+                                    var arr2 = t[fieldNames.ServiceTerritory.System_Jobs__c] ? t[fieldNames.ServiceTerritory.System_Jobs__c].split(';') : [];
+
+                                    Array.prototype.unique = function () {
+                                        var a = this.concat();
+                                        for (var i = 0; i < a.length; ++i) {
+                                            for (var j = i + 1; j < a.length; ++j) {
+                                                if (a[i] === a[j]) a.splice(j--, 1);
+                                            }
+                                        }
+
+                                        return a;
+                                    };
+
+                                    var arr3 = arr1.concat(arr2).unique().join(';');
+
+                                    // update territoriesMap
+                                    $scope.$parent.territoriesMap[t.Id] = $scope.$parent.territoriesMap[t.Id] || {};
+                                    $scope.$parent.territoriesMap[t.Id].Id = t.Id;
+                                    $scope.$parent.territoriesMap[t.Id].Name = t.Name;
+                                    $scope.$parent.territoriesMap[t.Id][fieldNames.ServiceTerritory.System_Jobs__c] = arr3;
+                                    $scope.$parent.territoriesMap[t.Id][fieldNames.ServiceTerritory.O2_Enabled__c] = t[fieldNames.ServiceTerritory.O2_Enabled__c];
+                                });
+                            }
+                        });
+                    } else {
+
+                        console.warn(ev);
+                    }
+                }, { buffer: true, escape: false, timeout: 120000 });
+            };
+
+            $scope.toggleAutomator = function (automator, config) {
+
+                if (config.firstTimeOpen) {
+
+                    // org has many territories + new automator
+                    if (dataService.getManyTerritories() && automator.Id && !config.requestedLoadingTerritories) {
+
+                        config.firstTimeLoading = true;
+                        config.requestedLoadingTerritories = true;
+                        config.currentlyLoadingTerritories = true;
+
+                        dataService.getTerritoriesRelatedToAutomator(automator.Name).then(function (teritorries) {
+
+                            config.firstTimeOpen = false;
+                            config.open = true;
+                            config.firstTimeLoading = false;
+                            config.currentlyLoadingTerritories = false;
+
+                            teritorries.forEach(function (t) {
+                                $scope.selectedTerritoriesInLb[automator[$scope.labelField]][t.Id] = true;
+                                $scope.savedSelectedTerritoriesInLb[automator[$scope.labelField]][t.Id] = true;
+                            });
+                        });
+                    } else {
+                        config.firstTimeOpen = false;
+                        config.open = !config.open;
+                    }
+
+                    return;
+                }
+
+                config.open = !config.open;
+            };
+
+            $scope.removeFullTerritoryGroup = function (automator, group) {
+
+                var automatorName = automator.Name.toLowerCase();
+
+                for (var tId in $scope.groupTerritories[automatorName][group]) {
+
+                    delete $scope.inGroupsTerritories[automatorName][tId];
+                }
+
+                delete $scope.groupTerritories[automatorName][group];
+
+                $scope.trimGroupsList(automatorName);
+                $scope.updateSystemJobsC(automator);
+
+                $scope.notO2TerritoriesInGroup = $scope.checkNotO2InGroup($scope.automator);
+                $scope.getEmptyGroups($scope.automator);
+                $scope.dataSet = true;
+            };
+
+            /*
+            remove old place of automator in territory System_Jobs__c
+            if place (group) changed
+            */
+            $scope.removeOldTerritoryFromSystemJobsc = function (automator) {
+                var _this = this;
+
+                var automatorName = automator.Name.toLowerCase();
+                var territories = $scope.getRelevantTerritoriesPlusLoaded(automator);
+
+                territories.forEach(function (territory) {
+
+                    var oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    for (var group = 1; group < $scope.maxGroup[automatorName] + 2; group++) {
+
+                        var index = oldStrArry.indexOf(automatorName + GROUP_DELIMITER + group);
+
+                        if (index !== -1) {
+                            // was in System_Jobs__c
+
+                            // not in old place
+                            if ($scope.groupTerritories[automatorName][group] == undefined || $scope.groupTerritories[automatorName][group][territory.Id] == undefined) {
+
+                                // remove
+                                oldStrArry.splice(index, 1);
+                                _this.$parent.numberOfTerritories--;
+                            }
+                        }
+                    };
+
+                    territory[fieldNames.ServiceTerritory.System_Jobs__c] = oldStrArry.join(BREAK_DELIMITER);
+                });
+
+                territories.forEach(function (territory) {
+
+                    var found = false;
+
+                    $scope.settings.Territories.forEach(function (settingTerritory) {
+
+                        if (settingTerritory.Id == territory.Id) {
+                            found = true;
+                            settingTerritory[fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+                        }
+                    });
+
+                    if (!found) {
+                        $scope.settings.Territories.push(territory);
+                    }
+                });
+            };
+
+            $scope.checkNotO2InGroup = function (automator) {
+
+                var automatorName = automator.Name.toLowerCase();
+
+                var territories = $scope.getRelevantTerritoriesPlusLoaded(automator);
+
+                var index = 0;
+                var res = false;
+
+                territories.forEach(function (territory) {
+
+                    var oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    for (var group = 1; group < 11; group++) {
+
+                        index = oldStrArry.indexOf(automatorName + GROUP_DELIMITER + group);
+                        if (index !== -1 && territory[fieldNames.ServiceTerritory.O2_Enabled__c] == false) {
+
+                            $scope.warnings.teritorries = true; // not valid
+                            $scope.warnings.teritorriesMsg = 'Remove service territories that don’t have Enhanced Scheduling and Optimization enabled.';
+                            res = true;
+                        }
+                    };
+                });
+
+                return res;
+            };
+
+            $scope.updateSystemJobsC = function (automator) {
+                var _this2 = this;
+
+                $scope.removeOldTerritoryFromSystemJobsc(automator); // check old pace, must come before adding
+
+                var automatorName = automator.Name.toLowerCase();
+
+                var territories = $scope.getRelevantTerritoriesPlusLoaded(automator);
+
+                //console.log('updateSystemJobsC');
+                //console.log(territories);
+
+                var index = 0;
+
+                territories.forEach(function (territory) {
+
+                    var jobs = [],
+                        oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    for (var group = 1; group < 11; group++) {
+
+                        //remove from old pace
+                        index = oldStrArry.indexOf(automatorName + GROUP_DELIMITER + group);
+                        if (index !== -1) {
+                            oldStrArry.splice(index, 1);
+                            _this2.$parent.numberOfTerritories--;
+                        }
+
+                        // add at new pace
+                        if ($scope.groupTerritories[automatorName][group] && $scope.groupTerritories[automatorName][group][territory.Id]) {
+
+                            jobs.push(automatorName + GROUP_DELIMITER + group);
+                        }
+                    };
+
+                    jobs = oldStrArry.concat(jobs); // add new to old System_Jobs__c
+
+                    territory[fieldNames.ServiceTerritory.System_Jobs__c] = jobs.join(BREAK_DELIMITER);
+
+                    $scope.$parent.territoriesMap[territory.Id] = $scope.$parent.territoriesMap[territory.Id] || {};
+                    $scope.$parent.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c]; // for close open aut
+                });
+
+                // update global $scope.settings.Territories with new System_Jobs__c ( for not getManyTerritories mode )
+                territories.forEach(function (territory) {
+
+                    var found = false;
+
+                    $scope.settings.Territories.forEach(function (settingTerritory) {
+
+                        if (settingTerritory.Id == territory.Id) {
+                            found = true;
+                            settingTerritory[fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+                        }
+                    });
+
+                    if (!found) {
+                        $scope.settings.Territories.push(territory);
+                    }
+                });
+            };
+
+            $scope.removeTerritoryFromGroup = function (automator, group, t) {
+
+                var automatorName = automator.Name.toLowerCase();
+
+                delete $scope.groupTerritories[automatorName][group][t];
+
+                delete $scope.inGroupsTerritories[automatorName][t];
+
+                $scope.trimGroupsList(automatorName);
+
+                $scope.updateSystemJobsC(automator);
+
+                $scope.notO2TerritoriesInGroup = $scope.checkNotO2InGroup($scope.automator);
+
+                $scope.getEmptyGroups($scope.automator);
+                $scope.dataSet = true;
+            };
+
+            $scope.isO2 = function (id) {
+
+                return $scope.o2Territories.indexOf(id) != -1;
+            };
+
+            /*
+            checkbox is disabled for not O2 and allready in groups
+            */
+            $scope.isDisabled = function (automatorName, id) {
+
+                if ($scope.o2Territories.indexOf(id) == -1 || $scope.inGroupsTerritories[automatorName.toLowerCase()] && $scope.inGroupsTerritories[automatorName.toLowerCase()][id]) {
+                    return true;
+                }
+                return false;
+            };
+
+            $scope.checkGroupAddNewBtnDisable = function (automator) {
+
+                if ($scope.groupsListMax[automator.Name.toLowerCase()] == 11) {
+                    return true;
+                }
+                if ($scope.checkedTerritories[automator.Name.toLowerCase()] == undefined) {
+                    return true;
+                }
+
+                if (Object.keys($scope.checkedTerritories[automator.Name.toLowerCase()]).length == 0) {
+                    return true;
+                }
+
+                for (var e in $scope.checkedTerritories[automator.Name.toLowerCase()]) {
+                    if ($scope.checkedTerritories[automator.Name.toLowerCase()][e] == true) {
+                        return false;
+                    }
+                }
+
+                return true;
+            };
+
+            $scope.checkAddDis = function (automator) {
+
+                if ($scope.groupsListMax[automator.Name.toLowerCase()] <= 1) {
+                    return true;
+                }
+
+                if ($scope.checkedTerritories[automator.Name.toLowerCase()] == undefined) {
+                    return true;
+                }
+
+                if (Object.keys($scope.checkedTerritories[automator.Name.toLowerCase()]).length == 0) {
+                    return true;
+                }
+
+                for (var e in $scope.checkedTerritories[automator.Name.toLowerCase()]) {
+                    if ($scope.checkedTerritories[automator.Name.toLowerCase()][e] == true) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+
+            /*
+            add to group
+            get all checked Territories
+            add to groupTerritories and inGroupsTerritories
+            selected is group number
+            */
+            $scope.onGroupAdd = function (selected, automator) {
+                var newGroup = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+
+                var groupNumber = newGroup ? $scope.groupsList[automator.Name.toLowerCase()].length : selected.value;
+
+                if (groupNumber > 10) {
+                    return;
+                }
+                if (newGroup && $scope.groupsListMax[automator.Name.toLowerCase()] > 10) {
+                    return;
+                }
+
+                var automatorName = automator.Name.toLowerCase();
+
+                for (var ter in $scope.checkedTerritories[automator.Name.toLowerCase()]) {
+
+                    if ($scope.checkedTerritories[automator.Name.toLowerCase()][ter]) {
+
+                        delete $scope.checkedTerritories[automator.Name.toLowerCase()][ter]; // remove checked
+
+                        $scope.groupTerritories[automatorName] = $scope.groupTerritories[automatorName] || {};
+                        $scope.groupTerritories[automatorName][groupNumber] = $scope.groupTerritories[automatorName][groupNumber] || {};
+                        $scope.groupTerritories[automatorName][groupNumber][ter] = ter; // add to groupTerritories
+
+                        $scope.inGroupsTerritories[automatorName] = $scope.inGroupsTerritories[automatorName] || {};
+                        $scope.inGroupsTerritories[automatorName][ter] = true; // add to inGroupsTerritories
+                    }
+                };
+
+                $scope.trimGroupsList(automatorName);
+                $scope.updateSystemJobsC(automator);
+                $scope.dataSet = true;
+                $scope.getEmptyGroups($scope.automator);
+            };
+
+            /*
+            */
+            $scope.trimGroupsList = function (automatorName) {
+
+                var index = 1,
+                    newGroupTerritories = {};
+
+                for (var key in $scope.groupTerritories[automatorName]) {
+
+                    if (Object.keys($scope.groupTerritories[automatorName][key]).length > 0) {
+                        newGroupTerritories[index++] = $scope.groupTerritories[automatorName][key];
+                    }
+                };
+
+                $scope.groupTerritories[automatorName] = newGroupTerritories;
+                $scope.buildGroupsListSelect(automatorName, index);
+            };
+
+            /*
+            get Territories that was loaded ( territoriesMap ) 
+            */
+            $scope.getRelevantTerritoriesPlusLoaded = function (automator) {
+
+                var territories = $scope.getRelevantTerritories(automator);
+
+                if (dataService.getManyTerritories()) {
+
+                    territories = $scope.addTerritoriesMap(territories);
+
+                    var territoriesLookupArrayKeys = [];
+                    for (var e in territories) {
+                        territoriesLookupArrayKeys.push(territories[e].Id);
+
+                        // add territoriesMap System_Jobs__c to loaded territories
+                        if ($scope.$parent.territoriesMap && $scope.$parent.territoriesMap[territories[e].Id] && $scope.$parent.territoriesMap[territories[e].Id][fieldNames.ServiceTerritory.System_Jobs__c]) {
+
+                            territories[e][fieldNames.ServiceTerritory.System_Jobs__c] = $scope.$parent.territoriesMap[territories[e].Id][fieldNames.ServiceTerritory.System_Jobs__c]; // !!
+                        }
+                    }
+
+                    // add from territoriesMap territories that are not yet in 
+                    for (var _e in $scope.$parent.territoriesMap) {
+
+                        if (territoriesLookupArrayKeys.indexOf($scope.$parent.territoriesMap[_e].Id) == -1) {
+
+                            var obj = new Object();
+                            obj['Id'] = $scope.$parent.territoriesMap[_e].Id;
+                            obj['Name'] = $scope.$parent.territoriesMap[_e].Name;
+                            obj[fieldNames.ServiceTerritory.System_Jobs__c] = $scope.$parent.territoriesMap[_e][fieldNames.ServiceTerritory.System_Jobs__c];
+                            $scope.territoriesLookupArray.push(obj);
+
+                            territories.push(obj);
+                        }
+                    }
+                }
+
+                return territories;
+            };
+
+            $scope.groupLoadFromSystemJobsC = function (automator) {
+                var _this3 = this;
+
+                $scope.maxGroup = {};
+
+                var jobBreak = [];
+
+                var territories = $scope.getRelevantTerritoriesPlusLoaded(automator);
+
+                var automatorName = '';
+
+                territories.forEach(function (territory) {
+
+                    var jobsStr = territory[fieldNames.ServiceTerritory.System_Jobs__c] || '',
+                        jobs = jobsStr.split(BREAK_DELIMITER);
+
+                    jobs.forEach(function (job) {
+
+                        jobBreak = job.split(GROUP_DELIMITER);
+
+                        if (jobBreak.length > 1) {
+
+                            automatorName = jobBreak[0].toLowerCase();
+
+                            $scope.maxGroup[automatorName] = $scope.maxGroup[automatorName] || 0;
+                            var group = jobBreak[1];
+
+                            $scope.maxGroup[automatorName] = parseInt(group) > $scope.maxGroup[automatorName] ? parseInt(group) : parseInt($scope.maxGroup[automatorName]);
+
+                            _this3.$parent.numberOfTerritories++;
+
+                            $scope.groupTerritories[automatorName] = $scope.groupTerritories[automatorName] || {};
+                            $scope.groupTerritories[automatorName][group] = $scope.groupTerritories[automatorName][group] || {};
+                            $scope.groupTerritories[automatorName][group][territory.Id] = territory.Id;
+
+                            $scope.inGroupsTerritories[automatorName] = $scope.inGroupsTerritories[automatorName] || {};
+                            $scope.inGroupsTerritories[automatorName][territory.Id] = true;
+                        } else {
+                            // from LS 2 O2 ? 
+
+                            automatorName = jobBreak[0].toLowerCase();
+
+                            $scope.maxGroup[automatorName] = $scope.maxGroup[automatorName] || 0;
+                            var _group = 1; // defult group is 1
+
+                            $scope.maxGroup[automatorName] = parseInt(_group) > $scope.maxGroup[automatorName] ? parseInt(_group) : parseInt($scope.maxGroup[automatorName]);
+
+                            _this3.$parent.numberOfTerritories++;
+
+                            $scope.groupTerritories[automatorName] = $scope.groupTerritories[automatorName] || {};
+                            $scope.groupTerritories[automatorName][_group] = $scope.groupTerritories[automatorName][_group] || {};
+                            $scope.groupTerritories[automatorName][_group][territory.Id] = territory.Id;
+
+                            $scope.inGroupsTerritories[automatorName] = $scope.inGroupsTerritories[automatorName] || {};
+                            $scope.inGroupsTerritories[automatorName][territory.Id] = true;
+                        }
+                    });
+                });
+
+                automatorName = automator.Name.toLowerCase();
+
+                $scope.maxGroup[automatorName] = $scope.maxGroup[automatorName] || 0;
+
+                $scope.groupsList[automatorName] = [];
+
+                var newMax = $scope.maxGroup[automatorName] + 1;
+
+                $scope.buildGroupsListSelect(automatorName, newMax);
+            };
+
+            $scope.buildGroupsListSelect = function (automatorName, max) {
+
+                $scope.groupsListMax[automatorName] = max;
+
+                $scope.groupsList[automatorName] = [];
+
+                // first 
+                $scope.groupsList[automatorName].push({
+                    label: 'Add to Group ',
+                    value: 0
+                });
+
+                for (var i = 1; i <= max - 1; i++) {
+
+                    $scope.groupsList[automatorName].push({
+                        label: 'Add to Group ' + i,
+                        value: i
+                    });
+                }
+
+                $scope.groupsListSelect = $scope.groupsList[automatorName][0];
+            };
+
+            $scope.getRelevantTerritories = function (automator) {
+
+                if (!dataService.getManyTerritories()) {
+                    // not in ManyTerritories => just get all Territories from settings
+
+                    return $scope.settings.Territories;
+                }
+
+                var territories = [],
+                    // $scope.territoriesLookupArray,//  start from 
+                idAlreadyPresent = {},
+                    savedSelectedTerritories = $scope.savedSelectedTerritoriesInLb[automator[$scope.labelField]];
+
+                for (var id in savedSelectedTerritories) {
+                    !idAlreadyPresent[id] && savedSelectedTerritories[id] && dataService.getTerritories(id) && territories.push(dataService.getTerritories(id));
+                    idAlreadyPresent[id] = true;
+                }
+
+                var newlyAddedTerritories = $scope.manyTerritoriesAddedDraft[automator.Name.toLowerCase()];
+
+                if (newlyAddedTerritories && newlyAddedTerritories.size > 0) {
+
+                    newlyAddedTerritories.forEach(function (t) {
+                        !idAlreadyPresent[t.Id] && territories.push(t);
+                        idAlreadyPresent[t.Id] = true;
+                    });
+                }
+
+                territories.sort(function (a, b) {
+                    if (a.Name > b.Name) return 1;
+                    if (a.Name < b.Name) return -1;
+                    return 0;
+                });
+
+                return territories;
+            };
+
+            $scope.addTerritoriesMap = function (territories) {
+
+                var newT = [];
+
+                for (var t1 in $scope.$parent.territoriesMap) {
+
+                    var found = false;
+                    for (var t2 in territories) {
+
+                        if (territories[t2].Id == t1) {
+                            found = true;
+
+                            var arr1 = territories[t2][fieldNames.ServiceTerritory.System_Jobs__c] ? territories[t2][fieldNames.ServiceTerritory.System_Jobs__c].split(';') : [];
+                            var arr2 = $scope.$parent.territoriesMap[t1][fieldNames.ServiceTerritory.System_Jobs__c] ? $scope.$parent.territoriesMap[t1][fieldNames.ServiceTerritory.System_Jobs__c].split(';') : [];
+
+                            Array.prototype.unique = function () {
+                                var a = this.concat();
+                                for (var i = 0; i < a.length; ++i) {
+                                    for (var j = i + 1; j < a.length; ++j) {
+                                        if (a[i] === a[j]) a.splice(j--, 1);
+                                    }
+                                }
+
+                                return a;
+                            };
+
+                            var arr3 = arr1.concat(arr2).unique().join(';');
+
+                            territories[t2][fieldNames.ServiceTerritory.System_Jobs__c] = $scope.$parent.territoriesMap[t1][fieldNames.ServiceTerritory.System_Jobs__c] = arr3;
+                        }
+                    }
+
+                    // ?? newT not used
+                    if (!found) {
+                        var obj = {};
+                        obj.Id = $scope.$parent.territoriesMap[t1].Id;
+                        obj.Name = $scope.$parent.territoriesMap[t1].Name;
+                        obj[fieldNames.ServiceTerritory.System_Jobs__c] = $scope.$parent.territoriesMap[t1][fieldNames.ServiceTerritory.System_Jobs__c];
+                        obj[fieldNames.ServiceTerritory.O2_Enabled__c] = $scope.$parent.territoriesMap[t1][fieldNames.ServiceTerritory.O2_Enabled__c];
+
+                        newT.push(obj);
+                    }
+                }
+
+                return territories;
+            };
+
+            function isInTerritoryArray(array, id) {
+
+                for (var i = 0; i < array.length; i++) {
+
+                    if (array[i].Id === id) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            /// tree
+
+            var data = {
+
+                territoriesMap: {},
+
+                manyTerritories: false
+
+            },
+                deferData = {
+                data: $q.defer()
+            };
+
+            $scope.selectedTerritories = {};
+            $scope.isTerritoriesFiltered = true;
+
+            function loadData() {
+
+                settingsUtils.callRemoteAction(remoteActions.loadOptimizationJobsEnhancementsData).then(function (optimizationJobsEnhancementsData) {
+
+                    // calc o2Territories
+                    $scope.o2Territories = Object.keys(optimizationJobsEnhancementsData.territories).filter(function (key) {
+
+                        if (optimizationJobsEnhancementsData.territories[key][fieldNames.ServiceTerritory.O2_Enabled__c] == true) {
+                            return optimizationJobsEnhancementsData.territories[key];
+                        }
+                    });
+
+                    data.manyTerritories = optimizationJobsEnhancementsData.manyTerritories;
+
+                    if (dataService.getManyTerritories()) {
+                        // ?? load
+                        $scope.$parent.territoriesMap = $scope.$parent.territoriesMap || {};
+                        for (var e in optimizationJobsEnhancementsData.territories) {
+                            if (!$scope.$parent.territoriesMap[e]) {
+
+                                $scope.$parent.territoriesMap[e] = optimizationJobsEnhancementsData.territories[e];
+                            }
+                        }
+
+                        for (var _e2 in $scope.settings.Territories) {
+                            var id = $scope.settings.Territories[_e2].Id;
+
+                            if (!$scope.$parent.territoriesMap[id] || !$scope.$parent.territoriesMap[id][fieldNames.ServiceTerritory.System_Jobs__c]) {
+                                $scope.$parent.territoriesMap[id] = $scope.settings.Territories[_e2];
+                            }
+                        }
+                    }
+
+                    $scope.territoriesTree = data.territoriesTree = parseTerritoriesToTree(optimizationJobsEnhancementsData.territories);
+                    $scope.parentTerritoryId = fieldNames.ServiceTerritory.ParentTerritoryId;
+                    $scope.topLevelTerritoryId = fieldNames.ServiceTerritory.TopLevelTerritoryId;
+
+                    // if manyTerritories we need to add to territoriesLookup from $scope.territoriesMap
+                    for (var t in $scope.$parent.territoriesMap) {
+                        $scope.territoriesLookup[$scope.$parent.territoriesMap[t].Id] = $scope.$parent.territoriesMap[t].Name;
+                    }
+
+                    deferData.data.resolve();
+
+                    $scope.groupLoadFromSystemJobsC($scope.automator);
+
+                    $scope.notO2TerritoriesInGroup = $scope.checkNotO2InGroup($scope.automator);
+
+                    $scope.dataLoaded = true;
+
+                    $scope.getEmptyGroups($scope.automator);
+                }).catch(function (ex) {
+                    console.error(ex);
+                    deferData.data.reject();
+                });
+            }
+
+            loadData();
+
+            function parseTerritoriesToTree(territoriesMap) {
+
+                $scope.territoriesLookup = {};
+
+                var territoriesIds = Object.keys(territoriesMap);
+
+                var territoriesValues = territoriesIds.map(function (key) {
+
+                    $scope.territoriesLookup[key] = territoriesMap[key].Name.toLowerCase();
+
+                    return territoriesMap[key];
+                });
+
+                territoriesValues.map(function (territory) {
+                    territory.children = [];
+                    territory.isOpen = false;
+                    territory.filter = true;
+                    territoriesIds.push(territory.Id);
+                });
+
+                var territoriesRoots = territoriesValues.filter(function (territory) {
+                    if (territory.ParentTerritory === undefined) {
+                        return true;
+                    } else {
+                        return territoriesIds.indexOf(territory.ParentTerritory.Id) === -1;
+                    }
+                });
+
+                var nodes = [];
+
+                territoriesRoots.map(function (territory) {
+                    nodes.push(territory);
+                });
+
+                var _loop = function _loop() {
+
+                    var node = nodes.pop();
+
+                    var children = territoriesValues.filter(function (territory) {
+                        if (territory.ParentTerritory === undefined) {
+                            return false;
+                        } else {
+                            return territory.ParentTerritory.Id === node.Id;
+                        }
+                    });
+
+                    children.map(function (territory) {
+                        node.children.push(territory);
+                        nodes.push(territory);
+                    });
+                };
+
+                while (nodes.length > 0) {
+                    _loop();
+                }
+
+                return territoriesRoots;
+            }
+
+            $scope.parseSelectedTerritories = function () {
+
+                var selectedTerritoriesStr = '';
+
+                return selectedTerritoriesStr;
+            };
+            $scope.filterTerritories = function (value) {
+                if (!!value && value.length > 1) {
+                    $scope.isTerritoriesFiltered = true;
+
+                    if (!!$scope.territoriesTree) {
+                        for (var i = 0; i < $scope.territoriesTree.length; i++) {
+                            $scope.visit($scope.territoriesTree[i], value.toLowerCase());
+                        }
+                    }
+                } else {
+                    $scope.isTerritoriesFiltered = false;
+                }
+            };
+
+            $scope.visit = function (node, searchTerm) {
+
+                node.filter = true;
+
+                var foundMatch = false;
+
+                if (!!node.children && node.children.length > 0) {
+                    for (var i = 0; i < node.children.length; i++) {
+                        foundMatch = $scope.visit(node.children[i], searchTerm) || foundMatch;
+                    }
+                }
+
+                var searchTermFound = node.Name.toLowerCase().indexOf(searchTerm) > -1;
+                node.filter = foundMatch || searchTermFound;
+                node.isOpen = node.filter;
+                return node.filter;
+            };
+
+            $scope.getEmptyGroupsMsg = function (automator) {
+
+                var empty = $scope.groupTerritories[automator.Name.toLowerCase()] == undefined || Object.keys($scope.groupTerritories[automator.Name.toLowerCase()]).length == 0;
+
+                return empty;
+            };
+
+            $scope.getEmptyGroups = function (automator) {
+
+                $scope.warnings = $scope.warnings || {};
+
+                var empty = $scope.groupTerritories[automator.Name.toLowerCase()] == undefined || Object.keys($scope.groupTerritories[automator.Name.toLowerCase()]).length == 0;
+
+                if (empty) {
+
+                    if ($scope.dataLoaded) {
+
+                        $scope.warnings.teritorries = true; // not valid
+                        $scope.warnings.teritorriesMsg = 'Add at least one service territory to a group.';
+                    }
+                } else {
+
+                    if (!$scope.notO2TerritoriesInGroup) {
+                        $scope.warnings.teritorries = false; // valid
+                        $scope.warnings.teritorriesMsg = '';
+                    }
+                }
+
+                if (!$scope.dataSet) {
+
+                    return false; // wait for data before error msg
+                }
+
+                return empty;
+            };
+
+            // tree
+
+            $scope.checkShowTerritory = function (automator, tid) {
+
+                // for not in  data.manyTerritories
+                if (!$scope.selectedTerritoriesInLb || !$scope.selectedTerritoriesInLb[automator.toLowerCase()]) {
+                    return true;
+                }
+                return $scope.selectedTerritoriesInLb[automator.toLowerCase()][tid];
+            };
+
+            $scope.selectTerritoriesEn = function (automator, all, automatorObj, searchOnServerValue) {
+
+                $scope.selectedTerritoriesInLb = $scope.selectedTerritoriesInLb || {};
+                $scope.$parent.selectedTerritoriesInLb = $scope.$parent.selectedTerritoriesInLb || {};
+                $scope.selectedTerritoriesInLb[automator.toLowerCase()] = $scope.selectedTerritoriesInLb[automator.toLowerCase()] || {};
+                $scope.$parent.selectedTerritoriesInLb[automator.toLowerCase()] = $scope.$parent.selectedTerritoriesInLb[automator.toLowerCase()] || {};
+                // selected
+                if (!searchOnServerValue) {
+
+                    var displayedTerritories = $scope.getRelevantTerritories(automatorObj);
+
+                    displayedTerritories.forEach(function (territory) {
+                        $scope.$parent.selectedTerritoriesInLb[automator.toLowerCase()][territory.Id] = all;
+                    });
+                }
+
+                // search results
+                else {
+
+                        $scope.currentResults.forEach(function (territory) {
+                            $scope.$parent.selectedTerritoriesInLb[automator.toLowerCase()][territory.Id] = $scope.selectedTerritoriesInLb[automator.toLowerCase()][territory.Id] = all;
+                        });
+                    }
+
+                $scope.updateCurentlySelectedName(automator.toLowerCase());
+            };
+        }
+
+        var template = '\n        <div class="automatorEnhancementsTerritories" >\n\n        <div ng-if="notO2TerritoriesInGroup || getEmptyGroups(automator)" class="automatorEnhancementsErrorMsg">\n            <main-content ng-if="notO2TerritoriesInGroup">\n            <i style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>\n            Remove service territories that don\u2019t have Enhanced Scheduling and Optimization enabled.\n            </main-content>\n            <main-content ng-if="getEmptyGroups(automator)">\n            <i style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>\n            Add at least one service territory to a group.\n            </main-content>\n        </div>\n\n        <!--\n        <div class="automatorEnhancementsErrorMsg" ng-if="getEmptyGroups(automator)">\n            <main-content>\n            <i style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>\n                Please make sure this job has valid territories groups\n            </main-content>\n        </div>\n        -->\n\n        <div class="territory-enhance-container" >\n\n        <div>\n        <div class="territory-header" >Service Territories <tooltip >For enhanced scheduled jobs, service territories must be active and have Enhanced Scheduling and Optimization enabled.</br> You can\u2019t select a territory that\u2019s already been added to a group.</tooltip> </div>\n\n        <div class="territory-enhance-border">\n            <div ng-show="!manyTerritories()" class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">\n                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">\n                                                <use xlink:href="' + settings.icons.search + '" />\n                                            </svg>\n                                            <input type="text" class="slds-input slds-combobox__input" id="combobox-unique-id-2" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" type="text" placeholder="Search service territories..." ng-model="searchTerritories" ng-change="filterTerritories(searchTerritories)" ng-model-options="{ debounce: 200 }"/>\n                                            <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" ng-show="searchTerritories.length > 0" title="Clear" ng-click="searchTerritories = \'\';filterTerritories(\'\')">\n                                                <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">\n                                                    <use xlink:href="' + settings.icons.close + '" />\n                                                </svg>\n                                                <span class="slds-assistive-text">Clear</span>\n                                            </button>\n            </div>\n\n         \n            <div class="select-terr-auto" ng-show="manyTerritories()" ng-click="showTerritoryPicker = true; openTerritorySearchLightbox(automator)">Select Territories</div>\n  \n                <lightning-modal show="showTerritoryPicker" fixed-modal-height="true" header-text="Select Service Territories" save-text="Select" on-save="onTerritoriesWerePicked" on-close-cancel="closeTerritoriyPicker" cancel-text="Cancel" with-footer="true">\n                                            \n                <svg aria-hidden="true" class="slds-icon clear-terr-search-svg" ng-show="searchOnServerValue && !currentlyLoading" ng-click="searchOnServerValue = \'\'">\n                    <use xlink:href="' + window.settings.icons.close + '"></use>\n                </svg>\n\n                <img class="searching-territory-spinner" src="' + window.settings.icons.spinner + '" ng-show="currentlyLoading" />\n\n                <input type="text" class="search-territory-input" ng-model="searchOnServerValue" ng-change="searchTerritoryOnServer(searchOnServerValue, automator)" ng-model-options="{debounce: 300}" placeholder="Search Service Territories" />\n                \n                <div class="select-all-territories-btn" ng-click="selectTerritoriesEn(automator[labelField], true, automator, searchOnServerValue)">Select All</div>\n                <div class="select-all-territories-btn" ng-click="selectTerritoriesEn(automator[labelField], false, automator, searchOnServerValue)">Select None</div>\n                \n                <div id="no-territories-found-on-server" ng-show="searchOnServerValue && currentResults.length == 0">\n                    No Service Territories were found\n                </div>\n                \n                <div class="lightbox-territories-list" ng-show="searchOnServerValue && currentResults.length > 0">\n                    <div ng-repeat="territory in currentResults track by territory.Id">\n                        <input id="{{\'current_res_\' + territory.Id}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField].toLowerCase()][territory.Id]" ng-change="updateCurentlySelected(automator, $parent.selectedTerritoriesInLb[automator[labelField].toLowerCase()][territory.Id])"/> \n                        <label for="{{\'current_res_\' + territory.Id}}">{{territory.Name}}</label>\n                    </div>\n                </div>\n                \n                \n                <div class="lightbox-territories-list" ng-hide="searchOnServerValue">\n                    <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                        ng-repeat="territory in getRelevantTerritories(automator) track by territory.Id">\n                        \n                            <div>\n                                <input id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField].toLowerCase()][territory.Id]" /> \n                                <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                            </div>\n                            \n                    </div>\n                </div>\n                \n            </lightning-modal>\n           \n            <div class="automatorLocationsList"  ng-show="manyTerritories()">\n            \n            <div ng-show="automator[getAutomatorFieldName(\'Allow_No_Location__c\')] && \'NO TERRITORY\'.indexOf(searchTerritory.toUpperCase()) > -1">\n                <input ng-disabled="automator[getAutomatorFieldName(\'One_Location_Mandatory__c\')] && numberOfTerritories == 0" id="{{automator.Name + \'noLocation\'}}" type="checkbox" ng-model="automator[getAutomatorFieldName(\'No_Location__c\')]"></input> <label for="{{automator.Name + \'noLocation\'}}">No territory</label>\n            </div>\n            \n            <div ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" >\n                    <div ng-show="checkShowTerritory(automator.Name,territory.Id)"> <!-- selectedTerritoriesInLb[automator.Name.toLowerCase()][territory.Id] -->\n                        <input type="checkbox" ng-disabled="isDisabled(automator.Name,territory.Id)"  ng-model="checkedTerritories[automator[labelField].toLowerCase()][territory.Id]"  /> \n                        <label for="{{manyTerritories() ? \'\' : \'loc\' + automator.Name + $index}}"><span ng-if=!isO2(territory.Id)>(Optimization) </span> {{territory.Name}} </label>\n                    </div>\n            </div>\n        </div>\n\n            <div class="territory-enhance-tree-container" ng-show="!manyTerritories()">\n                <aut-tree-enhancement-collection filter-on="isTerritoriesFiltered" o2-territories="o2Territories" in-groups-territories="inGroupsTerritories" checked-territories="checkedTerritories" collection="territoriesTree" selectedlist=\'selectedlist\' settings=\'settings\', automator=\'automator\' label="\'Name\'" selected="selectedTerritories" top-level-id="topLevelTerritoryId" parent-id="parentTerritoryId"></aut-tree-enhancement-collection>\n            </div>         \n\n               \n          </div> \n\n          </div>\n            <div class="territory-enhance-groups-container" >\n                <select class="territory-enhance-groups-select" ng-disabled="checkAddDis(automator)" ng-class="{disabled: groupsListMax[automator.Name.toLowerCase()] <= 1 }"\n                ng-change="onGroupAdd(groupsListSelect,automator,false)"\n                ng-options="option.label for option in groupsList[automator.Name.toLowerCase()] track by option.value"\n                ng-model="groupsListSelect"></select>\n\n                <div ng-class="{disabled: checkGroupAddNewBtnDisable(automator) }" ng-disabled="checkGroupAddNewBtnDisable(automator)" class="editAutomators automatorButton settingsButton whiteButton territory-enhance-groups-add-btn" ng-click="onGroupAdd(groupsListSelect,automator,true)">New Group</div>\n          \n            </div>\n\n           \n\n        </div>\n        <div class="territory-enhance-groups-view-container" >\n        <div class="territory-enhance-groups-view-header" ><span class="required">*</span>Groups <tooltip>Add up to 10 groups.</tooltip></div>\n            <div ng-if="getEmptyGroupsMsg(automator)" class="territory-enhance-groups-view-empty" >\n            Select service territories and add them to groups.\n            </div>\n            <div ng-repeat="(key, val)  in groupTerritories[automator.Name.toLowerCase()]" >\n                    <span class="automatorEnhancegroupNum">{{key}}</span>\n                    <div class="territory-enhance-groups-view-div-container"  >\n                        <div class="territory-enhance-groups-view-div" >\n                                <div class="territory-enhance-groups-view-div-2" >\n                                    <div class="territory-enhance-groups-view-div-element" ng-repeat="(k, v)  in val"  ng-click="removeTerritoryFromGroup(automator,key,v)" >\n                                        <div class="territory-enhance-groups-view-div-3" >\n                                            <span class="territory-enhance-groups-view-div-4" >{{territoriesLookup[v]}}</span>\n                                            <span>\n                                            <i class="fa fa-times" title="Remove service territory from group" ></i>\n                                            </span>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class="territory-enhance-groups-remove-container" ng-click="removeFullTerritoryGroup(automator,key)" >\n                                <div class="territory-enhance-groups-remove-div-2" >\n                                    <span  class="date-input removeBtn" ><i class="fa fa-trash-o territory-enhance-groups-remove-i" title="Delete group" ></i> </span>\n                                </div>\n                        </div>\n                    <div>\n            </div>\n        </div>\n        </div>\n\n        </div>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '=',
+                automator: '=',
+                warnings: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
 })();
 'use strict';
 
@@ -644,7 +2379,6 @@
                 $scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c] = $scope.classNames[0];
 
                 $scope.automatorTypes = [];
-
                 for (var i = 0; i < $scope.classNames.length; i++) {
                     $scope.automatorTypes.push({
                         label: $scope.jobsTemplates[$scope.classNames[i]][fieldNames.Automator_Config__c.Label__c],
@@ -658,7 +2392,7 @@
             };
 
             $scope.newAutomatorSaveButtonClicked = function () {
-                if ($scope.checkIfAutomatorExists()) return;
+                if ($scope.checkIfAutomatorExists() || $scope.checkIfAutomatorNameExist()) return;
                 $scope.popUpOpen = false;
                 var templateCopy = angular.copy($scope.jobsTemplates[$scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c]]);
                 angular.merge(templateCopy, $scope.currentNewAutomator);
@@ -672,11 +2406,17 @@
                 $scope.popUpOpen = false;
             };
 
+            $scope.checkIfAutomatorNameExist = function () {
+                if (!$scope.currentNewAutomator.Name.toLowerCase()) {
+                    return true;
+                }
+                return false;
+            };
+
             $scope.checkIfAutomatorExists = function () {
 
                 for (var automatorName in $scope.settings.AutomatorConfig) {
-
-                    if (automatorName.toLowerCase() === $scope.currentNewAutomator.Name.toLowerCase()) {
+                    if ($scope.settings.AutomatorConfig[automatorName][fieldNames.Automator_Config__c.Label__c].toLowerCase() === $scope.currentNewAutomator.Name.toLowerCase()) {
                         return true;
                     }
                 }
@@ -966,7 +2706,964 @@
             };
         }
 
-        var template = '\n        <div class="automatorsWrapper" ng-if="!hideSection">\n                       \n            <div class="automatorButtonsWrapper" ng-hide="noChange">\n                <div class="newAutomator automatorButton settingsButton blueButton" ng-click="newJobClicked()">New job</div>\n                <div ng-show="objects.length > 0" class="editAutomators automatorButton settingsButton whiteButton" ng-click="editMode = !editMode">\n                    <span ng-if="!editMode">Edit</span>\n                    <span ng-if="editMode">Done</span>\n                </div>\n            </div>\n            <div class="noAutomators" ng-show="objects.length == 0">\n                No scheduled jobs\n            </div>\n            <div class="singleAutomator" \n                 ng-repeat="automator in objects | orderBy: getAutomatorFieldName(\'Name\') track by automator.Name" \n                 ng-class="{active: automator[getAutomatorFieldName(\'Enabled__c\')]}" \n                 ng-init="automatorConfig={open:false, firstTimeOpen: true, firstTimeLoading: false}; numberOfTerritories = 0; checkedTerritories[automator[labelField]] = {}; selectedTerritoriesInLb[automator[labelField]] = {}; savedSelectedTerritoriesInLb[automator[labelField]] = {};">\n                    \n                <div class="automatorRowAndContent" ng-class="{last: $last, selected: automatorConfig.open}">\n                    <div class="automatorRowContainer">\n                        <div class="automatorRow" ng-class="{automatorEditMode: editMode}">\n                            <div class="editErrorIcon" ng-click="editMode && removeAutomator(automator)">\n                                <svg aria-hidden="true" class="custom-slds-icon">\n                                    \u2028<use xlink:href="{{getIcon(\'remove\')}}"></use>\n                                \u2028</svg>\n                            </div>\n                            <span class="automatorTextAndCollapse">\n                            \n                                <img class="loading-automator-row" ng-show="automatorConfig.currentlyLoadingTerritories" src="' + window.settings.icons.spinner + '" />\n                               \n                            \n                                <span ng-click="toggleAutomator(automator, automatorConfig)">\n                                    <span class="collapseBox blueHover" ng-show="!automatorConfig.open">+</span>\n                                    <span class="collapseBox blueHover automatorConfig.openedCollapse" ng-show="automatorConfig.open">-</span>\n                                </span>\n                                <span ng-if="!editMode" class="automatorNameCont">\n                                    {{automator[getAutomatorFieldName(\'Label__c\')]}}\n                                </span>\n                                <span ng-if="editMode" class="automatorEditNameCont">\n                                    <custom-settings-wrapper primitive-type="primitiveType.text" label="" value-field-name="\'Label__c\'" setting="automator" class="automatorName"></custom-settings-wrapper>\n                                </span>\n                            </span>\n                        </div>\n                        <div class="runNowContainer">\n                        <span   class="runNow" ng-class="{disabled: (currentAutomatorRunNowDone || currentAutomatorLoading || !automator.valid) && automator.valid !== undefined}" \n                                ng-show="automator.Id && !currentAutomatorLoading && !currentAutomatorRunNowDone" \n                                ng-click="runNow(automator)">\n                            Run now\n                            </span>\n                            <svg class="automatorRunNowDone" ng-show="currentAutomatorRunNowDone" aria-hidden="true" class="slds-icon">\n                                \u2028<use xlink:href="{{getIcon(\'check\')}}"></use>\n                            \u2028</svg>\n                            <img class="automatorSmallLoading" ng-show="currentAutomatorLoading && !currentAutomatorRunNowDone" src={{getIcon(\'loading\')}} />\n                        </div>\n                    </div>\n                    <div class="automatorContent" ng-if="automatorConfig.open">\n                        <div class="automatorLeftContent">\n                            <div class="automatorContentSon">\n                                <checkbox label="\'Active\'" object="automator" value-field="\'Enabled__c\'" is-disabled="noChange"></checkbox>\n                                <div ng-show="noChange" class="active-purge">\n                                    When using SLR, the purge job cannot be modified or deactivated.\n                                </div>\n                                \n                                <div class="automatorHeader" ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')]">Effective Territories</div>\n                                \n\n                                <div id="territorySelectionOptions" ng-show="!manyTerritories() && (automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')])">\n                                    <input placeholder="Search territories..." type="text" ng-model="searchTerritory[automator.Name]" />\n\n                                    <span ng-click="selectAllTerritories(automator)" title="Select All Filtered Territoried">All</span>\n                                    <span ng-click="selectAllTerritories(automator, false)" title="Unselect All Filtered Territoried">None</span>\n                                </div>\n                                    \n                                \n                                \n                                \n                                \n                              \n                               \n                                \n                                <div class="select-terr-auto" ng-show="manyTerritories()" ng-click="showTerritoryPicker = true; openTerritorySearchLightbox(automator)">Select Territories</div>\n                                \n                                \n                                <lightning-modal show="showTerritoryPicker" fixed-modal-height="true" header-text="Select Service Territories" save-text="Select" on-save="onTerritoriesWerePicked" on-close-cancel="closeTerritoriyPicker" cancel-text="Cancel" with-footer="true">\n                                    \n                                    <svg aria-hidden="true" class="slds-icon clear-terr-search-svg" ng-show="searchOnServerValue && !currentlyLoading" ng-click="searchOnServerValue = \'\'">\n                                        <use xlink:href="' + window.settings.icons.close + '"></use>\n                                    </svg>\n\n                                    <img class="searching-territory-spinner" src="' + window.settings.icons.spinner + '" ng-show="currentlyLoading" />\n\n                                    <input type="text" class="search-territory-input" ng-model="searchOnServerValue" ng-change="searchTerritoryOnServer(searchOnServerValue, automator)" ng-model-options="{debounce: 300}" placeholder="Search Service Territories" />\n                                    \n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], true, automator, searchOnServerValue)">Select All</div>\n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], false, automator, searchOnServerValue)">Select None</div>\n                                    \n                                    <div id="no-territories-found-on-server" ng-show="searchOnServerValue && currentResults.length == 0">\n                                        No Service Territories were found\n                                    </div>\n                                    \n                                    <div class="lightbox-territories-list" ng-show="searchOnServerValue && currentResults.length > 0">\n                                        <div ng-repeat="territory in currentResults track by territory.Id">\n                                            <input id="{{\'current_res_\' + territory.Id}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" ng-change="updateCurentlySelected(automator, $parent.selectedTerritoriesInLb[automator[labelField]][territory.Id])"/> \n                                            <label for="{{\'current_res_\' + territory.Id}}">{{territory.Name}}</label>\n                                        </div>\n                                    </div>\n                                    \n                                    \n                                    <div class="lightbox-territories-list" ng-hide="searchOnServerValue">\n                                        <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                             ng-repeat="territory in getRelevantTerritories(automator) track by territory.Id">\n                                             \n                                                <div>\n                                                    <input id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" /> \n                                                    <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                                </div>\n                                                \n                                        </div>\n                                    </div>\n                                    \n                                </lightning-modal>\n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                <div class="automatorLocationsList">\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_No_Location__c\')] && \'NO TERRITORY\'.indexOf(searchTerritory.toUpperCase()) > -1">\n                                        <input ng-disabled="automator[getAutomatorFieldName(\'One_Location_Mandatory__c\')] && numberOfTerritories == 0" id="{{automator.Name + \'noLocation\'}}" type="checkbox" ng-model="automator[getAutomatorFieldName(\'No_Location__c\')]"></input> <label for="{{automator.Name + \'noLocation\'}}">No territory</label>\n                                    </div>\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                         ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                         ng-init="initTerritoryChecked(territory, automator)">\n                                         \n                                            <div>\n                                                <input ng-hide="manyTerritories()" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                <label for="{{manyTerritories() ? \'\' : \'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                            </div>\n                                            \n                                    </div>\n                                    \n\n                                    <div id="NoTerritoryFound" ng-show="!isTerritoryFound(automator)">\n                                        <input type="text" placeholder="Search Service Territories" ng-model="searchOnServerInput" />\n                                        \n                                        <div ng-show="searchOnServerInput">\n                                            search result\n                                        </div>\n                                        \n                                        <div ng-hide="searchOnServerInput">\n                                            <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                                 ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                                 ng-init="initTerritoryChecked(territory, automator)">\n                                                 \n                                                    <div>\n                                                        <input ng-hide="true" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                        <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                                    </div>\n                                                    \n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n\n                                    \n                                </div>\n                                <checkbox label="\'Optimize in stages\'" ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" object="automator" value-field="\'Is_Decompose_Territories__c\'"></checkbox>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Is_Decompose_Territories__c\')] && automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" min="1" max="1000000000" primitive-type="primitiveType.number" label="\'Territories Per Stage\'" value-field-name="\'Decompose_Territories__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Span_Back__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days (backwards)\'" value-field-name="\'Time_Span_Backward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Horizon__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days\'" value-field-name="\'Time_Span_Forward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Filter_Field__c\')]" options="formulaOptions" primitive-type="primitiveType.picklist" label="\'Filter by criteria\'" value-field-name="\'Filter_Field__c\'" setting="automator"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Scheduling_Policy__c\')]" options="policies" primitive-type="primitiveType.picklist" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy_Id__c\'" setting="automator" tooltip-text="{{isDailyOptimizationPolicy(automator)}}"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched006_SLRPurge\'" primitive-type="primitiveType.number" min="0" max="1000000000" label="\'Max routes in cache\'" value-field-name="\'Max_Objects_Count__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper filter-input="filterInput(inputValue, automator)" get-suggestions="searchUsers(inputValue)" primitive-type="primitiveType.autoComplete" label="\'Email recipient user name\'" value-field-name="\'Notification_Username__c\'" setting="automator" ng-hide="noChange"></custom-settings-wrapper>\n                            </div>\n                        </div>\n                        <div class="automatorRightContent">\n                            <div>\n                                <cron-exp automator="automator" expression="automator[getAutomatorFieldName(\'Cron_Expression__c\')]" valid="valid" is-disabled="noChange"></cron-exp>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <pop-up ng-if="popUpOpen" on-cancel="newAutomatorCancelButtonClicked()" on-save="newAutomatorSaveButtonClicked()" ng-class="{disabledSave: checkIfAutomatorExists()}">\n                <main-content>\n                    <div class="automatorPopUpContent">\n                        <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Name\'" maxlength="60" value-field-name="\'Name\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <custom-settings-wrapper options="automatorTypes" primitive-type="primitiveType.picklist" label="\'Automator type\'" value-field-name="\'Class_Name__c\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <div class="newAutomatorError" ng-if="checkIfAutomatorExists()">\n                            <ui-error>\n                                <main-content>\n                                    <div>There is already a scheduled job with this name</div>\n                                </main-content>\n                            </ui-error>\n                        </div>\n                    </div>\n                </main-content>\n            </pop-up>\n        </div>\n        ';
+        var template = '\n        <div class="automatorsWrapper" ng-if="!hideSection">\n                       \n            <div class="automatorButtonsWrapper" ng-hide="noChange">\n                <div class="newAutomator automatorButton settingsButton blueButton" ng-click="newJobClicked()">New job</div>\n                <div ng-show="objects.length > 0" class="editAutomators automatorButton settingsButton whiteButton" ng-click="editMode = !editMode">\n                    <span ng-if="!editMode">Edit</span>\n                    <span ng-if="editMode">Done</span>\n                </div>\n            </div>\n            <div class="noAutomators" ng-show="objects.length == 0">\n                No scheduled jobs\n            </div>\n            <div class="singleAutomator" \n                 ng-repeat="automator in objects | orderBy: getAutomatorFieldName(\'Name\') track by automator.Name" \n                 ng-class="{active: automator[getAutomatorFieldName(\'Enabled__c\')]}" \n                 ng-init="automatorConfig={open:false, firstTimeOpen: true, firstTimeLoading: false}; numberOfTerritories = 0; checkedTerritories[automator[labelField]] = {}; selectedTerritoriesInLb[automator[labelField]] = {}; savedSelectedTerritoriesInLb[automator[labelField]] = {};">\n                    \n                <div class="automatorRowAndContent" ng-class="{last: $last, selected: automatorConfig.open}">\n                    <div class="automatorRowContainer">\n                        <div class="automatorRow" ng-class="{automatorEditMode: editMode}">\n                            <div class="editErrorIcon" ng-click="editMode && removeAutomator(automator)">\n                                <svg aria-hidden="true" class="custom-slds-icon">\n                                    \u2028<use xlink:href="{{getIcon(\'remove\')}}"></use>\n                                \u2028</svg>\n                            </div>\n                            <span class="automatorTextAndCollapse">\n                            \n                                <img class="loading-automator-row" ng-show="automatorConfig.currentlyLoadingTerritories" src="' + window.settings.icons.spinner + '" />\n                               \n                            \n                                <span ng-click="toggleAutomator(automator, automatorConfig)">\n                                    <span class="collapseBox blueHover" ng-show="!automatorConfig.open">+</span>\n                                    <span class="collapseBox blueHover automatorConfig.openedCollapse" ng-show="automatorConfig.open">-</span>\n                                </span>\n                                <span ng-if="!editMode" class="automatorNameCont">\n                                    {{automator[getAutomatorFieldName(\'Label__c\')]}}\n                                </span>\n                                <span ng-if="editMode" class="automatorEditNameCont">\n                                    <custom-settings-wrapper primitive-type="primitiveType.text" label="" value-field-name="\'Label__c\'" setting="automator" class="automatorName"></custom-settings-wrapper>\n                                </span>\n                            </span>\n                        </div>\n                        <div class="runNowContainer">\n                        <span   class="runNow" ng-class="{disabled: (currentAutomatorRunNowDone || currentAutomatorLoading || !automator.valid) && automator.valid !== undefined}" \n                                ng-show="automator.Id && !currentAutomatorLoading && !currentAutomatorRunNowDone" \n                                ng-click="runNow(automator)">\n                            Run now\n                            </span>\n                            <svg class="automatorRunNowDone" ng-show="currentAutomatorRunNowDone" aria-hidden="true" class="slds-icon">\n                                \u2028<use xlink:href="{{getIcon(\'check\')}}"></use>\n                            \u2028</svg>\n                            <img class="automatorSmallLoading" ng-show="currentAutomatorLoading && !currentAutomatorRunNowDone" src={{getIcon(\'loading\')}} />\n                        </div>\n                    </div>\n                    <div class="automatorContent" ng-if="automatorConfig.open">\n                        <div class="automatorLeftContent">\n                            <div class="automatorContentSon">\n                                <checkbox label="\'Active\'" object="automator" value-field="\'Enabled__c\'" is-disabled="noChange"></checkbox>\n                                <div ng-show="noChange" class="active-purge">\n                                    When using SLR, the purge job cannot be modified or deactivated.\n                                </div>\n                                \n                                <div class="automatorHeader" ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')]">Effective Territories</div>\n                                \n\n                                <div id="territorySelectionOptions" ng-show="!manyTerritories() && (automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')])">\n                                    <input placeholder="Search territories..." type="text" ng-model="searchTerritory[automator.Name]" />\n\n                                    <span ng-click="selectAllTerritories(automator)" title="Select All Filtered Territoried">All</span>\n                                    <span ng-click="selectAllTerritories(automator, false)" title="Unselect All Filtered Territoried">None</span>\n                                </div>\n                                    \n                                \n                                \n                                \n                                \n                              \n                               \n                                \n                                <div class="select-terr-auto" ng-show="manyTerritories()" ng-click="showTerritoryPicker = true; openTerritorySearchLightbox(automator)">Select Territories</div>\n                                \n                                \n                                <lightning-modal show="showTerritoryPicker" fixed-modal-height="true" header-text="Select Service Territories" save-text="Select" on-save="onTerritoriesWerePicked" on-close-cancel="closeTerritoriyPicker" cancel-text="Cancel" with-footer="true">\n                                    \n                                    <svg aria-hidden="true" class="slds-icon clear-terr-search-svg" ng-show="searchOnServerValue && !currentlyLoading" ng-click="searchOnServerValue = \'\'">\n                                        <use xlink:href="' + window.settings.icons.close + '"></use>\n                                    </svg>\n\n                                    <img class="searching-territory-spinner" src="' + window.settings.icons.spinner + '" ng-show="currentlyLoading" />\n\n                                    <input type="text" class="search-territory-input" ng-model="searchOnServerValue" ng-change="searchTerritoryOnServer(searchOnServerValue, automator)" ng-model-options="{debounce: 300}" placeholder="Search Service Territories" />\n                                    \n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], true, automator, searchOnServerValue)">Select All</div>\n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], false, automator, searchOnServerValue)">Select None</div>\n                                    \n                                    <div id="no-territories-found-on-server" ng-show="searchOnServerValue && currentResults.length == 0">\n                                        No Service Territories were found\n                                    </div>\n                                    \n                                    <div class="lightbox-territories-list" ng-show="searchOnServerValue && currentResults.length > 0">\n                                        <div ng-repeat="territory in currentResults track by territory.Id">\n                                            <input id="{{\'current_res_\' + territory.Id}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" ng-change="updateCurentlySelected(automator, $parent.selectedTerritoriesInLb[automator[labelField]][territory.Id])"/> \n                                            <label for="{{\'current_res_\' + territory.Id}}">{{territory.Name}}</label>\n                                        </div>\n                                    </div>\n                                    \n                                    \n                                    <div class="lightbox-territories-list" ng-hide="searchOnServerValue">\n                                        <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                             ng-repeat="territory in getRelevantTerritories(automator) track by territory.Id">\n                                             \n                                                <div>\n                                                    <input id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" /> \n                                                    <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                                </div>\n                                                \n                                        </div>\n                                    </div>\n                                    \n                                </lightning-modal>\n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                \n                                <div class="automatorLocationsList">\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_No_Location__c\')] && \'NO TERRITORY\'.indexOf(searchTerritory.toUpperCase()) > -1">\n                                        <input ng-disabled="automator[getAutomatorFieldName(\'One_Location_Mandatory__c\')] && numberOfTerritories == 0" id="{{automator.Name + \'noLocation\'}}" type="checkbox" ng-model="automator[getAutomatorFieldName(\'No_Location__c\')]"></input> <label for="{{automator.Name + \'noLocation\'}}">No territory</label>\n                                    </div>\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                         ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                         ng-init="initTerritoryChecked(territory, automator)">\n                                         \n                                            <div>\n                                                <input ng-hide="manyTerritories()" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                <label for="{{manyTerritories() ? \'\' : \'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                            </div>\n                                            \n                                    </div>\n                                    \n\n                                    <div id="NoTerritoryFound" ng-show="!isTerritoryFound(automator)">\n                                        <input type="text" placeholder="Search Service Territories" ng-model="searchOnServerInput" />\n                                        \n                                        <div ng-show="searchOnServerInput">\n                                            search result\n                                        </div>\n                                        \n                                        <div ng-hide="searchOnServerInput">\n                                            <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                                 ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                                 ng-init="initTerritoryChecked(territory, automator)">\n                                                 \n                                                    <div>\n                                                        <input ng-hide="true" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                        <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                                    </div>\n                                                    \n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n\n                                    \n                                </div>\n                                <checkbox label="\'Optimize in stages\'" ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" object="automator" value-field="\'Is_Decompose_Territories__c\'"></checkbox>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Is_Decompose_Territories__c\')] && automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" min="1" max="1000000000" primitive-type="primitiveType.number" label="\'Territories Per Stage\'" value-field-name="\'Decompose_Territories__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Span_Back__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days (backwards)\'" value-field-name="\'Time_Span_Backward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Horizon__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days\'" value-field-name="\'Time_Span_Forward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Filter_Field__c\')]" options="formulaOptions" primitive-type="primitiveType.picklist" label="\'Filter by criteria\'" value-field-name="\'Filter_Field__c\'" setting="automator"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Scheduling_Policy__c\')]" options="policies" primitive-type="primitiveType.picklist" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy_Id__c\'" setting="automator" tooltip-text="{{isDailyOptimizationPolicy(automator)}}"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched006_SLRPurge\'" primitive-type="primitiveType.number" min="0" max="1000000000" label="\'Max routes in cache\'" value-field-name="\'Max_Objects_Count__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper filter-input="filterInput(inputValue, automator)" get-suggestions="searchUsers(inputValue)" primitive-type="primitiveType.autoComplete" label="\'Email recipient user name\'" value-field-name="\'Notification_Username__c\'" setting="automator" ng-hide="noChange"></custom-settings-wrapper>\n                            </div>\n                        </div>\n                        <div class="automatorRightContent">\n                            <div>\n                                <cron-exp automator="automator" expression="automator[getAutomatorFieldName(\'Cron_Expression__c\')]" valid="valid" is-disabled="noChange"></cron-exp>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <pop-up ng-if="popUpOpen" on-cancel="newAutomatorCancelButtonClicked()" on-save="newAutomatorSaveButtonClicked()" ng-class="{disabledSave: checkIfAutomatorExists() || checkIfAutomatorNameExist()}">\n                <main-content>\n                    <div class="automatorPopUpContent">\n                        <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Name\'" maxlength="60" value-field-name="\'Name\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <custom-settings-wrapper options="automatorTypes" primitive-type="primitiveType.picklist" label="\'Automator type\'" value-field-name="\'Class_Name__c\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <div class="newAutomatorError" ng-if="checkIfAutomatorExists()">\n                            <ui-error>\n                                <main-content>\n                                    <div>There is already a scheduled job with this name</div>\n                                </main-content>\n                            </ui-error>\n                        </div>\n                    </div>\n                </main-content>\n            </pop-up>\n        </div>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                objects: '=',
+                classNames: '=',
+                noChange: '=',
+                hideSection: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('automatorsEnhancements', automatorsEnhancements);
+
+    automatorsEnhancements.$inject = [];
+
+    var GROUP_DELIMITER = '##group##'; // lower case // _group_
+    var BREAK_DELIMITER = ';';
+
+    function automatorsEnhancements() {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', 'settingsUtils', '$q', '$timeout', '$rootScope'];
+
+        function controllerFunction($scope, dataService, primitiveType, settingsUtils, $q, $timeout, $rootScope) {
+
+            $scope.innerTab = {};
+
+            $scope.switchInnerTab = function (name, id, automator) {
+
+                var automatorName = automator.Name.toLowerCase();
+                $scope.innerTab[automatorName] = id;
+            };
+
+            $scope.settings = dataService.getDraftSettings();
+            $scope.primitiveType = primitiveType;
+            $scope.labelField = fieldNames.Automator_Config__c.Label__c;
+            $scope.checkedTerritories = {};
+            $scope.searchTerritory = { Name: "" };
+            $scope.usersCache = {};
+            $scope.manyTerritories = dataService.getManyTerritories;
+            $scope.manyTerritoriesAddedDraft = {};
+            $scope.watchAutomator = {};
+            $scope.warnings = {}; //general : null , territory:null,schedule : null
+            $scope.warningsMsg = {};
+            $scope.territoriesMap = {};
+
+            $scope.jobsTemplates = {
+                'Sched008_TimePhaseSharing': {
+                    Name: 'Sharing Automation',
+                    Label__c: 'Sharing Automation',
+                    Allow_Time_Span_Back__c: true,
+                    Allow_Time_Horizon__c: true,
+                    Allow_Filter_Field__c: false,
+                    Enabled__c: true,
+                    Time_Span_Backward__c: 7,
+                    Time_Span_Forward__c: 7,
+                    //Filter_Field__c: null,
+                    Allow_No_Location__c: false,
+                    Allow_Locations__c: true,
+                    Allow_Scheduling_Policy__c: false,
+                    Cron_Expression__c: '0 0 0 ? JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU,FRI,SAT *'
+                },
+                'Sched009_STMIntegrityChecker': {
+                    Name: 'Integrity Checker',
+                    Label__c: 'Integrity Checker',
+                    Allow_Time_Span_Back__c: false,
+                    Allow_Time_Horizon__c: true,
+                    Allow_Filter_Field__c: false,
+                    Enabled__c: true,
+                    //Time_Span_Backward__c: null,
+                    Time_Span_Forward__c: 7,
+                    //Filter_Field__c: null,
+                    Allow_No_Location__c: false,
+                    Allow_Locations__c: true,
+                    Allow_Scheduling_Policy__c: true,
+                    Cron_Expression__c: '0 0 0 ? JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU,FRI,SAT *'
+                },
+                'Sched006_SLRPurge': {
+                    Name: 'SLR Purge',
+                    Label__c: 'SLR Purge',
+                    Allow_Time_Span_Back__c: false,
+                    Allow_Time_Horizon__c: false,
+                    Allow_Filter_Field__c: false,
+                    Enabled__c: true,
+                    //Time_Span_Backward__c: null,
+                    //Time_Span_Forward__c: null,
+                    //Filter_Field__c: null,
+                    Allow_No_Location__c: false,
+                    Allow_Locations__c: false,
+                    Allow_Scheduling_Policy__c: false,
+                    Max_Objects_Count__c: 50000,
+                    Cron_Expression__c: '0 0 0 ? JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU,FRI,SAT *'
+                },
+                'Sched007_ServicesAppoDispatched': {
+                    Name: 'Auto Dispatch',
+                    Label__c: 'Auto Dispatch',
+                    Allow_Time_Span_Back__c: false,
+                    Allow_Time_Horizon__c: true,
+                    Allow_Filter_Field__c: true,
+                    Enabled__c: true,
+                    //Time_Span_Backward__c: null,
+                    Time_Span_Forward__c: 1,
+                    //Filter_Field__c: null,
+                    Allow_No_Location__c: true,
+                    Allow_Locations__c: true,
+                    Allow_Scheduling_Policy__c: false,
+                    Cron_Expression__c: '0 0 0 ? JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU,FRI,SAT *'
+                },
+                'Sched004_OAAS': {
+                    Name: 'Optimization',
+                    Label__c: 'Optimization',
+                    Allow_Time_Span_Back__c: false,
+                    Allow_Time_Horizon__c: true,
+                    Allow_Filter_Field__c: true,
+                    Enabled__c: false,
+                    //Time_Span_Backward__c: null,
+                    Time_Span_Forward__c: 7,
+                    //Filter_Field__c: null,
+                    Allow_No_Location__c: true,
+                    Allow_Locations__c: true,
+                    Allow_Scheduling_Policy__c: true,
+                    One_Location_Mandatory__c: true,
+                    Is_Decompose_Territories__c: false,
+                    Decompose_Territories__c: 10,
+                    Cron_Expression__c: '0 0 0 ? JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU,FRI,SAT *'
+                }
+            };
+
+            (function addNSToAutomatorTemplates() {
+
+                for (var automatorTemplateName in $scope.jobsTemplates) {
+
+                    var automator = $scope.jobsTemplates[automatorTemplateName];
+
+                    for (var fieldName in automator) {
+                        if (fieldName === 'Name') {
+                            continue;
+                        }
+
+                        var fieldValue = automator[fieldName];
+                        delete automator[fieldName];
+
+                        automator[orgNameSpace + fieldName] = fieldValue;
+                    }
+                }
+            })();
+
+            createFormulaAndPoliciesOptionsArray();
+
+            $rootScope.$on('savingForm', function () {
+                $scope.editMode = false;
+            });
+
+            $scope.getIcon = function (name) {
+                return window.settings.icons[name];
+            };
+
+            $scope.initTerritoryChecked = function (territory, automator) {
+
+                var jobsStr = territory[fieldNames.ServiceTerritory.System_Jobs__c] || '',
+                    jobs = jobsStr.split(';'),
+                    automatorName = automator.Name.toLowerCase();
+
+                this.checked = jobs.indexOf(automatorName) !== -1;
+                $scope.checkedTerritories[automator[$scope.labelField]][territory.Id] = jobs.indexOf(automatorName) !== -1;
+                this.$parent.numberOfTerritories++;
+            };
+
+            /*
+            
+            */
+            $scope.locationSelected = function (territory, automator, checked) {
+                var checkForMaxTerritories = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
+
+                var checkedTerritories = $scope.checkedTerritories[automator.Name],
+                    countTerritories = 0;
+
+                for (var id in checkedTerritories) {
+                    checkedTerritories[id] && countTerritories++;
+                }
+
+                // if (checkForMaxTerritories && countTerritories > window.maxTerritoriesPerAutomator) {
+                //     $scope.checkedTerritories[automator.Name][territory.Id] = false;
+                //     window.alert('You can not set more than ' + window.maxTerritoriesPerAutomator + ' service territories per automator');
+                //     return;
+                // }
+
+                var jobsStr = territory[fieldNames.ServiceTerritory.System_Jobs__c] || '';
+                var automatorName = automator.Name.toLowerCase();
+
+                // add from map
+                if ($scope.territoriesMap[territory.Id] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] != '') {
+
+                    var NewStr = $scope.mergeTerritoryAndMapTerritory(territory);
+                    jobsStr = NewStr;
+                }
+
+                var jobs = jobsStr.split(';');
+
+                if (checked) {
+
+                    if (jobs.indexOf(automatorName) === -1) {
+                        jobs.push(automatorName);
+                        this.$parent.numberOfTerritories++;
+                    }
+                } else {
+
+                    var index = jobs.indexOf(automatorName);
+
+                    if (index !== -1) {
+                        jobs.splice(index, 1);
+                        this.$parent.numberOfTerritories--;
+                    }
+                }
+
+                // update territoriesMap ( not parent )
+
+                $scope.territoriesMap[territory.Id] = $scope.territoriesMap[territory.Id] || {};
+                $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c] = jobs.join(';');
+                automator.modifiedDeleteMeInCronExp = true;
+            };
+
+            $scope.selectAllTerritories = function (automator) {
+                var selectType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+
+                var checkedTerritoriesCopy = angular.copy($scope.checkedTerritories[automator.Name]),
+                    checkedTerritoried = $scope.checkedTerritories[automator.Name],
+                    totalSelectedTerritories = 0,
+                    nameFilter = $scope.searchTerritory[automator.Name] || "";
+
+                if (automator[$scope.getAutomatorFieldName('Allow_No_Location__c')] && "NO TERRITORY".indexOf(nameFilter.toUpperCase()) > -1) {
+                    if (automator[$scope.getAutomatorFieldName('One_Location_Mandatory__c')] || $scope.numberOfTerritories !== 0) {
+                        automator[$scope.getAutomatorFieldName('No_Location__c')] = selectType;
+                    }
+                }
+
+                $scope.settings.Territories.forEach(function (territory) {
+                    if (automator[$scope.getAutomatorFieldName('Allow_Locations__c')] && territory.Name.toUpperCase().indexOf(nameFilter.toUpperCase()) > -1) {
+                        $scope.checkedTerritories[automator[$scope.labelField]][territory.Id] = selectType;
+                        $scope.locationSelected(territory, automator, selectType, false);
+                    }
+                });
+
+                if (selectType) {
+                    for (var id in checkedTerritoried) {
+                        checkedTerritoried[id] && totalSelectedTerritories++;
+                    }
+                }
+
+                // if (totalSelectedTerritories > window.maxTerritoriesPerAutomator) {
+                //
+                //     for (let id in checkedTerritoried) {
+                //         checkedTerritoried[id] = checkedTerritoriesCopy[id];
+                //     }
+                //
+                //     window.alert('You can not set more than ' + window.maxTerritoriesPerAutomator + ' service territories per automator');
+                // }
+            };
+
+            $scope.isTerritoryFound = function (automator) {
+
+                var nameFilter = $scope.searchTerritory[automator.Name] || "";
+
+                if ("NO TERRITORY".indexOf(nameFilter.toUpperCase()) > -1) {
+                    return true;
+                }
+
+                for (var i = 0; i < $scope.settings.Territories.length; i++) {
+                    if ($scope.settings.Territories[i].Name.toUpperCase().indexOf(nameFilter.toUpperCase()) > -1) {
+                        return true;
+                    }
+                }
+
+                return false;
+            };
+
+            $scope.runNow = function (automator) {
+
+                if ((this.currentAutomatorRunNowDone || this.currentAutomatorLoading || !this.automator.valid) && this.automator.valid !== undefined) {
+                    return;
+                }
+
+                this.currentAutomatorLoading = true;
+
+                delete automator.valid;
+
+                var me = this;
+
+                var modifiedAutomator = angular.copy(automator);
+                delete modifiedAutomator.valid;
+
+                settingsUtils.callRemoteAction(remoteActions.runJobNow, [modifiedAutomator]).then(function () {
+                    me.currentAutomatorLoading = false;
+                    me.currentAutomatorRunNowDone = true;
+                    $timeout(function () {
+                        me.currentAutomatorRunNowDone = false;
+                    }, 4000);
+                }).catch(function (res) {
+                    me.currentAutomatorLoading = false;
+                    window.alert('Error has occurred: ' + res.message);
+                });
+            };
+
+            $scope.removeAutomatorGroups = function (automator) {
+                var _this = this;
+
+                var automatorName = automator.Name.toLowerCase();
+                var index = 0;
+
+                $scope.settings.Territories.forEach(function (territory) {
+
+                    var jobs = [],
+                        oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    // add from map
+                    if ($scope.territoriesMap[territory.Id] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] != '') {
+
+                        var NewStr = $scope.mergeTerritoryAndMapTerritory(territory);
+                        oldStr = NewStr;
+                    }
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    for (var group = 1; group < 11; group++) {
+
+                        //remove from old pace
+                        index = oldStrArry.indexOf(automatorName + GROUP_DELIMITER + group);
+                        if (index !== -1) {
+                            oldStrArry.splice(index, 1);
+                            _this.$parent.numberOfTerritories--;
+                        }
+                    };
+
+                    jobs = oldStrArry.concat(jobs); // add new to old System_Jobs__c
+
+                    $scope.territoriesMap[territory.Id] = $scope.territoriesMap[territory.Id] || {};
+                    $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c] = jobs.join(BREAK_DELIMITER);
+                });
+            };
+
+            $scope.mergeTerritoryAndMapTerritory = function (territory) {
+
+                var arr1 = $scope.territoriesMap[territory.Id] ? $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c].toLowerCase().split(';') : [];
+                var arr2 = territory[fieldNames.ServiceTerritory.System_Jobs__c] ? territory[fieldNames.ServiceTerritory.System_Jobs__c].toLowerCase().split(';') : [];
+
+                Array.prototype.unique = function () {
+                    var a = this.concat();
+                    for (var i = 0; i < a.length; ++i) {
+                        for (var j = i + 1; j < a.length; ++j) {
+                            if (a[i] === a[j]) a.splice(j--, 1);
+                        }
+                    }
+                    return a;
+                };
+
+                var arr3 = arr1.concat(arr2).unique().join(';');
+                return arr3;
+            };
+
+            $scope.renameAutomatorTerritories = function (automator, newName) {
+
+                newName = newName.toLowerCase();
+                var automatorName = automator.Name.toLowerCase();
+
+                delete $scope.selectedTerritoriesInLb[automatorName]; // delete old name
+                var index = 0;
+
+                $scope.settings.Territories.forEach(function (territory) {
+
+                    var jobs = [],
+                        oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    if ($scope.territoriesMap[territory.Id] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] != '') {
+
+                        var NewStr = $scope.mergeTerritoryAndMapTerritory(territory);
+                        oldStr = NewStr;
+                    }
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    //remove with old name
+                    index = oldStrArry.indexOf(automatorName);
+                    if (index !== -1) {
+                        oldStrArry.splice(index, 1);
+                        jobs.push(newName); // add with new name
+
+                        $scope.selectedTerritoriesInLb[newName] = $scope.selectedTerritoriesInLb[newName] || {};
+                        $scope.selectedTerritoriesInLb[newName][territory.Id] = true;
+                    }
+
+                    jobs = oldStrArry.concat(jobs); // add new to old System_Jobs__c
+
+                    $scope.territoriesMap[territory.Id] = $scope.territoriesMap[territory.Id] || {};
+                    $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c] = jobs.join(BREAK_DELIMITER);
+                });
+            };
+
+            $scope.renameAutomatorGroups = function (automator, newName) {
+
+                var automatorName = automator.Name.toLowerCase();
+                newName = newName.toLowerCase();
+                var index = 0;
+
+                $scope.settings.Territories.forEach(function (territory) {
+
+                    var jobs = [],
+                        oldStrArry = [];
+                    var oldStr = territory[fieldNames.ServiceTerritory.System_Jobs__c];
+
+                    // add from map
+                    if ($scope.territoriesMap[territory.Id] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] && $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] != '') {
+
+                        var NewStr = $scope.mergeTerritoryAndMapTerritory(territory);
+                        oldStr = NewStr;
+                    }
+
+                    if (oldStr) {
+                        oldStrArry = oldStr.split(BREAK_DELIMITER);
+                    }
+
+                    for (var group = 1; group < 11; group++) {
+
+                        //remove with old name
+                        index = oldStrArry.indexOf(automatorName + GROUP_DELIMITER + group);
+                        if (index !== -1) {
+                            oldStrArry.splice(index, 1);
+                            jobs.push(newName + GROUP_DELIMITER + group); // add with new name
+                        }
+                    };
+
+                    jobs = oldStrArry.concat(jobs); // add new to old System_Jobs__c
+
+                    $scope.territoriesMap[territory.Id] = $scope.territoriesMap[territory.Id] || {};
+                    $scope.territoriesMap[territory.Id][fieldNames.ServiceTerritory.System_Jobs__c] = territory[fieldNames.ServiceTerritory.System_Jobs__c] = jobs.join(BREAK_DELIMITER);
+                });
+            };
+
+            $scope.removeAutomator = function (automator) {
+
+                for (var terr in $scope.settings.Territories) {
+                    $scope.locationSelected($scope.settings.Territories[terr], automator, false);
+                }
+
+                // 2do : if many Territories : load data then remove ( aut can never be opened )
+
+                $scope.removeAutomatorGroups(automator);
+
+                $scope.objects.splice($scope.objects.indexOf(automator), 1);
+                delete dataService.getDraftSettings().AutomatorConfig[automator.Name];
+
+                if (automator.Id) dataService.getDraftSettings().DeletedAutomators.push(automator);
+
+                dataService.setDirty();
+            };
+
+            $scope.newJobClicked = function () {
+
+                $scope.currentNewAutomator = {
+                    Name: 'Job name'
+                };
+
+                $scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c] = $scope.classNames[0];
+
+                $scope.automatorTypes = [];
+
+                for (var i = 0; i < $scope.classNames.length; i++) {
+                    $scope.automatorTypes.push({
+                        label: $scope.jobsTemplates[$scope.classNames[i]][fieldNames.Automator_Config__c.Label__c],
+                        value: $scope.classNames[i]
+                    });
+
+                    if ($scope.classNames[i] === $scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c]) $scope.currentNewAutomator.Name = $scope.jobsTemplates[$scope.classNames[i]][fieldNames.Automator_Config__c.Label__c];
+                }
+
+                // add Scheduled Jobs Enhancements
+                $scope.automatorTypes.push({
+                    label: 'Enhanced Optimization',
+                    value: 'Scheduled-Jobs-Enhancements'
+                });
+
+                $scope.popUpOpen = true;
+            };
+
+            $scope.newAutomatorSaveButtonClicked = function () {
+                if ($scope.checkIfAutomatorExists() || $scope.checkIfAutomatorNameExist()) return;
+                $scope.popUpOpen = false;
+
+                // Enhancements 
+                if ($scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c] == 'Scheduled-Jobs-Enhancements') {
+
+                    $scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c] = 'Sched004_OAAS';
+                    $scope.currentNewAutomator[fieldNames.Automator_Config__c.Secondary_Type__c] = 'Enhancement';
+                    $scope.currentNewAutomator.valid = false; // Territories not selected , cant be valid
+                    $scope.warningsMsg[$scope.currentNewAutomator.Name.toLowerCase()] = {};
+                    $scope.warningsMsg[$scope.currentNewAutomator.Name.toLowerCase()].warningsMsg = 'Add at least one service territory to a group.';
+                }
+
+                var templateCopy = angular.copy($scope.jobsTemplates[$scope.currentNewAutomator[fieldNames.Automator_Config__c.Class_Name__c]]);
+                angular.merge(templateCopy, $scope.currentNewAutomator);
+                templateCopy[fieldNames.Automator_Config__c.Label__c] = $scope.currentNewAutomator.Name;
+                $scope.objects.push(templateCopy);
+                dataService.getDraftSettings().AutomatorConfig[templateCopy.Name] = templateCopy;
+                dataService.setDirty();
+            };
+
+            $scope.checkIfAutomatorNameExist = function () {
+                if (!$scope.currentNewAutomator.Name.toLowerCase()) {
+                    return true;
+                }
+                return false;
+            };
+
+            $scope.newAutomatorCancelButtonClicked = function () {
+                $scope.popUpOpen = false;
+            };
+
+            $scope.checkIfAutomatorExists = function () {
+
+                for (var automatorName in $scope.settings.AutomatorConfig) {
+
+                    if ($scope.settings.AutomatorConfig[automatorName][fieldNames.Automator_Config__c.Label__c].toLowerCase() === $scope.currentNewAutomator.Name.toLowerCase()) {
+                        return true;
+                    }
+                }
+
+                return false;
+            };
+
+            $scope.getAutomatorFieldName = function (field) {
+                return window.fieldNames.Automator_Config__c[field];
+            };
+
+            function createFormulaAndPoliciesOptionsArray() {
+                dataService.getSettingsPromise().then(function () {
+                    $scope.formulaOptions = dataService.serviceBooleanFields;
+                    $scope.policies = dataService.policies;
+                });
+            }
+
+            /*
+            not valid teritorries or schedule
+            */
+            $scope.$watch('warnings', function (newWarnings, oldWarnings) {
+
+                if (oldWarnings && newWarnings && newWarnings !== oldWarnings) {
+
+                    for (var e in $scope.objects) {
+
+                        if ($scope.objects[e] && $scope.objects[e][fieldNames.Automator_Config__c.Secondary_Type__c] == "Enhancement") {
+
+                            // found problem
+                            if (newWarnings[$scope.objects[e].Name.toLowerCase()] && (newWarnings[$scope.objects[e].Name.toLowerCase()].teritorries || newWarnings[$scope.objects[e].Name.toLowerCase()].schedule)) {
+
+                                $scope.objects[e].valid = false;
+
+                                $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()] = $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()] || {};
+                                $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()].warningsMsg = '';
+
+                                if (newWarnings[$scope.objects[e].Name.toLowerCase()].teritorries) {
+                                    $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()].warningsMsg += newWarnings[$scope.objects[e].Name.toLowerCase()].teritorriesMsg;
+                                }
+
+                                if (newWarnings[$scope.objects[e].Name.toLowerCase()].schedule) {
+                                    $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()].warningsMsg += newWarnings[$scope.objects[e].Name.toLowerCase()].scheduleMsg;
+                                }
+                            }
+
+                            // no problem
+                            if (newWarnings[$scope.objects[e].Name.toLowerCase()] && newWarnings[$scope.objects[e].Name.toLowerCase()].teritorries == false && newWarnings[$scope.objects[e].Name.toLowerCase()].schedule == false) {
+
+                                $scope.objects[e].valid = true;
+                                $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()] = $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()] || {};
+                                $scope.warningsMsg[$scope.objects[e].Name.toLowerCase()].warningsMsg = '';
+                            }
+                        }
+                    }
+                }
+            }, true);
+
+            /*
+            check if Enabled__c changed
+            */
+            $scope.$watch('objects', function (newObjects, oldbjects) {
+
+                if (oldbjects && newObjects && newObjects !== oldbjects) {
+
+                    for (var e in newObjects) {
+
+                        if (newObjects[e] && oldbjects[e] && newObjects[e][$scope.getAutomatorFieldName('Enabled__c')] != oldbjects[e][$scope.getAutomatorFieldName('Enabled__c')]) {
+
+                            dataService.getModifiedAutomators()[newObjects[e].Name] = true;
+                        }
+                    }
+                }
+            }, true);
+
+            $scope.searchUsers = function (inputValue) {
+
+                var deferred = $q.defer();
+
+                settingsUtils.callRemoteAction(remoteActions.searchUsers, [inputValue]).then(function (users) {
+                    var userNames = [];
+
+                    for (var i = 0; i < users.length; i++) {
+                        userNames.push(users[i].Name);
+
+                        // FSL-946
+                        //$scope.usersCache[users[i].Name] = users[i].Username;
+                        $scope.usersCache[users[i].Name] = users[i].Email;
+                    }
+
+                    deferred.resolve(userNames);
+                });
+
+                return deferred.promise;
+            };
+
+            $scope.filterInput = function (inputValue, automator) {
+
+                var fromCache = $scope.usersCache[inputValue];
+
+                if (!fromCache) {
+                    fromCache = inputValue;
+                }
+
+                var currVal = automator[fieldNames.Automator_Config__c.Notification_Username__c];
+
+                //if (currVal != undefined || fromCache != null) {
+                if (currVal) {
+                    automator[fieldNames.Automator_Config__c.Notification_Username__c] = fromCache;
+                }
+
+                return fromCache;
+            };
+
+            $scope.isDailyOptimizationPolicy = function (automator) {
+
+                if (automator[fieldNames.Automator_Config__c.Allow_Scheduling_Policy__c] && dataService.isDailyOptimizationPolicy(automator[fieldNames.Automator_Config__c.Scheduling_Policy_Id__c])) {
+                    return 'The selected scheduling policy uses In-Day Optimization, so only one day of the schedule is optimized.';
+                } else {
+                    return undefined;
+                }
+            };
+
+            $scope.isChecked = function (territory, automator) {
+
+                var jobsStr = territory[fieldNames.ServiceTerritory.System_Jobs__c] || '',
+                    jobs = jobsStr.split(';'),
+                    automatorName = automator.Name.toLowerCase();
+
+                return jobs.indexOf(automatorName) !== -1;
+            };
+
+            $scope.toggleAutomator = function (automator, config) {
+
+                if (config.firstTimeOpen) {
+
+                    $scope.innerTab[automator.Name.toLowerCase()] = 1;
+
+                    // org has many territories + new automator
+                    if (dataService.getManyTerritories() && automator.Id && !config.requestedLoadingTerritories) {
+
+                        config.firstTimeLoading = true;
+                        config.requestedLoadingTerritories = true;
+                        config.currentlyLoadingTerritories = true;
+
+                        dataService.getTerritoriesRelatedToAutomator(automator.Name).then(function (teritorries) {
+
+                            config.firstTimeOpen = false;
+                            config.open = true;
+                            config.firstTimeLoading = false;
+                            config.currentlyLoadingTerritories = false;
+
+                            teritorries.forEach(function (t) {
+                                $scope.selectedTerritoriesInLb[automator[$scope.labelField]][t.Id] = true;
+                                $scope.savedSelectedTerritoriesInLb[automator[$scope.labelField]][t.Id] = true;
+                            });
+                        });
+                    } else {
+                        config.firstTimeOpen = false;
+                        config.open = !config.open;
+                    }
+
+                    return;
+                }
+
+                config.open = !config.open;
+            };
+
+            $scope.getRelevantTerritories = function (automator) {
+
+                if (!dataService.getManyTerritories()) {
+                    return $scope.settings.Territories;
+                }
+
+                var territories = [],
+                    idAlreadyPresent = {},
+                    savedSelectedTerritories = $scope.savedSelectedTerritoriesInLb[automator[$scope.labelField]];
+
+                for (var id in savedSelectedTerritories) {
+                    !idAlreadyPresent[id] && savedSelectedTerritories[id] && dataService.getTerritories(id) && territories.push(dataService.getTerritories(id));
+                    idAlreadyPresent[id] = true;
+                }
+
+                var newlyAddedTerritories = $scope.manyTerritoriesAddedDraft[automator.Name];
+
+                if (newlyAddedTerritories && newlyAddedTerritories.size > 0) {
+                    newlyAddedTerritories.forEach(function (t) {
+                        !idAlreadyPresent[t.Id] && territories.push(t);
+                        idAlreadyPresent[t.Id] = true;
+                    });
+                }
+
+                return territories.sort(function (a, b) {
+                    if (a.Name > b.Name) return 1;
+                    if (a.Name < b.Name) return -1;
+                    return 0;
+                });
+            };
+
+            function isInTerritoryArray(array, id) {
+
+                for (var i = 0; i < array.length; i++) {
+
+                    if (array[i].Id === id) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            $scope.onTerritoriesWerePicked = function () {
+
+                if ($scope.lastAutomatorOpened) {
+
+                    var pickedTerritories = $scope.selectedTerritoriesInLb[$scope.lastAutomatorOpened[fieldNames.Automator_Config__c.Label__c]],
+                        savedSelectedTerritoriesInLb = $scope.savedSelectedTerritoriesInLb[$scope.lastAutomatorOpened[fieldNames.Automator_Config__c.Label__c]],
+                        territoriesToSave = dataService.getDraftSettings().Territories;
+
+                    for (var id in pickedTerritories) {
+
+                        savedSelectedTerritoriesInLb[id] = pickedTerritories[id];
+
+                        $scope.locationSelected(dataService.getTerritories(id), $scope.lastAutomatorOpened, pickedTerritories[id]);
+
+                        if (!isInTerritoryArray(territoriesToSave, id)) {
+                            territoriesToSave.push(dataService.getTerritories(id));
+                        }
+                    }
+                }
+
+                $scope.lastAutomatorOpened = null;
+            };
+
+            $scope.closeTerritoriyPicker = function () {
+                //console.log('cancel');
+            };
+
+            $scope.openTerritorySearchLightbox = function (automator) {
+                $scope.lastAutomatorOpened = automator;
+            };
+
+            $scope.currentResults = [];
+            $scope.cachedTerritoriesQueryResults = {};
+            $scope.allTerritoriesQueried = {};
+            $scope.territoriesIdsToNames = {};
+            $scope.selectedTerritoriesInLb = {};
+            $scope.savedSelectedTerritoriesInLb = {};
+            $scope.currentlyLoading = false;
+
+            // return if O2 mode ( Enhancement )
+            $scope.getEnhancementsMode = function (automator) {
+                return automator[fieldNames.Automator_Config__c.Secondary_Type__c] === 'Enhancement';
+            };
+
+            $scope.searchTerritoryOnServer = function (searchText, automator) {
+
+                // search is empty, mark "none" and validate
+                if (searchText === "") {
+
+                    $scope.manyTerritoriesAddedDraft[automator.Name] = $scope.manyTerritoriesAddedDraft[automator.Name] || new Set();
+
+                    $scope.currentResults.forEach(function (territory) {
+
+                        if ($scope.selectedTerritoriesInLb[automator.Name] && $scope.selectedTerritoriesInLb[automator.Name][territory.Id]) {
+                            $scope.manyTerritoriesAddedDraft[automator.Name].add(territory);
+                        }
+                    });
+
+                    $scope.currentResults = [];
+                    $scope.showResults = false;
+                    $scope.noTerritoriesFoundOnSearch = false;
+                    return;
+                }
+
+                // check if cached
+                // removed chach logic
+                // if ($scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()]) {
+
+                //     $scope.currentResults = $scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()];
+                //     $scope.showResults = true;
+                //     $scope.noTerritoriesFoundOnSearch = $scope.currentResults.length === 0;
+
+                //     return;
+                // }
+
+                $scope.currentlyLoading = true;
+
+                // query from server
+                window.Visualforce.remoting.Manager.invokeAction(window.remoteActions.searchTerritories, searchText, function (result, ev) {
+
+                    if (ev.status) {
+
+                        var allTerritories = dataService.getAllTerritories();
+                        result.forEach(function (t) {
+                            return allTerritories[t.Id] = allTerritories[t.Id] || t;
+                        });
+
+                        settingsUtils.safeApply($scope, function () {
+
+                            // cache
+                            $scope.cachedTerritoriesQueryResults[searchText.toLocaleLowerCase()] = result;
+                            $scope.showResults = true;
+
+                            // not synced with current value
+                            // if ($scope.searchText !== searchText) {
+                            //     return;
+                            // }
+
+                            $scope.currentlyLoading = false;
+                            $scope.currentResults = result;
+
+                            if (result.length === 0) {
+                                $scope.noTerritoriesFoundOnSearch = true;
+                            } else {
+                                $scope.noTerritoriesFoundOnSearch = false;
+                                result.forEach(function (t) {
+                                    $scope.allTerritoriesQueried[t.Label] = t;
+                                    $scope.territoriesIdsToNames[t.Id] = t.Label;
+                                });
+                            }
+                        });
+                    } else {
+
+                        console.warn(ev);
+                    }
+                }, { buffer: true, escape: false, timeout: 120000 });
+            };
+
+            $scope.updateCurentlySelected = function (automator, tid, value) {
+
+                $scope.selectedTerritoriesInLb[automator[$scope.labelField]][tid] = value;
+                $scope.checkedTerritories[automator[$scope.labelField]][tid] = value;
+
+                $scope.selectedTerritoriesInLb[automator[$scope.labelField]][tid] = value;
+                $scope.checkedTerritories[automator[$scope.labelField]][tid] = value;
+
+                return;
+
+                $scope.checkedTerritories[automator[$scope.labelField]][tid] = $scope.checkedTerritories[automator[$scope.labelField]][tid] || false;
+
+                $scope.checkedTerritories[automator[$scope.labelField]][tid] = $scope.selectedTerritoriesInLb[automator.Name][tid];
+
+                $scope.checkedTerritories[automator[$scope.labelField]][tid] = value; // !$scope.$parent.selectedTerritoriesInLb[automator[automator.Name]][territory.Id];
+
+
+                // CFSL1474
+                $scope.manyTerritoriesAddedDraft[automator.Name] = $scope.manyTerritoriesAddedDraft[automator.Name] || new Set();
+
+                $scope.currentResults.forEach(function (territory) {
+
+                    if ($scope.selectedTerritoriesInLb[automator.Name][territory.Id]) {
+                        $scope.manyTerritoriesAddedDraft[automator.Name].add(territory);
+                    }
+                });
+
+                //  let displayedTerritories = $scope.getRelevantTerritories(automator);
+                //  displayedTerritories.forEach( territory => {
+
+
+                // if ($scope.selectedTerritoriesInLb[automator.Name][territory.Id]) {
+                //     $scope.manyTerritoriesAddedDraft[automator.Name].add(territory);
+                // }
+
+                // });
+
+            };
+
+            $scope.editChange = function () {
+
+                $scope.editMode = !$scope.editMode; // toggle
+
+                if ($scope.editMode == false) {
+
+                    // editMode is now done. check for every aut if we need to update groups
+                    for (var aut in $scope.objects) {
+                        if ($scope.objects[aut].Name != $scope.objects[aut][fieldNames.Automator_Config__c.Label__c]) {
+                            // name has change
+
+                            dataService.getModifiedAutomators()[$scope.objects[aut].Name] = true; // set to Modified
+
+                            if ($scope.objects[aut][fieldNames.Automator_Config__c.Secondary_Type__c] == 'Enhancement') {
+
+                                $scope.renameAutomatorGroups($scope.objects[aut], $scope.objects[aut][fieldNames.Automator_Config__c.Label__c]);
+                            } else {
+
+                                $scope.renameAutomatorTerritories($scope.objects[aut], $scope.objects[aut][fieldNames.Automator_Config__c.Label__c]);
+                            }
+
+                            // save new name , used to checked if name chached
+
+                            //  $scope.objects[aut].Name = $scope.objects[aut][fieldNames.Automator_Config__c.Label__c]; 
+                        }
+                    }
+                }
+            };
+
+            $scope.selectTerritories = function (automator, all, automatorObj, searchOnServerValue) {
+
+                // selected
+                if (!searchOnServerValue) {
+
+                    var displayedTerritories = $scope.getRelevantTerritories(automatorObj);
+
+                    displayedTerritories.forEach(function (territory) {
+                        $scope.selectedTerritoriesInLb[automator][territory.Id] = all;
+                        $scope.checkedTerritories[automator][territory.Id] = all;
+                    });
+                }
+
+                // search results
+                else {
+
+                        $scope.currentResults.forEach(function (territory) {
+                            $scope.selectedTerritoriesInLb[automator][territory.Id] = all;
+                            $scope.checkedTerritories[automator][territory.Id] = all;
+                        });
+                    }
+            };
+        }
+
+        var template = '\n        <div class="automatorsWrapper" ng-if="!hideSection">\n            <div class="automatorButtonsWrapper" ng-hide="noChange">\n                <div class="newAutomator automatorButton settingsButton blueButton" ng-click="newJobClicked()">New Job</div>\n                <div ng-show="objects.length > 0" class="editAutomators automatorButton settingsButton whiteButton" ng-click="editChange()">\n                    <span ng-if="!editMode">Edit</span>\n                    <span ng-if="editMode">Done</span>\n                </div>\n            </div>\n            <div class="noAutomators" ng-show="objects.length == 0">\n                No scheduled jobs\n            </div>\n            <div class="singleAutomatorEnhancements" \n                 ng-repeat="automator in objects | orderBy: getAutomatorFieldName(\'Name\') track by automator.Name" \n                 ng-class="{active: automator[getAutomatorFieldName(\'Enabled__c\')]}" \n                 ng-init="automatorConfig={open:false, firstTimeOpen: true, firstTimeLoading: false}; numberOfTerritories = 0; checkedTerritories[automator[labelField]] = {}; selectedTerritoriesInLb[automator[labelField]] = {}; savedSelectedTerritoriesInLb[automator[labelField]] = {};">\n                    \n                <div class="automatorRowAndContent automatorRowAndContentEnhancements"  ng-class="{last: $last, selected: automatorConfig.open}">\n                    <div class="automatorRowContainer">\n                   \n                        <div class="automatorRowEnhancements"  ng-class="{automatorEditMode: editMode}">\n                            <div class="editErrorIcon" title="Delete job" ng-click="editMode && removeAutomator(automator)">\n                                <svg aria-hidden="true" class="custom-slds-icon">\n                                    <use xlink:href="{{getIcon(\'remove\')}}"></use>\n                                </svg>\n                            </div>\n\n                         \n                            <span class="automatorEnhancementsName"  >\n                            \n                                <img class="loading-automator-row" ng-show="automatorConfig.currentlyLoadingTerritories" src="' + window.settings.icons.spinner + '" />\n                               \n                            \n                                <span ng-click="toggleAutomator(automator, automatorConfig)">\n                                    <span class="collapseBox blueHover" title="Expand job" ng-show="!automatorConfig.open">+</span>\n                                    <span class="collapseBox blueHover automatorConfig.openedCollapse" title="Collapse job" ng-show="automatorConfig.open">-</span>\n                                </span>\n                                <span ng-if="!editMode" class="" class="automatorNameCont automatorEnhancementsName">\n                                    {{automator[getAutomatorFieldName(\'Label__c\')]}}\n                                </span>\n                                <span ng-if="editMode"  class="automatorEditNameCont">\n                                    <custom-settings-wrapper primitive-type="primitiveType.text" label=""  value-field-name="\'Label__c\'" setting="automator" class="automatorName"></custom-settings-wrapper>\n                                </span>\n                            </span>\n\n                            \n\n                        <span class="automatorEnhancementsAction"  >\n\n                        <div>\n                            <span ng-if="automator[getAutomatorFieldName(\'Enabled__c\')]" class="automatorEnhancementsActive" >Active</span>\n                            <span ng-if="!automator[getAutomatorFieldName(\'Enabled__c\')]" class="automatorEnhancementsActive" >Inactive</span>\n                            <span  class="automatorEnhancementsCheckbox" >\n                                <checkbox  label="Active"  object="automator" value-field="\'Enabled__c\'" is-disabled="noChange"></checkbox>\n                            </span>\n                         </div>\n                         <div>   \n                            <span class="automatorEnhancementsRowNotValid" ng-if="automator.valid == false"><i title="{{warningsMsg[automator.Name.toLowerCase()].warningsMsg}}" style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>  </span>\n                            <span class="automatorEnhancementsRowValid" ng-if="automator.valid != false"> <div class="automatorEnhancementsActiveValidSpace"></div>  </span>\n                         </div>\n                         <div>   \n                            <span class="automatorEnhancementsType" ng-if="getEnhancementsMode(automator)" ><span class="automatorEnhancementsNextTag">Enhanced</span></span>\n                            <span class="automatorEnhancementsType" ng-if="!getEnhancementsMode(automator)" > </span>\n                          </div>\n                          <div>\n                            <span  class="automatorEnhancementsRunNow" class="runNow"  ng-class="{disabled: (currentAutomatorRunNowDone || currentAutomatorLoading || !automator.valid) && automator.valid !== undefined}" \n                                    \n                                    ng-click="runNow(automator)"> <!-- ng-show="automator.Id && !currentAutomatorLoading && !currentAutomatorRunNowDone"  -->\n                                Run Now\n                                </span>\n                                <div class="automatorEnhancementsRunNowPlaceHolder" >\n                                    <svg class="automatorRunNowDone" ng-show="currentAutomatorRunNowDone" aria-hidden="true" class="slds-icon">\n                                        <use xlink:href="{{getIcon(\'check\')}}"></use>\n                                    </svg>\n                                    <img class="automatorSmallLoading" ng-show="currentAutomatorLoading && !currentAutomatorRunNowDone" src={{getIcon(\'loading\')}} />\n                                </div>\n                            </div>\n                            </span>\n                        \n                         </div>\n                    </div>\n                    <div class="automatorContent" ng-if="automatorConfig.open" >\n\n                    <div ng-if="getEnhancementsMode(automator)" class="automatorsEnhancementsWrapper">\n                      \n\n                        <div class="settings-tabs-container" > \n\n                            <div \n                                class="settings-secondary-tab" \n                                ng-class="[ tab.dynamicClass, \'tab-setting-item\' ,{\'setting-active\': innerTab[automator.Name.toLowerCase()] == 1 }]" \n                                ng-click="switchInnerTab(\'General\', 1,automator)">General\n                            </div>   \n                            <div \n                                class="settings-secondary-tab" \n                                ng-class="[ tab.dynamicClass, \'tab-setting-item\' ,{\'setting-active\': innerTab[automator.Name.toLowerCase()] == 2 }]" \n                                ng-click="switchInnerTab(\'Territory\', 2,automator)">Territory\n                            </div>   \n                            <div \n                                class="settings-secondary-tab" \n                                ng-class="[ tab.dynamicClass, \'tab-setting-item\' ,{\'setting-active\': innerTab[automator.Name.toLowerCase()] == 3 }]" \n                                ng-click="switchInnerTab(\'Schedule\', 3,automator)">Schedule\n                            </div> \n                       \n\n                        </div> <!-- settings-tabs-container -->\n\n                        <div ng-show="innerTab[automator.Name.toLowerCase()] == 1" class="">\n\n                            <div>\n\n                               \n                                <automator-enhancements-general warnings="warnings[automator.Name.toLowerCase()]" automator="automator"></automator-enhancements-general>\n                               \n                            </div>\n                        </div>\n\n                        <div ng-show="innerTab[automator.Name.toLowerCase()] == 2" class="">\n\n                            <div>\n                          \n                            <automator-enhancements-territory warnings="warnings[automator.Name.toLowerCase()]" automator="automator"></automator-enhancements-territory>\n                           \n                            </div>\n                        </div>\n\n                        <div ng-show="innerTab[automator.Name.toLowerCase()] == 3" class="">\n\n                            <div>\n                          \n                            <automator-enhancements-schedule warnings="warnings[automator.Name.toLowerCase()]" automator="automator"></automator-enhancements-schedule>\n                        \n                            </div>\n                        </div>\n\n                    </div> <!-- Enhancements -->\n\n                    <div ng-if="!getEnhancementsMode(automator)">\n\n                      \n                        <div class="automatorLeftContent">\n                            <div class="automatorContentSon">\n                                <div ng-show="noChange" class="active-purge">\n                                    When using SLR, the purge job cannot be modified or deactivated.\n                                </div>\n                                \n                                <div class="" ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')]">Effective Territories</div>\n                                \n\n                                <div id="territorySelectionOptions" ng-show="!manyTerritories() && (automator[getAutomatorFieldName(\'Allow_Locations__c\')] || automator[getAutomatorFieldName(\'Allow_No_Location__c\')])">\n                                    <input placeholder="Search territories..." type="text" ng-model="searchTerritory[automator.Name]" />\n\n                                    <span ng-click="selectAllTerritories(automator)" title="Select All Filtered Territoried">All</span>\n                                    <span ng-click="selectAllTerritories(automator, false)" title="Unselect All Filtered Territoried">None</span>\n                                </div>\n                                    \n                                \n                                <div class="select-terr-auto" ng-show="manyTerritories()" ng-click="showTerritoryPickerOld = true; openTerritorySearchLightbox(automator)">Select Territories</div>\n                                \n                                \n                                <lightning-modal show="showTerritoryPickerOld" fixed-modal-height="true" header-text="Select Service Territories" save-text="Select" on-save="onTerritoriesWerePicked" on-close-cancel="closeTerritoriyPicker" cancel-text="Cancel" with-footer="true">\n                                    \n                                    <svg aria-hidden="true" class="slds-icon clear-terr-search-svg" ng-show="searchOnServerValue && !currentlyLoading" ng-click="searchOnServerValue = \'\'">\n                                        <use xlink:href="' + window.settings.icons.close + '"></use>\n                                    </svg>\n\n                                    <img class="searching-territory-spinner" src="' + window.settings.icons.spinner + '" ng-show="currentlyLoading" />\n\n                                    <input type="text" class="search-territory-input" ng-model="searchOnServerValue" ng-change="searchTerritoryOnServer(searchOnServerValue, automator)" ng-model-options="{debounce: 300}" placeholder="Search Service Territories" />\n                                    \n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], true, automator, searchOnServerValue)">Select All</div>\n                                    <div class="select-all-territories-btn" ng-click="selectTerritories(automator[labelField], false, automator, searchOnServerValue)">Select None</div>\n                                    \n                                    <div id="no-territories-found-on-server" ng-show="searchOnServerValue && currentResults.length == 0">\n                                        No Service Territories were found\n                                    </div>\n                                    \n                                    <div class="lightbox-territories-list" ng-show="searchOnServerValue && currentResults.length > 0">\n                                        <div ng-repeat="territory in currentResults track by territory.Id">\n                                            <input id="{{\'current_res_\' + territory.Id}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" ng-change="updateCurentlySelected(automator,territory.Id, $parent.selectedTerritoriesInLb[automator[labelField]][territory.Id])"/> \n                                            <label for="{{\'current_res_\' + territory.Id}}">{{territory.Name}}</label>\n                                        </div>\n                                    </div>\n                                    \n                                    \n                                    <div class="lightbox-territories-list" ng-hide="searchOnServerValue">\n                                        <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                             ng-repeat="territory in getRelevantTerritories(automator) track by territory.Id">\n                                             \n                                                <div>\n                                                    <input id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="$parent.selectedTerritoriesInLb[automator[labelField]][territory.Id]" ng-change="updateCurentlySelected(automator,territory.Id, $parent.selectedTerritoriesInLb[automator[labelField]][territory.Id])" /> \n                                                    <label for="{{\'loc\' + automator.Name + $index}}">{{territory.Name}} </label>\n                                                </div>\n                                                \n                                        </div>\n                                    </div>\n                                    \n                                </lightning-modal>\n                                \n                                \n                                <div class="automatorLocationsList">\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_No_Location__c\')] && \'NO TERRITORY\'.indexOf(searchTerritory.toUpperCase()) > -1">\n                                        <input ng-disabled="automator[getAutomatorFieldName(\'One_Location_Mandatory__c\')] && numberOfTerritories == 0" id="{{automator.Name + \'noLocation\'}}" type="checkbox" ng-model="automator[getAutomatorFieldName(\'No_Location__c\')]"></input> <label for="{{automator.Name + \'noLocation\'}}">No territory</label>\n                                    </div>\n                                    \n                                    <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                         ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                         ng-init="initTerritoryChecked(territory, automator)">\n                                         \n                                            <div>\n                                                <input ng-hide="manyTerritories()" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                <label ng-show="checkedTerritories[automator.Name][territory.Id] || ! manyTerritories() " for="{{manyTerritories() ? \'\' : \'loc\' + automator.Name + $index}}">{{territory.Name}} </label>\n                                            </div>\n                                            \n                                    </div>\n                                    \n\n                                    <div id="NoTerritoryFound" ng-show="!isTerritoryFound(automator)">\n                                        <input type="text" placeholder="Search Service Territories" ng-model="searchOnServerInput" />\n                                        \n                                        <div ng-show="searchOnServerInput">\n                                            search result\n                                        </div>\n                                        \n                                        <div ng-hide="searchOnServerInput">\n                                            <div ng-show="automator[getAutomatorFieldName(\'Allow_Locations__c\')]" \n                                                 ng-repeat="territory in getRelevantTerritories(automator) | filter:searchTerritory[automator.Name] track by territory.Id" \n                                                 ng-init="initTerritoryChecked(territory, automator)">\n                                                 \n                                                    <div>\n                                                        <input ng-hide="true" id="{{\'loc\' + automator.Name + $index}}" type="checkbox" ng-model="checkedTerritories[automator[labelField]][territory.Id]" ng-change="locationSelected(territory, automator, checkedTerritories[automator[labelField]][territory.Id])" /> \n                                                        <label for="{{\'loc\' + automator.Name + $index}}"> {{territory.Name}} </label>\n                                                    </div>\n                                                    \n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n\n                                    \n                                </div>\n                                <checkbox label="\'Optimize in stages\'" ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" object="automator" value-field="\'Is_Decompose_Territories__c\'"></checkbox>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Is_Decompose_Territories__c\')] && automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched004_OAAS\'" min="1" max="1000000000" primitive-type="primitiveType.number" label="\'Territories Per Stage\'" value-field-name="\'Decompose_Territories__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Span_Back__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days (backwards)\'" value-field-name="\'Time_Span_Backward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Time_Horizon__c\')]" min="1" max="30" primitive-type="primitiveType.number" label="\'Time Horizon in days\'" value-field-name="\'Time_Span_Forward__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Filter_Field__c\')]" options="formulaOptions" primitive-type="primitiveType.picklist" label="\'Filter by criteria\'" value-field-name="\'Filter_Field__c\'" setting="automator"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Allow_Scheduling_Policy__c\')]" options="policies" primitive-type="primitiveType.picklist" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy_Id__c\'" setting="automator" tooltip-text="{{isDailyOptimizationPolicy(automator)}}"></custom-settings-wrapper>\n\n                                <custom-settings-wrapper ng-if="automator[getAutomatorFieldName(\'Class_Name__c\')] == \'Sched006_SLRPurge\'" primitive-type="primitiveType.number" min="0" max="1000000000" label="\'Max routes in cache\'" value-field-name="\'Max_Objects_Count__c\'" setting="automator"></custom-settings-wrapper>\n                                <custom-settings-wrapper filter-input="filterInput(inputValue, automator)" get-suggestions="searchUsers(inputValue)" primitive-type="primitiveType.autoComplete" label="\'Email recipient user name\'" value-field-name="\'Notification_Username__c\'" setting="automator" ng-hide="noChange"></custom-settings-wrapper>\n                            </div>\n                        </div>\n                        <div class="automatorRightContent">\n                            <div>\n                                <cron-exp automator="automator" expression="automator[getAutomatorFieldName(\'Cron_Expression__c\')]" valid="valid" is-disabled="noChange"></cron-exp>\n                            </div>\n                        </div>\n                    </div>\n                    </div> <!-- end LS -->\n                </div>\n            </div>\n            <pop-up ng-if="popUpOpen" on-cancel="newAutomatorCancelButtonClicked()" on-save="newAutomatorSaveButtonClicked()" ng-class="{disabledSave: checkIfAutomatorExists() || checkIfAutomatorNameExist()}">\n                <main-content>\n                    <div class="automatorPopUpContent">\n                        <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Name\'" maxlength="60" value-field-name="\'Name\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <custom-settings-wrapper options="automatorTypes" primitive-type="primitiveType.picklist" label="\'Automator type\'" value-field-name="\'Class_Name__c\'" setting="currentNewAutomator"></custom-settings-wrapper>\n                        <div class="newAutomatorError" ng-if="checkIfAutomatorExists()">\n                            <ui-error>\n                                <main-content>\n                                    <div>There is already a scheduled job with this name</div>\n                                </main-content>\n                            </ui-error>\n                        </div>\n                    </div>\n                </main-content>\n            </pop-up>\n        </div>\n        ';
 
         return {
             restrict: 'E',
@@ -1629,6 +4326,472 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 (function () {
 
+    angular.module('SettingsApp').directive('cronExpEnhancements', cronExpEnhancements);
+
+    cronExpEnhancements.$inject = ['dataService'];
+
+    function cronExpEnhancements(dataService) {
+
+        function link(scope) {
+
+            dataService.getSettingsPromise().then(function () {
+
+                scope.userTimeZone = dataService.getDraftSettings().UserTimeZone;
+
+                function getRangeArray(start, end) {
+
+                    var arr = [];
+
+                    for (var i = start; i <= end; i++) {
+                        arr.push(i);
+                    }
+
+                    return arr;
+                }
+
+                scope.daysOfWeek = [{ label: 'Sun', value: 'SUN' }, { label: 'Mon', value: 'MON' }, { label: 'Tue', value: 'TUE' }, { label: 'Wed', value: 'WED' }, { label: 'Thu', value: 'THU' }, { label: 'Fri', value: 'FRI' }, { label: 'Sat', value: 'SAT' }];
+
+                scope.months = [{ label: 'Jan', value: 'JAN' }, { label: 'Feb', value: 'FEB' }, { label: 'Mar', value: 'MAR' }, { label: 'Apr', value: 'APR' }, { label: 'May', value: 'MAY' }, { label: 'Jun', value: 'JUN' }, { label: 'Jul', value: 'JUL' }, { label: 'Aug', value: 'AUG' }, { label: 'Sep', value: 'SEP' }, { label: 'Oct', value: 'OCT' }, { label: 'Nov', value: 'NOV' }, { label: 'Dec', value: 'DEC' }];
+
+                scope.minutesOptions = [15, 30];
+
+                scope.logicTypes = [{ value: 'dayWeek', label: 'Weekly' }, { value: 'dayMonth', label: 'Monthly' }];
+
+                scope.weeklyOrMonthly = {};
+
+                scope.daysOfMonth = getRangeArray(1, 31);
+                scope.daysOfMonthWithLabel = [];
+
+                for (var i = 0; i < scope.daysOfMonth.length; i++) {
+                    scope.daysOfMonthWithLabel.push({
+                        label: scope.daysOfMonth[i].toString(),
+                        value: scope.daysOfMonth[i].toString()
+                    });
+                }
+
+                scope.automatorRestriction = {
+                    enabled: false,
+                    startHour: "0",
+                    endHour: "20"
+                };
+
+                scope.allHours = getRangeArray(0, 23);
+                scope.allMinutes = getRangeArray(0, 59);
+                scope.allYears = getRangeArray(new Date().getFullYear(), new Date().getFullYear() + 10);
+                scope.id = Math.floor(Math.random() * 1000000 + 1);
+                scope.selected = { months: [],
+                    daysMonth: [],
+                    daysWeek: []
+                };
+
+                scope.getFinishHoursForAutomator = function () {
+
+                    var start = parseInt(scope.automatorRestriction.startHour),
+                        end = parseInt(scope.automatorRestriction.endHour);
+
+                    if (end < start + 1 && scope.automatorRestriction.endHour !== '0') {
+                        scope.automatorRestriction.endHour = start === 23 ? '0' : (start + 1).toString();
+                    }
+
+                    var result = getRangeArray(start + 1, 23);
+
+                    result.push(0);
+
+                    return result;
+                };
+
+                //scope.automator.valid = true;
+
+                scope.warnings = scope.warnings || {};
+
+                scope.modified = false;
+                scope.timezoneField = fieldNames.Automator_Config__c.Timezone__c;
+                scope.currentlySavedTimezone = scope.automator[scope.timezoneField];
+                scope.inDayPolicyInUse = true; // dataService.isDailyOptimizationPolicy(scope.automator[fieldNames.Automator_Config__c.Scheduling_Policy_Id__c]);
+
+                scope.$watchCollection('automator', function (newAuto, oldAuto) {
+
+                    scope.inDayPolicyInUse = true; //  !!dataService.isDailyOptimizationPolicy(newAuto[fieldNames.Automator_Config__c.Scheduling_Policy_Id__c]);
+
+                    if (newAuto !== oldAuto) {
+
+                        scope.modified = true;
+
+                        if (newAuto.modifiedDeleteMeInCronExp) {
+                            delete newAuto.modifiedDeleteMeInCronExp;
+                        }
+
+                        dataService.getModifiedAutomators()[scope.automator.Name] = true;
+                        scope.automator[fieldNames.Automator_Config__c.Timezone__c] = scope.userTimeZone;
+
+                        if (newAuto.LastModifiedDate !== oldAuto.LastModifiedDate) {
+                            scope.currentlySavedTimezone = newAuto[scope.timezoneField];
+                        }
+                    }
+                });
+
+                scope.parseNumber = function (str) {
+
+                    if (str) return parseInt(str);
+                    return 0;
+                };
+
+                var setDefaultValues = function setDefaultValues(scope) {
+
+                    scope.specificDate = moment().tz(scope.userTimeZone);
+                    scope.recurringType = 'recurring';
+                    scope.month = scope.months[0].value;
+                    scope.year = scope.allYears[0];
+                    scope.dayMonth = scope.daysOfMonth[0];
+                    scope.hours = scope.allHours[14];
+                    scope.minutes = scope.allMinutes[30];
+                    scope.selected.months = [];
+                    scope.recurringDay = 'dayWeek';
+                    scope.selected.daysMonth = [];
+                    scope.selected.daysWeek = [];
+                    scope.recurringTime = 'specific';
+                    scope.recurringTimeType = 'hours';
+                    scope.recurringHours = scope.allHours[1];
+                    scope.recurringMinutes = scope.minutesOptions[0];
+                };
+
+                var getParam = function getParam(param) {
+                    return function (obj) {
+                        return obj[param];
+                    };
+                };
+
+                function setValues(scope, cronExpr) {
+
+                    var savedCronExpr = cronExpr.split(' '),
+                        hourBefore = savedCronExpr[2],
+                        areHoursRestricted = hourBefore.indexOf('-') > -1,
+                        repeatHours = null,
+                        repeatEveryX = null,
+                        repeatTypeIsHours = false;
+
+                    if (areHoursRestricted) {
+
+                        cronExpr = cronExpr.split(' ');
+
+                        // recurring every X hours
+                        if (hourBefore.indexOf('/') > -1) {
+                            cronExpr[2] = hourBefore.substr(hourBefore.indexOf('/') + 1);
+                            repeatEveryX = cronExpr[2];
+                            repeatHours = hourBefore.substring(0, hourBefore.indexOf('/')).split('-');
+                            repeatTypeIsHours = true;
+                        }
+
+                        // repeat every minute
+                        else {
+
+                                cronExpr[2] = 0;
+                                repeatHours = hourBefore.split('-');
+                                repeatEveryX = cronExpr[1].split('/')[1];
+                            }
+
+                        cronExpr = cronExpr.join(' ');
+                    }
+
+                    var regExps = {
+                        'regExpOneTime': /^0\s([0-9]|([1-5][0-9]))\s([0-9]|(1[0-9])|(2[0-3]))\s([1-9]|([1-2][0-9])|3([0-1]))\s(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s\?\s([2-9][0-9][0-9][0-9])$/,
+                        'recurringDayWeek': /^0\s((0\/([0-9]|([1-5][0-9])))|([0-9]|([1-5][0-9])))\s((0\/([1-9]|(1[0-9])|(2[0-3])))|([0-9]|(1[0-9])|(2[0-3])))\s\?\s(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(,FEB)?(,MAR)?(,APR)?(,MAY)?(,JUN)?(,JUL)?(,AUG)?(,SEP)?(,OCT)?(,NOV)?(,DEC)?\s(SUN|MON|TUE|WED|THU|FRI|SAT)(,SUN|,MON|,TUE|,WED|,THU|,FRI|,SAT)*\s\*$/,
+                        'recurringDayMonth': /^0\s((0\/([0-9]|([1-5][0-9])))|([0-9]|([1-5][0-9])))\s((0\/([1-9]|(1[0-9])|(2[0-3])))|([0-9]|(1[0-9])|(2[0-3])))\s(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)(,1|,2|,3|,4|,5|,6|,7|,8|,9|,10|,11|,12|,13|,14|,15|,16|,17|,18|,19|,20|,21|,22|,23|,24|,25|,26|,27|,28|,29|,30|,31)*\s(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(,JAN|,FEB|,MAR|,APR|,MAY|,JUN|,JUL|,AUG|,SEP|,OCT|,NOV|,DEC)*\s\?\s\*$/
+                    },
+                        argsCron = cronExpr.split(' ');
+
+                    var minutes = argsCron[1],
+                        hours = argsCron[2];
+
+                    if (regExps.regExpOneTime.test(cronExpr)) {
+
+                        scope.recurringType = 'oneTime';
+                        scope.minutes = scope.parseNumber(argsCron[1]);
+                        scope.hours = scope.parseNumber(argsCron[2]);
+                        scope.dayMonth = argsCron[3];
+                        scope.month = argsCron[4];
+                        scope.year = argsCron[6];
+                    } else if (regExps.recurringDayWeek.test(cronExpr)) {
+
+                        scope.recurringType = 'recurring';
+                        scope.recurringDay = 'dayWeek';
+
+                        if (areHoursRestricted) {
+
+                            // set restriction
+                            scope.automatorRestriction.enabled = true;
+                            scope.automatorRestriction.startHour = repeatHours[0];
+                            scope.automatorRestriction.endHour = repeatHours[1];
+
+                            scope.recurringTime = 'recurring';
+
+                            if (repeatTypeIsHours) {
+
+                                scope.recurringTimeType = 'hours';
+                                scope.recurringHours = parseInt(repeatEveryX);
+                            } else {
+                                scope.recurringTimeType = 'minutes';
+                                scope.recurringMinutes = parseInt(repeatEveryX);
+                            }
+                        } else if (hours.indexOf('0/') === 0) {
+                            scope.recurringHours = scope.parseNumber(hours.substring(2));
+                            scope.recurringTime = 'recurring';
+                            scope.recurringTimeType = 'hours';
+                        } else if (minutes.indexOf('0/') === 0) {
+
+                            scope.recurringMinutes = scope.parseNumber(minutes.substring(2));
+                            scope.recurringTime = 'recurring';
+                            scope.recurringTimeType = 'minutes';
+                        } else {
+
+                            scope.recurringTime = 'specific';
+                            scope.hours = scope.parseNumber(hours);
+                            scope.minutes = scope.parseNumber(minutes);
+                        }
+
+                        scope.selected.months = argsCron[4].split(',');
+                        scope.selected.daysWeek = argsCron[5].split(',');
+                    } else if (regExps.recurringDayMonth.test(cronExpr)) {
+
+                        scope.recurringType = 'recurring';
+                        scope.recurringDay = 'dayMonth';
+
+                        ////////
+                        if (areHoursRestricted) {
+
+                            // set restriction
+                            scope.automatorRestriction.enabled = true;
+                            scope.automatorRestriction.startHour = repeatHours[0];
+                            scope.automatorRestriction.endHour = repeatHours[1];
+
+                            scope.recurringTime = 'recurring';
+
+                            if (repeatTypeIsHours) {
+
+                                scope.recurringTimeType = 'hours';
+                                scope.recurringHours = parseInt(repeatEveryX);
+                            } else {
+                                scope.recurringTimeType = 'minutes';
+                                scope.recurringMinutes = parseInt(repeatEveryX);
+                            }
+                        }
+                        ////////
+
+                        if (repeatHours) {
+
+                            // set restriction
+                            scope.automatorRestriction.enabled = true;
+                            scope.automatorRestriction.startHour = repeatHours[0];
+                            scope.automatorRestriction.endHour = repeatHours[1];
+                        }
+
+                        if (hours.indexOf('0/') === 0) {
+
+                            scope.recurringHours = scope.parseNumber(hours.substring(2));
+                            scope.recurringTime = 'recurring';
+                            scope.recurringTimeType = 'hours';
+                        } else if (minutes.indexOf('0/') === 0) {
+
+                            scope.recurringMinutes = scope.parseNumber(minutes.substring(2));
+                            scope.recurringTime = 'recurring';
+                            scope.recurringTimeType = 'minutes';
+                        } else {
+
+                            ///
+                            //  scope.recurringTime = 'specific';
+                            ///
+                            scope.hours = scope.parseNumber(hours);
+                        }
+
+                        scope.selected.daysMonth = argsCron[3].split(',');
+                        scope.selected.months = argsCron[4].split(',');
+                    } else {
+                        return false;
+                    }
+
+                    scope.specificDate.tz(scope.userTimeZone).set('years', scope.year);
+                    scope.specificDate.tz(scope.userTimeZone).set('month', scope.months.map(getParam('value')).indexOf(scope.month));
+                    scope.specificDate.tz(scope.userTimeZone).set('date', scope.dayMonth);
+
+                    return true;
+                }
+
+                function joinElements(selectedElements) {
+                    if (selectedElements === undefined || selectedElements.length === 0) {
+
+                        //scope.automator.valid = false;
+
+                        scope.warnings = scope.warnings || {};
+                        scope.warnings.schedule = true;
+                        scope.warnings.scheduleMsg = 'Schedule the job.';
+
+                        return '*';
+                    } else {
+                        return selectedElements.join(",");
+                    }
+                }
+
+                setDefaultValues(scope);
+
+                if (scope.expression) {
+                    setValues(scope, scope.expression);
+                }
+
+                scope.checkRecurringMinutes = function () {
+
+                    if (scope.recurringMinutes == null || scope.recurringMinutes == undefined) {
+                        scope.recurringMinutes = 0;
+                    }
+
+                    scope.getCronExpr();
+                };
+
+                scope.checkRecurringHours = function () {
+
+                    if (scope.recurringHours == null || scope.recurringHours == undefined) {
+                        scope.recurringHours = 0;
+                    }
+
+                    scope.getCronExpr();
+                };
+
+                scope.checkMinutes = function () {
+
+                    if (scope.minutes == null || scope.minutes == undefined) {
+                        scope.minutes = 0;
+                    }
+
+                    scope.getCronExpr();
+                };
+
+                scope.checkHours = function () {
+
+                    if (scope.hours == null || scope.hours == undefined) {
+                        scope.hours = 0;
+                    }
+
+                    scope.getCronExpr();
+                };
+                scope.getCronExpr = function () {
+
+                    try {
+
+                        //scope.automator.valid = true;
+                        scope.warnings = scope.warnings || {};
+                        scope.warnings.schedule = false;
+                        scope.warnings.scheduleMsg = '';
+
+                        var expr = {
+                            sec: "0",
+                            min: "0",
+                            hour: "0",
+                            dayMonth: "*",
+                            month: "*",
+                            dayWeek: "?",
+                            year: "*"
+                        };
+
+                        if (scope.recurringType === 'recurring') {
+
+                            expr.month = joinElements(scope.selected.months, scope.months);
+
+                            if (scope.recurringDay === 'dayWeek') {
+
+                                expr.dayMonth = '?';
+                                expr.dayWeek = joinElements(scope.selected.daysWeek);
+                            } else {
+                                expr.dayMonth = joinElements(scope.selected.daysMonth);
+                            }
+
+                            if (scope.recurringTime === 'specific') {
+
+                                expr.hour = scope.hours;
+                                expr.min = scope.minutes;
+                            } else {
+
+                                if (scope.recurringTimeType === 'hours') {
+                                    expr.hour = '0/' + scope.recurringHours;
+                                } else {
+                                    expr.min = '0/' + scope.recurringMinutes;
+                                }
+
+                                if (scope.automatorRestriction.enabled) {
+                                    // scope.inDayPolicyInUse && 
+
+                                    expr.hour = scope.automatorRestriction.startHour + '-' + scope.automatorRestriction.endHour;
+
+                                    if (scope.recurringTimeType === 'hours') {
+                                        expr.hour += '/' + scope.recurringHours;
+                                    }
+                                }
+                            }
+                        } else if (scope.recurringType === 'oneTime') {
+
+                            expr.hour = scope.hours;
+                            expr.min = scope.minutes;
+                            expr.month = scope.months[scope.specificDate.tz(scope.userTimeZone).get('month')].value;
+                            expr.year = scope.specificDate.tz(scope.userTimeZone).get('year');
+                            expr.dayMonth = scope.specificDate.tz(scope.userTimeZone).get('date');
+                        } else {
+                            //scope.automator.valid = false;
+                            scope.warnings = scope.warnings || {};
+                            scope.warnings.schedule = true;
+                            scope.warnings.scheduleMsg = 'Schedule your job.';
+                        }
+
+                        var newExp = expr.sec + " " + expr.min + " " + expr.hour + " " + expr.dayMonth + " " + expr.month + " " + expr.dayWeek + " " + expr.year;
+
+                        if (scope.expression !== newExp) {
+                            scope.expression = newExp;
+                            dataService.setDirty();
+                        }
+
+                        //  console.log(scope.expression);
+                        return scope.expression;
+                    } catch (ex) {
+                        // scope.automator.valid = false;
+                        scope.warnings = scope.warnings || {};
+                        scope.warnings.schedule = true;
+                        scope.warnings.scheduleMsg = 'Schedule the job.';
+                    }
+                };
+
+                // watch and always update cron string
+                scope.$watch('recurringType', scope.getCronExpr);
+                scope.$watch('recurringDay', scope.getCronExpr);
+                scope.$watch('selected', scope.getCronExpr, true);
+                scope.$watch('recurringTime', scope.getCronExpr);
+                scope.$watch('recurringTimeType', scope.getCronExpr);
+                scope.$watch('recurringHours', scope.checkRecurringHours);
+                scope.$watch('recurringMinutes', scope.checkRecurringMinutes);
+                scope.$watch('hours', scope.checkHours);
+                scope.$watch('minutes', scope.checkMinutes);
+                scope.$watch('specificDate', scope.getCronExpr);
+                scope.$watch('automatorRestriction', scope.getCronExpr, true);
+
+                scope.$watch('automatorRestriction.startHour', scope.getCronExpr, true);
+                scope.$watch('automatorRestriction.endHour', scope.getCronExpr, true);
+            });
+        }
+
+        return {
+            restrict: 'E',
+            scope: {
+                expression: '=',
+                valid: '=',
+                automator: '=',
+                isDisabled: '=',
+                warnings: '='
+            },
+            link: link,
+            template: '\n                <div class="automatorFreq" >\n\n                <div ng-if="warnings && warnings.schedule === true" class="automatorEnhancementsErrorMsg" style="left:0px">\n                    <main-content>\n                    <i style="font-size: large;" class="fa fa-solid fa-solid fa-exclamation-triangle automatorEnhancementsActiveNotValidIcon"></i>\n                    Schedule the job.\n                    </main-content>\n                </div>\n                    <div class="cronHeader">Job Frequency</div>\n                        <div class="jobFrequencyOneTime" >\n                            <input id="{{automator.Name + \'oneTime\'}}" type="radio" ng-model="recurringType" value="oneTime" ng-disabled="isDisabled">\n                            <label for="{{automator.Name + \'oneTime\'}}">\n                            One Time\n                        </label>\n                        </div>\n                        <div>\n                            <input id="{{automator.Name + \'recurring\'}}" type="radio" ng-model="recurringType" value="recurring" ng-disabled="isDisabled">\n                            <label for="{{automator.Name + \'recurring\'}}">\n                            Recurring\n                            </label>\n                        </div>\n                    </div>\n                <div ng-show="recurringType == \'recurring\'">\n                    <div class="cronExpEnhancementsAutomatorDays" >\n                        <div class="cronExpEnhancementsAutomatorWeekOrMonth">\n                            <select ng-show="true" ng-model="recurringDay" class="select-setting cron-exp-recurring-input">\n                                <option value="dayWeek">Weekly</option>\n                                <option value="dayMonth">Monthly</option>\n                            </select>\n                         </div>\n                        <div class="cronExpEnhancementsRepeatOnDays" >Repeat on Days</div>\n                        <cron-exp-rows-of-dates ng-show="recurringDay == \'dayWeek\'" rows="daysOfWeek" selected-rows="selected.daysWeek" label-id-prefix="automator.Name + \'daysOfWeek\'" is-disabled="isDisabled"></cron-exp-rows-of-dates>\n                        <cron-exp-rows-of-dates ng-show="recurringDay == \'dayMonth\'" rows="daysOfMonthWithLabel" selected-rows="selected.daysMonth" label-id-prefix="automator.Name + \'daysOfMonth\'" is-disabled="isDisabled"></cron-exp-rows-of-dates>\n                    </div>\n                    <div class="cronExpEnhancementsAutomatorMonth" >\n                        <div class="cronHeader">Repeat in Months</div>\n                        <cron-exp-rows-of-dates rows="months" selected-rows="selected.months" label-id-prefix="automator.Name + \'month\'" is-disabled="isDisabled"></cron-exp-rows-of-dates>\n                    </div>\n                </div>\n                <div class="cronExpEnhancementsAutomatorHour" >\n                    <div class="cronExpEnhancementsRecurring" ng-show="recurringType == \'recurring\'" class="recurTime"  >\n                    <span class="timeSpanHeader">\n                  \n                </span>\n                    <select ng-show="true" ng-model="recurringTime"  class="select-setting cron-exp-recurring-input-enhance">\n                        <option value="specific">Time of Day</option>\n                        <option value="recurring">Recurring</option>\n                    </select>\n                    </div>\n                    <div class="cronExpEnhancementsSpecificHour" ng-show="recurringTime == \'specific\' || recurringType == \'oneTime\'">\n                        <span class="automatorTimeSpan" ng-show="recurringType == \'oneTime\'">\n                            <span class="timeSpanHeader">\n                                Date\n                            </span>\n                            <span class="timeSpanInput">\n                                <input readonly ng-disabled="isDisabled" class="input-settings" fsl-date-picker my-model="specificDate" time-zone="userTimeZone" type="text"> </input>\n                            </span>\n                        </span>\n                        <span class="automatorTimeSpanEnhancements">\n                            <span class="timeSpanHeader">\n                                Time\n                            </span>\n                            <span class="timeSpanInput">\n                                <input ng-disabled="isDisabled" ng-model="hours" min="0" max="23" type="number" class="input-settings">\n                            </span>\n                        </span>\n                        <span class="automatorTimeSpan">\n                            <span class="timeSpanHeader">\n                               \n                            </span>\n                            <span>:</span>\n                            <span class="timeSpanInput">\n                                <input ng-disabled="isDisabled" ng-model="minutes" min="0" max="55" step="5" type="number"  class="input-settings">\n                            </span>\n                        </span>\n<!--\n                        <span>\n                            <select ng-show="inDayPolicyInUse" ng-model="ampm" class="select-setting cron-exp-recurring-input">\n                                <option value="AM">AM</option>\n                                <option value="PM">PM</option>\n                            </select>\n                        </span>\n                        -->\n                    </div>\n                    <div class="cronExpEnhancementsRecurring" ng-show="recurringTime == \'recurring\' && recurringType == \'recurring\'"  class="automatorRecur">\n                        Every\n                        <span ng-show="(recurringTimeType == \'hours\' && inDayPolicyInUse) || !inDayPolicyInUse">\n                            <input ng-disabled="isDisabled" class="input-settings cron-exp-recurring-input" min="1" max="23"  type="number" ng-model="recurringHours" />\n                        </span>\n                        <span ng-show="inDayPolicyInUse && recurringTimeType == \'minutes\'">\n                            <select ng-init="recurringMinutes" ng-model="recurringMinutes" class="select-setting cron-exp-recurring-select" ng-options="minutesOption for minutesOption in minutesOptions">\n                            </select>\n                        </span>\n                        <select ng-show="inDayPolicyInUse" ng-model="recurringTimeType" class="select-setting cron-exp-recurring-input">\n                            <option value="hours">Hours</option>\n                            <option value="minutes">Minutes</option>\n                        </select>\n                        <span ng-hide="inDayPolicyInUse">Hours</span>\n                        </div>\n                        <div ng-show="recurringTime == \'recurring\' && recurringType == \'recurring\'"   id="restrict-inday-policy" >  <!-- ng-show="inDayPolicyInUse" -->\n                            <input type="checkbox" ng-model="automatorRestriction.enabled" /> \n                            <span style="opacity:{{automatorRestriction.enabled ? 1 : 0.5}}">\n                            Run between \n                                <select class="select-setting cron-exp-recurring-input" ng-model="automatorRestriction.startHour" ng-disabled="!automatorRestriction.enabled">\n                                    <option ng-repeat="hour in allHours" value="{{hour}}">{{hour}}:00</option>\n                                </select>\n                                to       \n                                <select class="select-setting cron-exp-recurring-input" ng-model="automatorRestriction.endHour" ng-disabled="!automatorRestriction.enabled">\n                                    <option ng-repeat="hour in allHours" value="{{hour}}">{{hour}}:00</option>\n                                </select>\n                                <span class="automator-next-day" ng-if="automatorRestriction.endHour === \'0\'">Not Including Midnight</span>\n                            </span>\n                    </div>\n                    <div class="automator-tz-warning" ng-show="(!automator.Id || modified) && !automator[timezoneField]">\n                    Scheduled jobs are in the {{userTimeZone}} time zone to match your settings.\n                    </div>\n                    <div class="automator-tz-warning" ng-show="(!automator.Id || modified) && automator[timezoneField]">\n                    Scheduled jobs are in the {{userTimeZone}} time zone to match your settings. \n                        <span ng-show="currentlySavedTimezone"></span>\n                    </div>\n                   <!-- <div style="margin-top: 15px" ng-show="!modified && automator[timezoneField]">\n                        This automator was saved with timezone: {{currentlySavedTimezone}} \n                    </div> -->\n                  \n                </div>\n            '
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
     angular.module('SettingsApp').directive('cronExpRowsOfDates', cronExpRowsOfDates);
 
     cronExpRowsOfDates.$inject = [];
@@ -2023,7 +5186,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         function controllerFunction($scope) {}
 
-        var template = '\n            <a href="{{link}}" class="learnMore" target="_blank">Learn More...</a>\n        ';
+        var template = '\n            <a href="{{link}}" class="learnMore" target="_blank">Learn More in Help</a>\n        ';
 
         return {
             restrict: 'E',
@@ -4100,233 +7263,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })();
 'use strict';
 
-function Criteria(obj) {
-
-    if (!obj) {
-        this.Id = undefined;
-        this.User_Type__c = [];
-        this.Object_Type__c = undefined;
-        this.Logic__c = { custom: { type: undefined, logic: undefined } };
-        this.Criteria_Items__c = { custom: [], mandatory: { statusCategory: [] } };
-        this.Territories__c = [];
-        this.Work_Types__c = [];
-        return;
-    }
-
-    this.Id = obj.Id;
-    this.Object_Type__c = obj[fieldNames.Criteria__c.Object_Type__c];
-    this.User_Type__c = obj[fieldNames.Criteria__c.User_Type__c] ? obj[fieldNames.Criteria__c.User_Type__c].split(';') : [];
-
-    try {
-        this.Logic__c = JSON.parse(obj[fieldNames.Criteria__c.Logic__c]);
-    } catch (e) {
-        this.Logic__c = { custom: { type: undefined, logic: undefined } };
-    }
-
-    try {
-        this.Criteria_Items__c = JSON.parse(obj[fieldNames.Criteria__c.Criteria_Items__c]);
-    } catch (e) {
-        this.Criteria_Items__c = { custom: [], mandatory: { statusCategory: [] } };
-    }
-
-    try {
-
-        this.Territories__c = JSON.parse(obj[fieldNames.Criteria__c.Territories__c]);
-
-        if (!Array.isArray(this.Territories__c)) {
-            this.Territories__c = [];
-        }
-    } catch (e) {
-        this.Territories__c = [];
-    }
-
-    try {
-
-        this.Work_Types__c = JSON.parse(obj[fieldNames.Criteria__c.Work_Types__c]);
-
-        if (!Array.isArray(this.Work_Types__c)) {
-            this.Work_Types__c = [];
-        }
-    } catch (e) {
-        this.Work_Types__c = [];
-    }
-}
-
-function CriteriaItem(index, field, operator, value) {
-    this.field = field;
-    this.operator = operator;
-    this.value = value;
-    this.index = index;
-}
-'use strict';
-
-function ExpectedBehavior(description, serviceType) {
-
-    this.description = description;
-    this.serviceType = serviceType ? serviceType : OPTIMIZATION_TYPE_RDO;
-
-    this.serviceConfig = {
-        clearGantt: false,
-        keepSameOrder: false
-    };
-}
-
-var KEEP_SCHEDULE_1 = 'Try and keep the existing schedule while try to add more SA\'s';
-var KEEP_SCEDULE_2 = 'Try and keep the existing schedule (move tasks to the right)';
-var REORDER_DAY_BECAUSE_EMERGENCY = 'Reorganize the rest of the day after an Emergency was scheduling - while keeping minimum travel-time';
-
-var OPTIMIZATION_TYPE_RSO = 'RSO';
-var OPTIMIZATION_TYPE_RDO = 'RDO';
-var OPTIMIZATION_TYPE_INDAY = 'IN_DAY';
-var DISPATCH = '';
-"use strict";
-
-function ObjectMapping(name, label) {
-    var sobject = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-
-    for (var field in fieldNames.ObjectMapping__c) {
-        this[fieldNames.ObjectMapping__c[field]] = sobject[fieldNames.ObjectMapping__c[field]] || null;
-    }
-
-    this.Id = sobject.Id || null;
-
-    this.Name = name;
-    this[fieldNames.ObjectMapping__c.label__c] = label;
-    this.isOpen = false;
-}
-"use strict";
-
-function SchedulingRecipe(obj) {
-
-    if (!obj) {
-        this.Id = undefined;
-        this.Name = undefined;
-        this.Semi_Automated__c = true;
-        this.Active__c = false;
-        this.Criteria__r = new Criteria();
-        this.Expected_Behavior__c = undefined;
-        this.Priority__c = undefined;
-        this.Scenario_Specific__c = 10;
-        this.Scenario_Type__c = undefined;
-        this.Scheduling_Policy__c = undefined;
-        this.Description__c = undefined;
-        this.LKL_Threshold__c = 0;
-        this.parsePostAction(undefined);
-        return;
-    }
-
-    this.Id = obj.Id;
-    this.Name = obj.Name;
-    this.Semi_Automated__c = obj[fieldNames.SchedulingRecipe__c.Semi_Automated__c];
-    this.Active__c = obj[fieldNames.SchedulingRecipe__c.Active__c];
-    this.Criteria__r = new Criteria(obj[fieldNames.SchedulingRecipe__c.Criteria__r]);
-    this.Expected_Behavior__c = obj[fieldNames.SchedulingRecipe__c.Expected_Behavior__c];
-    this.Priority__c = obj[fieldNames.SchedulingRecipe__c.Priority__c];
-    this.Scenario_Specific__c = obj[fieldNames.SchedulingRecipe__c.Scenario_Specific__c] ? obj[fieldNames.SchedulingRecipe__c.Scenario_Specific__c] : 10;
-    this.Scenario_Type__c = obj[fieldNames.SchedulingRecipe__c.Scenario_Type__c];
-    this.Scheduling_Policy__c = obj[fieldNames.SchedulingRecipe__c.Scheduling_Policy__c];
-    this.Description__c = obj[fieldNames.SchedulingRecipe__c.Description__c];
-    this.LKL_Threshold__c = obj[fieldNames.SchedulingRecipe__c.LKL_Threshold__c] ? obj[fieldNames.SchedulingRecipe__c.LKL_Threshold__c] : 0;
-    this.parsePostAction(obj[fieldNames.SchedulingRecipe__c.Post_Actions__c]);
-}
-
-SchedulingRecipe.prototype.parsePostAction = function (actionString) {
-
-    try {
-
-        var parsedAction = JSON.parse(actionString);
-        this.Post_Actions__c = {};
-        this.Post_Actions__c.ScheduledSAs = parsedAction.ScheduledSAs ? parsedAction.ScheduledSAs : { keepSameStatus: true, Status: undefined };
-        this.Post_Actions__c.UnscheduledSAs = parsedAction.UnscheduledSAs ? parsedAction.UnscheduledSAs : { PutInJepordy: false, InJepordyReason: undefined };
-    } catch (e) {
-
-        this.Post_Actions__c = {};
-        this.Post_Actions__c.ScheduledSAs = { keepSameStatus: true, Status: undefined };
-        this.Post_Actions__c.UnscheduledSAs = { PutInJepordy: false, InJepordyReason: undefined };
-    }
-};
-"use strict";
-
-function booleanDescriptor(sobject) {
-    settingDescriptor.call(this, sobject);
-}
-
-booleanDescriptor.prototype = Object.create(settingDescriptor.prototype);
-"use strict";
-
-function booleanTextDescriptor(sobject, booleanValue) {
-    settingDescriptor.call(this, sobject);
-
-    this.booleanValue = booleanValue;
-}
-
-booleanTextDescriptor.prototype = Object.create(settingDescriptor.prototype);
-
-booleanTextDescriptor.prototype.setValue = function () {
-    this.value = this.booleanValue ? "1" : "0";
-};
-"use strict";
-
-function multiPicklistDescriptor(sobject) {
-    settingDescriptor.call(this, sobject);
-    this.options = sobject.options;
-    this.value = this.value;
-}
-
-multiPicklistDescriptor.prototype = Object.create(settingDescriptor.prototype);
-"use strict";
-
-function numberDescriptor(sobject, min, max) {
-    settingDescriptor.call(this, sobject);
-
-    this.min = sobject.min || min || 0;
-    this.max = sobject.max || max || 0;
-}
-
-numberDescriptor.prototype = Object.create(settingDescriptor.prototype);
-"use strict";
-
-function picklistDescriptor(sobject) {
-    settingDescriptor.call(this, sobject);
-    this.options = sobject.options;
-    this.value = this.value || this.options[0] && this.options[0].value || null;
-}
-
-picklistDescriptor.prototype = Object.create(settingDescriptor.prototype);
-"use strict";
-
-// pass sobject with value/label or directly add label/value
-
-function picklistOption(sobjectOrLabel, value) {
-
-    if (value) {
-        this.label = sobjectOrLabel;
-        this.value = value;
-    } else {
-        this.value = sobjectOrLabel.value;
-        this.label = sobjectOrLabel.label;
-    }
-}
-'use strict';
-
-function settingDescriptor(sobject) {
-    this.id = 'settingDescriptor' + (Math.random() * 10000000000000000).toString();
-    this.label = sobject.label;
-    this.value = sobject.value;
-    this.dirty = false;
-    this.customSettingType = sobject.type;
-}
-"use strict";
-
-function textDescriptor(sobject, maxlength) {
-    settingDescriptor.call(this, sobject);
-    this.maxlength = sobject.maxlength || maxlength || null;
-}
-
-textDescriptor.prototype = Object.create(settingDescriptor.prototype);
-'use strict';
-
 (function () {
 
     angular.module('SettingsApp').directive('autoComplete', autoComplete);
@@ -4357,6 +7293,7 @@ textDescriptor.prototype = Object.create(settingDescriptor.prototype);
             restrict: 'E',
             scope: {
                 object: '=',
+                tooltipText: '@',
                 tooltip: '@',
                 getSuggestions: '&',
                 filterInput: '&'
@@ -5863,328 +8800,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 (function () {
 
-    angular.module('SettingsApp').directive('globalActionsBooking', globalActionsBooking);
-
-    globalActionsBooking.$inject = [];
-
-    function globalActionsBooking() {
-
-        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', 'settingsUtils'];
-
-        function controllerFunction($scope, dataService, primitiveType, settingsUtils) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - globalActionsBooking');
-            });
-
-            $scope.settings = dataService.getDraftSettings();
-            $scope.primitiveType = primitiveType;
-
-            $scope.operatingHoursOptions = {
-                inputText: null,
-                loading: false,
-                cahchedOperatingHours: {},
-                showOhPicker: false,
-                ohResults: [],
-                ohIdToName: {}
-            };
-
-            dataService.getSettingsPromise().then(function () {
-
-                $scope.schedulingPolicies = dataService.policies;
-                $scope.operatingHours = dataService.operatingHours;
-
-                if ($scope.settings.manyOperatingHours) {
-
-                    // selected settings
-                    $scope.operatingHoursOptions.inputText = $scope.settings.OperatingHours[0].Name;
-                    $scope.operatingHoursOptions.ohIdToName[$scope.settings.OperatingHours[0].Id] = $scope.settings.OperatingHours[0];
-                }
-            });
-
-            $scope.searchOperatingHours = function (text) {
-
-                if (!$scope.operatingHoursOptions.inputText) {
-                    return;
-                }
-
-                $scope.operatingHoursOptions.showOhPicker = true;
-
-                // cached results
-                if ($scope.operatingHoursOptions.cahchedOperatingHours[text]) {
-                    $scope.operatingHoursOptions.ohResults = $scope.operatingHoursOptions.cahchedOperatingHours[text];
-                    return;
-                }
-
-                $scope.operatingHoursOptions.loading = true;
-
-                settingsUtils.callRemoteAction(remoteActions.searchOperatingHours, [text], false).then(function (results) {
-
-                    $scope.operatingHoursOptions.cahchedOperatingHours[text] = results;
-
-                    if (text === $scope.operatingHoursOptions.inputText) {
-                        $scope.operatingHoursOptions.ohResults = results;
-                    }
-
-                    results.forEach(function (oh) {
-                        return $scope.operatingHoursOptions.ohIdToName[oh.Id] = oh;
-                    });
-
-                    $scope.operatingHoursOptions.loading = false;
-                });
-            };
-
-            $scope.selectHoursFromPicker = function (oh, e) {
-
-                e.stopPropagation();
-
-                $scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c = oh.Id;
-                $scope.operatingHoursOptions.inputText = oh.Name;
-                $scope.operatingHoursOptions.showOhPicker = false;
-            };
-
-            $scope.hideOperatingHoursSelector = function () {
-                $scope.operatingHoursOptions.showOhPicker = false;
-                $scope.operatingHoursOptions.inputText = $scope.operatingHoursOptions.ohIdToName[$scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c] && $scope.operatingHoursOptions.ohIdToName[$scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c].Name;
-            };
-        }
-
-        var template = '\n        <div ng-click="hideOperatingHoursSelector()">\n        \n               <p>These settings affect the Book Appointment and Candidates global actions</p>\n                \n                <custom-settings-wrapper primitive-type="primitiveType.picklist" options="schedulingPolicies" label="\'Default scheduling policy\'" tooltip-text="The policy used when no mapping is defined on the Derivations tab." value-field-name="\'SchedulingPolicyId__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n                \n                <! -- if we have less than 2k operating hours -->\n                <custom-settings-wrapper ng-if="!settings.manyOperatingHours" primitive-type="primitiveType.picklist" options="operatingHours" label="\'Default operating hours\'" tooltip-text="The appointment slots displayed unless the work order\'s entitlement doesn\'t reference other hours." value-field-name="\'DefaultOperatingHours__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n                \n                <! -- many operating hours, show auto complete -->\n                <div ng-if="settings.manyOperatingHours">\n                \n                    <div class="setting-row-container">\n                    \n                        <label class="select-label">\n                            Default operating hours\n                            <tooltip>The appointment slots displayed unless the work order\'s entitlement doesn\'t reference other hours.</tooltip>\n                        </label>\n                        \n                        <div class="select-container">\n                            <input type="text" class="input-settings" ng-model="operatingHoursOptions.inputText" ng-model-options="{debounce: 333}" ng-change="searchOperatingHours(operatingHoursOptions.inputText)" ng-click="$event.stopPropagation()"/>\n                            \n                            <img class="loading-oh-row" ng-show="operatingHoursOptions.loading" src="' + window.settings.icons.spinner + '" />\n                            \n                            <div id="noOhFound" ng-show="operatingHoursOptions.ohResults.length === 0 && operatingHoursOptions.showOhPicker && !operatingHoursOptions.loading && operatingHoursOptions.inputText">No operating hours found</div>\n                            \n                            <div id="AutoCompleteOperatingHours" ng-show="operatingHoursOptions.ohResults.length > 0 && operatingHoursOptions.showOhPicker">\n                                <div ng-repeat="oh in operatingHoursOptions.ohResults" ng-click="selectHoursFromPicker(oh, $event)">\n                                    {{oh.Name}}\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    \n               </div>\n               \n                \n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Ideal grading threshold\'" tooltip-text="A slot grade equal to or higher than the specified value is shown with the Ideal ticker on the Appointment Booking chatter action." value-field-name="\'Ideal_Threshold__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Recommended grading threshold\'" tooltip-text="A slot grade equal to or higher than the specified value and lower than the ideal threshold is shown with the recommended ticker on the Appointment Booking chatter action." value-field-name="\'Recommended_Threshold__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Minimum Grade\'" tooltip-text="Time slots whose grade is below the minimum grade won\u2019t appear in the list of potential time slots." value-field-name="\'Minimum_Grade__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="500" label="\'Number of hours for initial appointment search\'" tooltip-text="If the difference between the due date and the earliest start permitted is greater than this value, the appointment is displayed first with this setting." value-field-name="\'LazyLoadBookingInHours__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Show grades explanation\'" tooltip-text="Shows how each appointment slot ranks against key performance indicators" value-field-name="\'Show_Grade_Explanation__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Custom CSS (cascading style sheet)\'" tooltip-text="Customize global actions appearance (static resource name)" value-field-name="\'CustomCSS__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Disable service territory picker in appointment booking\'" tooltip-text="Hide the service territory picker on the Appointment Booking Chatter action" value-field-name="\'AutoTerritoryPicker__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>            \n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Pin three highest graded time slots to the top\'" tooltip-text="Highlight and pin the three highest graded time slots to the top of the list of potential time slots." value-field-name="\'ShowGoldenSlots__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Open extended view by default\'" tooltip-text="Display appointments in the extended view, which shows the Earliest Start Permitted and Due Date fields." value-field-name="\'ShowMoreOptions__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n            </div>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('globalActionsDerivations', globalActionsDerivations);
-
-    globalActionsDerivations.$inject = [];
-
-    function globalActionsDerivations() {
-
-        controllerFunction.$inject = ['$scope', 'optimizationService', 'primitiveType', 'dataService', 'globalActionsService', '$rootScope'];
-
-        function controllerFunction($scope, optimizationService, primitiveType, dataService, globalActionsService, $rootScope) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - globalActionsDerivations');
-            });
-
-            $scope.objectMappingFields = fieldNames.ObjectMapping__c;
-            $scope.primitiveType = primitiveType;
-            $scope.schedulingPolicyName = fieldNames.SchedulingPolicyName;
-
-            // all objects
-            $scope.objectMappings = globalActionsService.objectMappings;
-            $scope.fieldNamesOfObjects = {};
-            $scope.allObjects = [{ label: ' -- Select Object -- ' }];
-            $scope.selectedNewObject = $scope.allObjects[0];
-            var filteredPicklist = {};
-
-            dataService.getSettingsPromise().then(function () {
-                dataService.getDraftSettings().ObjectMapping.forEach(function (mapping) {
-                    var newObjectMap = new ObjectMapping(mapping.Name, mapping[fieldNames.ObjectMapping__c.label__c], mapping);
-                    newObjectMap.isOpen = false;
-                    $scope.objectMappings[mapping.Name] = newObjectMap;
-
-                    if (!$scope.fieldNamesOfObjects[mapping.Name]) {
-                        optimizationService.serviceReferenceProperties(mapping.Name).then(function (objectProperties) {
-                            $scope.fieldNamesOfObjects[mapping.Name] = transformFieldsToPicklist(objectProperties.fields);
-                        });
-                    }
-                });
-            });
-
-            // after restore
-            $rootScope.$on('settingsUpdated', function () {
-
-                Object.keys($scope.objectMappings).forEach(function (key) {
-                    return delete $scope.objectMappings[key];
-                });
-
-                dataService.getDraftSettings().ObjectMapping.forEach(function (mapping) {
-                    var newObjectMap = new ObjectMapping(mapping.Name, mapping[fieldNames.ObjectMapping__c.label__c], mapping);
-                    newObjectMap.isOpen = false;
-                    $scope.objectMappings[mapping.Name] = newObjectMap;
-
-                    if (!$scope.fieldNamesOfObjects[mapping.Name]) {
-                        optimizationService.serviceReferenceProperties(mapping.Name).then(function (objectProperties) {
-                            $scope.fieldNamesOfObjects[mapping.Name] = transformFieldsToPicklist(objectProperties.fields);
-                        });
-                    }
-                });
-            });
-
-            // get all objects
-            optimizationService.getAllObjects().then(function (objects) {
-                objects.forEach(function (obj) {
-                    if (obj.triggerable == "true") {
-                        $scope.allObjects.push(obj);
-                    }
-                });
-            });
-
-            // get selectable objects
-            $scope.getSelectableObjects = function () {
-                return $scope.allObjects.filter(function (obj) {
-                    return obj.label === ' -- Select Object -- ' || !$scope.objectMappings[obj.name];
-                });
-            };
-
-            // get fields of WorkOrder
-            optimizationService.serviceReferenceProperties('WorkOrder').then(function (objectProperties) {
-                $scope.fieldNamesOfObjects['WorkOrder'] = transformFieldsToPicklist(objectProperties.fields);
-            });
-
-            $scope.addObject = function (sobj) {
-
-                if (!sobj.name) {
-                    return;
-                }
-
-                $scope.selectedNewObject = $scope.allObjects[0];
-                var newObjectMap = new ObjectMapping(sobj.name, sobj.label);
-                newObjectMap.isOpen = true;
-                newObjectMap[fieldNames.ObjectMapping__c.Active__c] = true;
-                $scope.objectMappings[sobj.name] = newObjectMap;
-                optimizationService.serviceReferenceProperties(sobj.name).then(function (objectProperties) {
-                    $scope.fieldNamesOfObjects[sobj.name] = transformFieldsToPicklist(objectProperties.fields);
-                });
-            };
-
-            function transformFieldsToPicklist(fields) {
-
-                var fieldPicklist = [{ value: null, label: '--- SKIP ---' }];
-
-                fields.forEach(function (field) {
-                    fieldPicklist.push({
-                        value: field.name,
-                        label: field.name,
-                        type: field.type,
-                        referenceTo: field.referenceTo
-                    });
-                });
-
-                return fieldPicklist;
-            }
-
-            $scope.getFilteredPicklist = function (name, type, refTo) {
-
-                // check if cached
-                if (refTo && filteredPicklist[name] && filteredPicklist[name][type] && filteredPicklist[name][type][refTo]) {
-                    return filteredPicklist[name][type][refTo];
-                }
-
-                if (filteredPicklist[name] && filteredPicklist[name][type] && refTo === undefined) {
-                    return filteredPicklist[name][type];
-                }
-
-                // calculate
-                filteredPicklist[name] = filteredPicklist[name] || {};
-
-                if (refTo) {
-
-                    filteredPicklist[name][type] = filteredPicklist[name][type] || {};
-                    filteredPicklist[name][type][refTo] = $scope.fieldNamesOfObjects[name].filter(function (pick) {
-                        return pick.type === undefined || pick.type == type && pick.referenceTo == refTo;
-                    }).sort(function (a, b) {
-                        return a.label > b.label ? 1 : -1;
-                    });
-                    return filteredPicklist[name][type][refTo];
-                }
-
-                filteredPicklist[name][type] = $scope.fieldNamesOfObjects[name].filter(function (pick) {
-                    return pick.type == type || type == 'string' && pick.type == 'textarea' || pick.type === undefined;
-                }).sort(function (a, b) {
-                    return a.label > b.label ? 1 : -1;
-                });
-
-                return filteredPicklist[name][type];
-            };
-
-            $scope.deleteObjectMapping = function (object) {
-                delete $scope.objectMappings[object.Name];
-
-                if (object.Id) {
-                    globalActionsService.deletedMappings().push(object);
-                }
-            };
-
-            $scope.isParent = function (objMapping) {
-                return objMapping.Name == 'WorkOrder' || objMapping.Name == 'WorkOrderLineItem';
-            };
-
-            $scope.isService = function (objMapping) {
-                return objMapping.Name == 'ServiceAppointment';
-            };
-        }
-
-        var template = '\n                        <p>Set default values from the object to the global action interface. The user can override the values when needed.\n                        </p>\n                        <div class="newObjectSelect-container">\n                            <div id="new-object-picklist-container" class="slds-select_container">\n                                <select class="slds-select" ng-model="selectedNewObject" ng-options="object.label for object in getSelectableObjects() | orderBy:\'label\'">\n                                </select>\n                            </div>\n\n                            <div ng-click="addObject(selectedNewObject)" class="save-button add-mapping-button blueButton">Add Object</div>\n                        </div>\n \n\n                        <content-collapse-wrapper header="object[objectMappingFields.label__c]" open="object.isOpen" ng-repeat="object in objectMappings">\n                            <content>\n                                \n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Street\'" value-field-name="\'Street__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'City\'" value-field-name="\'City__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'State\'" value-field-name="\'State__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Country\'" value-field-name="\'Country__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Zip Code\'" value-field-name="\'Zipcode__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'double\')" label="\'Latitude\'" value-field-name="\'Latitude__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'double\')" label="\'Longitude\'" value-field-name="\'Longitude__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'datetime\')" label="\'Earliest Start Permitted\'" value-field-name="\'Early_Start__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'datetime\')" label="\'Due Date\'" value-field-name="\'Due_Date__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', schedulingPolicyName)" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', \'ServiceTerritory\')" label="\'Service Territory\'" value-field-name="\'Territory__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', \'WorkType\')" label="\'Default Work Type\'" value-field-name="\'Default_Type__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isParent(object) && !isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(\'WorkOrder\', \'reference\', object.Name)" label="\'Lookup From Work Order\'" value-field-name="\'ObjectID__c\'" setting="object"></custom-settings-wrapper>\n                                \n                                <div class="delete-button-settings" ng-click="deleteObjectMapping(object)">Delete Mapping</div>\n                                \n                            </content>\n                        </content-collapse-wrapper>';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('globalActionsEmergency', globalActionsEmergency);
-
-    globalActionsEmergency.$inject = [];
-
-    function globalActionsEmergency() {
-
-        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType'];
-
-        function controllerFunction($scope, dataService, primitiveType) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - globalActionsEmergency');
-            });
-
-            $scope.settings = dataService.getDraftSettings();
-            $scope.primitiveType = primitiveType;
-
-            dataService.getSettingsPromise().then(function () {
-                $scope.schedulingPolicies = dataService.policies;
-                $scope.operatingHours = dataService.operatingHours;
-            });
-
-            $scope.chatterPostDestionation = [{ label: 'Service Appointment Feed', value: 'sa' }, { label: 'Parent Record Feed', value: 'wo' }];
-        }
-
-        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="schedulingPolicies" label="\'Emergency scheduling policy\'" tooltip-text="The default policy selected in the wizard" value-field-name="\'SchedulingPolicyId__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="10000" label="\'Last known location validity\'" tooltip-text="The number of minutes a technician\'s Last Known Location will be considered" value-field-name="\'Breadcrumbs_Validity__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="100" label="\'Ideal availability grade\'" tooltip-text="The threshold, in minutes, for an ideal estimated time of arrival" value-field-name="\'Ideal_Availability_Grade__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="100" label="\'Good availability grade\'" tooltip-text="The threshold, in minutes, for an acceptable estimated time of arrival" value-field-name="\'Good_Availability_Grade__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="10000" label="\'Emergency search timeframe\'" tooltip-text="Number of minutes to add to the current time when searching availability" value-field-name="\'Emergency_Due_Date_Offset__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Allow Chatter post\'" tooltip-text="In an emergency service appointment dispatch, give dispatchers the option to make a custom Chatter post on the assigned resource\u2019s Chatter feed or to not post at all. If this option isn\u2019t selected, no Chatter post is made." value-field-name="\'Chatter_Availability__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="chatterPostDestionation" label="\'Emergency Chatter Post Destination\'" tooltip-text=\n            "Select where to post Chatter notifications when an emergency appointment is assigned. The post mentions the assigned resources. This setting applies only if Allow Chatter post is selected." value-field-name="\'ChatterDestination__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Pin After Dispatch\'" tooltip-text="If dispatched ASAP, pin the service" value-field-name="\'PinService__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
     angular.module('SettingsApp').directive('gettingStartedGettingStarted', gettingStartedGettingStarted);
 
     gettingStartedGettingStarted.$inject = [];
@@ -6976,6 +9591,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             $scope.isOptimizationProfileExist = isOptimizationProfileExist === 'true' ? true : false;
             $scope.useEdgeFMA = useEdgeFMA;
             $scope.isOptimizationEnvironmentPickerEnabled = Boolean(Number(isOptimizationEnvironmentPickerEnabled));
+            $scope.isO2EngineOn = window.settings.isO2EngineOn;
 
             if (profile === currentProfileName) {
                 $scope.isOptimizationUser = true;
@@ -7295,7 +9911,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             $scope.toggleOptimizationInsights = function (baseUrl) {
 
-                if ($scope.isOptimizationProfileExist) {
+                if ($scope.isOptimizationProfileExist || $scope.isO2EngineOn) {
 
                     //turn on new custom setting for optimization insights
                     $scope.insightsEnabled = !$scope.insightsEnabled;
@@ -7351,7 +9967,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }, 0);
         }
 
-        var template = '\n            <div id="enableSO">\n           \n                <div class="alert-warning-banner" ng-show="!isOptimizationUser && EdgeRemoteSiteIsInactive && !isLoading && !useEdgeFMA">\n                    To turn on Enhanced Optimization, first \n                    <span class="activateLink" ng-click="openLink(\'0rp\')">activate</span>\n                     the related remote site, FSL_Optimize. Then try again.\n                </div>\n\n                <ol class="slds-setup-assistant">\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser">\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small" ng-show="!showEnhancedToggle">About Optimization</h3>\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small" ng-show="showEnhancedToggle">Enhanced Optimization</h3>\n                                <div ng-show="!showEnhancedToggle && EdgeOptimizationEnabled">Build optimized schedules that let you satisfy service level agreements, minimize travel and overtime, and respond quickly to last-minute changes.\n                                    <a href="https://help.salesforce.com/articleView?id=pfs_optimization.htm" class="activateLink" target="_blank">Tell Me More</a>\n                                </div>\n                                <div ng-show="showEnhancedToggle || (!showEnhancedToggle && !EdgeOptimizationEnabled)">Take advantage of smarter travel time estimates, in-day optimization and scheduling \u201Crecipes\u201D that address common scheduling challenges.</div>\n                            </div>\n                            <div class="slds-media__figure slds-media__figure_reverse">\n                                <div class="transitions-checkbox" ng-show="showEnhancedToggle || (!showEnhancedToggle && !EdgeOptimizationEnabled)">\n                                    <span class="checkBoxWrapper" \n                                            ng-click="toggleEdgeOptimization()" \n                                            ng-class="{checked: (EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unchecked: (!EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unregistered: EdgeRemoteSiteIsInactive }" \n                                            title="{{EdgeRemoteSiteIsInactiveMsg}}">\n\n                                        <span class="innerCheckboxValue" \n                                                ng-class="{checked: (EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unchecked: (!EdgeOptimizationEnabled || EdgeRemoteSiteIsInactive)}"/>\n                                        \n                                        <span class="toggled-label">{{EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive ? \'ON\' : \'OFF\'}}</span>\n                                    </span>\n                                </div>\n                            </div>\n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item">\n                        <div ng-show="isLoading && !isOptimizationUser" class="edgeOptimizationLoadingContainer">\n                            <img class="loadingImg"  src={{getIcon(\'loading\')}} />\n                        </div>\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small">Optimization Profile and Activation</h3>\n                                <div>\n                                    Create an optimization profile and user for your optimization requests. After you set up this user, you\'re ready to optimize.\n                                    <a href="https://help.salesforce.com/articleView?id=pfs_activate_optimizer.htm" class="activateLink" target="_blank">Here\'s What to Do</a>\n                                    <br>\n                                    <br>\n                                    <span ng-show="!authorized">{{infoMsg}}</span>\n                                    <div ng-show="authorized" class="optActive">The optimization service is active.</div>\n                                    <span ng-show="authorized" class="activatedText">User {{auth.user}} activated the optimization.<span am-time-ago="auth.moment"></span></span><br/><br/>\n                                </div>\n                            </div>\n                            <div class="slds-media__figure slds-media__figure_reverse">\n                                <div ng-click="!enableOptimizationBtn||activateOptimization()" ng-hide="!enableOptimizationBtn" ng-class="{authButton: enableOptimizationBtn}" >\n                                    <span ng-show="!creatingProfile">{{activationMsg}}</span>\n                                    <img class="button-loader"  src={{getIcon("loading")}} ng-show="creatingProfile"/>\n                                </div>\n        \n                                <div ng-show="creatingProfile" id="creatingProfileInformer">\n                                    Creating Optimization Profile... Please Wait.\n                                </div>\n                            </div>\n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser">\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                                <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                    <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small inline-header">Optimization Insights</h3>\n                                    <div>Gain visibility into optimization results. Track how KPIs change as you refine your scheduling policies.\n                                        <a href="https://help.salesforce.com/articleView?id=pfs_monitor_optimization_insights.htm" class="activateLink" target="_blank">Tell Me More</a>\n                                    </div>\n                                </div>\n                                <div class="slds-media__figure slds-media__figure_reverse">\n                                <div class="transitions-checkbox">\n                                    <span class="checkBoxWrapper" \n                                            ng-click="toggleOptimizationInsights()" \n                                            ng-class="{checked: insightsEnabled, unchecked: !insightsEnabled, unregistered: !isOptimizationProfileExist}" \n                                            title="{{insightsEnabled ? \'Toggle off\' : \'Toggle on\'}}">\n\n                                        <span class="innerCheckboxValue" \n                                                ng-class="{checked: insightsEnabled, unchecked: !insightsEnabled }"/>\n                                        \n                                        <span class="toggled-label">{{insightsEnabled ? \'ON\' : \'OFF\'}}</span>\n                                    </span>\n                                </div>\n                            \n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser || !isOptimizationEnvironmentPickerEnabled">\n                    <article class="slds-setup-assistant__step">\n                    <div class="slds-setup-assistant__step-summary">\n                        <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small inline-header">Optimization Environment</h3>\n                                <div>Select an optimization service environment\n                                </div>\n                            </div>\n                            <div class="select-container">\n                            <select class="slds-select" ng-change="changeOptimizationEnvironment()" ng-model="chosenOptimizationEnvironment">\n                                <option ng-repeat="(key,value) in environments" value="{{value}}"> {{ key }} </option>\n                            </select>\n                        \n                        </div>\n                    </div>\n                    </article>\n                </li>    \n                </ol>\n            \n\t\t        \n\t\t\t</div>\n        ';
+        var template = '\n            <div id="enableSO">\n           \n                <div class="alert-warning-banner" ng-show="!isOptimizationUser && EdgeRemoteSiteIsInactive && !isLoading && !useEdgeFMA">\n                    To turn on Enhanced Optimization, first \n                    <span class="activateLink" ng-click="openLink(\'0rp\')">activate</span>\n                     the related remote site, FSL_Optimize. Then try again.\n                </div>\n\n                <ol class="slds-setup-assistant">\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser">\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small" ng-show="!showEnhancedToggle">About Optimization</h3>\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small" ng-show="showEnhancedToggle">Enhanced Optimization</h3>\n                                <div ng-show="!showEnhancedToggle && EdgeOptimizationEnabled">Build optimized schedules that let you satisfy service level agreements, minimize travel and overtime, and respond quickly to last-minute changes.\n                                    <a href="https://help.salesforce.com/articleView?id=pfs_optimization.htm" class="activateLink" target="_blank">Tell Me More</a>\n                                </div>\n                                <div ng-show="showEnhancedToggle || (!showEnhancedToggle && !EdgeOptimizationEnabled)">Take advantage of smarter travel time estimates, in-day optimization and scheduling \u201Crecipes\u201D that address common scheduling challenges.</div>\n                            </div>\n                            <div class="slds-media__figure slds-media__figure_reverse">\n                                <div class="transitions-checkbox" ng-show="showEnhancedToggle || (!showEnhancedToggle && !EdgeOptimizationEnabled)">\n                                    <span class="checkBoxWrapper" \n                                            ng-click="toggleEdgeOptimization()" \n                                            ng-class="{checked: (EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unchecked: (!EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unregistered: EdgeRemoteSiteIsInactive }" \n                                            title="{{EdgeRemoteSiteIsInactiveMsg}}">\n\n                                        <span class="innerCheckboxValue" \n                                                ng-class="{checked: (EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive), unchecked: (!EdgeOptimizationEnabled || EdgeRemoteSiteIsInactive)}"/>\n                                        \n                                        <span class="toggled-label">{{EdgeOptimizationEnabled && !EdgeRemoteSiteIsInactive ? \'ON\' : \'OFF\'}}</span>\n                                    </span>\n                                </div>\n                            </div>\n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item">\n                        <div ng-show="isLoading && !isOptimizationUser" class="edgeOptimizationLoadingContainer">\n                            <img class="loadingImg"  src={{getIcon(\'loading\')}} />\n                        </div>\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small">Optimization Profile and Activation</h3>\n                                <div>\n                                    Create an optimization profile and user for your optimization requests. After you set up this user, you\'re ready to optimize.\n                                    <a href="https://help.salesforce.com/articleView?id=pfs_activate_optimizer.htm" class="activateLink" target="_blank">Here\'s What to Do</a>\n                                    <br>\n                                    <br>\n                                    <span ng-show="!authorized">{{infoMsg}}</span>\n                                    <div ng-show="authorized" class="optActive">The optimization service is active.</div>\n                                    <span ng-show="authorized" class="activatedText">User {{auth.user}} activated the optimization.<span am-time-ago="auth.moment"></span></span><br/><br/>\n                                </div>\n                            </div>\n                            <div class="slds-media__figure slds-media__figure_reverse">\n                                <div ng-click="!enableOptimizationBtn||activateOptimization()" ng-hide="!enableOptimizationBtn" ng-class="{authButton: enableOptimizationBtn}" >\n                                    <span ng-show="!creatingProfile">{{activationMsg}}</span>\n                                    <img class="button-loader"  src={{getIcon("loading")}} ng-show="creatingProfile"/>\n                                </div>\n        \n                                <div ng-show="creatingProfile" id="creatingProfileInformer">\n                                    Creating Optimization Profile... Please Wait.\n                                </div>\n                            </div>\n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser">\n                        <article class="slds-setup-assistant__step">\n                        <div class="slds-setup-assistant__step-summary">\n                            <div class="slds-media">\n                                <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                    <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small inline-header">Optimization Insights</h3>\n                                    <div>Gain visibility into optimization results. Track how KPIs change as you refine your scheduling policies.\n                                        <a href="https://help.salesforce.com/articleView?id=pfs_monitor_optimization_insights.htm" class="activateLink" target="_blank">Tell Me More</a>\n                                    </div>\n                                </div>\n                                <div class="slds-media__figure slds-media__figure_reverse">\n                                <div class="transitions-checkbox">\n                                    <span class="checkBoxWrapper" \n                                            ng-click="toggleOptimizationInsights()" \n                                            ng-class="{checked: insightsEnabled, unchecked: !insightsEnabled, unregistered: !(isO2EngineOn || isOptimizationProfileExist)}" \n                                            title="{{insightsEnabled ? \'Toggle off\' : \'Toggle on\'}}">\n\n                                        <span class="innerCheckboxValue" \n                                                ng-class="{checked: insightsEnabled, unchecked: !insightsEnabled }"/>\n                                        \n                                        <span class="toggled-label">{{insightsEnabled ? \'ON\' : \'OFF\'}}</span>\n                                    </span>\n                                </div>\n                            \n                            </div>\n                        </div>\n                        </article>\n                    </li>\n                    <li class="slds-setup-assistant__item" ng-hide="isLoading || isOptimizationUser || !isOptimizationEnvironmentPickerEnabled">\n                    <article class="slds-setup-assistant__step">\n                    <div class="slds-setup-assistant__step-summary">\n                        <div class="slds-media">\n                            <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small inline-header">Optimization Environment</h3>\n                                <div>Select an optimization service environment\n                                </div>\n                            </div>\n                            <div class="select-container">\n                            <select class="slds-select" ng-change="changeOptimizationEnvironment()" ng-model="chosenOptimizationEnvironment">\n                                <option ng-repeat="(key,value) in environments" value="{{value}}"> {{ key }} </option>\n                            </select>\n                        \n                        </div>\n                    </div>\n                    </article>\n                </li>    \n                </ol>\n            \n\t\t        \n\t\t\t</div>\n        ';
 
         return {
             restrict: 'E',
@@ -7391,6 +10007,46 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
 
         var template = '\n        <div class="automatorExp">Create scheduled optimization runs.</div>\n        \n        <automators objects="automators" class-names="[\'Sched004_OAAS\']"></automators>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('optimizationJobsEnhancements', optimizationJobsEnhancements);
+
+    optimizationJobsEnhancements.$inject = [];
+
+    function optimizationJobsEnhancements() {
+
+        controllerFunction.$inject = ['$scope', 'dataService', '$rootScope'];
+
+        function controllerFunction($scope, dataService, $rootScope) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - optimizationJobsEnhancements');
+            });
+
+            $rootScope.$on('settingsUpdated', function () {
+                $scope.automators = dataService.getAutomators('Sched004_OAAS');
+            });
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.automators = dataService.getAutomators('Sched004_OAAS');
+            });
+        }
+
+        var template = '\n      <!--   <div class="automatorExp">Create scheduled optimization runs.</div> -->\n        \n        <automators-enhancements objects="automators" class-names="[\'Sched004_OAAS\']"></automators-enhancements>\n        ';
 
         return {
             restrict: 'E',
@@ -7549,6 +10205,1671 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
 
         var template = '\n            <content-collapse-wrapper header="\'Service Optimization - Additional properties\'" open="false">\n                <content>\n                    <custom-settings-wrapper options="serviceBoleanFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Boolean1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="serviceBoleanFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Boolean2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="serviceDateFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Date1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="serviceDateFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Date2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="serviceIntegerFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Integer1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="serviceIntegerFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Integer2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="serviceDoubleFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Double1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="serviceDoubleFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__Double2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="serviceStringFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__String1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="serviceStringFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Service__String2"></custom-settings-wrapper>\n                </content>\n           </content-collapse-wrapper>\n           \n           <content-collapse-wrapper header="\'Resource Optimization - Additional properties\'" open="false">\n                <content>\n                    <custom-settings-wrapper options="resourceBoleanFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Boolean1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="resourceBoleanFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Boolean2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="resourceDateFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Date1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="resourceDateFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Date2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="resourceIntegerFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Integer1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="resourceIntegerFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Integer2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="resourceDoubleFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Double1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="resourceDoubleFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__Double2"></custom-settings-wrapper>\n                    <custom-settings-wrapper options="resourceStringFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__String1"></custom-settings-wrapper>    \n                    <custom-settings-wrapper options="resourceStringFields" primitive-type="primitiveType.picklist" label-field-name="\'Label__c\'" value-field-name="\'SF_Field_Name__c\'" setting="settings.SoFieldsMapping.Resource__String2"></custom-settings-wrapper>\n                </content>\n           </content-collapse-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('globalActionsBooking', globalActionsBooking);
+
+    globalActionsBooking.$inject = [];
+
+    function globalActionsBooking() {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', 'settingsUtils'];
+
+        function controllerFunction($scope, dataService, primitiveType, settingsUtils) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - globalActionsBooking');
+            });
+
+            $scope.settings = dataService.getDraftSettings();
+            $scope.primitiveType = primitiveType;
+
+            $scope.operatingHoursOptions = {
+                inputText: null,
+                loading: false,
+                cahchedOperatingHours: {},
+                showOhPicker: false,
+                ohResults: [],
+                ohIdToName: {}
+            };
+
+            dataService.getSettingsPromise().then(function () {
+
+                $scope.schedulingPolicies = dataService.policies;
+                $scope.operatingHours = dataService.operatingHours;
+
+                if ($scope.settings.manyOperatingHours) {
+
+                    // selected settings
+                    $scope.operatingHoursOptions.inputText = $scope.settings.OperatingHours[0].Name;
+                    $scope.operatingHoursOptions.ohIdToName[$scope.settings.OperatingHours[0].Id] = $scope.settings.OperatingHours[0];
+                }
+            });
+
+            $scope.searchOperatingHours = function (text) {
+
+                if (!$scope.operatingHoursOptions.inputText) {
+                    return;
+                }
+
+                $scope.operatingHoursOptions.showOhPicker = true;
+
+                // cached results
+                if ($scope.operatingHoursOptions.cahchedOperatingHours[text]) {
+                    $scope.operatingHoursOptions.ohResults = $scope.operatingHoursOptions.cahchedOperatingHours[text];
+                    return;
+                }
+
+                $scope.operatingHoursOptions.loading = true;
+
+                settingsUtils.callRemoteAction(remoteActions.searchOperatingHours, [text], false).then(function (results) {
+
+                    $scope.operatingHoursOptions.cahchedOperatingHours[text] = results;
+
+                    if (text === $scope.operatingHoursOptions.inputText) {
+                        $scope.operatingHoursOptions.ohResults = results;
+                    }
+
+                    results.forEach(function (oh) {
+                        return $scope.operatingHoursOptions.ohIdToName[oh.Id] = oh;
+                    });
+
+                    $scope.operatingHoursOptions.loading = false;
+                });
+            };
+
+            $scope.selectHoursFromPicker = function (oh, e) {
+
+                e.stopPropagation();
+
+                $scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c = oh.Id;
+                $scope.operatingHoursOptions.inputText = oh.Name;
+                $scope.operatingHoursOptions.showOhPicker = false;
+            };
+
+            $scope.hideOperatingHoursSelector = function () {
+                $scope.operatingHoursOptions.showOhPicker = false;
+                $scope.operatingHoursOptions.inputText = $scope.operatingHoursOptions.ohIdToName[$scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c] && $scope.operatingHoursOptions.ohIdToName[$scope.settings.AppointmentBookingSettings.DefaultOperatingHours__c].Name;
+            };
+        }
+
+        var template = '\n        <div ng-click="hideOperatingHoursSelector()">\n        \n               <p>These settings affect the Book Appointment and Candidates global actions</p>\n                \n                <custom-settings-wrapper primitive-type="primitiveType.picklist" options="schedulingPolicies" label="\'Default scheduling policy\'" tooltip-text="The policy used when no mapping is defined on the Derivations tab." value-field-name="\'SchedulingPolicyId__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n                \n                <! -- if we have less than 2k operating hours -->\n                <custom-settings-wrapper ng-if="!settings.manyOperatingHours" primitive-type="primitiveType.picklist" options="operatingHours" label="\'Default operating hours\'" tooltip-text="The appointment slots displayed unless the work order\'s entitlement doesn\'t reference other hours." value-field-name="\'DefaultOperatingHours__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n                \n                <! -- many operating hours, show auto complete -->\n                <div ng-if="settings.manyOperatingHours">\n                \n                    <div class="setting-row-container">\n                    \n                        <label class="select-label">\n                            Default operating hours\n                            <tooltip>The appointment slots displayed unless the work order\'s entitlement doesn\'t reference other hours.</tooltip>\n                        </label>\n                        \n                        <div class="select-container">\n                            <input type="text" class="input-settings" ng-model="operatingHoursOptions.inputText" ng-model-options="{debounce: 333}" ng-change="searchOperatingHours(operatingHoursOptions.inputText)" ng-click="$event.stopPropagation()"/>\n                            \n                            <img class="loading-oh-row" ng-show="operatingHoursOptions.loading" src="' + window.settings.icons.spinner + '" />\n                            \n                            <div id="noOhFound" ng-show="operatingHoursOptions.ohResults.length === 0 && operatingHoursOptions.showOhPicker && !operatingHoursOptions.loading && operatingHoursOptions.inputText">No operating hours found</div>\n                            \n                            <div id="AutoCompleteOperatingHours" ng-show="operatingHoursOptions.ohResults.length > 0 && operatingHoursOptions.showOhPicker">\n                                <div ng-repeat="oh in operatingHoursOptions.ohResults" ng-click="selectHoursFromPicker(oh, $event)">\n                                    {{oh.Name}}\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    \n               </div>\n               \n                \n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Ideal grading threshold\'" tooltip-text="A slot grade equal to or higher than the specified value is shown with the Ideal ticker on the Appointment Booking chatter action." value-field-name="\'Ideal_Threshold__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Recommended grading threshold\'" tooltip-text="A slot grade equal to or higher than the specified value and lower than the ideal threshold is shown with the recommended ticker on the Appointment Booking chatter action." value-field-name="\'Recommended_Threshold__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="0" max="100" label="\'Minimum Grade\'" tooltip-text="Time slots whose grade is below the minimum grade won\u2019t appear in the list of potential time slots." value-field-name="\'Minimum_Grade__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="500" label="\'Number of hours for initial appointment search\'" tooltip-text="If the difference between the due date and the earliest start permitted is greater than this value, the appointment is displayed first with this setting." value-field-name="\'LazyLoadBookingInHours__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Show grades explanation\'" tooltip-text="Shows how each appointment slot ranks against key performance indicators" value-field-name="\'Show_Grade_Explanation__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Custom CSS (cascading style sheet)\'" tooltip-text="Customize global actions appearance (static resource name)" value-field-name="\'CustomCSS__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Disable service territory picker in appointment booking\'" tooltip-text="Hide the service territory picker on the Appointment Booking Chatter action" value-field-name="\'AutoTerritoryPicker__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>            \n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Pin three highest graded time slots to the top\'" tooltip-text="Highlight and pin the three highest graded time slots to the top of the list of potential time slots." value-field-name="\'ShowGoldenSlots__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Open extended view by default\'" tooltip-text="Display appointments in the extended view, which shows the Earliest Start Permitted and Due Date fields." value-field-name="\'ShowMoreOptions__c\'" setting="settings.AppointmentBookingSettings"></custom-settings-wrapper>\n                \n            </div>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('globalActionsDerivations', globalActionsDerivations);
+
+    globalActionsDerivations.$inject = [];
+
+    function globalActionsDerivations() {
+
+        controllerFunction.$inject = ['$scope', 'optimizationService', 'primitiveType', 'dataService', 'globalActionsService', '$rootScope'];
+
+        function controllerFunction($scope, optimizationService, primitiveType, dataService, globalActionsService, $rootScope) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - globalActionsDerivations');
+            });
+
+            $scope.objectMappingFields = fieldNames.ObjectMapping__c;
+            $scope.primitiveType = primitiveType;
+            $scope.schedulingPolicyName = fieldNames.SchedulingPolicyName;
+
+            // all objects
+            $scope.objectMappings = globalActionsService.objectMappings;
+            $scope.fieldNamesOfObjects = {};
+            $scope.allObjects = [{ label: ' -- Select Object -- ' }];
+            $scope.selectedNewObject = $scope.allObjects[0];
+            var filteredPicklist = {};
+
+            dataService.getSettingsPromise().then(function () {
+                dataService.getDraftSettings().ObjectMapping.forEach(function (mapping) {
+                    var newObjectMap = new ObjectMapping(mapping.Name, mapping[fieldNames.ObjectMapping__c.label__c], mapping);
+                    newObjectMap.isOpen = false;
+                    $scope.objectMappings[mapping.Name] = newObjectMap;
+
+                    if (!$scope.fieldNamesOfObjects[mapping.Name]) {
+                        optimizationService.serviceReferenceProperties(mapping.Name).then(function (objectProperties) {
+                            $scope.fieldNamesOfObjects[mapping.Name] = transformFieldsToPicklist(objectProperties.fields);
+                        });
+                    }
+                });
+            });
+
+            // after restore
+            $rootScope.$on('settingsUpdated', function () {
+
+                Object.keys($scope.objectMappings).forEach(function (key) {
+                    return delete $scope.objectMappings[key];
+                });
+
+                dataService.getDraftSettings().ObjectMapping.forEach(function (mapping) {
+                    var newObjectMap = new ObjectMapping(mapping.Name, mapping[fieldNames.ObjectMapping__c.label__c], mapping);
+                    newObjectMap.isOpen = false;
+                    $scope.objectMappings[mapping.Name] = newObjectMap;
+
+                    if (!$scope.fieldNamesOfObjects[mapping.Name]) {
+                        optimizationService.serviceReferenceProperties(mapping.Name).then(function (objectProperties) {
+                            $scope.fieldNamesOfObjects[mapping.Name] = transformFieldsToPicklist(objectProperties.fields);
+                        });
+                    }
+                });
+            });
+
+            // get all objects
+            optimizationService.getAllObjects().then(function (objects) {
+                objects.forEach(function (obj) {
+                    if (obj.triggerable == "true") {
+                        $scope.allObjects.push(obj);
+                    }
+                });
+            });
+
+            // get selectable objects
+            $scope.getSelectableObjects = function () {
+                return $scope.allObjects.filter(function (obj) {
+                    return obj.label === ' -- Select Object -- ' || !$scope.objectMappings[obj.name];
+                });
+            };
+
+            // get fields of WorkOrder
+            optimizationService.serviceReferenceProperties('WorkOrder').then(function (objectProperties) {
+                $scope.fieldNamesOfObjects['WorkOrder'] = transformFieldsToPicklist(objectProperties.fields);
+            });
+
+            $scope.addObject = function (sobj) {
+
+                if (!sobj.name) {
+                    return;
+                }
+
+                $scope.selectedNewObject = $scope.allObjects[0];
+                var newObjectMap = new ObjectMapping(sobj.name, sobj.label);
+                newObjectMap.isOpen = true;
+                newObjectMap[fieldNames.ObjectMapping__c.Active__c] = true;
+                $scope.objectMappings[sobj.name] = newObjectMap;
+                optimizationService.serviceReferenceProperties(sobj.name).then(function (objectProperties) {
+                    $scope.fieldNamesOfObjects[sobj.name] = transformFieldsToPicklist(objectProperties.fields);
+                });
+            };
+
+            function transformFieldsToPicklist(fields) {
+
+                var fieldPicklist = [{ value: null, label: '--- SKIP ---' }];
+
+                fields.forEach(function (field) {
+                    fieldPicklist.push({
+                        value: field.name,
+                        label: field.name,
+                        type: field.type,
+                        referenceTo: field.referenceTo
+                    });
+                });
+
+                return fieldPicklist;
+            }
+
+            $scope.getFilteredPicklist = function (name, type, refTo) {
+
+                // check if cached
+                if (refTo && filteredPicklist[name] && filteredPicklist[name][type] && filteredPicklist[name][type][refTo]) {
+                    return filteredPicklist[name][type][refTo];
+                }
+
+                if (filteredPicklist[name] && filteredPicklist[name][type] && refTo === undefined) {
+                    return filteredPicklist[name][type];
+                }
+
+                // calculate
+                filteredPicklist[name] = filteredPicklist[name] || {};
+
+                if (refTo) {
+
+                    filteredPicklist[name][type] = filteredPicklist[name][type] || {};
+                    filteredPicklist[name][type][refTo] = $scope.fieldNamesOfObjects[name].filter(function (pick) {
+                        return pick.type === undefined || pick.type == type && pick.referenceTo == refTo;
+                    }).sort(function (a, b) {
+                        return a.label > b.label ? 1 : -1;
+                    });
+                    return filteredPicklist[name][type][refTo];
+                }
+
+                filteredPicklist[name][type] = $scope.fieldNamesOfObjects[name].filter(function (pick) {
+                    return pick.type == type || type == 'string' && pick.type == 'textarea' || pick.type === undefined;
+                }).sort(function (a, b) {
+                    return a.label > b.label ? 1 : -1;
+                });
+
+                return filteredPicklist[name][type];
+            };
+
+            $scope.deleteObjectMapping = function (object) {
+                delete $scope.objectMappings[object.Name];
+
+                if (object.Id) {
+                    globalActionsService.deletedMappings().push(object);
+                }
+            };
+
+            $scope.isParent = function (objMapping) {
+                return objMapping.Name == 'WorkOrder' || objMapping.Name == 'WorkOrderLineItem';
+            };
+
+            $scope.isService = function (objMapping) {
+                return objMapping.Name == 'ServiceAppointment';
+            };
+        }
+
+        var template = '\n                        <p>Set default values from the object to the global action interface. The user can override the values when needed.\n                        </p>\n                        <div class="newObjectSelect-container">\n                            <div id="new-object-picklist-container" class="slds-select_container">\n                                <select class="slds-select" ng-model="selectedNewObject" ng-options="object.label for object in getSelectableObjects() | orderBy:\'label\'">\n                                </select>\n                            </div>\n\n                            <div ng-click="addObject(selectedNewObject)" class="save-button add-mapping-button blueButton">Add Object</div>\n                        </div>\n \n\n                        <content-collapse-wrapper header="object[objectMappingFields.label__c]" open="object.isOpen" ng-repeat="object in objectMappings">\n                            <content>\n                                \n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Street\'" value-field-name="\'Street__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'City\'" value-field-name="\'City__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'State\'" value-field-name="\'State__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Country\'" value-field-name="\'Country__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'string\')" label="\'Zip Code\'" value-field-name="\'Zipcode__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'double\')" label="\'Latitude\'" value-field-name="\'Latitude__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'double\')" label="\'Longitude\'" value-field-name="\'Longitude__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'datetime\')" label="\'Earliest Start Permitted\'" value-field-name="\'Early_Start__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'datetime\')" label="\'Due Date\'" value-field-name="\'Due_Date__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', schedulingPolicyName)" label="\'Scheduling Policy\'" value-field-name="\'Scheduling_Policy__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', \'ServiceTerritory\')" label="\'Service Territory\'" value-field-name="\'Territory__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(object.Name, \'reference\', \'WorkType\')" label="\'Default Work Type\'" value-field-name="\'Default_Type__c\'" setting="object"></custom-settings-wrapper>\n                                <custom-settings-wrapper ng-if="!isParent(object) && !isService(object)" primitive-type="primitiveType.picklist" options="getFilteredPicklist(\'WorkOrder\', \'reference\', object.Name)" label="\'Lookup From Work Order\'" value-field-name="\'ObjectID__c\'" setting="object"></custom-settings-wrapper>\n                                \n                                <div class="delete-button-settings" ng-click="deleteObjectMapping(object)">Delete Mapping</div>\n                                \n                            </content>\n                        </content-collapse-wrapper>';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('globalActionsEmergency', globalActionsEmergency);
+
+    globalActionsEmergency.$inject = [];
+
+    function globalActionsEmergency() {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType'];
+
+        function controllerFunction($scope, dataService, primitiveType) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - globalActionsEmergency');
+            });
+
+            $scope.settings = dataService.getDraftSettings();
+            $scope.primitiveType = primitiveType;
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.schedulingPolicies = dataService.policies;
+                $scope.operatingHours = dataService.operatingHours;
+            });
+
+            $scope.chatterPostDestionation = [{ label: 'Service Appointment Feed', value: 'sa' }, { label: 'Parent Record Feed', value: 'wo' }];
+        }
+
+        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="schedulingPolicies" label="\'Emergency scheduling policy\'" tooltip-text="The default policy selected in the wizard" value-field-name="\'SchedulingPolicyId__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="10000" label="\'Last known location validity\'" tooltip-text="The number of minutes a technician\'s Last Known Location will be considered" value-field-name="\'Breadcrumbs_Validity__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="100" label="\'Ideal availability grade\'" tooltip-text="The threshold, in minutes, for an ideal estimated time of arrival" value-field-name="\'Ideal_Availability_Grade__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="100" label="\'Good availability grade\'" tooltip-text="The threshold, in minutes, for an acceptable estimated time of arrival" value-field-name="\'Good_Availability_Grade__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="10000" label="\'Emergency search timeframe\'" tooltip-text="Number of minutes to add to the current time when searching availability" value-field-name="\'Emergency_Due_Date_Offset__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Allow Chatter post\'" tooltip-text="In an emergency service appointment dispatch, give dispatchers the option to make a custom Chatter post on the assigned resource\u2019s Chatter feed or to not post at all. If this option isn\u2019t selected, no Chatter post is made." value-field-name="\'Chatter_Availability__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="chatterPostDestionation" label="\'Emergency Chatter Post Destination\'" tooltip-text=\n            "Select where to post Chatter notifications when an emergency appointment is assigned. The post mentions the assigned resources. This setting applies only if Allow Chatter post is selected." value-field-name="\'ChatterDestination__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Pin After Dispatch\'" tooltip-text="If dispatched ASAP, pin the service" value-field-name="\'PinService__c\'" setting="settings.EmergencySettings"></custom-settings-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingBundling', schedulingBundling);
+
+    schedulingBundling.$inject = [];
+
+    function schedulingBundling() {
+
+        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', 'settingsUtils', '$timeout'];
+
+        function controllerFunction($scope, primitiveType, dataService, settingsUtils, $timeout) {
+
+            function getRangeArray(start, end) {
+
+                var arr = [];
+
+                for (var i = start; i <= end; i++) {
+                    arr.push(i);
+                }
+
+                return arr;
+            }
+
+            $scope.dayOfWeekLookup = {
+                'SUN': '0',
+                'MON': '1',
+                'TUE': '2',
+                'WED': '3',
+                'THU': '4',
+                'FRI': '5',
+                'SAT': '6'
+            };
+
+            function joinElements(selectedElements) {
+                if (selectedElements === undefined || selectedElements.length === 0) {
+
+                    return '*';
+                } else {
+                    return selectedElements.join(",");
+                }
+            }
+
+            $scope.data = {};
+
+            $scope.bdaysOfWeek = [{ label: 'Sun', value: 'SUN' }, { label: 'Mon', value: 'MON' }, { label: 'Tue', value: 'TUE' }, { label: 'Wed', value: 'WED' }, { label: 'Thu', value: 'THU' }, { label: 'Fri', value: 'FRI' }, { label: 'Sat', value: 'SAT' }];
+
+            $scope.minutesOptions = [15, 30];
+
+            $scope.bdaysOfMonth = getRangeArray(1, 31);
+            $scope.bdaysOfMonthWithLabel = [];
+
+            for (var i = 0; i < $scope.bdaysOfMonth.length; i++) {
+                $scope.bdaysOfMonthWithLabel.push({
+                    label: $scope.bdaysOfMonth[i].toString(),
+                    value: $scope.bdaysOfMonth[i].toString()
+                });
+            }
+
+            $scope.allHours = getRangeArray(0, 23);
+            $scope.allMinutes = getRangeArray(0, 59);
+
+            $scope.selected = { months: [],
+                daysMonth: [],
+                daysWeek: []
+            };
+
+            $scope.errorType = ''; // for no policy or config
+
+            $scope.parseNumber = function (str) {
+
+                if (str) return parseInt(str);
+                return 0;
+            };
+
+            $scope.isBundleOn = function () {
+
+                var nsValueField = orgNameSpace + 'Value__c';
+
+                return this.settings && this.settings.GeneralConfig && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '1';
+            };
+
+            var setDefaultValues = function setDefaultValues($scope) {
+
+                $scope.dayMonth = $scope.bdaysOfMonth[0];
+                $scope.hours = $scope.allHours[23];
+                $scope.minutes = $scope.allMinutes[0];
+                $scope.selected.months = [];
+                $scope.recurringDay = 'dayWeek';
+                $scope.selected.daysMonth = [];
+                $scope.selected.daysWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+                ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
+
+                    $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", true);
+                });
+            };
+
+            function setValues($scope, cronExpr) {
+
+                var regExps = {
+                    'recurringDayWeek': /(SUN|MON|TUE|WED|THU|FRI|SAT)(,SUN|,MON|,TUE|,WED|,THU|,FRI|,SAT)*\s\*$/
+                };
+
+                var argsCron = cronExpr.split(' ');
+
+                var minutes = argsCron[1],
+                    hours = argsCron[2];
+
+                $scope.hours = $scope.parseNumber(hours);
+                $scope.minutes = $scope.parseNumber(minutes);
+
+                if (regExps.recurringDayWeek.test(cronExpr)) {
+                    // days of week
+
+                    $scope.recurringDay = 'dayWeek';
+
+                    $scope.selected.months = argsCron[4].split(',');
+                    $scope.selected.daysWeek = argsCron[5].split(',');
+
+                    var selectedDaysWeek = [];
+
+                    if ($scope.selected.daysWeek == '?') {
+                        selectedDaysWeek = getRangeArray(0, 6);
+                    } else {
+                        selectedDaysWeek = $scope.selected.daysWeek;
+                    }
+
+                    ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
+
+                        $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", false);
+                    });
+
+                    selectedDaysWeek.forEach(function (e) {
+
+                        $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", true);
+                    });
+                } else {
+                    // day of month
+
+                    $scope.recurringDay = 'dayMonth';
+
+                    $scope.selected.daysMonth = argsCron[3].split(',');
+                    $scope.selected.months = argsCron[4].split(',');
+
+                    var selectedDaysMonth = [];
+                    if ($scope.selected.daysMonth == '?') {
+
+                        selectedDaysMonth = getRangeArray(1, 31);
+                    } else {
+
+                        selectedDaysMonth = $scope.selected.daysMonth;
+                    }
+
+                    selectedDaysMonth.forEach(function (e) {
+                        var n = e - 1;
+                        $('.bundlerMonthAndDays #bdaysOfMonth' + n).prop("checked", true);
+                    });
+                }
+
+                return true;
+            }
+
+            $scope.checkNotEmptyDays = function () {
+
+                if ($scope.recurringDay === 'dayWeek') {
+
+                    return $scope.selected.daysWeek.length > 0;
+                }
+
+                return $scope.selected.daysMonth.length > 0;
+            };
+
+            $scope.bgetCronExpr = function () {
+
+                // calc new cron expr
+
+                /*
+                {1} Seconds - so 0 here i.e. start of the minute.
+                {2} Minutes - 0 again so start of the hour.
+                {3} Hours -  5 so 5 am. Uses 24 hour notation so 21 = 9pm
+                {4} Day_of_month - ? means no specific value, only available for day of the month and day of the week.
+                {5} Month - * indicates all values, i.e. every month. (if we only want to run on 1st Jan say, this would be 1)
+                {6} Day_of_week -
+                */
+
+                //  console.log('bgetCronExpr');
+
+                try {
+
+                    var expr = {
+                        sec: "0",
+                        min: "0",
+                        hour: "0",
+                        dayMonth: "*",
+                        month: "*",
+                        dayWeek: "?",
+                        year: "*"
+                    };
+
+                    if (!$scope.isBundleOn()) {
+                        // shouldDisableToggle
+
+                        var _newExp = expr.sec + " " + expr.min + " " + expr.hour + " " + expr.dayMonth + " " + expr.month + " " + expr.dayWeek + " " + expr.year;
+                        return _newExp;
+                    }
+
+                    if ($scope.recurringDay === 'dayWeek') {
+
+                        expr.dayMonth = '?';
+
+                        $scope.selected.daysWeek = [];
+
+                        ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
+
+                            if ($('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]) && $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked")) {
+                                $scope.selected.daysWeek.push(e);
+                            }
+                        });
+
+                        expr.dayWeek = joinElements($scope.selected.daysWeek);
+                    } else {
+
+                        $scope.selected.daysMonth = [];
+                        for (var _i = 0; _i <= 30; _i++) {
+                            if ($('.bundlerMonthAndDays #bdaysOfMonth' + _i) && $('.bundlerMonthAndDays #bdaysOfMonth' + _i).prop("checked")) {
+                                $scope.selected.daysMonth.push(_i + 1);
+                            }
+                        };
+
+                        expr.dayMonth = joinElements($scope.selected.daysMonth);
+                    }
+
+                    expr.hour = $scope.hours;
+                    expr.min = $scope.minutes;
+
+                    var newExp = expr.sec + " " + expr.min + " " + expr.hour + " " + expr.dayMonth + " " + expr.month + " " + expr.dayWeek + " " + expr.year;
+
+                    // console.log(newExp);
+
+                    return newExp;
+                } catch (ex) {
+                    console.log(ex);
+                }
+            };
+
+            $scope.errors = {};
+            $scope.errorMsg = false;
+
+            // nothing to check here, all good
+            $scope.verifyFunctions.push(function () {
+                return false;
+            });
+
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+
+            $scope.shouldDisableToggle = function () {
+
+                var nsValueField = orgNameSpace + 'Value__c';
+
+                if (this.settings && this.settings.GeneralConfig && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '0') {
+
+                    $scope.wasOff = true; // if the bundle was off we need to show the checkbox.
+                }
+
+                return this.settings.GeneralConfig && !$scope.wasOff && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '1';
+            };
+
+            if (!$scope.isBundleOn()) {
+                setDefaultValues($scope); // set defult value at start
+            }
+
+            $scope.toggleNightlyTriggerStatusActive = false;
+            $scope.serverToggleNightlyTriggerStatusActive = false;
+            $scope.btnNightlyTriggerStatusActive = true;
+            $scope.showSavingBundleSettingStatus = '';
+            $scope.toggleLiveBundleStatusActive = false;
+            $scope.btnLiveBundleStatusActive = true;
+
+            settingsUtils.callRemoteAction(remoteActions.checkBundleConfigPolicy).then(function (res) {
+
+                if (res == 'NO_CONFIG') {
+
+                    $scope.errMsgText = 'Configure an Appointment Bundle Config, then try again.';
+                    $scope.errorType = res;
+                    // $scope.errorMsg = true;
+                }
+                if (res == 'NO_POLICY') {
+
+                    $scope.errMsgText = 'Configure at least one Appointment Bundle Policy with automatic bundling, then try again.';
+                    $scope.errorType = res;
+                    // $scope.errorMsg = true;
+                }
+            }).catch(function (err) {
+                $scope.errorMsg = true;
+            });
+
+            // get status, if active get cron , if not then set defualt
+            $scope.toggleNightlyStatus = function () {
+
+                settingsUtils.callRemoteAction(remoteActions.nightlyBundleTriggerStatus).then(function (res) {
+
+                    $scope.toggleNightlyTriggerStatusActive = res;
+
+                    if (res) {
+
+                        $scope.getNightlyCronExp();
+                    } else {
+
+                        setDefaultValues($scope);
+                    }
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                });
+            };
+
+            $scope.getNightlyCronExp = function () {
+
+                settingsUtils.callRemoteAction(remoteActions.getBundleNightlyCronExp).then(function (res) {
+
+                    if (res) {
+                        setValues($scope, res);
+                    }
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            $scope.toggleNightlyStatus(); // get status. start point
+
+            $scope.updateCacheRedisBtnDisabled = false;
+
+            $scope.recurringDayChange = function (event, val) {
+
+                $scope.recurringDay = val;
+            };
+            $scope.hoursChange = function (event, val) {
+
+                $scope.hours = val;
+            };
+
+            $scope.minutesChange = function (event, val) {
+
+                $scope.minutes = val;
+            };
+
+            $scope.toggleBundleNightly = function () {
+
+                $scope.toggleNightlyTriggerStatusActive = !$scope.toggleNightlyTriggerStatusActive;
+            };
+
+            $scope.toggleBundleNightlyTrigger = function () {
+
+                if ($scope.errorType != '') {
+                    $scope.errorMsg = true;
+                    return;
+                }
+
+                $scope.btnNightlyTriggerStatusActive = false;
+
+                $scope.errorMsg = false;
+
+                var cornRegx = $scope.bgetCronExpr();
+
+                // check if day selected and is active
+                if ($scope.toggleNightlyTriggerStatusActive && !$scope.checkNotEmptyDays()) {
+                    $scope.errorMsg = true;
+                    $scope.errMsgText = 'Select one or more days.';
+                    $scope.btnNightlyTriggerStatusActive = true;
+                    return;
+                }
+
+                $scope.showSavingBundleSettingStatus = 'IN_PROCCESS';
+
+                settingsUtils.callRemoteAction(remoteActions.toggleBundleNightlyTrigger, [cornRegx, $scope.toggleNightlyTriggerStatusActive]).then(function (res) {
+
+                    $scope.btnNightlyTriggerStatusActive = true;
+
+                    $scope.toggleNightlyTriggerStatusActive = res;
+
+                    $scope.serverToggleNightlyTriggerStatusActive = res; // not used. for 236 desige
+
+                    if (res) {
+                        $scope.getNightlyCronExp();
+                    }
+
+                    if ($scope.toggleNightlyTriggerStatusActive == false) {
+
+                        $scope.doneSavingChange = 'Automated bundling is off.';
+                    } else {
+
+                        $scope.doneSavingChange = 'Automated bundling schedule was saved.';
+                    }
+
+                    $scope.showSavingBundleSettingStatus = 'DONE';
+
+                    $timeout(function () {
+                        $scope.showSavingBundleSettingStatus = '';
+                    }, 5000);
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.btnNightlyTriggerStatusActive = true;
+                    $scope.showSavingBundleSettingStatus = '';
+                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            $scope.updateBundleCacheRedis = function () {
+
+                $scope.updateCacheRedisBtnDisabled = true;
+                $scope.showSavingBundleSettingStatus = 'IN_PROCCESS';
+
+                settingsUtils.callRemoteAction(remoteActions.updateBundleCacheRedis).then(function () {
+
+                    //  alert('Configuration changes were updated.');// removed chrome bug 92 W-9651771
+                    $scope.updateCacheRedisBtnDisabled = false;
+
+                    $scope.doneSavingChange = 'Configuration changes were updated.';
+                    $scope.showSavingBundleSettingStatus = 'DONE';
+
+                    $timeout(function () {
+                        $scope.showSavingBundleSettingStatus = '';
+                    }, 5000);
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.showSavingBundleSettingStatus = '';
+                    $scope.updateCacheRedisBtnDisabled = false;
+                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            // Set live bundle feature active
+            $scope.toggleLiveBundle = function () {
+
+                if ($scope.errorType != '') {
+                    $scope.errorMsg = true;
+                    return;
+                }
+
+                settingsUtils.callRemoteAction(remoteActions.setLiveBundleFeatureActive).then(function (res) {
+                    $scope.toggleLiveBundleStatusActive = parseInt(res);
+                    $scope.showLiveBundleWaitTimeInput = !$scope.showLiveBundleWaitTimeInput;
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.showSavingBundleSettingStatus = '';
+                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            // Get Live Bundle Status
+            $scope.toggleLiveBundleStatus = function () {
+                settingsUtils.callRemoteAction(remoteActions.getIsLiveBundleFeatureActive).then(function (res) {
+                    $scope.toggleLiveBundleStatusActive = res;
+                    $scope.showLiveBundleWaitTimeInput = $scope.settings.GeneralConfig['Enable Live Bundling'][fieldNames.General_Config__c.Value__c] === '0';
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.showSavingBundleSettingStatus = '';
+                    $scope.errMsgText = 'Something went wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            // Set live bundle wait time
+            $scope.setLiveBundleWaitTime = function () {
+
+                if ($scope.errorType != '') {
+                    $scope.errorMsg = true;
+                    return;
+                }
+                $scope.errorMsg = false;
+                $scope.btnLiveBundleStatusActive = false;
+                $scope.showSavingBundleSettingStatus = 'IN_PROCESS';
+                settingsUtils.callRemoteAction(remoteActions.setLiveBundleWaitTime, [$scope.data.liveBundleWaitTime]).then(function (res) {
+                    $scope.btnLiveBundleStatusActive = true;
+                    $scope.liveBundleWaitTime = res;
+
+                    $scope.doneSavingChange = 'Bundle update frequency was saved.';
+                    $scope.showSavingBundleSettingStatus = 'DONE';
+
+                    $timeout(function () {
+                        $scope.showSavingBundleSettingStatus = '';
+                    }, 5000);
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.showSavingBundleSettingStatus = '';
+                    $scope.errMsgText = 'Something went wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            // Get live bundle wait time
+            $scope.getLiveBundleWaitTime = function () {
+                settingsUtils.callRemoteAction(remoteActions.getLiveBundleWaitTime).then(function (res) {
+                    $scope.data.liveBundleWaitTime = res;
+                }).catch(function (err) {
+                    $scope.errorMsg = true;
+                    $scope.errMsgText = 'Something went wrong. Please contact our support team if the problem persists.';
+                });
+            };
+
+            $scope.toggleLiveBundleStatus();
+            $scope.getLiveBundleWaitTime();
+        }
+
+        var template = '\n        <div class="bundle-settings">\n        <div ng-if="shouldDisableToggle()">\n        <p>\n            Service appointment bundles are active. \n        </p>\n    \n    <ol class="slds-setup-assistant">\n        <!--\n        <li class="slds-setup-assistant__item" style="" > \n        <article class="slds-setup-assistant__step">\n                <div class="slds-setup-assistant__step-summary">\n                    <div class="slds-media">\n\n                        <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                            <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small ">Off-Schedule Configuration Updates</h3>\n                            <div > You can update configuration changes now instead of waiting for scheduled updates. \n                            </div>\n                        </div>\n\n                        <div class="slds-media__figure slds-media__figure_reverse">\n                            <input type="button"  ng-disabled="updateCacheRedisBtnDisabled" class="register-button slds-button slds-button_brand select-container" ng-click="updateBundleCacheRedis()" value="Update">\n                        </div>\n                    </div>\n                </div>\n        </article>\n        </li>\n        -->\n        <li class="slds-setup-assistant__item"  >   \n        <article class="slds-setup-assistant__step" >\n\n                <div class="slds-setup-assistant__step-summary">\n\n                    <div class="slds-media">\n\n                        <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                            <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small ">Automated Bundling</h3>\n                            <div>Schedule the bundling process during low-activity times.\n                            </div>\n\n                            <div class="automatorMonthAndDays bundlerMonthAndDays" style="width:40rem;float:left;border:0" >\n                                <div class="automatorDays" style="width: 100%;">\n                                    <div class="automatorWeekOrMonth">\n                                        <label>\n                                            <input type="radio" ng-model="recurringDay" ng-click="recurringDayChange($event,\'dayWeek\')" value="dayWeek" ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false">\n                                            Day of week\n                                        </label>\n                                        <label>\n                                            <input type="radio" ng-model="recurringDay" ng-click="recurringDayChange($event,\'dayMonth\')" value="dayMonth" ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false">\n                                         Day of month\n                                        </label>\n                                    </div>\n                                    <cron-exp-rows-of-dates ng-show="recurringDay == \'dayWeek\'" rows="bdaysOfWeek" selected-rows="selected.daysWeek" label-id-prefix="automator.Name + \'bdaysOfWeek\'" is-disabled="isDisabled|| toggleNightlyTriggerStatusActive == false "></cron-exp-rows-of-dates>\n                                    <cron-exp-rows-of-dates ng-show="recurringDay == \'dayMonth\'" rows="bdaysOfMonthWithLabel" selected-rows="selected.daysMonth" label-id-prefix="automator.Name + \'bdaysOfMonth\'" is-disabled="isDisabled || toggleNightlyTriggerStatusActive == false"></cron-exp-rows-of-dates>\n                                </div>\n                            </div>\n        \n                            <div class="automatorHour" style="float: left;border:0">\n                                \n                                <div class="automatorSpecificHour" >\n                                \n                                        <span class="automatorTimeSpan">\n                                            <span class="timeSpanHeader">\n                                                Hour \n                                            </span>\n                                            \n                                            <span class="timeSpanInput">\n                                                <input ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false" ng-click="hoursChange($event,hours)" ng-model="hours" min="0" max="23" onkeydown = "return false;" type="number" class="input-settings">\n                                            </span>\n                                        </span>\n                                        <span class="automatorTimeSpan">\n                                            <span class="timeSpanHeader">\n                                                Minute\n                                            </span>\n            \n                                            <span class="timeSpanInput">\n                                                <input ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false" ng-click="minutesChange($event,minutes)"  ng-model="minutes" min="0" max="55" step="5" type="number" onkeydown = "return false;" class="input-settings">\n                                            </span>\n                                        </span>\n                                </div> <!-- automatorSpecificHour -->\n                            </div> <!-- automatorHour -->\n                        </div> <!-- slds-media__body -->\n\n                            \n\n                        <div class="slds-media__figure slds-media__figure_reverse">\n                        \n                            <div class="transitions-checkbox" >\n                                <span class="checkBoxWrapper" \n                                        ng-click="toggleBundleNightly()" \n                                        ng-class="{checked: toggleNightlyTriggerStatusActive, unchecked: !toggleNightlyTriggerStatusActive  }" \n                                        title="{{EdgeRemoteSiteIsInactiveMsg}}">\n        \n                                    <span class="innerCheckboxValue" \n                                            ng-class="{checked: toggleNightlyTriggerStatusActive, unchecked: !toggleNightlyTriggerStatusActive}"/>\n                                    \n                                    <span class="toggled-label">{{toggleNightlyTriggerStatusActive ? \'ON\' : \'OFF\'}}</span>\n                                </span>\n                            \n                            </div>\n\n                            <div class="slds-media__figure slds-media__figure_reverse" style="padding-top:3rem">\n                                    <input type="button"   class="register-button slds-button slds-button_brand select-container" ng-disabled="!btnNightlyTriggerStatusActive" ng-click="toggleBundleNightlyTrigger()" value="Apply"> \n                             </div>\n\n                        \n                        </div> <!-- slds-media__figure_reverse -->\n                \n                        </div> <!-- slds-media -->\n                        </div> <!-- slds-setup-assistant__step-summary -->\n\n        </article>\n      </li>\n      <li class="slds-setup-assistant__item" >   \n        <article class="slds-setup-assistant__step">\n          <div class="slds-setup-assistant__step-summary">\n            <div class="slds-media">\n              <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small">Live Bundling</h3>\n                <div>Automatically updates bundles when service appointments are modified or added to your appointment list.</div>\n              </div>\n              \n                <div class="slds-media__figure slds-media__figure_reverse">\n                  <div class="transitions-checkbox">\n                    <span class="checkBoxWrapper"\n                          ng-click="toggleLiveBundle()" \n                          ng-class="{checked: toggleLiveBundleStatusActive, unchecked: !toggleLiveBundleStatusActive}"\n                          title="{{EdgeRemoteSiteIsInactiveMsg}}"> \n                        <span class="innerCheckboxValue" ng-class="{checked: toggleLiveBundleStatusActive, unchecked: !toggleLiveBundleStatusActive}"/>           \n                        <span class="toggled-label">{{toggleLiveBundleStatusActive ? \'ON\' : \'OFF\'}}</span>       \n                  </div>    \n                </div> <!-- slds-media__figure_reverse -->     \n            </div>\n            <div class="slds-media__figure" ng-if="!showLiveBundleWaitTimeInput">\n              <span class="liveBundleTimeSpan">\n                  <span class="liveBundleHeader">Bundle Update Frequency (in minutes)\n                    <tooltip>\n                      <div class="tooltipBubble">\n                        <span>Set how frequently the system checks if your bundles can be updated.<br>\n                              Enter between 5 to 15 minutes.\n                        </span>\n                      </div>\n                    </tooltip>\n                  </span>\n                  <span class="liveBundleTimeSpanInput">\n                    <input ng-disabled="isDisabled || toggleLiveBundleStatusActive == false" ng-model="data.liveBundleWaitTime" min="5" max="15" step="1" type="number" onkeydown="return false;" class="input-settings">\n                  </span>\n              </span>\n              <div class="slds-media__figure slds-media__figure_reverse" style="margin-top: 1rem; display: flex; justify-content: end;">\n                <input type="button" class="register-button slds-button slds-button_brand select-container" ng-disabled="!btnLiveBundleStatusActive" ng-click="setLiveBundleWaitTime()" value="Apply"> \n              </div>\n            </div>\n          </div>\n        </article>\n      </li>\n    </ol>\n\n<ui-error ng-if="errorMsg">\n<main-content>\n{{errMsgText}}\n</main-content>\n</ui-error>\n \n<div class="saving-banner" ng-show="showSavingBundleSettingStatus != \'\' " ng-class="{\'settings-saved\' : showSavingBundleSettingStatus == \'DONE\'}">\n     <span ng-show="showSavingBundleSettingStatus == \'IN_PROCCESS\' ">Saving changes\u2026</span>\n     <span ng-show="showSavingBundleSettingStatus == \'DONE\' ">{{doneSavingChange}}</span>\n</div>\n\n</div>\n<div ng-if="!shouldDisableToggle()">\n    <custom-settings-wrapper primitive-type="primitiveType.booleanText" \n    label="\'Bundle your service appointments\'" \n    value-field-name="\'Value__c\'" \n    setting="settings.GeneralConfig[\'Enable Scheduling Bundling\']" \n    tooltip-text="Group service appointments to create a single service appointment and facilitate the scheduling process.">\n    </custom-settings-wrapper>\n</div>\n</div>    \n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingDynamicGantt', schedulingDynamicGantt);
+
+    schedulingDynamicGantt.$inject = [];
+
+    function schedulingDynamicGantt() {
+
+        controllerFunction.$inject = ['$rootScope', '$scope', 'primitiveType', 'dataService'];
+
+        function controllerFunction($rootScope, $scope, primitiveType, dataService) {
+
+            $scope.hasActiveRecipesOfTypeOverlap = true;
+
+            $rootScope.$on('ActiveRecipesOfTypeOverlap', function (ev, data) {
+                $scope.hasActiveRecipesOfTypeOverlap = data;
+            });
+
+            // nothing to check here, all good
+            $scope.verifyFunctions.push(function () {
+                return false;
+            });
+
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+
+            $scope.queryOrderBy = [{ label: 'Priority', value: 'priority' }, { label: 'Distance', value: 'distance' }];
+
+            $scope.fixOverLapsTreat = [{ label: 'Leave on Gantt and set In-jeopardy', value: 'On Reschedule Failure Set Service To In Jeopardy' }, { label: 'Unschedule the appointment(s)', value: 'Leave service unscheduled' }, { label: 'Reshuffle other assignments', value: 'Call reshuffle' }];
+
+            $scope.onOverlapDetection = [{ label: 'Schedule to original resource only', value: 'Schedule To Original Resource Only' }, { label: 'Schedule to all resources', value: 'Schedule To All Resources' //value: 'Consider all Resources' }
+            }];
+
+            $scope.onServicesReschedule = [{ label: 'Chronological Order', value: 'Chronological Order' }, { label: 'Priority', value: 'Priority' }];
+
+            $scope.onReschduleGroupNearBy = [{ label: 'Schedule to original resource only', value: 'Schedule To Original Resource Only' }, { label: 'Schedule to all resources', value: 'Schedule To All Resources' //value: 'Consider all Resources' }
+            }];
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.saBooleanFields = angular.copy(dataService.serviceBooleanFields);
+                $scope.saBooleanFields.shift();
+
+                $scope.woBooleanFields = angular.copy(dataService.woBooleanFields);
+                $scope.woBooleanFields.shift();
+
+                $scope.woliBooleanFields = angular.copy(dataService.woliBooleanFields);
+                $scope.woliBooleanFields.shift();
+            });
+        }
+
+        var template = '\n            \n            <div class="section-settings" id="__fix-overlaps">Fix Overlaps</div>\n            <p>\n                Fix overlap will reschedule appointments that overlap another appointment or an absence\n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Automatically fix overlaps when an appointment overlaps with another appointment or absence\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable Dynamic Gantt Fix Overlaps\']" is-disabled="hasActiveRecipesOfTypeOverlap" tooltip-text="If you have scheduling recipes of type overlap auto fix overlap will be disabled and turned off"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onOverlapDetection" label="\'When attempting to fix overlaps\'" value-field-name="\'Reschedule_Options__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onServicesReschedule" label="\'After unscheduling services reschedule them by\'" value-field-name="\'Reschedule_Method__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="fixOverLapsTreat" label="\'When unable to find a valid schedule for an appointment\'" value-field-name="\'Reschedule_Failure_Treatment__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n   \n            <div class="section-settings" id="__fill-in">Fill-in Schedule</div>\n            <p>\n                Fill-in schedule will schedule work for an idle resource. You can trigger this service from the dispatcher console or through API <br>\n                When trying to fill in an idle resource\'s daily schedule, only service appointments where the folllowing three fields evaluate to true will be considered as candidates. \n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saBooleanFields" label="\'Service Appointment candidate Boolean field\'" value-field-name="\'SA_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="Select a Boolean field that indicates if a Service Appointment is a candidate to fill in schedule"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woBooleanFields" label="\'Work Order candidate Boolean field\'" value-field-name="\'WO_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="In the case of Work Order as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliBooleanFields" label="\'Work Order Line Item candidate Boolean field\'" value-field-name="\'WOLI_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="In the case of Work Order Line Item as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="queryOrderBy" label="\'Order candidate appointments by\'" value-field-name="\'Order_Candidate_Appointments_By__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="50" label="\'Max appointments to schedule\'" value-field-name="\'Max_Services_Limit__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="5" max="60" label="\'Max runtime (seconds)\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n           \n            <div class="section-settings" id="__group-near-by">Group Nearby Appointments</div>\n            <p>\n                Group near-by appointments will schedule work that is close to a given appointment together. The service may unassign lower priority appointments in order to make room for the near-by appointments.\n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saBooleanFields" label="\'Service Appointment candidate Boolean field\'" value-field-name="\'SA_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="Select a Boolean field that indicates if a Service Appointment is a candidate to fill in schedule"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woBooleanFields" label="\'Work Order candidate Boolean field\'" value-field-name="\'WO_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="In the case of Work Order as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliBooleanFields" label="\'Work Order Line Item candidate Boolean field\'" value-field-name="\'WOLI_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="In the case of Work Order Line Item as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="50" label="\'Max appointments to schedule\'" value-field-name="\'Max_Services_Limit__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="5" max="60" label="\'Max runtime (seconds)\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onReschduleGroupNearBy" label="\'When attempting to schedule the unscheduled service after the nearby services\'" value-field-name="\'Reschedule_Options__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="fixOverLapsTreat" label="\'When unable to arrange schedule\'" value-field-name="\'Reschedule_Failure_Treatment__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Radius for nearby appointments\'" value-field-name="\'Max_Services_Radius__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="The radius in which appointments are considered \'near-by\'"></custom-settings-wrapper>\n            \n            <div class="section-settings" id="__reshuffle">Reshuffle assignments</div>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="7" label="\'Max time horizon (days) in which the appointment can be scheduled\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Reshuffle Settings\']"></custom-settings-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+
+// <custom-settings-wrapper primitive-type="primitiveType.boolean" label="'Try to reshuffle unsuccessful reschedulings'" value-field-name="'Enable_Reshuffle__c'" setting="settings.DynamicGanttSettings['Dynamic Gantt Group Near By Settings']"></custom-settings-wrapper>
+// <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onOverlapDetection" label="'When services overlap is detected'" value-field-name="'Reschedule_Options__c'" setting="settings.DynamicGanttSettings['Dynamic Gantt Group Near By Settings']"></custom-settings-wrapper>
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingJobs', schedulingJobs);
+
+    schedulingJobs.$inject = [];
+
+    function schedulingJobs() {
+
+        controllerFunction.$inject = ['$scope'];
+
+        function controllerFunction($scope) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - schedulingJobs');
+            });
+        }
+
+        var template = '';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingLogic', schedulingLogic);
+
+    schedulingLogic.$inject = [];
+
+    function schedulingLogic() {
+
+        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', 'settingsUtils', 'serviceAppointmentLifeCycleService', '$q', '$rootScope'];
+
+        function controllerFunction($scope, primitiveType, dataService, settingsUtils, serviceAppointmentLifeCycleService, $q, $rootScope) {
+
+            $scope.errors = {};
+
+            // nothing to check here, all good
+            $scope.verifyFunctions.push(function () {
+                return false;
+            });
+
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+
+            $scope.pinnedStatuses = {};
+
+            $scope.isO2EngineOn = function () {
+                return window.settings.isO2EngineOn;
+            };
+
+            $scope.startOfWeek = [{ label: 'Sunday', value: 'Sunday' }, { label: 'Monday', value: 'Monday' }];
+
+            $scope.PushTopicProps = ['FSL_Operation__c'];
+
+            $scope.sharingObjectSettingsStatus = 'Validating';
+
+            $scope.sharingObjects = [{
+                SharingObjectAPI: "FSL_Operation__Share",
+                SharingObjectName: "FSL Operation",
+                Status: 'NotUpdated'
+            }];
+
+            $scope.buttonStateLabels = {
+                update: 'Update push topic',
+                updated: 'Push topic updated',
+                validate: 'Validating push topic',
+                failed: 'Failed to validate Push Topic for complex work'
+            };
+
+            $scope.$watch("sharingObjects", function (newValue, oldValue) {
+                var privateSettingsCounter = 0;
+                for (var i in newValue) {
+                    if (newValue[i].Status == 'NotUpdated' || newValue[i].Status == 'ERROR') {
+                        return;
+                    }
+
+                    if (newValue[i].Status == 'Public') {
+                        $scope.sharingObjectSettingsStatus = 'Public';
+                        return;
+                    }
+
+                    if (newValue[i].Status == 'Private') {
+                        privateSettingsCounter++;
+                    }
+                }
+
+                if (newValue.length == privateSettingsCounter) {
+                    $scope.sharingObjectSettingsStatus = 'Private';
+                }
+            }, true);
+
+            $q.all([serviceAppointmentLifeCycleService.loadData(), dataService.getSettingsPromise()]).then(function () {
+
+                $scope.statuses = serviceAppointmentLifeCycleService.settings.StatusList;
+
+                $scope.statuses.forEach(function (status) {
+                    if ($scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c]) {
+                        $scope.pinnedStatuses[status.value] = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c].split(',').indexOf(status.value) > -1;
+                    }
+                });
+            });
+
+            $scope.updateSettings = function () {
+                var statuses = [];
+
+                for (var key in $scope.pinnedStatuses) {
+                    if ($scope.pinnedStatuses[key]) {
+                        statuses.push(key);
+                    }
+                }
+
+                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c] = statuses.join(',');
+                dataService.setDirty();
+            };
+
+            $rootScope.$on('settingsUpdated', function () {
+                $scope.automators = dataService.getAutomators('Sched009_STMIntegrityChecker');
+                // if (dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c]) {
+                //     $scope.automators = $scope.automators.concat(dataService.getAutomators('Sched006_SLRPurge'));
+                // }
+
+                $scope.statuses.forEach(function (status) {
+                    if ($scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c]) {
+                        $scope.pinnedStatuses[status.value] = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c].split(',').indexOf(status.value) > -1;
+                    }
+                });
+            });
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.booleanFields = angular.copy(dataService.serviceBooleanFields);
+                $scope.booleanFields.shift();
+                $scope.woNumberFields = dataService.woNumberFields;
+                $scope.woliNumberFields = dataService.woliNumberFields;
+                $scope.saNumberFields = dataService.saNumberFields;
+                $scope.automators = dataService.getAutomators('Sched009_STMIntegrityChecker');
+                $scope.classNames = ['Sched009_STMIntegrityChecker'];
+                $scope.hideIntegrityCheckerAutomator = JSON.parse($scope.settings.GeneralConfig['Hide Integrity Checker Automator'][fieldNames.General_Config__c.Value__c]);
+
+                // if (dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c])
+                // {
+                //     $scope.classNames.push('Sched006_SLRPurge');
+                //     $scope.automators = $scope.automators.concat(dataService.getAutomators('Sched006_SLRPurge'));
+                // }
+            });
+        }
+
+        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="booleanFields" label="\'Multiday service appointment field\'" value-field-name="\'MDT_Boolean_Field__c\'" setting="settings.LogicSettings" tooltip-text="The checkbox field that indicates that a service appointment can span multiple days"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Set the hour that starts a new day based on the Availability rule(s)\'" value-field-name="\'Enable_Start_Of_Day__c\'" setting="settings.LogicSettings" tooltip-text="The default, if this is not set, is 12AM"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.number" label="\'Maximum days to get candidates or to book an appointment\'" min="1" max="31" value-field-name="\'Search_slot_max_days__c\'" setting="settings.LogicSettings" tooltip-text="The maximum number of days possible to request an appointment or get candidates. Increasing the maximum decreases performance"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Delay auto-scheduling until appointments are geocoded\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Wait for clean state\']" tooltip-text="If Auto Schedule is selected on a service appointment, wait to schedule the appointment until its location is geocoded (recommended). This setting doesn\u2019t apply to appointments with no address, which are scheduled without delay. Auto Schedule uses the scheduling policy listed in the appointment\u2019s Scheduling Policy Used field. If none is listed, the default scheduling policy listed in your Appointment Booking settings is used."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Activate Approval confirmation on resource absences\'" value-field-name="\'Approved_Absences__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enable resource crew skill grouping\'" value-field-name="\'Enable_Crew_Members_Skill_Aggregation__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" options="booleanFields" label="\'Avoid aerial calculation upon callout DML exception\'" value-field-name="\'Alert_On_Callout_Failure__c\'" setting="settings.GeocodeSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Respect secondary STM operating hours\'" value-field-name="\'Include_Secondary_Calendar__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper ng-show="isO2EngineOn()" primitive-type="primitiveType.boolean" label="\'Enable service appointment sliding\'" value-field-name="\'Enable_service_appointment_sliding__c\'" setting="settings.LogicSettings" tooltip-text="Sliding appointments frees up time for scheduling a new appointment when using appointment booking and scheduling. Move service appointments for the same resource to an earlier or later time, within the resource\u2019s availability." learn-link="\'https://help.salesforce.com/s/articleView?id=sf.pfs_service_appointment_sliding.htm\'"></custom-settings-wrapper>\n\n            Select which statuses are considered as pinned, or unmovable, for scheduling<br> \n            \n            <div id="pinned-status-container">\n                <label for="SchedulingPinnedStatus{{$index}}" class="optimizaion-pinned-label truncate" ng-repeat="status in statuses track by $index" title="{{ status.value }}">\n                    <input type="checkbox" id="SchedulingPinnedStatus{{$index}}" ng-model="pinnedStatuses[status.value]" ng-change="updateSettings()" />{{ status.value }}\n                </label>\n            </div>\n\n\n\n\n\n            <div class="section-settings" id="__complex-work">Scheduling Priority</div>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woNumberFields" label="\'Work Order Priority Field\'" value-field-name="\'WO_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the appointment\u2019s work order sets the priority."></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliNumberFields" label="\'Work Order Line Item Priority Field\'" value-field-name="\'WOLI_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the appointment\u2019s work order line item sets the priority."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saNumberFields" label="\'Service Appointment Priority Field\'" value-field-name="\'SA_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the service appointment sets the priority. If the field is empty, we use the priority field on the parent work order or work order line item."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Use 1-100 priority scale\'" value-field-name="\'Use_1_To_100_Priority_Scale__c\'" setting="settings.LogicSettings" tooltip-text="Override the default 1-10 scale for more refined priorities. The 1-100 scale can modify optimization results."></custom-settings-wrapper>\n\n\n\n\n            <automators objects="automators" class-names="classNames" hide-section="hideIntegrityCheckerAutomator"></automators>\n\n            <div class="section-settings" id="__complex-work">Complex Work <a href="https://help.salesforce.com/articleView?id=pfs_complex_work.htm" class="section-link" target="_blank">Learn More</a></div>\n            <div class="alert-warning-banner" ng-show="sharingObjectSettingsStatus == \'Public\'">\n                The object below has public sharing.<br>\n                To enable complex work, set sharing to private for that object.\n            </div>\n\n            <object-sharing-status-directive ng-repeat="sharingObject in sharingObjects" object-sharing-props="sharingObject"></object-sharing-status-directive>\n            <push-topics-creator-directive push-topics-props="PushTopicProps" button-state-labels="buttonStateLabels" push-topics-tool-tip="Complex Work relies on push topic object that query for changes made for the relevant object. The push topic is created with a script upon installation. In some cases, such as when creating a sandbox from an instance with the package installed, the push topic isn\u2019t created. Click Update push topic to create the push topic."></push-topics-creator-directive>\n\n            <custom-settings-wrapper is-disabled="sharingObjectSettingsStatus != \'Private\'" primitive-type="primitiveType.boolean" label="\'Enable complex work\'" value-field-name="\'Use_New_MST_Data_Model__c\'" setting="settings.LogicSettings" tooltip-text="Let users create scheduling dependencies between service appointments. For example, ensure that a particular appointment can\u2019t start until a related appointment is complete."></custom-settings-wrapper>\n            <custom-settings-wrapper is-disabled="sharingObjectSettingsStatus != \'Private\'" primitive-type="primitiveType.boolean" label="\'Use all-or-none scheduling for related appointments\'" value-field-name="\'Fail_On_Schedule__c\'" setting="settings.LogicSettings" tooltip-text="This setting prevents a chain of two service appointments with dependencies between them from being scheduled separately. Related appointments will need to be scheduled in the same scheduling operation. This setting doesn\u2019t apply for chains of three or more appointments."></custom-settings-wrapper>\n                        \n            <div class="section-settings" id="__complex-work">Limit Apex Operations</div>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Set Apex operation timeout limits\'" value-field-name="\'Limit_Apex_Operations__c\'" setting="settings.LogicSettings" tooltip-text="If you\u2019ve encountered CPU timeout errors, select this option to define limits for the following operations. This helps you stay within your org\u2019s Apex CPU timeout limit. For example, enter 90 to end the operation when it reaches 90% of your org\u2019s timeout limit. We recommend experimenting in a sandbox org to find the best values for your org."></custom-settings-wrapper>\n            \n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Get Candidates (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for the Get Candidates operation, which is used in the Get Candidates Gantt action and the Candidates and Book Appointment Chatter actions." setting="settings.ApexLimits[\'GetCandidatesTotalCpuLimit\']" ></custom-settings-wrapper>\n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Appointment Booking (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for appointment booking operations, which are used in the Book Appointment Chatter action. The Get Candidates limit counts against this limit." setting="settings.ApexLimits[\'ABTotalCpuLimit\']" ></custom-settings-wrapper>\n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Scheduling (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for scheduling operations, which are used in the Schedule Gantt action, the Auto Schedule option, and scheduling Chatter actions." setting="settings.ApexLimits[\'ScheduleTotalCpuLimit\']"></custom-settings-wrapper>\n            \n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingPolicies', schedulingPolicies);
+
+    schedulingPolicies.$inject = [];
+
+    function schedulingPolicies() {
+
+        controllerFunction.$inject = ['$scope', 'schedulingService'];
+
+        function controllerFunction($scope, schedulingService) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - schedulingPolicies');
+            });
+
+            schedulingService.loadData().then(function () {
+                $scope.schedulingSettings = schedulingService.settings;
+            });
+        }
+
+        var template = '\n            <p>\n                A <a target="_blank" ng-href="../{{schedulingSettings.schedulingPoliciesPrefix}}">Scheduling Policy</a> is based on scheduling rules and weighted business objectives.            \n                <br/>\n                When the optimization engine builds and maintains the schedule, its decisions are guided by your scheduling policies.\n            </p>         \n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('schedulingRouting', schedulingRouting);
+
+    schedulingRouting.$inject = [];
+
+    function schedulingRouting() {
+
+        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', '$rootScope', '$http', 'settingsUtils', '$timeout', 'OPTIMIZATION_RUNTIME_VALUES'];
+
+        function controllerFunction($scope, primitiveType, dataService, $rootScope, $http, settingsUtils, $timeout, OPTIMIZATION_RUNTIME_VALUES) {
+
+            $scope.sessionId = sessionId;
+            $scope.EnableSLRIsDisabled = true;
+            $scope.GISRemoteIsInactive = false;
+            $scope.ShowRegisterBtn = false;
+            $scope.UseSFMapsFMA = UseSFMapsFMA;
+            // nothing to check here, all good
+            $scope.verifyFunctions.push(function () {
+                return false;
+            });
+
+            $scope.primitiveType = primitiveType;
+            $scope.classNames = [];
+
+            $scope.distanceUnits = [{ label: 'KM', value: 'km' }, { label: 'Mile', value: 'mile' }];
+
+            $scope.speedUnits = [{ label: 'KM/h', value: 'km' }, { label: 'MPH', value: 'mile' }];
+
+            $rootScope.$on('settingsUpdated', function () {
+                $scope.lowOptimizationRunTime = $scope.settings.OptimizationSettings[bgoOptimizationSettings][fieldNames.OptimizationSettings__c.Max_Runtime_Single_Service__c] == OPTIMIZATION_RUNTIME_VALUES.LOW;
+                $scope.useSLR = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c];
+                $scope.usePredictive = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c];
+                $scope.useEdge = true;
+                $scope.useSfMaps = $scope.settings.GeocodeSettings[fieldNames.Geocode_Settings__c.Use_SFMaps__c];
+
+                for (var optSetting in $scope.settings.OptimizationSettings) {
+                    if ($scope.settings.OptimizationSettings[optSetting][fieldNames.OptimizationSettings__c.Use_Edge__c] == false) {
+                        $scope.useEdge = false;
+                        break;
+                    }
+                }
+                $scope.useEdge = $scope.useEdge || useEdgeFMA;
+
+                if ($scope.useSLR) {
+                    $scope.automators = dataService.getAutomators('Sched006_SLRPurge');
+                }
+            });
+
+            $scope.onSLRChange = function (val) {
+
+                if (!val) {
+                    $scope.usePredictive = false;
+                    $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = false;
+                    $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
+                }
+
+                $scope.useSLR = val;
+                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = $scope.useSLR;
+            };
+
+            $scope.onPredictiveChange = function (val) {
+
+                if (val) {
+                    $scope.useSLR = true;
+                    $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = true;
+                    $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
+                }
+
+                $scope.usePredictive = val;
+                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = $scope.usePredictive;
+            };
+
+            $scope.onSalesforceMapsChange = function (val) {
+                $scope.useSLR = true;
+                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = true;
+                $scope.usePredictive = $scope.isUpgrade ? true : val;
+                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = $scope.usePredictive;
+
+                $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
+
+                $scope.useSfMaps = val;
+            };
+
+            $scope.RegisterSLRBtnDisabled = false;
+
+            $scope.registerSLR = function () {
+
+                $scope.RegisterSLRBtnDisabled = true;
+                settingsUtils.callRemoteAction(remoteActions.registerSLR).then(function () {
+                    $timeout(function () {
+                        alert('Registered!');
+                        $scope.RegisterSLRBtnDisabled = false;
+                        console.log('Registered SLR');
+
+                        if (!dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Show_Register_Btn__c]) $scope.ShowRegisterBtn = false;
+                    }, 2000);
+                }).catch(function (err) {
+                    alert('Something went  wrong. Please contact our support team if the problem persists.');
+                    $scope.RegisterSLRBtnDisabled = false;
+                });
+            };
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.settings = dataService.getDraftSettings();
+                $scope.isUpgrade = $scope.settings.GeneralConfig['Is Fresh Install'][fieldNames.General_Config__c.Value__c] === 'upgrade';
+
+                settingsUtils.callRemoteAction(remoteActions.shouldRefreshSLRToken).then(function (result) {
+                    $scope.ShowRegisterBtn = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Show_Register_Btn__c] || result;
+                });
+
+                $scope.useSLR = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c];
+                $scope.usePredictive = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c];
+                $scope.useEdge = true;
+                $scope.useSfMaps = $scope.settings.GeocodeSettings[fieldNames.Geocode_Settings__c.Use_SFMaps__c];
+
+                for (var optSetting in $scope.settings.OptimizationSettings) {
+                    if ($scope.settings.OptimizationSettings[optSetting][fieldNames.OptimizationSettings__c.Use_Edge__c] == false) {
+                        $scope.useEdge = false;
+                        break;
+                    }
+                }
+
+                $scope.useEdge = $scope.useEdge || useEdgeFMA;
+
+                $scope.lowOptimizationRunTime = $scope.settings.OptimizationSettings[bgoOptimizationSettings][fieldNames.OptimizationSettings__c.Max_Runtime_Single_Service__c] == OPTIMIZATION_RUNTIME_VALUES.LOW;
+
+                var baseUrl = window.location.origin;
+
+                var dataStr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:tooling.soap.sforce.com">' + '<soapenv:Header>' + '<urn:SessionHeader>' + '<urn:sessionId>' + $scope.sessionId + '</urn:sessionId>' + '</urn:SessionHeader>' + '</soapenv:Header>' + '<soapenv:Body>' + '<urn:query>' + '<urn:queryString>SELECT id, SiteName, EndpointUrl, isActive FROM RemoteSiteSetting WHERE EndpointUrl = \'https://fsl-gis.cloud.clicksoftware.com\'</urn:queryString>' + '</urn:query>' + '</soapenv:Body>' + '</soapenv:Envelope>';
+
+                $http.post(baseUrl + '/services/Soap/T/38.0', dataStr, { headers: { 'SOAPAction': '""',
+                        'Content-Type': 'text/xml',
+                        contentType: "text/xml" }
+                }).then(function (res) {
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(res.data, "text/xml");
+                    var res = xmlDoc.getElementsByTagName("sf:IsActive");
+
+                    if (res == undefined || res.length == 0 || res[0] == undefined || res[0].innerHTML == "false") {
+                        $scope.GISRemoteIsInactive = true;
+                        $scope.EnableSLRIsDisabled = true;
+                    } else {
+                        $scope.GISRemoteIsInactive = false;
+                        $scope.EnableSLRIsDisabled = false;
+                    }
+                }, function (res) {
+                    // console.log(res);
+                });
+
+                if ($scope.useSLR) {
+                    $scope.classNames.push('Sched006_SLRPurge');
+                    $scope.automators = dataService.getAutomators('Sched006_SLRPurge');
+                }
+            });
+        }
+
+        var template = '\n            <div class="alert-warning-banner" ng-show="lowOptimizationRunTime && useSLR">\n              When using SLR, it is highly recommended to change the optimization time to Medium or High.<br/>\n              To change the optimization runtime go to Optimization -> Logic<br/>\n            </div>\n\n            <div class="setting-row-container" ng-show="ShowRegisterBtn">\n                <label class="register-button-cls select-label">Register to the Street-Level Routing service</label>\n                <div class="select-container">\n                    <input type="button" ng-disabled="RegisterSLRBtnDisabled" class="register-button slds-button slds-button_brand select-container" ng-click="registerSLR()" value="Register">\n                </div>\n            </div>\n\n            <custom-settings-wrapper change="onSLRChange" is-disabled="useSfMaps || EnableSLRIsDisabled" primitive-type="primitiveType.boolean" label="\'Enable Street Level Routing\'" value-field-name="\'Use_SLR__c\'" setting="settings.LogicSettings" tooltip-text="Enable Street Level Routing to calculate travel distance and time more accurately than the default aerial routing"></custom-settings-wrapper>\n\n            <div ng-show="isUpgrade || !UseSFMapsFMA">                \n                <custom-settings-wrapper change="onPredictiveChange" is-beta="\'Beta\'" is-disabled="useSfMaps|| EnableSLRIsDisabled || !useEdge || !useSLR" primitive-type="primitiveType.boolean" label="\'Enable Predictive Travel for optimization services\'" value-field-name="\'Use_Predictive__c\'" setting="settings.LogicSettings" tooltip-text="{{ !useEdge ? \'Please activate Enhanced Optimization in order to use predictive routing\' : undefined }}"></custom-settings-wrapper>\n            </div>\n            <div class="setting-row-container smallSettingsError" ng-show="GISRemoteIsInactive">Your remote site FSL_GIS is Inactive please activate it before trying to enable SLR.</div>\n\n            <div ng-if="UseSFMapsFMA">\n                <custom-settings-wrapper ng-if="isUpgrade" change="onSalesforceMapsChange" is-beta="\'New\'" primitive-type="primitiveType.boolean" label="\'Enable Point-to-Point Predictive Routing\'" value-field-name="\'Use_SFMaps__c\'" setting="settings.GeocodeSettings" tooltip-text="Point-to-Point Predictive Routing calculates travel distance and time more accurately than aerial routing or street-level routing. After you turn on Point-to-Point Predictive Routing, it replaces Street-Level Routing and Predictive Travel (beta)." learn-link="\'https://help.salesforce.com/articleView?id=pfs_streetlevelrouting.htm&type=5\'"></custom-settings-wrapper>\n                <custom-settings-wrapper ng-if="!isUpgrade" change="onSalesforceMapsChange" is-beta="\'\'" primitive-type="primitiveType.boolean" label="\'Enable Point-to-Point Predictive Routing\'" value-field-name="\'Use_SFMaps__c\'" setting="settings.GeocodeSettings" tooltip-text="Point-to-Point Predictive Routing calculates travel distance and time more accurately than aerial routing or street-level routing. After you turn on Point-to-Point Predictive Routing, it replaces Street-Level Routing." learn-link="\'https://help.salesforce.com/articleView?id=pfs_streetlevelrouting.htm&type=5\'"></custom-settings-wrapper>\n            </div>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Calculate travel and breaks\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Travel Time\']" tooltip-text="Calculates and displays travel time on the Gantt chart and automatically creates breaks according to your Resource Availability work rule."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="speedUnits" label="\'Travel speed unit\'" value-field-name="\'Travel_Speed_Unit__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.number" label="\'Default travel speed\'" min="1" max="1500" value-field-name="\'Travel_Speed__c\'" setting="settings.LogicSettings" tooltip-text="If a different travel speed isn\'t specified on the resource, this value is used to calculate the travel time"></custom-settings-wrapper>\n\n            <div class="section-settings" id="__map">Map</div>\n            <custom-settings-wrapper primitive-type="primitiveType.booleanText" label="\'Show map\'" value-field-name="\'Value__c\'" setting="settings.GeneralConfig[\'Map available on gantt\']" tooltip-text="Enables map tab"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.booleanText" label="\'Show street level routing in the Service Resource map tab\'" value-field-name="\'Value__c\'" setting="settings.GeneralConfig[\'Show SLR in resource map\']" tooltip-text="If checked, resource\'s planned travel will be shown on the street level. Otherwise a straight polyline will be shown"></custom-settings-wrapper>\n            \n            <automators objects="automators" class-names="classNames" no-change="useSLR" ng-show="useSLR"></automators>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('lifeCycleCreation', lifeCycleCreation);
+
+    lifeCycleCreation.$inject = ['serviceAppointmentLifeCycleService'];
+
+    function lifeCycleCreation(serviceAppointmentLifeCycleService) {
+
+        controllerFunction.$inject = ['$scope', '$rootScope', 'primitiveType', 'dataService'];
+
+        function controllerFunction($scope, $rootScope, primitiveType, dataService) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - lifeCycleCreation');
+            });
+            $scope.primitiveType = primitiveType;
+
+            $scope.HighOrLow = [{ label: 'Highest Level', value: 'Highest' }, { label: 'Lowest Level', value: 'Lowest' }];
+
+            $scope.useHighOrLowPolicy = false;
+
+            $rootScope.$on('settingsUpdated', function () {
+                $scope.useHighOrLowPolicy = dataService.getDraftSettings().TriggerConfigurations['Enable Service Auto Classification'][fieldNames.triggerConf.Run__c];
+            });
+
+            dataService.getSettingsPromise().then(function () {
+                $scope.useHighOrLowPolicy = dataService.getDraftSettings().TriggerConfigurations['Enable Service Auto Classification'][fieldNames.triggerConf.Run__c];
+            });
+
+            $scope.settings = dataService.getDraftSettings();
+        }
+
+        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Service Type Derive Due Date\']" tooltip-text="On new service appointments, set the Due Date to the current date + the due date offset defined on the appointment\u2019s work type"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Pinned Service Not Changed\']" tooltip-text="Pinned Service appointments will not be rescheduled by the scheduling engine"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Service Duration Longer Than Minute\']" tooltip-text="In case the Duration field is blank upon Service appointment creation, set the duration to one hour"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Use polygons to assign service territories\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable Service Auto Classification\']" tooltip-text="If selected, the service territory field on service appointments is populated based on the map polygon that the address is located in."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="HighOrLow" label="\'Territory assignment policy\'" value-field-name="\'Low_Or_High_Territory_Classification__c\'" setting="settings.LogicSettings" tooltip-text="Assign service appointments to the highest or lowest-level territory in the hierarchy depending on your settings." ng-show="useHighOrLowPolicy"></custom-settings-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('lifeCycleStatusDefinitions', lifeCycleStatusDefinitions);
+
+    lifeCycleStatusDefinitions.$inject = ['serviceAppointmentLifeCycleService'];
+
+    function lifeCycleStatusDefinitions(serviceAppointmentLifeCycleService) {
+
+        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService'];
+
+        function controllerFunction($scope, primitiveType, dataService) {
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - lifeCycleCreation');
+            });
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+
+            serviceAppointmentLifeCycleService.loadData().then(function () {
+                $scope.serverSettings = serviceAppointmentLifeCycleService.settings;
+            });
+        }
+
+        var template = '\n            <custom-settings-wrapper ng-repeat="status in settings.Dictionaries track by $index" \n                                        primitive-type="primitiveType.picklist" \n                                        label-field-name="\'Default_Value__c\'" \n                                        value-field-name="\'Value__c\'"\n                                        options="serverSettings.StatusList" \n                                        setting="status" ></custom-settings-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('lifeCycleStatusTransition', lifeCycleStatusTransition);
+
+    lifeCycleStatusTransition.$inject = ['serviceAppointmentLifeCycleService'];
+
+    function lifeCycleStatusTransition(serviceAppointmentLifeCycleService) {
+
+        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', '$rootScope'];
+
+        function controllerFunction($scope, dataService, primitiveType, $rootScope) {
+
+            //$scope.verifyFunctions.push( () => console.log('verify - lifeCycleStatusTransition'));
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+            $scope.showMore = false;
+            $scope.invalid = false;
+            $scope.errorMsg = '';
+            $scope.statusMap = {};
+
+            serviceAppointmentLifeCycleService.loadData().then(function () {
+                $scope.serverSettings = serviceAppointmentLifeCycleService.settings;
+                $scope.apexPagesList = angular.copy($scope.serverSettings.ApexPages);
+                $scope.apexPagesList.unshift({ value: null, label: '--- Select custom VisualForce page ---' });
+
+                for (var i = 0; i < $scope.serverSettings.StatusList.length; i++) {
+                    $scope.statusMap[$scope.serverSettings.StatusList[i].value] = $scope.serverSettings.StatusList[i].label;
+                }
+            });
+
+            $scope.setPlaceholder = function (allowedProf) {
+                if (allowedProf && allowedProf.split(',').length > 0) return allowedProf.split(',').length + ' profiles selected';else return 'All profiles allowed';
+            };
+
+            $scope.setBorderClass = function (status) {
+                var classString = 'left-border left-border-';
+
+                if (status) {
+                    var statBoy = $scope.statusMap[status] || status;
+                    return classString + statBoy.replace(' ', '').toLowerCase();
+                } else return classString + 'default';
+            };
+
+            $scope.addFlow = function (from, to, profiles, apexPage) {
+                from = from || $scope.serverSettings.StatusList[0].value;
+                to = to || $scope.serverSettings.StatusList[1].value;
+                profiles = profiles || '';
+                var status = {
+                    'Name': from + '-' + to
+                };
+
+                status[fieldNames.statusTransitions.From_Status__c] = from;
+                status[fieldNames.statusTransitions.To_Status__c] = to;
+                status[fieldNames.statusTransitions.Allowed_Profiles__c] = profiles;
+                status[fieldNames.statusTransitions.Custom_VF__c] = apexPage;
+                $scope.settings.ServiceLegalStatuses.push(status);
+            };
+
+            $scope.removeStatusFlow = function (index) {
+                $scope.invalid = false;
+                delete $scope.settings.ServiceLegalStatuses[index];
+                $scope.settings.ServiceLegalStatuses.splice(index, 1);
+            };
+
+            $scope.checkFlow = function (status) {
+                $scope.invalid = false;
+            };
+
+            $rootScope.$on('transitionsError', function (event, args) {
+
+                if (args.msg == null) {
+                    $scope.invalid = false;
+                    return;
+                }
+
+                $scope.errorMsg = args.msg;
+                $scope.invalid = true;
+            });
+
+            $scope.getPackagedFieldName = function (field) {
+                return fieldNames.statusTransitions[field];
+            };
+
+            $scope.getTriggerConfFieldName = function (field) {
+                return fieldNames.triggerConf[field];
+            };
+
+            $scope.setDiagram = function () {
+                var diagramText = '';
+
+                if ($scope.settings && !$scope.settings.ServiceLegalStatuses) return diagramText;
+
+                function setDiagramClass(status) {
+                    return '<' + status.replace(' ', '').toLowerCase() + '>';
+                }
+
+                diagramText = '                \n                #.none: fill=#a5e2d6\n                #.scheduled: fill=#F9D058\n                #.dispatched: fill=#8DD8FA\n                #.inprogress: fill=#DCC984\n                #.completed: fill=#95D055\n                #.cannotcomplete: fill=#EA8288\n                #.canceled: fill=#BEBCBA\n                #.default: fill=#B7C9EA\n                #stroke: #232323\n                #lineWidth: 2\n                #arrowSize: 0.7\n                #fontSize: 10\n                #zoom: 1\n                #fill: #f4f6f9\n                ';
+
+                for (var i = 0; i < $scope.settings.ServiceLegalStatuses.length; i++) {
+                    var from = $scope.statusMap[$scope.settings.ServiceLegalStatuses[i][fieldNames.statusTransitions.From_Status__c]],
+                        to = $scope.statusMap[$scope.settings.ServiceLegalStatuses[i][fieldNames.statusTransitions.To_Status__c]];
+                    diagramText += '[' + from + ']->[' + to + ']\n';
+                }
+
+                return diagramText;
+            };
+
+            $scope.closeAllOthers = function (status, index) {
+                $rootScope.$broadcast('closeAllOthers', { status: status, index: index });
+            };
+        }
+
+        var template = '\n        <div class="section-settings">Service Appointment Status Transitions\n          <checkbox class="transitions-checkbox" label="" object="settings.GeneralConfig[\'Status Transitions Policy\']" value-field="\'Run__c\'"></checkbox>\n        </div>\n        <div class="slds transitions-table" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n            <table class="slds-table slds-table--fixed-layout" id="transitions-table">\n  <thead>\n    <tr class="slds-text-title--caps">\n      \n      <th class="header-picklist">\n          <span class="slds-truncate" title="From">From</span>\n      </th>\n      <th class="header-picklist">\n          <span class="slds-truncate" title="To">To</span>\n      </th>\n      <th class="header-profiles" ng-show="showMore">\n          <span class="slds-truncate" title="Allowed Profiles">Allowed Profiles</span>\n      </th>\n      <th class="header-custom-vf" ng-show="showMore">\n          <span class="slds-truncate" title="Custom Visual Force">Custom Visual Force</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="status in settings.ServiceLegalStatuses track by $index">\n      <td>\n        <div class="from-cell">\n            <custom-settings-wrapper ng-class="setBorderClass(status[getPackagedFieldName(\'From_Status__c\')])"\n                    primitive-type="primitiveType.picklist" \n                    value-field-name="\'From_Status__c\'"\n                    options="serverSettings.StatusList" \n                    setting="status" \n                    change="checkFlow(status)"\n                    >\n                </custom-settings-wrapper>\n        </div>\n      </td>\n      <td>\n        <div class="to-cell">\n            <custom-settings-wrapper  ng-class="setBorderClass(status[getPackagedFieldName(\'To_Status__c\')])"\n                    primitive-type="primitiveType.picklist" \n                    value-field-name="\'To_Status__c\'"\n                    options="serverSettings.StatusList" \n                    setting="status" \n                    change="checkFlow(status)"\n                    >\n                </custom-settings-wrapper>\n        </div>\n      </td>\n      <td ng-show="showMore">\n        <div class="profiles-cell">\n            <custom-settings-wrapper \n                primitive-type="primitiveType.multi" \n                value-field-name="\'Allowed_Profiles__c\'"\n                options="serverSettings.AllProfiles"\n                placeholder="setPlaceholder(status[getPackagedFieldName(\'Allowed_Profiles__c\')])"\n                setting="status" \n                ng-click="closeAllOthers(status, $index)">\n            </custom-settings-wrapper>\n        </div>\n      </td>\n      <td ng-show="showMore">\n        <div class="customvf-cell">\n            <custom-settings-wrapper  \n                primitive-type="primitiveType.picklist" \n                value-field-name="\'Custom_VF__c\'"\n                options="apexPagesList" \n                setting="status" >\n            </custom-settings-wrapper>\n        </div>\n      </td>\n\n        <td>\n        <div class="delete-cell">\n            <a href="javascript:void(0);" ng-click="removeStatusFlow($index)">\n                <svg aria-hidden="true" class="delete-icon" ng-class="{\'showless\': showMore == false}">\n                    <use xlink:href="' + settings.icons.delete + '"></use>\n                </svg>\n            </a>\n        </div>\n      </td>\n    </tr>\n  </tbody>\n</table>\n<div class="newAutomatorError" ng-if="invalid">\n    <ui-error>\n        <main-content>\n            <div>{{errorMsg}}</div>\n        </main-content>\n    </ui-error>\n</div>\n</div>\n\n<div class="table-buttons" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n  <div class="add-flow-button" ng-click="addFlow()">Add Flow</div>\n  <a href="javascript:void(0);" ng-show="!showMore" ng-click="showMore = true;">More details</a>\n  <a href="javascript:void(0);" ng-show="showMore" ng-click="showMore = false;">Less details</a>\n</div>\n<div id="statusDiagram" ng-if="settings.ServiceLegalStatuses" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n  <canvas nomnoml nomnoml-model="setDiagram()"</canvas>\n</div>\n  ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                formObject: '=',
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('sharingAutomation', sharingAutomation);
+
+    sharingAutomation.$inject = ['sharingService', 'primitiveType'];
+
+    function sharingAutomation(sharingService, primitiveType) {
+
+        controllerFunction.$inject = ['$scope', 'dataService', '$rootScope'];
+
+        function controllerFunction($scope, dataService, $rootScope) {
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+            dataService.getSettingsPromise().then(function () {
+                $scope.automators = dataService.getAutomators('Sched008_TimePhaseSharing');
+                $scope.showSharingSettings = dataService.getDraftSettings().GeneralConfig['Is Fresh Install'][fieldNames.General_Config__c.Run__c];
+            });
+
+            $rootScope.$on('settingsUpdated', function () {
+                $scope.automators = dataService.getAutomators('Sched008_TimePhaseSharing');
+            });
+        }
+
+        var template = '\n            <div ng-if="showSharingSettings">\n                <custom-settings-wrapper id="__sharingtriggers" primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Status Actions\']"></custom-settings-wrapper>\n            </div>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable workorder parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable account parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable opportunity parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable asset parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Location Based Sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'User Locations\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Make assigned resources followers of service appointments that are Dispatched or In Progress\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Allow follow\']" tooltip-text="Assigned resources are removed as followers when an appointment\u2019s status is no longer Dispatched or In Progress"></custom-settings-wrapper>\n            <div ng-if="showSharingSettings">         \n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Edit Sharing For Crew Members\']"></custom-settings-wrapper>\n            </div>\n            <div class="automatorExp">Time Based Sharing Scheduled Jobs - will share and remove sharing for Service Resources based on time-phased Resource Memberships</div>\n            <automators id="__tbssj" objects="automators" class-names="[\'Sched008_TimePhaseSharing\']"></automators>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('sharingCalendarSync', sharingCalendarSync);
+
+    sharingCalendarSync.$inject = ['sharingService'];
+
+    function sharingCalendarSync(sharingService) {
+
+        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService'];
+
+        function controllerFunction($scope, primitiveType, dataService) {
+
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - sharingCalendarSync');
+            });
+            $scope.primitiveType = primitiveType;
+            $scope.settings = dataService.getDraftSettings();
+        }
+
+        var template = '\n            <content-collapse-wrapper header="\'Service Appointment\'" open="true">\n                <content>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Services from Salesforce calendar events\'" value-field-name="\'From_Salesforce__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Services to Salesforce calendar events\'" value-field-name="\'To_Salesforce__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Calendar Event type\'" tooltip-text="This event type will create a Work Order and a Service appointment" value-field-name="\'Display_Name__c\'" setting="settings.Synchronize.ServiceAppointment"  ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enforce validations when syncing Service Appointments and Salesforce calendar events\'" value-field-name="\'Enforce_Validations__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                </content>\n            </content-collapse-wrapper>\n\n            <content-collapse-wrapper header="\'Resource Absence\'" open="true">\n                <content>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Absences from Salesforce calendar\'" value-field-name="\'From_Salesforce__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Absences to Salesforce calendar\'" value-field-name="\'To_Salesforce__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Calendar Event type\'" tooltip-text="This event type will create a Resource Absence" value-field-name="\'Display_Name__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enforce validation rules when syncing resource absences and Salesforce calendar events\'" value-field-name="\'Enforce_Validations__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                   \n                </content>\n            </content-collapse-wrapper>\n        ';
+
+        return {
+            restrict: 'E',
+            scope: {
+                verifyFunctions: '='
+            },
+            controller: controllerFunction,
+            template: template
+        };
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').service('sharingService', sharingService);
+
+    sharingService.$inject = ['settingsUtils', 'dataService'];
+
+    function sharingService(settingsUtils, dataService) {
+
+        var prom = null;
+
+        var instance = {
+            settings: {},
+            save: function save() {
+                return dataService.saveSettings({
+                    TriggerConfigurations: {
+                        'Status Actions': dataService.getDraftSettings().TriggerConfigurations['Status Actions'],
+                        'Location Based Sharing': dataService.getDraftSettings().TriggerConfigurations['Location Based Sharing'],
+                        'User Locations': dataService.getDraftSettings().TriggerConfigurations['User Locations'],
+                        'Enable workorder parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable workorder parent sharing'],
+                        'Enable account parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable account parent sharing'],
+                        'Enable opportunity parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable opportunity parent sharing'],
+                        'Enable asset parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable asset parent sharing'],
+                        'Allow follow': dataService.getDraftSettings().TriggerConfigurations['Allow follow'],
+                        'Edit Sharing For Crew Members': dataService.getDraftSettings().TriggerConfigurations['Edit Sharing For Crew Members']
+
+                    },
+                    Synchronize: {
+                        'ServiceAppointment': dataService.getDraftSettings().Synchronize['ServiceAppointment'],
+                        'ResourceAbsence': dataService.getDraftSettings().Synchronize['ResourceAbsence']
+                    },
+                    // need all 3 for automators to save
+                    AutomatorConfig: dataService.getAutomatorsMap('Sched008_TimePhaseSharing'),
+                    DeletedAutomators: dataService.getDraftSettings().DeletedAutomators,
+                    Territories: dataService.getDraftSettings().Territories,
+                    manyTerritories: dataService.getDraftSettings().manyTerritories
+                });
+            },
+            restore: function restore() {
+                return dataService.restoreDefaultSettings({
+                    TriggerConfigurations: {
+                        'Status Actions': {},
+                        'Location Based Sharing': {},
+                        'User Locations': {},
+                        'Enable workorder parent sharing': {},
+                        'Enable account parent sharing': {},
+                        'Enable opportunity parent sharing': {},
+                        'Enable asset parent sharing': {},
+                        'Allow follow': {},
+                        'Edit Sharing For Crew Members': {},
+                        'Update AR when service is reassigned': {},
+                        'Update AR when service is dispatched': {}
+                    },
+                    Synchronize: {},
+                    RestoreAutomatorSettings: ['Sched008_TimePhaseSharing']
+                });
+            },
+            loadData: function loadData() {
+                if (prom) return prom;
+
+                prom = settingsUtils.callRemoteAction(remoteActions.sharingLoadData).then(function (res) {
+                    instance.settings = res;
+                });
+
+                return prom;
+            }
+        };
+
+        return instance;
+    }
+})();
+'use strict';
+
+(function () {
+
+    angular.module('SettingsApp').directive('sharingUserTerritories', sharingUserTerritories);
+
+    sharingUserTerritories.$inject = ['sharingService'];
+
+    function sharingUserTerritories(sharingService) {
+
+        controllerFunction.$inject = ['$scope'];
+
+        function controllerFunction($scope) {
+            $scope.verifyFunctions.push(function () {
+                return console.log('verify - sharingUserTerritories');
+            });
+            $scope.sharingService = sharingService;
+        }
+
+        var template = '\n        <div class="pWrapper">\n            \n            Assign users a <a target="_blank" ng-href="../{{sharingService.settings.UserTerritoriesPreFix}}">user territory</a> record for each service territory where they work.\n            <br/> \n            User territory records give users Apex rule-based access to the following records:\n            <br/>\n            <ul class="slds-list_dotted">\n                <li>The related service territory</li>\n                <li>The territory\u2019s service territory members and their assigned resource records</li>\n                <li>Related service appointments</li>\n                <li>Related resource absences</li>\n            </ul>\n\n            Sharing is only applicable for private records.\n        </div>\n        ';
 
         return {
             restrict: 'E',
@@ -8659,1246 +12980,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             scope: {
                 recipeType: '=',
                 onRecipeEdit: '&'
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingBundling', schedulingBundling);
-
-    schedulingBundling.$inject = [];
-
-    function schedulingBundling() {
-
-        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', 'settingsUtils', '$timeout'];
-
-        function controllerFunction($scope, primitiveType, dataService, settingsUtils, $timeout) {
-
-            function getRangeArray(start, end) {
-
-                var arr = [];
-
-                for (var i = start; i <= end; i++) {
-                    arr.push(i);
-                }
-
-                return arr;
-            }
-
-            $scope.dayOfWeekLookup = {
-                'SUN': '0',
-                'MON': '1',
-                'TUE': '2',
-                'WED': '3',
-                'THU': '4',
-                'FRI': '5',
-                'SAT': '6'
-            };
-
-            function joinElements(selectedElements) {
-                if (selectedElements === undefined || selectedElements.length === 0) {
-
-                    return '*';
-                } else {
-                    return selectedElements.join(",");
-                }
-            }
-
-            $scope.bdaysOfWeek = [{ label: 'Sun', value: 'SUN' }, { label: 'Mon', value: 'MON' }, { label: 'Tue', value: 'TUE' }, { label: 'Wed', value: 'WED' }, { label: 'Thu', value: 'THU' }, { label: 'Fri', value: 'FRI' }, { label: 'Sat', value: 'SAT' }];
-
-            $scope.minutesOptions = [15, 30];
-
-            $scope.bdaysOfMonth = getRangeArray(1, 31);
-            $scope.bdaysOfMonthWithLabel = [];
-
-            for (var i = 0; i < $scope.bdaysOfMonth.length; i++) {
-                $scope.bdaysOfMonthWithLabel.push({
-                    label: $scope.bdaysOfMonth[i].toString(),
-                    value: $scope.bdaysOfMonth[i].toString()
-                });
-            }
-
-            $scope.allHours = getRangeArray(0, 23);
-            $scope.allMinutes = getRangeArray(0, 59);
-
-            $scope.selected = { months: [],
-                daysMonth: [],
-                daysWeek: []
-            };
-
-            $scope.parseNumber = function (str) {
-
-                if (str) return parseInt(str);
-                return 0;
-            };
-
-            $scope.isBundleOn = function () {
-
-                var nsValueField = orgNameSpace + 'Value__c';
-
-                return this.settings && this.settings.GeneralConfig && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '1';
-            };
-
-            var setDefaultValues = function setDefaultValues($scope) {
-
-                $scope.dayMonth = $scope.bdaysOfMonth[0];
-                $scope.hours = $scope.allHours[23];
-                $scope.minutes = $scope.allMinutes[0];
-                $scope.selected.months = [];
-                $scope.recurringDay = 'dayWeek';
-                $scope.selected.daysMonth = [];
-                $scope.selected.daysWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-
-                ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
-
-                    $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", true);
-                });
-            };
-
-            function setValues($scope, cronExpr) {
-
-                var regExps = {
-                    'recurringDayWeek': /(SUN|MON|TUE|WED|THU|FRI|SAT)(,SUN|,MON|,TUE|,WED|,THU|,FRI|,SAT)*\s\*$/
-                };
-
-                var argsCron = cronExpr.split(' ');
-
-                var minutes = argsCron[1],
-                    hours = argsCron[2];
-
-                $scope.hours = $scope.parseNumber(hours);
-                $scope.minutes = $scope.parseNumber(minutes);
-
-                if (regExps.recurringDayWeek.test(cronExpr)) {
-                    // days of week
-
-                    $scope.recurringDay = 'dayWeek';
-
-                    $scope.selected.months = argsCron[4].split(',');
-                    $scope.selected.daysWeek = argsCron[5].split(',');
-
-                    var selectedDaysWeek = [];
-
-                    if ($scope.selected.daysWeek == '?') {
-                        selectedDaysWeek = getRangeArray(0, 6);
-                    } else {
-                        selectedDaysWeek = $scope.selected.daysWeek;
-                    }
-
-                    ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
-
-                        $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", false);
-                    });
-
-                    selectedDaysWeek.forEach(function (e) {
-
-                        $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked", true);
-                    });
-                } else {
-                    // day of month
-
-                    $scope.recurringDay = 'dayMonth';
-
-                    $scope.selected.daysMonth = argsCron[3].split(',');
-                    $scope.selected.months = argsCron[4].split(',');
-
-                    var selectedDaysMonth = [];
-                    if ($scope.selected.daysMonth == '?') {
-
-                        selectedDaysMonth = getRangeArray(1, 31);
-                    } else {
-
-                        selectedDaysMonth = $scope.selected.daysMonth;
-                    }
-
-                    selectedDaysMonth.forEach(function (e) {
-                        var n = e - 1;
-                        $('.bundlerMonthAndDays #bdaysOfMonth' + n).prop("checked", true);
-                    });
-                }
-
-                return true;
-            }
-
-            $scope.checkNotEmptyDays = function () {
-
-                if ($scope.recurringDay === 'dayWeek') {
-
-                    return $scope.selected.daysWeek.length > 0;
-                }
-
-                return $scope.selected.daysMonth.length > 0;
-            };
-
-            $scope.bgetCronExpr = function () {
-
-                // calc new cron expr
-
-                /*
-                {1} Seconds - so 0 here i.e. start of the minute.
-                {2} Minutes - 0 again so start of the hour.
-                {3} Hours -  5 so 5 am. Uses 24 hour notation so 21 = 9pm
-                {4} Day_of_month - ? means no specific value, only available for day of the month and day of the week.
-                {5} Month - * indicates all values, i.e. every month. (if we only want to run on 1st Jan say, this would be 1)
-                {6} Day_of_week -
-                */
-
-                //  console.log('bgetCronExpr');
-
-                try {
-
-                    var expr = {
-                        sec: "0",
-                        min: "0",
-                        hour: "0",
-                        dayMonth: "*",
-                        month: "*",
-                        dayWeek: "?",
-                        year: "*"
-                    };
-
-                    if (!$scope.isBundleOn()) {
-                        // shouldDisableToggle
-
-                        var _newExp = expr.sec + " " + expr.min + " " + expr.hour + " " + expr.dayMonth + " " + expr.month + " " + expr.dayWeek + " " + expr.year;
-                        return _newExp;
-                    }
-
-                    if ($scope.recurringDay === 'dayWeek') {
-
-                        expr.dayMonth = '?';
-
-                        $scope.selected.daysWeek = [];
-
-                        ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].forEach(function (e) {
-
-                            if ($('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]) && $('.bundlerMonthAndDays #bdaysOfWeek' + $scope.dayOfWeekLookup[e]).prop("checked")) {
-                                $scope.selected.daysWeek.push(e);
-                            }
-                        });
-
-                        expr.dayWeek = joinElements($scope.selected.daysWeek);
-                    } else {
-
-                        $scope.selected.daysMonth = [];
-                        for (var _i = 0; _i <= 30; _i++) {
-                            if ($('.bundlerMonthAndDays #bdaysOfMonth' + _i) && $('.bundlerMonthAndDays #bdaysOfMonth' + _i).prop("checked")) {
-                                $scope.selected.daysMonth.push(_i + 1);
-                            }
-                        };
-
-                        expr.dayMonth = joinElements($scope.selected.daysMonth);
-                    }
-
-                    expr.hour = $scope.hours;
-                    expr.min = $scope.minutes;
-
-                    var newExp = expr.sec + " " + expr.min + " " + expr.hour + " " + expr.dayMonth + " " + expr.month + " " + expr.dayWeek + " " + expr.year;
-
-                    // console.log(newExp);
-
-                    return newExp;
-                } catch (ex) {
-                    console.log(ex);
-                }
-            };
-
-            $scope.errors = {};
-            $scope.errorMsg = false;
-
-            // nothing to check here, all good
-            $scope.verifyFunctions.push(function () {
-                return false;
-            });
-
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-
-            $scope.shouldDisableToggle = function () {
-
-                var nsValueField = orgNameSpace + 'Value__c';
-
-                if (this.settings && this.settings.GeneralConfig && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '0') {
-
-                    $scope.wasOff = true; // if the bundle was off we need to show the checkbox.            
-                }
-
-                return this.settings.GeneralConfig && !$scope.wasOff && this.settings.GeneralConfig['Enable Scheduling Bundling'] && this.settings.GeneralConfig['Enable Scheduling Bundling'][nsValueField] == '1';
-            };
-
-            if (!$scope.isBundleOn()) {
-                setDefaultValues($scope); // set defult value at start
-            }
-
-            $scope.toggleNightlyTriggerStatusActive = false;
-            $scope.serverToggleNightlyTriggerStatusActive = false;
-            $scope.btnNightlyTriggerStatusActive = true;
-            $scope.showSavingBundleSettingStatus = '';
-
-            // get status, if active get cron , if not then set defualt
-            $scope.toggleNightlyStatus = function () {
-
-                settingsUtils.callRemoteAction(remoteActions.nightlyBundleTriggerStatus).then(function (res) {
-
-                    $scope.toggleNightlyTriggerStatusActive = res;
-
-                    if (res) {
-
-                        $scope.getNightlyCronExp();
-                    } else {
-
-                        setDefaultValues($scope);
-                    }
-                }).catch(function (err) {
-                    $scope.errorMsg = true;
-                });
-            };
-
-            $scope.getNightlyCronExp = function () {
-
-                settingsUtils.callRemoteAction(remoteActions.getBundleNightlyCronExp).then(function (res) {
-
-                    if (res) {
-                        setValues($scope, res);
-                    }
-                }).catch(function (err) {
-                    $scope.errorMsg = true;
-                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
-                });
-            };
-
-            $scope.toggleNightlyStatus(); // get status. start point
-
-            $scope.updateCacheRedisBtnDisabled = false;
-
-            $scope.recurringDayChange = function (event, val) {
-
-                $scope.recurringDay = val;
-            };
-            $scope.hoursChange = function (event, val) {
-
-                $scope.hours = val;
-            };
-
-            $scope.minutesChange = function (event, val) {
-
-                $scope.minutes = val;
-            };
-
-            $scope.toggleBundleNightly = function () {
-
-                $scope.toggleNightlyTriggerStatusActive = !$scope.toggleNightlyTriggerStatusActive;
-            };
-
-            $scope.toggleBundleNightlyTrigger = function () {
-
-                $scope.btnNightlyTriggerStatusActive = false;
-
-                $scope.errorMsg = false;
-
-                var cornRegx = $scope.bgetCronExpr();
-
-                // check if day selected and is active
-                if ($scope.toggleNightlyTriggerStatusActive && !$scope.checkNotEmptyDays()) {
-                    $scope.errorMsg = true;
-                    $scope.errMsgText = 'Select one or more days.';
-                    $scope.btnNightlyTriggerStatusActive = true;
-                    return;
-                }
-
-                $scope.showSavingBundleSettingStatus = 'IN_PROCCESS';
-
-                settingsUtils.callRemoteAction(remoteActions.toggleBundleNightlyTrigger, [cornRegx, $scope.toggleNightlyTriggerStatusActive]).then(function (res) {
-
-                    $scope.btnNightlyTriggerStatusActive = true;
-
-                    $scope.toggleNightlyTriggerStatusActive = res;
-
-                    $scope.serverToggleNightlyTriggerStatusActive = res; // not used. for 236 desige 
-
-                    if (res) {
-                        $scope.getNightlyCronExp();
-                    }
-
-                    if ($scope.toggleNightlyTriggerStatusActive == false) {
-
-                        $scope.doneSavingChange = 'Automated bundling is off.';
-                    } else {
-
-                        $scope.doneSavingChange = 'Automated bundling schedule was saved.';
-                    }
-
-                    $scope.showSavingBundleSettingStatus = 'DONE';
-
-                    $timeout(function () {
-                        $scope.showSavingBundleSettingStatus = '';
-                    }, 5000);
-                }).catch(function (err) {
-                    $scope.errorMsg = true;
-                    $scope.btnNightlyTriggerStatusActive = true;
-                    $scope.showSavingBundleSettingStatus = '';
-                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
-                });
-            };
-
-            $scope.updateBundleCacheRedis = function () {
-
-                $scope.updateCacheRedisBtnDisabled = true;
-                $scope.showSavingBundleSettingStatus = 'IN_PROCCESS';
-
-                settingsUtils.callRemoteAction(remoteActions.updateBundleCacheRedis).then(function () {
-
-                    //  alert('Configuration changes were updated.');// removed chrome bug 92 W-9651771
-                    $scope.updateCacheRedisBtnDisabled = false;
-
-                    $scope.doneSavingChange = 'Configuration changes were updated.';
-                    $scope.showSavingBundleSettingStatus = 'DONE';
-
-                    $timeout(function () {
-                        $scope.showSavingBundleSettingStatus = '';
-                    }, 5000);
-                }).catch(function (err) {
-                    $scope.errorMsg = true;
-                    $scope.showSavingBundleSettingStatus = '';
-                    $scope.updateCacheRedisBtnDisabled = false;
-                    $scope.errMsgText = 'Something went  wrong. Please contact our support team if the problem persists.';
-                });
-            };
-        }
-
-        var template = '\n        <div class="bundle-settings">\n        <div ng-if="shouldDisableToggle()">\n        <p>\n            Service appointment bundles are active. \n        </p>\n    \n    <ol class="slds-setup-assistant">\n        <!--\n        <li class="slds-setup-assistant__item" style="" > \n        <article class="slds-setup-assistant__step">\n                <div class="slds-setup-assistant__step-summary">\n                    <div class="slds-media">\n\n                        <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                            <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small ">Off-Schedule Configuration Updates</h3>\n                            <div > You can update configuration changes now instead of waiting for scheduled updates. \n                            </div>\n                        </div>\n\n                        <div class="slds-media__figure slds-media__figure_reverse">\n                            <input type="button"  ng-disabled="updateCacheRedisBtnDisabled" class="register-button slds-button slds-button_brand select-container" ng-click="updateBundleCacheRedis()" value="Update">\n                        </div>\n                    </div>\n                </div>\n        </article>\n        </li>\n        -->\n        <li class="slds-setup-assistant__item">   \n        <article class="slds-setup-assistant__step" >\n\n                <div class="slds-setup-assistant__step-summary">\n\n                    <div class="slds-media">\n\n                        <div class="slds-setup-assistant__step-summary-content slds-media__body">\n                            <h3 class="slds-setup-assistant__step-summary-title slds-text-heading_small ">Automated Bundling</h3>\n                            <div>Schedule the bundling process during low-activity times.\n                            </div>\n\n                            <div class="automatorMonthAndDays bundlerMonthAndDays" style="width:40rem;float:left;border:0" >\n                                <div class="automatorDays" style="width: 100%;">\n                                    <div class="automatorWeekOrMonth">\n                                        <label>\n                                            <input type="radio" ng-model="recurringDay" ng-click="recurringDayChange($event,\'dayWeek\')" value="dayWeek" ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false">\n                                            Day of week\n                                        </label>\n                                        <label>\n                                            <input type="radio" ng-model="recurringDay" ng-click="recurringDayChange($event,\'dayMonth\')" value="dayMonth" ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false">\n                                         Day of month\n                                        </label>\n                                    </div>\n                                    <cron-exp-rows-of-dates ng-show="recurringDay == \'dayWeek\'" rows="bdaysOfWeek" selected-rows="selected.daysWeek" label-id-prefix="automator.Name + \'bdaysOfWeek\'" is-disabled="isDisabled|| toggleNightlyTriggerStatusActive == false "></cron-exp-rows-of-dates>\n                                    <cron-exp-rows-of-dates ng-show="recurringDay == \'dayMonth\'" rows="bdaysOfMonthWithLabel" selected-rows="selected.daysMonth" label-id-prefix="automator.Name + \'bdaysOfMonth\'" is-disabled="isDisabled || toggleNightlyTriggerStatusActive == false"></cron-exp-rows-of-dates>\n                                </div>\n                            </div>\n        \n                            <div class="automatorHour" style="float: left;border:0">\n                                \n                                <div class="automatorSpecificHour" >\n                                \n                                        <span class="automatorTimeSpan">\n                                            <span class="timeSpanHeader">\n                                                Hour \n                                            </span>\n                                            \n                                            <span class="timeSpanInput">\n                                                <input ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false" ng-click="hoursChange($event,hours)" ng-model="hours" min="0" max="23" onkeydown = "return false;" type="number" class="input-settings">\n                                            </span>\n                                        </span>\n                                        <span class="automatorTimeSpan">\n                                            <span class="timeSpanHeader">\n                                                Minute\n                                            </span>\n            \n                                            <span class="timeSpanInput">\n                                                <input ng-disabled="isDisabled || toggleNightlyTriggerStatusActive == false" ng-click="minutesChange($event,minutes)"  ng-model="minutes" min="0" max="55" step="5" type="number" onkeydown = "return false;" class="input-settings">\n                                            </span>\n                                        </span>\n                                </div> <!-- automatorSpecificHour -->\n                            </div> <!-- automatorHour -->\n                        </div> <!-- slds-media__body -->\n\n                            \n\n                        <div class="slds-media__figure slds-media__figure_reverse">\n                        \n                            <div class="transitions-checkbox" >\n                                <span class="checkBoxWrapper" \n                                        ng-click="toggleBundleNightly()" \n                                        ng-class="{checked: toggleNightlyTriggerStatusActive, unchecked: !toggleNightlyTriggerStatusActive  }" \n                                        title="{{EdgeRemoteSiteIsInactiveMsg}}">\n        \n                                    <span class="innerCheckboxValue" \n                                            ng-class="{checked: toggleNightlyTriggerStatusActive, unchecked: !toggleNightlyTriggerStatusActive}"/>\n                                    \n                                    <span class="toggled-label">{{toggleNightlyTriggerStatusActive ? \'ON\' : \'OFF\'}}</span>\n                                </span>\n                            \n                            </div>\n\n                            <div class="slds-media__figure slds-media__figure_reverse" style="padding-top:3rem">\n                                    <input type="button"   class="register-button slds-button slds-button_brand select-container" ng-disabled="!btnNightlyTriggerStatusActive" ng-click="toggleBundleNightlyTrigger()" value="Apply"> \n                             </div>\n\n                        \n                        </div> <!-- slds-media__figure_reverse -->\n                \n                        </div> <!-- slds-media -->\n                        </div> <!-- slds-setup-assistant__step-summary -->\n\n</article>\n        </li>\n    </ol>\n\n<ui-error ng-if="errorMsg">\n<main-content>\n{{errMsgText}}\n</main-content>\n</ui-error>\n \n<div class="saving-banner" ng-show="showSavingBundleSettingStatus != \'\' " ng-class="{\'settings-saved\' : showSavingBundleSettingStatus == \'DONE\'}">\n     <span ng-show="showSavingBundleSettingStatus == \'IN_PROCCESS\' ">Saving changes\u2026</span>\n     <span ng-show="showSavingBundleSettingStatus == \'DONE\' ">{{doneSavingChange}}</span>\n</div>\n\n</div>\n<div ng-if="!shouldDisableToggle()">\n    <custom-settings-wrapper primitive-type="primitiveType.booleanText" \n    label="\'Bundle your service appointments\'" \n    value-field-name="\'Value__c\'" \n    setting="settings.GeneralConfig[\'Enable Scheduling Bundling\']" \n    tooltip-text="Group service appointments to create a single service appointment and facilitate the scheduling process.">\n    </custom-settings-wrapper>\n</div>\n</div>    \n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingDynamicGantt', schedulingDynamicGantt);
-
-    schedulingDynamicGantt.$inject = [];
-
-    function schedulingDynamicGantt() {
-
-        controllerFunction.$inject = ['$rootScope', '$scope', 'primitiveType', 'dataService'];
-
-        function controllerFunction($rootScope, $scope, primitiveType, dataService) {
-
-            $scope.hasActiveRecipesOfTypeOverlap = true;
-
-            $rootScope.$on('ActiveRecipesOfTypeOverlap', function (ev, data) {
-                $scope.hasActiveRecipesOfTypeOverlap = data;
-            });
-
-            // nothing to check here, all good
-            $scope.verifyFunctions.push(function () {
-                return false;
-            });
-
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-
-            $scope.queryOrderBy = [{ label: 'Priority', value: 'priority' }, { label: 'Distance', value: 'distance' }];
-
-            $scope.fixOverLapsTreat = [{ label: 'Leave on Gantt and set In-jeopardy', value: 'On Reschedule Failure Set Service To In Jeopardy' }, { label: 'Unschedule the appointment(s)', value: 'Leave service unscheduled' }, { label: 'Reshuffle other assignments', value: 'Call reshuffle' }];
-
-            $scope.onOverlapDetection = [{ label: 'Schedule to original resource only', value: 'Schedule To Original Resource Only' }, { label: 'Schedule to all resources', value: 'Schedule To All Resources' //value: 'Consider all Resources' }
-            }];
-
-            $scope.onServicesReschedule = [{ label: 'Chronological Order', value: 'Chronological Order' }, { label: 'Priority', value: 'Priority' }];
-
-            $scope.onReschduleGroupNearBy = [{ label: 'Schedule to original resource only', value: 'Schedule To Original Resource Only' }, { label: 'Schedule to all resources', value: 'Schedule To All Resources' //value: 'Consider all Resources' }
-            }];
-
-            dataService.getSettingsPromise().then(function () {
-                $scope.saBooleanFields = angular.copy(dataService.serviceBooleanFields);
-                $scope.saBooleanFields.shift();
-
-                $scope.woBooleanFields = angular.copy(dataService.woBooleanFields);
-                $scope.woBooleanFields.shift();
-
-                $scope.woliBooleanFields = angular.copy(dataService.woliBooleanFields);
-                $scope.woliBooleanFields.shift();
-            });
-        }
-
-        var template = '\n            \n            <div class="section-settings" id="__fix-overlaps">Fix Overlaps</div>\n            <p>\n                Fix overlap will reschedule appointments that overlap another appointment or an absence\n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Automatically fix overlaps when an appointment overlaps with another appointment or absence\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable Dynamic Gantt Fix Overlaps\']" is-disabled="hasActiveRecipesOfTypeOverlap" tooltip-text="If you have scheduling recipes of type overlap auto fix overlap will be disabled and turned off"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onOverlapDetection" label="\'When attempting to fix overlaps\'" value-field-name="\'Reschedule_Options__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onServicesReschedule" label="\'After unscheduling services reschedule them by\'" value-field-name="\'Reschedule_Method__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="fixOverLapsTreat" label="\'When unable to find a valid schedule for an appointment\'" value-field-name="\'Reschedule_Failure_Treatment__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Overlap Settings\']"></custom-settings-wrapper>\n   \n            <div class="section-settings" id="__fill-in">Fill-in Schedule</div>\n            <p>\n                Fill-in schedule will schedule work for an idle resource. You can trigger this service from the dispatcher console or through API <br>\n                When trying to fill in an idle resource\'s daily schedule, only service appointments where the folllowing three fields evaluate to true will be considered as candidates. \n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saBooleanFields" label="\'Service Appointment candidate Boolean field\'" value-field-name="\'SA_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="Select a Boolean field that indicates if a Service Appointment is a candidate to fill in schedule"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woBooleanFields" label="\'Work Order candidate Boolean field\'" value-field-name="\'WO_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="In the case of Work Order as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliBooleanFields" label="\'Work Order Line Item candidate Boolean field\'" value-field-name="\'WOLI_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']" tooltip-text="In the case of Work Order Line Item as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="queryOrderBy" label="\'Order candidate appointments by\'" value-field-name="\'Order_Candidate_Appointments_By__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="50" label="\'Max appointments to schedule\'" value-field-name="\'Max_Services_Limit__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="5" max="60" label="\'Max runtime (seconds)\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Fill In Settings\']"></custom-settings-wrapper>\n           \n            <div class="section-settings" id="__group-near-by">Group Nearby Appointments</div>\n            <p>\n                Group near-by appointments will schedule work that is close to a given appointment together. The service may unassign lower priority appointments in order to make room for the near-by appointments.\n            </p>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saBooleanFields" label="\'Service Appointment candidate Boolean field\'" value-field-name="\'SA_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="Select a Boolean field that indicates if a Service Appointment is a candidate to fill in schedule"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woBooleanFields" label="\'Work Order candidate Boolean field\'" value-field-name="\'WO_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="In the case of Work Order as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliBooleanFields" label="\'Work Order Line Item candidate Boolean field\'" value-field-name="\'WOLI_Candidate_Boolean_Field__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="In the case of Work Order Line Item as an appointment\'s parent - this field should be true for the service appointment be a candidate."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="50" label="\'Max appointments to schedule\'" value-field-name="\'Max_Services_Limit__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="5" max="60" label="\'Max runtime (seconds)\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onReschduleGroupNearBy" label="\'When attempting to schedule the unscheduled service after the nearby services\'" value-field-name="\'Reschedule_Options__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="fixOverLapsTreat" label="\'When unable to arrange schedule\'" value-field-name="\'Reschedule_Failure_Treatment__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Radius for nearby appointments\'" value-field-name="\'Max_Services_Radius__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Group Near By Settings\']" tooltip-text="The radius in which appointments are considered \'near-by\'"></custom-settings-wrapper>\n            \n            <div class="section-settings" id="__reshuffle">Reshuffle assignments</div>\n            <custom-settings-wrapper primitive-type="primitiveType.number" min="1" max="7" label="\'Max time horizon (days) in which the appointment can be scheduled\'" value-field-name="\'Max_Running_Time__c\'" setting="settings.DynamicGanttSettings[\'Dynamic Gantt Reshuffle Settings\']"></custom-settings-wrapper>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-
-// <custom-settings-wrapper primitive-type="primitiveType.boolean" label="'Try to reshuffle unsuccessful reschedulings'" value-field-name="'Enable_Reshuffle__c'" setting="settings.DynamicGanttSettings['Dynamic Gantt Group Near By Settings']"></custom-settings-wrapper>
-// <custom-settings-wrapper primitive-type="primitiveType.picklist" options="onOverlapDetection" label="'When services overlap is detected'" value-field-name="'Reschedule_Options__c'" setting="settings.DynamicGanttSettings['Dynamic Gantt Group Near By Settings']"></custom-settings-wrapper>
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingJobs', schedulingJobs);
-
-    schedulingJobs.$inject = [];
-
-    function schedulingJobs() {
-
-        controllerFunction.$inject = ['$scope'];
-
-        function controllerFunction($scope) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - schedulingJobs');
-            });
-        }
-
-        var template = '';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingLogic', schedulingLogic);
-
-    schedulingLogic.$inject = [];
-
-    function schedulingLogic() {
-
-        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', 'settingsUtils', 'serviceAppointmentLifeCycleService', '$q', '$rootScope'];
-
-        function controllerFunction($scope, primitiveType, dataService, settingsUtils, serviceAppointmentLifeCycleService, $q, $rootScope) {
-
-            $scope.errors = {};
-
-            // nothing to check here, all good
-            $scope.verifyFunctions.push(function () {
-                return false;
-            });
-
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-
-            $scope.pinnedStatuses = {};
-
-            $scope.startOfWeek = [{ label: 'Sunday', value: 'Sunday' }, { label: 'Monday', value: 'Monday' }];
-
-            $scope.PushTopicProps = ['FSL_Operation__c'];
-
-            $scope.sharingObjectSettingsStatus = 'Validating';
-
-            $scope.sharingObjects = [{
-                SharingObjectAPI: "FSL_Operation__Share",
-                SharingObjectName: "FSL Operation",
-                Status: 'NotUpdated'
-            }];
-
-            $scope.buttonStateLabels = {
-                update: 'Update push topic',
-                updated: 'Push topic updated',
-                validate: 'Validating push topic',
-                failed: 'Failed to validate Push Topic for complex work'
-            };
-
-            $scope.$watch("sharingObjects", function (newValue, oldValue) {
-                var privateSettingsCounter = 0;
-                for (var i in newValue) {
-                    if (newValue[i].Status == 'NotUpdated' || newValue[i].Status == 'ERROR') {
-                        return;
-                    }
-
-                    if (newValue[i].Status == 'Public') {
-                        $scope.sharingObjectSettingsStatus = 'Public';
-                        return;
-                    }
-
-                    if (newValue[i].Status == 'Private') {
-                        privateSettingsCounter++;
-                    }
-                }
-
-                if (newValue.length == privateSettingsCounter) {
-                    $scope.sharingObjectSettingsStatus = 'Private';
-                }
-            }, true);
-
-            $q.all([serviceAppointmentLifeCycleService.loadData(), dataService.getSettingsPromise()]).then(function () {
-
-                $scope.statuses = serviceAppointmentLifeCycleService.settings.StatusList;
-
-                $scope.statuses.forEach(function (status) {
-                    if ($scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c]) {
-                        $scope.pinnedStatuses[status.value] = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c].split(',').indexOf(status.value) > -1;
-                    }
-                });
-            });
-
-            $scope.updateSettings = function () {
-                var statuses = [];
-
-                for (var key in $scope.pinnedStatuses) {
-                    if ($scope.pinnedStatuses[key]) {
-                        statuses.push(key);
-                    }
-                }
-
-                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c] = statuses.join(',');
-                dataService.setDirty();
-            };
-
-            $rootScope.$on('settingsUpdated', function () {
-                $scope.automators = dataService.getAutomators('Sched009_STMIntegrityChecker');
-                // if (dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c]) {
-                //     $scope.automators = $scope.automators.concat(dataService.getAutomators('Sched006_SLRPurge'));
-                // }
-
-                $scope.statuses.forEach(function (status) {
-                    if ($scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c]) {
-                        $scope.pinnedStatuses[status.value] = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Pinned_Statuses_SF__c].split(',').indexOf(status.value) > -1;
-                    }
-                });
-            });
-
-            dataService.getSettingsPromise().then(function () {
-                $scope.booleanFields = angular.copy(dataService.serviceBooleanFields);
-                $scope.booleanFields.shift();
-                $scope.woNumberFields = dataService.woNumberFields;
-                $scope.woliNumberFields = dataService.woliNumberFields;
-                $scope.saNumberFields = dataService.saNumberFields;
-                $scope.automators = dataService.getAutomators('Sched009_STMIntegrityChecker');
-                $scope.classNames = ['Sched009_STMIntegrityChecker'];
-                $scope.hideIntegrityCheckerAutomator = JSON.parse($scope.settings.GeneralConfig['Hide Integrity Checker Automator'][fieldNames.General_Config__c.Value__c]);
-
-                // if (dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c])
-                // {
-                //     $scope.classNames.push('Sched006_SLRPurge');
-                //     $scope.automators = $scope.automators.concat(dataService.getAutomators('Sched006_SLRPurge'));
-                // }
-            });
-        }
-
-        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="booleanFields" label="\'Multiday service appointment field\'" value-field-name="\'MDT_Boolean_Field__c\'" setting="settings.LogicSettings" tooltip-text="The checkbox field that indicates that a service appointment can span multiple days"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Set the hour that starts a new day based on the Availability rule(s)\'" value-field-name="\'Enable_Start_Of_Day__c\'" setting="settings.LogicSettings" tooltip-text="The default, if this is not set, is 12AM"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.number" label="\'Maximum days to get candidates or to book an appointment\'" min="1" max="31" value-field-name="\'Search_slot_max_days__c\'" setting="settings.LogicSettings" tooltip-text="The maximum number of days possible to request an appointment or get candidates. Increasing the maximum decreases performance"></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Delay auto-scheduling until appointments are geocoded\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Wait for clean state\']" tooltip-text="If Auto Schedule is selected on a service appointment, wait to schedule the appointment until its location is geocoded (recommended). This setting doesn\u2019t apply to appointments with no address, which are scheduled without delay. Auto Schedule uses the scheduling policy listed in the appointment\u2019s Scheduling Policy Used field. If none is listed, the default scheduling policy listed in your Appointment Booking settings is used."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Activate Approval confirmation on resource absences\'" value-field-name="\'Approved_Absences__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enable resource crew skill grouping\'" value-field-name="\'Enable_Crew_Members_Skill_Aggregation__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" options="booleanFields" label="\'Avoid aerial calculation upon callout DML exception\'" value-field-name="\'Alert_On_Callout_Failure__c\'" setting="settings.GeocodeSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Respect secondary STM operating hours\'" value-field-name="\'Include_Secondary_Calendar__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            Select which statuses are considered as pinned, or unmovable, for scheduling<br> \n            \n            <div id="pinned-status-container">\n                <label for="SchedulingPinnedStatus{{$index}}" class="optimizaion-pinned-label truncate" ng-repeat="status in statuses track by $index" title="{{ status.value }}">\n                    <input type="checkbox" id="SchedulingPinnedStatus{{$index}}" ng-model="pinnedStatuses[status.value]" ng-change="updateSettings()" />{{ status.value }}\n                </label>\n            </div>\n\n\n\n\n\n            <div class="section-settings" id="__complex-work">Scheduling Priority</div>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woNumberFields" label="\'Work Order Priority Field\'" value-field-name="\'WO_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the appointment\u2019s work order sets the priority."></custom-settings-wrapper>\n            \n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="woliNumberFields" label="\'Work Order Line Item Priority Field\'" value-field-name="\'WOLI_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the appointment\u2019s work order line item sets the priority."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="saNumberFields" label="\'Service Appointment Priority Field\'" value-field-name="\'SA_Priority_Field__c\'" setting="settings.LogicSettings" tooltip-text="Select which field on the service appointment sets the priority. If the field is empty, we use the priority field on the parent work order or work order line item."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Use 1-100 priority scale\'" value-field-name="\'Use_1_To_100_Priority_Scale__c\'" setting="settings.LogicSettings" tooltip-text="Override the default 1-10 scale for more refined priorities. The 1-100 scale can modify optimization results."></custom-settings-wrapper>\n\n\n\n\n            <automators objects="automators" class-names="classNames" hide-section="hideIntegrityCheckerAutomator"></automators>\n\n            <div class="section-settings" id="__complex-work">Complex Work <a href="https://help.salesforce.com/articleView?id=pfs_complex_work.htm" class="section-link" target="_blank">Learn More</a></div>\n            <div class="alert-warning-banner" ng-show="sharingObjectSettingsStatus == \'Public\'">\n                The object below has public sharing.<br>\n                To enable complex work, set sharing to private for that object.\n            </div>\n\n            <object-sharing-status-directive ng-repeat="sharingObject in sharingObjects" object-sharing-props="sharingObject"></object-sharing-status-directive>\n            <push-topics-creator-directive push-topics-props="PushTopicProps" button-state-labels="buttonStateLabels" push-topics-tool-tip="Complex Work relies on push topic object that query for changes made for the relevant object. The push topic is created with a script upon installation. In some cases, such as when creating a sandbox from an instance with the package installed, the push topic isn\u2019t created. Click Update push topic to create the push topic."></push-topics-creator-directive>\n\n            <custom-settings-wrapper is-disabled="sharingObjectSettingsStatus != \'Private\'" primitive-type="primitiveType.boolean" label="\'Enable complex work\'" value-field-name="\'Use_New_MST_Data_Model__c\'" setting="settings.LogicSettings" tooltip-text="Let users create scheduling dependencies between service appointments. For example, ensure that a particular appointment can\u2019t start until a related appointment is complete."></custom-settings-wrapper>\n            <custom-settings-wrapper is-disabled="sharingObjectSettingsStatus != \'Private\'" primitive-type="primitiveType.boolean" label="\'Use all-or-none scheduling for related appointments\'" value-field-name="\'Fail_On_Schedule__c\'" setting="settings.LogicSettings" tooltip-text="This setting prevents a chain of two service appointments with dependencies between them from being scheduled separately. Related appointments will need to be scheduled in the same scheduling operation. This setting doesn\u2019t apply for chains of three or more appointments."></custom-settings-wrapper>\n                        \n            <div class="section-settings" id="__complex-work">Limit Apex Operations</div>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Set Apex operation timeout limits\'" value-field-name="\'Limit_Apex_Operations__c\'" setting="settings.LogicSettings" tooltip-text="If you\u2019ve encountered CPU timeout errors, select this option to define limits for the following operations. This helps you stay within your org\u2019s Apex CPU timeout limit. For example, enter 90 to end the operation when it reaches 90% of your org\u2019s timeout limit. We recommend experimenting in a sandbox org to find the best values for your org."></custom-settings-wrapper>\n            \n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Get Candidates (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for the Get Candidates operation, which is used in the Get Candidates Gantt action and the Candidates and Book Appointment Chatter actions." setting="settings.ApexLimits[\'GetCandidatesTotalCpuLimit\']" ></custom-settings-wrapper>\n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Appointment Booking (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for appointment booking operations, which are used in the Book Appointment Chatter action. The Get Candidates limit counts against this limit." setting="settings.ApexLimits[\'ABTotalCpuLimit\']" ></custom-settings-wrapper>\n            <custom-settings-wrapper is-text="false" primitive-type="primitiveType.number" min="1" max="100" label="\'Timeout Limit for Scheduling (Percent)\'" value-field-name="\'Value__c\'" tooltip-text="Limit for scheduling operations, which are used in the Schedule Gantt action, the Auto Schedule option, and scheduling Chatter actions." setting="settings.ApexLimits[\'ScheduleTotalCpuLimit\']"></custom-settings-wrapper>\n            \n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingPolicies', schedulingPolicies);
-
-    schedulingPolicies.$inject = [];
-
-    function schedulingPolicies() {
-
-        controllerFunction.$inject = ['$scope', 'schedulingService'];
-
-        function controllerFunction($scope, schedulingService) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - schedulingPolicies');
-            });
-
-            schedulingService.loadData().then(function () {
-                $scope.schedulingSettings = schedulingService.settings;
-            });
-        }
-
-        var template = '\n            <p>\n                A <a target="_blank" ng-href="../{{schedulingSettings.schedulingPoliciesPrefix}}">Scheduling Policy</a> is based on scheduling rules and weighted business objectives.            \n                <br/>\n                When the optimization engine builds and maintains the schedule, its decisions are guided by your scheduling policies.\n            </p>         \n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('schedulingRouting', schedulingRouting);
-
-    schedulingRouting.$inject = [];
-
-    function schedulingRouting() {
-
-        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService', '$rootScope', '$http', 'settingsUtils', '$timeout', 'OPTIMIZATION_RUNTIME_VALUES'];
-
-        function controllerFunction($scope, primitiveType, dataService, $rootScope, $http, settingsUtils, $timeout, OPTIMIZATION_RUNTIME_VALUES) {
-
-            $scope.sessionId = sessionId;
-            $scope.EnableSLRIsDisabled = true;
-            $scope.GISRemoteIsInactive = false;
-            $scope.ShowRegisterBtn = false;
-            $scope.UseSFMapsFMA = UseSFMapsFMA;
-            // nothing to check here, all good
-            $scope.verifyFunctions.push(function () {
-                return false;
-            });
-
-            $scope.primitiveType = primitiveType;
-            $scope.classNames = [];
-
-            $scope.distanceUnits = [{ label: 'KM', value: 'km' }, { label: 'Mile', value: 'mile' }];
-
-            $scope.speedUnits = [{ label: 'KM/h', value: 'km' }, { label: 'MPH', value: 'mile' }];
-
-            $rootScope.$on('settingsUpdated', function () {
-                $scope.lowOptimizationRunTime = $scope.settings.OptimizationSettings[bgoOptimizationSettings][fieldNames.OptimizationSettings__c.Max_Runtime_Single_Service__c] == OPTIMIZATION_RUNTIME_VALUES.LOW;
-                $scope.useSLR = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c];
-                $scope.usePredictive = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c];
-                $scope.useEdge = true;
-                $scope.useSfMaps = $scope.settings.GeocodeSettings[fieldNames.Geocode_Settings__c.Use_SFMaps__c];
-
-                for (var optSetting in $scope.settings.OptimizationSettings) {
-                    if ($scope.settings.OptimizationSettings[optSetting][fieldNames.OptimizationSettings__c.Use_Edge__c] == false) {
-                        $scope.useEdge = false;
-                        break;
-                    }
-                }
-                $scope.useEdge = $scope.useEdge || useEdgeFMA;
-
-                if ($scope.useSLR) {
-                    $scope.automators = dataService.getAutomators('Sched006_SLRPurge');
-                }
-            });
-
-            $scope.onSLRChange = function (val) {
-
-                if (!val) {
-                    $scope.usePredictive = false;
-                    $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = false;
-                    $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
-                }
-
-                $scope.useSLR = val;
-                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = $scope.useSLR;
-            };
-
-            $scope.onPredictiveChange = function (val) {
-
-                if (val) {
-                    $scope.useSLR = true;
-                    $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = true;
-                    $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
-                }
-
-                $scope.usePredictive = val;
-                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = $scope.usePredictive;
-            };
-
-            $scope.onSalesforceMapsChange = function (val) {
-                $scope.useSLR = true;
-                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c] = true;
-                $scope.usePredictive = $scope.isUpgrade ? true : val;
-                $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c] = $scope.usePredictive;
-
-                $scope.settings.LogicSettings = Object.assign({}, $scope.settings.LogicSettings);
-
-                $scope.useSfMaps = val;
-            };
-
-            $scope.RegisterSLRBtnDisabled = false;
-
-            $scope.registerSLR = function () {
-
-                $scope.RegisterSLRBtnDisabled = true;
-                settingsUtils.callRemoteAction(remoteActions.registerSLR).then(function () {
-                    $timeout(function () {
-                        alert('Registered!');
-                        $scope.RegisterSLRBtnDisabled = false;
-                        console.log('Registered SLR');
-
-                        if (!dataService.getDraftSettings().LogicSettings[fieldNames.Logic_Settings__c.Show_Register_Btn__c]) $scope.ShowRegisterBtn = false;
-                    }, 2000);
-                }).catch(function (err) {
-                    alert('Something went  wrong. Please contact our support team if the problem persists.');
-                    $scope.RegisterSLRBtnDisabled = false;
-                });
-            };
-
-            dataService.getSettingsPromise().then(function () {
-                $scope.settings = dataService.getDraftSettings();
-                $scope.isUpgrade = $scope.settings.GeneralConfig['Is Fresh Install'][fieldNames.General_Config__c.Value__c] === 'upgrade';
-
-                settingsUtils.callRemoteAction(remoteActions.shouldRefreshSLRToken).then(function (result) {
-                    $scope.ShowRegisterBtn = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Show_Register_Btn__c] || result;
-                });
-
-                $scope.useSLR = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_SLR__c];
-                $scope.usePredictive = $scope.settings.LogicSettings[fieldNames.Logic_Settings__c.Use_Predictive__c];
-                $scope.useEdge = true;
-                $scope.useSfMaps = $scope.settings.GeocodeSettings[fieldNames.Geocode_Settings__c.Use_SFMaps__c];
-
-                for (var optSetting in $scope.settings.OptimizationSettings) {
-                    if ($scope.settings.OptimizationSettings[optSetting][fieldNames.OptimizationSettings__c.Use_Edge__c] == false) {
-                        $scope.useEdge = false;
-                        break;
-                    }
-                }
-
-                $scope.useEdge = $scope.useEdge || useEdgeFMA;
-
-                $scope.lowOptimizationRunTime = $scope.settings.OptimizationSettings[bgoOptimizationSettings][fieldNames.OptimizationSettings__c.Max_Runtime_Single_Service__c] == OPTIMIZATION_RUNTIME_VALUES.LOW;
-
-                var baseUrl = window.location.origin;
-
-                var dataStr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:tooling.soap.sforce.com">' + '<soapenv:Header>' + '<urn:SessionHeader>' + '<urn:sessionId>' + $scope.sessionId + '</urn:sessionId>' + '</urn:SessionHeader>' + '</soapenv:Header>' + '<soapenv:Body>' + '<urn:query>' + '<urn:queryString>SELECT id, SiteName, EndpointUrl, isActive FROM RemoteSiteSetting WHERE EndpointUrl = \'https://fsl-gis.cloud.clicksoftware.com\'</urn:queryString>' + '</urn:query>' + '</soapenv:Body>' + '</soapenv:Envelope>';
-
-                $http.post(baseUrl + '/services/Soap/T/38.0', dataStr, { headers: { 'SOAPAction': '""',
-                        'Content-Type': 'text/xml',
-                        contentType: "text/xml" }
-                }).then(function (res) {
-                    var parser = new DOMParser();
-                    var xmlDoc = parser.parseFromString(res.data, "text/xml");
-                    var res = xmlDoc.getElementsByTagName("sf:IsActive");
-
-                    if (res == undefined || res.length == 0 || res[0] == undefined || res[0].innerHTML == "false") {
-                        $scope.GISRemoteIsInactive = true;
-                        $scope.EnableSLRIsDisabled = true;
-                    } else {
-                        $scope.GISRemoteIsInactive = false;
-                        $scope.EnableSLRIsDisabled = false;
-                    }
-                }, function (res) {
-                    // console.log(res);
-                });
-
-                if ($scope.useSLR) {
-                    $scope.classNames.push('Sched006_SLRPurge');
-                    $scope.automators = dataService.getAutomators('Sched006_SLRPurge');
-                }
-            });
-        }
-
-        var template = '\n            <div class="alert-warning-banner" ng-show="lowOptimizationRunTime && useSLR">\n              When using SLR, it is highly recommended to change the optimization time to Medium or High.<br/>\n              To change the optimization runtime go to Optimization -> Logic<br/>\n            </div>\n\n            <div class="setting-row-container" ng-show="ShowRegisterBtn">\n                <label class="register-button-cls select-label">Register to the Street-Level Routing service</label>\n                <div class="select-container">\n                    <input type="button" ng-disabled="RegisterSLRBtnDisabled" class="register-button slds-button slds-button_brand select-container" ng-click="registerSLR()" value="Register">\n                </div>\n            </div>\n\n            <custom-settings-wrapper change="onSLRChange" is-disabled="useSfMaps || EnableSLRIsDisabled" primitive-type="primitiveType.boolean" label="\'Enable Street Level Routing\'" value-field-name="\'Use_SLR__c\'" setting="settings.LogicSettings" tooltip-text="Enable Street Level Routing to calculate travel distance and time more accurately than the default aerial routing"></custom-settings-wrapper>\n\n            <div ng-show="isUpgrade || !UseSFMapsFMA">                \n                <custom-settings-wrapper change="onPredictiveChange" is-beta="\'Beta\'" is-disabled="useSfMaps|| EnableSLRIsDisabled || !useEdge || !useSLR" primitive-type="primitiveType.boolean" label="\'Enable Predictive Travel for optimization services\'" value-field-name="\'Use_Predictive__c\'" setting="settings.LogicSettings" tooltip-text="{{ !useEdge ? \'Please activate Enhanced Optimization in order to use predictive routing\' : undefined }}"></custom-settings-wrapper>\n            </div>\n            <div class="setting-row-container smallSettingsError" ng-show="GISRemoteIsInactive">Your remote site FSL_GIS is Inactive please activate it before trying to enable SLR.</div>\n\n            <div ng-if="UseSFMapsFMA">\n                <custom-settings-wrapper ng-if="isUpgrade" change="onSalesforceMapsChange" is-beta="\'New\'" primitive-type="primitiveType.boolean" label="\'Enable Point-to-Point Predictive Routing\'" value-field-name="\'Use_SFMaps__c\'" setting="settings.GeocodeSettings" tooltip-text="Point-to-Point Predictive Routing calculates travel distance and time more accurately than aerial routing or street-level routing. After you turn on Point-to-Point Predictive Routing, it replaces Street-Level Routing and Predictive Travel (beta)." learn-link="\'https://help.salesforce.com/articleView?id=pfs_streetlevelrouting.htm&type=5\'"></custom-settings-wrapper>\n                <custom-settings-wrapper ng-if="!isUpgrade" change="onSalesforceMapsChange" is-beta="\'\'" primitive-type="primitiveType.boolean" label="\'Enable Point-to-Point Predictive Routing\'" value-field-name="\'Use_SFMaps__c\'" setting="settings.GeocodeSettings" tooltip-text="Point-to-Point Predictive Routing calculates travel distance and time more accurately than aerial routing or street-level routing. After you turn on Point-to-Point Predictive Routing, it replaces Street-Level Routing." learn-link="\'https://help.salesforce.com/articleView?id=pfs_streetlevelrouting.htm&type=5\'"></custom-settings-wrapper>\n            </div>\n\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Calculate travel and breaks\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Travel Time\']" tooltip-text="Calculates and displays travel time on the Gantt chart and automatically creates breaks according to your Resource Availability work rule."></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="speedUnits" label="\'Travel speed unit\'" value-field-name="\'Travel_Speed_Unit__c\'" setting="settings.LogicSettings"></custom-settings-wrapper>\n\n            <custom-settings-wrapper primitive-type="primitiveType.number" label="\'Default travel speed\'" min="1" max="1500" value-field-name="\'Travel_Speed__c\'" setting="settings.LogicSettings" tooltip-text="If a different travel speed isn\'t specified on the resource, this value is used to calculate the travel time"></custom-settings-wrapper>\n\n            <div class="section-settings" id="__map">Map</div>\n            <custom-settings-wrapper primitive-type="primitiveType.booleanText" label="\'Show map\'" value-field-name="\'Value__c\'" setting="settings.GeneralConfig[\'Map available on gantt\']" tooltip-text="Enables map tab"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.booleanText" label="\'Show street level routing in the Service Resource map tab\'" value-field-name="\'Value__c\'" setting="settings.GeneralConfig[\'Show SLR in resource map\']" tooltip-text="If checked, resource\'s planned travel will be shown on the street level. Otherwise a straight polyline will be shown"></custom-settings-wrapper>\n            \n            <automators objects="automators" class-names="classNames" no-change="useSLR" ng-show="useSLR"></automators>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('lifeCycleCreation', lifeCycleCreation);
-
-    lifeCycleCreation.$inject = ['serviceAppointmentLifeCycleService'];
-
-    function lifeCycleCreation(serviceAppointmentLifeCycleService) {
-
-        controllerFunction.$inject = ['$scope', '$rootScope', 'primitiveType', 'dataService'];
-
-        function controllerFunction($scope, $rootScope, primitiveType, dataService) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - lifeCycleCreation');
-            });
-            $scope.primitiveType = primitiveType;
-
-            $scope.HighOrLow = [{ label: 'Highest Level', value: 'Highest' }, { label: 'Lowest Level', value: 'Lowest' }];
-
-            $scope.useHighOrLowPolicy = false;
-
-            $rootScope.$on('settingsUpdated', function () {
-                $scope.useHighOrLowPolicy = dataService.getDraftSettings().TriggerConfigurations['Enable Service Auto Classification'][fieldNames.triggerConf.Run__c];
-            });
-
-            dataService.getSettingsPromise().then(function () {
-                $scope.useHighOrLowPolicy = dataService.getDraftSettings().TriggerConfigurations['Enable Service Auto Classification'][fieldNames.triggerConf.Run__c];
-            });
-
-            $scope.settings = dataService.getDraftSettings();
-        }
-
-        var template = '\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Service Type Derive Due Date\']" tooltip-text="On new service appointments, set the Due Date to the current date + the due date offset defined on the appointment\u2019s work type"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Pinned Service Not Changed\']" tooltip-text="Pinned Service appointments will not be rescheduled by the scheduling engine"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Service Duration Longer Than Minute\']" tooltip-text="In case the Duration field is blank upon Service appointment creation, set the duration to one hour"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Use polygons to assign service territories\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable Service Auto Classification\']" tooltip-text="If selected, the service territory field on service appointments is populated based on the map polygon that the address is located in."></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.picklist" options="HighOrLow" label="\'Territory assignment policy\'" value-field-name="\'Low_Or_High_Territory_Classification__c\'" setting="settings.LogicSettings" tooltip-text="Assign service appointments to the highest or lowest-level territory in the hierarchy depending on your settings." ng-show="useHighOrLowPolicy"></custom-settings-wrapper>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                formObject: '=',
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('lifeCycleStatusDefinitions', lifeCycleStatusDefinitions);
-
-    lifeCycleStatusDefinitions.$inject = ['serviceAppointmentLifeCycleService'];
-
-    function lifeCycleStatusDefinitions(serviceAppointmentLifeCycleService) {
-
-        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService'];
-
-        function controllerFunction($scope, primitiveType, dataService) {
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - lifeCycleCreation');
-            });
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-
-            serviceAppointmentLifeCycleService.loadData().then(function () {
-                $scope.serverSettings = serviceAppointmentLifeCycleService.settings;
-            });
-        }
-
-        var template = '\n            <custom-settings-wrapper ng-repeat="status in settings.Dictionaries track by $index" \n                                        primitive-type="primitiveType.picklist" \n                                        label-field-name="\'Default_Value__c\'" \n                                        value-field-name="\'Value__c\'"\n                                        options="serverSettings.StatusList" \n                                        setting="status" ></custom-settings-wrapper>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                formObject: '=',
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('lifeCycleStatusTransition', lifeCycleStatusTransition);
-
-    lifeCycleStatusTransition.$inject = ['serviceAppointmentLifeCycleService'];
-
-    function lifeCycleStatusTransition(serviceAppointmentLifeCycleService) {
-
-        controllerFunction.$inject = ['$scope', 'dataService', 'primitiveType', '$rootScope'];
-
-        function controllerFunction($scope, dataService, primitiveType, $rootScope) {
-
-            //$scope.verifyFunctions.push( () => console.log('verify - lifeCycleStatusTransition'));
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-            $scope.showMore = false;
-            $scope.invalid = false;
-            $scope.errorMsg = '';
-            $scope.statusMap = {};
-
-            serviceAppointmentLifeCycleService.loadData().then(function () {
-                $scope.serverSettings = serviceAppointmentLifeCycleService.settings;
-                $scope.apexPagesList = angular.copy($scope.serverSettings.ApexPages);
-                $scope.apexPagesList.unshift({ value: null, label: '--- Select custom VisualForce page ---' });
-
-                for (var i = 0; i < $scope.serverSettings.StatusList.length; i++) {
-                    $scope.statusMap[$scope.serverSettings.StatusList[i].value] = $scope.serverSettings.StatusList[i].label;
-                }
-            });
-
-            $scope.setPlaceholder = function (allowedProf) {
-                if (allowedProf && allowedProf.split(',').length > 0) return allowedProf.split(',').length + ' profiles selected';else return 'All profiles allowed';
-            };
-
-            $scope.setBorderClass = function (status) {
-                var classString = 'left-border left-border-';
-
-                if (status) {
-                    var statBoy = $scope.statusMap[status] || status;
-                    return classString + statBoy.replace(' ', '').toLowerCase();
-                } else return classString + 'default';
-            };
-
-            $scope.addFlow = function (from, to, profiles, apexPage) {
-                from = from || $scope.serverSettings.StatusList[0].value;
-                to = to || $scope.serverSettings.StatusList[1].value;
-                profiles = profiles || '';
-                var status = {
-                    'Name': from + '-' + to
-                };
-
-                status[fieldNames.statusTransitions.From_Status__c] = from;
-                status[fieldNames.statusTransitions.To_Status__c] = to;
-                status[fieldNames.statusTransitions.Allowed_Profiles__c] = profiles;
-                status[fieldNames.statusTransitions.Custom_VF__c] = apexPage;
-                $scope.settings.ServiceLegalStatuses.push(status);
-            };
-
-            $scope.removeStatusFlow = function (index) {
-                $scope.invalid = false;
-                delete $scope.settings.ServiceLegalStatuses[index];
-                $scope.settings.ServiceLegalStatuses.splice(index, 1);
-            };
-
-            $scope.checkFlow = function (status) {
-                $scope.invalid = false;
-            };
-
-            $rootScope.$on('transitionsError', function (event, args) {
-
-                if (args.msg == null) {
-                    $scope.invalid = false;
-                    return;
-                }
-
-                $scope.errorMsg = args.msg;
-                $scope.invalid = true;
-            });
-
-            $scope.getPackagedFieldName = function (field) {
-                return fieldNames.statusTransitions[field];
-            };
-
-            $scope.getTriggerConfFieldName = function (field) {
-                return fieldNames.triggerConf[field];
-            };
-
-            $scope.setDiagram = function () {
-                var diagramText = '';
-
-                if ($scope.settings && !$scope.settings.ServiceLegalStatuses) return diagramText;
-
-                function setDiagramClass(status) {
-                    return '<' + status.replace(' ', '').toLowerCase() + '>';
-                }
-
-                diagramText = '                \n                #.none: fill=#a5e2d6\n                #.scheduled: fill=#F9D058\n                #.dispatched: fill=#8DD8FA\n                #.inprogress: fill=#DCC984\n                #.completed: fill=#95D055\n                #.cannotcomplete: fill=#EA8288\n                #.canceled: fill=#BEBCBA\n                #.default: fill=#B7C9EA\n                #stroke: #232323\n                #lineWidth: 2\n                #arrowSize: 0.7\n                #fontSize: 10\n                #zoom: 1\n                #fill: #f4f6f9\n                ';
-
-                for (var i = 0; i < $scope.settings.ServiceLegalStatuses.length; i++) {
-                    var from = $scope.statusMap[$scope.settings.ServiceLegalStatuses[i][fieldNames.statusTransitions.From_Status__c]],
-                        to = $scope.statusMap[$scope.settings.ServiceLegalStatuses[i][fieldNames.statusTransitions.To_Status__c]];
-                    diagramText += '[' + from + ']->[' + to + ']\n';
-                }
-
-                return diagramText;
-            };
-
-            $scope.closeAllOthers = function (status, index) {
-                $rootScope.$broadcast('closeAllOthers', { status: status, index: index });
-            };
-        }
-
-        var template = '\n        <div class="section-settings">Service Appointment Status Transitions\n          <checkbox class="transitions-checkbox" label="" object="settings.GeneralConfig[\'Status Transitions Policy\']" value-field="\'Run__c\'"></checkbox>\n        </div>\n        <div class="slds transitions-table" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n            <table class="slds-table slds-table--fixed-layout" id="transitions-table">\n  <thead>\n    <tr class="slds-text-title--caps">\n      \n      <th class="header-picklist">\n          <span class="slds-truncate" title="From">From</span>\n      </th>\n      <th class="header-picklist">\n          <span class="slds-truncate" title="To">To</span>\n      </th>\n      <th class="header-profiles" ng-show="showMore">\n          <span class="slds-truncate" title="Allowed Profiles">Allowed Profiles</span>\n      </th>\n      <th class="header-custom-vf" ng-show="showMore">\n          <span class="slds-truncate" title="Custom Visual Force">Custom Visual Force</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="status in settings.ServiceLegalStatuses track by $index">\n      <td>\n        <div class="from-cell">\n            <custom-settings-wrapper ng-class="setBorderClass(status[getPackagedFieldName(\'From_Status__c\')])"\n                    primitive-type="primitiveType.picklist" \n                    value-field-name="\'From_Status__c\'"\n                    options="serverSettings.StatusList" \n                    setting="status" \n                    change="checkFlow(status)"\n                    >\n                </custom-settings-wrapper>\n        </div>\n      </td>\n      <td>\n        <div class="to-cell">\n            <custom-settings-wrapper  ng-class="setBorderClass(status[getPackagedFieldName(\'To_Status__c\')])"\n                    primitive-type="primitiveType.picklist" \n                    value-field-name="\'To_Status__c\'"\n                    options="serverSettings.StatusList" \n                    setting="status" \n                    change="checkFlow(status)"\n                    >\n                </custom-settings-wrapper>\n        </div>\n      </td>\n      <td ng-show="showMore">\n        <div class="profiles-cell">\n            <custom-settings-wrapper \n                primitive-type="primitiveType.multi" \n                value-field-name="\'Allowed_Profiles__c\'"\n                options="serverSettings.AllProfiles"\n                placeholder="setPlaceholder(status[getPackagedFieldName(\'Allowed_Profiles__c\')])"\n                setting="status" \n                ng-click="closeAllOthers(status, $index)">\n            </custom-settings-wrapper>\n        </div>\n      </td>\n      <td ng-show="showMore">\n        <div class="customvf-cell">\n            <custom-settings-wrapper  \n                primitive-type="primitiveType.picklist" \n                value-field-name="\'Custom_VF__c\'"\n                options="apexPagesList" \n                setting="status" >\n            </custom-settings-wrapper>\n        </div>\n      </td>\n\n        <td>\n        <div class="delete-cell">\n            <a href="javascript:void(0);" ng-click="removeStatusFlow($index)">\n                <svg aria-hidden="true" class="delete-icon" ng-class="{\'showless\': showMore == false}">\n                    <use xlink:href="' + settings.icons.delete + '"></use>\n                </svg>\n            </a>\n        </div>\n      </td>\n    </tr>\n  </tbody>\n</table>\n<div class="newAutomatorError" ng-if="invalid">\n    <ui-error>\n        <main-content>\n            <div>{{errorMsg}}</div>\n        </main-content>\n    </ui-error>\n</div>\n</div>\n\n<div class="table-buttons" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n  <div class="add-flow-button" ng-click="addFlow()">Add Flow</div>\n  <a href="javascript:void(0);" ng-show="!showMore" ng-click="showMore = true;">More details</a>\n  <a href="javascript:void(0);" ng-show="showMore" ng-click="showMore = false;">Less details</a>\n</div>\n<div id="statusDiagram" ng-if="settings.ServiceLegalStatuses" ng-show="settings.GeneralConfig[\'Status Transitions Policy\'][getTriggerConfFieldName(\'Run__c\')]">\n  <canvas nomnoml nomnoml-model="setDiagram()"</canvas>\n</div>\n  ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                formObject: '=',
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('sharingAutomation', sharingAutomation);
-
-    sharingAutomation.$inject = ['sharingService', 'primitiveType'];
-
-    function sharingAutomation(sharingService, primitiveType) {
-
-        controllerFunction.$inject = ['$scope', 'dataService', '$rootScope'];
-
-        function controllerFunction($scope, dataService, $rootScope) {
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-            dataService.getSettingsPromise().then(function () {
-                $scope.automators = dataService.getAutomators('Sched008_TimePhaseSharing');
-                $scope.showSharingSettings = dataService.getDraftSettings().GeneralConfig['Is Fresh Install'][fieldNames.General_Config__c.Run__c];
-            });
-
-            $rootScope.$on('settingsUpdated', function () {
-                $scope.automators = dataService.getAutomators('Sched008_TimePhaseSharing');
-            });
-        }
-
-        var template = '\n            <div ng-if="showSharingSettings">\n                <custom-settings-wrapper id="__sharingtriggers" primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Status Actions\']"></custom-settings-wrapper>\n            </div>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable workorder parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable account parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable opportunity parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Enable asset parent sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Location Based Sharing\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'User Locations\']"></custom-settings-wrapper>\n            <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Make assigned resources followers of service appointments that are Dispatched or In Progress\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Allow follow\']" tooltip-text="Assigned resources are removed as followers when an appointment\u2019s status is no longer Dispatched or In Progress"></custom-settings-wrapper>\n            <div ng-if="showSharingSettings">         \n                <custom-settings-wrapper primitive-type="primitiveType.boolean" label-field-name="\'Description__c\'" value-field-name="\'Run__c\'" setting="settings.TriggerConfigurations[\'Edit Sharing For Crew Members\']"></custom-settings-wrapper>\n            </div>\n            <div class="automatorExp">Time Based Sharing Scheduled Jobs - will share and remove sharing for Service Resources based on time-phased Resource Memberships</div>\n            <automators id="__tbssj" objects="automators" class-names="[\'Sched008_TimePhaseSharing\']"></automators>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('sharingCalendarSync', sharingCalendarSync);
-
-    sharingCalendarSync.$inject = ['sharingService'];
-
-    function sharingCalendarSync(sharingService) {
-
-        controllerFunction.$inject = ['$scope', 'primitiveType', 'dataService'];
-
-        function controllerFunction($scope, primitiveType, dataService) {
-
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - sharingCalendarSync');
-            });
-            $scope.primitiveType = primitiveType;
-            $scope.settings = dataService.getDraftSettings();
-        }
-
-        var template = '\n            <content-collapse-wrapper header="\'Service Appointment\'" open="true">\n                <content>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Services from Salesforce calendar events\'" value-field-name="\'From_Salesforce__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Services to Salesforce calendar events\'" value-field-name="\'To_Salesforce__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Calendar Event type\'" tooltip-text="This event type will create a Work Order and a Service appointment" value-field-name="\'Display_Name__c\'" setting="settings.Synchronize.ServiceAppointment"  ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enforce validations when syncing Service Appointments and Salesforce calendar events\'" value-field-name="\'Enforce_Validations__c\'" setting="settings.Synchronize.ServiceAppointment" ></custom-settings-wrapper>\n                </content>\n            </content-collapse-wrapper>\n\n            <content-collapse-wrapper header="\'Resource Absence\'" open="true">\n                <content>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Absences from Salesforce calendar\'" value-field-name="\'From_Salesforce__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Synchronize Absences to Salesforce calendar\'" value-field-name="\'To_Salesforce__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.text" label="\'Calendar Event type\'" tooltip-text="This event type will create a Resource Absence" value-field-name="\'Display_Name__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                    <custom-settings-wrapper primitive-type="primitiveType.boolean" label="\'Enforce validation rules when syncing resource absences and Salesforce calendar events\'" value-field-name="\'Enforce_Validations__c\'" setting="settings.Synchronize.ResourceAbsence" ></custom-settings-wrapper>\n                   \n                </content>\n            </content-collapse-wrapper>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
-            },
-            controller: controllerFunction,
-            template: template
-        };
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').service('sharingService', sharingService);
-
-    sharingService.$inject = ['settingsUtils', 'dataService'];
-
-    function sharingService(settingsUtils, dataService) {
-
-        var prom = null;
-
-        var instance = {
-            settings: {},
-            save: function save() {
-                return dataService.saveSettings({
-                    TriggerConfigurations: {
-                        'Status Actions': dataService.getDraftSettings().TriggerConfigurations['Status Actions'],
-                        'Location Based Sharing': dataService.getDraftSettings().TriggerConfigurations['Location Based Sharing'],
-                        'User Locations': dataService.getDraftSettings().TriggerConfigurations['User Locations'],
-                        'Enable workorder parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable workorder parent sharing'],
-                        'Enable account parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable account parent sharing'],
-                        'Enable opportunity parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable opportunity parent sharing'],
-                        'Enable asset parent sharing': dataService.getDraftSettings().TriggerConfigurations['Enable asset parent sharing'],
-                        'Allow follow': dataService.getDraftSettings().TriggerConfigurations['Allow follow'],
-                        'Edit Sharing For Crew Members': dataService.getDraftSettings().TriggerConfigurations['Edit Sharing For Crew Members']
-
-                    },
-                    Synchronize: {
-                        'ServiceAppointment': dataService.getDraftSettings().Synchronize['ServiceAppointment'],
-                        'ResourceAbsence': dataService.getDraftSettings().Synchronize['ResourceAbsence']
-                    },
-                    // need all 3 for automators to save
-                    AutomatorConfig: dataService.getAutomatorsMap('Sched008_TimePhaseSharing'),
-                    DeletedAutomators: dataService.getDraftSettings().DeletedAutomators,
-                    Territories: dataService.getDraftSettings().Territories,
-                    manyTerritories: dataService.getDraftSettings().manyTerritories
-                });
-            },
-            restore: function restore() {
-                return dataService.restoreDefaultSettings({
-                    TriggerConfigurations: {
-                        'Status Actions': {},
-                        'Location Based Sharing': {},
-                        'User Locations': {},
-                        'Enable workorder parent sharing': {},
-                        'Enable account parent sharing': {},
-                        'Enable opportunity parent sharing': {},
-                        'Enable asset parent sharing': {},
-                        'Allow follow': {},
-                        'Edit Sharing For Crew Members': {},
-                        'Update AR when service is reassigned': {},
-                        'Update AR when service is dispatched': {}
-                    },
-                    Synchronize: {},
-                    RestoreAutomatorSettings: ['Sched008_TimePhaseSharing']
-                });
-            },
-            loadData: function loadData() {
-                if (prom) return prom;
-
-                prom = settingsUtils.callRemoteAction(remoteActions.sharingLoadData).then(function (res) {
-                    instance.settings = res;
-                });
-
-                return prom;
-            }
-        };
-
-        return instance;
-    }
-})();
-'use strict';
-
-(function () {
-
-    angular.module('SettingsApp').directive('sharingUserTerritories', sharingUserTerritories);
-
-    sharingUserTerritories.$inject = ['sharingService'];
-
-    function sharingUserTerritories(sharingService) {
-
-        controllerFunction.$inject = ['$scope'];
-
-        function controllerFunction($scope) {
-            $scope.verifyFunctions.push(function () {
-                return console.log('verify - sharingUserTerritories');
-            });
-            $scope.sharingService = sharingService;
-        }
-
-        var template = '\n        <div class="pWrapper">\n            \n            Assign users a <a target="_blank" ng-href="../{{sharingService.settings.UserTerritoriesPreFix}}">user territory</a> record for each service territory where they work.\n            <br/> \n            User territory records give users Apex rule-based access to the following records:\n            <br/>\n            <ul class="slds-list_dotted">\n                <li>The related service territory</li>\n                <li>The territory\u2019s service territory members and their assigned resource records</li>\n                <li>Related service appointments</li>\n                <li>Related resource absences</li>\n            </ul>\n\n            Sharing is only applicable for private records.\n        </div>\n        ';
-
-        return {
-            restrict: 'E',
-            scope: {
-                verifyFunctions: '='
             },
             controller: controllerFunction,
             template: template

@@ -137,7 +137,7 @@ public class ISTAccountEmailBatchTest {
         System.assertEquals(UserInfo.getUserEmail(), checkDocList[3].TM_Email__c);
     }
 
-    //@isTest
+    @isTest
     static void bulkTest() {
         //create a date
         Date past = System.Today().addMonths(-5);

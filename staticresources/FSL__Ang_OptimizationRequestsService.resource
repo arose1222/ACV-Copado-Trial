@@ -300,8 +300,8 @@
             // if already aborting
             if (OptimizationRequestsProgressStatus[request.id] && OptimizationRequestsProgressStatus[request.id].aborting) return false;
 
-            // if OR is open, queued, in progress
-            if (request.status === 'Completed' || request.status === 'Aborted' || request.status === 'Failed') return false;
+            // if OR is open, queued, in progress ( W-10307127 - new status - Finalizing )
+            if (request.status === 'Completed' || request.status === 'Aborted' || request.status === 'Failed' || request.status === 'Finalizing') return false;
 
             // if OR is of optimization type
             for (var key in OptimizationsRequestTypes) {

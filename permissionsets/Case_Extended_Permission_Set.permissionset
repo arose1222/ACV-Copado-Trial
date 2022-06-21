@@ -16,7 +16,7 @@
         <application>Unwinds_Console</application>
         <visible>true</visible>
     </applicationVisibilities>
-    <description>This permission set allows the owner to delete duplicate Cases; access to executive dashboards; ability to edit and save reports and dashboards</description>
+    <description>This permission set allows access to executive dashboards; ability to edit and save reports and dashboards (Removed delete case access from this permission on 6/8/2022)</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Complaint__c.Auction_Number_Complaint__c</field>
@@ -362,10 +362,10 @@
     <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -516,10 +516,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageDashbdsInPubFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageDynamicDashboards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

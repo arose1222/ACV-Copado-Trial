@@ -1,7 +1,7 @@
 global class DealerDocExpirationHandler extends SchedulingInterface implements Database.Batchable<sObject>, Database.Stateful {
     public static List<String> errorList = new List<String>();
-    // public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
-    // public static final Id resaleId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
+    public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
+    public static final Id resaleId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
     public static final Id confirmationId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('License_Renewal_Confirmation').getRecordTypeId();
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
@@ -30,12 +30,12 @@ global class DealerDocExpirationHandler extends SchedulingInterface implements D
                 d.Review_Status__c = null;
             }
             else {
-                //if (d.RecordTypeId == licenseId || d.RecordTypeId == resaleId) { //removing this so capital docs are included and making the class more flexible in future
-                d.Document_Expired__c = true;
-                d.Compliant__c = false;
-                d.Compliance_Issues__c = 'Document expired';
-                d.Review_Status__c = null;
-                //}
+                if (d.RecordTypeId == licenseId || d.RecordTypeId == resaleId) {
+                    d.Document_Expired__c = true;
+                    d.Compliant__c = false;
+                    d.Compliance_Issues__c = 'Document expired';
+                    d.Review_Status__c = null;
+                }
             }
         }
 

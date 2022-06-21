@@ -155,12 +155,20 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Last Call Date --></label>
+        <name>Last_Call_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Missed AGT Signature --></label>
         <name>Missed_AGT_Signature__c</name>
     </fields>
     <fields>
         <label><!-- Missing Notary --></label>
         <name>Missing_Notary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Follow Up Date --></label>
+        <name>Next_Follow_Up_Date__c</name>
     </fields>
     <fields>
         <label><!-- ODOM/Date --></label>
@@ -311,7 +319,7 @@
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
-        <errorMessage><!-- Please be sure all QC Problem Identified records are marked as Resolved - Use the Update Problem Status(es) button at the top right to resolve those issues. --></errorMessage>
+        <errorMessage><!-- Please be sure all QC Problem Identified records are marked as Resolved  before changing the status to Closed. --></errorMessage>
         <name>Can_not_close_QC_with_Open_QCPI_Records</name>
     </validationRules>
 </CustomObjectTranslation>

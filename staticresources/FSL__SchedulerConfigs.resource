@@ -303,7 +303,7 @@ var schedulerConfig = function (schedulerConfig) {
         scheduler.config.minicalendar.mark_events = false;
         scheduler.config.preserve_length = false;
         scheduler.config.rtl = rtlDirection;
-        scheduler.config.drag_create = false;
+        // scheduler.config.drag_create = false // W-10709962
         scheduler.config.touch = false;
 
         //scheduler.config.delay_render = 50;

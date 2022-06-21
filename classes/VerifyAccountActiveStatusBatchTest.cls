@@ -63,7 +63,7 @@ public class VerifyAccountActiveStatusBatchTest {
         System.assertEquals(null, checkAccounts[2].Set_Active_Account_Check_Date__c); //should null out when this runs through the batch
     }
 
-    //isTest
+    @isTest
     static void bulkTest() {
         Date today = System.Today();
         //create 200 accounts

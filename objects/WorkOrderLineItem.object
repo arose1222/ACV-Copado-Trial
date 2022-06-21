@@ -858,15 +858,6 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Cloned_for_Grouping__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Cloned for Grouping</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Color__c</fullName>
         <externalId>false</externalId>
         <label>Color</label>
@@ -876,19 +867,6 @@ IF( CONTAINS( TEXT( WorkOrder.Origin__c ) , &quot;Import Manager&quot; ), &quot;
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Completed_Date__c</fullName>
-        <description>***DO NOT DELETE***
-
-field used in scoring_logic__c
-JIRA:  CAP - 456</description>
-        <externalId>false</externalId>
-        <label>Completed Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Completed_Time__c</fullName>
@@ -1629,33 +1607,6 @@ JIRA:  CAP - 456</description>
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Scoring_Logic__c</fullName>
-        <description>Formula field used to assign a score to the work order based on work order line item criteria
-
-Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</description>
-        <externalId>false</externalId>
-        <formula>IF(
-   ISPICKVAL(Status, &apos;unknown&apos;) || ISPICKVAL(Status, &apos;Service Loaner&apos;) || ISPICKVAL(Status, &apos;Demonstrator&apos;) || ISPICKVAL(Status, &apos;Test Drive&apos;) || ISPICKVAL(Status, &apos;Secondary Location&apos;)
-    || ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Cash&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &lt;= 1 || 
-    ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Financing&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &lt;= 5 , 2, 
-
-
-      IF(ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Cash&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &gt; 1 || 
-    ISPICKVAL(Status, &apos;sold&apos;) &amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Financing&apos;) &amp;&amp; ABS(Completed_Date__c - Sale_Date__c) &gt; 5 , 3, 1)
-   )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Formula field used to assign a score to the work order based on work order line item criteria
-
-Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI</inlineHelpText>
-        <label>Scoring Logic</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Series__c</fullName>
         <externalId>false</externalId>
         <label>Series</label>
@@ -1932,13 +1883,6 @@ IF( CONTAINS( CreatedBy.Full_Name__c, &quot;Supply&quot; ), &quot;Supply Standar
 Prevent LC&apos;s from Canceling some WOLI Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
         <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
         <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Prevent_Work_Type_Change</fullName>
-        <active>true</active>
-        <description>Prevent Work Type from being changed</description>
-        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
-        <errorMessage>Work Type CANNOT be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Require_Sale_Date_if_In_Sold_Status</fullName>

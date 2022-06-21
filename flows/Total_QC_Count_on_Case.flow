@@ -2,10 +2,44 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>52.0</apiVersion>
     <assignments>
+        <name>Assign_Open_QC_Count</name>
+        <label>Assign Open QC Count</label>
+        <locationX>249</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>OpenQCCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Seller_Assistance_Needed</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Count Seller Assistance needed Qc records on case  -this loops through all the records on the Total QC and then counts the items that are seller Assistance = yes and adds one for every record that moves through the loop.</description>
+        <name>Assign_Seller_Assistance</name>
+        <label>Assign Seller Assistance</label>
+        <locationX>592</locationX>
+        <locationY>709</locationY>
+        <assignmentItems>
+            <assignToReference>SellerAssistanceNeededCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>All_QC_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>This assignment gets the total and then assigns the total count on case</description>
         <name>Total_QCs_Count</name>
         <label>Total QCs Count</label>
-        <locationX>669</locationX>
-        <locationY>537</locationY>
+        <locationX>855</locationX>
+        <locationY>383</locationY>
         <assignmentItems>
             <assignToReference>TotalQCCount</assignToReference>
             <operator>AssignCount</operator>
@@ -14,12 +48,83 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Case_Record</targetReference>
+            <targetReference>All_QC_Records</targetReference>
         </connector>
     </assignments>
-    <description>Added seller assistance needed =yes to criteria - no linger total count just where seller assistance is needed (not =no)</description>
+    <decisions>
+        <name>Decision_to_Create_Counts</name>
+        <label>Decision to Create Counts</label>
+        <locationX>457</locationX>
+        <locationY>838</locationY>
+        <defaultConnector>
+            <targetReference>Seller_Assistance_Needed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QC_Open</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>All_QC_Records.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Working</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>All_QC_Records.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Open</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Open_QC_Count</targetReference>
+            </connector>
+            <label>QC Open</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Seller_Assistance_Needed</name>
+        <label>Seller Assistance Needed</label>
+        <locationX>588</locationX>
+        <locationY>498</locationY>
+        <defaultConnector>
+            <targetReference>All_QC_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>All_QC_Records.Seller_Assistance_Needed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Yes</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Seller_Assistance</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Three Counts of QC records - Total QC Count, open QC Count, and Seller Assistance QC Count.</description>
     <interviewLabel>Total QC Count on Case {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Total QC Count on Case</label>
+    <loops>
+        <name>All_QC_Records</name>
+        <label>All QC Records</label>
+        <locationX>903</locationX>
+        <locationY>655</locationY>
+        <collectionReference>Get_QC_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Decision_to_Create_Counts</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Case_Record_0</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -59,13 +164,15 @@
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Quality_Control__c</object>
         <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
+        <queriedFields>Seller_Assistance_Needed__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Case_Record</name>
+        <name>Update_Case_Record_0</name>
         <label>Update Case Record</label>
-        <locationX>670</locationX>
-        <locationY>696</locationY>
+        <locationX>1087</locationX>
+        <locationY>616</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -74,6 +181,18 @@
                 <elementReference>$Record.Case__c</elementReference>
             </value>
         </filters>
+        <inputAssignments>
+            <field>Open_QC_Count__c</field>
+            <value>
+                <elementReference>OpenQCCount</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>QC_Count_Seller_Needed__c</field>
+            <value>
+                <elementReference>SellerAssistanceNeededCount</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>QC_Count__c</field>
             <value>
@@ -88,8 +207,16 @@
         <connector>
             <targetReference>Get_QC_Records</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Quality_Control__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
@@ -110,6 +237,32 @@
         <value>
             <elementReference>$Record.Case__r.Id</elementReference>
         </value>
+    </variables>
+    <variables>
+        <name>currentItem_All_Open_QC_Records_0</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Quality_Control__c</objectType>
+    </variables>
+    <variables>
+        <description>Count of Open QC records</description>
+        <name>OpenQCCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <description>number of QCs where Seller Assistance is Needed equals,  yes</description>
+        <name>SellerAssistanceNeededCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
     </variables>
     <variables>
         <name>TotalQCCount</name>

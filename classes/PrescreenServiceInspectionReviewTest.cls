@@ -65,8 +65,6 @@ public class PrescreenServiceInspectionReviewTest {
         idef.carfaxAlert.carfaxExceptions = new List<String>();
         idef.images = new List<InspectionDefinition.ImageMap>();
         idef.wasManuallyCreated = false;
-        
-        idef.region = 'Test Region';
         return idef;
     }
     public static InspectionDefinition badIDef1(){
@@ -132,56 +130,6 @@ public class PrescreenServiceInspectionReviewTest {
         idef.carfaxAlert.carfaxExceptions = new List<String>();
         idef.images = new List<InspectionDefinition.ImageMap>();
         return idef;
-    }
-    @IsTest
-    public static void testIsOnlyAux(){
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper1 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper1.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper1.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', true));
-        iWrapper1.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason2', false));
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper1), 'iWrapper1 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper2 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper2.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper2.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', true));
-        iWrapper2.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason2', true));
-        iWrapper2.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason3', true));
-        System.assertEquals(true, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper2), 'iWrapper2 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper3 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper3.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper3), 'iWrapper3 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper4 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper4.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper4.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', false));
-        iWrapper4.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason2', true));
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper4), 'iWrapper4 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper5 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper5.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper5.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', false));
-        iWrapper5.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason2', false));
-        iWrapper5.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason3', false));
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper5), 'iWrapper5 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper6 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper6.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper6.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', true));
-        System.assertEquals(true, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper6), 'iWrapper6 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper7 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper7.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper7.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', false));
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper7), 'iWrapper7 had incorrect boolean value');
-        
-        PrescreenServiceHelper.InspectionWrapper iWrapper8 = new PrescreenServiceHelper.InspectionWrapper();
-        iWrapper8.prescreenReasonWrappers = new Set<PrescreenServiceHelper.ReasonWrapper>();
-        iWrapper8.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason1', true));
-        iWrapper8.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason2', false));
-        iWrapper8.prescreenReasonWrappers.add(new PrescreenServiceHelper.ReasonWrapper('Reason3', true));
-        System.assertEquals(false, PrescreenServiceHelper.isOnlyAuxReasons(iWrapper8), 'iWrapper8 had incorrect boolean value');
     }
     @isTest
     public static void negativeMetadataTest(){
@@ -273,17 +221,11 @@ public class PrescreenServiceInspectionReviewTest {
         //PrescreenServiceHelper.mockMetadata = (List<CR_Review_Trigger__mdt>)JSON.deserializeStrict(mockDataBoolean, List<CR_Review_Trigger__mdt>.class);
         TestingUtility.SingleRequestMock loginResp = new TestingUtility.SingleRequestMock(200,'OK','{"api_version": 2.0,"data": {"user_id": 34233,"session_token": "a41a7c86-7b30-4305-a13d-b54c65a17a0a","code": "200"}}',null);
         TestingUtility.SingleRequestMock uactiveRes = new TestingUtility.SingleRequestMock(200,'OK','{"api_version": 2.0,"data": {"virtual_lift_list": [],"code": "200"}}',null);
-        
         Map<String,HttpCalloutMock> multiCall = new Map<String,HttpCalloutMock>();
-        
         multiCall.put('callout:R_D_MicroService/login_acv',loginResp);
         multiCall.put('callout:R_D_MicroService/virtual_lift/vin/batch/?vins=JH4DC54802C546089&recent_days_back=90', uactiveRes);
-        multiCall.put('callout:ArbGuard/v1/arbguard/sia', new SiaCrEvaluatorMock());
-        
         Test.setMock(HttpCalloutMock.class, new TestingUtility.MultiRequestMock(multiCall));
-        
         List<InspectionDefinition> idefList = new List<InspectionDefinition>();
-        
         InspectionDefinition idef = defaultIDef();
         idef.carfaxAlert.isValid = true;
         idefList.add(idef);
@@ -297,19 +239,11 @@ public class PrescreenServiceInspectionReviewTest {
         PrescreenServiceInspectionReview.InspectionReviewResultsWrapper wrapper = PrescreenServiceInspectionReview.inspectionReview(idefList);
         Test.stopTest();
         
-        
-        Map<Id, Condition_Report_Prescreen__c> prescreenMap = new Map<Id, Condition_Report_Prescreen__c>([SELECT OwnerId, id FROM Condition_Report_Prescreen__c]);
-        List<Prescreen_REason__c> reasonList = [SELECT id, Condition_Report_Prescreen__c, name FROM Prescreen_Reason__c WHERE Condition_Report_Prescreen__c in : prescreenMap.keyset()];
-        
-        Id queueId = [select Id from Group where  Type = 'Queue' AND NAME = 'CR Queue' LIMIT 1].id;
-        for(PrescreenServiceInspectionReview.InspectionReviewResults result : wrapper.items){
-            system.debug(result.message);
-        }
-        system.debug(wrapper.errors);
+        list<Condition_Report_Prescreen__c> prescreenList= [SELECT OwnerId FROM Condition_Report_Prescreen__c];
+        Id queueId = [select Id from Group where  Type = 'Queue' AND NAME = 'SIA Prescreen' LIMIT 1].id;
         system.assert(wrapper.errors == false);
-        system.assertEquals(1,prescreenMap.size(), 'Prescreen Count Wrong');
-         
-        system.assertEquals(queueId,prescreenMap.values()[0].OwnerId, 'Wrong Queue');
+        system.assertEquals(1,prescreenList.size(), 'Prescreen Count Wrong');
+        system.assertEquals(queueId,prescreenList[0].OwnerId, 'Wrong Queue');
     }
 
     @isTest

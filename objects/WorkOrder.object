@@ -1028,19 +1028,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Auditor_Name__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>CAP-456: Used by Netsuite Integration (Celigo) to track Audit Information</description>
-        <externalId>false</externalId>
-        <label>Auditor Name</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Work_Orders</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Beta_Flag__c</fullName>
         <description>Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories).</description>
         <externalId>false</externalId>
@@ -1213,21 +1200,6 @@ BEGINS( ServiceTerritory.Name, &apos;OV&apos; ) )</formula>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Final_Audit_Score__c</fullName>
-        <description>This field reads the score from &apos;Scoring Logic Summary&apos;, but can be overwritten by a user with the permission set:  &apos;Final_Audit_score__c editable on Work Order&apos;.  All other profiles have this field set to &apos;read-only&apos;
-
-JIRA:  CAP - 456</description>
-        <externalId>false</externalId>
-        <label>Final Audit Score</label>
-        <precision>1</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>GrandTotal</fullName>
@@ -1549,20 +1521,6 @@ JIRA:  CAP - 456</description>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Scoring_Logic_Summary__c</fullName>
-        <description>This is a roll-up summary field which takes all the Work Order Line Items and takes the MAX value of &apos;scoring_logic__c&apos; and applies it to work order.
-
-JIRA:  CAP - 456</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Roll-up Summary field calculating MAX Value of Work Order Line Items</inlineHelpText>
-        <label>Scoring Logic Summary</label>
-        <summarizedField>WorkOrderLineItem.Scoring_Logic__c</summarizedField>
-        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
-        <summaryOperation>max</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <type>Summary</type>
-    </fields>
-    <fields>
         <fullName>ServiceAppointmentCount</fullName>
     </fields>
     <fields>
@@ -1709,6 +1667,21 @@ JIRA:  CAP - 456</description>
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>WOLI_Completed_Record_Count__c</fullName>
+        <description>Count of Completed WOLI Records</description>
+        <externalId>false</externalId>
+        <label>WOLI Completed Record Count</label>
+        <summaryFilterItems>
+            <field>WorkOrderLineItem.StatusCategory</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>WOLI_Completed_Status_Category_Cnt__c</fullName>
         <description>WOLI Completed Status Category Record Count</description>
         <externalId>false</externalId>
@@ -1718,6 +1691,16 @@ JIRA:  CAP - 456</description>
             <operation>equals</operation>
             <value>Completed</value>
         </summaryFilterItems>
+        <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>WOLI_Record_Count__c</fullName>
+        <description>Count of WOLI Records</description>
+        <externalId>false</externalId>
+        <label>WOLI Record Count</label>
         <summaryForeignKey>WorkOrderLineItem.WorkOrderId</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -3241,26 +3224,12 @@ JIRA:  CAP - 456</description>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
-        <fullName>Prevent_True360_appointments</fullName>
-        <active>true</active>
-        <description>Prevents the creation of True360 Work Orders based on the Account&apos;s &quot;Halt True360 Appointments&quot; field.</description>
-        <errorConditionFormula>AND(WorkType.Work_Type_Unique_ID__c = &apos;true360&apos;,  Account.Halt_True360_Appointments__c,  ISNEW())</errorConditionFormula>
-        <errorMessage>This dealership is not approved for any True 360 inspections at this time.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Prevent_VCIs_LCs_from_Canceling_WO_Jobs</fullName>
         <active>true</active>
         <description>Prevent VCI&apos;s from Canceling WO Jobs.
 Prevent LC&apos;s from Canceling some WO Jobs with Work Types equal to Auction Off-Lease, any CPO, Dealer or FBI...   EXCEPT Users in the Permission Set &quot;Allow Cancellation of some Work Type jobs&quot;.</description>
         <errorConditionFormula>ISCHANGED(Status) &amp;&amp; ISPICKVAL(Status, &apos;Canceled&apos;) &amp;&amp; (BEGINS($Profile.Name, &apos;Vehicle&apos;) || (BEGINS($Profile.Name, &apos;Logistics&apos;) &amp;&amp; NOT($Permission.Allow_Cancellation_of_some_Work_Type_jobs) &amp;&amp; (WorkType.Name = &apos;Auction Off-lease&apos; || BEGINS(WorkType.Name , &apos;CPO&apos;) || WorkType.Name = &apos;Dealer&apos; || WorkType.Name = &apos;FBI&apos;)))</errorConditionFormula>
         <errorMessage>Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Prevent_Work_Type_Change</fullName>
-        <active>true</active>
-        <description>Prevent Work Type from being changed</description>
-        <errorConditionFormula>NOT BEGINS($Profile.Name, &apos;System&apos;) &amp;&amp; ISCHANGED(WorkTypeId)</errorConditionFormula>
-        <errorMessage>Work Type CANNOT be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Require_Launch_Term_Details</fullName>

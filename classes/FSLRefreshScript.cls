@@ -47,7 +47,7 @@ global class FSLRefreshScript {
                     when 'siriusxm' {
                         adjustedSkillName = 'Sirius_XM';
                     }
-                    when 'buyer signup' {
+                    when 'buyersignup' {
                         adjustedSkillName = 'Buyer_Signup';
                     }
                     when 'auction off-lease' {

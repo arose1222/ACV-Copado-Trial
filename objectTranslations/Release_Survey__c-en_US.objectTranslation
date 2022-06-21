@@ -319,12 +319,6 @@
         <name>Release_Survey_Score__c</name>
     </fields>
     <fields>
-        <help><!-- Indicate a release is being done on behalf of another individual - typically a contractor --></help>
-        <label><!-- Released on Behalf of --></label>
-        <name>Released_on_Behalf_of__c</name>
-        <relationshipLabel><!-- Release Surveys (Released on Behalf of) --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Requests &amp; Inquiries --></label>
         <name>Requests_Inquiries__c</name>
         <relationshipLabel><!-- Release Surveys --></relationshipLabel>
@@ -495,9 +489,5 @@ Re-Evaluate = Work with team mates to discuss further - move back to pending o r
     <validationRules>
         <errorMessage><!-- When selecting a Deployment Status other then &apos;Successful&apos;, you need to provide additional details in the Issue Described Field --></errorMessage>
         <name>Require_Issue_Description</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Please add a link to either the &quot;Atlassian Link&quot; or &quot;Request &amp; Inquiries&quot; field. --></errorMessage>
-        <name>Require_RI_Ticket_or_Atlassian_Link</name>
     </validationRules>
 </CustomObjectTranslation>

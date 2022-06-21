@@ -207,6 +207,11 @@
             <isRequired>false</isRequired>
         </availableFields>
         <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
             <field>Latitude</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -363,6 +368,11 @@
         </availableFields>
         <availableFields>
             <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </availableFields>
@@ -542,6 +552,11 @@
             <isRequired>false</isRequired>
         </availableFields>
         <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
             <field>Latitude</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -615,18 +630,6 @@
     <fields>
         <fullName>End</fullName>
         <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>End_Time_in_resource_s_time_zone__c</fullName>
-        <description>The End Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time).</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The End Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time).</inlineHelpText>
-        <label>End Time (in resource&apos;s time zone)</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FSL__Approved__c</fullName>
@@ -803,6 +806,18 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>FSL__Last_Updated_Epoch__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Updated Epoch</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FSL__Scheduling_Policy_Used__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
@@ -825,31 +840,9 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
-        <fullName>Start_Time_in_resource_s_time_zone__c</fullName>
-        <description>The Start Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time).</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The Start Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time).</inlineHelpText>
-        <label>Start Time (in resource&apos;s time zone)</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Type</fullName>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Verify_Timezone__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>If set to true, we will need to calculate proper start/end times for the Service Resources time zone.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If set to true, we will need to calculate proper start/end times for the Service Resources time zone.</inlineHelpText>
-        <label>Verify Timezone</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>

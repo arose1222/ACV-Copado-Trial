@@ -49,10 +49,6 @@
         <name>Annual_Unit_Sales__c</name>
     </fields>
     <fields>
-        <label><!-- Assigned On Insert --></label>
-        <name>Assigned_On_Insert__c</name>
-    </fields>
-    <fields>
         <help><!-- Enter the name of the Association(s) the Dealer is a member of. i.e. NADA, NIADA, NABD --></help>
         <label><!-- Association Membership --></label>
         <name>Association_Membership__c</name>
@@ -112,14 +108,6 @@
         <picklistValues>
             <masterLabel>Checkout Campaign</masterLabel>
             <translation><!-- Checkout Campaign --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital-Floorplan-2 Waived Fees</masterLabel>
-            <translation><!-- Digital-Floorplan-2 Waived Fees --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital-Floorplan-Spring Savings 60for60 Tax Season</masterLabel>
-            <translation><!-- Digital-Floorplan-Spring Savings 60for60 Tax Season --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -376,10 +364,6 @@
             <translation><!-- Independent --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Independent - ACV Certified</masterLabel>
-            <translation><!-- Independent - ACV Certified --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Wholesaler</masterLabel>
             <translation><!-- Wholesaler --></translation>
         </picklistValues>
@@ -521,10 +505,6 @@
             <masterLabel>Other</masterLabel>
             <translation><!-- Other --></translation>
         </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Follow Up Task Created On --></label>
-        <name>Follow_Up_Task_Created_On__c</name>
     </fields>
     <fields>
         <label><!-- Full Demo Completed --></label>
@@ -874,18 +854,6 @@
         <relationshipLabel><!-- Leads (Lead Assist Name) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Lead DeveloperName --></label>
-        <name>Lead_DeveloperName__c</name>
-    </fields>
-    <fields>
-        <label><!-- Lead Record Type Mapping --></label>
-        <name>Lead_Record_Type_Mapping__c</name>
-        <picklistValues>
-            <masterLabel>ACV Capital</masterLabel>
-            <translation><!-- ACV Capital --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Lead Record type (Conversion) --></label>
         <name>Lead_Record_type_Conversion__c</name>
     </fields>
@@ -931,10 +899,6 @@
         <label><!-- Maps TM Assignment Rule --></label>
         <name>Maps_TM_Assignment_Rule__c</name>
         <relationshipLabel><!-- Leads (Maps TM Assignment Rule) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Market Place Report User --></label>
-        <name>Market_Place_Report_User__c</name>
     </fields>
     <fields>
         <label><!-- NG Dealer # --></label>
@@ -1095,10 +1059,6 @@
         <picklistValues>
             <masterLabel>Tradeshow/Event</masterLabel>
             <translation><!-- Tradeshow/Event --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Webinar</masterLabel>
-            <translation><!-- Webinar --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -2048,6 +2008,11 @@
         <name>ACV_Capital</name>
     </recordTypes>
     <recordTypes>
+        <description><!-- Used for capturing ACV Capital Leads --></description>
+        <label><!-- Capital --></label>
+        <name>Capital</name>
+    </recordTypes>
+    <recordTypes>
         <description><!-- New Sales Record Type --></description>
         <label><!-- Organization Lead --></label>
         <name>Organization_Lead</name>
@@ -2070,11 +2035,6 @@
         <description><!-- Used for qualification of True360 leads --></description>
         <label><!-- True360 --></label>
         <name>True360</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- Used for capturing ACV Capital Leads --></description>
-        <label><!-- xCapital --></label>
-        <name>xCapital</name>
     </recordTypes>
     <validationRules>
         <errorMessage><!-- Address is not valid. Please make sure to fill in Street, City, State and Zipcode. --></errorMessage>
@@ -2147,13 +2107,5 @@
     <webLinks>
         <label><!-- Map_newWindow --></label>
         <name>geopointe__Map_newWindow</name>
-    </webLinks>
-    <webLinks>
-        <label>NADA Meeting</label>
-        <name>jiffle__Jifflenow_Meetings</name>
-    </webLinks>
-    <webLinks>
-        <label>NADA Meeting</label>
-        <name>jiffle__Schedule_Jifflenow_Meetings</name>
     </webLinks>
 </CustomObjectTranslation>

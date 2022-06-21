@@ -329,16 +329,12 @@ public class ACVUtility {
         try {
             Integer x = 0 / 0;
         } catch(Exception e) {
-            String[] lineList = e.getStackTraceString().split('\n');
-            if(lineList != null && lineList.size() >= 2)	{
-                String line2 = lineList[1];
-                Pattern patt = Pattern.compile('([A-Za-z0-9_.]+): line (\\d+)');
-                Matcher match = patt.matcher(line2);
-                match.find();
-                return Integer.valueOf(match.group(2));
-            }
+            String line2 = e.getStackTraceString().split('\n')[1];
+            Pattern patt = Pattern.compile('([A-Za-z0-9_.]+): line (\\d+)');
+            Matcher match = patt.matcher(line2);
+            match.find();
+            return Integer.valueOf(match.group(2));
         }
-        
         return null;
     }
 
@@ -862,28 +858,5 @@ public class ACVUtility {
             DateTime start = System.Now().addSeconds(seconds); 
             while(System.Now().getTime() < start.getTime()){}
         }
-    }
-
-
-    /**
-     * Gets the date that lies a certain number of business days in the future
-     * @param startingDate The date that you wish to start from. Usually this would be the current DateTime.
-     * @param numberOfDays The number of business days in the future that you want to calculate.
-     * @param acvBusinessHours The BusinessHours that you would like to use.
-     * @return  `DateTime` The date that lies numberOfDays busines days ahead of startingDate.
-     */
-    public static DateTime addBusinessDays(DateTime startingDate, Integer numberOfDays, BusinessHours acvBusinessHours) {
-        Time currTime = startingDate.time();
-
-        // make sure you're starting at a Datetime within BusinessHours
-        startingDate = BusinessHours.nextStartDate(acvBusinessHours.Id, startingDate);
-
-        for (Integer elapsed = 0; elapsed < numberOfDays; elapsed++)
-        {
-            startingDate = startingDate.addDays(1);
-            if (!BusinessHours.isWithin(acvBusinessHours.Id, startingDate))
-            startingDate = BusinessHours.nextStartDate(acvBusinessHours.Id, startingDate);
-        }
-        return DateTime.newInstance(startingDate.date(), currTime);
     }
 }

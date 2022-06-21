@@ -63,7 +63,7 @@ global class RevolvingCleanupBatch implements Database.Batchable<SObject>, Datab
 
         try{
             thisDebug.addAll(RevolvingCleaner.deleteChangedRecords((List<Occurrence__c>)scope));  // delete generated data for changed or deleted occurrences
-            //thisDebug.addAll(RevolvingCleaner.removeInactiveRecords((List<Occurrence__c>)scope));  // delete timelines and occurrences that are inactive or past
+            thisDebug.addAll(RevolvingCleaner.removeInactiveRecords((List<Occurrence__c>)scope));  // delete timelines and occurrences that are inactive or past
         }
         catch(Exception e) {
             thisDebug.addAll(new List<String>{'**EXCEPTION THROWN**',e.getMessage(),e.getStackTraceString()});

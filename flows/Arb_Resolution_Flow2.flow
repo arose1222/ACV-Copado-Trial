@@ -433,28 +433,6 @@
         </connector>
     </assignments>
     <assignments>
-        <description>Clearing the different Amount variables, mainly needed when multiple resolutions are done in 1 flow iteration</description>
-        <name>ClearAmounts</name>
-        <label>ClearAmounts</label>
-        <locationX>1324</locationX>
-        <locationY>545</locationY>
-        <assignmentItems>
-            <assignToReference>varResolutionAmount</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varResolutionAmountDiagnostic</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTowFee</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <connector>
-            <targetReference>Assign_Inputs_0</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Flatten_Complaint_Selections</name>
         <label>Flatten Complaint Selections</label>
         <locationX>570</locationX>
@@ -736,13 +714,6 @@
                     <stringValue>Unwound Back To Seller</stringValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Type_of_Resolution_Radio</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>ACV To Re-List</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Enter_Another_Res</targetReference>
             </connector>
@@ -934,7 +905,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>ClearAmounts</targetReference>
+                <targetReference>Assign_Inputs_0</targetReference>
             </connector>
             <label>Skip Dollar Entry</label>
         </rules>
@@ -964,8 +935,7 @@
             <label>Complaint is Under 500</label>
         </rules>
     </decisions>
-    <description>Updating for Amounts are supposed to be Zero based on Type
-Correcting Invoice Credit Record RecordTypeAssignment from last version
+    <description>Correcting Invoice Credit Record RecordTypeAssignment from last version
 Cleaning up old elements from version 23
 
 Added Total with Fees and adjusting Resolution subflow

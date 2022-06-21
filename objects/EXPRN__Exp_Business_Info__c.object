@@ -156,194 +156,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>ACV_Tax_Lien__c</fullName>
-        <description>Converts Tax Lien Filings from text to number.  Used in ACV Decisioning Logic</description>
-        <externalId>false</externalId>
-        <formula>VALUE( EXPRN__Experian_Lien_Bal__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>ACV Tax Lien</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>BI_Score__c</fullName>
-        <description>Used to convert Intelliscore Plus from text to a number. Created for decisioning logic</description>
-        <externalId>false</externalId>
-        <formula>VALUE( EXPRN__Intelliscore_Plus__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>BI Score</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch_City__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch City</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch_State__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch State</label>
-        <length>2</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch_Street__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch Street</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch_Zip_Extension__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch Zip Extension</label>
-        <length>4</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch_Zip__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch Zip</label>
-        <length>5</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Business_Facts_Success__c</fullName>
-        <externalId>false</externalId>
-        <label>Business Facts Success</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Collection_Balance__c</fullName>
-        <externalId>false</externalId>
-        <label>Collection Balance</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Commercial_Score_Definition__c</fullName>
-        <externalId>false</externalId>
-        <label>Commercial Score Definition</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Commercial_Score_Quarter__c</fullName>
-        <externalId>false</externalId>
-        <label>Commercial Score Quarter</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Commercial_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>Commercial Score</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Corporate_Linkage_Indicator__c</fullName>
-        <externalId>false</externalId>
-        <label>Corporate Linkage Indicator</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>True</fullName>
-                    <default>false</default>
-                    <label>True</label>
-                </value>
-                <value>
-                    <fullName>False</fullName>
-                    <default>false</default>
-                    <label>False</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Corporate_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Corporate Type</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Current_Debt__c</fullName>
-        <externalId>false</externalId>
-        <label>Current Debt</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>EXPRN__Account_Name__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
@@ -2692,450 +2504,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>First_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>First Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Foreign_Country__c</fullName>
-        <externalId>false</externalId>
-        <label>Foreign Country</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>True</fullName>
-                    <default>false</default>
-                    <label>True</label>
-                </value>
-                <value>
-                    <fullName>False</fullName>
-                    <default>false</default>
-                    <label>False</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Fortune_1000_Year__c</fullName>
-        <externalId>false</externalId>
-        <label>Fortune 1000 Year</label>
-        <length>4</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Inquiry_Count__c</fullName>
-        <externalId>false</externalId>
-        <label>Inquiry Count</label>
-        <precision>2</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Judgement_Balance__c</fullName>
-        <externalId>false</externalId>
-        <label>Judgement Balance</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Judgement_count__c</fullName>
-        <externalId>false</externalId>
-        <label>Judgement count</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Last_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Last Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Legal_Filings_Success__c</fullName>
-        <externalId>false</externalId>
-        <label>Legal Filings Success</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Matching_Branch_Address__c</fullName>
-        <externalId>false</externalId>
-        <label>Matching Branch Address</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>True</fullName>
-                    <default>false</default>
-                    <label>True</label>
-                </value>
-                <value>
-                    <fullName>False</fullName>
-                    <default>false</default>
-                    <label>False</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Middle_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Middle Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Model_Title__c</fullName>
-        <externalId>false</externalId>
-        <label>Model Title</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAICS_Description__c</fullName>
-        <externalId>false</externalId>
-        <label>NAICS Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Percentile_Ranking__c</fullName>
-        <externalId>false</externalId>
-        <label>Percentile Ranking</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Risk_Class_Definition__c</fullName>
-        <externalId>false</externalId>
-        <label>Risk Class Definition</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Score_Comments__c</fullName>
-        <externalId>false</externalId>
-        <label>Score Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Score_Success__c</fullName>
-        <externalId>false</externalId>
-        <label>Score Success</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Score__c</fullName>
-        <externalId>false</externalId>
-        <label>Score</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Title__c</fullName>
-        <externalId>false</externalId>
-        <label>Title</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UCC_Derogatory_Count__c</fullName>
-        <externalId>false</externalId>
-        <label>UCC Derogatory Count</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UCC_Filings_Count__c</fullName>
-        <externalId>false</externalId>
-        <label>UCC Filings Count</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreFactors_Score_Factor_Definition__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreFactors Score Factor Definition</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Collection_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Collection Score</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Credit_Status_Comments__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Credit Status Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Credit_Status_Success__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Credit Status Success</label>
-        <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Definition__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Definition</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Model_Title__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Model Title</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Percentile_Ranking__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Percentile Ranking</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Risk_Class__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Risk Class</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Score_Trends_Quarter__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Score Trends Quarter</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Score_Trends_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Score Trends Score</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScoreTrends_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScoreTrends Score</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Model_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Model Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Model_Title__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Model Title</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Percentile_Ranking__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Percentile Ranking</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Recommended_Credit_Limit_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Recommended Credit Limit Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Risk_Class_Description__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Risk Class Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>fsrScore_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>fsrScore Score</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
     <label>Experian Business Information</label>
     <listViews>
         <fullName>EXPRN__All</fullName>
@@ -3172,17 +2540,6 @@
         <description>For Business Profile With Score</description>
         <label>Business Profile With Score</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3253,28 +2610,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3285,17 +2620,6 @@
         <description>For Business &amp; Owner Profiles with Score, Business Profile with Score, Business Profile, Business Owner</description>
         <label>Business Profiles</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3366,28 +2690,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3398,17 +2700,6 @@
         <description>For Business Summary report</description>
         <label>Business Summary</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3479,28 +2770,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3511,17 +2780,6 @@
         <description>For Intelliscore report</description>
         <label>Intelliscore</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3592,28 +2850,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3624,17 +2860,6 @@
         <description>For International Canda Buinesses</description>
         <label>International Canada</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3705,28 +2930,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3737,17 +2940,6 @@
         <description>For Premier Profile report and Premier &amp; Owner Profiles report</description>
         <label>Premier Profile</label>
         <picklistValues>
-            <picklist>Corporate_Linkage_Indicator__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>EXPRN__Bankruptcy__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3818,28 +3010,6 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Foreign_Country__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Matching_Branch_Address__c</picklist>
-            <values>
-                <fullName>False</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>True</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -37,7 +37,6 @@ const FIELDS = [
 
 export default class updateVehicleCount extends LightningElement {
     @api recordId;
-    @api fromGantt = false;
     @track appointmentData = {};
 
     @track error;
@@ -48,7 +47,6 @@ export default class updateVehicleCount extends LightningElement {
     showStatusNotAllowed = false;
     showPastDueDateNotAllowed = false;
     showFutureDueDateNotAllowed = false;
-    showSuccessForGantt = false;
 
     statusAllowed = ['New', 'Scheduled', 'Dispatched', 'Acknowledged'];
     workTypeAllowed = ['inspection', 'true360', 'siriusxm'];
@@ -126,6 +124,7 @@ export default class updateVehicleCount extends LightningElement {
         .then(() => {
             this.isWorkOrderUpdated = true;
             this.updateServiceAppointment();
+
         })
         .catch(error => {
             this.rollbackWorkOrderUpdate();
@@ -148,13 +147,7 @@ export default class updateVehicleCount extends LightningElement {
         updateRecord(recordInput)
         .then(() => {
             this.showLoadingSpinner = false;
-
-            if(this.fromGantt) {
-                this.showSuccessForGantt = true;
-            } else {
-                eval("$A.get('e.force:refreshView').fire();"); 
-            }
-            
+            eval("$A.get('e.force:refreshView').fire();");
             this.closeModal();
             this.dispatchEvent(
                 new ShowToastEvent({
@@ -260,9 +253,7 @@ export default class updateVehicleCount extends LightningElement {
     }
 
     generateSplunkLog(message) {
-        if(!this.fromGantt) {
-            createSplunkLog('ERROR', message, 'updateVehicleCount', ['INSPECTOR_DISPATCH'], this.recordId, 'WorkOrder, ServiceAppointment');
-        }
+        createSplunkLog('ERROR', message, 'updateVehicleCount', ['INSPECTOR_DISPATCH'], this.recordId, 'WorkOrder, ServiceAppointment');
     }
 
 }

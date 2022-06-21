@@ -4,8 +4,8 @@
         <description>Ends the auction with an API callout in Tools</description>
         <name>End_Auction_In_Tools</name>
         <label>End Auction In Tools</label>
-        <locationX>1218</locationX>
-        <locationY>143</locationY>
+        <locationX>1427</locationX>
+        <locationY>508</locationY>
         <actionName>AuctionKillAPI</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -24,8 +24,8 @@
         <description>Checks the auction kill permission checkbox if the user has permission to do this or not.</description>
         <name>Check_if_specific_User_has_Permission</name>
         <label>Check if specific User has Permission</label>
-        <locationX>951</locationX>
-        <locationY>258</locationY>
+        <locationX>1041</locationX>
+        <locationY>491</locationY>
         <defaultConnector>
             <targetReference>Profile_Cancel</targetReference>
         </defaultConnector>
@@ -41,7 +41,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>End_Auction_In_Tools</targetReference>
+                <targetReference>Assign_User</targetReference>
             </connector>
             <label>Does Have Permission</label>
         </rules>
@@ -50,8 +50,8 @@
         <description>Checks the auctions Current Status. If the status is counter sent it will continue. If not it will cancel.</description>
         <name>Check_Status</name>
         <label>Check Status</label>
-        <locationX>395</locationX>
-        <locationY>142</locationY>
+        <locationX>661</locationX>
+        <locationY>309</locationY>
         <defaultConnector>
             <targetReference>Status_Cancel_1</targetReference>
         </defaultConnector>
@@ -76,8 +76,8 @@
         <description>Checks if the user checked the checkbox or not on the previous screen.</description>
         <name>Double_Check_Decision</name>
         <label>Double Check Decision</label>
-        <locationX>42</locationX>
-        <locationY>341</locationY>
+        <locationX>164</locationX>
+        <locationY>461</locationY>
         <defaultConnector>
             <targetReference>Cancel_Screen_1</targetReference>
         </defaultConnector>
@@ -102,10 +102,10 @@
         <description>Checks if the Current User&apos;s Profile matches one of the four profile names allowed to kill Auctions.</description>
         <name>Profile_Check</name>
         <label>Profile Check</label>
-        <locationX>581</locationX>
-        <locationY>140</locationY>
+        <locationX>1046</locationX>
+        <locationY>96</locationY>
         <defaultConnector>
-            <targetReference>Get_Auction_Kill_Permission</targetReference>
+            <targetReference>Check_if_specific_User_has_Permission</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Profile Mismatch</defaultConnectorLabel>
         <rules>
@@ -154,7 +154,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>End_Auction_In_Tools</targetReference>
+                <targetReference>Assign_User</targetReference>
             </connector>
             <label>Profile Success</label>
         </rules>
@@ -197,11 +197,11 @@
         <description>Gets the field checkbox Auction Kill Checkbox able to be read and used in the flow.</description>
         <name>Get_Auction_Kill_Permission</name>
         <label>Get Auction Kill Permission</label>
-        <locationX>752</locationX>
-        <locationY>256</locationY>
+        <locationX>544</locationX>
+        <locationY>457</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_if_specific_User_has_Permission</targetReference>
+            <targetReference>Check_Status</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -215,17 +215,18 @@
         <object>User</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>Auction_Kill_Permission__c</queriedFields>
+        <queriedFields>Full_Name__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <description>Gets the status of the current auction</description>
         <name>Get_Auction_Status</name>
         <label>Get Auction Status</label>
-        <locationX>234</locationX>
-        <locationY>140</locationY>
+        <locationX>407</locationX>
+        <locationY>463</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Status</targetReference>
+            <targetReference>Get_Auction_Kill_Permission</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -242,12 +243,37 @@
         <queriedFields>Name</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <description>identifies the user who ran the flow and populates the field on auction</description>
+        <name>Assign_User</name>
+        <label>Assign User</label>
+        <locationX>1427</locationX>
+        <locationY>296</locationY>
+        <connector>
+            <targetReference>End_Auction_In_Tools</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Auction_Status.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>End_Auction_Completed_By__c</field>
+            <value>
+                <elementReference>Get_Auction_Kill_Permission.Full_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Auction__c</object>
+    </recordUpdates>
     <screens>
         <description>Cancelation screen. User didn&apos;t check the double check checkbox.</description>
         <name>Cancel_Screen_1</name>
         <label>Cancel Screen 1</label>
-        <locationX>51</locationX>
-        <locationY>583</locationY>
+        <locationX>171</locationX>
+        <locationY>746</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -268,8 +294,8 @@
         <description>Double check to warn user that they are about to kill an auction.</description>
         <name>Double_Check</name>
         <label>Double Check</label>
-        <locationX>50</locationX>
-        <locationY>193</locationY>
+        <locationX>173</locationX>
+        <locationY>258</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -303,8 +329,8 @@
         <description>Profile does not have access to kill auctions.</description>
         <name>Profile_Cancel</name>
         <label>Profile Cancel</label>
-        <locationX>959</locationX>
-        <locationY>502</locationY>
+        <locationX>1049</locationX>
+        <locationY>722</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -325,8 +351,8 @@
         <description>Status isn&apos;t in counter sent, auction will not be canceled.</description>
         <name>Status_Cancel_1</name>
         <label>Status Cancel</label>
-        <locationX>402</locationX>
-        <locationY>589</locationY>
+        <locationX>667</locationX>
+        <locationY>729</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -347,8 +373,8 @@
         <description>Success Message for the User</description>
         <name>Success_Screen</name>
         <label>Success Screen</label>
-        <locationX>1218</locationX>
-        <locationY>595</locationY>
+        <locationX>1429</locationX>
+        <locationY>714</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -379,5 +405,12 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>varRunningUser</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>

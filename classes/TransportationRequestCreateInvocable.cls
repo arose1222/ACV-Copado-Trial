@@ -21,16 +21,15 @@ public class TransportationRequestCreateInvocable {
 
         if(inputCase.Auction_Number__c != null){
             Auction__c auctionData = [Select id, id__c, Release_Pickup_Phrase__c, vehicle_id__c, vehicle_id__r.vin__c, vehicle_id__r.year__c, vehicle_id__r.make__c, vehicle_id__r.model__c,
-            vehicle_id__r.trim__c, vehicle_id__r.class_name__c, vehicle_id__r.Vehicle_Is_Oversize__c, vehicle_id__r.drivetrain__c, ACV_inop__c, Seller_Dealership__r.Dealership_id__c, buyer_dealership__r.Dealership_Id__c,
+            vehicle_id__r.trim__c, vehicle_id__r.class_name__c, vehicle_id__r.Vehicle_Is_Oversize__c, ACV_inop__c, Seller_Dealership__r.Dealership_id__c, buyer_dealership__r.Dealership_Id__c,
             Seller_Dealership__r.Primary_Contact__r.Name, Seller_Dealership__r.Primary_Contact__r.Phone, Seller_Dealership__r.Primary_Contact__r.Email,  buyer_dealership__r.Primary_Contact__r.Name, 
             buyer_dealership__r.Primary_Contact__r.Phone, buyer_dealership__r.Primary_Contact__r.Email, Seller_Inventory_Id__c From Auction__c Where id = :inputCase.Auction_Number__c];
-
             TransportationRequestCreateObject trco = convertCaseToCalloutObject(inputCase, auctionData, pickupContact, DeliveryContact);
             List<TransportationFlowResult> result = runCalloutLogic(trco);
             return result;
             }
         else{
-            Vehicle__c vehicleData = [Select Name, year__c, make__c, model__c, trim__c, class_name__c, Vehicle_Is_Oversize__c, drivetrain__c From vehicle__c Where id = :inputCase.vehicle__c];
+            Vehicle__c vehicleData = [Select Name, year__c, make__c, model__c, trim__c, class_name__c, Vehicle_Is_Oversize__c From vehicle__c Where id = :inputCase.vehicle__c];
             Account pickupDealer = [Select id, Name, Dealership_Id__c From Account where id = :inputCase.Seller_Dealership__c];
             Account deliveryDealer = [Select id, Name, Dealership_Id__c From Account where id = :inputCase.AccountId];
             TransportationRequestCreateObject trco = convertCaseToNonCaptiveCalloutObject(inputCase, vehicleData, pickupContact, DeliveryContact, pickupDealer, deliveryDealer);
@@ -59,8 +58,6 @@ public class TransportationRequestCreateInvocable {
             req.setHeader('Authorization', '{!$Credential.Password}');
             req.setTimeout(120000);
             req.setBody(JSON.serialize(inputRequest));
-            System.debug([Select name, ParentId, RelatedRecordId From FlowRecordRelation]);
-
             try{
                 res = h.send(req);
             }
@@ -144,7 +141,6 @@ public class TransportationRequestCreateInvocable {
         returnObject.vehicle.className = auctionData.vehicle_id__r.class_name__c;
         returnObject.vehicle.isOversize = auctionData.vehicle_id__r.Vehicle_Is_Oversize__c;
         returnObject.vehicle.isInoperable = auctionData.ACV_inop__c;
-        returnObject.vehicle.drivetrain = auctionData.vehicle_id__r.drivetrain__c;
         
         returnObject.pickupLocation = new TransportationRequestCreateObject.pickupLocation();
         // REQ
@@ -240,7 +236,6 @@ public class TransportationRequestCreateInvocable {
         returnObject.vehicle.className = vehicleData.class_name__c;
         returnObject.vehicle.isOversize = vehicleData.Vehicle_Is_Oversize__c;
         returnObject.vehicle.isInoperable = inputCase.Inop__c;
-        returnObject.vehicle.driveTrain = vehicleData.drivetrain__c;
         
         returnObject.pickupLocation = new TransportationRequestCreateObject.pickupLocation();
         // REQ

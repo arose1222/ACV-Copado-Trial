@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>Value__c</field>
-        <value xsi:type="xsd:string">New;InProgress;OnHold</value>
+        <value xsi:type="xsd:string">New;In Progress;On Hold</value>
     </values>
 </CustomMetadata>

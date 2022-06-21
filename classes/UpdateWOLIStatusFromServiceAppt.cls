@@ -17,27 +17,24 @@ public class UpdateWOLIStatusFromServiceAppt extends TriggerInterface{
     public override void afterUpdate( Map<Id, SObject> oldMap, Map<Id, SObject> newMap ) {
         Set<Id> asiWorkTypeIds = FSLWorkProcessUtility.getWorkTypeIdByGroupName( new Set<String>{ 'asi' } );
 
-        Map<Id,ServiceAppointment> workOrderIdSAMap = new Map<Id,ServiceAppointment>();
+        Map<Id,String> workOrderIdSAStatusMap = new Map<Id,String>();
         for ( ServiceAppointment serviceApptRec : (List<ServiceAppointment>) newMap.values() ) {
-            if ( asiWorkTypeIds.contains( serviceApptRec.WorkTypeId ) && serviceApptRec.Bundled__c == false) {
+            if ( asiWorkTypeIds.contains( serviceApptRec.WorkTypeId ) ) {
                 ServiceAppointment oldServiceApptRec = (ServiceAppointment) oldMap.get( serviceApptRec.Id );
-                if (SA_TO_WOLI_STATUS_MAP.containsKey(serviceApptRec.Status) && (serviceApptRec.Status != oldServiceApptRec.Status || serviceApptRec.EarliestStartTime != oldServiceApptRec.EarliestStartTime || serviceApptRec.DueDate != oldServiceApptRec.DueDate ) && serviceApptRec.Work_Order__c != null ) {
-                    workOrderIdSAMap.put(serviceApptRec.Work_Order__c, serviceApptRec);
+                if (SA_TO_WOLI_STATUS_MAP.containsKey(serviceApptRec.Status) && serviceApptRec.Status != oldServiceApptRec.Status && serviceApptRec.Work_Order__c != null ) {
+                    workOrderIdSAStatusMap.put(serviceApptRec.Work_Order__c, serviceApptRec.Status);
                 }
             }
         }
 
-        if ( !workOrderIdSAMap.isEmpty() ) {
+        if ( !workOrderIdSAStatusMap.isEmpty() ) {
             List<WorkOrderLineItem> woliToUpdate = new List<WorkOrderLineItem>();
-            for(WorkOrderLineItem woli : [ SELECT Id, Status, WorkOrderId, Earliest_Start_Date__c, Due_Date__c FROM WorkOrderLineItem WHERE WorkOrderId IN :workOrderIdSAMap.keyset() ] ) {
-                ServiceAppointment sa = workOrderIdSAMap.get( woli.WorkOrderId );
-                String woliStatus = SA_TO_WOLI_STATUS_MAP.get( sa.Status );
-
-                woli.Status = woliStatus;
-                woli.Earliest_Start_Date__c = sa.EarliestStartTime.date();
-                woli.Due_Date__c = sa.DueDate.date();
-
-                woliToUpdate.add( woli );
+            for(WorkOrderLineItem woli : [ SELECT Id, Status, WorkOrderId FROM WorkOrderLineItem WHERE WorkOrderId IN :workOrderIdSAStatusMap.keyset() ] ) {
+                String woliStatus = SA_TO_WOLI_STATUS_MAP.get( workOrderIdSAStatusMap.get( woli.WorkOrderId ) );
+                if( woli.Status != woliStatus ) {
+                    woli.Status = woliStatus;
+                    woliToUpdate.add( woli );
+                }
             }
             update woliToUpdate;
         }

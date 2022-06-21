@@ -603,18 +603,6 @@
                             </apex:outputPanel>
                           </apex:outputPanel>
                         </apex:pageBlockSectionItem>
-                        <!-- 92dd3d80-5dd6-11ec-bc57-ffd3a3574b8e - ResourceViewGroups Feature Flag -->
-                        <apex:pageBlockSectionItem rendered="{!isResourceViewGroupsFeatureEnabled}">
-                          <apex:outputText value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Resource_View_Groups_Enabled__c.label}" />
-                          <apex:outputPanel >
-                            <apex:outputPanel rendered="{!orgSettings.resourceViewGroupsEnabled}">
-                              <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
-                            </apex:outputPanel>
-                            <apex:outputPanel rendered="{!NOT(orgSettings.resourceViewGroupsEnabled)}">
-                              <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
-                            </apex:outputPanel>
-                          </apex:outputPanel>
-                        </apex:pageBlockSectionItem>
                         <apex:pageBlockSectionItem rendered="{!orgSettings.googleUseCustomKeys}">
                           <apex:outputLabel value="Google API Custom Key" />
                           <apex:outputText value="{!orgSettings.googleApiCustomKey}" />
@@ -1809,9 +1797,6 @@
                     <a href="/apex/{!namespacePrefix}s_AssignmentPlan?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">New Assignment Plan</a>
                   </button>
                 </apex:outputPanel>
-                <apex:outputPanel >
-                  <app-territory-planner-container></app-territory-planner-container>
-                </apex:outputPanel>
                 <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
                   <a class="btn gpLinkButtonClassic" href="/apex/{!namespacePrefix}s_AssignmentPlan?backURL=%2Fapex%2Fs_main%3Ftab%3Dtab-assignmentPlans">New Assignment Plan</a>
                 </apex:outputPanel>
@@ -1956,10 +1941,6 @@
                 <apex:column headerValue="Reassign Owner">
                   <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.ReassignOwner }" />
                   <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(ap.ReassignOwner) }" />
-                </apex:column>
-                <apex:column headerValue="Maintained By Territory Planner">
-                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.managedByTerritoryPlanner }" />
-                  <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_unchecked.gif')}" rendered="{! NOT(ap.managedByTerritoryPlanner) }" />
                 </apex:column>
                 <apex:column headerValue="High Performance" rendered="{!orgSettings.hiPerAPEnabled}">
                   <apex:image url="{!URLFOR($Resource.geopointe__images, '/checkbox_checked.gif')}" rendered="{! ap.HighPerformance }" />
@@ -2523,8 +2504,6 @@
             <div id="calendarConfigWrapper" style="display: none">
               <app-calendar-config></app-calendar-config>
             </div>
-
-            <app-resource-view-groups-table></app-resource-view-groups-table>
           </div>
 
           <!-- Feature Licenses -->
@@ -2774,6 +2753,12 @@
                actionName: action,
                actionId, actionId
            });
+       }
+
+       function editBtnHandler(event){
+           event.preventDefault();
+           var anchor = event.currentTarget.querySelector('a');
+           anchor.click();
        }
 
        /* SLDS Overflow Menu Code */

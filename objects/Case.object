@@ -640,17 +640,6 @@
         <label>Transportation Compact</label>
     </compactLayouts>
     <compactLayouts>
-        <fullName>Transportation_Compact_Layout_New</fullName>
-        <fields>Status</fields>
-        <fields>Auction_Number__c</fields>
-        <fields>Transporter_Account__c</fields>
-        <fields>Expected_Pick_Up__c</fields>
-        <fields>Expected_Delivery__c</fields>
-        <fields>Default_Pickup_State__c</fields>
-        <fields>Default_Delivery_State__c</fields>
-        <label>Transportation Compact Layout - New</label>
-    </compactLayouts>
-    <compactLayouts>
         <fullName>Unwind_Compact_Layout</fullName>
         <fields>CaseNumber</fields>
         <fields>Auction_Number__c</fields>
@@ -948,21 +937,10 @@ if((ClosedDate - CreatedDate)*24*60 &gt; 15, IMAGE(&quot;/resource/Redlight&quot
     <fields>
         <fullName>Age__c</fullName>
         <externalId>false</externalId>
-        <formula>if(IsClosed = false,
-
-if(Age_in_Days__c&gt;14,
-
-if((NOW() -   Last_Touched__c )*24 &lt;= 48, IMAGE(&quot;/resource/GreenPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if( (NOW() - Last_Touched__c)*24 &gt; 48 &amp;&amp; (NOW() - LastModifiedDate)*24 &lt; 72, IMAGE(&quot;/resource/YellowPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/RedPurpleLight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null))),
-
+        <formula>if(IsClosed = false, 
 if((NOW() -   Last_Touched__c )*24 &lt;= 48, IMAGE(&quot;/resource/Greenlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
 if( (NOW() - Last_Touched__c)*24 &gt; 48 &amp;&amp; (NOW() - LastModifiedDate)*24 &lt; 72, IMAGE(&quot;/resource/Yellowlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),
-if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/Redlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null)))
-
-),
-
-null)</formula>
+if((NOW() - Last_Touched__c)*24 &gt;= 72, IMAGE(&quot;/resource/Redlight&quot;,TEXT(NOW() -  Last_Touched__c),32,32),null))),null)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Age</label>
         <required>false</required>
@@ -1403,30 +1381,6 @@ null)))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Auction_End_to_Title_Sent_BD__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(MOD( DATEVALUE(Auction_End__c) - DATE(1985,6,24),7), 
-0 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
-1 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
-2 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
-3 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
-4 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
-5 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
-6 , CASE( MOD( Title_Sent_Date__c - DATEVALUE(Auction_End__c) ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
-999) 
-+ 
-(FLOOR(( Title_Sent_Date__c - DATEVALUE(Auction_End__c) )/7)*5)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Auction End to Title Sent (BD)</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Auction_End_to_Title_Sent__c</fullName>
         <externalId>false</externalId>
         <formula>Title_Sent_Date__c - DATEVALUE(Auction_End__c)+1</formula>
@@ -1571,7 +1525,7 @@ null)))</formula>
         <label>BOL Link</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
@@ -1737,22 +1691,6 @@ IF(ISPICKVAL(Back_End_Status_Seller__c, &quot;No Payment Necessary&quot;), IMAGE
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Business_Days_Since_Opened__c</fullName>
-        <description>Calculates the number of business days between the current date, and the date the Case was opened. Once the Case is closed, it reflects the Resolution Time in business days.</description>
-        <externalId>false</externalId>
-        <formula>IF(IsClosed = false,((Business_Hours_Since_Opened__c*60)/480),Resolution_Time_Business_Days__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculates how many business days a Case has been open. Once the Case is closed, it reflects the Resolution Time in business days.</inlineHelpText>
-        <label>Business Days Since Opened</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Business_Days_Spent_in_Queue__c</fullName>
@@ -2907,6 +2845,17 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Date_Time_Title_Problem__c</fullName>
+        <description>Date time the title case was last updated to problem populated by flow Date time title case</description>
+        <externalId>false</externalId>
+        <label>Date Time Title Problem</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Date_Time_Title_Received__c</fullName>
         <description>Flow used to populate the date time the title case was marked as received</description>
         <externalId>false</externalId>
@@ -2919,20 +2868,9 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
     </fields>
     <fields>
         <fullName>Date_Time_Title_Sent__c</fullName>
-        <description>Date time the title case was marked as sent - populated  via the &quot;Date Time Tile Stamp&quot; Flow</description>
+        <description>Date time the title case was marked as sent - populated vis the Date Time Title case Flow</description>
         <externalId>false</externalId>
         <label>Date Time Title Sent</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>Date_Time_Working__c</fullName>
-        <description>Date time the Standard case is marked as working  - created using workflow rule</description>
-        <externalId>false</externalId>
-        <label>Date/Time Working</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3934,18 +3872,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Inop_Alert__c</fullName>
-        <description>Field used to make it clear the Inop field is true - this is pulling form an image saved in asset library and linked in a custom metadata type called Image URL</description>
-        <externalId>false</externalId>
-        <formula>IF(Inop__c, IMAGE( $CustomMetadata.Image_URL__mdt.ImageLink.Link__c , &quot;Image&quot;),&quot;&quot;)</formula>
-        <label>Inop Alert</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Inop__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -4256,9 +4182,24 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         </valueSet>
     </fields>
     <fields>
+        <fullName>Marked_Problem__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>User who most recently marked the titles case as problem - populated via flow &quot;Date Time Stamp for Title case&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>User who most recently marked the title case as problem</inlineHelpText>
+        <label>Marked Problem</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Cases8</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Marked_Received__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field used to capture the user who last marked a title case as received. Populated via the &quot;Date Time Title Stamp&quot; Flow</description>
+        <description>Lookup field used to capture the user who last marked a title case as received. Populated via Title dat time stamp flow</description>
         <externalId>false</externalId>
         <inlineHelpText>User who last marked a title case as received.</inlineHelpText>
         <label>Marked Received</label>
@@ -4461,9 +4402,9 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Notes_for_Inspector_Old__c</fullName>
+        <fullName>Notes_for_Inspector__c</fullName>
         <externalId>false</externalId>
-        <label>Notes for Inspector Old</label>
+        <label>Notes for Inspector</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4471,18 +4412,6 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Notes_for_Inspector__c</fullName>
-        <description>Notes for Inspector - New field with Data Type = Text Area (Long)</description>
-        <externalId>false</externalId>
-        <label>Notes for Inspector</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Number_of_Arbs_for_Auction__c</fullName>
@@ -4768,6 +4697,22 @@ ROUND((NOW() - CreatedDate),0))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Open_QC_Count__c</fullName>
+        <description>Looks at the number of QC records associated with the case that are open.  This field is used to create a validation rule to only allow the title case status to be updated from problem or return to seller if field is 0.
+
+Populated Via Flow Open QC Count on case.</description>
+        <externalId>false</externalId>
+        <label>Open QC Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Open_to_Close__c</fullName>
@@ -6282,21 +6227,6 @@ Seller_Dealership__r.Dealership_ID__c</description>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
-        <fullName>Submitted_By_ID__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Int identifier of the contact who created the arbitration</description>
-        <externalId>false</externalId>
-        <label>Submitted By ID</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Cases (Submitted By ID)</relationshipLabel>
-        <relationshipName>Cases1</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>SuppliedCompany</fullName>
         <trackTrending>false</trackTrending>
     </fields>
@@ -7517,22 +7447,6 @@ Account.Title_Mailing_Country__c, null ))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Title__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>New Title object for Physical &amp; Digital titles</description>
-        <externalId>false</externalId>
-        <inlineHelpText>New Title object for Physical &amp; Digital titles</inlineHelpText>
-        <label>Title</label>
-        <referenceTo>Title__c</referenceTo>
-        <relationshipLabel>Cases</relationshipLabel>
-        <relationshipName>Cases</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Titles_Unpaid__c</fullName>
         <description>This field will populate as true when the title case is in working status and the payment status is not equal to Approved, Deposited, Paid. Used for reporting.</description>
         <externalId>false</externalId>
@@ -7651,38 +7565,6 @@ Payment_Status__c &lt;&gt; &quot;Deposited&quot;
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Transport_Request_Type__c</fullName>
-        <description>TDO - 1157 - defined in Non-captive transportation flow.</description>
-        <externalId>false</externalId>
-        <label>Transport Request Type</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Commercial Pass-Through</fullName>
-                    <default>false</default>
-                    <label>Commercial Pass-Through</label>
-                </value>
-                <value>
-                    <fullName>Marshalling</fullName>
-                    <default>false</default>
-                    <label>Marshalling</label>
-                </value>
-                <value>
-                    <fullName>Non-Captive</fullName>
-                    <default>true</default>
-                    <label>Non-Captive</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Transport_Spread__c</fullName>
@@ -9145,7 +9027,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>AR_Team_Late_TA_Titles</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -9167,11 +9048,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>Title_Absent__c</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>21</value>
         </filters>
         <filters>
             <field>Buyer_IST_Account_Owner__c</field>
@@ -9393,7 +9269,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>Unwound,Inspection</value>
+            <value>Unwound,Parked,Ready for Relaunch</value>
         </filters>
         <filters>
             <field>OWNER_NAME</field>
@@ -9475,7 +9351,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CREATEDBY_USER.ALIAS</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Notes_for_Inspector_Old__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -9659,7 +9534,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>ACCOUNT.NAME</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
         <columns>Next_Steps__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -9782,7 +9656,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>BUL_CONNECTIONS_LLC_30320_TITLES</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>CASES.PRIORITY</columns>
@@ -9808,11 +9681,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Title_Absent__c</field>
             <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
             <value>0</value>
         </filters>
         <filters>
@@ -9884,7 +9752,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
@@ -9905,11 +9772,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>Title_Absent__c</field>
             <operation>equals</operation>
             <value>0</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>5</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>
@@ -9968,7 +9830,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>CSM_Late_TA1</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -9996,18 +9857,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>21</value>
-        </filters>
         <label>CSM Late TA Titles</label>
     </listViews>
     <listViews>
         <fullName>CSM_Late_TWD</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10035,18 +9890,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>5</value>
-        </filters>
         <label>CSM Late TWD Titles</label>
     </listViews>
     <listViews>
         <fullName>CSM_Open</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10075,7 +9924,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>CSM_Open_Titles</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10104,7 +9952,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>CSM_Problems1</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10133,37 +9980,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>Problem,48 Hour Notice,Return to Seller</value>
         </filters>
         <label>CSM Problem Titles</label>
-    </listViews>
-    <listViews>
-        <fullName>CS_New_Titles_Cases_JoLynda</fullName>
-        <columns>Seller_Name__c</columns>
-        <columns>Open_Customer_Inquiry__c</columns>
-        <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Age_in_Days__c</columns>
-        <columns>Title_Attached__c</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Auction_Number_Case__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Seller_s_Customer_Success_Advocate__c</field>
-            <operation>equals</operation>
-            <value>JoLynda Lawecki</value>
-        </filters>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,48 Hour Notice</value>
-        </filters>
-        <label>CS - New Titles Cases - JoLynda</label>
     </listViews>
     <listViews>
         <fullName>Cancelled_Jobs</fullName>
@@ -10493,7 +10309,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>Payment_Method__c</columns>
         <columns>Payment_Status__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -10745,7 +10560,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10767,11 +10581,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>Title_Absent__c</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>21</value>
         </filters>
         <label>IST Late TA Titles</label>
     </listViews>
@@ -10811,7 +10620,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10841,7 +10649,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -10877,7 +10684,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
@@ -10898,11 +10704,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>Title_Absent__c</field>
             <operation>equals</operation>
             <value>0</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>5</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>
@@ -10938,12 +10739,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Seller_Name__c</field>
             <operation>contains</operation>
-            <value>open road</value>
+            <value>mungenast alton</value>
         </filters>
         <filters>
             <field>Date_Time_Title_Received__c</field>
             <operation>equals</operation>
-            <value>1/24/2022 12:00 AM</value>
+            <value>12/28/2021 12:00 AM</value>
         </filters>
         <label>Inbound Seller Tracking</label>
     </listViews>
@@ -10979,7 +10780,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>JD_Late_TA_Titles</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -11007,18 +10807,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>21</value>
-        </filters>
         <label>JD Late TA Titles</label>
     </listViews>
     <listViews>
         <fullName>JD_Late_TWD_Titles</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -11046,18 +10840,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>5</value>
-        </filters>
         <label>JD Late TWD Titles</label>
     </listViews>
     <listViews>
         <fullName>JD_Problem_Titles</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>Seller_Dealership__c</columns>
         <columns>CASES.PRIORITY</columns>
@@ -11334,7 +11122,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>NAME</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
@@ -11419,7 +11206,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Auction_Number_Case__c</columns>
         <columns>CASES.RECORDTYPE</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
@@ -11734,39 +11520,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Buyer_Name__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Sent_Date__c</field>
-            <operation>equals</operation>
-            <value>1/13/2022</value>
-        </filters>
-        <filters>
-            <field>Buyer_payment_Method_1__c</field>
-            <operation>contains</operation>
-            <value>carbucks</value>
-        </filters>
-        <label>Outbound Tracking by Floorplan</label>
-    </listViews>
-    <listViews>
-        <fullName>Outbound_buyer_Tracking</fullName>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>Easypost_Tracker__c</columns>
+        <columns>Date_Time_Title_Clerked__c</columns>
         <columns>Title_Scanner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -11782,12 +11536,43 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Title_Scanned_Time__c</field>
             <operation>equals</operation>
-            <value>12/16/2021 12:00 AM</value>
+            <value>1/4/2022 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Buyer_payment_Method_1__c</field>
+            <operation>contains</operation>
+            <value>Auto_Use</value>
+        </filters>
+        <label>Outbound Tracking by Floorplan</label>
+    </listViews>
+    <listViews>
+        <fullName>Outbound_buyer_Tracking</fullName>
+        <columns>Auction_Number__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Buyer_Name__c</columns>
+        <columns>Title_Scanned_Time__c</columns>
+        <columns>Title_Scanner__c</columns>
+        <columns>Easypost_Tracker__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Case.Title_Information</value>
+        </filters>
+        <filters>
+            <field>QC__c</field>
+            <operation>notEqual</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Title_Scanned_Time__c</field>
+            <operation>equals</operation>
+            <value>12/14/2021 12:00 AM</value>
         </filters>
         <filters>
             <field>Buyer_Name__c</field>
             <operation>contains</operation>
-            <value>Riverview</value>
+            <value>avis</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -11837,7 +11622,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12031,49 +11815,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <label>QC</label>
     </listViews>
     <listViews>
-        <fullName>QC_Report_outbound</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>Leila</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <label>QC Report (outbound)</label>
-    </listViews>
-    <listViews>
         <fullName>Quick_Clerk</fullName>
         <columns>Open_Arbitration_Cases__c</columns>
         <columns>Vehicle_VIN__c</columns>
@@ -12138,7 +11879,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Batch_Id__c</field>
             <operation>equals</operation>
-            <value>20220201-MFP13471483-1002-2001</value>
+            <value>20210719-MFP11753601-1023-1422</value>
         </filters>
         <label>Quick Clerk</label>
     </listViews>
@@ -12233,7 +11974,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Back_End_Status_Seller__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Date_Unwind_Approved__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -12348,7 +12088,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>TA_BUL_CONNECTIONS_LLC_30320_TITLES</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>CASES.STATUS</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>CASES.PRIORITY</columns>
@@ -12375,11 +12114,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>Title_Absent__c</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>Business_Days_Since_Opened__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>0</value>
         </filters>
         <filters>
             <field>ACCOUNT.NAME</field>
@@ -12411,9 +12145,8 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>Case.Transportation</value>
         </filters>
         <filters>
-            <field>Send_to_ACV__c</field>
+            <field>ACV_Transportation_Request_Id__c</field>
             <operation>equals</operation>
-            <value>1</value>
         </filters>
         <label>TRanspo request fix</label>
     </listViews>
@@ -12467,7 +12200,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>Payment_Method__c</columns>
         <columns>Payment_Status__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12494,7 +12226,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>Seller_Name__c</columns>
         <columns>Buyer_Name__c</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Payment_Method__c</columns>
         <columns>Payment_Status__c</columns>
         <filterScope>Everything</filterScope>
@@ -12612,7 +12343,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>Titles_Received</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12620,7 +12350,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Payment_Status__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Seller_s_Title__c</columns>
-        <columns>Marked_Received__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -12638,7 +12367,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <fullName>Titles_Return_to_Seller</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12663,7 +12391,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12695,7 +12422,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12727,7 +12453,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12760,7 +12485,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12798,7 +12522,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Business_Days_Since_Opened__c</columns>
         <columns>Seller_Contact__c</columns>
         <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
@@ -12828,8 +12551,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
     <listViews>
         <fullName>Titles_Working</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>VIN__c</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Seller_Contact__c</columns>
+        <columns>Seller_Territory__c</columns>
         <columns>NAME</columns>
+        <columns>Buyer_Territory__c</columns>
         <columns>Payment_Status__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
@@ -12842,11 +12569,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>Working</value>
-        </filters>
-        <filters>
-            <field>CASES.CREATED_DATE_DATE_ONLY</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/1/2022 12:00 AM</value>
         </filters>
         <label>Titles - Working</label>
     </listViews>
@@ -12983,7 +12705,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>Dry_Run_Fee__c</columns>
         <columns>Date_Transporter_Paid__c</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -13058,17 +12779,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>0</value>
         </filters>
         <label>Transportation BOL Review</label>
-    </listViews>
-    <listViews>
-        <fullName>Unpaid_Check</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <label>Unpaid Check</label>
     </listViews>
     <listViews>
         <fullName>Unreceived_Titles_Bucket_Call_List</fullName>
@@ -13184,11 +12894,8 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Seller_Territory__c</columns>
-        <columns>Buyer_Territory__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
-        <columns>Unwind_Type__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -13431,34 +13138,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>X2022_Quick_Clerking</fullName>
-        <columns>Open_Arbitration_Cases__c</columns>
-        <columns>Title_Complexity_Score__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>Buyer_Payment__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Title_Address__c</columns>
-        <columns>Auction_End__c</columns>
-        <columns>ACV_Power_of_Attorney__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Received</value>
-        </filters>
-        <label>2022 Quick Clerking</label>
-    </listViews>
-    <listViews>
         <fullName>X2_Unreceived_Titles_Bucket_Call_List</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Auction_Number_Case__c</columns>
@@ -13601,54 +13280,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <label>Zach QC</label>
     </listViews>
     <listViews>
-        <fullName>Zach_s_Sent_Titles_Daily</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Title_Address__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>Zachary</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <filters>
-            <field>Title_Sent_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <label>Zach&apos;s Sent Titles Daily</label>
-    </listViews>
-    <listViews>
         <fullName>batch_id_search</fullName>
         <columns>QC__c</columns>
         <columns>Auction_Number__c</columns>
@@ -13673,92 +13304,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>20211111-MFP12232089-1023-1312</value>
         </filters>
         <label>batch id search</label>
-    </listViews>
-    <listViews>
-        <fullName>leila_QC_Report_outbound</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>oksana</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <label>leila QC Report (outbound)</label>
-    </listViews>
-    <listViews>
-        <fullName>manual_QC</fullName>
-        <columns>QC__c</columns>
-        <columns>Auction_Number__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Vehicle_VIN__c</columns>
-        <columns>Vehicle_Year_Make_Model__c</columns>
-        <columns>Odometer_Reading_formula__c</columns>
-        <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
-        <columns>Payment_Method__c</columns>
-        <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Case.Title_Information</value>
-        </filters>
-        <filters>
-            <field>QC__c</field>
-            <operation>notEqual</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>Leila</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Sent</value>
-        </filters>
-        <label>QC Report</label>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
@@ -14539,21 +14084,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -14687,10 +14217,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -15974,21 +15500,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -16122,10 +15633,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -16612,22 +16119,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
             <values>
                 <fullName>2020</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2021</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2022</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2023</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2024</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17413,21 +16904,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration Awards Held</fullName>
@@ -17561,10 +17037,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -18847,21 +18319,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -18995,10 +18452,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -20312,21 +19765,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -20512,10 +19950,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -21807,21 +21241,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -21991,10 +21410,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -23386,21 +22801,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -23546,10 +22946,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -24848,21 +24244,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -25020,10 +24401,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -25516,25 +24893,13 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
                 <fullName>2021</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>2022</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2023</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2024</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Transportation</fullName>
         <active>true</active>
         <businessProcess>Transportation Process</businessProcess>
-        <compactLayoutAssignment>Transportation_Compact_Layout_New</compactLayoutAssignment>
+        <compactLayoutAssignment>Transportation_Compact</compactLayoutAssignment>
         <description>Cases for handling transportation request</description>
         <label>Transportation</label>
         <picklistValues>
@@ -26307,21 +25672,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -26467,10 +25817,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         </picklistValues>
         <picklistValues>
             <picklist>Vehicle_Year__c</picklist>
-            <values>
-                <fullName>1870</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>1890</fullName>
                 <default>false</default>
@@ -27750,21 +27096,6 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Transport_Request_Type__c</picklist>
-            <values>
-                <fullName>Commercial Pass-Through</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshalling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non-Captive</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Arbitration</fullName>
@@ -28591,20 +27922,35 @@ Reviewed__c &lt;&gt; Total_Complaint_Count__c)</errorConditionFormula>
         <errorMessage>Please add a Complaint record as to why this CR is Avoidable</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Can_Not_Update_Title_Case_to_Work_Rec</fullName>
+        <active>true</active>
+        <description>Can not update title case to working or received from problem or return to seller - This is to prevent updating the title case without closing out the QC object - Case field Open QC Count populated via flow</description>
+        <errorConditionFormula>AND(
+$Profile.Name != &quot;API Only User&quot;,
+NOT(ISNULL(Open_QC_Count__c)),
+$Setup.TitleProblemStatus__c.DisableValidation__c = FALSE,
+ISCHANGED(Status),
+OR(ISPICKVAL(Status, &apos;Working&apos;),
+ISPICKVAL(Status, &apos;Received&apos;)),
+OR(NOT(ISPICKVAL(PRIORVALUE(Status), &apos;Problem&apos;)),
+NOT(ISPICKVAL(PRIORVALUE(Status), &apos;Return to Seller&apos;)),
+NOT(ISPICKVAL(PRIORVALUE(Status), &apos;48 Hour Notice&apos;))))</errorConditionFormula>
+        <errorMessage>You can not update the title case to Working or Received.  You must change the status of the case by closing out all Quality Control Records</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Can_not_Finalize_if_Central_Dispatch</fullName>
         <active>true</active>
-        <description>When the Transporter name is Central Dispatch and Status is Finalized rule will trigger https://acvauctions.lightning.force.com/lightning/r/Salesforce_Request__c/a3C5b000000JGhnEAG/view</description>
+        <description>when the Transporter name is Central Dispatch and Status is Finalized rule will trigger</description>
         <errorConditionFormula>AND (
       RecordType.DeveloperName = &quot;Transportation&quot;, 
-      OR(
       Transporter_Name__c = &quot;Central Dispatch&quot;,
-      Transporter_Name__c = &quot;Local Tow&quot;
-      ),
       ISPICKVAL(Status,&quot;Finalized&quot;),
-      $Profile.Name != &quot;System Administrator&quot;,
-      $Profile.Name != &quot;System Admin Limited&quot;
-    )</errorConditionFormula>
-        <errorMessage>Status can not be finalized when Transporter Name is Central Dispatch or Local Tow.</errorMessage>
+          OR(
+             $Profile.Name &lt;&gt; &quot;System Administrator&quot;,$Profile.Name 
+             &lt;&gt; &quot;System Admin Limited&quot;
+    )
+             )</errorConditionFormula>
+        <errorMessage>Status can not be finalized when Transporter Name is Central Dispatch</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cannot_put_a_Case_back_in_the_Arb_Queue</fullName>
@@ -28633,7 +27979,11 @@ ISPICKVAL(Status, &quot;Sent&quot;), NOT( $Profile.Name = &quot;Title Manager&qu
         <fullName>Cant_change_title_status_if_status_sent</fullName>
         <active>true</active>
         <description>once a Title status = sent cannot change the status.</description>
-        <errorConditionFormula>if($Profile.Name != &quot;System Administrator&quot; &amp;&amp;
+        <errorConditionFormula>if(  $User.Full_Name__c !=&quot;Kenny Mills&quot;&amp;&amp;
+$User.Full_Name__c !=&quot;Pamela Patton&quot;&amp;&amp;
+$User.Full_Name__c !=&quot;Steve Sirko&quot;&amp;&amp;
+$User.Full_Name__c !=&quot;Jonathan Rudd&quot;&amp;&amp;
+$Profile.Name != &quot;System Administrator&quot; &amp;&amp;
 $Profile.Name != &quot;Resolutions&quot; &amp;&amp;
 $Profile.Name != &quot;Title Manager&quot; &amp;&amp;
 $Profile.Name != &quot;Inside Sales - Managers&quot; &amp;&amp;
@@ -28804,18 +28154,10 @@ ISBLANK (X48_Hour_Expiration__c))</errorConditionFormula>
 RecordType.DeveloperName = &apos;Title_Information&apos;,
 ISCHANGED(Status),
 OR(
-OR(
 $Profile.Name = &apos;Inside Sales - Account Managers&apos;,
-$Profile.Name = &apos;Territory Manager&apos;
-),
-AND(
 $Profile.Name = &apos;Major Accounts CSM&apos;,
-AND(
-!ISPICKVAL(Status, &apos;Returned to Seller Unwound&apos;),
-!ISPICKVAL(Status, &apos;Title at ACV Unwound&apos;),
-!ISPICKVAL(Status, &apos;Closed Unwound&apos;),
-!ISPICKVAL(Status, &apos;Unwound&apos;)
-))))</errorConditionFormula>
+$Profile.Name = &apos;Territory Manager&apos;
+))</errorConditionFormula>
         <errorMessage>You do not have access to change the Title case status.</errorMessage>
     </validationRules>
     <validationRules>
@@ -29096,7 +28438,7 @@ ISBLANK(ACV_Titles_External_ID__c)
 RecordType.DeveloperName = &apos;Title_Information&apos;,
 ISPICKVAL( Account.Title_Hold__c, &apos;Do Not Send Titles&apos;),
 ISCHANGED (Status),
-ISPICKVAL(Status, &quot;Working&quot;)|| ISPICKVAL(Status, &quot;Sent&quot;))</errorConditionFormula>
+ISPICKVAL(Status, &quot;Sent&quot;))</errorConditionFormula>
         <errorMessage>The Buying Dealership on this title case is set to Title Hold - DO NOT SEND TITLE TO BUYER - Place in Payments special hold bin for JEROLYN until safe to send notification is received.</errorMessage>
     </validationRules>
     <validationRules>
@@ -29174,7 +28516,7 @@ NOT(ISPICKVAL(PRIORVALUE(Status),&quot;Finalized&quot;))
     </validationRules>
     <validationRules>
         <fullName>x48HourStatus_Validation_No_Title</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation for moving a Title Information Case to 48 Hour Notice status. This rule runs when the Title is Absent.</description>
         <errorConditionFormula>$UserRole.DeveloperName != &apos;Titles_Manager&apos; &amp;&amp;  
 $UserRole.DeveloperName != &apos;Customer_Success&apos; &amp;&amp; 
@@ -29192,6 +28534,7 @@ OR(
     Auction_Number__r.Calendar_Days_Since_Auction_End__c &lt; 5,
      NOT(ISBLANK(Title_Sent_Date__c))
 )</errorConditionFormula>
+        <errorDisplayField>X48_Hour_Expiration__c</errorDisplayField>
         <errorMessage>This auction requires approval to be placed under 48 hour notice. From a mobile device, click ‘More’ (upper righthand corner), then ‘48 Hour Notice’. From desktop, click ‘48 Hour Notice’, located near ‘Log a Call’.</errorMessage>
     </validationRules>
     <validationRules>

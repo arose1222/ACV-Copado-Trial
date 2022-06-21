@@ -209,31 +209,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_it_ACV_Relaunch</name>
-        <label>Is it ACV Relaunch?</label>
-        <locationX>1095</locationX>
-        <locationY>803</locationY>
-        <defaultConnector>
-            <targetReference>Close_Title_Case</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Unwind_Type</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>ACV_Relaunch</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>CaseRecordType</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_this_an_unwind_for_arb</name>
         <label>Is this an unwind for arb?</label>
         <locationX>975</locationX>
@@ -281,43 +256,6 @@
                 <targetReference>Does_Auction_Have_a_Saved_Auction_ID</targetReference>
             </connector>
             <label>Nope</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>IsTitleNew</name>
-        <label>IsTitleNew?</label>
-        <locationX>1357</locationX>
-        <locationY>792</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varCaseStatus</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>New</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Is_it_ACV_Relaunch</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-        <rules>
-            <name>No1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varCaseStatus</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>New</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Close_Title_Case</targetReference>
-            </connector>
-            <label>No</label>
         </rules>
     </decisions>
     <decisions>
@@ -447,7 +385,7 @@
             <label>None left on unwind</label>
         </rules>
     </decisions>
-    <description>System context for record level access, so fields can be read-only on page layout while allowing users to create using flow</description>
+    <description>Deleted title processing from the flow. System context for record level access, so fields can be read-only on page layout while allowing users to create using flow</description>
     <dynamicChoiceSets>
         <name>AuctionStatus</name>
         <dataType>Picklist</dataType>
@@ -653,83 +591,6 @@
         </inputAssignments>
         <object>Case</object>
     </recordCreates>
-    <recordCreates>
-        <name>NewTitleUnwindCase</name>
-        <label>NewTitleUnwindCase</label>
-        <locationX>1513</locationX>
-        <locationY>977</locationY>
-        <connector>
-            <targetReference>Close_Title_Case</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Auction_Number__c</field>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>RecordTypeId</field>
-            <value>
-                <elementReference>TitleUnwindCaseId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Seller_Dealership__c</field>
-            <value>
-                <elementReference>svarAuction.Seller_Dealership__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status</field>
-            <value>
-                <stringValue>New</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Vehicle__c</field>
-            <value>
-                <elementReference>VehicleId</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Case</object>
-    </recordCreates>
-    <recordLookups>
-        <name>CaseRecordType</name>
-        <label>CaseRecordType</label>
-        <locationX>1365</locationX>
-        <locationY>977</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>NewTitleUnwindCase</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Title_Unwind</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Case</stringValue>
-            </value>
-        </filters>
-        <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>TitleUnwindCaseId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
     <recordLookups>
         <name>Get_Auction</name>
         <label>Get Auction</label>
@@ -836,88 +697,13 @@
         </outputAssignments>
     </recordLookups>
     <recordLookups>
-        <name>Get_Title_Case</name>
-        <label>Get Title Case</label>
-        <locationX>1365</locationX>
-        <locationY>653</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>IsTitleNew</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Auction_Number__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varCaseRecordTypeId</elementReference>
-            </value>
-        </filters>
-        <object>Case</object>
-        <outputAssignments>
-            <assignToReference>varTitleCaseId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varCaseStatus</assignToReference>
-            <field>Status</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>VehicleId</assignToReference>
-            <field>Vehicle__c</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Title_Case_RT</name>
-        <label>Get Title Case RT</label>
-        <locationX>1376</locationX>
-        <locationY>470</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Title_Case</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Title_Information</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Case</stringValue>
-            </value>
-        </filters>
-        <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>varCaseRecordTypeId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
         <name>LookupCaseNumber</name>
         <label>LookupCaseNumber</label>
-        <locationX>1385</locationX>
-        <locationY>317</locationY>
+        <locationX>1417</locationX>
+        <locationY>351</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Title_Case_RT</targetReference>
+            <targetReference>Can_User_Auto_approve</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -971,30 +757,6 @@
             <field>Status</field>
         </outputAssignments>
     </recordLookups>
-    <recordUpdates>
-        <name>Close_Title_Case</name>
-        <label>Close Title Case</label>
-        <locationX>1503</locationX>
-        <locationY>790</locationY>
-        <connector>
-            <targetReference>Can_User_Auto_approve</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varTitleCaseId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Status</field>
-            <value>
-                <stringValue>Closed Unwound</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Case</object>
-    </recordUpdates>
     <recordUpdates>
         <description>Flip the send to ACV flag to true if the user is auto approved. This is needed because auto approved unwinds will create with status already set to unwound which would not normally trigger the integration</description>
         <name>Send_to_ACV_if_user_is_auto_approved</name>

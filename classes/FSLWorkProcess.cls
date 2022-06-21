@@ -217,24 +217,6 @@ public class FSLWorkProcess {
         Set<String> streetSet = new Set<String>();
         Map<Id,String> workTypeMap = new Map<Id,String>();
         Set<String> fromIntegrationUuid = new Set<String>();
-        Set<String> uuidGroupingCheckSet = new Set<String>();
-        Boolean excludeFromGrouping = false;
-
-
-        for ( WorkObject workRec : lst ) {
-            dealerIdSet.add( workRec.workDetail.dealerId );
-        }
-
-        // Get Primary Contact Information & organize into Map
-        Map<String, Account> dealerIdMap = new Map<String, Account>();
-        for ( Account acct : [ SELECT Id, Name, Dealership_ID__c, Primary_Contact__c, legal_name__c FROM Account WHERE Dealership_ID__c IN :dealerIdSet ] ) {
-            dealerIdMap.put( acct.Dealership_ID__c, acct );
-
-            if(acct.legal_name__c == 'Driveway') {
-                excludeFromGrouping = true;
-            }
-        }
-
         for ( WorkObject workRec : lst ) {
             WorkObject tempWoRec = new WorkObject();
             tempWoRec.uuid = workRec.uuid;
@@ -249,40 +231,28 @@ public class FSLWorkProcess {
             } else {
                 tempWoRec.address = workRec.address;
             }
-            String key = createKey( tempWoRec, excludeFromGrouping );
+            String key = createKey( tempWoRec );
             if ( organizedWorkMap.get( key ) == null ) {
                 organizedWorkMap.put( key, new List<WorkStruct>() );
             }
             streetSet.add( tempWoRec.address.street );
             fromIntegrationUuid.add( workRec.uuid);
-            // dealerIdSet.add( workRec.workDetail.dealerId );
+            dealerIdSet.add( workRec.workDetail.dealerId );
             if ( FSLWorkProcessUtility.availableWTMap.get( tempWoRec.workDetail.type.toLowerCase() ) != null ) {
                 workTypeMap.put( FSLWorkProcessUtility.availableWTMap.get( tempWoRec.workDetail.type.toLowerCase() ).Id, tempWoRec.workDetail.type.toLowerCase() );
             }
-
-
-            //For bundled work types, add the work type of the Parent work order to the workTypeMap and store the UUID for further processing
-            if ( tempWoRec.workDetail.type.toLowerCase() == 'cpogm' || tempWoRec.workDetail.type.toLowerCase() == 'gmfia') {
-                workTypeMap.put( FSLWorkProcessUtility.availableWTMap.get( 'gmfia' ).Id, tempWoRec.workDetail.type.toLowerCase() );
-                uuidGroupingCheckSet.add(workRec.uuid);
-            }
-            if ( tempWoRec.workDetail.type.toLowerCase() == 'cpolnc' || tempWoRec.workDetail.type.toLowerCase() == 'cpofr' ) {
-                workTypeMap.put( FSLWorkProcessUtility.availableWTMap.get( 'cpofr' ).Id, tempWoRec.workDetail.type.toLowerCase() );
-                uuidGroupingCheckSet.add(workRec.uuid);
-            }
         }
 
-        // // Get Primary Contact Information & organize into Map
-        // Map<String, Account> dealerIdMap = new Map<String, Account>();
-        // for ( Account acct : [ SELECT Id, Name, Dealership_ID__c, Primary_Contact__c FROM Account WHERE Dealership_ID__c IN :dealerIdSet ] ) {
-        //     dealerIdMap.put( acct.Dealership_ID__c, acct );
-        // }
+        // Get Primary Contact Information & organize into Map
+        Map<String, Account> dealerIdMap = new Map<String, Account>();
+        for ( Account acct : [ SELECT Id, Name, Dealership_ID__c, Primary_Contact__c FROM Account WHERE Dealership_ID__c IN :dealerIdSet ] ) {
+            dealerIdMap.put( acct.Dealership_ID__c, acct );
+        }
 
         Map<String,WorkStruct> uuidToWSMap = new Map<String,WorkStruct>();
         // Organize Existing Work Order information into Key (Address:WorkType) map for reference
-        Map<String,Id> bundledWoliGuidWorkTypeMap = new Map<String,Id>();
 
-        for(WorkOrder wo : [ SELECT Id, Street, City, State, PostalCode, Country, WorkTypeId, WorkType.Work_Type_Unique_ID__c, WorkType.Name, LineItemCount, CreatedDate, (SELECT Id, DueDate, EarliestStartTime, ParentRecordId FROM ServiceAppointments ORDER BY DueDate DESC), (SELECT Id, WorkOrderId, Earliest_Start_Date__c, Due_Date__c, External_Record_guid__c, WorkType.Work_Type_Unique_ID__c FROM WorkOrderLineItems) FROM WorkOrder WHERE Street IN :streetSet AND ( isClosed = FALSE OR ( IsClosed = TRUE AND Id IN :existingWorkSet ) ) AND WorkTypeId IN :workTypeMap.keySet() AND LineItemCount > 0 ]){
+        for(WorkOrder wo : [ SELECT Id, Street, City, State, PostalCode, Country, WorkTypeId, WorkType.Work_Type_Unique_ID__c, WorkType.Name, LineItemCount, CreatedDate, (SELECT Id, DueDate, EarliestStartTime, ParentRecordId FROM ServiceAppointments ORDER BY DueDate DESC), (SELECT Id, WorkOrderId, Earliest_Start_Date__c, Due_Date__c, External_Record_guid__c FROM WorkOrderLineItems) FROM WorkOrder WHERE Street IN :streetSet AND ( isClosed = FALSE OR ( IsClosed = TRUE AND Id IN :existingWorkSet ) ) AND WorkTypeId IN :workTypeMap.keySet() AND LineItemCount > 0 ]){
             WorkObject woRec = new WorkObject();
             woRec.address = new AddressObject();
             woRec.address.street = wo.Street;
@@ -292,28 +262,14 @@ public class FSLWorkProcess {
             woRec.address.postalCode = wo.PostalCode;
             woRec.workDetail = new InspectionDetails();
             woRec.workDetail.type = wo.WorkType.Work_Type_Unique_ID__c;
-
-            if ( !GROUPABLE_WORKTYPES.contains( woRec.workDetail.type.toLowerCase() ) || excludeFromGrouping ) { // If not grouping, we need UUID for key logic
-                // For bundled work, store the uuid, and the work type of the parent in bundledWoliGuidWorkTypeMap
-                if( wo.WorkOrderLineItems.size() == 2 && (wo.WorkType.Work_Type_Unique_ID__c == 'gmfia' || wo.WorkType.Work_Type_Unique_ID__c == 'cpofr' ) ){
-                    for( WorkOrderLineItem woli : wo.WorkOrderLineItems ) {
-                        if ( uuidGroupingCheckSet.contains(woli.External_Record_guid__c ) ) {
-                            woRec.uuid = woli.External_Record_guid__c;
-                            if ( woli.WorkType.Work_Type_Unique_ID__c == 'cpogm' ) {
-                                bundledWoliGuidWorkTypeMap.put(woli.External_Record_guid__c, FSLWorkProcessUtility.availableWTMap.get( 'gmfia' ).Id );
-                            } else if ( woli.WorkType.Work_Type_Unique_ID__c == 'cpolnc' ) {
-                                bundledWoliGuidWorkTypeMap.put(woli.External_Record_guid__c, FSLWorkProcessUtility.availableWTMap.get( 'cpofr' ).Id );
-                            }
-                        }
-                    }
-                } else if ( !wo.WorkOrderLineItems.isEmpty() ) {
+            if ( !GROUPABLE_WORKTYPES.contains( woRec.workDetail.type.toLowerCase() ) ) { // If not grouping, we need UUID for key logic
+                if ( !wo.WorkOrderLineItems.isEmpty() ) {
                     woRec.uuid = wo.WorkOrderLineItems[0]?.External_Record_guid__c;
                 } else { continue; }
             }
-
-            String key = createKey( woRec, excludeFromGrouping );
-
+            String key = createKey( woRec );
             if ( organizedWorkMap.get( key ) != null ) {
+                //woRec.workDetail.type = translateWorkTypes.get( wo.WorkType.Name );
                 //Create Workstruct for existing WorkOrders so we can assign by duedate and EarliestStartDate of Service Appointments
                 WorkStruct ws = new WorkStruct();
                 ws.isNewWorkOrder = false;
@@ -333,6 +289,7 @@ public class FSLWorkProcess {
                         for( WorkOrderLineItem woli : wo.WorkOrderLineItems ){
                             ws.workLineMap.put(woli.External_Record_guid__c, woli);
                             ws.numberOfLineItems += 1;
+
 
                             if( fromIntegrationUuid.contains(woli.External_Record_guid__c) ) ws.serviceApptIdToExternalWOLIIdMap.get(wo.serviceAppointments[0].Id).add(woli.External_Record_guid__c);    //only care to connect the woli's that are being updated from integration
                             uuidToWSMap.put(woli.External_Record_guid__c, ws);
@@ -363,12 +320,13 @@ public class FSLWorkProcess {
             } else {
                 tempRec.address = workRec.address;
             }
-            String key = createKey( tempRec, excludeFromGrouping );
+            String key = createKey( tempRec );
 
             WorkStruct thisWorkStruct = null;   //null means that we are going to create a new one
             WorkOrderLineItem thisWoli = new WorkOrderLineItem();
             Date woliDueDate = workRec.workDetail.dueDate != null ? FSLWorkProcess.makeDate( workRec.workDetail.dueDate ) : null;
             Date woliEarliestStartDate = workRec.workDetail.earliestStartDate != null ? FSLWorkProcess.makeDate( workRec.workDetail.earliestStartDate ) : null;
+
             //Assigns which WorkStruct based on DueDate and Earliest Start Date
             /*If Existing WOLI
                 Yes --> did dates change?
@@ -395,6 +353,7 @@ public class FSLWorkProcess {
                     thisWoli = tempWoli;
                 }
             }
+
             if( thisWorkStruct == null ){   //If null, we are creating a new one
                 //WorkStructs are sorted with Nulls First in the DueDate field and then in Due Date from earliest to latest
                 Date today = system.today();
@@ -426,6 +385,7 @@ public class FSLWorkProcess {
                     }
                 }
             }
+
             if(thisWorkStruct == null){ //If none found in for loop, new WorkStruct is created and give it a DueDate and EarliestStartDate
                 thisWorkStruct = new WorkStruct();
                 thisWorkStruct.dueDate = workRec.workDetail.dueDate != null ? FSLWorkProcess.makeDate( workRec.workDetail.dueDate ) : null;
@@ -435,7 +395,6 @@ public class FSLWorkProcess {
                 organizedWorkMap.get( key ).sort();
                 thisWorkStruct.workTypeUniqueId = workRec.workDetail.type.toLowerCase();
             }
-
             //If existing order found, we assign id
             thisWorkStruct.workRec = new WorkOrder(
                 Account = new Account( Dealership_ID__c = workRec.workDetail.dealerId ),
@@ -444,7 +403,7 @@ public class FSLWorkProcess {
                 State = workRec.address.state,
                 Country = workRec.address.country,
                 PostalCode = workRec.address.postalCode,
-                WorkTypeId = bundledWoliGuidWorkTypeMap.containsKey(workRec.uuid) ? bundledWoliGuidWorkTypeMap.get(workRec.uuid) : FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Id,
+                WorkTypeId = FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Id,
                 ContactId = dealerIdMap.get( workRec.workDetail.dealerId ) != null ? dealerIdMap.get( workRec.workDetail.dealerId ).Primary_Contact__c : null,
                 Subject = dealerIdMap.get( workRec.workDetail.dealerId ) != null ? dealerIdMap.get( workRec.workDetail.dealerId ).Name + ' ' + FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Name : FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Name,
                 Id = thisWorkStruct.existingWOId != null ? thisWorkStruct.existingWOId : null //If Existing WorkOrder found, we will upsert on Id. Otherwise this is null
@@ -887,12 +846,8 @@ public class FSLWorkProcess {
     *
     * @return String - A comma and colon based key, utilitzing Address and WorkType Name
     */
-    public static String createKey( WorkObject workRec, Boolean excludeFromGrouping ) {
-        if(excludeFromGrouping){
-            return workRec.uuid;
-        } else {
-            return !GROUPABLE_WORKTYPES.contains( workRec.workDetail.type.toLowerCase() ) ? workRec.uuid : workRec.address.toString().toLowerCase() + ':' + FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Name;
-        }
+    public static String createKey( WorkObject workRec ) {
+        return !GROUPABLE_WORKTYPES.contains( workRec.workDetail.type.toLowerCase() ) ? workRec.uuid : workRec.address.toString().toLowerCase() + ':' + FSLWorkProcessUtility.availableWTMap.get( workRec.workDetail.type.toLowerCase() ).Name;
     }
 
     /*

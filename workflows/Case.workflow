@@ -361,16 +361,8 @@
         <description>Sends email about the start of a title late fee</description>
         <protected>false</protected>
         <recipients>
-            <field>Seller_Contact_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>Seller_TM_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>Seller_Title_Clerk_Email__c</field>
-            <type>email</type>
+            <recipient>areilly@acvauctions.com</recipient>
+            <type>user</type>
         </recipients>
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -1074,16 +1066,6 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Stamp_Date_time_Working_Now</fullName>
-        <field>Date_Time_Working__c</field>
-        <formula>now()</formula>
-        <name>Stamp Date time Working Now</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Stamp_Seller_Contact_Email</fullName>
         <field>Seller_Contact_Email__c</field>
         <formula>Seller_Contact__r.Email</formula>
@@ -1527,9 +1509,9 @@ ISPICKVAL(Status, &quot;Received&quot;),
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>Case.Status</field>
+            <field>Case.ACV_Capital_Title_Status__c</field>
             <operation>equals</operation>
-            <value>Working</value>
+            <value>Received</value>
         </criteriaItems>
         <criteriaItems>
             <field>Case.Payment_Method__c</field>
@@ -1549,13 +1531,11 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>ACV_Capital_Title_Status_UPDATES_to_Se</name>
             <type>FieldUpdate</type>
         </actions>
-        <actions>
-            <name>Capital_Title_Sent_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
         <description>When ‘Status&apos; ISCHANGED TO ‘Sent’ AND Buyer_Payment_Method__c contains ’acv_capital, THEN ACV_Capital_Title_Status = ‘Sent’</description>
-        <formula>ISCHANGED(Status) &amp;&amp;   ISPICKVAL(Status, &quot;Sent&quot;)&amp;&amp; CONTAINS(   Payment_Method__c  , &quot;acv_capital&quot;) &amp;&amp;   RecordType.Name  = &apos;Title Information&apos;</formula>
+        <formula>ISCHANGED( ACV_Capital_Title_Status__c) &amp;&amp;  
+ISPICKVAL( ACV_Capital_Title_Status__c, &quot;Sent&quot;)&amp;&amp;
+RecordType.Name  = &apos;Title Information&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1825,9 +1805,12 @@ ISPICKVAL(Status, &quot;Received&quot;),
             <name>Clear_Out_Transporter_Name</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>When Transporter Account is listed as blank, clear out transporter name field</description>
-        <formula>AND( NOT(ISBLANK(Transporter_Name__c)), ISBLANK(Transporter_Account__c )  )</formula>
+        <formula>AND(
+NOT(ISBLANK(Transporter_Name__c)),
+ISBLANK(Transporter_Account__c ) 
+)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -2385,26 +2368,6 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Stamp Date Time Working</fullName>
-        <actions>
-            <name>Stamp_Date_time_Working_Now</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Case.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Support</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Case.Status</field>
-            <operation>equals</operation>
-            <value>Working</value>
-        </criteriaItems>
-        <description>Stamps date time working field on standard case</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Stamp Problem Status</fullName>
         <actions>
             <name>Stamp_Was_Problem_Field</name>
@@ -2634,7 +2597,6 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <description>Updates the Title Complexity score to Low</description>
         <formula>AND(    Account.BillingState = Seller_Dealership__r.BillingState,    Seller_Dealership__r.BillingState = Title_State_Abbreviation__c, NOT(ISBLANK(TEXT( Title_State__c )))    )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -2792,7 +2754,7 @@ RecordType.Name = &apos;Transportation&apos;)</formula>
         </actions>
         <active>true</active>
         <description>Triggers when transportation case status is changed to certain value supported by ACV platform</description>
-        <formula>AND(RecordType.DeveloperName=&quot;Transportation&quot;, ISCHANGED(Status), NOT(ISCHANGED(Send_to_ACV__c)), OR(TEXT(Status)=&quot;Assigned&quot;,  TEXT(Status)=&quot;Picked-Up&quot;,  TEXT(Status)=&quot;Delivered&quot;,  TEXT(Status)=&quot;Posted&quot;, TEXT(Status) = &quot;Cancelled by Transporter&quot;, TEXT(Status) = &quot;Awaiting Release&quot;,TEXT(Status) = &quot;Finalized&quot;, TEXT(Status) = &quot;Unwind Transportation Requested&quot;, TEXT(Status) = &quot;Failed Post&quot;, TEXT(Status) = &quot;Locked&quot;, TEXT(Status) = &quot;Sent to Third-Party&quot;, TEXT(Status) = &quot;Closed Dry Run&quot;, TEXT(Status) = &quot;Cancelled by ACV&quot;, TEXT(Status) = &quot;Accepted&quot;, TEXT(Status) = &quot;Hold&quot;, TEXT(Status) = &quot;Staged&quot;, TEXT(Status) = &quot;Non-Responsive-Unpaid&quot;))</formula>
+        <formula>AND(RecordType.DeveloperName=&quot;Transportation&quot;, ISCHANGED(Status), NOT(ISCHANGED(Send_to_ACV__c)), NOT(CONTAINS($User.Username, &apos;integration@acvauctions.com&apos;)), OR(TEXT(Status)=&quot;Assigned&quot;,  TEXT(Status)=&quot;Picked-Up&quot;,  TEXT(Status)=&quot;Delivered&quot;,  TEXT(Status)=&quot;Posted&quot;, TEXT(Status) = &quot;Cancelled by Transporter&quot;, TEXT(Status) = &quot;Awaiting Release&quot;,TEXT(Status) = &quot;Finalized&quot;, TEXT(Status) = &quot;Unwind Transportation Requested&quot;, TEXT(Status) = &quot;Failed Post&quot;, TEXT(Status) = &quot;Locked&quot;, TEXT(Status) = &quot;Sent to Third-Party&quot;, TEXT(Status) = &quot;Closed Dry Run&quot;, TEXT(Status) = &quot;Cancelled by ACV&quot;, TEXT(Status) = &quot;Accepted&quot;, TEXT(Status) = &quot;Hold&quot;, TEXT(Status) = &quot;Staged&quot;, TEXT(Status) = &quot;Non-Responsive-Unpaid&quot;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

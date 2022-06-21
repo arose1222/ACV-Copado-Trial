@@ -6,9 +6,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     angular.module('serviceExpert').factory('servicesService', ['$q', '$rootScope', 'BundleService', 'sfdcService', 'utils', 'userSettingsManager', 'monthlyViewHelperService', 'TimePhasedDataService', 'ServiceAppointmentLightboxService', 'kpiCalculationsService', 'bulkResultsService', 'SERVICE_STATUS', 'SERVICE_CATEGORY', 'StateService', 'MstResolver', 'DeltaService', function ($q, $rootScope, BundleService, sfdcService, utils, userSettingsManager, monthlyViewHelperService, TimePhasedDataService, ServiceAppointmentLightboxService, kpiCalculationsService, bulkResultsService, SERVICE_STATUS, SERVICE_CATEGORY, StateService, MstResolver, DeltaService) {
 
-        var MAX_SERVICES_TO_CHECK_RULES = 200;
-        var MAX_DAYS_TO_CHECK_RULES = 7;
-
         var horizionEndDate = new Date();
         horizionEndDate.setDate(horizionEndDate.getDate() + 3);
 
@@ -91,9 +88,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         // sort ids for checkrules
         function sortServicesForCheckRules(servicesIds) {
 
-            var RESOURCE_CHUNK_SIZE = 40,
-                MAX_DAYS_DIFF = 7,
-                MAX_SERVICES_IN_CHUNK = 190; // Actual max will be 190 + (max_services_in_particular_resource_day)
+            var RESOURCE_CHUNK_SIZE = window.__gantt.maxResourcesForCheckRules,
+                MAX_DAYS_DIFF = window.__gantt.dayRangeForCheckRules,
+                MAX_SERVICES_IN_CHUNK = window.__gantt.maxServicesForCheckRules; // Actual max will be 190 + (max_services_in_particular_resource_day)
 
             var servicesOfResources = {},
                 servicesByChunks = [],
@@ -634,7 +631,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 if (updatedObjects.ValidationError) {
 
                     window.__lockedServicesIds[changedService.id] = false;
-                    deffered.reject(['', originalService, updatedObjects.ValidationError]);
+                    if (_.isEmpty(originalService)) {
+                        deffered.reject(['', changedService.eventBeforeDrag, updatedObjects.ValidationError]);
+                    } else {
+                        deffered.reject(['', originalService, updatedObjects.ValidationError]);
+                    }
                 } else {
 
                     // time to schedule 2nd service in immediately follow chain

@@ -261,6 +261,21 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Auction_Ended_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>in the Auction Kill flow this field is populated with the name of the user who killed the auction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>User who selected to End the Auction</inlineHelpText>
+        <label>Auction Ended By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Auctions1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Auction_Lights_Concatenation__c</fullName>
         <description>Populated via a workflow rule that generates a string based upon the independent auction light checkboxes. This field is then evaluated in the Auction Lights formula to return a user-friendly image showing the Auction Lights for an Auction.</description>
         <externalId>false</externalId>
@@ -772,6 +787,20 @@ vehicle_id__r.Recommended_Price_Ceiling__c - floor_price__c)</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>End_Auction_Completed_By__c</fullName>
+        <description>This is the user who initiated the ending of this auction populated by the Auction Kill flow.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the user who initiated the ending of this auction</inlineHelpText>
+        <label>End Auction Completed By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Escalated_to_Collections__c</fullName>
@@ -2415,6 +2444,18 @@ True = Auction</inlineHelpText>
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>test_field__c</fullName>
+        <externalId>false</externalId>
+        <label>test field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>updated__c</fullName>

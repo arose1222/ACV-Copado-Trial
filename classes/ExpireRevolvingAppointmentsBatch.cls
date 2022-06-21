@@ -17,7 +17,7 @@ global class ExpireRevolvingAppointmentsBatch extends SchedulingInterface implem
     global BatchUtilityClass.BatchReturn returnInfo = new BatchUtilityClass.BatchReturn( FALSE );
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
-        String query = 'select Status, ParentRecordId from ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c in (\'inspection\', \'verification\', \'true360\') AND status in (\'New\', \'Scheduled\') AND DueDate <= TODAY AND Work_Order__r.Occurrence__c != null';
+        String query = 'select Status, ParentRecordId from ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c in (\'inspection\', \'verification\', \'true360\') AND status in (\'New\', \'Scheduled\', \'Cannot Complete\') AND DueDate <= TODAY AND Work_Order__r.Occurrence__c != null';
         // return
         return Database.getQueryLocator(query);
     }
@@ -42,9 +42,9 @@ global class ExpireRevolvingAppointmentsBatch extends SchedulingInterface implem
         for ( Integer position = 0; position < mesgList.size(); position++ ) {
             Database.SaveResult saveRecord = mesgList[position];
             ServiceAppointment serviceAppointmentRec = scope[position];
-
+            
             if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
-                returnInfo.errorReturnLst.add( JSON.serialize(serviceAppointmentRec ) );
+                returnInfo.errorReturnLst.add( JSON.serialize(serviceAppointmentRec ) ); 
                 if ( !saveRecord.getErrors().isEmpty() ) { system.debug( saveRecord.getErrors()[0].message ); returnInfo.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
             } else {
                 returnInfo.successfulReturnSet.add( serviceAppointmentRec.Id );
@@ -66,7 +66,7 @@ global class ExpireRevolvingAppointmentsBatch extends SchedulingInterface implem
                 WorkOrder workRec = woLst[position];
 
                 if ( !saveRecord.isSuccess() || ( Test.isRunningTest() && BatchUtilityClass.testingFlag ) ) {
-                    returnInfo.errorReturnLst.add( JSON.serialize( workRec ) );
+                    returnInfo.errorReturnLst.add( JSON.serialize( workRec ) ); 
                     if ( !saveRecord.getErrors().isEmpty() ) { returnInfo.errorMessageLst.add( saveRecord.getErrors()[0].message ); }
                 } else {
                     returnInfo.successfulReturnSet.add( workRec.Id );
@@ -80,8 +80,8 @@ global class ExpireRevolvingAppointmentsBatch extends SchedulingInterface implem
         returnInfo.hasErrors = !returnInfo.errorReturnLst.isEmpty();
 
         // Splunk Log
-        BatchUtilityClass.createBatchLog(
-            returnInfo, BC.getJobId(), 'ExpireRevolvingAppointmentsBatch', ACVUtility.currentLineNumber(),
+        BatchUtilityClass.createBatchLog( 
+            returnInfo, BC.getJobId(), 'ExpireRevolvingAppointmentsBatch', ACVUtility.currentLineNumber(), 
             'ExpireRevolvingAppointmentsBatch:' + ACVUtility.currentLineNumber(), new Set<String>{ 'Service Appointment, Work Order' }
         );
     }

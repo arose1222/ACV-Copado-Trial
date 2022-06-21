@@ -91,7 +91,7 @@ public class DealerDocExpirationReminderHandlerTest {
         System.assertEquals(true, docList[6].Forty_Five_Day_Reminder_Email_Sent__c);
     }
 
-    // @isTest
+    @isTest
     static void bulkTest() {
         Date days30 = System.Today().addDays(30);
         Account newAccount = new Account(Name = 'Test Account', phone='1234567890',IST_Account_Owner__c = UserInfo.getUserId(), legal_name__c='Test Account', Dealer_Type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US');

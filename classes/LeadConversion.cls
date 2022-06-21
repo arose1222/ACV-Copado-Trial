@@ -35,7 +35,7 @@ public class LeadConversion {
         
 
             isConverting= true;
-            List<Lead> lead = [Select Id, Company, Email, Street, City, State, PostalCode, Country, RecordTypeId, NumberOfEmployees, Dealer_Type__c, Website, Referral_Code__c, Market_Place_Report_User__c from Lead WHERE Id = :recordId];
+            List<Lead> lead = [Select Id, Company, Email, Street, City, State, PostalCode, Country, RecordTypeId, NumberOfEmployees, Dealer_Type__c, Website from Lead WHERE Id = :recordId];
             
             // Checking for duplicate lead
             List<Lead> leadDupeCheck = [ SELECT Id FROM Lead WHERE Email = :lead[0].Email AND RecordTypeId = :lead[0].RecordTypeId AND isConverted = false ];
@@ -75,6 +75,15 @@ public class LeadConversion {
             List<Contact> con = [Select Id, Id__c, Account.Dealership_Id__c from Contact WHERE Id = :conId];
             List<Account> acc = [Select Id, Dealership_Id__c, Organization_Auto_Inc_Id__c, Total_Employees__c, Status__c, URL__c, Dealer_Type__c from Account WHERE Id = :accId];
 
+                   
+            // Update number of employees
+            acc[0].Total_Employees__c =  lead[0].NumberOfEmployees;    
+            acc[0].Status__c= '4'; // Updating the status to 100% Percent Complete.
+            acc[0].URL__C= lead[0].Website;
+            acc[0].Dealer_Type__c = DEALER_TYPE_LABEL_TO_API_NAME_MAP_TO_PROCESS.get(lead[0].Dealer_Type__c) != null ? 
+                                    DEALER_TYPE_LABEL_TO_API_NAME_MAP_TO_PROCESS.get(lead[0].Dealer_Type__c) : lead[0].Dealer_Type__c;
+            update acc;          
+    
             // Create affiliation record
             try{
                 Affiliation__c newAff = new Affiliation__c();
@@ -90,26 +99,6 @@ public class LeadConversion {
             catch(Exception e){
                 throw new CustomException('Failed to create an affiliation. Lead conversion process aborted.');
             }
-          
-
-             // Update number of employees
-             acc[0].Total_Employees__c =  lead[0].NumberOfEmployees;    
-             acc[0].Status__c= '4'; // Updating the status to 100% Percent Complete.
-             acc[0].URL__C= lead[0].Website;
-             acc[0].Dealer_Type__c = DEALER_TYPE_LABEL_TO_API_NAME_MAP_TO_PROCESS.get(lead[0].Dealer_Type__c) != null ? 
-                                     DEALER_TYPE_LABEL_TO_API_NAME_MAP_TO_PROCESS.get(lead[0].Dealer_Type__c) : lead[0].Dealer_Type__c;
-             
-             if(!string.isBlank(lead[0].Referral_Code__c) && lead[0].Referral_Code__c.toLowerCase()=='blitzteam' && !lead[0].Market_Place_Report_User__c)
-             {
-                 acc[0].Active__c= true; // Affiliation needs to be created for making an account active.
-             }
-             update acc; 
- 
-             if(lead[0].Market_Place_Report_User__c)
-             {
-                 con[0].Role__c= 'readonly';
-             }
-             update con;
 
             // Link address to dealer
             AddressHelper.AddressWrapper aw= new AddressHelper.AddressWrapper(lead[0].Street, lead[0].City, lead[0].State, lead[0].PostalCode, lead[0].Country, 'billing', '', '');

@@ -29,16 +29,8 @@
         <name>Cannot_Complete_Reason__c</name>
     </fields>
     <fields>
-        <label><!-- Cloned for Grouping --></label>
-        <name>Cloned_for_Grouping__c</name>
-    </fields>
-    <fields>
         <label><!-- Color --></label>
         <name>Color__c</name>
-    </fields>
-    <fields>
-        <label><!-- Completed Date --></label>
-        <name>Completed_Date__c</name>
     </fields>
     <fields>
         <label><!-- Completed Time --></label>
@@ -309,13 +301,6 @@
         <name>Sale_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Formula field used to assign a score to the work order based on work order line item criteria
-
-Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WOLI --></help>
-        <label><!-- Scoring Logic --></label>
-        <name>Scoring_Logic__c</name>
-    </fields>
-    <fields>
         <label><!-- Series --></label>
         <name>Series__c</name>
     </fields>
@@ -399,10 +384,6 @@ Only viewable with this permission set:  Scoring Logic Fields Visible/Edit WO/WO
     <validationRules>
         <errorMessage><!-- Status cannot be updated to Canceled for Work Types equal to Auction Off-Lease, any CPO, Dealer, or FBI. --></errorMessage>
         <name>Prevent_VCIs_LCs_from_Canceling_WOLIs</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Work Type CANNOT be changed. --></errorMessage>
-        <name>Prevent_Work_Type_Change</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Please fill out the Sale date if your Vehicle is in a Sold status. --></errorMessage>

@@ -65,7 +65,7 @@ public class CaseCoreProcessesTest {
     static void populateISTAccountOwneronCase(){
         Test.startTest();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
-        Account newaccount = New Account(IST_Account_Owner__c =UserInfo.getUserId(), Name='name', Buyer_s_assurance_exceptions__c = 'Goodwill');
+        Account newaccount = New Account(IST_Account_Owner__c =UserInfo.getUserId(), Name='seller', Buyer_s_assurance_exceptions__c = 'Goodwill');
         insert newaccount;
 
         Case newCase = new Case(  accountId = newaccount.id, status= 'New', Buyer_s_Assurance_Exceptions__c = 'Goodwill'); // IST_Account_Owner_Lookup__c = newaccount.ist_account_owner__C 

@@ -4,16 +4,13 @@
         <fullName>ACV Web Contact</fullName>
         <active>true</active>
         <ruleEntry>
-            <assignedTo>pmulcahy@acvauctions.com</assignedTo>
-            <assignedToType>User</assignedToType>
-            <formula>RecordType.DeveloperName = &quot;Organization_Lead&quot; &amp;&amp; Market_Place_Report_User__c</formula>
-        </ruleEntry>
-        <ruleEntry>
-            <assignedTo>mmitteldorfer@acvauctions.com</assignedTo>
-            <assignedToType>User</assignedToType>
+            <assignedTo>Blitz_Organization_Lead_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
             <formula>RecordType.DeveloperName = &quot;Organization_Lead&quot; &amp;&amp; LOWER(Referral_Code__c) =&quot;blitzteam&quot;</formula>
         </ruleEntry>
         <ruleEntry>
+            <assignedTo>BDR_Organization_Lead_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
             <formula>RecordType.DeveloperName = &quot;Organization_Lead&quot;</formula>
         </ruleEntry>
         <ruleEntry>
@@ -90,7 +87,7 @@
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
-            <assignedTo>enovick@acvauctions.com</assignedTo>
+            <assignedTo>ndalessio@acvauctions.com</assignedTo>
             <assignedToType>User</assignedToType>
             <criteriaItems>
                 <field>Lead.RecordTypeId</field>
@@ -98,11 +95,77 @@
                 <value>ACV Capital</value>
             </criteriaItems>
             <criteriaItems>
-                <field>Lead.LeadSource</field>
+                <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>web form</value>
+                <value>NE,KS,MN,IA,MO,WI,IL,MI,IN,KY,TN,OH</value>
             </criteriaItems>
-            <template>Unfiled_Non_Public_Templates/SUPPORTNewassignmentnotificationSAMPLE</template>
+            <template>ACV_Capital_Email_Templates/Lead_New_Lead_Notification</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>ptalwar@acvauctions.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>ACV Capital</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>MS,AL,FL,GA,SC,NC,VA,DC,MD,WV,DE</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>CA,ND,SD,AK,HI,AZ,VT</value>
+            </criteriaItems>
+            <template>ACV_Capital_Email_Templates/Lead_New_Lead_Notification</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>anardini@acvauctions.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>ACV Capital</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>MT,WY,NV,UT,CO,AZ,PA,NJ</value>
+            </criteriaItems>
+            <template>ACV_Capital_Email_Templates/Lead_New_Lead_Notification</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>jwhitehead@acvauctions.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>ACV Capital</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>WA,OR,ID,ME,NH,MA,CT,RI,NY</value>
+            </criteriaItems>
+            <template>ACV_Capital_Email_Templates/Lead_New_Lead_Notification</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>cnolden@acvauctions.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>ACV Capital</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>MN,OK,TX,AR,LA</value>
+            </criteriaItems>
+            <template>ACV_Capital_Email_Templates/Lead_New_Lead_Notification</template>
         </ruleEntry>
     </assignmentRule>
     <assignmentRule>

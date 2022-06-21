@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>geopointe__Map_newWindow</customButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -99,26 +100,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Google_Place_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Auction_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Lead_Record_Type_Mapping__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Dealer_Phone__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Capital_Product_Interest__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Campaign_Message__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -470,11 +451,6 @@
             <actionType>ProductivityAction</actionType>
             <sortOrder>20</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>jiffle__Schedule_Jifflenow_Meetings</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>21</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -526,21 +502,6 @@
         <relatedList>CSIRCD__ATTUSWDSLeads__c.CSIRCD__Lead__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>jiffle__Attendee__c</fields>
-        <fields>jiffle__Attendee_Name__c</fields>
-        <fields>jiffle__Attendee_Status__c</fields>
-        <fields>jiffle__Checkin__c</fields>
-        <fields>jiffle__Company__c</fields>
-        <fields>jiffle__Event__c</fields>
-        <fields>jiffle__Meeting__c</fields>
-        <fields>jiffle__Meeting_Relations__c</fields>
-        <fields>jiffle__Meeting_Requestor__c</fields>
-        <relatedList>jiffle__Invites__c.jiffle__Lead__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

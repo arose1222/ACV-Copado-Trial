@@ -2,10 +2,10 @@ public class CaseCreationBatch extends SchedulingInterface implements Database.B
     
     //get cases made since batch launched
 
-    public Map<String, Integer> recordTypeCountMap;
+    public static Map<String, Integer> recordTypeCountMap;
     dateTime previoustimeStamp;
     dateTime currentTimeStamp;
-    public Integer totalCaseCount;
+    public static Integer totalCaseCount;
 
 
     public CaseCreationBatch(){
@@ -34,39 +34,38 @@ public class CaseCreationBatch extends SchedulingInterface implements Database.B
         return Database.getQueryLocator(query);
     }
 
-    public void addCasesToMap(Map<String, Integer> caseMap, List<Case> caseList){
-        for (Case c : caseList){
-            if(c.recordType != null && c.recordType.developerName != null){
-                    
-                    String recordTypeDeveloperName = c.recordType.developerName;
-
-                    if(caseMap.containsKey(recordTypeDeveloperName)){
-                        caseMap.put(recordTypeDeveloperName, caseMap.get(recordTypeDeveloperName) + 1);
-                    }
-                    else{
-                        caseMap.put(recordTypeDeveloperName, 1);
-                    }
-                }
-                else{
-                    if(caseMap.containsKey('Null')){
-                        caseMap.put('Null', caseMap.get('Null') + 1);
-                    }
-                    else{
-                        caseMap.put('Null', 1);
-                    }
-                }
-        }
-    }
-    
     public void execute(Database.BatchableContext BC, List<Case> scope){
 
         //Map<Id, Schema.RecordTypeInfo> rtMap = Schema.SObjectType.Case.getRecordTypeInfosById();
 
-        
         if(scope != null && scope.size() > 0 ){
             //increase total count of all cases
             totalCaseCount += scope.size();
-            addCasesToMap(recordTypeCountMap, scope);
+
+
+            //add to count for specific record type, if the record type has not been encountered yet, add it to the map
+            for(Case c : scope){
+                //get the developer name of the record type, use it as a key for the map of counts
+                if(c.recordType != null && c.recordType.developerName != null){
+                    
+                    String recordTypeDeveloperName = c.recordType.developerName;
+
+                    if(recordTypeCountMap.containsKey(recordTypeDeveloperName)){
+                        recordTypeCountMap.put(recordTypeDeveloperName, recordTypeCountMap.get(recordTypeDeveloperName) + 1);
+                    }
+                    else{
+                        recordTypeCountMap.put(recordTypeDeveloperName, 1);
+                    }
+                }
+                else{
+                    if(recordTypeCountMap.containsKey('Null')){
+                        recordTypeCountMap.put('Null', recordTypeCountMap.get('Null') + 1);
+                    }
+                    else{
+                        recordTypeCountMap.put('Null', 1);
+                    }
+                }
+            }
         }
 
     }
@@ -74,21 +73,10 @@ public class CaseCreationBatch extends SchedulingInterface implements Database.B
     public void finish(Database.BatchableContext BC){
         //send log
         //loop through record types. log per type
-		List<SplunkHelper.logWrapper> lwList = caseLog(recordTypeCountMap, BC);
-        
-        if(lwlist.size() > 0 && !Test.isRunningTest()){
-            SplunkHelper.processBulkLog(lwList);
-        }
 
-        
-    }
-    public List<SplunkHelper.logWrapper> caseLog(Map<String, Integer> caseMap){
-    	return caseLog(caseMap, null);
-    }
-    
-    public List<SplunkHelper.logWrapper> caseLog(Map<String, Integer> caseMap, Database.BatchableContext BC){
         List<SplunkHelper.logWrapper> lwList = new List<SplunkHelper.logWrapper>();
-        for(String recordTypeString : caseMap.keyset()){
+
+        for(String recordTypeString : recordTypeCountMap.keyset()){
             
             SplunkHelper.LogWrapper lw = new SplunkHelper.logWrapper();
 
@@ -97,19 +85,17 @@ public class CaseCreationBatch extends SchedulingInterface implements Database.B
             log.sfObject = 'Case';
             log.domainSet = new Set<SplunkHelper.DOMAIN>();
             log.domainSet.add(SplunkHelper.DOMAIN.ENTERPRISE_APPS);
-            log.logLevel = SplunkHelper.LOGLEVEL.PERFORMANCE;
+            log.logLevel = SplunkHelper.LOGLEVEL.INFO;
             log.setContext(SplunkHelper.CONTEXT_TYPE.BATCH);
-            if(BC != null){
-             	log.sfRecordId = bc.getJobId();   
-            }
+            log.sfRecordId = bc.getJobId();
             log.stackTrace = 'CaseCreationBatch: '+ACVUtility.currentLineNumber()+1;
             log.location = 'CaseCreationBatch: '+ACVUtility.currentLineNumber();
-            log.message = 'Case creation count for ' + recordTypeString + ' cases: ' + caseMap.get(recordTypeString);
+            log.message = 'Case creation count for ' + recordTypeString + ' cases: ' + recordTypeCountMap.get(recordTypeString);
 
             SplunkEngine.LogData logData = new SplunkEngine.LogData();
             logData.type = 'Case Creation Log';
             logData.name = recordTypeString;
-            logData.currentValue = String.valueOf(caseMap.get(recordTypeString));
+            logData.currentValue = String.valueOf(recordTypeCountMap.get(recordTypeString));
             
             logData.maximumValue = String.valueOf(totalCaseCount);
 
@@ -119,7 +105,12 @@ public class CaseCreationBatch extends SchedulingInterface implements Database.B
 
             lwList.add(lw);
         }
-        return lwList;
+
+        if(lwlist.size() > 0){
+            SplunkHelper.processBulkLog(lwList);
+        }
+
+        
     }
 
     public override void executeScheduledLogic() {

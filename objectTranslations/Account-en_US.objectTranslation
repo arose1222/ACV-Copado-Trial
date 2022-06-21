@@ -29,10 +29,6 @@
         <name>ACH_on_File__c</name>
     </fields>
     <fields>
-        <label><!-- ACV Anywhere Registration Date --></label>
-        <name>ACV_Anywhere_Registration_Date__c</name>
-    </fields>
-    <fields>
         <label><!-- ACV Capital Customer2 --></label>
         <name>ACV_Capital_Customer2__c</name>
     </fields>
@@ -44,16 +40,6 @@
         <help><!-- Shows count of opportunities lost due to declined credit --></help>
         <label><!-- ACV Capital Declined --></label>
         <name>ACV_Capital_Declined__c</name>
-    </fields>
-    <fields>
-        <help><!-- Shows the Capital Portfolio ID from NetSuite --></help>
-        <label><!-- ACV Capital NS Portfolio ID --></label>
-        <name>ACV_Capital_NS_Portfolio_ID__c</name>
-    </fields>
-    <fields>
-        <help><!-- Grabs email from &apos;ACV Capital Primary Contact&apos; --></help>
-        <label><!-- ACV Capital Primary Contact Email --></label>
-        <name>ACV_Capital_Primary_Contact_Email__c</name>
     </fields>
     <fields>
         <label><!-- ACV Capital Primary Contact --></label>
@@ -81,15 +67,6 @@
     <fields>
         <label><!-- ALT PHONE --></label>
         <name>ALT_PHONE__c</name>
-    </fields>
-    <fields>
-        <help><!-- P0: New Customer = Joined in last 60; 
-P1: Lapsed = no activity last 30; 
-P2: Declining = last 30 activity is less than half average 30 day activity; 
-P3: Churned = no activity last 90; 
-Normal = regular activity based on monthly average --></help>
-        <label><!-- Account Activity Status --></label>
-        <name>Account_Activity_Status__c</name>
     </fields>
     <fields>
         <label><!-- Account Count --></label>
@@ -180,7 +157,6 @@ Normal = regular activity based on monthly average --></help>
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- Indicates the dealer has an active ACV Capital portfolio in NetSuite --></help>
         <label><!-- Active ACV Capital Customer --></label>
         <name>Active_ACV_Capital_Customer__c</name>
     </fields>
@@ -376,10 +352,6 @@ Normal = regular activity based on monthly average --></help>
         <name>Business_Hours__c</name>
     </fields>
     <fields>
-        <label><!-- Buy Fee Rate Card Name --></label>
-        <name>Buy_Fee_Rate_Card_Name__c</name>
-    </fields>
-    <fields>
         <label><!-- Buy Fee Rate Card --></label>
         <name>Buy_Fee_Rate_Card__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
@@ -482,14 +454,6 @@ Third time offense = &quot;Deny&quot; --></help>
         <name>Cargo_Insurance_Amount__c</name>
     </fields>
     <fields>
-        <label><!-- Carrier Has Insurance --></label>
-        <name>Carrier_Has_Insurance__c</name>
-    </fields>
-    <fields>
-        <label><!-- Carrier Insurance Expiration --></label>
-        <name>Carrier_Insurance_Expiration__c</name>
-    </fields>
-    <fields>
         <label><!-- Carrier Status --></label>
         <name>Carrier_Status__c</name>
         <picklistValues>
@@ -577,46 +541,6 @@ Third time offense = &quot;Deny&quot; --></help>
         <help><!-- For commercial client use, only.  Indicates lot number, city, dealership - whatever it is the commercial client uses to identify specific location. --></help>
         <label><!-- Commercial Acct Location --></label>
         <name>Commercial_Acct_Location__c</name>
-    </fields>
-    <fields>
-        <label><!-- Commercial BK --></label>
-        <name>Commercial_BK__c</name>
-    </fields>
-    <fields>
-        <label><!-- Commercial Sub-Type --></label>
-        <name>Commercial_Sub_Type__c</name>
-        <picklistValues>
-            <masterLabel>Captive Finance Companies</masterLabel>
-            <translation><!-- Captive Finance Companies --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Dealer based Finance Companies</masterLabel>
-            <translation><!-- Dealer based Finance Companies --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Financial Institutions (Banks, Credit Unions or Private Lenders)</masterLabel>
-            <translation><!-- Financial Institutions (Banks, Credit Unions or Private Lenders) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fleet Management Companies</masterLabel>
-            <translation><!-- Fleet Management Companies --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>OEM&apos;s</masterLabel>
-            <translation><!-- OEM&apos;s --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Rental Car Companies</masterLabel>
-            <translation><!-- Rental Car Companies --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Repossession Forwarder&apos;s</masterLabel>
-            <translation><!-- Repossession Forwarder&apos;s --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Third Party Remarketing Companies</masterLabel>
-            <translation><!-- Third Party Remarketing Companies --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <help><!-- Enter where the Franchise Dealer is sending their Wholesale cars that they are not sending to ACV --></help>
@@ -1057,10 +981,6 @@ Third time offense = &quot;Deny&quot; --></help>
         <name>Drivably_Account__c</name>
     </fields>
     <fields>
-        <label><!-- Duplicate Checker Record Type --></label>
-        <name>Duplicate_Checker_Record_Type__c</name>
-    </fields>
-    <fields>
         <help><!-- Account populated here will be the primary account which is kept after duplicate cleanup is completed --></help>
         <label><!-- Duplicate Of --></label>
         <name>Duplicate_Of__c</name>
@@ -1219,28 +1139,6 @@ Third time offense = &quot;Deny&quot; --></help>
         <name>Exemp_File_in_Tools__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates the Experian Business Intelligence Score --></help>
-        <label><!-- Experian BI Score --></label>
-        <name>Experian_BI_Score__c</name>
-    </fields>
-    <fields>
-        <label><!-- Experian Business Information --></label>
-        <name>Experian_Business_Information__c</name>
-        <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Experian FICO --></label>
-        <name>Experian_FICO__c</name>
-    </fields>
-    <fields>
-        <label><!-- Experian Tax Lien --></label>
-        <name>Experian_Tax_Lien__c</name>
-    </fields>
-    <fields>
-        <label><!-- Experian Test --></label>
-        <name>Experian_Test__c</name>
-    </fields>
-    <fields>
         <label><!-- Extended Arbitration Type --></label>
         <name>Extended_Arbitration_Type__c</name>
         <picklistValues>
@@ -1257,36 +1155,8 @@ Third time offense = &quot;Deny&quot; --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- FP Trigger RS --></label>
-        <name>FP_Trigger_RS__c</name>
-    </fields>
-    <fields>
         <label><!-- FSL Proactive Work Beta --></label>
         <name>FSL_Proactive_Work_Beta__c</name>
-    </fields>
-    <fields>
-        <label><!-- FastPass Approval --></label>
-        <name>FastPass_Approval__c</name>
-        <picklistValues>
-            <masterLabel>Approved</masterLabel>
-            <translation><!-- Approved --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Denied</masterLabel>
-            <translation><!-- Denied --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Error</masterLabel>
-            <translation><!-- Error --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <help><!-- Reason for selecting no in the FastPass Opt In --></help>
@@ -1315,10 +1185,6 @@ Blank = FastPass not offered --></help>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- FastPass Status Date --></label>
-        <name>FastPass_Status_Date__c</name>
     </fields>
     <fields>
         <label><!-- Field Account Manager --></label>
@@ -1910,11 +1776,6 @@ Blank = FastPass not offered --></help>
         <name>HOT_NOTES__c</name>
     </fields>
     <fields>
-        <help><!-- Manually controlled field to prevent the creation of any more True360 Service Appointments. --></help>
-        <label><!-- Halt True360 Appointments --></label>
-        <name>Halt_True360_Appointments__c</name>
-    </fields>
-    <fields>
         <label><!-- Has Logged in &lt;30 Days --></label>
         <name>Has_Logged_in_30_Days__c</name>
     </fields>
@@ -2303,18 +2164,6 @@ Blank = FastPass not offered --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Language Preference --></label>
-        <name>Language_Preference__c</name>
-        <picklistValues>
-            <masterLabel>English</masterLabel>
-            <translation><!-- English --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Spanish</masterLabel>
-            <translation><!-- Spanish --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Last 30 Days Bought --></label>
         <name>Last_30_Days_Bought__c</name>
     </fields>
@@ -2523,10 +2372,6 @@ Blank = FastPass not offered --></help>
         <name>MTD_Sales__c</name>
     </fields>
     <fields>
-        <label><!-- Major Account --></label>
-        <name>Major_Account__c</name>
-    </fields>
-    <fields>
         <label><!-- Maps Sales Region Name --></label>
         <name>Maps_Sales_Region_Name__c</name>
     </fields>
@@ -2596,6 +2441,10 @@ Blank = FastPass not offered --></help>
     <fields>
         <label><!-- Monthly Sell Opportunity --></label>
         <name>Monthly_Sell_Opportunity__c</name>
+    </fields>
+    <fields>
+        <label><!-- x_Monthly Sell Percent --></label>
+        <name>Monthly_Sell_Percent__c</name>
     </fields>
     <fields>
         <label><!-- Months on Platform --></label>
@@ -3344,10 +3193,6 @@ Idle if not giving any cars to ACV --></help>
         <label><!-- RSD --></label>
         <name>RSD__c</name>
         <relationshipLabel><!-- Accounts (RSD) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Rate of Travel --></label>
-        <name>Rate_of_Travel__c</name>
     </fields>
     <fields>
         <label><!-- Rates Summary --></label>
@@ -4216,6 +4061,22 @@ Idle if not giving any cars to ACV --></help>
         <relationshipLabel><!-- Accounts (Transportation Primary Contact) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Transportation Services Rendered --></label>
+        <name>Transportation_Services_Rendered__c</name>
+        <picklistValues>
+            <masterLabel>Lot Sweep</masterLabel>
+            <translation><!-- Lot Sweep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marshalling</masterLabel>
+            <translation><!-- Marshalling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental/Storage</masterLabel>
+            <translation><!-- Rental/Storage --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Transporter Run States --></label>
         <name>Transporter_Run_States__c</name>
         <picklistValues>
@@ -4739,6 +4600,26 @@ Idle if not giving any cars to ACV --></help>
         <label><!-- utm_term --></label>
         <name>utm_term__c</name>
     </fields>
+    <fields>
+        <label><!-- xACV Capital Relationship --></label>
+        <name>xACV_Capital_Relationship__c</name>
+        <picklistValues>
+            <masterLabel>Customer</masterLabel>
+            <translation><!-- Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former Customer</masterLabel>
+            <translation><!-- Former Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Relationship</masterLabel>
+            <translation><!-- No Relationship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation><!-- Prospect --></translation>
+        </picklistValues>
+    </fields>
     <recordTypes>
         <label><!-- Standard --></label>
         <name>Standard</name>
@@ -4775,10 +4656,6 @@ Idle if not giving any cars to ACV --></help>
         <name>Associated_Locations_Deletion_prevention</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- This field must be fill. --></errorMessage>
-        <name>Carrier_Insurance_Expiration_Is_Empty</name>
-    </validationRules>
-    <validationRules>
         <errorMessage><!-- Child Account Must have Dealership Id to assign a Parent --></errorMessage>
         <name>Child_Account_must_be_Dealership</name>
     </validationRules>
@@ -4813,6 +4690,10 @@ Idle if not giving any cars to ACV --></help>
     <validationRules>
         <errorMessage><!-- In order to mark account inactive, you must select an Inactive reason. --></errorMessage>
         <name>Inactive_must_have_reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- To remove the Late Title Fee Eligible checkbox you must provide a Late Title Fee Unenrollment Date --></errorMessage>
+        <name>Late_Title_Fee_Unenrollment_Required</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Transporter Accounts can only be created using Lead Conversion. If you are converting a Lead, please check to make sure you have filled out all of the address information, EIN Number, and email. Contact your System Administrator for more help. --></errorMessage>
@@ -4906,10 +4787,6 @@ Dealer Type, Legal Name --></errorMessage>
     <webLinks>
         <label><!-- Map_newWindow --></label>
         <name>geopointe__Map_newWindow</name>
-    </webLinks>
-    <webLinks>
-        <label>NADA Meeting</label>
-        <name>jiffle__Jifflenow_Meetings</name>
     </webLinks>
     <webLinks>
         <label><!-- AdvRouteVisitWindows --></label>

@@ -22,9 +22,7 @@ public class UpdateSAWithContactInfo extends TriggerInterface {
             newWoli.Contact_Email__c != oldWoli.Contact_Email__c ||
             newWoli.External_Assignment_Id__c != oldWoli.External_Assignment_Id__c ||
             newWoli.External_Link__c != oldWoli.External_Link__c ||
-            newWoli.External_Link_Code__c != oldWoli.External_Link_Code__c ||
-            newWoli.Description != oldWoli.Description ||
-            newWoli.Dealership_Name__c != oldWoli.Dealership_Name__c
+            newWoli.External_Link_Code__c != oldWoli.External_Link_Code__c
             ) {
                 woliFilterMap.put( newWoli.WorkOrderId, newWoli );
             }
@@ -49,8 +47,6 @@ public class UpdateSAWithContactInfo extends TriggerInterface {
                 sa.External_Assignment_Id__c = workToLineMap.get( sa.Work_Order__c ).External_Assignment_Id__c;
                 sa.External_Link__c = workToLineMap.get( sa.Work_Order__c ).External_Link__c;
                 sa.External_Link_Code__c = workToLineMap.get( sa.Work_Order__c ).External_Link_Code__c;
-                sa.Inspection_Notes__c = workToLineMap.get( sa.Work_Order__c ).Description;
-                sa.Dealership_Name__c = workToLineMap.get( sa.Work_Order__c ).Dealership_Name__c;
             }
         }
 

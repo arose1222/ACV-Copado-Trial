@@ -8,7 +8,7 @@
         <protected>false</protected>
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>System_Notifications/Admin_Profile_Alert</template>
+        <template>unfiled$public/Admin_Profile_Alert</template>
     </alerts>
     <fieldUpdates>
         <fullName>Update_Deactivated_Date_Field</fullName>

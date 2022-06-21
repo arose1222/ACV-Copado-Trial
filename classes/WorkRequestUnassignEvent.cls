@@ -1,6 +1,6 @@
 public class WorkRequestUnassignEvent extends TriggerInterface {
 
-    public override void afterUpdate(Map<Id,SObject> oldMap, Map<Id,SObject> newMap) {
+    public override void afterUpdate(Map<Id,SObject> oldMap, Map<Id,SObject> newMap) {        
         Set<Id> saIdSet = new Set<Id>();
         Map<Id, List<AssignedResource>> sa2ARMap = new Map<Id, List<AssignedResource>>();
         Map<Id, Id> srIdMap = new Map<Id, Id>();
@@ -27,7 +27,7 @@ public class WorkRequestUnassignEvent extends TriggerInterface {
         Set<Id> saIdSet = new Set<Id>();
         Map<Id, List<AssignedResource>> sa2ARMap = new Map<Id, List<AssignedResource>>();
         Map<Id, Id> srIdMap = new Map<Id, Id>();
-        for ( AssignedResource arRec : (List<AssignedResource>) oldList ) {
+        for ( AssignedResource arRec : (List<AssignedResource>) oldList ) {      
             if ( !WorkRequestHub.firedUnassignEvent || WorkRequestHub.firedUnassignEvent && !WorkRequestHub.unassignedSFRecSet.contains( arRec.Id ) ) {
                 saIdSet.add( arRec.ServiceAppointmentId );
                 if ( sa2ARMap.get( arRec.ServiceAppointmentId ) == null ) {
@@ -36,7 +36,7 @@ public class WorkRequestUnassignEvent extends TriggerInterface {
                 sa2ARMap.get( arRec.ServiceAppointmentId ).add( arRec );
                 if ( arRec.ServiceResourceId != null ) { srIdMap.put( arRec.Id, arRec.ServiceResourceId ); }
             }
-        }
+        }  
 
         if ( !saIdSet.isEmpty() ) {
             makeUnassignEvent( saIdSet, sa2ARMap, srIdMap );
@@ -56,15 +56,15 @@ public class WorkRequestUnassignEvent extends TriggerInterface {
         // Organize Data
         List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                 ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                    WorkType.Name, CreatedById, Cloned_for_Grouping__c
-                        FROM WorkOrderLineItems )
+                    WorkType.Name, CreatedById
+                        FROM WorkOrderLineItems ) 
                                 FROM WorkOrder WHERE Id IN :woIdSet ];
 
         Map<Id, List<WorkOrderLineItem>> saIdToWoliMap = new Map<Id, List<WorkOrderLineItem>>();
         Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
         for ( WorkOrder woRec : woLst ) {
             Id saId = woIdToSaIdMap.get( woRec.Id );
-            if ( !woRec.Created_Without_Line_Items__c ) {
+            if ( !woRec.Created_Without_Line_Items__c ) { 
                 if ( saIdToWoliMap.get( saId ) == null ) {
                     saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                 }
@@ -107,7 +107,7 @@ public class WorkRequestUnassignEvent extends TriggerInterface {
                                 inspection_Id__c = woliRec.Inspection_Id__c,
                                 ns_Invoice_Id__c = woliRec.External_Invoice_Id__c,
                                 work_Type__c = woliRec.WorkType.Name,
-                                origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
+                                origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
                             );
 
                             if ( arIdToSRUserIdMap.get( oldAR.Id ) != null ) {
@@ -115,7 +115,7 @@ public class WorkRequestUnassignEvent extends TriggerInterface {
                                 newRequest.assigned_Resource_Name__c = resourceSR.Name;
                                 newRequest.assigned_Resource_Id__c = conIdToGuidMap.get(resourceSR.RelatedRecordId );
                                 newRequest.legacy_Resource_Id__c = resourceSR.ASI_Resource_Id__c;
-                                newRequest.legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' || woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : null;
+                                newRequest.legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' ? 'Legacy Inspection Services' : null;
                             }
                             createEventLst.add( newRequest );
                             uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );

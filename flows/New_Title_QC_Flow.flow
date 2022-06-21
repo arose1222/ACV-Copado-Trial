@@ -25,10 +25,11 @@
         </connector>
     </assignments>
     <assignments>
+        <description>This section assigns the text added in the Screen for Enter Title problem Details to the Additional details field on the Quality control record that will be created as a result of the successful flow.</description>
         <name>Assign_Additional_Details</name>
         <label>Assign Additional Details</label>
-        <locationX>588</locationX>
-        <locationY>905</locationY>
+        <locationX>586</locationX>
+        <locationY>910</locationY>
         <assignmentItems>
             <assignToReference>varAdditionalDetails</assignToReference>
             <operator>Assign</operator>
@@ -278,8 +279,8 @@
     <assignments>
         <name>UpdateProblemTextAssignment</name>
         <label>UpdateProblemText</label>
-        <locationX>1205</locationX>
-        <locationY>957</locationY>
+        <locationX>1206</locationX>
+        <locationY>959</locationY>
         <assignmentItems>
             <assignToReference>var_FullProblemText</assignToReference>
             <operator>Assign</operator>
@@ -345,10 +346,11 @@
         </connector>
     </assignments>
     <assignments>
+        <description>This assigns the checkbox fields selected on the Enter Title Problem Screen to the var_FullProblemText Variable</description>
         <name>WorkingProblemText</name>
         <label>WorkingProblemText</label>
-        <locationX>905</locationX>
-        <locationY>958</locationY>
+        <locationX>893</locationX>
+        <locationY>968</locationY>
         <assignmentItems>
             <assignToReference>var_FullProblemText</assignToReference>
             <operator>Assign</operator>
@@ -716,6 +718,7 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Looks to the results of the Get QC record to determine how to direct the user based on the findings.</description>
         <name>Is_there_a_QC_Record_Already</name>
         <label>Is there a QC Record Already</label>
         <locationX>902</locationX>
@@ -777,7 +780,7 @@
         <name>ProblemorQC</name>
         <label>ProblemorQC</label>
         <locationX>1060</locationX>
-        <locationY>1162</locationY>
+        <locationY>1163</locationY>
         <defaultConnector>
             <targetReference>QCPI_Assign</targetReference>
         </defaultConnector>
@@ -879,7 +882,7 @@
             <label>QC Other no Details</label>
         </rules>
     </decisions>
-    <description>Added decision to avoid duplicate creation of QC wen seller assistance is no</description>
+    <description>New Version!</description>
     <dynamicChoiceSets>
         <name>CanBeSolvedInHouse</name>
         <dataType>Picklist</dataType>
@@ -912,6 +915,42 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Title_Problem_Subset__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Object__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>QC_Problem_Identified__c</stringValue>
+            </value>
+        </filters>
+        <object>Dependent_Picklist__mdt</object>
+        <valueField>Dependent_Field_Value__c</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Dependents2</name>
+        <dataType>String</dataType>
+        <displayField>Dependent_Field_Label__c</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Controlling_Field_Value__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>QCPI_Loop</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Controlling_Field__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AssignQCLookUp.Problem__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Dependent_Field__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AssignQCLookUp.Title_Problem_Subset__c</elementReference>
             </value>
         </filters>
         <filters>
@@ -1248,6 +1287,7 @@ IF(AND(ISPICKVAL({!GetCase.Status}, &apos;48 Hour Notice&apos;),{!GetCase.Title_
         <inputReference>QCPIStorage</inputReference>
     </recordCreates>
     <recordLookups>
+        <description>This looks at current QC records associated with the Case that triggered the flow to be able to tell the flow user if a QC record already exists against this case record</description>
         <name>Get_QC_Records</name>
         <label>Get QC Records</label>
         <locationX>742</locationX>
@@ -1278,7 +1318,7 @@ IF(AND(ISPICKVAL({!GetCase.Status}, &apos;48 Hour Notice&apos;),{!GetCase.Title_
     <recordLookups>
         <name>GetCase</name>
         <label>GetCase</label>
-        <locationX>176</locationX>
+        <locationX>174</locationX>
         <locationY>294</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1704,8 +1744,8 @@ May go away with Update Status Process</description>
     <screens>
         <name>Problem_Already_Recorded_for_this_Case</name>
         <label>Problem Already Recorded for this Case</label>
-        <locationX>748</locationX>
-        <locationY>729</locationY>
+        <locationX>762</locationX>
+        <locationY>742</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1752,8 +1792,8 @@ May go away with Update Status Process</description>
     <screens>
         <name>Problem_Subsets</name>
         <label>Problem Subsets</label>
-        <locationX>959</locationX>
-        <locationY>1303</locationY>
+        <locationX>951</locationX>
+        <locationY>1336</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1843,7 +1883,7 @@ May go away with Update Status Process</description>
     <screens>
         <name>Seller_Assistance_Needed</name>
         <label>Seller Assistance Needed?</label>
-        <locationX>358</locationX>
+        <locationX>359</locationX>
         <locationY>589</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1863,10 +1903,11 @@ May go away with Update Status Process</description>
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <description>information on this screen will end up populating the problem Field on the QC problem identified Object.</description>
         <name>Title_Problem</name>
-        <label>Title Problem</label>
-        <locationX>445</locationX>
-        <locationY>749</locationY>
+        <label>Enter Title Problem Detatils</label>
+        <locationX>446</locationX>
+        <locationY>750</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>

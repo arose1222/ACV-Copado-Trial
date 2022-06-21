@@ -38,10 +38,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Commercial_Sub_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Status__c</field>
             </layoutItems>
             <layoutItems>
@@ -123,25 +119,13 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Language_Preference__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
+                <field>Drivably_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Inactive_Sub_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Status_Notes__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Account_Activity_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -632,10 +616,6 @@
                 <behavior>Edit</behavior>
                 <field>Valid_Arbitration_Cases_as_Buyer__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Recent_FTB__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -754,14 +734,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>TrueFrame_Dealership__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Major_Account__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACV_Anywhere_Registration_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -1015,11 +987,6 @@
             <actionType>QuickAction</actionType>
             <sortOrder>28</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>jiffle__Jifflenow_Meetings</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>29</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -1130,8 +1097,6 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>DateofCall__c</fields>
         <fields>ContactName__c</fields>
@@ -1180,18 +1145,6 @@
         <fields>Status_Last_Updated__c</fields>
         <fields>Auction_End__c</fields>
         <relatedList>Case.Seller_Dealership__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>jiffle__Campaign__c</fields>
-        <fields>jiffle__Event__c</fields>
-        <fields>jiffle__Meeting__c</fields>
-        <fields>jiffle__Meeting_ID__c</fields>
-        <fields>jiffle__Meeting_Location__c</fields>
-        <fields>jiffle__Request_Status__c</fields>
-        <relatedList>jiffle__Meeting_Relations__c.jiffle__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CREATED_DATE</fields>
@@ -1300,6 +1253,7 @@
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
         <fields>Monthly_Buy_Percent__c</fields>
+        <fields>Monthly_Sell_Percent__c</fields>
         <relatedList>Account.Duplicate_Of__c</relatedList>
     </relatedLists>
     <relatedLists>

@@ -4,7 +4,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Madi Katz&quot;,&quot;id&quot;:&quot;0055b00000Ox63SAAR&quot;},{&quot;name&quot;:&quot;Aliyah Lewis&quot;,&quot;id&quot;:&quot;0055b00000OqbFGAAZ&quot;},{&quot;name&quot;:&quot;Teresa Rodriguez&quot;,&quot;id&quot;:&quot;0055b00000OwHSWAA3&quot;}],&quot;message&quot;:&quot;@[0055b00000Ox63SAAR]  @[0055b00000OqbFGAAZ] @[0055b00000OwHSWAA3] - This Account is back in good standing - Please locate any titles being held in unpaid bin and send to buyer.&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Daughn Quinlivan&quot;,&quot;id&quot;:&quot;0050a00000HrXriAAF&quot;},{&quot;name&quot;:&quot;Tara Moran&quot;,&quot;id&quot;:&quot;0055b00000NyRe3AAF&quot;}],&quot;message&quot;:&quot;@[0050a00000HrXriAAF] @[0055b00000NyRe3AAF] - This Account is back in good standing - Please locate any titles being held in unpaid bin and send to buyer.&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -13,11 +13,10 @@
         <locationY>200</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>text</name>
             <value>
-                <stringValue>@[0055b00000Ox63SAAR]  @[0055b00000OqbFGAAZ] @[0055b00000OwHSWAA3] - This Account is back in good standing - Please locate any titles being held in unpaid bin and send to buyer.</stringValue>
+                <stringValue>@[0050a00000HrXriAAF] @[0055b00000NyRe3AAF] - This Account is back in good standing - Please locate any titles being held in unpaid bin and send to buyer.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -71,7 +70,7 @@
         <dataType>Boolean</dataType>
         <expression>AND( ISCHANGED({!myVariable_current.Title_Hold__c}) , ISPICKVAL( {!myVariable_current.Title_Hold__c},&quot;Back In Good Standing&quot;))</expression>
     </formulas>
-    <interviewLabel>Title_Hold_Back_in_Good_Standing-13_InterviewLabel</interviewLabel>
+    <interviewLabel>Title_Hold_Back_in_Good_Standing-11_InterviewLabel</interviewLabel>
     <label>Title Hold Back in Good Standing</label>
     <processMetadataValues>
         <name>ObjectType</name>

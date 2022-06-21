@@ -77,10 +77,6 @@
         <name>FSL__Service_Tooltip_Gantt</name>
     </fieldSets>
     <fields>
-        <label><!-- ACV Anywhere or FBI --></label>
-        <name>ACV_Anywhere_or_FBI__c</name>
-    </fields>
-    <fields>
         <label><!-- _AO Dynamic Priority --></label>
         <name>AO_Dynamic_Priority__c</name>
     </fields>
@@ -102,10 +98,6 @@
         <relationshipLabel><!-- Service Appointments --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Allow Change From Flow --></label>
-        <name>Allow_Change_From_Flow__c</name>
-    </fields>
-    <fields>
         <label><!-- Allow VCI Status Change --></label>
         <name>Allow_VCI_Status_Change__c</name>
     </fields>
@@ -117,10 +109,6 @@
         <help><!-- Beta Flag gets set to True if the Service Territory is in the specified Beta testing territory (or territories). --></help>
         <label><!-- Beta Flag --></label>
         <name>Beta_Flag__c</name>
-    </fields>
-    <fields>
-        <label><!-- Bundled --></label>
-        <name>Bundled__c</name>
     </fields>
     <fields>
         <label><!-- CPO Work --></label>
@@ -320,10 +308,6 @@
         <name>Customer_Email__c</name>
     </fields>
     <fields>
-        <label><!-- Dealership Name --></label>
-        <name>Dealership_Name__c</name>
-    </fields>
-    <fields>
         <label><!-- Delinquent Assignment --></label>
         <name>Delinquent_Assignment__c</name>
     </fields>
@@ -338,6 +322,10 @@
     <fields>
         <label><!-- Driving Directions --></label>
         <name>Driving_Directions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dry Run Reason --></label>
+        <name>Dry_Run_Reason__c</name>
     </fields>
     <fields>
         <label><!-- Dry Run --></label>
@@ -469,6 +457,10 @@
         <name>FSL__IsMultiDay__c</name>
     </fields>
     <fields>
+        <label><!-- Last Updated Epoch --></label>
+        <name>FSL__Last_Updated_Epoch__c</name>
+    </fields>
+    <fields>
         <label><!-- Multiday Work Calculated length --></label>
         <name>FSL__MDS_Calculated_length__c</name>
     </fields>
@@ -567,16 +559,8 @@
         <name>Include_in_Optimization__c</name>
     </fields>
     <fields>
-        <label><!-- Inspection Notes --></label>
-        <name>Inspection_Notes__c</name>
-    </fields>
-    <fields>
         <label><!-- Is Beta --></label>
         <name>Is_Beta__c</name>
-    </fields>
-    <fields>
-        <label><!-- Live Appraisal Event --></label>
-        <name>Live_Appraisal_Event__c</name>
     </fields>
     <fields>
         <label><!-- Local_Scheduled_Start_Time --></label>
@@ -621,10 +605,6 @@
         <name>Special_Instructions_Acknowledged__c</name>
     </fields>
     <fields>
-        <label><!-- Standard Inspection --></label>
-        <name>Standard_Inspection__c</name>
-    </fields>
-    <fields>
         <label><!-- Travel Start Time --></label>
         <name>Travel_Start_Time__c</name>
     </fields>
@@ -667,17 +647,9 @@
         <name>Work_Type_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Work Type Unique ID --></label>
-        <name>Work_Type_Unique_ID__c</name>
-    </fields>
-    <fields>
         <label><!-- x_AO Is ASAP Non Important --></label>
         <name>xAO_Is_ASAP_Non_Important__c</name>
     </fields>
-    <validationRules>
-        <errorMessage><!-- You cannot update this service appointment to be outside of the specified arrival window. --></errorMessage>
-        <name>ACVHome_FBI_Respect_Arrival_Window</name>
-    </validationRules>
     <validationRules>
         <errorMessage><!-- An Address is required to create a Service Appointment --></errorMessage>
         <name>Address_is_Required</name>
@@ -769,9 +741,5 @@
     <validationRules>
         <errorMessage><!-- VCI&apos;s cannot change Service Appointment Status outside the FSL Mobile App. --></errorMessage>
         <name>Prevent_VCIs_from_changing_SA_Status</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Work Type CANNOT be changed. --></errorMessage>
-        <name>Prevent_Work_Type_Change</name>
     </validationRules>
 </CustomObjectTranslation>

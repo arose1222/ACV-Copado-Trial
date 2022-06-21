@@ -1046,11 +1046,6 @@
             <operation>equals</operation>
             <value>Exception__c.Certificate_of_Insurance</value>
         </filters>
-        <filters>
-            <field>Insurance_Company_Name__c</field>
-            <operation>notContain</operation>
-            <value>not acv cap</value>
-        </filters>
         <label>ACV Capital - Certificate of Insurance</label>
     </listViews>
     <listViews>
@@ -1096,7 +1091,12 @@
         <filters>
             <field>CREATED_DATE</field>
             <operation>equals</operation>
-            <value>YESTERDAY</value>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Batch_Id__c</field>
+            <operation>contains</operation>
+            <value>2</value>
         </filters>
         <filters>
             <field>RECORDTYPE</field>
@@ -1105,46 +1105,10 @@
         </filters>
         <filters>
             <field>Title_Scanned_By__c</field>
-            <operation>notContain</operation>
-            <value>lewis</value>
+            <operation>contains</operation>
+            <value>Steve</value>
         </filters>
         <label>Outbound ML</label>
-    </listViews>
-    <listViews>
-        <fullName>Copy_of_All6</fullName>
-        <columns>NAME</columns>
-        <columns>Email_Subject__c</columns>
-        <columns>Related_Auction__c</columns>
-        <columns>Related_Case__c</columns>
-        <columns>Scanner_Model_Name__c</columns>
-        <columns>Status__c</columns>
-        <columns>Title_Scanned_By__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Exceptions_Found__c</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Open,Closed</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>1/28/2022 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_By__c</field>
-            <operation>contains</operation>
-            <value>alyssa</value>
-        </filters>
-        <label>Exceptions Filter</label>
     </listViews>
     <listViews>
         <fullName>Dealer_Doc_Exceptions_for_IST_Review</fullName>
@@ -1210,50 +1174,9 @@
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Exception__c.ML_Titles</value>
+            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
         </filters>
         <label>ML Exceptions</label>
-    </listViews>
-    <listViews>
-        <fullName>ML_Exceptions_not_closed</fullName>
-        <columns>NAME</columns>
-        <columns>Email_Subject__c</columns>
-        <columns>Related_Auction__c</columns>
-        <columns>Related_Case__c</columns>
-        <columns>Scanner_Model_Name__c</columns>
-        <columns>Status__c</columns>
-        <columns>Title_Scanned_By__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Exceptions_Found__c</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Exception__c.ML_Titles</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Open,Closed</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_WEEK</value>
-        </filters>
-        <filters>
-            <field>Related_Case__c</field>
-            <operation>notContain</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_By__c</field>
-            <operation>contains</operation>
-            <value>paige</value>
-        </filters>
-        <label>ML Exceptions not closed</label>
     </listViews>
     <listViews>
         <fullName>My_Exceptions</fullName>
@@ -1323,52 +1246,21 @@
         <columns>Dealer_ID__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2020 12:00 AM</value>
+        </filters>
+        <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Exception__c.Titles</value>
         </filters>
         <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
+            <field>Exceptions_Found__c</field>
+            <operation>contains</operation>
+            <value>priority title</value>
         </filters>
         <label>Priorirty Title Exceptions</label>
-    </listViews>
-    <listViews>
-        <fullName>Titles_Exceptions_Outbound</fullName>
-        <columns>NAME</columns>
-        <columns>Email_Subject__c</columns>
-        <columns>Related_Auction__c</columns>
-        <columns>Related_Case__c</columns>
-        <columns>Scanner_Model_Name__c</columns>
-        <columns>Status__c</columns>
-        <columns>Title_Scanned_By__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Exceptions_Found__c</columns>
-        <columns>Batch_Id__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Open</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>Title_Scanned_By__c</field>
-            <operation>contains</operation>
-            <value>lewis</value>
-        </filters>
-        <label>Unpaid Exceptions</label>
     </listViews>
     <listViews>
         <fullName>priority</fullName>

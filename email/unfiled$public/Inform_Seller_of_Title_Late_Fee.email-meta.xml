@@ -6,20 +6,20 @@
     <letterhead>ACV</letterhead>
     <name>Inform Seller of Title Late Fee</name>
     <style>freeForm</style>
-    <subject>Late Title: {!Case.Vehicle_Year_Make_Model__c}, VIN {!Case.Vehicle_VIN_Last_6__c}</subject>
+    <subject>Late Title:{!Assigned_Fee__c.Vehicle_Year_Make_Model__c} , VIN {!Assigned_Fee__c.Vehicle_Vin_Last_6__c}</subject>
     <textOnly>Hello,
 
 
 
-Our office has yet to receive the title paperwork for {!Case.Vehicle_Year_Make_Model__c} {!Case.Vehicle_VIN_Last_6__c}, sold on {!Case.Auction_End__c}.
+Our office has yet to receive the title paperwork for {!Assigned_Fee__c.Vehicle_Year_Make_Model__c} {!Assigned_Fee__c.Vehicle_Vin_Last_6__c}, sold on {!Assigned_Fee__c.Auction_End_Date__c}.
 
 
 
-The title and any paperwork were due by {!Case.Title_Due_Date__c}. A fee of $25 per day will be applied up to a maximum of $250 until ACV receives the title and any needed paperwork.
+The title and any paperwork were due by {!Assigned_Fee__c.Title_Due_Date__c}.   A fee of $25 per day will be applied up to a maximum of $250 until ACV receives the title and any needed paperwork.
 
 
 
-If you have any questions, please reach out to your Territory Manager, {!Case.Seller_Territory_Manager__c}.
+If you have any questions, please reach out to your Territory Manager, {!Assigned_Fee__c.Seller_Territory_Manager__c}
 
 
 

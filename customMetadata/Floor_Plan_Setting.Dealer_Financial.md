@@ -19,20 +19,12 @@
         <value xsi:nil="true"/>
     </values>
     <values>
-        <field>Internal_Delivery__c</field>
-        <value xsi:type="xsd:boolean">false</value>
-    </values>
-    <values>
         <field>Name__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>
         <field>Payment_Method_API_Name__c</field>
         <value xsi:type="xsd:string">dealer_financial</value>
-    </values>
-    <values>
-        <field>Payment_Method_Group_Name__c</field>
-        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Phone__c</field>

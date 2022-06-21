@@ -23,22 +23,6 @@
         <template>ACV_Capital_Email_Templates/ACV_Capital_Title_Address_Change</template>
     </alerts>
     <alerts>
-        <fullName>ACV_Capital_Welcome_Email_Orange_Elite_2</fullName>
-        <description>ACV Capital Welcome Email - Orange Elite 2</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ACV_Capital_Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <field>ACV_Capital_Sales_Rep__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderAddress>capitalconcierge@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/ACV_Capital_Welcome_Orange_Elite_1635868761239</template>
-    </alerts>
-    <alerts>
         <fullName>Blitz_Team_Deactivate</fullName>
         <description>Blitz Team Deactivate</description>
         <protected>false</protected>
@@ -83,18 +67,6 @@
         <template>Unfiled_Non_Public_Templates/Compliant_Dealer_Is_Inactive</template>
     </alerts>
     <alerts>
-        <fullName>FastPass_Welcome_Email</fullName>
-        <description>FastPass Welcome Email</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Primary_Contact__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>system@acvauctions.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>ACVCapital/Fastpass_Welcome_Email_1648059673344</template>
-    </alerts>
-    <alerts>
         <fullName>Inform_TM_their_dealer_is_enrolled_in_Late_Fee_Program</fullName>
         <description>Inform TM their dealer is enrolled in Late Fee Program</description>
         <protected>false</protected>
@@ -122,16 +94,6 @@
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/West_Dealer_ID</template>
-    </alerts>
-    <alerts>
-        <fullName>Notify_AM_upon_Lead_Conversion</fullName>
-        <description>Notify AM upon Lead Conversion</description>
-        <protected>false</protected>
-        <recipients>
-            <type>accountOwner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Notify_AM_upon_Lead_Conversion</template>
     </alerts>
     <alerts>
         <fullName>Pat_Feeley_email_alert</fullName>
@@ -258,6 +220,26 @@
         <field>Preferred_buyer__c</field>
         <literalValue>1</literalValue>
         <name>ACV Capital - Preferred Buyer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ACV_Capital_Relationship_Customer</fullName>
+        <field>xACV_Capital_Relationship__c</field>
+        <literalValue>Customer</literalValue>
+        <name>ACV Capital Relationship - Customer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ACV_Capital_Relationship_Prospect</fullName>
+        <field>xACV_Capital_Relationship__c</field>
+        <literalValue>Prospect</literalValue>
+        <name>ACV Capital Relationship - Prospect</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -640,12 +622,20 @@ Id))</formula>
             <name>ACV_Capital_Preferred_Buyer</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>ACV_Capital_Relationship_Customer</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <formula>ISCHANGED(ACV_Capital_Customer__c )&amp;&amp; ACV_Capital_Customer__c &lt;&gt; 0</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>ACV Capital Relationship - Prospect</fullName>
+        <actions>
+            <name>ACV_Capital_Relationship_Prospect</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>Account.Open_ACV_Capital_Opptys__c</field>
@@ -958,14 +948,20 @@ Id))</formula>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>Account.Lot_Sweep_Join_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
             <field>Account.Lot_Sweep_Participant__c</field>
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Account.Lot_Sweep_Join_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Standard</value>
+        </criteriaItems>
+        <description>Stamps lot sweep end date</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -993,7 +989,7 @@ Id))</formula>
             <name>New_West_Dealer_Email</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <booleanFilter>1 AND 9 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)</booleanFilter>
         <criteriaItems>
             <field>Account.Dealership_ID__c</field>
@@ -1039,8 +1035,7 @@ Id))</formula>
             <operation>equals</operation>
             <value>1</value>
         </criteriaItems>
-        <description>Workflow for when new franchise dealers in the West are created to notify biz ops
-(Deactivated 2/8/2022 per Kyle Holmberg&apos;s comment here: https://acvauctions.lightning.force.com/lightning/r/Salesforce_Request__c/a3C5b000000InqCEAS/view)</description>
+        <description>Workflow for when new franchise dealers in the West are created to notify biz ops</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

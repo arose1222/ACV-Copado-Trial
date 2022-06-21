@@ -1,11 +1,10 @@
 /**
  * @description https://acvauctions.atlassian.net/browse/TDO-26 requirements.
  * 
- * @author Manmeet Vaseer
+ * @author Amul
  * @date 05/10/2021
  * 
  * @history 06/09/2021 Manmeet Vaseer - Added logic to handle Legal vs Billing state.
- * 			01/11/2022 Manmeet Vaseer - Use Case.CreatedDate instead of Case.Auction_End__c date for the Due Date calculations (https://acvauctions.atlassian.net/browse/TDO-692).
  * 
  */
 @isTest
@@ -45,7 +44,7 @@ public class CalculateTitleDueDateAccountTest {
         
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);
         
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -56,7 +55,7 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(29), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(29), testCase.Title_Due_Date__c);        
 
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -67,7 +66,7 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(44), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(44), testCase.Title_Due_Date__c);        
 
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -78,7 +77,7 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(29), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(29), testCase.Title_Due_Date__c);                
     }  
     
     @isTest
@@ -101,7 +100,7 @@ public class CalculateTitleDueDateAccountTest {
         
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(6), testCase.Title_Due_Date__c);
         
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -112,7 +111,7 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(6), testCase.Title_Due_Date__c);        
 
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -123,7 +122,7 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(6), testCase.Title_Due_Date__c);        
 
         /*
          * This should invoke CaseCalculateTitleDueDate handler in the Account trigger,
@@ -134,6 +133,6 @@ public class CalculateTitleDueDateAccountTest {
 
 		testCase = [Select id,Title_Due_Date__c from Case where id=:testCase.ID];
 		System.assert(testCase.Title_Due_Date__c!=null); 
-        System.assertEquals(system.now().Date().addDays(6), testCase.Title_Due_Date__c.Date());
+        System.assertEquals(system.today().addDays(6), testCase.Title_Due_Date__c);                
     }      
 }

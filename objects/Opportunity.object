@@ -356,6 +356,7 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -366,6 +367,7 @@
         <label>A-Team member Calendly link</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -373,6 +375,7 @@
         <fullName>AccountId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -384,20 +387,7 @@
         <label>Account Manager</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Account_Name_Displayed__c</fullName>
-        <description>CAP - 644:   Welcome Email Project.
-
-Used to display the account name to be used in welcome email templates for the client.</description>
-        <externalId>false</externalId>
-        <formula>Account.Name</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Account Name Displayed</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -410,6 +400,7 @@ Used to display the account name to be used in welcome email templates for the c
         <label>Actual Rolling 30 Day Sales Volume</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -420,6 +411,7 @@ Used to display the account name to be used in welcome email templates for the c
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>7</visibleLines>
     </fields>
@@ -432,6 +424,7 @@ Used to display the account name to be used in welcome email templates for the c
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
@@ -443,6 +436,7 @@ Used to display the account name to be used in welcome email templates for the c
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -467,7 +461,7 @@ Used to display the account name to be used in welcome email templates for the c
 VCI Fee, Pack Fee, Go Green Fee, Anticipated Yearly Volume. (Please be sure to fill all them out with values in order for the Amount to be calculated automatically)</inlineHelpText>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <trackTrending>true</trackTrending>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Analyst__c</fullName>
@@ -481,6 +475,7 @@ VCI Fee, Pack Fee, Go Green Fee, Anticipated Yearly Volume. (Please be sure to f
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -498,6 +493,7 @@ Anticipated Yearly Volume</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -508,6 +504,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -520,6 +517,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -531,6 +529,7 @@ Anticipated Yearly Volume</description>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>10</visibleLines>
     </fields>
@@ -543,6 +542,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
     <fields>
@@ -556,6 +556,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -565,6 +566,7 @@ Anticipated Yearly Volume</description>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Auto-sell</label>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -578,32 +580,9 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Average_Monthly_Sales__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Average Monthly Sales</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Average_Wholesale_Vehicle_Price__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Average Wholesale Vehicle Price</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Bankruptcy_Comments__c</fullName>
@@ -613,6 +592,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
     <fields>
@@ -632,6 +612,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -643,6 +624,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <label>Bidder</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -657,6 +639,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -672,6 +655,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -682,6 +666,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <label>Buyer CAM Team</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -696,6 +681,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -709,6 +695,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -722,6 +709,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -736,43 +724,15 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>CampaignId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Campaign_Message__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Campaign Message</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Checkout Campaign</fullName>
-                    <default>false</default>
-                    <label>Checkout Campaign</label>
-                </value>
-                <value>
-                    <fullName>Digital-Floorplan-2 Waived Fees</fullName>
-                    <default>false</default>
-                    <label>Digital-Floorplan-2 Waived Fees</label>
-                </value>
-                <value>
-                    <fullName>Digital-Floorplan-Spring Savings 60for60 Tax Season</fullName>
-                    <default>false</default>
-                    <label>Digital-Floorplan-Spring Savings 60for60 Tax Season</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Capital_Account_Rep__c</fullName>
@@ -785,6 +745,7 @@ To calculate the Amount field on Fleet/Lease Opportunities</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -798,39 +759,9 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Capital Dealer Flag</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Capital_Product_Interest__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Capital Product Interest</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>ACV_Accelerate</fullName>
-                    <default>false</default>
-                    <label>ACV Accelerate</label>
-                </value>
-                <value>
-                    <fullName>ACV_Advantage</fullName>
-                    <default>false</default>
-                    <label>ACV Advantage</label>
-                </value>
-                <value>
-                    <fullName>Floorplan</fullName>
-                    <default>false</default>
-                    <label>Floorplan</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Client_Meeting_Scheduled__c</fullName>
@@ -839,13 +770,14 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>CloseDate</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <trackTrending>true</trackTrending>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>CloseDate__c</fullName>
@@ -854,6 +786,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -863,6 +796,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
@@ -874,6 +808,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -930,11 +865,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
                     <label>Relationship</label>
                 </value>
                 <value>
-                    <fullName>No Interest</fullName>
-                    <default>false</default>
-                    <label>No Interest</label>
-                </value>
-                <value>
                     <fullName>Other</fullName>
                     <default>false</default>
                     <label>Other</label>
@@ -952,6 +882,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <fullName>ContractId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -962,6 +893,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Created Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -975,6 +907,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -984,47 +917,50 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Picklist</type>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
         <valueSet>
+            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Accelerate</fullName>
+                    <fullName>14 Day</fullName>
                     <default>false</default>
-                    <label>ACV Accelerate</label>
+                    <label>14 Day</label>
                 </value>
                 <value>
-                    <fullName>Floorplan</fullName>
+                    <fullName>30 Day</fullName>
                     <default>false</default>
-                    <label>Floorplan</label>
+                    <label>30 Day</label>
                 </value>
                 <value>
-                    <fullName>Advantage</fullName>
+                    <fullName>45 Day</fullName>
                     <default>false</default>
-                    <label>ACV Advantage</label>
+                    <label>45 Day</label>
                 </value>
                 <value>
-                    <fullName>Advantage + Accelerate</fullName>
+                    <fullName>60 Day</fullName>
                     <default>false</default>
-                    <label>Advantage + Accelerate</label>
+                    <label>60 Day</label>
                 </value>
                 <value>
-                    <fullName>Floorplan + Accelerate</fullName>
+                    <fullName>ACV Capital:60D +30D</fullName>
                     <default>false</default>
-                    <label>Floorplan + Accelerate</label>
+                    <label>ACV Capital:60D +30D</label>
                 </value>
                 <value>
-                    <fullName>Floorplan 60+30</fullName>
+                    <fullName>Fast Pay</fullName>
                     <default>false</default>
-                    <label>Floorplan 60+30</label>
+                    <label>Accelerate</label>
                 </value>
                 <value>
-                    <fullName>Unsure</fullName>
+                    <fullName>TA Hold / ACV Capital</fullName>
                     <default>false</default>
-                    <label>Unsure</label>
+                    <label>Advantage / ACV Capital</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Critical_Deal_metrics_Summary__c</fullName>
@@ -1034,20 +970,9 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Current_Floorplan_Provider__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Current Floorplan Provider</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Current_Request_Detail__c</fullName>
@@ -1059,6 +984,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1071,6 +997,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1103,6 +1030,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1114,6 +1042,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
@@ -1143,6 +1072,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Data Quality Description</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1155,6 +1085,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1167,6 +1098,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Date Joined</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -1179,6 +1111,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1190,6 +1123,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Dealer Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1202,6 +1136,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Dealer ID</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1214,6 +1149,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1236,6 +1172,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <fullName>Description</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Document_Link__c</fullName>
@@ -1245,6 +1182,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
     <fields>
@@ -1256,6 +1194,7 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <label>Bin</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1275,6 +1214,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <label>Most Recent Decision</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1287,6 +1227,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1302,6 +1243,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1316,10 +1258,12 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ExpectedRevenue</fullName>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Expected_Monthly_Volume__c</fullName>
@@ -1331,6 +1275,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1344,6 +1289,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1358,6 +1304,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1371,6 +1318,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1386,6 +1334,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1402,6 +1351,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1414,6 +1364,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -1426,6 +1377,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -1437,6 +1389,7 @@ IF(EXPRN__Most_Recent_Decision_Status_Opp__c == &quot;Manual Review&quot;,EXPRN_
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1455,6 +1408,7 @@ Anticipated Yearly Volume</description>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -1470,6 +1424,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1482,6 +1437,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1495,6 +1451,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1507,6 +1464,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1534,6 +1492,7 @@ Anticipated Yearly Volume</description>
         <label>Granted FastPass</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -1546,20 +1505,8 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>How_many_cars_do_you_stock__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>How many cars do you stock</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IST_Account_Manager_Email__c</fullName>
@@ -1570,6 +1517,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -1581,6 +1529,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -1592,6 +1541,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -1613,29 +1563,19 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Inventory_Turn_Time__c</fullName>
-        <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
-        <externalId>false</externalId>
-        <label>Inventory Turn Time</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>IqScore</fullName>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>IsPrivate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Last30DaysBought__c</fullName>
@@ -1645,6 +1585,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <label>Last 30 Days Bought</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1656,12 +1597,14 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
         <fullName>LeadSource</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -1675,6 +1618,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1687,6 +1631,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1699,6 +1644,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1711,6 +1657,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1724,6 +1671,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1737,6 +1685,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1750,6 +1699,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1761,6 +1711,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <label>Link to Auction Manager</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1774,6 +1725,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <label>Link to Deal Maker</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1784,18 +1736,20 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>NextStep</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <trackTrending>true</trackTrending>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Next_Step_Issues_or_Objections__c</fullName>
@@ -1804,6 +1758,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>6</visibleLines>
     </fields>
@@ -1818,6 +1773,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1828,6 +1784,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1869,6 +1826,7 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <label>Opty Auction Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1879,12 +1837,14 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1902,6 +1862,7 @@ Anticipated Yearly Volume</description>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -1925,6 +1886,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1935,6 +1897,7 @@ Anticipated Yearly Volume</description>
         <label>Potential Monthly Buy Volume</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1948,6 +1911,7 @@ Anticipated Yearly Volume</description>
         <label>Potential Monthly Sell Volume</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1960,6 +1924,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1970,26 +1935,12 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
-                <value>
-                    <fullName>2021 Price Book</fullName>
-                    <default>false</default>
-                    <label>2021 Price Book</label>
-                </value>
-                <value>
-                    <fullName>60 for 60 Tax Season 2022</fullName>
-                    <default>false</default>
-                    <label>60 for 60 Tax Season 2022</label>
-                </value>
-                <value>
-                    <fullName>A /  Orange Elite Pricing 9.28.21</fullName>
-                    <default>false</default>
-                    <label>A /  Orange Elite Pricing 9.28.21</label>
-                </value>
                 <value>
                     <fullName>AAA Pricebook 9.23.21</fullName>
                     <default>false</default>
@@ -2066,16 +2017,24 @@ Anticipated Yearly Volume</description>
                     <label>May 25 2021 Price Book</label>
                 </value>
                 <value>
-                    <fullName>60 for 60 Price book - Fall 21 Promo</fullName>
-                    <default>false</default>
-                    <isActive>false</isActive>
-                    <label>60 for 60 Price book - Fall 21 Promo</label>
-                </value>
-                <value>
                     <fullName>May 2021 Price Book</fullName>
                     <default>false</default>
-                    <isActive>false</isActive>
                     <label>May 2021 Price Book</label>
+                </value>
+                <value>
+                    <fullName>A /  Orange Elite Pricing 9.28.21</fullName>
+                    <default>false</default>
+                    <label>A /  Orange Elite Pricing 9.28.21</label>
+                </value>
+                <value>
+                    <fullName>2021 Price Book</fullName>
+                    <default>false</default>
+                    <label>2021 Price Book</label>
+                </value>
+                <value>
+                    <fullName>60 for 60 Price book - Fall 21 Promo</fullName>
+                    <default>false</default>
+                    <label>60 for 60 Price book - Fall 21 Promo</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2090,6 +2049,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
@@ -2102,22 +2062,13 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Pricebook2Id</fullName>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Contact_Email__c</fullName>
-        <description>CAP-644: Grabs the Email from the associated Account of &apos;Primary Contact&apos;.  Required to send welcome emails to clients who have purchased Orange Elite, Advantage, Floorplan, Accelerate Credit Products</description>
-        <externalId>false</externalId>
-        <formula>Primary_Contact__r.Email</formula>
-        <label>Primary Contact Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Primary_Contact__c</fullName>
@@ -2130,6 +2081,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2142,6 +2094,7 @@ Anticipated Yearly Volume</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -2156,6 +2109,7 @@ Anticipated Yearly Volume</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -2170,6 +2124,7 @@ Anticipated Yearly Volume</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -2182,6 +2137,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -2195,6 +2151,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2209,6 +2166,7 @@ Anticipated Yearly Volume</description>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -2216,7 +2174,7 @@ Anticipated Yearly Volume</description>
         <fullName>Probability</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <trackTrending>true</trackTrending>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>ProposedSolution__c</fullName>
@@ -2225,6 +2183,7 @@ Anticipated Yearly Volume</description>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>7</visibleLines>
     </fields>
@@ -2236,6 +2195,7 @@ Anticipated Yearly Volume</description>
         <length>1500</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
@@ -2246,6 +2206,7 @@ Anticipated Yearly Volume</description>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
@@ -2257,6 +2218,7 @@ Anticipated Yearly Volume</description>
         <label>RecordType DeveloperName</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2269,16 +2231,12 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
-                <value>
-                    <fullName>60 for 60 Tax Season 2022</fullName>
-                    <default>false</default>
-                    <label>60 for 60 Tax Season 2022</label>
-                </value>
                 <value>
                     <fullName>Summer Savings</fullName>
                     <default>false</default>
@@ -2335,6 +2293,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -2361,6 +2320,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2371,6 +2331,7 @@ Anticipated Yearly Volume</description>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
@@ -2383,6 +2344,7 @@ Anticipated Yearly Volume</description>
         <label>Seller Dealership ID</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2397,6 +2359,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2409,6 +2372,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2422,6 +2386,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2432,6 +2397,7 @@ Anticipated Yearly Volume</description>
         <label>Seller Region</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2444,6 +2410,7 @@ Anticipated Yearly Volume</description>
         <label>Seller Territory Manager</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2456,6 +2423,7 @@ Anticipated Yearly Volume</description>
         <label>Seller Territory</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2468,6 +2436,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2475,7 +2444,7 @@ Anticipated Yearly Volume</description>
         <fullName>StageName</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
-        <trackTrending>true</trackTrending>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -2487,6 +2456,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2498,6 +2468,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2509,6 +2480,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2520,6 +2492,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2531,6 +2504,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
@@ -2541,6 +2515,7 @@ Anticipated Yearly Volume</description>
         <length>6000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
@@ -2548,6 +2523,7 @@ Anticipated Yearly Volume</description>
         <fullName>SyncedQuoteId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -2560,6 +2536,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2572,6 +2549,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -2599,6 +2577,7 @@ Anticipated Yearly Volume</description>
         <label>Territory Manager</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2611,6 +2590,7 @@ Anticipated Yearly Volume</description>
         <label>Territory</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2618,11 +2598,13 @@ Anticipated Yearly Volume</description>
         <fullName>TotalOpportunityQuantity</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>Type</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -2635,6 +2617,7 @@ Anticipated Yearly Volume</description>
         <label>UCC Expriation Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -2645,6 +2628,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -2655,6 +2639,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -2688,6 +2673,7 @@ Anticipated Yearly Volume</description>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -2698,6 +2684,7 @@ Anticipated Yearly Volume</description>
         <label>VIN Last Six</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2709,6 +2696,7 @@ Anticipated Yearly Volume</description>
         <label>VIN</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2721,6 +2709,7 @@ Anticipated Yearly Volume</description>
         <label>Vehicle Eligibility Exception</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -2730,6 +2719,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -2741,6 +2731,7 @@ Anticipated Yearly Volume</description>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -2751,7 +2742,8 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Date</type>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
     </fields>
     <fields>
         <fullName>Year_Incorporated__c</fullName>
@@ -2763,6 +2755,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -2779,6 +2772,7 @@ Anticipated Yearly Volume</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <listViews>
@@ -2820,6 +2814,16 @@ Anticipated Yearly Volume</description>
         <columns>OPPORTUNITY.LAST_UPDATE</columns>
         <columns>OPPORTUNITY.RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Capital_Account_Rep__c</field>
+            <operation>contains</operation>
+            <value>cohen</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Closed Lost</value>
+        </filters>
         <label>ACV Capital Referrals - Closed</label>
     </listViews>
     <listViews>
@@ -2838,14 +2842,14 @@ Anticipated Yearly Volume</description>
         <columns>CORE.USERS.FULL_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.ACV_Capital_Referral</value>
-        </filters>
-        <filters>
             <field>OPPORTUNITY.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.ACV_Capital_Referral</value>
         </filters>
         <label>ACV Capital Referrals - Open</label>
     </listViews>
@@ -3040,48 +3044,10 @@ Anticipated Yearly Volume</description>
         </filters>
         <filters>
             <field>CORE.USERS.FULL_NAME</field>
-            <operation>notEqual</operation>
+            <operation>contains</operation>
+            <value>cimato</value>
         </filters>
         <label>All Opportunities</label>
-    </listViews>
-    <listViews>
-        <fullName>All_Areas_and_Regions</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>4/15/2022 6:00 PM</value>
-        </filters>
-        <label>All Areas and Regions</label>
     </listViews>
     <listViews>
         <fullName>BDR_and_OBS_Dealmaker_Open_Ops</fullName>
@@ -3288,6 +3254,11 @@ Anticipated Yearly Volume</description>
             <value>New</value>
         </filters>
         <filters>
+            <field>Seller_Dealership__c</field>
+            <operation>contains</operation>
+            <value>cal-tenn,Fair san,enterprise,copart,fusion,central inc.,5 star rent,image motors,american leasing,ace - las,carbuyer,carlotz,northeast leasing,mobility,dax</value>
+        </filters>
+        <filters>
             <field>Auction_End_Date_Time__c</field>
             <operation>equals</operation>
             <value>TODAY</value>
@@ -3297,15 +3268,10 @@ Anticipated Yearly Volume</description>
             <operation>equals</operation>
             <value>counter_sent</value>
         </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>contains</operation>
-            <value>siedlecki</value>
-        </filters>
         <label>CSM DealMaker - Open Ops (Updated)</label>
         <sharedTo>
-            <roleAndSubordinates>Major_Account_Manage</roleAndSubordinates>
-            <roleAndSubordinates>Major_Accounts_Director</roleAndSubordinates>
+            <roleAndSubordinates>Account_Managers_Ryan</roleAndSubordinates>
+            <roleAndSubordinates>Inside_Sales_Manager_Ryan</roleAndSubordinates>
         </sharedTo>
     </listViews>
     <listViews>
@@ -3433,50 +3399,6 @@ Anticipated Yearly Volume</description>
         <label>Capital Onboarding - Legal Documentation</label>
     </listViews>
     <listViews>
-        <fullName>Central</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>4/14/2022 5:00 PM</value>
-        </filters>
-        <filters>
-            <field>Seller_Region__c</field>
-            <operation>equals</operation>
-            <value>Great Lakes West,Greater NY,Heartland,Mid-South,Midwest,Ohio Valley,Tennessee Valley</value>
-        </filters>
-        <label>Central</label>
-    </listViews>
-    <listViews>
         <fullName>Central_and_North_Region</fullName>
         <columns>Link_to_Auction_Manager__c</columns>
         <columns>Auction_End_Date_Time__c</columns>
@@ -3575,72 +3497,6 @@ Anticipated Yearly Volume</description>
             <value>Capital</value>
         </filters>
         <label>Copy of ACV Capital Referrals - Closed</label>
-    </listViews>
-    <listViews>
-        <fullName>Copy_of_All_Areas_and_Regions</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <label>Copy of All Areas and Regions</label>
-    </listViews>
-    <listViews>
-        <fullName>Copy_of_All_Opportunities3</fullName>
-        <columns>OPPORTUNITY.CREATED_DATE</columns>
-        <columns>Referral_Promotion__c</columns>
-        <columns>Account_Manager__c</columns>
-        <columns>OPPORTUNITY.NAME</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.ACV_Capital_Referral</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.STAGE_NAME</field>
-            <operation>notEqual</operation>
-            <value>Closed Won,Closed Lost</value>
-        </filters>
-        <filters>
-            <field>Referral_Promotion__c</field>
-            <operation>equals</operation>
-            <value>60 for 60 Tax Season 2022</value>
-        </filters>
-        <label>60 for 60 ACV Cap open Ops</label>
     </listViews>
     <listViews>
         <fullName>Copy_of_DealMaker_Closed_Ops</fullName>
@@ -3902,7 +3758,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Seller_IST__c</field>
             <operation>contains</operation>
-            <value>Arcoraci,Limoncelli,Rhodes,Spencer,Mackowski</value>
+            <value>Spencer,Rhodes</value>
         </filters>
         <label>Dealmaker - Sell Side - Tyler</label>
     </listViews>
@@ -3985,7 +3841,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Seller_IST__c</field>
             <operation>contains</operation>
-            <value>Rob Cecchini</value>
+            <value>Patrick Feeley</value>
         </filters>
         <label>Copy of Dealmaker - Open Ops - Steph</label>
     </listViews>
@@ -4071,50 +3927,6 @@ Anticipated Yearly Volume</description>
             <value>ended_accepted,counter_original_accepted</value>
         </filters>
         <label>IST - Yesterday Close No Sale</label>
-    </listViews>
-    <listViews>
-        <fullName>Copy_of_Matt_Scheff_Central</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>VIN_Last_Six__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Bidder__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>equals</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FULL_NAME</field>
-            <operation>equals</operation>
-            <value>Jake Murray</value>
-        </filters>
-        <filters>
-            <field>Seller_Region__c</field>
-            <operation>equals</operation>
-            <value>North Region,Midwest Region</value>
-        </filters>
-        <label>Copy of Matt Scheff Central</label>
     </listViews>
     <listViews>
         <fullName>Corey_G_Dealmaker_Open_Ops</fullName>
@@ -4612,48 +4424,6 @@ Anticipated Yearly Volume</description>
             <value>Galante</value>
         </filters>
         <label>Dealmaker - Buy Side Elisa (GNY)</label>
-    </listViews>
-    <listViews>
-        <fullName>Dealmaker_Buy_Side_GNY_and_Carolinas</fullName>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Bidder__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auto_sell__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Buyer_IST__c</field>
-            <operation>contains</operation>
-            <value>Galante,Schaper,Rizzo,Mancini,Pusateri</value>
-        </filters>
-        <label>Dealmaker - Buy Side GNY and Carolinas</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_Buy_Side_Late_Joel_Chu</fullName>
@@ -6155,45 +5925,6 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker Mike A</label>
     </listViews>
     <listViews>
-        <fullName>Dealmaker_Mike_A_Buy_Side_Day_Before</fullName>
-        <columns>CORE.USERS.FULL_NAME</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Auto_sell__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>equals</operation>
-            <value>counter_original_declined</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Buyer_IST__c</field>
-            <operation>contains</operation>
-            <value>Albini</value>
-        </filters>
-        <label>Dealmaker Mike A. Buy Side (Day Before)</label>
-    </listViews>
-    <listViews>
         <fullName>Dealmaker_Mike_A_Day_Before</fullName>
         <columns>CORE.USERS.FULL_NAME</columns>
         <columns>Seller_IST__c</columns>
@@ -6232,45 +5963,6 @@ Anticipated Yearly Volume</description>
             <value>Michael Albini</value>
         </filters>
         <label>Dealmaker Mike A. Day Before</label>
-    </listViews>
-    <listViews>
-        <fullName>Dealmaker_Mike_A_Sell_Side_Day_Before</fullName>
-        <columns>CORE.USERS.FULL_NAME</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Auto_sell__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>equals</operation>
-            <value>counter_original_declined</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>contains</operation>
-            <value>Albini</value>
-        </filters>
-        <label>Dealmaker Mike A. Sell Side (Day Before)</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_Mike_W</fullName>
@@ -7154,48 +6846,6 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker - Sell Side Late - Joel Chu</label>
     </listViews>
     <listViews>
-        <fullName>Dealmaker_Sell_Side_Mike_Albini_GNY</fullName>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Bidder__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auto_sell__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>contains</operation>
-            <value>Albini</value>
-        </filters>
-        <label>Dealmaker - Sell Side Mike Albini (GNY)</label>
-    </listViews>
-    <listViews>
         <fullName>Dealmaker_Sell_Side_Nicole_K_GNY</fullName>
         <columns>Auction_End_Date_Time__c</columns>
         <columns>Seller_Primary_Contact__c</columns>
@@ -7332,8 +6982,8 @@ Anticipated Yearly Volume</description>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Auction_End_Date_Time__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/21/2022 3:00 PM</value>
+            <operation>equals</operation>
+            <value>TODAY</value>
         </filters>
         <filters>
             <field>Opty_Auction_Status__c</field>
@@ -7462,7 +7112,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Buyer_IST__c</field>
             <operation>contains</operation>
-            <value>Spencer,Rhodes,Mackowski,Limoncelli,Arcoraci</value>
+            <value>Spencer,Rhodes,Masi,Albini,Collard</value>
         </filters>
         <filters>
             <field>Auto_sell__c</field>
@@ -7814,95 +7464,6 @@ Anticipated Yearly Volume</description>
             <value>Opportunity.Deal_Maker</value>
         </filters>
         <label>Dustin Johnson Dealmaker - Open Ops</label>
-    </listViews>
-    <listViews>
-        <fullName>East</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Seller_Region__c</field>
-            <operation>equals</operation>
-            <value>carolinas,florida south,mid-atlantic,new england,nj-philly metro,northeast metro,southeast</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>4/15/2022 5:00 PM</value>
-        </filters>
-        <label>East</label>
-    </listViews>
-    <listViews>
-        <fullName>FL_South_Southeast_NE_Sell_side_DM</fullName>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>VIN_Last_Six__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Opty_Auction_Status__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>equals</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>contains</operation>
-            <value>Rob Cecchini,Aaron Bitner,Austin Dorr,Andrew Patszalek,John Hagerty,Louisa Burnett,Phil Cavuoto,John Luraschi,Brandon Sciandra</value>
-        </filters>
-        <label>FL. South/Southeast/NE - Sell side DM</label>
     </listViews>
     <listViews>
         <fullName>FastPass_Applications_Closed</fullName>
@@ -8750,7 +8311,7 @@ Anticipated Yearly Volume</description>
         <columns>OPPORTUNITY.CLOSE_DATE</columns>
         <columns>OPPORTUNITY.STAGE_NAME</columns>
         <columns>OPPORTUNITY.PROBABILITY</columns>
-        <filterScope>Team</filterScope>
+        <filterScope>Mine</filterScope>
         <label>My Opportunities</label>
     </listViews>
     <listViews>
@@ -9002,51 +8563,6 @@ Anticipated Yearly Volume</description>
             <value>Opportunity.Deal_Maker</value>
         </filters>
         <label>Rachel Fiske Dealmaker - Open Ops</label>
-    </listViews>
-    <listViews>
-        <fullName>Rob_C_dealmakers_Sell_side</fullName>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>VIN_Last_Six__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>Seller_Primary_Contact__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Opty_Auction_Status__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>equals</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>contains</operation>
-            <value>Rob Cecchini</value>
-        </filters>
-        <label>Rob C dealmakers Sell side</label>
     </listViews>
     <listViews>
         <fullName>Rob_Dealmaker_Opps</fullName>
@@ -9454,55 +8970,6 @@ Anticipated Yearly Volume</description>
         <label>Team Kevin Dealmaker - Master</label>
     </listViews>
     <listViews>
-        <fullName>Team_Tom_Regions</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>Buyer_IST__c</field>
-            <operation>equals</operation>
-            <value>Owen Feeley,Jason Frizlen,Mark Lorenz,Michael Swedene,Jason Conidi,Gerard Dixon,Rachel Fiske,Joseph Hacherl</value>
-        </filters>
-        <filters>
-            <field>Seller_IST__c</field>
-            <operation>equals</operation>
-            <value>Owen Feeley,Jason Frizlen,Mark Lorenz,Michael Swedene,Jason Conidi,Gerard Dixon,Rachel Fiske,Joseph Hacherl</value>
-        </filters>
-        <label>Team Tom Regions</label>
-    </listViews>
-    <listViews>
         <fullName>Tiffany_Dealmaker_open_opps</fullName>
         <columns>CORE.USERS.FULL_NAME</columns>
         <columns>Seller_IST__c</columns>
@@ -9637,7 +9104,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Seller_Region__c</field>
             <operation>equals</operation>
-            <value>Texas East</value>
+            <value>Texas East Region,Texas West Region</value>
         </filters>
         <label>Dealmaker Tyler Sell Side (Day Before)</label>
     </listViews>
@@ -9723,50 +9190,6 @@ Anticipated Yearly Volume</description>
             <value>Rob Limoncelli,Jake Murray,Matt Scheff</value>
         </filters>
         <label>Vinny&apos;s Dealmaker</label>
-    </listViews>
-    <listViews>
-        <fullName>West</fullName>
-        <columns>Buyer_Dealership__c</columns>
-        <columns>Buyer_Primary_Contact__c</columns>
-        <columns>Seller_Dealership__c</columns>
-        <columns>Link_to_Auction_Manager__c</columns>
-        <columns>Price_Variance__c</columns>
-        <columns>Price_Variance_Percentage__c</columns>
-        <columns>OPPORTUNITY.STAGE_NAME</columns>
-        <columns>Auction_End_Date_Time__c</columns>
-        <columns>High_Bid__c</columns>
-        <columns>Floor_Price__c</columns>
-        <columns>Link_to_Deal_Maker__c</columns>
-        <columns>Auction_Notes__c</columns>
-        <columns>Seller_IST__c</columns>
-        <columns>Buyer_IST__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Opty_Auction_Status__c</field>
-            <operation>contains</operation>
-            <value>counter_sent</value>
-        </filters>
-        <filters>
-            <field>OPPORTUNITY.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Opportunity.Deal_Maker</value>
-        </filters>
-        <filters>
-            <field>Auto_sell__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Auction_End_Date_Time__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>4/14/2022 6:00 PM</value>
-        </filters>
-        <filters>
-            <field>Seller_Region__c</field>
-            <operation>equals</operation>
-            <value>Mountain West,North,Northern California,Northwest,Southern California,Texas East,Texas West</value>
-        </filters>
-        <label>West</label>
     </listViews>
     <listViews>
         <fullName>William_Guyett_Fast_Pass</fullName>
@@ -10223,36 +9646,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital-Floorplan-2 Waived Fees</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital-Floorplan-Spring Savings 60for60 Tax Season</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>New Opportunity Created</fullName>
@@ -10268,6 +9661,37 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Capital%3A60D %2B30D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fast Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10349,19 +9773,59 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
-                <fullName>Capital Lead</fullName>
+                <fullName>Blitz</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Checkout</fullName>
+                <fullName>CIADA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Checkout - Mobile</fullName>
+                <fullName>Covid - Closed Physical Auction</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Landing Page</fullName>
+                <fullName>DMV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flooring Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>From TM or VCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Event List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal BDM found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Las Vegas NADA 2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10369,7 +9833,15 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>web form</fullName>
+                <fullName>Outsourced List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIADA 2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10403,7 +9875,7 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>60 for 60 Tax Season 2022</fullName>
+                <fullName>60 for 60 Price book - Fall 21 Promo</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10447,6 +9919,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
@@ -10475,10 +9951,6 @@ Anticipated Yearly Volume</description>
             <picklist>Referral_Promotion__c</picklist>
             <values>
                 <fullName>60 Days for %2460</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60 for 60 Tax Season 2022</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10573,28 +10045,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>New Opportunity Created</fullName>
@@ -10610,6 +10060,37 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Capital%3A60D %2B30D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fast Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10825,6 +10306,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
@@ -10934,28 +10419,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>Not Credit Worthy</fullName>
@@ -10967,6 +10430,29 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11186,6 +10672,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TA Hold - %24100</fullName>
                 <default>false</default>
             </values>
@@ -11299,28 +10789,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>Not Credit Worthy</fullName>
@@ -11332,6 +10800,29 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11569,28 +11060,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>Not Credit Worthy</fullName>
@@ -11602,6 +11071,29 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11825,6 +11317,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TA Hold - %24100</fullName>
                 <default>false</default>
             </values>
@@ -11931,28 +11427,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>New Opportunity Created</fullName>
@@ -11968,6 +11442,33 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Capital%3A60D %2B30D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12271,6 +11772,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TA Hold - %24100</fullName>
                 <default>false</default>
             </values>
@@ -12384,28 +11889,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>Not Credit Worthy</fullName>
@@ -12417,6 +11900,29 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12640,6 +12146,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TA Hold - %24100</fullName>
                 <default>false</default>
             </values>
@@ -12754,28 +12264,6 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Campaign_Message__c</picklist>
-            <values>
-                <fullName>Checkout Campaign</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Capital_Product_Interest__c</picklist>
-            <values>
-                <fullName>ACV_Accelerate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ACV_Advantage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Floorplan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Closed_Lost_Reason__c</picklist>
             <values>
                 <fullName>Cannot access Decision Maker</fullName>
@@ -12798,10 +12286,6 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>No Interest</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Other</fullName>
                 <default>false</default>
             </values>
@@ -12811,6 +12295,37 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Product__c</picklist>
+            <values>
+                <fullName>14 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ACV Capital%3A60D %2B30D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fast Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA Hold %2F ACV Capital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13122,6 +12637,10 @@ Anticipated Yearly Volume</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>May 2021 Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
@@ -13261,23 +12780,8 @@ Anticipated Yearly Volume</description>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
     <validationRules>
-        <fullName>ACV_Capital_ACV_Contact_IsNot_Blank</fullName>
-        <active>true</active>
-        <description>Record Type:  ACV Capital Referral
-Stage: Legal Documentation
-Condition:  &apos;Capital_Account_Rep__c&apos; cannot be blank, &apos;Credit_Product__c&apos; picklist field cannot be blank nor have a value of &apos;Unsure when trying to move the stage to &apos;Legal Documentation&apos;.</description>
-        <errorConditionFormula>AND(RecordType.Name = &quot;ACV Capital Referral&quot;,
-ISPICKVAL(StageName, &quot;Legal Documentation&quot;),
-OR(ISBLANK(Capital_Account_Rep__c),ISBLANK(TEXT(Credit_Product__c)),ISPICKVAL(Credit_Product__c, &quot;Unsure&quot;)))</errorConditionFormula>
-        <errorMessage>Please ensure the following fields are populated:   
-
-Capital Account Rep, Credit Product
-
-Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both required for Email Alerts</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>ACV_Capital_CapitalAccountRep_NotBlank</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>This validation rule is to ensure that the field &apos;Capital_Account_Rep__c&apos; is not blank when a capital referral opportunity record type is set to &apos;closed-won&apos;. CAP-672</description>
         <errorConditionFormula>AND(RecordType.Name = &quot;ACV Capital Referral&quot;,
 ISPICKVAL(StageName, &quot;Awaiting Documents&quot;),
@@ -13454,7 +12958,15 @@ ISPICKVAL(Objection__c ,&quot;&quot;))</errorConditionFormula>
         <fullName>True360_1st_Inspection_Report_Mandatory</fullName>
         <active>true</active>
         <description>For True360 opportunities, 1st Inspection Report is mandatory to go beyond the stage of Sales Pitch</description>
-        <errorConditionFormula>AND (NOT($Setup.Org_Exceptions__c.Bypass_Process_Builder_Jobs__c) ,RecordType.Name=&apos;True360&apos;,X1st_Inspection_Report__c = NULL ,NOT ISPICKVAL( StageName , &apos;Prospect&apos;),NOT ISPICKVAL( StageName , &apos;Sales Pitch&apos;),NOT ISPICKVAL( StageName , &apos;Closed Lost&apos;))</errorConditionFormula>
+        <errorConditionFormula>AND (
+    NOT($Setup.Org_Exceptions__c.Bypass_Process_Builder_Jobs__c) ,
+				RecordType.Name=&apos;True360&apos;,
+				X1st_Inspection_Report__c =&apos;&apos;,
+			 NOT ISPICKVAL( StageName , &apos;Prospect&apos;),
+    NOT ISPICKVAL( StageName , &apos;Sales Pitch&apos;),
+	NOT ISPICKVAL( StageName , &apos;Closed Lost&apos;) 
+)</errorConditionFormula>
+        <errorDisplayField>X1st_Inspection_Report__c</errorDisplayField>
         <errorMessage>To progress past the &quot;Sales Pitch&quot; stage, 1st Inspection Report is required.</errorMessage>
     </validationRules>
     <validationRules>
@@ -13469,19 +12981,6 @@ ISBlANK(TEXT(Closed_Lost_Reason__c)))</errorConditionFormula>
         <errorDisplayField>ClosedLostReason__c</errorDisplayField>
         <errorMessage>A Reason is required when marking the stage &quot;Closed Lost&quot;</errorMessage>
     </validationRules>
-    <webLinks>
-        <fullName>Create_Opportunity</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Create Opportunity</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>/lightning/o/Opportunity/new?useRecordTypeCheck=1&amp;defaultFieldValues=AccountId={!Account.Id}</url>
-    </webLinks>
     <webLinks>
         <fullName>Create_True360_Opportunity</fullName>
         <availability>online</availability>
@@ -13741,16 +13240,5 @@ NavigateToExpandedSearchLead();</url>
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Opportunity.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?oppid={!CASESAFEID( Opportunity.Id )}&amp;accid={!CASESAFEID( Opportunity.AccountId )}</url>
     </webLinks>
 </CustomObject>

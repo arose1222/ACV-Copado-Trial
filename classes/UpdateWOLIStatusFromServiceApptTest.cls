@@ -76,48 +76,4 @@ public class UpdateWOLIStatusFromServiceApptTest {
         system.assert(woliPostUpdate.Status == 'New');
         test.stopTest();
     }
-
-    @isTest
-    static void aSIWoliDatesUpdated() {
-        test.startTest();
-        DateTime earliestStart = system.now().addDays(10);
-        DateTime dueDate = system.now().addDays(20);
-        ServiceAppointment sa = [SELECT Id, Status, Work_Order__c, EarliestStartTime, DueDate FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c = 'dealer' LIMIT 1];
-        WorkOrderLineItem woliPreUpdate = [SELECT Id, Status, Earliest_Start_Date__c, Due_Date__c  FROM WorkOrderLineItem WHERE workOrderId = :sa.Work_Order__c LIMIT 1];
-        system.assert(woliPreUpdate.Earliest_Start_Date__c != earliestStart.date());
-        system.assert(woliPreUpdate.Due_Date__c != dueDate.date());
-
-
-        sa.EarliestStartTime = earliestStart;
-        sa.DueDate = dueDate;
-        update sa;
-        test.stopTest();
-
-        WorkOrderLineItem woliPostUpdate = [SELECT Id, Status, Due_Date__c, Earliest_Start_Date__c FROM WorkOrderLineItem WHERE workOrderId = :sa.Work_Order__c LIMIT 1];
-        system.assert(woliPostUpdate.Earliest_Start_Date__c == earliestStart.date());
-        system.assert(woliPostUpdate.Due_Date__c == dueDate.date());
-
-    }
-
-    @isTest
-    static void nonASIWoliDatesNotUpdated() {
-        test.startTest();
-        DateTime earliestStart = system.now().addDays(10);
-        DateTime dueDate = system.now().addDays(20);
-        ServiceAppointment sa = [SELECT Id, Status, Work_Order__c, EarliestStartTime, DueDate FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c = 'inspection' LIMIT 1];
-        WorkOrderLineItem woliPreUpdate = [SELECT Id, Status, Earliest_Start_Date__c, Due_Date__c  FROM WorkOrderLineItem WHERE workOrderId = :sa.Work_Order__c LIMIT 1];
-        system.assert(woliPreUpdate.Earliest_Start_Date__c != earliestStart.date());
-        system.assert(woliPreUpdate.Due_Date__c != dueDate.date());
-
-
-        sa.EarliestStartTime = earliestStart;
-        sa.DueDate = dueDate;
-        update sa;
-        test.stopTest();
-
-        WorkOrderLineItem woliPostUpdate = [SELECT Id, Status, Due_Date__c, Earliest_Start_Date__c FROM WorkOrderLineItem WHERE workOrderId = :sa.Work_Order__c LIMIT 1];
-        system.assert(woliPostUpdate.Earliest_Start_Date__c != earliestStart.date());
-        system.assert(woliPostUpdate.Due_Date__c != dueDate.date());
-
-    }
 }

@@ -367,7 +367,7 @@ scheduler.attachEvent("onBeforeEventChanged", function (ev, e, is_new) {
 });
 
 scheduler.attachEvent("onEventCopied", function(ev) {
-    $('.clipboard-explained-txt').text(customLabels.TimeSlot + " - " + 
+    $('.clipboard-explained-txt').text(customLabels.Timeslot + " - " + 
         moment(ev.start_date).format('LT') + " - " +
         moment(ev.end_date).format('LT'));
 

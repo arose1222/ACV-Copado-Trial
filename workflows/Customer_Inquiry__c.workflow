@@ -50,7 +50,7 @@
             <value>Consultant</value>
         </criteriaItems>
         <description>Sends an email alerting users that this Customer Inquiry was created without being assigned.  It should have been assigned to the title consultant</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>Need To Assign To Specialist</fullName>
@@ -65,7 +65,7 @@
             <value>Specialist</value>
         </criteriaItems>
         <description>Sends an email alerting users that this Customer Inquiry was created without being assigned.  It should have been assigned to the title specialist</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>Notify Inquiry Owner of Inquiry Resolved</fullName>

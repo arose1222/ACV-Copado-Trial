@@ -7,7 +7,32 @@ public with sharing class workOrderIngestController {
     public static final Id AUCTION_SITE = [SELECT id FROM WorkType WHERE name = 'Auction Site' LIMIT 1].id;
 
     private final static Integer MAX_RESULTS = 5;
-    
+
+    private final static Set<String> PROFILE_NAMES_TO_AVOID_REV_APPTS_SET {
+        get {
+            if ( PROFILE_NAMES_TO_AVOID_REV_APPTS_SET == null ) {
+                Salesforce_Setting__mdt setting = [ SELECT Value__c FROM Salesforce_Setting__mdt WHERE Label = 'Profile Names to not display Rev Appts' LIMIT 1 ];
+                PROFILE_NAMES_TO_AVOID_REV_APPTS_SET = new Set<String>( setting.Value__c.split( ',' ) );
+            }
+            return PROFILE_NAMES_TO_AVOID_REV_APPTS_SET;
+        }
+        set;
+    }
+
+    @AuraEnabled(Cacheable=true)
+    public static Boolean checkToDisplayRevolving() {
+        Profile userProfile = [ SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId() LIMIT 1 ];
+        Boolean displayRevolvingAppt = TRUE;
+        for ( String checkProfileStr : PROFILE_NAMES_TO_AVOID_REV_APPTS_SET ) {
+            if ( userProfile.Name.contains( checkProfileStr ) ) {
+                displayRevolvingAppt = FALSE;
+                break;
+            }
+        }
+
+        return displayRevolvingAppt;
+    }
+
     @AuraEnabled(Cacheable=true)
     public static List<LookupSearchResult> getContacts(String searchTerm, List<String> selectedIds){
         // Prepare query paramters
@@ -56,6 +81,8 @@ public with sharing class workOrderIngestController {
             Map<String, Object> woInfo = new Map<String,Object>();
             woInfo = (Map<String,Object>)JSON.deserializeUntyped(woInfoJSON);
             id account = (id)woInfo.get('accountId');
+
+
 
             string specialInstructions = (string)woInfo.get('notes');
             string city = (string)woInfo.get('city');
@@ -315,7 +342,7 @@ public with sharing class workOrderIngestController {
         return due;
     }
 
-    public static Date convertDate(string dateString){
+    private static Date convertDate(string dateString){
         final Integer DASH_INT_VALUE = 45;
 
         integer firstDash = dateString.indexOfChar(DASH_INT_VALUE);
@@ -496,7 +523,7 @@ public with sharing class workOrderIngestController {
             aoRec = aoRecList[0];
         }
 
-        ServiceAppointment saRec = [ SELECT Id, ServiceTerritory.OperatingHoursId, ServiceTerritoryId, WorkType.EstimatedDuration, Work_Order__r.Inspection_Number_of_Vehicles__c,
+        ServiceAppointment saRec = [ SELECT Id, ServiceTerritory.OperatingHoursId, ServiceTerritoryId, WorkType.EstimatedDuration,
                                                     ServiceTerritory.OperatingHours.TimeZone, WorkTypeId, WorkType.Work_Type_Unique_ID__c, Account.Dealership_ID__c, ParentRecordId
                                                     FROM ServiceAppointment WHERE Id = :aoRec.Service_Appointment__c LIMIT 1 ];
 
@@ -511,9 +538,11 @@ public with sharing class workOrderIngestController {
                 saRec.DueDate = aoRec.End_Time__c;
                 saRec.ArrivalWindowStartTime = aoRec.Start_Time__c;
                 saRec.ArrivalWindowEndTime = aoRec.End_Time__c;
+                saRec.Duration = saRec.WorkType.EstimatedDuration;
+                saRec.DurationType = 'Minutes';
                 saRec.Selected_Offer__c = aoRec.Id;
                 saRec.SchedStartTime = aoRec.Scheduled_Start__c;
-                saRec.SchedEndTime = aoRec.Scheduled_Start__c.addMinutes( Integer.valueOf( saRec.WorkType.EstimatedDuration * saRec.Work_Order__r.Inspection_Number_of_Vehicles__c ) );
+                saRec.SchedEndTime = aoRec.Scheduled_Start__c.addMinutes( Integer.valueOf( saRec.WorkType.EstimatedDuration ) );
                 saRec.Exclude_from_Optimization__c = false;
                 saRec.Subject = '';
                 update saRec;

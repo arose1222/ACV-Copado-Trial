@@ -100,11 +100,11 @@
 
 			<apex:pageBlock mode="maindetail">
 				<apex:pageBlockButtons >
-					<apex:commandButton action="{!edit}" value="{!$Label.fsl__edit}" rendered="{!isEditable}"/>
-					<apex:commandButton action="{!refresh}" value="{!$Label.fsl__refresh}" />
+					<apex:commandButton action="{!edit}" value="{!$Label.FSL__Edit}" rendered="{!isEditable}"/>
+					<apex:commandButton action="{!refresh}" value="{!$Label.FSL__Refresh}" />
 				</apex:pageBlockButtons>
 
-			   <apex:pageBlockSection title="{!$Label.fsl__serviceinfo}" columns="2">
+			   <apex:pageBlockSection title="{!$Label.FSL__ServiceInfo}" columns="2">
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Service_Lightbox}" var="d">
 						<apex:outputField value="{!ServiceAppointment[d]}" />
 						<!-- this should be put above ^ rendered="{!IF(d.Type != 'phone' ,true,false)}" -->
@@ -113,12 +113,12 @@
 					</apex:repeat>
 				 </apex:pageBlockSection>
 
-				  <apex:pageBlockSection title="{!$Label.fsl__dateandtime}" columns="2">
+				  <apex:pageBlockSection title="{!$Label.FSL__DateAndTime}" columns="2">
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Service_Lightbox_Time}" var="t">
 						<apex:outputField value="{!ServiceAppointment[t]}"/>
 					</apex:repeat>
 				 </apex:pageBlockSection>
-				 <apex:pageBlockSection title="{!$Label.fsl__address}" columns="2">
+				 <apex:pageBlockSection title="{!$Label.FSL__Address}" columns="2">
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Service_Lightbox_Address}" var="ad">
 						<apex:outputField value="{!ServiceAppointment[ad]}"/>
 					</apex:repeat>

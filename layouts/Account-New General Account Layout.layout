@@ -22,6 +22,10 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Buy_Fee_Rate_Card__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>legal_name__c</field>
             </layoutItems>
@@ -100,10 +104,6 @@
                 <field>Document_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Buy_Fee_Rate_Card_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Buyer_s_Assurance_Exceptions__c</field>
             </layoutItems>
@@ -152,21 +152,13 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Language_Preference__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
+                <field>Late_Title_Fee_Unenrollment_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Inactive_Sub_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Account_Activity_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -261,6 +253,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Titles_Priority__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FastPass_Opt_In__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -483,10 +479,6 @@
                 <behavior>Edit</behavior>
                 <field>Valid_Arbitration_Cases_as_Buyer__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Recent_FTB__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -656,10 +648,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Late_Title_Fee_Unenrollment_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Unpaid_Title_Late_Fee__c</field>
             </layoutItems>
             <layoutItems>
@@ -703,6 +691,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Association_Membership__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Advantage_Terms__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -761,10 +753,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Purchase_Last_Month__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Rate_of_Travel__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -887,16 +875,12 @@
                 <field>Acv_Auctions_Customer__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Max_Digital_Account__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Max_Digital_Business_Unit_Id__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACV_Anywhere_Registration_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -911,10 +895,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Drivably_Account__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Major_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -1005,41 +985,6 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Experian</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FastPass_Opt_In__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FastPass_Approval__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Experian_Test__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Experian_BI_Score__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Experian_Tax_Lien__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Commercial_BK__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
@@ -1098,16 +1043,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.RypplePost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>7</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>FeedItem.LinkPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>8</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Event</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
@@ -1143,64 +1078,14 @@
             <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>CallHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>20</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SmsHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>21</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>EmailHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>22</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>WebsiteHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>23</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>LogACall</actionName>
+            <actionName>FeedItem.RypplePost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>24</sortOrder>
+            <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>SendEmail</actionName>
+            <actionName>FeedItem.LinkPost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>25</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>geopointe__Correct_Location</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>26</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Reactivate</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>27</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Update_Vehicle_Count</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>28</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Work_Order_Ingest</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>29</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>jiffle__Jifflenow_Meetings</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>30</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.ACV_Anywhere_Onboarding</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>31</sortOrder>
+            <sortOrder>8</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>NewTask</actionName>
@@ -1256,6 +1141,56 @@
             <actionName>geopointe__Map</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>19</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>CallHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
+            <sortOrder>20</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>SmsHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
+            <sortOrder>21</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>EmailHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
+            <sortOrder>22</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>WebsiteHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
+            <sortOrder>23</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>LogACall</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>24</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>SendEmail</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>25</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>geopointe__Correct_Location</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>26</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Account.Reactivate</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>27</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Account.Update_Vehicle_Count</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>28</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Account.Work_Order_Ingest</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>29</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -1369,8 +1304,6 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>DateofCall__c</fields>
         <fields>ContactName__c</fields>
@@ -1419,18 +1352,6 @@
         <fields>Status_Last_Updated__c</fields>
         <fields>Auction_End__c</fields>
         <relatedList>Case.Seller_Dealership__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>jiffle__Campaign__c</fields>
-        <fields>jiffle__Event__c</fields>
-        <fields>jiffle__Meeting__c</fields>
-        <fields>jiffle__Meeting_ID__c</fields>
-        <fields>jiffle__Meeting_Location__c</fields>
-        <fields>jiffle__Request_Status__c</fields>
-        <relatedList>jiffle__Meeting_Relations__c.jiffle__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CREATED_DATE</fields>
@@ -1555,6 +1476,7 @@
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
         <fields>Monthly_Buy_Percent__c</fields>
+        <fields>Monthly_Sell_Percent__c</fields>
         <relatedList>Account.Duplicate_Of__c</relatedList>
     </relatedLists>
     <relatedLists>

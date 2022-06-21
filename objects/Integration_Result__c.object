@@ -358,6 +358,11 @@
             <operation>equals</operation>
             <value>Create Pricing</value>
         </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>11/16/2019 12:00 AM</value>
+        </filters>
         <label>Create Pricing</label>
         <sharedTo>
             <role>System_Admin</role>
@@ -496,14 +501,14 @@
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>YESTERDAY</value>
+            <field>Integration_Name__c</field>
+            <operation>contains</operation>
+            <value>User</value>
         </filters>
         <filters>
-            <field>CREATEDBY_USER</field>
+            <field>CREATED_DATE</field>
             <operation>equals</operation>
-            <value>Jake Bass</value>
+            <value>LAST_N_DAYS:21</value>
         </filters>
         <label>Group Events</label>
     </listViews>
@@ -659,11 +664,6 @@
             <field>Status_Code__c</field>
             <operation>greaterThan</operation>
             <value>299</value>
-        </filters>
-        <filters>
-            <field>Integration_Name__c</field>
-            <operation>contains</operation>
-            <value>Transportation</value>
         </filters>
         <label>Transportation Errors</label>
     </listViews>

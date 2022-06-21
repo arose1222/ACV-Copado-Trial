@@ -1,31 +1,43 @@
 @isTest
 public class CaseCreationBatchTest {
 
-    @isTest
-    static void logGenerationTest(){
-        CaseCreationBatch batch = new CaseCreationBatch();
-        Map<String, Integer> strIntMap = new Map<String, Integer>{'Test'=>1};
-        batch.caseLog(strIntMap);
+
+
+    @TestSetup
+    static void makeData() {
+        Map<String, Schema.RecordTypeInfo> rtMap = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName();
+        List<Case> caseInsertList = new List<Case>();
+
+        caseInsertList.add(new Case(status = 'new', origin = 'Collections', RecordTypeId = rtMap.get('Collections').getRecordTypeId()));
+        caseInsertList.add(new Case(status = 'new', origin = 'Phone', RecordTypeId = rtMap.get('Support').getRecordTypeId()));
+
+        insert caseInsertList;
+
     }
-    
+
     @isTest
-    static void caseMapAdditionTest(){
-        CaseCreationBatch batch = new CaseCreationBatch();
-        Map<String, Integer> strIntMap = new Map<String, Integer>();
-        
-        Id masterRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Master').getRecordTypeId();
-        
-        List<Case> caseList = new List<Case>();
-        Case c1 = new Case();
-        c1.RecordTypeId = masterRecordTypeId;
-        caseList.add(c1);
-        
-        batch.addCasesToMap(strIntMap, caseList);
-        System.assert(strIntMap.size() == 1);
+    static void countInsertedCases(){
+        CaseCreationBatch ccb = new CaseCreationBatch();
+        test.startTest();
+        Database.executeBatch(ccb);
+        test.stopTest();
+
+        System.assert(CaseCreationBatch.recordTypeCountMap.get('Support') == 1, 'The number of created support cases was incorrect');
+        System.assert(CaseCreationBatch.recordTypeCountMap.get('Collections') == 1, 'The number of created collections cases was incorrect');
+        System.assert(CaseCreationBatch.totalCaseCount == 2, 'The total number of created cases was incorrect');
+    
     }
-    
-    //test log method
-    //
-    //test addCases method
-    
+
+    @isTest
+    static void countInsertCasesFromTime(){
+        
+        CaseCreationBatch ccb = new CaseCreationBatch(Datetime.now().addMinutes(-10));
+        test.startTest();
+        Database.executeBatch(ccb);
+        test.stopTest();
+
+        System.assert(CaseCreationBatch.recordTypeCountMap.get('Support') == 1, 'The number of created support cases was incorrect');
+        System.assert(CaseCreationBatch.recordTypeCountMap.get('Collections') == 1, 'The number of created collections cases was incorrect');
+        System.assert(CaseCreationBatch.totalCaseCount == 2, 'The total number of created cases was incorrect');
+    }
 }

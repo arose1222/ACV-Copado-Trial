@@ -22,10 +22,6 @@
         <name>Account_Manager__c</name>
     </fields>
     <fields>
-        <label><!-- Account Name Displayed --></label>
-        <name>Account_Name_Displayed__c</name>
-    </fields>
-    <fields>
         <help><!-- Actual Rolling 30 Day Sales Volume from Account --></help>
         <label><!-- Actual Rolling 30 Day Sales Volume --></label>
         <name>Actual_Rolling_30_Day_Sales_Volume__c</name>
@@ -93,14 +89,6 @@
         <name>Available_Sell_Volume__c</name>
     </fields>
     <fields>
-        <label><!-- Average Monthly Sales --></label>
-        <name>Average_Monthly_Sales__c</name>
-    </fields>
-    <fields>
-        <label><!-- Average Wholesale Vehicle Price --></label>
-        <name>Average_Wholesale_Vehicle_Price__c</name>
-    </fields>
-    <fields>
         <label><!-- Bankruptcy Comments --></label>
         <name>Bankruptcy_Comments__c</name>
     </fields>
@@ -149,22 +137,6 @@
         <name>Buyer_Transportation_Cost__c</name>
     </fields>
     <fields>
-        <label><!-- Campaign Message --></label>
-        <name>Campaign_Message__c</name>
-        <picklistValues>
-            <masterLabel>Checkout Campaign</masterLabel>
-            <translation><!-- Checkout Campaign --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital-Floorplan-2 Waived Fees</masterLabel>
-            <translation><!-- Digital-Floorplan-2 Waived Fees --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital-Floorplan-Spring Savings 60for60 Tax Season</masterLabel>
-            <translation><!-- Digital-Floorplan-Spring Savings 60for60 Tax Season --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Capital Account Rep --></label>
         <name>Capital_Account_Rep__c</name>
         <relationshipLabel><!-- Opportunities (Capital Account Rep) --></relationshipLabel>
@@ -173,22 +145,6 @@
         <help><!-- Flag to show if this is an Opportunity for an Orange Elite Dealer --></help>
         <label><!-- Capital Dealer Flag --></label>
         <name>Capital_Dealer_Flag__c</name>
-    </fields>
-    <fields>
-        <label><!-- Capital Product Interest --></label>
-        <name>Capital_Product_Interest__c</name>
-        <picklistValues>
-            <masterLabel>ACV Accelerate</masterLabel>
-            <translation><!-- ACV Accelerate --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ACV Advantage</masterLabel>
-            <translation><!-- ACV Advantage --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Floorplan</masterLabel>
-            <translation><!-- Floorplan --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Client Meeting Scheduled --></label>
@@ -230,10 +186,6 @@
             <translation><!-- New Opportunity Created --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>No Interest</masterLabel>
-            <translation><!-- No Interest --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Not Credit Worthy</masterLabel>
             <translation><!-- Not Credit Worthy --></translation>
         </picklistValues>
@@ -267,41 +219,37 @@
         <label><!-- Credit Product --></label>
         <name>Credit_Product__c</name>
         <picklistValues>
-            <masterLabel>ACV Accelerate</masterLabel>
-            <translation><!-- ACV Accelerate --></translation>
+            <masterLabel>14 Day</masterLabel>
+            <translation><!-- 14 Day --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ACV Advantage</masterLabel>
-            <translation><!-- ACV Advantage --></translation>
+            <masterLabel>30 Day</masterLabel>
+            <translation><!-- 30 Day --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Advantage + Accelerate</masterLabel>
-            <translation><!-- Advantage + Accelerate --></translation>
+            <masterLabel>45 Day</masterLabel>
+            <translation><!-- 45 Day --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Floorplan</masterLabel>
-            <translation><!-- Floorplan --></translation>
+            <masterLabel>60 Day</masterLabel>
+            <translation><!-- 60 Day --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Floorplan + Accelerate</masterLabel>
-            <translation><!-- Floorplan + Accelerate --></translation>
+            <masterLabel>ACV Capital:60D +30D</masterLabel>
+            <translation><!-- ACV Capital:60D +30D --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Floorplan 60+30</masterLabel>
-            <translation><!-- Floorplan 60+30 --></translation>
+            <masterLabel>Accelerate</masterLabel>
+            <translation><!-- Accelerate --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Unsure</masterLabel>
-            <translation><!-- Unsure --></translation>
+            <masterLabel>Advantage / ACV Capital</masterLabel>
+            <translation><!-- Advantage / ACV Capital --></translation>
         </picklistValues>
     </fields>
     <fields>
         <label><!-- Critical Deal Metrics Summary --></label>
         <name>Critical_Deal_metrics_Summary__c</name>
-    </fields>
-    <fields>
-        <label><!-- Current Floorplan Provider --></label>
-        <name>Current_Floorplan_Provider__c</name>
     </fields>
     <fields>
         <help><!-- Detail on the current request type --></help>
@@ -494,10 +442,6 @@
         <name>High_Bid__c</name>
     </fields>
     <fields>
-        <label><!-- How many cars do you stock --></label>
-        <name>How_many_cars_do_you_stock__c</name>
-    </fields>
-    <fields>
         <help><!-- This is the email address of the IST Account manager --></help>
         <label><!-- IST Account Manager Email --></label>
         <name>IST_Account_Manager_Email__c</name>
@@ -517,10 +461,6 @@
 100k - Max # Required = 2 --></help>
         <label><!-- Intelliscore Plus Risk Class --></label>
         <name>Intelliscore_Plus_Risk_Class__c</name>
-    </fields>
-    <fields>
-        <label><!-- Inventory Turn Time --></label>
-        <name>Inventory_Turn_Time__c</name>
     </fields>
     <fields>
         <label><!-- Last 30 Days Bought --></label>
@@ -648,8 +588,8 @@
             <translation><!-- 2021 Price Book --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>60 for 60 Tax Season 2022</masterLabel>
-            <translation><!-- 60 for 60 Tax Season 2022 --></translation>
+            <masterLabel>60 for 60 Price book - Fall 21 Promo</masterLabel>
+            <translation><!-- 60 for 60 Price book - Fall 21 Promo --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>A /  Orange Elite Pricing 9.28.21</masterLabel>
@@ -712,6 +652,10 @@
             <translation><!-- Advantage - $75 --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>May 2021 Price Book</masterLabel>
+            <translation><!-- May 2021 Price Book --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>May 25 2021 Price Book</masterLabel>
             <translation><!-- May 25 2021 Price Book --></translation>
         </picklistValues>
@@ -723,10 +667,6 @@
     <fields>
         <label><!-- Price Variance --></label>
         <name>Price_Variance__c</name>
-    </fields>
-    <fields>
-        <label><!-- Primary Contact Email --></label>
-        <name>Primary_Contact_Email__c</name>
     </fields>
     <fields>
         <label><!-- Primary Contact --></label>
@@ -785,10 +725,6 @@
         <picklistValues>
             <masterLabel>60 Days for $60</masterLabel>
             <translation><!-- 60 Days for $60 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>60 for 60 Tax Season 2022</masterLabel>
-            <translation><!-- 60 for 60 Tax Season 2022 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>California Blitz Priority</masterLabel>
@@ -1031,14 +967,6 @@
         <name>True360Opportunity</name>
     </recordTypes>
     <validationRules>
-        <errorMessage><!-- Please ensure the following fields are populated:   
-
-Capital Account Rep, Credit Product
-
-Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both required for Email Alerts --></errorMessage>
-        <name>ACV_Capital_ACV_Contact_IsNot_Blank</name>
-    </validationRules>
-    <validationRules>
         <errorMessage><!-- Please populate &apos;Capital Account Rep&apos; field with a capital user --></errorMessage>
         <name>ACV_Capital_CapitalAccountRep_NotBlank</name>
     </validationRules>
@@ -1115,10 +1043,6 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
         <name>True360_Closed_Lost_reason_Required</name>
     </validationRules>
     <webLinks>
-        <label><!-- Create_Opportunity --></label>
-        <name>Create_Opportunity</name>
-    </webLinks>
-    <webLinks>
         <label><!-- Create_True360_Opportunity --></label>
         <name>Create_True360_Opportunity</name>
     </webLinks>
@@ -1149,9 +1073,5 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
     <webLinks>
         <label><!-- Map_newWindow --></label>
         <name>geopointe__Map_newWindow</name>
-    </webLinks>
-    <webLinks>
-        <label><!-- Jifflenow_Meetings --></label>
-        <name>jiffle__Jifflenow_Meetings</name>
     </webLinks>
 </CustomObjectTranslation>

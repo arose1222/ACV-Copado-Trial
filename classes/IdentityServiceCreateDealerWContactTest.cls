@@ -247,11 +247,6 @@ public class IdentityServiceCreateDealerWContactTest {
         System.Assert([Select Count() from Affiliation__c] == 0, 'Affiliation records was generated');
     }
 
-    /**
-     * Modifications made by Alan Pinkhasik per SI-550: https://acvauctions.atlassian.net/jira/software/projects/SI/boards/299?selectedIssue=SI-550
-     * Added a call to TriggerFramework.mockMetaData to disable all other trigger classes except for one to generate a unique Id for the Account
-     * so the Affiliation record can be created successfully and reduce the amount of SOQL queries being made
-     */
     @isTest
     public static void testCreateTwoAcccountsForContact(){
         String contactRTID = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('ACV_User').getRecordTypeId();
@@ -295,15 +290,8 @@ public class IdentityServiceCreateDealerWContactTest {
         req.httpMethod = 'POST';
         RestContext.request = req;
         RestContext.response = res;
-        
+
         Test.startTest();
-        String mockMetaDataString = '';
-        mockMetaDataString += '{"DeveloperName": "OrganizationUniqueIdGenerationAfterInsert", '
-            + '"NamespacePrefix": "",'
-            + '"After_Insert__c": "true", '
-            + '"sObject__c": "Account", "Class_Name__c": "OrganizationUniqueIdGeneration"},';
-        mockMetaDataString = '[' + mockMetaDataString.substringBeforeLast(',') + ']';
-        TriggerFrameWork.mockMetaData = (List<TriggerHandler__mdt>) JSON.deserializeStrict(mockMetaDataString, List<TriggerHandler__mdt>.class);  
         IdentityServiceCreateDealerWithContact.createDealerWithContact(data);
         IdentityServiceCreateDealerWithContact.createDealerWithContact(data1);
         Test.stopTest();

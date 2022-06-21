@@ -1159,11 +1159,6 @@
             <field>Inspection_Guid__c</field>
             <table>Vehicle__c.VehicleAuction__r.Condition_Reports__r</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Sales_Region__c</field>
-            <table>Vehicle__c.VehicleAuction__r.Condition_Reports__r</table>
-        </columns>
         <masterLabel>Condition Reports</masterLabel>
     </sections>
     <sections>
@@ -1303,6 +1298,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Class__c</field>
+            <table>Vehicle__c.VehicleAuction__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Auction_Ended_By__c</field>
+            <table>Vehicle__c.VehicleAuction__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>test_field__c</field>
+            <table>Vehicle__c.VehicleAuction__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>End_Auction_Completed_By__c</field>
             <table>Vehicle__c.VehicleAuction__r</table>
         </columns>
         <masterLabel>Auctions</masterLabel>

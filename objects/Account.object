@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"
-      xmlns:n1="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>CallHighlightAction</actionName>
         <type>Default</type>
@@ -262,7 +261,6 @@
         <fields>IST_Account_Owner__c</fields>
         <fields>Dealership_ID__c</fields>
         <fields>Primary_Contact__c</fields>
-        <fields>Account_Activity_Status__c</fields>
         <fields>Recent_FTB__c</fields>
         <label>IST Account Compact Layout</label>
     </compactLayouts>
@@ -802,15 +800,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>ACV_Anywhere_Registration_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>ACV Anywhere Registration Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>ACV_Capital_Customer2__c</fullName>
         <description>Testing Rollup Helper</description>
         <externalId>false</externalId>
@@ -864,31 +853,6 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>ACV_Capital_NS_Portfolio_ID__c</fullName>
-        <description>CAP-916.  Filled by Celigo with Netsuite Data</description>
-        <externalId>true</externalId>
-        <inlineHelpText>Shows the Capital Portfolio ID from NetSuite</inlineHelpText>
-        <label>ACV Capital NS Portfolio ID</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ACV_Capital_Primary_Contact_Email__c</fullName>
-        <description>CAP-644: Grabs the Email from the associated Account of &apos;ACV Capital Primary Contact&apos;. Required to send welcome emails to clients who have purchased Orange Elite, Advantage, Floorplan, Accelerate Credit Products</description>
-        <externalId>false</externalId>
-        <formula>ACV_Capital_Primary_Contact__r.Email</formula>
-        <inlineHelpText>Grabs email from &apos;ACV Capital Primary Contact&apos;</inlineHelpText>
-        <label>ACV Capital Primary Contact Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>ACV_Capital_Primary_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -934,7 +898,7 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
         <relationshipName>Accounts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -977,46 +941,6 @@ AND(ACV_Capital_Customer__c &gt;= 1, Open_ACV_Capital_Opptys__c &gt;= 0) , &quot
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Account_Activity_Status__c</fullName>
-        <description>P0: New Customer = Joined in last 60; P1: Lapsed = no activity last 30; P2: Declining = last 30 activity is less than half average 30 day activity; P3: Churned = no activity last 90; Normal = regular activity based on monthly average</description>
-        <externalId>false</externalId>
-        <formula>IF(  (TODAY() - DATEVALUE(Date_Joined__c)) &lt; 60, &quot;P0: New Customer&quot;,
- IF(  ISBLANK(Date_of_Last_Sale__c) &amp;&amp;  ISBLANK(Date_of_Last_Purchase__c), &quot;&quot;, 
-  IF( 
-   OR(
-    Date_of_Last_Sale__c &lt; (TODAY() - 90) &amp;&amp; Date_of_Last_Purchase__c &lt; (TODAY() - 90),
-    Date_of_Last_Sale__c &lt; (TODAY() - 90) &amp;&amp; ISBLANK(Date_of_Last_Purchase__c),
-    Date_of_Last_Purchase__c &lt; (TODAY() - 90) &amp;&amp; ISBLANK(Date_of_Last_Sale__c)
-   ),
-   &quot;P3: Churned&quot;,
-
-   IF(
-    OR(
-    Date_of_Last_Sale__c &lt; (TODAY() - 30) &amp;&amp; Date_of_Last_Purchase__c &lt; (TODAY() - 30),
-    Date_of_Last_Sale__c &lt; (TODAY() - 30) &amp;&amp; ISBLANK(Date_of_Last_Purchase__c),
-    Date_of_Last_Purchase__c &lt; (TODAY() - 30) &amp;&amp; ISBLANK(Date_of_Last_Sale__c)
-   ),
-   &quot;P1: Lapsed&quot;,
-
-    IF(
-     (Last_30_Days_Bought__c + Actual_Rolling_30_Day_Sales_Volume__c) &lt; ((Purchases_All_Time__c + Wholesale_Units_Sold__c) / ((TODAY() - 
-     DATEVALUE(Date_Joined__c)) / 30) / 2), 
-     &quot;P2: Declining&quot;,
-
-     &quot;Normal&quot;)))))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>P0: New Customer = Joined in last 60; 
-P1: Lapsed = no activity last 30; 
-P2: Declining = last 30 activity is less than half average 30 day activity; 
-P3: Churned = no activity last 90; 
-Normal = regular activity based on monthly average</inlineHelpText>
-        <label>Account Activity Status</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Account_Count__c</fullName>
@@ -1189,9 +1113,8 @@ Normal = regular activity based on monthly average</inlineHelpText>
     <fields>
         <fullName>Active_ACV_Capital_Customer__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>CAP-916 Indicates the dealer has an active ACV Capital portfolio in Netsuite.  Data filled by Celigo Integration</description>
+        <description>Whether a dealer account is an active / non-active user of ACV Capital.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates the dealer has an active ACV Capital portfolio in NetSuite</inlineHelpText>
         <label>Active ACV Capital Customer</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1263,7 +1186,7 @@ Normal = regular activity based on monthly average</inlineHelpText>
     </fields>
     <fields>
         <fullName>Actual_Rolling_30_Day_Sales_Volume__c</fullName>
-        <description>Used in a declarative roll up summary to determine how many sales have been made the past 30 days. DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
+        <description>Used in a declarative roll up summary to determine how many sales have been made the past 30 days</description>
         <externalId>false</externalId>
         <inlineHelpText>Count of the number of Successful Auctions the last 30 days</inlineHelpText>
         <label>Actual Rolling 30 Day Sales Volume</label>
@@ -1682,17 +1605,6 @@ Normal = regular activity based on monthly average</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Buy_Fee_Rate_Card_Name__c</fullName>
-        <description>OMS-111 Displays the Rate Card name associated with the account.  Field created by Pablo Suter and deployed by Ashley Reilly</description>
-        <externalId>false</externalId>
-        <formula>Buy_Fee_Rate_Card__r.Display_Name__c</formula>
-        <label>Buy Fee Rate Card Name</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Buy_Fee_Rate_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1944,24 +1856,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Carrier_Has_Insurance__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Carrier Has Insurance</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Carrier_Insurance_Expiration__c</fullName>
-        <externalId>false</externalId>
-        <label>Carrier Insurance Expiration</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Carrier_Status__c</fullName>
         <externalId>false</externalId>
         <label>Carrier Status</label>
@@ -2189,107 +2083,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Commercial_BK__c</fullName>
-        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
-        <externalId>false</externalId>
-        <label>Commercial BK</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Commercial_Sub_Type__c</fullName>
-        <description>Used to further categorize Commercial accounts  - access to edit is given in permission set: Visibility of Commercial Sub-Type field - Will only have options when dealer type = Commercial</description>
-        <externalId>false</externalId>
-        <label>Commercial Sub-Type</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <controllingField>Dealer_Type__c</controllingField>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Financial Institutions (Banks, Credit Unions or Private Lenders)</fullName>
-                    <default>false</default>
-                    <label>Financial Institutions (Banks, Credit Unions or Private Lenders)</label>
-                </value>
-                <value>
-                    <fullName>Rental Car Companies</fullName>
-                    <default>false</default>
-                    <label>Rental Car Companies</label>
-                </value>
-                <value>
-                    <fullName>Fleet Management Companies</fullName>
-                    <default>false</default>
-                    <label>Fleet Management Companies</label>
-                </value>
-                <value>
-                    <fullName>OEM&apos;s</fullName>
-                    <default>false</default>
-                    <label>OEM&apos;s</label>
-                </value>
-                <value>
-                    <fullName>Captive Finance Companies</fullName>
-                    <default>false</default>
-                    <label>Captive Finance Companies</label>
-                </value>
-                <value>
-                    <fullName>Third Party Remarketing Companies</fullName>
-                    <default>false</default>
-                    <label>Third Party Remarketing Companies</label>
-                </value>
-                <value>
-                    <fullName>Repossession Forwarder&apos;s</fullName>
-                    <default>false</default>
-                    <label>Repossession Forwarder&apos;s</label>
-                </value>
-                <value>
-                    <fullName>Dealer based Finance Companies</fullName>
-                    <default>false</default>
-                    <label>Dealer based Finance Companies</label>
-                </value>
-            </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Financial Institutions (Banks, Credit Unions or Private Lenders)</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Rental Car Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Fleet Management Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>OEM&apos;s</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Captive Finance Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Third Party Remarketing Companies</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Repossession Forwarder&apos;s</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>5</controllingFieldValue>
-                <valueName>Dealer based Finance Companies</valueName>
-            </valueSettings>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Competitors_In_Play__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Enter where the Franchise Dealer is sending their Wholesale cars that they are not sending to ACV</inlineHelpText>
@@ -2353,18 +2146,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Copado_Test__c</fullName>
-        <description>testing new field</description>
-        <externalId>false</externalId>
-        <label>Copado Test</label>
-        <length>12</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Count_of_Vehicles_Listed__c</fullName>
@@ -3316,18 +3097,6 @@ Field to be deprecated. - MM 11/8/21</description>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Duplicate_Checker_Record_Type__c</fullName>
-        <description>This field is used in Matching Rules and is populated by a trigger with the DeveloperName of the Record Type</description>
-        <externalId>false</externalId>
-        <label>Duplicate Checker Record Type</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Duplicate_Of__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Used to identify duplicate accounts</description>
@@ -3733,68 +3502,6 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Experian_BI_Score__c</fullName>
-        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates the Experian Business Intelligence Score</inlineHelpText>
-        <label>Experian BI Score</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Experian_Business_Information__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Experian Business Information</label>
-        <referenceTo>EXPRN__Exp_Business_Info__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Experian_FICO__c</fullName>
-        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
-        <externalId>false</externalId>
-        <label>Experian FICO</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Experian_Tax_Lien__c</fullName>
-        <description>Created for Capital Credit Decisioning.  Jira Ticket CAP-453</description>
-        <externalId>false</externalId>
-        <label>Experian Tax Lien</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Experian_Test__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Used to test FastPass Credit Approval Automation</description>
-        <externalId>false</externalId>
-        <label>Experian Test</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Extended_Arbitration_Type__c</fullName>
         <description>Field indicating if a Dealership has a specific Arbitration plan. This field maps to the dealership_attribute table under the attribute &apos;extended_arbitration_type&apos;</description>
         <externalId>false</externalId>
@@ -3826,18 +3533,6 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         </valueSet>
     </fields>
     <fields>
-        <fullName>FP_Trigger_RS__c</fullName>
-        <description>Used for Fast Pass tracking purpose</description>
-        <externalId>false</externalId>
-        <label>FP Trigger RS</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>FSL_Proactive_Work_Beta__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -3845,47 +3540,6 @@ IF(EXPRN__Most_Recent_Decision_Status__c == &quot;Manual Review&quot;,EXPRN__Mos
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>FastPass_Approval__c</fullName>
-        <description>CSO-341 Used to trigger Experian API Call.  Field used in flows as well.  Field should be read only to all users except admin and API profiles</description>
-        <externalId>false</externalId>
-        <label>FastPass Approval</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>New</fullName>
-                    <default>true</default>
-                    <label>New</label>
-                </value>
-                <value>
-                    <fullName>In Progress</fullName>
-                    <default>false</default>
-                    <label>In Progress</label>
-                </value>
-                <value>
-                    <fullName>Approved</fullName>
-                    <default>false</default>
-                    <label>Approved</label>
-                </value>
-                <value>
-                    <fullName>Denied</fullName>
-                    <default>false</default>
-                    <label>Denied</label>
-                </value>
-                <value>
-                    <fullName>Error</fullName>
-                    <default>false</default>
-                    <label>Error</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>FastPass_Declined_Reason__c</fullName>
@@ -3944,15 +3598,6 @@ Blank = FastPass not offered</inlineHelpText>
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>FastPass_Status_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>FastPass Status Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Fax</fullName>
@@ -4776,17 +4421,6 @@ Blank = FastPass not offered</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Halt_True360_Appointments__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Manually controlled field to prevent the creation of any more True360 Service Appointments.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Manually controlled field to prevent the creation of any more True360 Service Appointments.</inlineHelpText>
-        <label>Halt True360 Appointments</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Has_Logged_in_30_Days__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -5442,32 +5076,6 @@ Blank = FastPass not offered</inlineHelpText>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
-        <fullName>Language_Preference__c</fullName>
-        <description>The preferred language for this account.  Field is mapped from Lead preferred language.</description>
-        <externalId>false</externalId>
-        <label>Language Preference</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>English</fullName>
-                    <default>false</default>
-                    <label>English</label>
-                </value>
-                <value>
-                    <fullName>Spanish</fullName>
-                    <default>false</default>
-                    <label>Spanish</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Last_30_Days_Bought__c</fullName>
         <externalId>false</externalId>
         <label>Last 30 Days Bought</label>
@@ -5671,7 +5279,7 @@ Blank = FastPass not offered</inlineHelpText>
     </fields>
     <fields>
         <fullName>Late_Title_Fee_Unenrollment_Date__c</fullName>
-        <description>This field captures the date that the Account has been unenrolled in the late fee program - Populated via late Title Fee Unenrollment Flow</description>
+        <description>This field captures the date that the Account has been unenrolled in the late fee program - currently manually populated via weekly data loads - Confluence page on Data Load: https://acvauctions.atlassian.net/wiki/spaces/SAL/pages/3130949651/Title+Late+Fee+Data+load</description>
         <externalId>false</externalId>
         <inlineHelpText>Most recent date the Account has been unenrolled in the late fee program</inlineHelpText>
         <label>Late Title Fee Unenrollment Date</label>
@@ -5995,27 +5603,6 @@ Blank = FastPass not offered</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MV_Field__c</fullName>
-        <description>mv field test</description>
-        <externalId>false</externalId>
-        <label>MV Field</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Major_Account__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Major Account</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Maps_Sales_Region_Name__c</fullName>
         <externalId>false</externalId>
         <formula>maps__AssignmentRule__r.maps__ShapeLayer__r.Name</formula>
@@ -6216,6 +5803,18 @@ Blank = FastPass not offered</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Monthly_Sell_Percent__c</fullName>
+        <description>Field can be depreciated.</description>
+        <externalId>false</externalId>
+        <formula>Last_30_Days_Sold__c   /  Potential_Monthly_Sell_Volume__c</formula>
+        <label>x_Monthly Sell Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Months_on_Platform__c</fullName>
@@ -7317,17 +6916,6 @@ Field to be deprecated. - MM 11/8/21</description>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Pipeline_Test__c</fullName>
-        <externalId>false</externalId>
-        <label>Pipeline Test</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Platform_Status__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Select the Stage based on what percentage of the dealer&apos;s monthly potential sell volume they are actually giving to ACV
@@ -7616,18 +7204,6 @@ Idle if not giving any cars to ACV</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Rate_of_Travel__c</fullName>
-        <description>CAP-583 Territory Assignment.  Field used by Capital as part of territory assignment rules.  Value will be total amount of won auctions over the last 90 days.  Data will be loaded manually until a solution is in place to calculate automatically.</description>
-        <externalId>false</externalId>
-        <label>Rate of Travel</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Rates_Summary__c</fullName>
@@ -8016,7 +7592,7 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
     </fields>
     <fields>
         <fullName>Rolling_3_Month_Avg__c</fullName>
-        <description>Rolling Average of the past 90 days of Vehicles Sold...  DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
+        <description>Rolling Average of the past 90 days of Vehicles Sold</description>
         <externalId>false</externalId>
         <formula>Total_Sold_the_Past_90_Days__c  / 3</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -9249,7 +8825,6 @@ Title_Mailing_Zip_Code__c</formula>
     </fields>
     <fields>
         <fullName>Total_Sold_the_Past_90_Days__c</fullName>
-        <description>DATA MAY NOT BE CORRECTLY CALCULATED PER BILL SUTTON</description>
         <externalId>false</externalId>
         <label>Total Sold the Past 90 Days</label>
         <precision>18</precision>
@@ -9363,6 +8938,37 @@ Title_Mailing_Zip_Code__c</formula>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Transportation_Services_Rendered__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Services Rendered</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Lot Sweep</fullName>
+                    <default>false</default>
+                    <label>Lot Sweep</label>
+                </value>
+                <value>
+                    <fullName>Marshalling</fullName>
+                    <default>false</default>
+                    <label>Marshalling</label>
+                </value>
+                <value>
+                    <fullName>Rental/Storage</fullName>
+                    <default>false</default>
+                    <label>Rental/Storage</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Transporter_Run_States__c</fullName>
@@ -10318,15 +9924,78 @@ Title_Mailing_Zip_Code__c</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>xACV_Capital_Relationship__c</fullName>
+        <description>Created for ACV Capital Reporting. Prospect and Customer are updated by workflow.  Deprecated and replaced by formula field</description>
+        <externalId>false</externalId>
+        <label>xACV Capital Relationship</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No Relationship</fullName>
+                    <default>true</default>
+                    <label>No Relationship</label>
+                </value>
+                <value>
+                    <fullName>Prospect</fullName>
+                    <default>false</default>
+                    <label>Prospect</label>
+                </value>
+                <value>
+                    <fullName>Customer</fullName>
+                    <default>false</default>
+                    <label>Customer</label>
+                </value>
+                <value>
+                    <fullName>Former Customer</fullName>
+                    <default>false</default>
+                    <label>Former Customer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <listViews>
         <fullName>ACV_Capital_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>Dealership_ID__c</columns>
+        <columns>ACV_Capital_Relationship__c</columns>
+        <columns>Actual_Rolling_30_Day_Sales_Volume__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
         <columns>ACCOUNT.ADDRESS1_CITY</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
-        <columns>Rate_of_Travel__c</columns>
         <columns>ACV_Capital_Sales_Rep__c</columns>
-        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
+        <filters>
+            <field>ACV_Capital_Sales_Rep__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>ACV Capital - All Accounts</label>
+        <sharedTo>
+            <roleAndSubordinates>ACV_Capital</roleAndSubordinates>
+            <roleAndSubordinates>ACV_Capital_Operations</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ACV_Capital_My_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>ACV_Capital_Relationship__c</columns>
+        <columns>Actual_Rolling_30_Day_Sales_Volume__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACV_Capital_Sales_Rep__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -10344,41 +10013,6 @@ Title_Mailing_Zip_Code__c</formula>
         <filters>
             <field>ACCOUNT.ADDRESS1_STATE</field>
             <operation>notEqual</operation>
-        </filters>
-        <filters>
-            <field>Dealership_ID__c</field>
-            <operation>equals</operation>
-            <value>71862</value>
-        </filters>
-        <label>ACV Capital - All Accounts</label>
-        <sharedTo>
-            <role>ACV_Capital</role>
-            <role>ACV_Capital_Operations</role>
-            <role>ACV_Capital_Sales_Management</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>ACV_Capital_My_Accounts</fullName>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>Dealership_ID__c</columns>
-        <columns>Rate_of_Travel__c</columns>
-        <columns>ACCOUNT.ADDRESS1_CITY</columns>
-        <columns>ACCOUNT.ADDRESS1_STATE</columns>
-        <columns>ACV_Capital_Sales_Rep__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>ACCOUNT.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Account.Standard</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.ADDRESS1_STATE</field>
-            <operation>notEqual</operation>
-        </filters>
-        <filters>
-            <field>My_ACV_Capital_Account__c</field>
-            <operation>equals</operation>
-            <value>1</value>
         </filters>
         <label>ACV Capital - My Accounts</label>
         <sharedTo>
@@ -10467,6 +10101,11 @@ Title_Mailing_Zip_Code__c</formula>
         <columns>UPDATEDBY_USER.ALIAS</columns>
         <columns>ACCOUNT.ADDRESS1_ZIP</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
         <label>All Accounts</label>
     </listViews>
     <listViews>
@@ -10507,21 +10146,6 @@ Title_Mailing_Zip_Code__c</formula>
             <value>1</value>
         </filters>
         <label>Dealers Awaiting IST Assignment</label>
-    </listViews>
-    <listViews>
-        <fullName>Drivably_Accounts</fullName>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>Dealership_ID__c</columns>
-        <columns>ACCOUNT.PHONE1</columns>
-        <columns>Drivably_Account__c</columns>
-        <columns>Primary_Contact__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Drivably_Account__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>Drivably Accounts</label>
     </listViews>
     <listViews>
         <fullName>EXPRN__Monitored_Accounts</fullName>
@@ -10616,6 +10240,33 @@ Title_Mailing_Zip_Code__c</formula>
             <value>dup</value>
         </filters>
         <label>IST My Accounts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Dealership_ID__c</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>Active__c</columns>
+        <columns>Dealer_Type__c</columns>
+        <columns>Seller_Engagement_Level__c</columns>
+        <columns>All_Time_Sales_Gross__c</columns>
+        <columns>Rolling_3_Month_Avg__c</columns>
+        <columns>Date_of_Last_Sale__c</columns>
+        <columns>Prior_Action__c</columns>
+        <columns>Next_Action__c</columns>
+        <columns>Potential_Monthly_Sell_Volume__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard</value>
+        </filters>
+        <filters>
+            <field>Inactive_Sub_Status__c</field>
+            <operation>notEqual</operation>
+            <value>3,10</value>
+        </filters>
+        <label>My Accounts - TM</label>
     </listViews>
     <listViews>
         <fullName>MyAccountsFranchised</fullName>
@@ -11357,41 +11008,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -11501,10 +11117,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer Group %28Parent Account%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11867,29 +11479,6 @@ Title_Mailing_Zip_Code__c</formula>
             <values>
                 <fullName>disabled</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FastPass_Approval__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -12954,17 +12543,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14350,6 +13928,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transportation_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Run_States__c</picklist>
             <values>
                 <fullName>AK</fullName>
@@ -14732,6 +14325,25 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Transporters</fullName>
@@ -15059,41 +14671,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -15181,26 +14758,6 @@ Title_Mailing_Zip_Code__c</formula>
         </picklistValues>
         <picklistValues>
             <picklist>Dealer_Type__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Dealer Group %28Parent Account%29</fullName>
                 <default>false</default>
@@ -15560,29 +15117,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>disabled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FastPass_Approval__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16500,17 +16034,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17596,6 +17119,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transportation_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Run_States__c</picklist>
             <values>
                 <fullName>AK</fullName>
@@ -17947,6 +17485,25 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18317,41 +17874,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -18826,29 +18348,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>disabled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FastPass_Approval__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -19910,17 +19409,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -21314,6 +20802,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transportation_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Run_States__c</picklist>
             <values>
                 <fullName>AK</fullName>
@@ -21708,6 +21211,25 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>WLS_Test</fullName>
@@ -21999,41 +21521,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Commercial_Sub_Type__c</picklist>
-            <values>
-                <fullName>Captive Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dealer based Finance Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Financial Institutions %28Banks%2C Credit Unions or Private Lenders%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fleet Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OEM%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rental Car Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repossession Forwarder%27s</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Remarketing Companies</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Contact_Method__c</picklist>
             <values>
                 <fullName>Call</fullName>
@@ -22135,10 +21622,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -22500,29 +21983,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>disabled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FastPass_Approval__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Error</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -23580,17 +23040,6 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>vAuto</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Language_Preference__c</picklist>
-            <values>
-                <fullName>English</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spanish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -24920,6 +24369,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transportation_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Run_States__c</picklist>
             <values>
                 <fullName>AK</fullName>
@@ -25262,13 +24726,32 @@ Title_Mailing_Zip_Code__c</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>xACV_Capital_Relationship__c</picklist>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Relationship</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
         <customTabListAdditionalFields>Monthly_Buy_Percent__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields n1:nil="true" />
+        <customTabListAdditionalFields>Monthly_Sell_Percent__c</customTabListAdditionalFields>
         <listViewButtons>geopointe__Map_Records_Account</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
@@ -25332,18 +24815,6 @@ RecordType.DeveloperName=&apos;Standard&apos;
   PRIORVALUE(Val_Total_Locations__c) &gt; Val_Total_Locations__c
 )</errorConditionFormula>
         <errorMessage>You cannot delete Associated Locations. If you are replacing this with a new address, please use Address Management. If a particular address isn&apos;t being replaced and no longer of use, set the Active to Date/Time.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Carrier_Insurance_Expiration_Is_Empty</fullName>
-        <active>true</active>
-        <description>Carrier Expiration can not be blank if the Account record Type = “Transporter” &amp; “Carrier has Insurance” = TRUE.</description>
-        <errorConditionFormula>AND(
-RecordType.DeveloperName = &quot;Transporters&quot;,
-Carrier_Has_Insurance__c,
-ISBLANK(Carrier_Insurance_Expiration__c)
-)</errorConditionFormula>
-        <errorDisplayField>Carrier_Insurance_Expiration__c</errorDisplayField>
-        <errorMessage>This field must be fill.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Child_Account_must_be_Dealership</fullName>
@@ -25449,6 +24920,17 @@ ISCHANGED( Active__c ),
  ISBLANK( TEXT(Inactive_Sub_Status__c )) ,
  RecordType.DeveloperName = &quot;Standard&quot;)</errorConditionFormula>
         <errorMessage>In order to mark account inactive, you must select an Inactive reason.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Late_Title_Fee_Unenrollment_Required</fullName>
+        <active>false</active>
+        <description>When an account is unenrolled from the title late fee program they must provide the date that account was unenrolled.</description>
+        <errorConditionFormula>AND(
+    ISCHANGED( Late_Title_Fee_Eligible__c ),
+    Late_Title_Fee_Eligible__c= False,
+    ISBLANK(Late_Title_Fee_Unenrollment_Date__c)
+)</errorConditionFormula>
+        <errorMessage>To remove the Late Title Fee Eligible checkbox you must provide a Late Title Fee Unenrollment Date</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Lead_Conversion_Only_for_Transporter</fullName>
@@ -26273,17 +25755,6 @@ alert(&quot;Experian Binning is not done. Binning occurs overnight for new accou
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Account.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?accid={!CASESAFEID(Account.Id)}</url>
     </webLinks>
     <webLinks>
         <fullName>maps__AdvRouteVisitWindows</fullName>

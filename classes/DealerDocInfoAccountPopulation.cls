@@ -23,8 +23,7 @@ public without sharing class DealerDocInfoAccountPopulation extends TriggerInter
             if (d.Compliant__c == true && oldDocMap.get(d.Id).Compliant__c == false) {
                 acctMap = mapUpdate(acctMap, d, d.RecordTypeId);
             }
-            else if (((d.License_Number__c != oldDocMap.get(d.Id).License_Number__c) && d.License_Number__c != null) || ((d.Permit_Resale_Number__c != oldDocMap.get(d.Id).Permit_Resale_Number__c) && d.Permit_Resale_Number__c != null)
-                || d.S3_Link__c!=oldDocMap.get(d.Id).S3_Link__c) {
+            else if (((d.License_Number__c != oldDocMap.get(d.Id).License_Number__c) && d.License_Number__c != null) || ((d.Permit_Resale_Number__c != oldDocMap.get(d.Id).Permit_Resale_Number__c) && d.Permit_Resale_Number__c != null)) {
                 acctMap = mapUpdate(acctMap, d, d.RecordTypeId);
             }
         }

@@ -23,8 +23,7 @@ public class SlackAlertTest {
             Change_set_Link__c = 'https://google.com/',
             Training__c = 'Training not required',
             Alert_Salesforce_Slack_Channel__c = TRUE,
-            Schema_Changes__c = 'New Field',
-            Atlassian_link__c = 'some link'
+            Schema_Changes__c = 'New Field'
         );
 
         Test.startTest();

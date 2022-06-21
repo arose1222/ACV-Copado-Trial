@@ -41,7 +41,7 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>WorkTypeId</field>
             </layoutItems>
             <layoutItems>
@@ -75,6 +75,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Contact_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Task__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

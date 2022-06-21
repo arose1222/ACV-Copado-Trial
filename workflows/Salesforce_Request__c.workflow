@@ -792,6 +792,18 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Assign_ACV_Anywhere</fullName>
+        <description>Assign R&amp;I ticket with request reason ACV Anywhere</description>
+        <field>Assigned_To__c</field>
+        <lookupValue>areilly@acvauctions.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign ACV Anywhere</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Assign_Am_Kill</fullName>
         <field>Assigned_To__c</field>
         <lookupValue>kdamian@acvauctions.com</lookupValue>
@@ -1092,6 +1104,18 @@
         <name>Escalate After 24 Hours</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Escalate_Assign_ACV_Anywhere</fullName>
+        <description>Assigns the Escalate contact when ACV Anywhere requests are not closed in 24 hours</description>
+        <field>Assigned_To__c</field>
+        <lookupValue>sirene@acvauctions.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Escalate Assign ACV Anywhere</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
@@ -1478,6 +1502,61 @@ ISCHANGED(Assigned_To__c) , Assigned_To__r.Id != &apos;0050a00000LEr54&apos;)</f
             </actions>
             <actions>
                 <name>Resolutions_24_Escalate</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>X24_Hour_mark_Escalate</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Salesforce_Request__c.CreatedDate</offsetFromField>
+            <timeLength>24</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Ops Help ACV Anywhere</fullName>
+        <actions>
+            <name>Inform_Operations_Help_SF_Assignee</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Assign_ACV_Anywhere</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
+            <operation>equals</operation>
+            <value>ACV Anywhere</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Salesforce_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Ops Help</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Ops Help ACV Anywhere Escalate Email %26 Assign</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Salesforce_Request__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Salesforce_Request__c.My_Request_Is_Related_To__c</field>
+            <operation>equals</operation>
+            <value>ACV Anywhere</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Ops_Help_Escalate_24</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Escalate_Assign_ACV_Anywhere</name>
                 <type>FieldUpdate</type>
             </actions>
             <actions>

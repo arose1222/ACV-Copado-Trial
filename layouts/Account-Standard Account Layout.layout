@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>geopointe__Map</customButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
@@ -167,7 +166,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
+                <field>Drivably_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -234,10 +233,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>URL__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Major_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -847,36 +842,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Account.Reactivate</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>29</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Event</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>24</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SendEmail</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>25</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>geopointe__Correct_Location</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>26</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Instant_Assignment</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>27</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Recurring_Appointment</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>28</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Account.Create_True360_Opportunity_Action</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
@@ -932,6 +897,11 @@
             <sortOrder>10</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>SendEmail</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>25</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>AccountAddToCampaign</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>11</sortOrder>
@@ -940,6 +910,11 @@
             <actionName>ChangeRecordType</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>12</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>geopointe__Correct_Location</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>26</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>JigsawSearch</actionName>
@@ -952,14 +927,29 @@
             <sortOrder>14</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Instant_Assignment</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>27</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>XClean</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>15</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Account.Recurring_Appointment</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>28</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>AccountHierarchy</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>16</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Account.Reactivate</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>29</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>ChangeOwnerOne</actionName>
@@ -995,6 +985,11 @@
             <actionName>LogACall</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>23</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Event</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>24</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -1239,6 +1234,7 @@
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
         <fields>Monthly_Buy_Percent__c</fields>
+        <fields>Monthly_Sell_Percent__c</fields>
         <relatedList>Account.Duplicate_Of__c</relatedList>
     </relatedLists>
     <relatedLists>

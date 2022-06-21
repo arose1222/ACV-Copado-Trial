@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>geopointe__Map</customButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
@@ -87,7 +88,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
+                <field>Drivably_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -547,10 +548,6 @@
                 <behavior>Edit</behavior>
                 <field>TrueFrame_Dealership__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Major_Account__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -634,6 +631,11 @@
             <sortOrder>10</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Account.Update_Vehicle_Count</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>27</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>AccountAddToCampaign</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>11</sortOrder>
@@ -712,11 +714,6 @@
             <actionName>Account.Reactivate</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>26</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Update_Vehicle_Count</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>27</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -902,6 +899,7 @@
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
         <fields>Monthly_Buy_Percent__c</fields>
+        <fields>Monthly_Sell_Percent__c</fields>
         <relatedList>Account.Duplicate_Of__c</relatedList>
     </relatedLists>
     <relatedLists>

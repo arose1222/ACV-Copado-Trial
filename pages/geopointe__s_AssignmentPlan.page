@@ -88,7 +88,7 @@
             <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.Name.label}" />
             <apex:outputPanel styleClass="requiredInput" layout="block">
               <div class="requiredBlock"></div>
-              <apex:inputText value="{!plan.Name}" disabled="{!plan.managedByTerritoryPlanner}" />
+              <apex:inputText value="{!plan.Name}" />
             </apex:outputPanel>
           </apex:pageBlockSectionItem>
           <apex:pageBlockSectionItem >
@@ -99,7 +99,7 @@
           <apex:pageBlockSectionItem >
             <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Plan__c.fields.geopointe__Description__c.label}" />
             <apex:outputPanel >
-              <apex:inputTextArea value="{!plan.Description}" disabled="{!plan.managedByTerritoryPlanner}" cols="50" />
+              <apex:inputTextArea value="{!plan.Description}" cols="50" />
             </apex:outputPanel>
           </apex:pageBlockSectionItem>
           <apex:pageBlockSectionItem >
@@ -202,17 +202,6 @@
               <apex:inputText value="{!plan.BatchSizeHPRecords}" />
             </apex:outputPanel>
           </apex:pageBlockSectionItem>
-          <apex:pageBlockSectionItem helpText="This Assignemnt Plan was created and is maintained externally by Ascent Cloud's Territory Planner application.">
-            <apex:outputLabel value="Maintained by Territory Planner" />
-            <apex:outputPanel >
-              <apex:outputPanel rendered="{!plan.managedByTerritoryPlanner}">
-                <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" />
-              </apex:outputPanel>
-              <apex:outputPanel rendered="{!NOT(plan.managedByTerritoryPlanner)}">
-                <img src="/img/checkbox_unchecked.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />
-              </apex:outputPanel>
-            </apex:outputPanel>
-          </apex:pageBlockSectionItem>
         </apex:pageBlockSection>
       </apex:pageBlock>
     </div>
@@ -267,8 +256,7 @@
           <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Area__c.fields.Name.label}" />
           <apex:outputPanel styleClass="requiredInput" layout="block">
             <div class="requiredBlock"></div>
-            <apex:inputField value="{!assignment.Name}" rendered="{!NOT(plan.managedByTerritoryPlanner)}" />
-            <apex:outputField value="{!assignment.Name}" rendered="{!plan.managedByTerritoryPlanner}" />
+            <apex:inputField value="{!assignment.Name}" />
           </apex:outputPanel>
         </apex:pageBlockSectionItem>
 
@@ -276,8 +264,7 @@
           <apex:outputLabel value="{!$ObjectType.geopointe__GP_Assignment_Area__c.fields.geopointe__Shape__c.label}" />
           <apex:outputPanel styleClass="requiredInput" layout="block">
             <div class="requiredBlock"></div>
-            <apex:inputField value="{!assignment.geopointe__Shape__c}" rendered="{!NOT(plan.managedByTerritoryPlanner)}" />
-            <apex:outputField value="{!assignment.geopointe__Shape__c}" rendered="{!plan.managedByTerritoryPlanner}" />
+            <apex:inputField value="{!assignment.geopointe__Shape__c}" />
           </apex:outputPanel>
         </apex:pageBlockSectionItem>
 

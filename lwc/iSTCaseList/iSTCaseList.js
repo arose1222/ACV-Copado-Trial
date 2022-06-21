@@ -93,11 +93,11 @@ export default class ISTCaseList extends NavigationMixin(LightningElement) {
             case:caseInput,
             selected: false,
             key: createUUID(),
-            linkToRecord: '/' + caseInput.Id,
+            linkToRecord: '/'+caseInput.Id,
             auctionNumber: caseInput.Auction_Number__r ? caseInput.Auction_Number__r.Name : '',
-            auctionLink: caseInput.Auction_Number__c ? '/' + caseInput.Auction_Number__c : '',
+            auctionLink: caseInput.Auction_Number__c ? '/'+caseInput.Auction_Number__c : '',
             vin: caseInput.Vehicle_VIN__c ? caseInput.Vehicle_VIN__c : '',
-            vinLink: caseInput.Vehicle__c ? '/' + caseInput.Vehicle__c : '',
+            vinLink: caseInput.Vehicle__c ? '/'+caseInput.Vehicle__c : '',
             yearMake: ym
         };
     }

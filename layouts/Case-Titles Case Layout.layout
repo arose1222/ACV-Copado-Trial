@@ -62,10 +62,6 @@
                 <field>ACV_Condition_Report__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Business_Days_Since_Opened__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Title_Received_Date__c</field>
             </layoutItems>
@@ -768,6 +764,7 @@
         <fields>CREATED_DATE</fields>
         <fields>Status__c</fields>
         <fields>RECORDTYPE</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <relatedList>Quality_Control__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>

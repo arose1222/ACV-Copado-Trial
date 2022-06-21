@@ -151,7 +151,7 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
@@ -166,6 +166,7 @@
         <inlineHelpText>ACV to Buyer Postage Label.</inlineHelpText>
         <label>ACV To Buyer Label</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -178,6 +179,7 @@
         <label>ACV To Buyer Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -190,6 +192,7 @@
         <inlineHelpText>ACV to Seller Postage Label.</inlineHelpText>
         <label>ACV To Seller Label</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -202,6 +205,7 @@
         <label>ACV To Seller Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -214,6 +218,7 @@
         <inlineHelpText>Field for elaborating on the title problems selected and adding color to the issues beyond the selections.</inlineHelpText>
         <label>Additional Details</label>
         <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -247,6 +252,7 @@
         <inlineHelpText>Buyer To ACV Postage Label.</inlineHelpText>
         <label>Buyer To ACV Label</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -259,6 +265,7 @@
         <label>Buyer To ACV Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -270,6 +277,7 @@
         <externalId>false</externalId>
         <label>Can be solved in house</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -310,6 +318,7 @@
         <relationshipLabel>Quality Control</relationshipLabel>
         <relationshipName>Quality_Control</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -322,6 +331,7 @@
         <referenceTo>User</referenceTo>
         <relationshipName>Quality_Control1</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -334,6 +344,7 @@
         <referenceTo>User</referenceTo>
         <relationshipName>Quality_Control</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -344,6 +355,7 @@
         <externalId>false</externalId>
         <label>Date Time QC Closed</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -394,6 +406,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <label>Issue</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -501,6 +514,17 @@ IF( Other__c = True, 1, 0)</formula>
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
+        <fullName>Last_Call_Date__c</fullName>
+        <description>The completed date from the last Log a call activity created</description>
+        <externalId>false</externalId>
+        <label>Last Call Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Missed_AGT_Signature__c</fullName>
         <externalId>false</externalId>
         <formula>INCLUDES( Issue__c , &apos;Missed AGT Signature&apos;)</formula>
@@ -521,6 +545,17 @@ IF( Other__c = True, 1, 0)</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Next_Follow_Up_Date__c</fullName>
+        <description>The next follow up date from the most recent Log a Call Activity</description>
+        <externalId>false</externalId>
+        <label>Next Follow Up Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>ODOM_Date__c</fullName>
         <externalId>false</externalId>
         <formula>INCLUDES( Issue__c , &apos;ODOM/Date&apos;)</formula>
@@ -535,6 +570,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <label>Other Details</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -585,6 +621,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <label>Reported By</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -617,6 +654,7 @@ IF( Other__c = True, 1, 0)</formula>
         <inlineHelpText>Return Address Postage Label URL to ACV.</inlineHelpText>
         <label>Return Address Postage Label URL</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -629,6 +667,7 @@ IF( Other__c = True, 1, 0)</formula>
         <label>Return Address Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -642,6 +681,7 @@ IF( Other__c = True, 1, 0)</formula>
         <label>Return Postage Label Contact Name</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -654,6 +694,7 @@ IF( Other__c = True, 1, 0)</formula>
         <inlineHelpText>Email for either buyer/floorplan</inlineHelpText>
         <label>Return Postage Label Email</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -678,6 +719,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <label>Seller Assistance Needed</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -704,6 +746,7 @@ IF( Other__c = True, 1, 0)</formula>
         <inlineHelpText>Seller To ACV Postage Label.</inlineHelpText>
         <label>Seller To ACV Label</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -716,6 +759,7 @@ IF( Other__c = True, 1, 0)</formula>
         <label>Seller To ACV Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -728,6 +772,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <inlineHelpText>Send Email to Buyer to inform that return potage label is ready.</inlineHelpText>
         <label>Send Postage Email To Buyer</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -739,6 +784,7 @@ IF( Other__c = True, 1, 0)</formula>
         <inlineHelpText>Postage Label URL to send the package to buyer/seller.</inlineHelpText>
         <label>Ship To Postage Label URL</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
@@ -751,6 +797,7 @@ IF( Other__c = True, 1, 0)</formula>
         <label>Ship To Tracking Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -762,6 +809,7 @@ IF( Other__c = True, 1, 0)</formula>
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -771,7 +819,7 @@ IF( Other__c = True, 1, 0)</formula>
                 <sorted>false</sorted>
                 <value>
                     <fullName>Open</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Open</label>
                 </value>
                 <value>
@@ -795,6 +843,7 @@ IF( Other__c = True, 1, 0)</formula>
         <referenceTo>User</referenceTo>
         <relationshipName>QC_Title_Scanner</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -830,10 +879,12 @@ OR(  Caused_Missed_Error__c =  $User.Id,  $Profile.Name = &apos;Title Manager&ap
     <nameField>
         <displayFormat>QC-{000000}</displayFormat>
         <label>QC Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Quality Control</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>At_Buyer</fullName>
@@ -1406,7 +1457,7 @@ OR(  Caused_Missed_Error__c =  $User.Id,  $Profile.Name = &apos;Title Manager&ap
 ISCHANGED( Status__c),
 ISPICKVAL(Status__c, &quot;Closed&quot;),
 Total_Problem_Count__c  &lt;&gt;  Problems_Resolved__c)</errorConditionFormula>
-        <errorMessage>Please be sure all QC Problem Identified records are marked as Resolved - Use the Update Problem Status(es) button at the top right to resolve those issues.</errorMessage>
+        <errorMessage>Please be sure all QC Problem Identified records are marked as Resolved  before changing the status to Closed.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>

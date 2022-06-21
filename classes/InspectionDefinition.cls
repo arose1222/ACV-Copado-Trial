@@ -8,7 +8,6 @@ global class InspectionDefinition extends CoreObject{
     public inspectionType type;
     public carfax carfaxAlert;
     public List<imageMap> images;
-    public string region;
 
     public integer completedCount;
 

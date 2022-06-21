@@ -3,8 +3,8 @@
     <actionCalls>
         <name>FlowErrorLogging</name>
         <label>FlowErrorLogging</label>
-        <locationX>2395</locationX>
-        <locationY>832</locationY>
+        <locationX>2621</locationX>
+        <locationY>1215</locationY>
         <actionName>FlowErrorHandling</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -28,7 +28,7 @@
         <connector>
             <targetReference>ResponseDecision</targetReference>
         </connector>
-        <flowTransactionModel>NewTransaction</flowTransactionModel>
+        <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
             <name>inputList</name>
             <value>
@@ -60,12 +60,12 @@
             <name>transpoGuid</name>
         </outputParameters>
     </actionCalls>
-    <apiVersion>51.0</apiVersion>
+    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>add_Fault_to_List</name>
         <label>add Fault to List</label>
-        <locationX>2530</locationX>
-        <locationY>834</locationY>
+        <locationX>2417</locationX>
+        <locationY>1216</locationY>
         <assignmentItems>
             <assignToReference>faultCollection2</assignToReference>
             <operator>Assign</operator>
@@ -515,14 +515,6 @@
         </value>
     </choices>
     <choices>
-        <name>No</name>
-        <choiceText>No</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>No</stringValue>
-        </value>
-    </choices>
-    <choices>
         <name>SellerBilling</name>
         <choiceText>{!fmSellerBillingChoiceDisplay}</choiceText>
         <dataType>String</dataType>
@@ -544,14 +536,6 @@
         <dataType>String</dataType>
         <value>
             <stringValue>Other</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>Yes_1</name>
-        <choiceText>Yes</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Yes</stringValue>
         </value>
     </choices>
     <constants>
@@ -764,43 +748,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Create_Transpo_Case_Decision</name>
-        <label>Create Transpo Case?</label>
-        <locationX>2308</locationX>
-        <locationY>1225</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Do_you_want_to_create_this_transportation_case</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Create_Transpo_Case_Decision_1</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>Yes_1</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Transpo_Case</targetReference>
-            </connector>
-            <label>Create Transpo Case</label>
-        </rules>
-        <rules>
-            <name>Do_not_create_case</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Create_Transpo_Case_Decision_1</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>No</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Do_not_create_Transpo_Case</targetReference>
-            </connector>
-            <label>Do not create case</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Delivery_Contact_Other_Selected</name>
         <label>Delivery Contact Other Selected?</label>
         <locationX>916</locationX>
@@ -858,35 +805,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Find_Existing_Legacy_Id_dec</name>
-        <label>Find Existing Legacy Id Decision</label>
-        <locationX>2189</locationX>
-        <locationY>1001</locationY>
-        <defaultConnector>
-            <targetReference>Do_you_want_to_create_this_Transportation_Case_screen</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Legacy Id does not exist</defaultConnectorLabel>
-        <rules>
-            <name>Legacy_Id_exists</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Find_existing_Legacy_ID.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Go_to_existing_Case</targetReference>
-            </connector>
-            <label>Legacy Id exists</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>PendingCaseId</name>
         <label>PendingCaseId</label>
-        <locationX>1716</locationX>
-        <locationY>1326</locationY>
+        <locationX>1714</locationX>
+        <locationY>1330</locationY>
         <defaultConnector>
             <targetReference>PendingCaseNotFound</targetReference>
         </defaultConnector>
@@ -960,7 +882,7 @@
     <decisions>
         <name>ResponseDecision</name>
         <label>ResponseDecision</label>
-        <locationX>1962</locationX>
+        <locationX>1961</locationX>
         <locationY>1329</locationY>
         <defaultConnector>
             <targetReference>ResponseError</targetReference>
@@ -1081,8 +1003,7 @@ This version will allow for the creation of a 2nd OPEN Transportation Case after
 Added block of duplicate Transportation Cases created within 6 minutes of eachother
 Added 6min Error verbiage
 Fixed 6min bug (User opened a case then immediately cancelled it and opened another one within 2 mins of each other) Removed the IsClosed check when looking for transpo cases created in the last 6 mins
-Adding callout to transportation api which will require success before creation of case
-Adding retry loop for unsuccessful Case creation</description>
+Adding callout to transportation api which will require success before creation of case</description>
     <dynamicChoiceSets>
         <name>AssociatedLocationGetRecordSet</name>
         <dataType>String</dataType>
@@ -1102,6 +1023,7 @@ Adding retry loop for unsuccessful Case creation</description>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
+        <limit>50</limit>
         <object>AssociatedLocation</object>
         <outputAssignments>
             <assignToReference>SelectedAssocaitedLocation.Id</assignToReference>
@@ -1491,11 +1413,6 @@ Adding retry loop for unsuccessful Case creation</description>
         <sortOrder>Asc</sortOrder>
     </dynamicChoiceSets>
     <formulas>
-        <name>CheckStringLength1</name>
-        <dataType>Boolean</dataType>
-        <expression>IF(LEN({!Transportation_Case_Notes}) &gt; 255, False, True)</expression>
-    </formulas>
-    <formulas>
         <name>FlowErrorFormula</name>
         <dataType>String</dataType>
         <expression>{!FlowName} + &apos;%:%&apos; + {!$Flow.FaultMessage}</expression>
@@ -1541,7 +1458,6 @@ Adding retry loop for unsuccessful Case creation</description>
 )</expression>
     </formulas>
     <interviewLabel>Create Post-Auction Transportation Request {!$Flow.CurrentDateTime}</interviewLabel>
-    <isAdditionalPermissionRequiredToRun>true</isAdditionalPermissionRequiredToRun>
     <label>Create Post-Auction Transportation Request</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -1565,8 +1481,8 @@ Adding retry loop for unsuccessful Case creation</description>
     <recordCreates>
         <name>Create_Transpo_Case</name>
         <label>Create Transpo Case</label>
-        <locationX>2525</locationX>
-        <locationY>1217</locationY>
+        <locationX>2242</locationX>
+        <locationY>1218</locationY>
         <assignRecordIdToReference>objTranspoCase.Id</assignRecordIdToReference>
         <connector>
             <targetReference>Get_Transpo_Case</targetReference>
@@ -1671,12 +1587,6 @@ Adding retry loop for unsuccessful Case creation</description>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Description</field>
-            <value>
-                <elementReference>Transportation_Case_Notes</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Origin</field>
             <value>
                 <stringValue>OUT_OF_APP</stringValue>
@@ -1736,29 +1646,14 @@ Adding retry loop for unsuccessful Case creation</description>
                 <elementReference>respDistance</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Transportation_Notes__c</field>
+            <value>
+                <elementReference>Transportation_Case_Notes</elementReference>
+            </value>
+        </inputAssignments>
         <object>Case</object>
     </recordCreates>
-    <recordLookups>
-        <name>Find_existing_Legacy_ID</name>
-        <label>Find existing Legacy ID</label>
-        <locationX>1979</locationX>
-        <locationY>1001</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Find_Existing_Legacy_Id_dec</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>ACV_Transportation_Request_Id__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>respLegacyId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Case</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordLookups>
         <name>Get_Auction</name>
         <label>Get Auction</label>
@@ -1826,8 +1721,8 @@ Adding retry loop for unsuccessful Case creation</description>
     <recordLookups>
         <name>Get_Transpo_Case</name>
         <label>Get Transpo Case</label>
-        <locationX>2526</locationX>
-        <locationY>1415</locationY>
+        <locationX>2245</locationX>
+        <locationY>1447</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Confirmation</targetReference>
@@ -2047,11 +1942,11 @@ Adding retry loop for unsuccessful Case creation</description>
     <recordLookups>
         <name>GetTranspoQueueId</name>
         <label>GetTranspoQueueId</label>
-        <locationX>2059</locationX>
-        <locationY>1221</locationY>
+        <locationX>2100</locationX>
+        <locationY>1217</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Find_existing_Legacy_ID</targetReference>
+            <targetReference>Create_Transpo_Case</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -2179,8 +2074,8 @@ Adding retry loop for unsuccessful Case creation</description>
     <screens>
         <name>Confirmation</name>
         <label>Confirmation</label>
-        <locationX>2526</locationX>
-        <locationY>1598</locationY>
+        <locationX>2456</locationX>
+        <locationY>1444</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2231,45 +2126,6 @@ Adding retry loop for unsuccessful Case creation</description>
             <fieldText>Select Delivery Contact</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>false</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Do_not_create_Transpo_Case</name>
-        <label>Do not create Transpo Case</label>
-        <locationX>2312</locationX>
-        <locationY>1463</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>ChosenNottoCreateCase</name>
-            <fieldText>&lt;p&gt;You have chosen not to create a transportation case. The Transportation Integration will create the case for you, please refresh the related Cases associated with this auction.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Do_you_want_to_create_this_Transportation_Case_screen</name>
-        <label>Do you want to create this Transportation Case?</label>
-        <locationX>2195</locationX>
-        <locationY>1221</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Create_Transpo_Case_Decision</targetReference>
-        </connector>
-        <fields>
-            <name>Create_Transpo_Case_Decision_1</name>
-            <choiceReferences>Yes_1</choiceReferences>
-            <choiceReferences>No</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Do you want to create this Transportation Case?</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2449,14 +2305,11 @@ Adding retry loop for unsuccessful Case creation</description>
     <screens>
         <name>Error_Message</name>
         <label>Error Message</label>
-        <locationX>2067</locationX>
-        <locationY>835</locationY>
+        <locationX>2842</locationX>
+        <locationY>1215</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Find_existing_Legacy_ID</targetReference>
-        </connector>
         <fields>
             <name>errorHandler</name>
             <fieldText>&lt;p&gt;Please reach out to a Salesforce Admin with the following error message:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 15px; font-family: Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; color: rgb(0, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -2515,22 +2368,6 @@ Adding retry loop for unsuccessful Case creation</description>
         <fields>
             <name>FailedAuctionDisplayText</name>
             <fieldText>ALERT: The Auction does not have a successful status. The current Auction status is {!objAuction.status__c}. Please review the Auction.</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Go_to_existing_Case</name>
-        <label>Go to existing Case</label>
-        <locationX>2394</locationX>
-        <locationY>1007</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>TextForExistingCase</name>
-            <fieldText>&lt;p&gt;This transportation case has already been created here: &lt;a href=&quot;/{!Find_existing_Legacy_ID.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!Find_existing_Legacy_ID.CaseNumber}&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -2844,6 +2681,57 @@ You will need to know the price that will be charged to the dealership that is r
             <name>Alert2</name>
             <fieldText>&lt;p&gt;You indicated that you would not like to create an additional OPEN Transportation case.&lt;/p&gt;&lt;p&gt; The current status of &lt;a href=&quot;https://acvauctions--staging.lightning.force.com/%7B!objAuctionTranspoCase.Id%7D&quot; target=&quot;_blank&quot;&gt;Case#{!objAuctionTranspoCase.CaseNumber}&lt;/a&gt; is: {!objAuctionTranspoCase.Status}. Please view the Case for more information.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Test</name>
+        <label>APITestScreen</label>
+        <locationX>1844</locationX>
+        <locationY>1206</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>STATCode</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respCode</elementReference>
+            </defaultValue>
+            <fieldText>STATCode</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>GUID</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respGuid</elementReference>
+            </defaultValue>
+            <fieldText>GUID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>ResponseCode</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respCode</elementReference>
+            </defaultValue>
+            <fieldText>Response</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>ERRORMESSAGE</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>respErrorMessage</elementReference>
+            </defaultValue>
+            <fieldText>ERRORMESSAGE</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

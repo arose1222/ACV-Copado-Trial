@@ -42,6 +42,12 @@
         <name>Arbitration_Resolution_Amount__c</name>
     </fields>
     <fields>
+        <help><!-- User who selected to End the Auction --></help>
+        <label><!-- Auction Ended By --></label>
+        <name>Auction_Ended_By__c</name>
+        <relationshipLabel><!-- Auctions (Auction Ended By) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Auction Lights Concatenation --></label>
         <name>Auction_Lights_Concatenation__c</name>
     </fields>
@@ -213,6 +219,11 @@ Third time offense = &quot;Deny&quot; --></help>
         <name>Difference_Between_Recommended_and_Floor__c</name>
     </fields>
     <fields>
+        <help><!-- This is the user who initiated the ending of this auction --></help>
+        <label><!-- End Auction Completed By --></label>
+        <name>End_Auction_Completed_By__c</name>
+    </fields>
+    <fields>
         <label><!-- Escalated to Collections --></label>
         <name>Escalated_to_Collections__c</name>
     </fields>
@@ -322,7 +333,7 @@ Third time offense = &quot;Deny&quot; --></help>
     <fields>
         <label><!-- Relevant Recommended Price Created By --></label>
         <name>Relevant_Recommended_Price_Created_By__c</name>
-        <relationshipLabel><!-- Auctions --></relationshipLabel>
+        <relationshipLabel><!-- Auctions (Relevant Recommended Price Created By) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Relevant Recommended Price Date --></label>
@@ -936,6 +947,10 @@ True = Auction --></help>
             <masterLabel>staging</masterLabel>
             <translation><!-- staging --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- test field --></label>
+        <name>test_field__c</name>
     </fields>
     <fields>
         <label><!-- Source Updated Date --></label>

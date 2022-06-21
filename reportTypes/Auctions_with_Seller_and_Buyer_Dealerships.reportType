@@ -286,6 +286,21 @@
             <field>Class__c</field>
             <table>Auction__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Auction_Ended_By__c</field>
+            <table>Auction__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>test_field__c</field>
+            <table>Auction__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>End_Auction_Completed_By__c</field>
+            <table>Auction__c</table>
+        </columns>
         <masterLabel>Auctions</masterLabel>
     </sections>
     <sections>
@@ -882,6 +897,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>buyer_dealership__c.Monthly_Buy_Percent__c</field>
+            <table>Auction__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>buyer_dealership__c.Monthly_Sell_Percent__c</field>
             <table>Auction__c</table>
         </columns>
         <columns>
@@ -1825,6 +1845,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Seller_Dealership__c.Monthly_Buy_Percent__c</field>
+            <table>Auction__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Seller_Dealership__c.Monthly_Sell_Percent__c</field>
             <table>Auction__c</table>
         </columns>
         <columns>

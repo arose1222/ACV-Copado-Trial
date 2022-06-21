@@ -592,18 +592,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Sales_Region__c</fullName>
-        <externalId>false</externalId>
-        <formula>Dealership__r.Sales_Region_Formula__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Sales Region</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Trim__c</fullName>
         <description>This field is populated through inbound integration from the Saved_auctions table</description>
         <externalId>false</externalId>
@@ -688,15 +676,13 @@ IF(
     <fields>
         <fullName>Vehicle_Information__c</fullName>
         <externalId>false</externalId>
-        <formula>&apos;Selling Dealership: &apos; &amp; Vehicle__r.Most_Recent_Seller__r.Name &amp;
+        <formula>&apos;Selling Dealership Name: &apos; &amp; Vehicle__r.Most_Recent_Seller__r.Name &amp;
  BR() &amp;
-&apos;VIN: &apos; &amp; Vehicle__r.vin__c &amp;
+&apos;Year: &apos; &amp; TEXT( Vehicle__r.Year__c ) &amp;
  BR() &amp;
 &apos;Make: &apos; &amp; Vehicle__r.make__c &amp;
  BR() &amp;
-&apos;Model: &apos; &amp; Vehicle__r.model__c &amp;
- BR() &amp;
-&apos;Year: &apos; &amp; TEXT( Vehicle__r.Year__c )</formula>
+&apos;Model: &apos; &amp; Vehicle__r.model__c</formula>
         <label>Vehicle Information</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

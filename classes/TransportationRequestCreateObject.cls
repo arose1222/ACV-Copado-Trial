@@ -25,7 +25,6 @@ public class TransportationRequestCreateObject {
     public String className;
     public Boolean isOversize;
     public Boolean isInoperable;
-    public String driveTrain;
   }
 
   public class pickupLocation {

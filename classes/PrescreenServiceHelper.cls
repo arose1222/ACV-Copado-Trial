@@ -6,21 +6,20 @@ global class PrescreenServiceHelper {
 
     public static List<CR_Review_Trigger__mdt> prescreenRuleList {get{
         if(prescreenRuleList == null){
-            prescreenRuleList = [SELECT Inspection_Field__c, Prescreen_Reason__c, Trigger_Value__c, Value_Type__c, Class_Name__c, Is_Aux_Reason__c, Is_Advanced_Logic__c, Comma_Seperated_Inspection_Types__c  FROM CR_Review_Trigger__mdt WHERE Active__c = true];
+            prescreenRuleList = [SELECT Inspection_Field__c, Prescreen_Reason__c, Trigger_Value__c, Value_Type__c, Class_Name__c, Is_Advanced_Logic__c,Comma_Seperated_Inspection_Types__c  FROM CR_Review_Trigger__mdt WHERE Active__c = true];
         }
         return prescreenRuleList;
     } set;}
 
-    public static List<PrescreenServiceHelper.InspectionWrapper> prescreensRequired(Map<string, PrescreenServiceHelper.InspectionWrapper> crpIdToWrapperMap){
+    public static List<PrescreenServiceHelper.InspectionWrapper> prescreensRequired(List<InspectionDefinition> idefList){
 
         Map<String, PrescreenServiceHelper.InspectionWrapper> wrapperMap = new Map<String, PrescreenServiceHelper.InspectionWrapper>();
         Set<String> existingInspectionGUIDSet = new Set<String>();
         Map<String, PrescreenServiceHelper.InspectionWrapper> tempMap = new Map<String, PrescreenServiceHelper.InspectionWrapper>();
         
-        for(PrescreenServiceHelper.InspectionWrapper iWrapper : crpIdToWrapperMap.Values()){
-            InspectionDefinition idef = iWrapper.idef;
+        for(InspectionDefinition idef : idefList){
             // not considering prescreen if completedCount is greater than 1 or null
-            PrescreenServiceHelper.InspectionWrapper wrapper = new PrescreenServiceHelper.InspectionWrapper(idef, new Set<ReasonWrapper>());
+            PrescreenServiceHelper.InspectionWrapper wrapper = new PrescreenServiceHelper.InspectionWrapper(idef, new Set<String>());
             if (idef.completedCount == null || idef.completedCount <= 1) {
                 wrapperMap.put(idef.inspectionID, wrapper);
             }
@@ -77,9 +76,8 @@ global class PrescreenServiceHelper {
                                     //check to make sure the inspection type is valid for this review record, then compare the values
                                     if(wrapper.idef.type != null && wrapper.idef.type.type != null && validInspectionTypes.contains(wrapper.idef.type.type.trim().toLowerCase())
                                      && doesValueMatchData(crt.Value_Type__c, crt.Trigger_Value__c, String.valueOf(wrapper.idef.get(crt.Inspection_Field__c)))){
-                                        ReasonWrapper rWrapper = new ReasonWrapper(crt.Prescreen_Reason__c, crt.Is_Aux_Reason__c);
-                                        wrapper.prescreenReasonWrappers.add(rWrapper);
-                                        wrapper.prescreenReasons.add(rWrapper.name);
+                                        
+                                        wrapper.prescreenReasons.add(crt.Prescreen_Reason__c);
                                     }
                                 }
                                 else{
@@ -138,9 +136,11 @@ global class PrescreenServiceHelper {
 
 
         log.logLevel = SplunkHelper.LOGLEVEL.INFO;
+        log.message = 'Successfully created all records.';
 
         Set<String> insertedIds = new Set<String>();
         List<SplunkHelper.SFErrorRecord> errorRecords = new List<SplunkHelper.SFErrorRecord>();
+
 
         for(PrescreenServiceInspectionReview.InspectionReviewResults irr : irrList){
             if(irr.prescreenId != null){
@@ -167,22 +167,57 @@ global class PrescreenServiceHelper {
         }
     }
 
-    public static List<InspectionWrapper> createPrescreen(Map<String, PrescreenServiceHelper.InspectionWrapper> crpIdToWrapperMap, Map<String, InspectionWrapper> wrapperMap, Map<String, Contact> vciMap, Map<String, Account> dealerMap){
+    public static List<InspectionWrapper> createPrescreen(Map<String, InspectionWrapper> wrapperMap){
 
 
         Id queueId = [select Id from Group where  Type = 'Queue' AND NAME = 'SIA Prescreen' LIMIT 1].id;
         
 
-        
+        List<String> inspectorIdList = new List<String>();
+        List<String> dealerIdList = new List<String>();
+
+        for(InspectionWrapper iw : wrapperMap.values()){
+            if(iw.idef.inspectorIdentityId != null){
+                inspectorIdList.add(iw.idef.inspectorIdentityId);
+            }
+            if(iw.idef.dealershipId != null){
+                dealerIdList.add(String.valueOf(iw.idef.dealershipId));
+            }
+        }
 
 
+        Map<String, Contact> vciMap = new Map<String,Contact>();
+        Map<String, Account> dealerMap = new Map<String,Account>();
         List<Condition_Report_Prescreen__c> crpInsertList = new List<Condition_Report_Prescreen__c>();
+
+
+        for(Contact c : [SELECT Id, Identity_Id__c FROM Contact WHERE Identity_Id__c in :inspectorIdList]){
+            vciMap.put(c.Identity_Id__c, c);
+        }
+
+        for(Account a :[SELECT Id, Dealership_Id__c FROM Account WHERE Dealership_Id__c in : dealerIdList]){
+            dealerMap.put(a.Dealership_Id__c, a);
+        }
 
         //check to make sure account and contact were able to be found else throw an error for that record
         //if successful, add them to an insertion map
         for(InspectionWrapper iw : wrapperMap.values()){
             try{
-                if(!iw.prescreenReasons.isEmpty()){
+                if(!vciMap.containsKey(iw.idef.inspectorIdentityId)){
+                    PrescreenError e = new PrescreenError();
+                    e.partialException = false;
+                    e.inspectionDefinitionPath = 'inspectorIdentityId';
+                    e.status = 400;
+                    iw.reasonErrors.add(e);
+                }
+                else if(!dealerMap.containsKey(String.valueOf(iw.idef.dealershipId))){
+                    PrescreenError e = new PrescreenError();
+                    e.partialException = false;
+                    e.inspectionDefinitionPath = 'dealershipId';
+                    e.status = 400;
+                    iw.reasonErrors.add(e);
+                }
+                else if(!iw.prescreenReasons.isEmpty()){
                     iw.preScreen = new Condition_Report_Prescreen__c(
                         OwnerId = queueId,
                         VCI__c = vciMap.get(iw.idef.inspectorIdentityId).Id,
@@ -194,8 +229,7 @@ global class PrescreenServiceHelper {
                         Inspection_Data_Make__c = iw.idef.inspectedVehicle.make,
                         Inspection_Data_Model__c = iw.idef.inspectedVehicle.model,
                         Inspection_Data_Trim__c = iw.idef.inspectedVehicle.trim,
-                        Inspection_Data_VIN__c = iw.idef.inspectedVehicle.vin,
-                        Arb_Risk_Categories__c = (iw.siaCategories != null && !iw.siaCategories.isEmpty()) ? JSON.serialize(iw.siaCategories) : null
+                        Inspection_Data_VIN__c = iw.idef.inspectedVehicle.vin
                     );
                     crpInsertList.add(iw.preScreen);
                 }
@@ -207,7 +241,6 @@ global class PrescreenServiceHelper {
                 iw.reasonErrors.add(err);
             }
         }
-        system.debug('insert list' + crpInsertList);
 
         //use saveresults to determine what records were successfully inserted or not
         if(!crpInsertList.isEmpty()){
@@ -237,18 +270,15 @@ global class PrescreenServiceHelper {
 
         List<Prescreen_Reason__c> prList = new List<Prescreen_Reason__c>();
 
+        Map<String, InspectionWrapper> crpIdToWrapperMap = new Map<String, InspectionWrapper>();
+
         for(InspectionWrapper iw : wrapperMap.values()){
-            system.debug('wrapper: ' + iw);
-            system.debug('reasons: ' + iw.prescreenReasonWrappers);
             if(iw.preScreen != null && iw.preScreen.Id != null){
                 
                 crpIdToWrapperMap.put(iw.preScreen.Id, iw);
 
-                for(ReasonWrapper reason : iw.prescreenReasonWrappers){
-                    
-                    system.debug('Prescreen Reason being inserted: ' + reason);
-                    string name = reason.name;
-                    prList.add(new Prescreen_Reason__c(Condition_Report_Prescreen__c = iw.preScreen.Id, Name = reason.name));
+                for(String reason : iw.prescreenReasons){
+                    prList.add(new Prescreen_Reason__c(Condition_Report_Prescreen__c = iw.preScreen.Id, Name = reason));
                 }
             }
         }
@@ -270,7 +300,6 @@ global class PrescreenServiceHelper {
                     }
 
                     PrescreenError err = new PrescreenError();
-                    System.Debug('Error inserting prescreen reason: ' + pr.name);
                     err.message ='A prescreen record was successfully inserted, but an error occurred during insertion of a prescreen reason.';
                     err.status = 500;
                     err.partialException = true;
@@ -308,82 +337,26 @@ global class PrescreenServiceHelper {
         return false;
     }
 
-    public static Boolean isOnlyAuxReasons(InspectionWrapper wrapper){
-        boolean onlyAux = true;
-        
-        if(wrapper.prescreenReasonWrappers.size() > 0){
-            for(ReasonWrapper reason : wrapper.prescreenReasonWrappers){
-                if(reason.isAux == false){
-                    onlyAux = false;
-                    break;
-                }
-        	}
-        }
-        else{
-            onlyAux = false;
-        }
-        
-        
-        return onlyAux;
-    }
-
-    global class ReasonWrapper{
-        global string name;
-        global boolean isAux;
-        global ReasonWrapper(string name, boolean isAux){
-            this.name = name;
-            this.isAux = isAux;
-        }
-    }
-
     //need virtual lift url
     global class InspectionWrapper{
         global InspectionDefinition idef;
         global Set<String> prescreenReasons;
-        global Set<ReasonWrapper> prescreenReasonWrappers;
         global Condition_Report_Prescreen__c preScreen;
         global String virtualLiftURL;
         global list<PrescreenError> reasonErrors;
-        global SiaCrEvaluator.SiaCategory[] siaCategories;
-		global inspectionWrapper(InspectionDefinition idef, Set<String> reasons){
+
+        global inspectionWrapper(InspectionDefinition idef, Set<String> reasons){
             this.idef = idef;
+            this.prescreenReasons = reasons;
             this.preScreen = new Condition_Report_Prescreen__c();
             this.reasonErrors = new List<PrescreenError>();
-            this.siaCategories = new List<SiaCrEvaluator.SiaCategory>();
-            this.prescreenReasons = new Set<string>();
-            this.prescreenReasons.addAll(reasons);
-            this.prescreenReasonWrappers = new Set<ReasonWrapper>();
-            for(String wrapper : reasons){
-                this.prescreenReasonWrappers.add(new ReasonWrapper(wrapper, false));
-            }
         }
-        global inspectionWrapper(){
-            
-        }
-        
-        global inspectionWrapper(InspectionDefinition idef, Set<ReasonWrapper> reasons){
+
+        global inspectionWrapper(InspectionDefinition idef, Set<String> reasons, Integer statusCode, String message){
             this.idef = idef;
+            this.prescreenReasons = reasons;
             this.preScreen = new Condition_Report_Prescreen__c();
             this.reasonErrors = new List<PrescreenError>();
-            this.siaCategories = new List<SiaCrEvaluator.SiaCategory>();
-            this.prescreenReasonWrappers = new Set<ReasonWrapper>();
-            this.prescreenReasonWrappers.addAll(reasons);
-            this.prescreenReasons = new Set<String>();
-            for(ReasonWrapper wrapper : reasons){
-                this.prescreenReasons.add(wrapper.name);
-            }
-        }
-        global inspectionWrapper(InspectionDefinition idef, Set<ReasonWrapper> reasons, Integer statusCode, String message){
-            this.idef = idef;
-            this.preScreen = new Condition_Report_Prescreen__c();
-            this.reasonErrors = new List<PrescreenError>();
-            this.siaCategories = new List<SiaCrEvaluator.SiaCategory>();
-            this.prescreenReasonWrappers = new Set<ReasonWrapper>();
-            this.prescreenReasonWrappers.addAll(reasons);
-            this.prescreenReasons = new Set<String>();
-            for(ReasonWrapper wrapper : reasons){
-                this.prescreenReasons.add(wrapper.name);
-            }
         }
     }
 

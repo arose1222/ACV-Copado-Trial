@@ -87,9 +87,6 @@
                             <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.Account.jiffle__Jifflenow_Meetings</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>XClean</value>
                         </valueListItems>
                         <valueListItems>
@@ -130,9 +127,6 @@
                         </valueListItems>
                         <valueListItems>
                             <value>Account.Update_Vehicle_Count</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.ACV_Anywhere_Onboarding</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -367,35 +361,23 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>filterOnRecordId</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>height</name>
-                    <value>850</value>
+                    <value>960</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>sfAdvancedFilter</name>
-                    <value>Account.Dealership_ID__c</value>
+                    <name>label</name>
+                    <value>.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>showTabs</name>
+                    <name>pageName</name>
+                    <value>Buyer_Dashboard</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showLabel</name>
                     <value>true</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showToolbar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>tabAdvancedFilter</name>
-                    <value>selected_dealer_id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>vizUrl</name>
-                    <value>https://tableau.acvauctions.com/views/BuyerDashboard/BuyerDashboard?:showAppBanner=false&amp;:display_count=n&amp;:showVizHome=n&amp;:origin=viz_share_link</value>
-                </componentInstanceProperties>
-                <componentName>tab:tableauViz</componentName>
-                <identifier>tab_tableauViz2</identifier>
+                <componentName>flexipage:visualforcePage</componentName>
+                <identifier>flexipage_visualforcePage</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-u8fgh1o2rl</name>
@@ -405,35 +387,23 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>filterOnRecordId</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>height</name>
-                    <value>850</value>
+                    <value>960</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>sfAdvancedFilter</name>
-                    <value>Account.Dealership_ID__c</value>
+                    <name>label</name>
+                    <value>.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>showTabs</name>
+                    <name>pageName</name>
+                    <value>Seller_Dashboard</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showLabel</name>
                     <value>true</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showToolbar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>tabAdvancedFilter</name>
-                    <value>selected_dealer_id</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>vizUrl</name>
-                    <value>https://tableau.acvauctions.com/views/SellerDashboard/Seller_Dashboard?:showAppBanner=false&amp;:display_count=n&amp;:showVizHome=n&amp;:origin=viz_share_link</value>
-                </componentInstanceProperties>
-                <componentName>tab:tableauViz</componentName>
-                <identifier>tab_tableauViz1</identifier>
+                <componentName>flexipage:visualforcePage</componentName>
+                <identifier>flexipage_visualforcePage2</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-2ae4bcb6-6a06-4570-970a-dc13ba4c9e65</name>

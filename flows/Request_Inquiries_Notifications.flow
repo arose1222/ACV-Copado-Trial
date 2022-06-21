@@ -25,6 +25,7 @@
         <locationY>200</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
             <value>
@@ -447,7 +448,7 @@
         </rules>
     </decisions>
     <description>Notifies assigned to user when a ticket is assigned to them</description>
-    <interviewLabel>Request_Inquiries_Notifications-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Request_Inquiries_Notifications-3_InterviewLabel</interviewLabel>
     <label>Request &amp; Inquiries Notifications</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -475,7 +476,7 @@
     </processMetadataValues>
     <processType>Workflow</processType>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myCollection_myRule_1_A1recipientIds</name>
         <dataType>String</dataType>

@@ -262,8 +262,6 @@
             <assignToReference>varUser48HourNotice</assignToReference>
             <field>User__c</field>
         </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <description>gets the field history of who changed the status to received.</description>
@@ -306,8 +304,6 @@
             <assignToReference>varUserReceived</assignToReference>
             <field>User__c</field>
         </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <description>Gets the field history of who changed the status to Sent.</description>
@@ -350,8 +346,6 @@
             <assignToReference>varUserSent</assignToReference>
             <field>User__c</field>
         </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <description>gets the field history of who changed the status to received.</description>
@@ -394,8 +388,6 @@
             <assignToReference>varUserWorking</assignToReference>
             <field>User__c</field>
         </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <description>Get record type so the record type name can be used instead of the id.</description>
@@ -480,7 +472,7 @@
         <description>Getting the user information to pull who made the update</description>
         <name>Get_User_Received_0</name>
         <label>Get User Received</label>
-        <locationX>712</locationX>
+        <locationX>711</locationX>
         <locationY>764</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>

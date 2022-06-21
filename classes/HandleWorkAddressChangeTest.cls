@@ -211,7 +211,6 @@ public class HandleWorkAddressChangeTest {
         System.assertEquals( woli.Street, adjustedStreet, 'The Work Order Street was not changed as expected' );
     }
 
-     /*  2/16/2022 - COMMENTED OUT - Work Type Validation Rule prevents changes.
     @isTest
     static void changeASIWorkType() {
         final String FBI = 'fbi';
@@ -255,7 +254,6 @@ public class HandleWorkAddressChangeTest {
         System.assertEquals( woli.WorkOrder.WorkTypeId, dealerWorkTypeId, 'The Work Order WorkType was not changed as expected' );
         System.assertEquals( woli.WorkTypeId, dealerWorkTypeId, 'The Work Order WorkType was not changed as expected' );
     }
-    */
 
     @isTest
     static void changeCanceledASIStreet() {

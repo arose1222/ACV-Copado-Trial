@@ -1,7 +1,7 @@
 <apex:page controller="maps.ExportMissingAddresses" readOnly="true" contentType="{!ContentType}" cache="true">
     
     <!-- START This is stupid but it has to be like this for the CSV formatting -->
-    <apex:outputPanel rendered="{!ExportAsCSV}" layout="none" >Record Id,Object Type,Saved Query Name,{!tooltip1Label},{!JSENCODE($Label.maps__ma_street)},{!JSENCODE($Label.maps__ma_city)},{!JSENCODE($Label.maps__ma_state)},{!JSENCODE($Label.maps__ma_zip_code)},{!JSENCODE($Label.maps__ma_country)}
+    <apex:outputPanel rendered="{!ExportAsCSV}" layout="none" >Record Id,Object Type,Saved Query Name,{!tooltip1Label},{!JSENCODE($Label.maps__MA_Street)},{!JSENCODE($Label.maps__MA_City)},{!JSENCODE($Label.maps__MA_State)},{!JSENCODE($Label.maps__MA_Zip_Code)},{!JSENCODE($Label.maps__MA_Country)}
     <apex:repeat value="{!missingAddresses}" var="item">
 {!item['recordId']},{!item['objectType']},{!item['savedQueryName']},{!item['tooltip1Value']},{!item['street']},{!item['city']},{!item['state']},{!item['zip']},{!item['country']}
     </apex:repeat>
@@ -15,11 +15,11 @@
         	<th>Object Type</th>
             <th>Saved Query Name</th>
             <th>{!tooltip1Label}</th>
-            <th>{!JSENCODE($Label.maps__ma_street)}</th>
-            <th>{!JSENCODE($Label.maps__ma_city)}</th>
-            <th>{!JSENCODE($Label.maps__ma_state)}</th>
-            <th>{!JSENCODE($Label.maps__ma_zip_code)}</th>
-            <th>{!JSENCODE($Label.maps__ma_country)}</th>
+            <th>{!JSENCODE($Label.maps__MA_Street)}</th>
+            <th>{!JSENCODE($Label.maps__MA_City)}</th>
+            <th>{!JSENCODE($Label.maps__MA_State)}</th>
+            <th>{!JSENCODE($Label.maps__MA_Zip_Code)}</th>
+            <th>{!JSENCODE($Label.maps__MA_Country)}</th>
         </tr>
         <apex:repeat value="{!missingAddresses}" var="item">
             <tr>

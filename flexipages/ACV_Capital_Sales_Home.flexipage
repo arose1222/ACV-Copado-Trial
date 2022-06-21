@@ -5,17 +5,35 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>decorate</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: rgb(248, 248, 248); font-size: 22px; color: rgb(242, 101, 34); font-family: verdana;&quot;&gt;Welcome to ACV Capital&apos;s SalesForce App&lt;/b&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(92, 91, 91);&quot;&gt;Welcome to ACV Capital&apos;s Salesforce App....&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Here are some commonly used links:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Link1&lt;/li&gt;&lt;li&gt;Link2&lt;/li&gt;&lt;li&gt;Link3&lt;/li&gt;&lt;/ul&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText1</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-aab2a042-968b-46d5-9125-07129aefd9c3</name>
+        <name>Facet-f012dc76-cd01-466f-8cee-d25bb2fa90ce</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>dashboardName</name>
+                    <value>dAzRLfKmimSMTJrMVgIexBhdqJJJkm</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideOnError</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>desktopDashboards:embeddedDashboard</componentName>
+                <identifier>desktopDashboards_embeddedDashboard1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-4e61cb21-e3e1-4096-887a-49d64db16fb1</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -23,7 +41,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-aab2a042-968b-46d5-9125-07129aefd9c3</value>
+                    <value>Facet-f012dc76-cd01-466f-8cee-d25bb2fa90ce</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
@@ -31,6 +49,20 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-4e61cb21-e3e1-4096-887a-49d64db16fb1</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>RSM Dashboard</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-ca687989-c3ca-4c81-8c25-ab8cd8406c5a</name>
@@ -54,37 +86,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>enableInlineEdit</name>
-                    <value>true</value>
+                    <name>context</name>
+                    <value>NEWS</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>entityName</name>
-                    <value>Task</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>filterName</name>
-                    <value>My_Capital_Tasks_Open</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>hideActionBar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>hideSearchBar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>pageSize</name>
-                    <value>1</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:filterListCard</componentName>
-                <identifier>flexipage_filterListCard2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
-                <identifier>runtime_sales_activities_todayTaskContainer1</identifier>
+                <componentName>forceChatter:exposedFeed</componentName>
+                <identifier>forceChatter_exposedFeed1</identifier>
             </componentInstance>
         </itemInstances>
         <name>left</name>
@@ -93,9 +99,15 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
+                <identifier>runtime_sales_activities_todayTaskContainer1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>enableInlineEdit</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>entityName</name>
@@ -115,20 +127,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
-                    <value>1</value>
+                    <value>25</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:filterListCard</componentName>
                 <identifier>flexipage_filterListCard1</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>context</name>
-                    <value>BOOKMARKS</value>
-                </componentInstanceProperties>
-                <componentName>forceChatter:exposedFeed</componentName>
-                <identifier>forceChatter_exposedFeed1</identifier>
             </componentInstance>
         </itemInstances>
         <name>middle</name>
@@ -137,38 +139,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>enableInlineEdit</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>entityName</name>
-                    <value>Opportunity</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>filterName</name>
-                    <value>MyOpportunities</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>hideActionBar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>hideSearchBar</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>pageSize</name>
-                    <value>1</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:filterListCard</componentName>
-                <identifier>flexipage_filterListCard3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:recentRecordContainer</componentName>
-                <identifier>home_recentRecordContainer1</identifier>
+                <componentName>runtime_approval_process:pendingApprovalCard</componentName>
+                <identifier>runtime_approval_process_pendingApprovalCard1</identifier>
             </componentInstance>
         </itemInstances>
         <name>right</name>

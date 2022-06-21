@@ -80,7 +80,6 @@ global class PrescreenChangeEvent {
         List<Prescreen_Event__e> PrescreenEvents = New List<Prescreen_Event__e>();
         for(InspectionDefinition Idef : incomingList ){
             if(!String.isBlank(Idef.InspectionId)){
-                System.debug('creating event for autoapproved prescreen');
 
                 // Create an instance of the event and store it in the Organization_Event__e variable 
                 PrescreenEvents.add(new Prescreen_Event__e(   
@@ -109,9 +108,6 @@ global class PrescreenChangeEvent {
         // Call method to publish list of Prescreen events       
         List<Database.SaveResult> results = EventBus.publish(PrescreenEvents);
         List<Integration_Result__c> integrationList = new List<Integration_Result__c>();
-        if(!Test.isRunningTest()){
-        	sendLog(PrescreenEvents, results);
-        }
         //Connecting the Prescreen Record id of the Platform event and Inserting them into the Integration Results table
         for (Integer i=0 ; i < results.size(); i++ ){
             Database.SaveResult Result = results[i];	
@@ -132,49 +128,12 @@ global class PrescreenChangeEvent {
             }
             else{
                 integrationObj.Status_Code__c = 200;
-                integrationObj.Status_Message__c = String.valueof(result);      
-                
+                integrationObj.Status_Message__c = String.valueof(result);          
             }
             integrationList.add(integrationObj);
         }   
         if (integrationList.size() > 0){
             insert integrationList;
         }           
-    }
-    public static void SendLog(List<Prescreen_Event__e> PrescreenEvents, Database.SaveResult[] results){
-        Set<string> successfulResults = new Set<string>();
-        List<SplunkHelper.SfErrorRecord> errorRecs = new List<SplunkHelper.SfErrorRecord>();
-        for(integer i = 0; i < PrescreenEvents.size(); i++){
-            if(results[i].isSuccess()){
-                successfulResults.add(results[i].getId());
-            }
-            else{
-                string message = '';
-                for(Database.Error err : results[i].getErrors()){
-                    message += err.getMessage();
-                    message += '\n';
-                }
-                errorRecs.add(new SplunkHelper.SfErrorRecord(PrescreenEvents[i], message));
-            }
-        }
-        
-        SplunkHelper.Log log = new SplunkHelper.Log();
-        log.version = 'V1';
-        log.location = 'PrescreenChangeEvent: ' + ACVUtility.currentLineNumber();
-        log.stackTrace = 'PrescreenChangeEvent: ' + ACVUtility.currentLineNumber();
-        log.componentName = 'PrescreenChangeEvent';
-        log.sfObject = 'Condition Report Prescreen';
-        log.domainSet = new Set<SplunkHelper.DOMAIN>{SplunkHelper.DOMAIN.INSPECTION_PLATFORM};
-
-
-        log.logLevel = SplunkHelper.LOGLEVEL.INFO;
-
-        Set<String> insertedIds = new Set<String>();
-        List<SplunkHelper.SFErrorRecord> errorRecords = new List<SplunkHelper.SFErrorRecord>();
-
-        HttpRequest req = new HttpRequest();
-        HttpResponse res = new HttpResponse();
-
-        SplunkHelper.buildAndProcessIntegrationLog(log, req, res, SplunkHelper.INTEGRATION_DIRECTION.INBOUND, errorRecs, successfulResults);
-    }
+    }  
 }

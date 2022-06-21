@@ -2,7 +2,6 @@ public class RevolvingGenerator {
 
     public static final Date TODAY = Date.today();
     public static final Datetime NOW = System.now();
-    public static TimeZone currentTimeZone = UserInfo.getTimeZone();
     //change this to select based on the revolving appointment record in the future
     public static WorkType currentWorkType = [SELECT Id FROM WorkType WHERE Name = 'Standard Inspection' LIMIT 1];
     public static Decimal durationMin = [SELECT DurationInMinutes FROM WorkType WHERE Name = 'Standard Inspection'].DurationInMinutes;
@@ -59,15 +58,9 @@ public class RevolvingGenerator {
                         Work_Order__r.Occurrence__r.End_Time__c,
                         Work_Order__r.Occurrence__r.Timeline__r.Service_Resource__r.Id,
                         Work_Order__r.Occurrence__r.Timeline__r.Service_Resource__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Street__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.City__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.State__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Country__c,
-                        Work_Order__r.Occurrence__r.Timeline__r.Postal_Code__c,
                         Work_Order__r.Duration,
                         Account.BillingLatitude,
-                        Account.BillingLongitude,
-            			ServiceTerritory.OperatingHours.TimeZone
+                        Account.BillingLongitude
                 FROM ServiceAppointment
                 WHERE ParentRecordId IN :workOrderIds];
 
@@ -82,7 +75,6 @@ public class RevolvingGenerator {
 
         List<ResourcePreference> generatedResourcePreferences = new List<ResourcePreference>();
         List<ResourcePreference> updateResourcePrefLst = new List<ResourcePreference>();
-
         for (ServiceAppointment sa : generatedServiceAppointments){
             if(sa.Work_Order__r.Occurrence__r.Timeline__r.Service_Resource__c != null) {
                 Boolean checkGeneration = FALSE;
@@ -106,35 +98,11 @@ public class RevolvingGenerator {
 
             //need null-checking here
             sa.Duration = sa.Work_Order__r.Duration;
-
             //if start and end time are populated on the occurrence, use that, else use the default
-            TimeZone territoryTimezone;
-            if(sa.ServiceTerritory != null) {
-                territoryTimezone = TimeZone.getTimeZone( sa.ServiceTerritory.OperatingHours.TimeZone );
-            }
-            else {
-                territoryTimezone = currentTimeZone;
-            }
+            sa.EarliestStartTime = Datetime.newInstance(sa.Work_Order__r.StartDate.date(), (sa.Work_Order__r.Occurrence__r.Start_Time__c != null ? sa.Work_Order__r.Occurrence__r.Start_Time__c : defaultStartTime));
+            sa.DueDate = Datetime.newInstance(sa.Work_Order__r.EndDate.date(), (sa.Work_Order__r.Occurrence__r.End_Time__c != null ? sa.Work_Order__r.Occurrence__r.End_Time__c : defaultEndTime));
 
-            if(sa.Work_Order__r.Occurrence__r.Start_Time__c != null) {
-                sa.EarliestStartTime = calculateTimeWithOffset(currentTimeZone, territoryTimezone, sa.Work_Order__r.StartDate.date(), sa.Work_Order__r.Occurrence__r.Start_Time__c);
-            }
-            else { 
-                sa.EarliestStartTime = Datetime.newInstance(sa.Work_Order__r.StartDate.date(), defaultStartTime); 
-            }
-
-            if(sa.Work_Order__r.Occurrence__r.End_Time__c != null) {
-                sa.DueDate = calculateTimeWithOffset(currentTimeZone, territoryTimezone, sa.Work_Order__r.EndDate.date(), sa.Work_Order__r.Occurrence__r.End_Time__c);
-            }
-            else { 
-                sa.DueDate = Datetime.newInstance(sa.Work_Order__r.EndDate.date(), defaultEndTime); 
-            }
-
-            //sa.EarliestStartTime = Datetime.newInstance(sa.Work_Order__r.StartDate.date(), (sa.Work_Order__r.Occurrence__r.Start_Time__c != null ? sa.Work_Order__r.Occurrence__r.Start_Time__c : defaultStartTime));
-            //sa.DueDate = Datetime.newInstance(sa.Work_Order__r.EndDate.date(), (sa.Work_Order__r.Occurrence__r.End_Time__c != null ? sa.Work_Order__r.Occurrence__r.End_Time__c : defaultEndTime));
-
-            if((sa.Work_Order__r.Occurrence__r.Timeline__r.Street__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.City__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.Postal_Code__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.State__c == null || sa.Work_Order__r.Occurrence__r.Timeline__r.Country__c == null)
-                && sa.Account.BillingLatitude != null && sa.Account.BillingLongitude != null) {
+            if ( sa.Account.BillingLatitude != null && sa.Account.BillingLongitude != null ) {
                 sa.Latitude = sa.Account.BillingLatitude;
                 sa.Longitude = sa.Account.BillingLongitude;
             }
@@ -177,6 +145,8 @@ public class RevolvingGenerator {
                 Occurrence__c occurrenceRecord = occs.get(occ.id);
                 occurrenceRecord.Farthest_Date_Generated__c = DateTime.newInstance(farthestDate.year(), farthestDate.month(), farthestDate.day(), Now.hour(), Now.minute(), NOW.second()).addHours(-5);//add four hours or however far is needed
                 occurrenceRecord.Most_Recent_Batch__c = System.now().addMinutes(15);
+
+
                 occsToUpdate.put(occ.id, occs.get(occ.id));
             }
         }
@@ -197,55 +167,12 @@ public class RevolvingGenerator {
         return returnDebug;
     }
 
-    public static Datetime calculateTimeWithOffset(TimeZone currentTimeZone, TimeZone territoryTimeZone, Date startOrEndDate, Time startOrEndTime) {
-        if(territoryTimezone.toString() == currentTimeZone.toString()) {
-            return Datetime.newInstance(startOrEndDate, startOrEndTime);
-        }
-        else {
-            DateTime dtime = Datetime.newInstance(startOrEndDate, startOrEndTime);
-            
-            Integer territoryOffset = territoryTimeZone.getOffset(dtime);
-            Integer runningOffset = currentTimeZone.getOffset(dtime);
-            Integer totalOffset = runningOffset - territoryOffset;
-            totalOffset = totalOffset / 1000;
-            
-            dtime = dtime.addSeconds(totalOffset);
-            return dtime;
-        }
-    }
-
     public static List<WorkOrder> createData(Occurrence__c occ, List<Date> dates) {
         List<WorkOrder> wos = new List<WorkOrder>();
-
-        //Make sure account has service territory
-        TimeZone territoryTimezone;
-        if(occ.Timeline__r.Account__r.Service_Territory__c != null) {
-            territoryTimezone = TimeZone.getTimeZone( occ.Timeline__r.Account__r.Service_Territory__r.OperatingHours.TimeZone );
-        }
-        else {
-            territoryTimezone = currentTimeZone;
-        }
-
         for(Date d : dates) {
-            
-            Datetime startingDateTime = null;
-            DateTime endingDateTime = null;
-
-            if(occ.Start_Time__c != null) {
-                startingDateTime = calculateTimeWithOffset(currentTimeZone, territoryTimezone, d, occ.Start_Time__c);
-            }
-            else { startingDateTime = Datetime.newInstance(d, defaultStartTime); }
-
-            if(occ.End_Time__c != null) {
-                endingDateTime = calculateTimeWithOffset(currentTimeZone, territoryTimezone, d, occ.End_Time__c);
-            }
-            else { endingDateTime = Datetime.newInstance(d, defaultEndTime); }
-
             WorkOrder woRec = new WorkOrder(
-                StartDate = startingDateTime,
-                EndDate = endingDateTime,
-                //StartDate = Datetime.newInstance(d,(occ.Start_Time__c!=null?occ.Start_Time__c:defaultStartTime)),
-                //EndDate = Datetime.newInstance(d,(occ.End_Time__c!=null?occ.End_Time__c:defaultEndTime)),
+                StartDate = Datetime.newInstance(d,(occ.Start_Time__c!=null?occ.Start_Time__c:defaultStartTime)),
+                EndDate = Datetime.newInstance(d,(occ.End_Time__c!=null?occ.End_Time__c:defaultEndTime)),
                 AccountId = occ.Timeline__r.Account__c,
                 ServiceTerritoryId = occ.Timeline__r.Account__r.Service_Territory__c,
                 Priority = 'Low',
@@ -257,35 +184,20 @@ public class RevolvingGenerator {
                 Occurrence__c = occ.Id,
                 WorkTypeId = (occ.Timeline__r.Work_Type__c == NULL) ? currentWorkType.Id : occ.Timeline__r.Work_Type__c,
                 Origin__c = 'Revolving Term',
+                Street = occ.Timeline__r.Account__r?.BillingStreet,
+                City = occ.Timeline__r.Account__r?.BillingCity,
+                PostalCode = occ.Timeline__r.Account__r?.BillingPostalCode,
+                State = occ.Timeline__r.Account__r?.BillingState,
+                Country = occ.Timeline__r.Account__r?.BillingCountry,
+                Latitude = occ.Timeline__r.Account__r?.BillingLatitude,
+                Longitude = occ.Timeline__r.Account__r?.BillingLongitude,
                 Inspection_Number_of_Vehicles__c = occ.Timeline__r.Average_Number_Cars__c,
                 Created_Without_Line_Items__c = TRUE,
                 DueDate_Adjustment_Engine_Bypass__c = TRUE
             );
-
-            setAddress(woRec, occ);
-
             wos.add(woRec);
         }
         return wos;
-    }
-
-    public static void setAddress(WorkOrder woRec, Occurrence__c occ) {
-        if(occ.Timeline__r.Street__c == null || occ.Timeline__r.City__c == null || occ.Timeline__r.Postal_Code__c == null || occ.Timeline__r.State__c == null || occ.Timeline__r.Country__c == null) {
-            woRec.Street = occ.Timeline__r.Account__r?.BillingStreet;
-            woRec.City = occ.Timeline__r.Account__r?.BillingCity;
-            woRec.PostalCode = occ.Timeline__r.Account__r?.BillingPostalCode;
-            woRec.State = occ.Timeline__r.Account__r?.BillingState;
-            woRec.Country = occ.Timeline__r.Account__r?.BillingCountry;
-            woRec.Latitude = occ.Timeline__r.Account__r?.BillingLatitude;
-            woRec.Longitude = occ.Timeline__r.Account__r?.BillingLongitude;
-        }
-        else {
-            woRec.Street = occ.Timeline__r.Street__c;
-            woRec.City = occ.Timeline__r.City__c;
-            woRec.PostalCode = occ.Timeline__r.Postal_Code__c;
-            woRec.State = occ.Timeline__r.State__c;
-            woRec.Country = occ.Timeline__r.Country__c;
-        }
     }
 
     public static ResourcePreference createData( ServiceAppointment sa ) {

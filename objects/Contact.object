@@ -709,7 +709,7 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
     </fields>
     <fields>
         <fullName>Contact_Guid__c</fullName>
-        <externalId>true</externalId>
+        <externalId>false</externalId>
         <label>User GUID</label>
         <length>255</length>
         <required>false</required>
@@ -898,11 +898,6 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
                     <fullName>orgUpdates</fullName>
                     <default>false</default>
                     <label>Organization Updates</label>
-                </value>
-                <value>
-                    <fullName>progUpdates</fullName>
-                    <default>false</default>
-                    <label>Programmatic Updates</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1797,11 +1792,6 @@ true,false
         <columns>CONTACT.ADDRESS2_CITY</columns>
         <columns>HOT_NOTES__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Contact.ACV_User</value>
-        </filters>
         <label>All Contacts</label>
     </listViews>
     <listViews>
@@ -2099,25 +2089,6 @@ true,false
             <value>acv</value>
         </filters>
         <label>My Active Franchise Contacts</label>
-    </listViews>
-    <listViews>
-        <fullName>Prescreen_Participants</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CONTACT.EMAIL</columns>
-        <columns>Title_Picklist__c</columns>
-        <columns>ID__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CR_Review__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.ACCOUNT_ID</field>
-            <operation>equals</operation>
-            <value>0010a00001UAavU</value>
-        </filters>
-        <label>Prescreen Participants</label>
     </listViews>
     <listViews>
         <fullName>San_Anton_Indy_Reg_Contacts_acct_purchas</fullName>
@@ -3253,17 +3224,6 @@ IsBlank(Phone))</errorConditionFormula>
         <errorMessage>Dealership Contacts must have a Phone number</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>First_and_Last_Name_Required</fullName>
-        <active>true</active>
-        <description>For Dealership Contact, the First &amp; Last Name needs to be required.</description>
-        <errorConditionFormula>AND(
- ISNEW(),
- RecordType.Name = &quot;Dealership Contact&quot;,
- ISBLANK(FirstName)
-)</errorConditionFormula>
-        <errorMessage>Please make sure you have the &apos;First Name&apos; field filled out.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Lead_Conversion_Must_Be_Merged</fullName>
         <active>false</active>
         <description>Rule preventing Contact creation from a Lead Conversion</description>
@@ -3404,17 +3364,5 @@ NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>{!URLFOR($Site.Prefix+&apos;/apex/geopointe__Map?id=&apos;+Contact.Id)}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>jiffle__Jifflenow_Meetings</fullName>
-        <availability>online</availability>
-        <description>To Book meeting from contact</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Jifflenow Meetings</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <url>/apex/jiffle__JNEvents?accid={!CASESAFEID(Account.Id)}&amp;contactid={!CASESAFEID(Contact.Id)}</url>
     </webLinks>
 </CustomObject>

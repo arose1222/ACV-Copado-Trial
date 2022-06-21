@@ -86,7 +86,7 @@
         <locationX>1784</locationX>
         <locationY>398</locationY>
         <assignmentItems>
-            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <assignToReference>SA.Allow_VCI_Status_Change__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -102,7 +102,7 @@
         <locationX>1783</locationX>
         <locationY>555</locationY>
         <assignmentItems>
-            <assignToReference>SA.Allow_Change_From_Flow__c</assignToReference>
+            <assignToReference>SA.Allow_VCI_Status_Change__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Checkbox_is_True</elementReference>
@@ -113,8 +113,8 @@
         </connector>
     </assignments>
     <decisions>
-        <name>Is_Checkbox_True_Allow_Change_from_Flow</name>
-        <label>Is Checkbox True - Allow Change from Flow</label>
+        <name>Is_Checkbox_True_Allow_VCI_Status_change</name>
+        <label>Is Checkbox True - Allow VCI Status change</label>
         <locationX>1522</locationX>
         <locationY>474</locationY>
         <defaultConnector>
@@ -125,7 +125,7 @@
             <name>Checkbox_is_True</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>SA.Allow_Change_From_Flow__c</leftValueReference>
+                <leftValueReference>SA.Allow_VCI_Status_Change__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -177,7 +177,7 @@
             <label>Work Type Inspection True360 SiriusXM</label>
         </rules>
     </decisions>
-    <description>ID-3489 Changing Toggle from Allow_VCI_Status_Change__c to Allow_Change_From_Flow__c.</description>
+    <description>ID-3086 Stop Laptop and SF Mobile Statusing for FSL Objects for VCIs.</description>
     <formulas>
         <name>ScheduledEndFormula</name>
         <dataType>DateTime</dataType>
@@ -238,7 +238,7 @@
         <queriedFields>WorkTypeId</queriedFields>
         <queriedFields>Work_Type_Name__c</queriedFields>
         <queriedFields>Work_Type_Duration__c</queriedFields>
-        <queriedFields>Allow_Change_From_Flow__c</queriedFields>
+        <queriedFields>Allow_VCI_Status_Change__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Service_Appointment</name>
@@ -257,7 +257,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Is_Checkbox_True_Allow_Change_from_Flow</targetReference>
+            <targetReference>Is_Checkbox_True_Allow_VCI_Status_change</targetReference>
         </connector>
         <fields>
             <name>Time_Update_Confirmation_Message_0</name>
@@ -277,7 +277,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Is_Checkbox_True_Allow_Change_from_Flow</targetReference>
+            <targetReference>Is_Checkbox_True_Allow_VCI_Status_change</targetReference>
         </connector>
         <fields>
             <name>Time_Update_Confirmation_Message</name>

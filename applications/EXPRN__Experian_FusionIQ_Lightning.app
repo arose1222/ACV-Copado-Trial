@@ -61,7 +61,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>Admin</profile>
+        <profile>System Admin Limited</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -70,7 +70,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>EXPRN__Experian_Search</tabs>
     <tabs>EXPRN__Exp_Business_Info__c</tabs>

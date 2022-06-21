@@ -101,24 +101,4 @@ private class tracRecurringEventControllerTest {
         system.Assert( newRange.closingHour != null );
     }
 
-    @isTest
-    static void testGetAccountAddress() {
-        Test.startTest();
-            Account acct = [ SELECT Id, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry FROM Account LIMIT 1 ];
-            acct.BillingStreet = '123 fake st';
-            acct.BillingCity = 'testCity';
-            acct.BillingState = 'testState';
-            acct.BillingPostalCode = '12345';
-            acct.BillingCountry = 'US';
-            update acct;
-
-            acct = tracRecurringEventController.getAccountAddress(acct.Id);
-        Test.stopTest();
-
-        system.assertEquals('123 fake st', acct.BillingStreet);
-        system.assertEquals('testCity', acct.BillingCity);
-        system.assertEquals('testState', acct.BillingState);
-        system.assertEquals('12345', acct.BillingPostalCode);
-        system.assertEquals('US', acct.BillingCountry);
-    }
 }

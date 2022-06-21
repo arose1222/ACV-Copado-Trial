@@ -1,5 +1,5 @@
 public class WorkRequestDispatchEvent extends TriggerInterface {
-
+    
     public override void afterUpdate(Map<Id,SObject> oldMap, Map<Id,SObject> newMap) {
         Set<Id> saIdSet = new Set<Id>();
         for ( AssignedResource arRec : (List<AssignedResource>) newMap.values() ) {
@@ -27,7 +27,7 @@ public class WorkRequestDispatchEvent extends TriggerInterface {
         if ( !saIdSet.isEmpty() ) {
             makeDispatchEvent( saIdSet );
         }
-    }
+    }  
 
     public static void makeDispatchEvent( Set<Id> saIdSet ) {
         Set<Id> woIdSet = new Set<Id>();
@@ -42,15 +42,15 @@ public class WorkRequestDispatchEvent extends TriggerInterface {
         // Organize Data
         List<WorkOrder> woLst = [ SELECT Id, Created_Without_Line_Items__c, External_Record_Guid__c, WorkTypeId, CreatedById, WorkType.Name,
                 ( SELECT Id, External_Record_Guid__c, Inspection_Id__c, External_Invoice_Id__c,
-                    WorkType.Name, CreatedById, Cloned_for_Grouping__c
-                        FROM WorkOrderLineItems )
+                    WorkType.Name, CreatedById
+                        FROM WorkOrderLineItems ) 
                                 FROM WorkOrder WHERE Id IN :woIdSet ];
 
         Map<Id, List<WorkOrderLineItem>> saIdToWoliMap = new Map<Id, List<WorkOrderLineItem>>();
         Map<Id, WorkOrder> saIdToWoMap = new Map<Id, WorkOrder>();
         for ( WorkOrder woRec : woLst ) {
             Id saId = woIdToSaIdMap.get( woRec.Id );
-            if ( !woRec.Created_Without_Line_Items__c ) {
+            if ( !woRec.Created_Without_Line_Items__c ) { 
                 if ( saIdToWoliMap.get( saId ) == null ) {
                     saIdToWoliMap.put( saId, new List<WorkOrderLineItem>() );
                 }
@@ -101,8 +101,8 @@ public class WorkRequestDispatchEvent extends TriggerInterface {
                             scheduled_End__c = saRec.SchedEndTime,
                             local_Scheduled_Start__c = saRec.SchedStartTime != null ? saRec.SchedStartTime.format('yyyy-MM-dd\'T\'HH:mm:ss', saToResourceMap.get( saRec.Id ).ServiceAppointment.ServiceTerritory.OperatingHours.TimeZone ) : null,
                             local_Scheduled_End__c = saRec.SchedEndTime != null ? saRec.SchedEndTime.format('yyyy-MM-dd\'T\'HH:mm:ss', saToResourceMap.get( saRec.Id ).ServiceAppointment.ServiceTerritory.OperatingHours.TimeZone ) : null,
-                            legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' || woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : null,
-                            origin_System__c = woliRec.Cloned_for_Grouping__c ? 'Legacy Inspection Services' : FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
+                            legacy_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById ) == 'Legacy Inspection Services' ? 'Legacy Inspection Services' : null,
+                            origin_System__c = FSLWorkProcessUtility.determineSystemOrigin( woliRec.CreatedById )
                         ) );
                         WorkRequestHub.dispatchedSFRecSet.add( saToResourceMap.get( saRec.Id ).Id );
                         uuidLst.add( JSON.serialize( new FSLWorkProcessUtility.EventSaveStruct( woliRec.Id, woliRec.External_Record_Guid__c ) ) );

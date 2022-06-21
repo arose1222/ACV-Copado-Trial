@@ -4,14 +4,12 @@
  */
 @isTest
 public class BdrAssignmentEmailTest {
-    public static final Group defaultLeadQueue = [SELECT Id FROM Group WHERE Type = 'Queue' AND DeveloperName = 'BDR_Organization_Lead_Queue'];
     /**
      * Test Setup method for the test methods
      * 
      */
     @TestSetup
     public static void makeData(){
-        //TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
         Lead l = TestUtility.createLead();
         l.RecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
         l.Email = 'test123321@bdrTest.test';
@@ -39,24 +37,42 @@ public class BdrAssignmentEmailTest {
      */
     @IsTest
     public static void assignedToBlitzTestWithDontSendEmail(){
-        Database.DMLOptions dmo = new Database.DMLOptions();
-        dmo.assignmentRuleHeader.useDefaultRule= true;
-
+        User u = [ SELECT Id FROM User WHERE Username = 'test123UserTest@userTest.comTest' LIMIT 1 ];
+        Lead l = [ SELECT Id, OwnerId FROM Lead WHERE Email = 'testjp@bdrTest.test' LIMIT 1 ];
         Test.startTest();
-            Lead l1 = TestUtility.createLead();
-            l1.RecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
-            l1.Email = 'hereTest@testhere.com';
-            l1.State = 'Ak';
-            l1.Referral_Code__c='blitzteam';
-            l1.Dont_Send_BDR_Email__c = true;
-            l1.setOptions(dmo);
-            insert l1;
+            l.OwnerId = u.Id;
+            l.Dont_Send_BDR_Email__c= true;
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.assignmentRuleHeader.useDefaultRule= false;
+            l.setOptions(dmo);
+            update l;
         Test.stopTest();
-        Lead updatedLead = [ SELECT Id, BDR_Email_Sent__c, OwnerId, IST_Account_Owner__c FROM Lead WHERE Id = :l1.Id ];
+        Lead updatedLead = [ SELECT Id, BDR_Email_Sent__c, OwnerId, IST_Account_Owner__c FROM Lead WHERE Id = :l.Id ];
         System.assertEquals( false, updatedLead.BDR_Email_Sent__c );
-        System.assertEquals( updatedLead.OwnerId, updatedLead.IST_Account_Owner__c );
+        System.assertEquals( u.Id, updatedLead.IST_Account_Owner__c );
         
     }
+
+    /**
+     * Test that the assignment of a BDR to a User with a Calendly link works
+     */
+    @IsTest
+    public static void assignedToBlitzTestWithOutDontSendEmail(){
+        User u = [ SELECT Id FROM User WHERE Username = 'test123UserTest@userTest.comTest' LIMIT 1 ];
+        Lead l = [ SELECT Id, OwnerId FROM Lead WHERE Email = 'testjp@bdrTest.test' LIMIT 1 ];
+        Test.startTest();
+            l.OwnerId = u.Id;
+            l.Dont_Send_BDR_Email__c= false;
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.assignmentRuleHeader.useDefaultRule= false;
+            l.setOptions(dmo);
+            update l;
+        Test.stopTest();
+        Lead updatedLead = [ SELECT Id, BDR_Email_Sent__c, OwnerId, IST_Account_Owner__c FROM Lead WHERE Id = :l.Id ];
+        System.assertEquals( false, updatedLead.BDR_Email_Sent__c );
+        System.assertEquals( u.Id, updatedLead.IST_Account_Owner__c );
+    }
+
 
     /**
      * Test that the assignment of a BDR to a User with a Calendly link works
@@ -67,6 +83,9 @@ public class BdrAssignmentEmailTest {
         Lead l = [ SELECT Id FROM Lead WHERE Email = 'test123321@bdrTest.test' LIMIT 1 ];
         Test.startTest();
             l.OwnerId = u.Id;
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.assignmentRuleHeader.useDefaultRule= false;
+            l.setOptions(dmo);
             update l;
         Test.stopTest();
         Lead updatedLead = [ SELECT Id, BDR_Email_Sent__c, OwnerId, IST_Account_Owner__c FROM Lead WHERE Id = :l.Id ];
@@ -79,17 +98,16 @@ public class BdrAssignmentEmailTest {
      */
     @IsTest
     public static void assignedToBDRwithoutLinkTest(){
-        User u = [ SELECT Id, Calendly_Link__c FROM User WHERE Username = 'blankCalendlyLink@userTest.comTest' LIMIT 1 ];
-        Lead l = [ SELECT Id, OwnerId, Owner.Name FROM Lead WHERE Email = 'test123321@bdrTest.test' LIMIT 1 ];
+        User u = [ SELECT Id FROM User WHERE Username = 'blankCalendlyLink@userTest.comTest' LIMIT 1 ];
+        Lead l = [ SELECT Id FROM Lead WHERE Email = 'test123321@bdrTest.test' LIMIT 1 ];
         Test.startTest();
-            l.OwnerId = defaultLeadQueue.Id; //need to set to the queue first
-            update l;
-            
             l.OwnerId = u.Id;
-            l.BDR_Email_Sent__c = false;
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.assignmentRuleHeader.useDefaultRule= false;
+            l.setOptions(dmo);
             try{
                 update l;
-                System.assert(false, 'Expecting a failure since there is no Calendly Link for this user');
+                System.assert(false, 'Expecting a failure since there is now Calendly Link for this user');
             }catch(Exception ex){
                 
             }

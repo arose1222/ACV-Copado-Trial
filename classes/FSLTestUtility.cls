@@ -306,12 +306,20 @@ public class FSLTestUtility {
         // Leave 'inspection' at the top.  Code in RevolvingGenerationMissedTest.cls expects it to be first.  This will need to be fixed.  11/20/2021 GMI
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'inspection', Name = INSPECTION, EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = TRUE, Respects_Number_of_Vehicles__c = TRUE, Allow_for_Revolving_Appointments__c = TRUE, Work_Type_Color__c = '#FFA500'));
 
-        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'acvhome', Name = 'ACV Anywhere', EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7B3F00'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'acvhome', Name = 'ACV Home', EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7B3F00'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'arbitration inspection', Name = 'Arbitration Inspection', EstimatedDuration = 5, DurationType = 'Minutes', VIN_required__c = TRUE, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#191970'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'auction off-lease', Name = 'Auction Off-Lease', EstimatedDuration = 35, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Allow_for_Revolving_Appointments__c = TRUE, Work_Type_Color__c = '#F8C8DC '));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'auction site', Name = 'Auction Site', EstimatedDuration = 20, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FF00FF'));
-        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'buyer signup', Name = 'Buyer Signup', EstimatedDuration = 60, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#CF9FFF'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'buyersignup', Name = 'Buyer Signup', EstimatedDuration = 60, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#CF9FFF'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'consumer', Name = 'Consumer', EstimatedDuration = 50, DurationType = 'Minutes', VIN_required__c = TRUE, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7B3F00'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo120', Name = 'CPO120', EstimatedDuration = 120, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo150', Name = 'CPO150', EstimatedDuration = 150, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo180', Name = 'CPO180', EstimatedDuration = 180, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo240', Name = 'CPO240', EstimatedDuration = 240, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo270', Name = 'CPO270', EstimatedDuration = 270, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo300', Name = 'CPO300', EstimatedDuration = 300, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpo90', Name = 'CPO90', EstimatedDuration = 90, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpobd', Name = 'CPOBD', EstimatedDuration = 75, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpobm', Name = 'CPOBM', EstimatedDuration = 210, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpofr', Name = 'CPOFR', EstimatedDuration = 155, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpolnc', Name = 'CPOLNC', EstimatedDuration = 130, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
@@ -327,11 +335,12 @@ public class FSLTestUtility {
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpohn18', Name = 'CPOHN18', EstimatedDuration = 280, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpohn20', Name = 'CPOHN20', EstimatedDuration = 300, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpohnice', Name = 'CPOHNICE', EstimatedDuration = 120, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpojlr', Name = 'CPOJLR', EstimatedDuration = 120, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'cpopo', Name = 'CPOPO', EstimatedDuration = 120, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FFFAA0'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'dealer', Name = 'Dealer', EstimatedDuration = 25, DurationType = 'Minutes', VIN_required__c = TRUE, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FF0000'));
-//        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'documentation gathering', Name = 'Documentation Gathering', EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7CFC00'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'documentation gathering', Name = 'Documentation Gathering', EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7CFC00'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'fbi', Name = 'FBI', EstimatedDuration = 120, DurationType = 'Minutes', VIN_required__c = TRUE, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#7B3F00'));
-        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'gmfia', Name = 'GMFIA', EstimatedDuration = 240, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FDDA0D'));
+        wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'gmfia', Name = 'GMFIA', EstimatedDuration = 180, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#FDDA0D'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'mystery test', Name = 'Mystery Test', EstimatedDuration = 150, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#00FFF6'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'other business', Name = 'Other Business', EstimatedDuration = 180, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#D3D3D3'));
         wtLst.add( new WorkType( Work_Type_Unique_ID__c = 'promo work', Name = 'Promo Work', EstimatedDuration = 30, DurationType = 'Minutes', VIN_required__c = false, ShouldAutoCreateSvcAppt = false, Work_Type_Color__c = '#008000'));
@@ -379,6 +388,14 @@ public class FSLTestUtility {
 
         List<WorkTypeGroupMember> wtGroupMemberList = new List<WorkTypeGroupMember>();
         //All CPOs group members
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo120')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo150')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo180')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo240')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo270')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo300')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo90')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobd')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobm')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpofr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpogm')));
@@ -393,6 +410,7 @@ public class FSLTestUtility {
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn18')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn20')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohnice')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpojlr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpolnc')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpopo')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = allcposWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='vcpofr')));
@@ -407,6 +425,14 @@ public class FSLTestUtility {
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='auction site')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='consumer')));
 
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo120')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo150')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo180')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo240')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo270')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo300')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo90')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobd')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobm')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpofr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpogm')));
@@ -421,6 +447,7 @@ public class FSLTestUtility {
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn18')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn20')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohnice')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpojlr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpolnc')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpopo')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='dealer')));
@@ -437,6 +464,14 @@ public class FSLTestUtility {
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = asiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='vcpopo')));
         
         // CPOs(excluding VCPOs) group members
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo120')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo150')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo180')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo240')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo270')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo300')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpo90')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobd')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpobm')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpofr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpogm')));
@@ -451,6 +486,7 @@ public class FSLTestUtility {
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn18')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohn20')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpohnice')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpojlr')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpolnc')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = cpoexcludingvcpoWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='cpopo')));
 
@@ -468,8 +504,8 @@ public class FSLTestUtility {
 
         //Non-ASI group members
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='arbitration inspection')));
-        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='buyer signup')));
-//        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='documentation gathering')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='buyersignup')));
+        wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='documentation gathering')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='inspection')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='promo work')));
         wtGroupMemberList.add( new WorkTypeGroupMember( WorkTypeGroup = nonasiWTG, WorkType = new WorkType(Work_Type_Unique_ID__c='siriusxm')));

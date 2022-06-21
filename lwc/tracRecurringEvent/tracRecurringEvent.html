@@ -11,10 +11,7 @@
     <section if:false={isEditMode} class="slds-modal slds-fade-in-open slds-modal_small">
         <div class="slds-modal__container" style="margin: 0; padding: 0;">
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height:100%">
-
-                <div class="slds-m-top_small slds-m-bottom_medium">
-                    <h3><b>New Revolving Appointment</b></h3>
-                </div>
+                <h1>New Revolving Appointment</h1>
 
                 <lightning-record-edit-form object-api-name="Timeline__c" record-id={timelineId} onsuccess={handleFormSuccess} onerror={handleFormError}>
                     <lightning-messages></lightning-messages>
@@ -63,24 +60,6 @@
                         <lightning-input type="date" class="endDate" name="endDate" label="End (Optional)" value={timeline.End_Date__c} placeholder="End" onchange={handleEndDateChange}></lightning-input>
                     </div>
                 </div>
-                
-                <div class="slds-m-top_x-large slds-m-bottom_medium">
-                    <lightning-input-address
-                        address-label="Address:"
-                        street-label="Street"
-                        street={account.BillingStreet}
-                        city-label="City"
-                        city={account.BillingCity}
-                        country-label="Country"
-                        country={account.BillingCountry}
-                        province-label="State"
-                        province={account.BillingState}
-                        postal-code-label="Zip Code"
-                        postal-code={account.BillingPostalCode}
-                        show-address-lookup
-                        onchange={handleAddress}>
-                    </lightning-input-address>
-                </div>
 
                 <lightning-accordion allow-multiple-sections-open active-section-name="Event">
                     <template for:each={occurrenceIds} for:item="thisId">
@@ -105,6 +84,7 @@
             </footer>
         </div>
     </section>
+
 
     <!--RELATED LIST EDIT-->
     <!--<template if:true={isEditMode}>

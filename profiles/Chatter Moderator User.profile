@@ -131,16 +131,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>jiffle__Jifflenow</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>jiffle__Jifflenow_Lightning</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>maps__SalesforceMaps</application>
         <default>false</default>
         <visible>false</visible>
@@ -162,6 +152,11 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Content</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__DataManager</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -192,11 +187,6 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__OnlineSales</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Optimizer</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -815,14 +805,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPOArrivalWindowEnforcement</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPOArrivalWindowEnforcementTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CRQueueController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -972,14 +954,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CalculateTitleDueDateAccountTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CalculateTitleDueDateBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CalculateTitleDueDateBatchTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2967,90 +2941,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ExperianAuthenticateUser</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianAuthenticateUserTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessFactsMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessFactsResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessFactsResponseTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessLoginMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessScoreMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessSearchMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessSearchResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianBusinessSearchResponseTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCalloutService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCalloutServiceException</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCalloutServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCreditStatusMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCreditStatusResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianCreditStatusResponseTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianLegalFilingsMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianLegalFilingsResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianLegalFilingsResponseTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianScoreResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ExperianScoreResponseTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ExpireProactiveWork</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3483,6 +3373,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__EhanceJobsUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__EmergencyLightboxController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3675,6 +3569,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__InDayProcessor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__InstallScript</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3780,6 +3678,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__O2JsonSerializer</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__O2OptimizationAsyncResponse</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__O2RSORequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3899,6 +3805,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__OptimizationHub</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__OptimizationInsightsKPIController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3908,6 +3818,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__OptimizationInsightsSummaryController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__OptimizationLimitsUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3968,6 +3882,22 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__QueueableOptimization</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__QueueableOptimizationForO2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOBody</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOCommonProcessor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOPreProcessor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4479,7 +4409,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__TR031_WorkRuleEntryValidator</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__TR066_ServiceObjectiveUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__TerritoriesHorizonBasedRequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4560,6 +4498,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__countRule</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__createBundleSchedulable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -5287,14 +5229,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>FastPassExperianAccountTrigger</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FastPassExperianAccountTriggerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>FieldHistoryProcess</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5327,14 +5261,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>FileMigrationBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FileMigrationBatch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>FillTerritoryOnAccount</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5355,14 +5281,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>FordLincolnBundlerBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FordLincolnBundlerBatchTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ForgotPasswordController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5372,14 +5290,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FslARNotification</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FslAcvAnywhereOnboardingController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FslAcvAnywhereOnboardingControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -5616,14 +5526,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GroupGuidGenerationTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>HaltTrue360Appointments</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>HaltTrue360AppointmentsTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -5892,14 +5794,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LeadConversionTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>LeadOwnerAssignmentBDR</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>LeadOwnerAssignmentBDRTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6287,10 +6181,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PopulateCaseTitleFieldBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PopulateDefaultsOnProgramEnrollment</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6360,14 +6250,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PrescreenCloseEventTrigger</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PrescreenClosingScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PrescreenClosingSchedulerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6527,14 +6409,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PreviousAuctionAlertController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PreviousAuctionAlertControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PriorityEngine</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6568,14 +6442,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PrivateLaneLayoutContTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PrivateSaleCaseBadgeLogic</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PrivateSaleCaseBadgeLogicTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6728,14 +6594,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ResolutionTrigger_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ResourceAbsenceTimeZone</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ResourceAbsenceTimeZoneTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7071,14 +6929,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SetDuplicateCheckerRecordType</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SetDuplicateCheckerRecordTypeTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SetFirstArbitration</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7128,18 +6978,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SharingUtilityTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SiaCrEvaluator</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SiaCrEvaluatorMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SiaCrEvaluatorTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7200,14 +7038,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SplunkJobQueueable</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SplunkLogging</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SplunkLoggingTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7343,10 +7173,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TitleDefinition</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TitleLateFeeBatch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7360,34 +7186,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TitleLateFeeSchedulerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleReviewAPI</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleReviewCallouts</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleReviewCalloutsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleServiceUpdateCase</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TitleServiceUpdateCaseTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7540,14 +7338,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UpdateApptDateRangeAPITest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>UpdateArbSpecialInstructions</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>UpdateArbSpecialInstructionsTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -9987,14 +9777,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>geopointe__ResourceViewGroup</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>geopointe__ResourceViewGroup_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>geopointe__RestRoute</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -10207,14 +9989,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>geopointe__TerritoryPlannerService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>geopointe__TerritoryPlannerService_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>geopointe__TestUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -10408,234 +10182,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>hourlyOrgLimitLogSchedulable</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAccountOpportuinityService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAttachmentController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAttachmentControllertest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAttendeeCleanUpBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAttendeeCleanUpBatchTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNAttendeeCleanUpScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBatchUtilClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBookMeeting</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBookMeetingHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBookMeetingHelperTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBookMeetingTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBriefingBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBriefingBatchClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBriefingScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBriefings</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNBriefingsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNEventBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNEventBatchClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNEventMeetingList</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNEventMeetingListTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNEventScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNGenericUtilClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNLeadRedirct</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNLeadRedirctTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMappingList</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMappingListTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMappings</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMappingsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingBatchClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingCampMemScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingCampMemUpdate</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingCampMemUpdateTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingPullSurveyBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingPullSurveyBatchClassSchedular</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingPullSurveyBatchClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingPullSurveyBatchHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNMeetingScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNNamespace</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNNamespaceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNNominationsBatchClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNNominationsBatchClassSchedular</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNNominationsBatchClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNOauthController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNOauthControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNPushAccOppBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNPushAccOppBatchScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNPushAccOppBatchTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNQueueableCalloutHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNReqRespWC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNSchedulerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNUtilClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__JNUtilClassTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__MockHttpResponseGenerator</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>jiffle__MockResponseHttp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>liveAppraisalController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>liveAppraisalControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -12342,14 +11888,6 @@
         <apexClass>workOrderIngestControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>workOrderIngestPermissions</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>workOrderIngestPermissionsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -12438,11 +11976,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.ACV_Anywhere_Registration_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.ACV_Capital_Customer2__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12454,16 +11987,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ACV_Capital_Declined__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.ACV_Capital_NS_Portfolio_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.ACV_Capital_Primary_Contact_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12504,11 +12027,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.AccountSource</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Account_Activity_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12748,11 +12266,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Buy_Fee_Rate_Card_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Buy_Fee_Rate_Card__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12824,16 +12337,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Cargo_Insurance_Amount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Carrier_Has_Insurance__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Carrier_Insurance_Expiration__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12914,16 +12417,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Commercial_Acct_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Commercial_BK__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Commercial_Sub_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13298,11 +12791,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Duplicate_Checker_Record_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Duplicate_Of__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13453,47 +12941,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Experian_BI_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Experian_Business_Information__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Experian_FICO__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Experian_Tax_Lien__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Experian_Test__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Extended_Arbitration_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.FP_Trigger_RS__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.FSL_Proactive_Work_Beta__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.FastPass_Approval__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13504,11 +12957,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.FastPass_Opt_In__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.FastPass_Status_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13570,11 +13018,6 @@
         <editable>true</editable>
         <field>Account.HOT_NOTES__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Halt_True360_Appointments__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -13684,11 +13127,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Jigsaw</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Language_Preference__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13923,11 +13361,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Major_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Maps_Sales_Region_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14004,6 +13437,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Monthly_Sell_Opportunity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Monthly_Sell_Percent__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14319,11 +13757,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.RSD__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Rate_of_Travel__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14773,6 +14206,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Transportation_Services_Rendered__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Transporter_Run_States__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14989,6 +14427,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.utm_term__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.xACV_Capital_Relationship__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15282,84 +14725,84 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.AddToBundleStatuses</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.BundleStatusesToPropagate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.CriteriaForAutoUnbundlingId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.MemberStatusesNotToPropagate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.RemoveFromBundleStatuses</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.StatusesNotToUpdateOnUnbundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.BundleEndTimeFieldName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.BundleStartTimeFieldName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.CanAllowSchleDepndInBundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.ConstantTimeValue</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.FilterCriteriaId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsAutomaticBundling</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsManualBundling</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsTimeCalcByBundleDurationFld</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.LimitAmountOfBundleMembers</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.LimitDurationOfBundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -15379,6 +14822,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ApptBundlePropagatePolicy.ConstantValue</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ApptBundlePropagatePolicy.DateValue</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15698,6 +15146,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Assigned_Fee__c.Auction_End_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Assigned_Fee__c.Case__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15728,7 +15181,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Assigned_Fee__c.Seller_Contact_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Seller_Territory_Manager_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Seller_Territory_Manager__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Seller_Title_Clerk_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Title_Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Assigned_Fee__c.Total_Billable_Amount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Vehicle_Vin_Last_6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Assigned_Fee__c.Vehicle_Year_Make_Model__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15824,6 +15312,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Auction__c.Arbitration_Resolution_Amount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Auction__c.Auction_Ended_By__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15994,6 +15487,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Auction__c.Difference_Between_Recommended_and_Floor__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Auction__c.End_Auction_Completed_By__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -16498,6 +15996,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Auction__c.test_field__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Auction__c.updated__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16724,11 +16227,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CR_Review_Trigger__mdt.Is_Advanced_Logic__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CR_Review_Trigger__mdt.Is_Aux_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -17513,11 +17011,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.Auction_End_to_Title_Sent_BD__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.Auction_End_to_Title_Sent__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -17614,11 +17107,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.BusinessHoursId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.Business_Days_Since_Opened__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -18043,17 +17531,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Date_Time_Title_Problem__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Date_Time_Title_Received__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Date_Time_Title_Sent__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.Date_Time_Working__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -18438,11 +17926,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.Inop_Alert__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.Inop__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -18548,6 +18031,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Marked_Problem__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Marked_Received__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -18619,11 +18107,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Non_EasyPost_Tracking_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.Notes_for_Inspector_Old__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -18719,6 +18202,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Open_Customer_Inquiry__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Open_QC_Count__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19263,11 +18751,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.Submitted_By_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.SuppliedCompany</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -19498,11 +18981,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.Titles_Unpaid__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19544,11 +19022,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Transport_EFT_Bill_Payment__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.Transport_Request_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20263,16 +19736,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Complaint__c.Additional_evidence_required__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.Arbitration_Complaint_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Complaint__c.Auction_Number_Complaint__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -20309,16 +19772,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Complaint__c.Complexity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.Condition_Report_Question_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.Condition_Report_Section_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20379,21 +19832,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Complaint__c.Total_Approved_Credits__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.User_Submitted_Details__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.What_disclosure_was_misrepresented__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Complaint__c.What_disclosure_was_missing__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20459,11 +19897,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Condition_Report_Prescreen__c.Age_in_Minutes__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Condition_Report_Prescreen__c.Arb_Risk_Categories__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20934,11 +20367,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Condition_Report__c.Recommended_Price_Floor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Condition_Report__c.Sales_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22608,11 +22036,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Dealer_Docs__c.S3_Migration_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Dealer_Docs__c.TM_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22629,16 +22052,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Dealer_Setting__c.Titles_Payment_Exception__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Dealership_Note__c.Note_Author__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Dealership_Note__c.Note__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24773,81 +24186,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.ACV_Tax_Lien__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.BI_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Branch_City__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Branch_State__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Branch_Street__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Branch_Zip_Extension__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Branch_Zip__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Business_Facts_Success__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Collection_Balance__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Commercial_Score_Definition__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Commercial_Score_Quarter__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Commercial_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Corporate_Linkage_Indicator__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Corporate_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Current_Debt__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>EXPRN__Exp_Business_Info__c.EXPRN__Account_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25744,191 +25082,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EXPRN__Exp_Business_Info__c.EXPRN__sbcs_score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Foreign_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Fortune_1000_Year__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Inquiry_Count__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Judgement_Balance__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Judgement_count__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Last_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Legal_Filings_Success__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Matching_Branch_Address__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Middle_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Model_Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.NAICS_Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Percentile_Ranking__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Risk_Class_Definition__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Score_Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Score_Success__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.UCC_Derogatory_Count__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.UCC_Filings_Count__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreFactors_Score_Factor_Definition__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Collection_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Credit_Status_Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Credit_Status_Success__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Definition__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Model_Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Percentile_Ranking__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Risk_Class__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Score_Trends_Quarter__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Score_Trends_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScoreTrends_Score__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Model_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Model_Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Percentile_Ranking__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Recommended_Credit_Limit_Amount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Risk_Class_Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>EXPRN__Exp_Business_Info__c.fsrScore_Score__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -27338,11 +26491,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Email_Notification_Subscription__c.Work_Order__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Email_Notification__c.Account_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -27848,26 +26996,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Evidence__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Evidence__c.Evidence_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Evidence__c.S3URI__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Evidence__c.Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Exception__c.AL_Sales_Tax__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28143,11 +27271,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FSL_Import_Manager_Special_Instructions__mdt.Active__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FSL_Proactive_Work__mdt.Appointment_Days_Until_Due__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28194,16 +27317,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL_Releases__c.FSL_Release_Notes__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FSL_Special_Gantt_Color_Setting__mdt.Color__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FSL_Work_Type_Arrival_Window__mdt.Active__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28863,6 +27976,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWithWindowAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWithWindowBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWoWindowAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWoWindowBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__AvgTravelTimeAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28893,6 +28026,116 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCapacityAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCapacityBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCrewAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCrewBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToResourcesAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToResourcesBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasSchedToPreferredSrAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasSchedToPreferredSrBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasWithPreferredResource__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCapacityAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCapacityBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCrewAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCrewBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledResourcesAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledResourcesBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalCrewWorkCapacity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalLunchBreakDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalLunchBreakDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWithGeolocationDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWithGeolocationDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWoGeolocationDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWoGeolocationDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfCapacityBasedResources__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28904,6 +28147,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfOptimizableServices__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfPinnedServices__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28923,6 +28171,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfServicesWithWindow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfServicesWithoutWindow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalOvertimeForCrews__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalOvertimeForResources__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalScheduledTimeOnOvertimeAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalScheduledTimeOnOvertimeBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelByPrimaryMembershipAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28933,12 +28211,62 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceFromHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceFromHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceToHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceToHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceWoHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceWoHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeFromHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeFromHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeToHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeToHomebaseBefore__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28964,6 +28292,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalWorkDurationScheduledBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalWorkTime__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TravelTimeOnTheResourcesExpenseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TravelTimeOnTheResourcesExpenseBefore__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29223,6 +28566,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Break_Duration__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Earliest_Break_Start__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Latest_Break_End__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Work_Rule__c.FSL__Active__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29404,41 +28762,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Work_Rule__c.FSL__isTimephased__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.auth_url__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.base_url__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.client_id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.client_secret__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.password__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.subcode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Fast_Pass_Experian_Credential__mdt.username__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29648,22 +28971,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Floor_Plan_Setting__mdt.Internal_Delivery__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Floor_Plan_Setting__mdt.Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Floor_Plan_Setting__mdt.Payment_Method_API_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Floor_Plan_Setting__mdt.Payment_Method_Group_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30728,11 +30041,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Image_URL__mdt.Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Import_Manager_Job__c.Import_Request_Total__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31018,31 +30326,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Internal_Delivery__c.Easypost_Postage_Label_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Internal_Delivery__c.Easypost_Tracker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Internal_Delivery__c.Payment_Method_API_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Internal_Delivery__c.Payment_Method_Group_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Internal_Delivery__c.Shipping_Label_Created_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Inventory_Life_Cycle__c.ACV_Auction_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31240,11 +30523,6 @@
         <editable>true</editable>
         <field>Lead.Annual_Unit_Sales__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.Assigned_On_Insert__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -31573,11 +30851,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Lead.Follow_Up_Task_Created_On__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Lead.Full_Demo_Completed__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31703,16 +30976,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Lead.Lead_DeveloperName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.Lead_Record_Type_Mapping__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Lead.Lead_Record_type_Conversion__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31764,11 +31027,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.Maps_TM_Assignment_Rule__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.Market_Place_Report_User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32109,36 +31367,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.utm_term__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.New_Status_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.New_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.Old_Status_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.Old_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead_Status_History__c.Status_Duration__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32923,11 +32151,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Account_Name_Displayed__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Opportunity.Actual_Rolling_30_Day_Sales_Volume__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -32998,16 +32221,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Average_Monthly_Sales__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.Average_Wholesale_Vehicle_Price__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Opportunity.Bankruptcy_Comments__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33063,22 +32276,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Campaign_Message__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Opportunity.Capital_Account_Rep__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Capital_Dealer_Flag__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.Capital_Product_Interest__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33124,11 +32327,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Critical_Deal_metrics_Summary__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.Current_Floorplan_Provider__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33308,11 +32506,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.How_many_cars_do_you_stock__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Opportunity.IST_Account_Manager_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33329,11 +32522,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Intelliscore_Plus_Risk_Class__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.Inventory_Turn_Time__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33474,11 +32662,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Price_Variance__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.Primary_Contact_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33769,66 +32952,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity_Stage_History__c.Stage_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.Amount__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.Amount__hst</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.CloseDate__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.CloseDate__hst</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.ForecastCategoryName__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.ForecastCategoryName__hst</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.NextStep__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.NextStep__hst</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.Probability__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.Probability__hst</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.StageName__hpr</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity__hd.StageName__hst</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34419,11 +33542,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Private_Lane__c.Lane_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Private_Lane__c.Logo_Url__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35048,12 +34166,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Quality_Control__c.Last_Call_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Quality_Control__c.Missed_AGT_Signature__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Quality_Control__c.Missing_Notary__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Quality_Control__c.Next_Follow_Up_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35648,11 +34776,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Release_Survey__c.Released_on_Behalf_of__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Release_Survey__c.Requests_Inquiries__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -35848,11 +34971,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ResourceAbsence.End_Time_in_resource_s_time_zone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ResourceAbsence.FSL__Approved__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -35908,27 +35026,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ResourceAbsence.FSL__Last_Updated_Epoch__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ResourceAbsence.FSL__Scheduling_Policy_Used__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ResourceAbsence.Start_Time_in_resource_s_time_zone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ResourceAbsence.Verify_Timezone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Retention_Ignition__c.AccountType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Retention_Ignition__c.Account_Activity_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -36633,6 +35741,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Salesforce_Request__c.Unwind_Reason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Salesforce_Request__c.Unwind_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Salesforce_Request__c.Urgency__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -36728,11 +35846,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ServiceAppointment.ACV_Anywhere_or_FBI__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ServiceAppointment.AO_Dynamic_Priority__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -36783,11 +35896,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ServiceAppointment.Allow_Change_From_Flow__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ServiceAppointment.Allow_VCI_Status_Change__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -36819,11 +35927,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ServiceAppointment.BundlePolicyId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ServiceAppointment.Bundled__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -36883,11 +35986,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ServiceAppointment.Dealership_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ServiceAppointment.Delinquent_Assignment__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -36909,6 +36007,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ServiceAppointment.Driving_Directions__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ServiceAppointment.Dry_Run_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37013,6 +36116,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ServiceAppointment.FSL__Last_Updated_Epoch__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ServiceAppointment.FSL__MDS_Calculated_length__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -37098,11 +36206,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ServiceAppointment.Inspection_Notes__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ServiceAppointment.IsBundle</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -37124,11 +36227,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ServiceAppointment.Is_Beta__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ServiceAppointment.Live_Appraisal_Event__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37207,11 +36305,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>ServiceAppointment.Standard_Inspection__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>ServiceAppointment.StatusCategory</field>
         <readable>true</readable>
@@ -37259,11 +36352,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ServiceAppointment.Work_Type_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ServiceAppointment.Work_Type_Unique_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37558,12 +36646,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Service_Appt_Date_Range_by_Work_Type__mdt.Only_Use_Business_Days__c</field>
+        <field>Shift.BackgroundColor</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Shift.BackgroundColor</field>
+        <field>Shift.IsHolidayShift</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -38045,56 +37133,6 @@
         <editable>true</editable>
         <field>Solution.SolutionNote</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Debug_Fine__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Debug_Finer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Debug__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Error__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Fatal__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Info__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_Log_Level_Warn__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_System_Debug_Fine__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_System_Debug_Finer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Splunk_Logging__mdt.Enable_System_Debug__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -38698,21 +37736,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Timeline__c.City__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Timeline__c.Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Timeline__c.Deactivated_by_Halt_True360_Checkbox__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Timeline__c.End_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -38729,11 +37752,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Timeline__c.Modified_Since_Last_Batch__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Timeline__c.Postal_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -38763,37 +37781,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Timeline__c.State__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Timeline__c.Street__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Timeline__c.User__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title_Review_Document__c.Document_URI__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title_Review_Document__c.User_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title_Review__c.ACV_Titles_External_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title_Review__c.Commit_Pending__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -38829,46 +37817,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Title_Update__e.tracking_number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Buyer_Organization_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Buyer_User_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Case__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Legacy_Auction_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Seller_Organization_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Seller_User_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.Title_Id_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Title__c.VIN__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -39287,14 +38235,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>TravelMode.CanUseTollRoads</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>TravelMode.IsTransportingHazmat</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -39619,11 +38567,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.maps__Version__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Vehicle__c.ACV_inop__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -40063,11 +39006,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>WorkOrder.Auditor_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>WorkOrder.Beta_Flag__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -40169,11 +39107,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WorkOrder.FSL__VisitingHours__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>WorkOrder.Final_Audit_Score__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -40342,11 +39275,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>WorkOrder.Scoring_Logic_Summary__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>WorkOrder.ServiceAppointmentCount</field>
         <readable>true</readable>
@@ -40423,7 +39351,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WorkOrder.WOLI_Completed_Record_Count__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WorkOrder.WOLI_Completed_Status_Category_Cnt__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WorkOrder.WOLI_Record_Count__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -40478,17 +39416,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>WorkOrderLineItem.Cloned_for_Grouping__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>WorkOrderLineItem.Color__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>WorkOrderLineItem.Completed_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -40839,11 +39767,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WorkOrderLineItem.Sale_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>WorkOrderLineItem.Scoring_Logic__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -43478,11 +42401,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>geopointe__GP_Assignment_Plan__c.geopointe__Territory_Plan_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>geopointe__GP_Calendar_Object_Location__c.geopointe__Map_Object_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -44104,31 +43022,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>geopointe__GP_Object_Mapping__c.geopointe__Sfdc_Object__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>geopointe__GP_Resource_View_Group_Member__c.geopointe__Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>geopointe__GP_Resource_View_Group_Member__c.geopointe__User__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>geopointe__GP_Resource_View_Group__c.geopointe__Color__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>geopointe__GP_Resource_View_Group__c.geopointe__Date_Added__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>geopointe__GP_Resource_View_Group__c.geopointe__Last_Modified_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -45368,11 +44261,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>geopointe__Shape__c.geopointe__Territory_Plan_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>geopointe__Shape__c.geopointe__Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -45584,1271 +44472,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>geopointe__User_Usage__c.geopointe__User__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Attendee_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Attendee_Last_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Company__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Mobile__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__Title__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__User_Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Attendee__c.jiffle__User_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Briefing_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Briefing_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Start_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Acc_Opp_Relations__c.jiffle__Unique_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Activity_Master__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Activity_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Activity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Additional_Info__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Briefing__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Activity__c.jiffle__Topic__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Address__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Breifing_Center_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Briefing_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Display_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__End_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Location_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Location_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Start_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Center__c.jiffle__Timezone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee_Email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee_Last_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Attendee__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Briefing_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Company__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Contact_Sync__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Contact_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Is_Meeting_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing_Invites__c.jiffle__Unique_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Additional_Info__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_Center__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_Room__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Briefing_With__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Duration__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__End_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__JN_Custom_fields__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Request_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Start_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Vcon_Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Vcon_Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Briefing__c.jiffle__Vcon_Links__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Consecutive_Meeting_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Consecutive_Meeting_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__From_Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Consecutive_Meeting__c.jiffle__Request_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event_Master__c.jiffle__Activity_Master_Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event_Master__c.jiffle__Event_Master_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event_Master__c.jiffle__Region_Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event_Master__c.jiffle__Topic_Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_End_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_Start_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Event_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Meeting_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Nomination_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Survey_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Event__c.jiffle__Virtual_Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Check_in__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Company_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__End_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Engagement_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__From_Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__JN_Session_Information__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Jifflenow_Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Registration_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Requestor_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Session_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Start_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Group_Registration__c.jiffle__Time_Zone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Attendee_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Attendee_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Checkin__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Company__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Contact_Sync__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Contact_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Is_Meeting_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Meeting_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Meeting_Objective__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Meeting_Relations__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Meeting_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Partial_End_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Partial_Start_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Primary_Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Unique_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__Waitlist_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Invites__c.jiffle__custom_mapped_fields__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Acc_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Batch_User_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Contact_Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Enable_pulling_Jifflenow_data__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Event_Sync_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNAccess_Token__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNAdmin_Test_email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNClient_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNClient_Secret__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNCryptoKey__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNEndpoint_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNRedirect_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNRefresh_Token__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNUser_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__JNoAuthEndpoint_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Notification_eMail__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__Using_Named_Credentials__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNConfig__c.jiffle__View_all_Cons__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNErrorLog__c.jiffle__Error_Message__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__JNErrorLog__c.jiffle__Stack_Trace__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Enabled__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__FieldAPIName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Field_API_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Field_Label__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Field_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Mapping_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Mapping_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Mapping__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__ObjAPIName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Object_API_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Object_Label__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Organization_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Organization_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Pick_values_from_SFDC__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__QueryFieldAPIName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__QueryObjAPIName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Related_to_Object__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Mapping__c.jiffle__Unique_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Lead_Contact_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Meeting_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Meeting_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Request_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting_Relations__c.jiffle__Unique_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Additional_Info__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Alternate_Host__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Briefing_Center__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Checkin__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Consecutive_Meeting__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Duration__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__End_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__From_Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__JN_Custom_fields__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__MeetingRequestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_Master__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_Time_Zone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Meeting_with__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Request_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Session_Abstract__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Session_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Session_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Session_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Start_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Topic_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Topic_of_Interest__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Track_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Track__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Vcon_Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Vcon_Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Meeting__c.jiffle__Vcon_Links__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Attended__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Attendee__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Contact_Sync__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Event__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Group_Registration__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Is_Session_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Lead__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Nomination_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Registrant_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Registrant_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Registration_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Session_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Session_Requestor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Session_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__Unique_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Registration__c.jiffle__User_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Attendee_count__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__End_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Engagement_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Event_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Nomination_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Registration_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Requestor_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_Abstract__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_Time_Zone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Session_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Start_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Topic_of_Interest__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Track_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Session__c.jiffle__Track__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Attendee_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Attendee_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Attendee_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Event_Location_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Event_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Event_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Invites__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Meeting_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Opportunity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__Survey_UUID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>jiffle__Survey__c.jiffle__UUID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -51718,6 +49341,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmissionDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmittedBy__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>maps__TPAlignment__c.maps__Config__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -51839,6 +49472,31 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>maps__TPHistory__c.maps__Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__AccountAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__AccountTeamRole__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__CaseAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__OpportunityAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__TerritoryTeamRole__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -52457,6 +50115,12 @@
         <layout>Appointment_Offer__c-Appointment Offer Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ApptBundleConfig-Appointment Bundle Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ApptBundlePolicy-Appointment Bundle Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Arbitration_Claim__mdt-Arbitration Claim CheckBox Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52726,9 +50390,6 @@
         <layout>Dealer_Setting__c-Dealer Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Dealership_Note__c-Dealership Note Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>DelegatedAccount-External Managed Account Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52791,9 +50452,6 @@
         <recordType>Event.True360</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Evidence__c-Evidence Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Exception__c-Certificate of Insurance</layout>
         <recordType>Exception__c.Certificate_of_Insurance</recordType>
     </layoutAssignments>
@@ -52835,9 +50493,6 @@
         <layout>FSL_Groupable_WorkTypes__mdt-FSL Groupable WorkTypes Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FSL_Import_Manager_Special_Instructions__mdt-FSL Import Manager Special Instructions Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FSL_Priority_Engine_Rule__mdt-FSL Priority Engine Rule Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52850,20 +50505,11 @@
         <layout>FSL_Skip_Day__mdt-FSL Skip Day Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FSL_Special_Gantt_Color_Setting__mdt-FSL Special Gantt Color Setting Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FSL_Work_Type_Arrival_Window__mdt-FSL Work Type Arrival Window Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FSL_Work_Type_Data__mdt-FSL Time Range Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FSL__Service_Goal__c-Custom Objective</layout>
         <recordType>FSL__Service_Goal__c.FSL__Objective_Custom_Logic</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Fast_Pass_Experian_Credential__mdt-Fast Pass Experian Credential Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Fee__c-Fee Layout</layout>
@@ -52907,9 +50553,6 @@
         <layout>Hourly_Limit_Log__c-Hourly Limit Log Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Image_URL__mdt-Image URL Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Import_Manager_Job__c-Import Manager Job Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52939,9 +50582,6 @@
         <layout>Integration_User_Name__mdt-Integration User Names Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Internal_Delivery__c-Internal Delivery Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Inventory_Life_Cycle__c-Inventory Life Cycle Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52956,6 +50596,10 @@
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
         <recordType>Lead.ACV_Capital</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+        <recordType>Lead.Capital</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
@@ -52976,13 +50620,6 @@
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
         <recordType>Lead.True360</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Lead-Lead Layout</layout>
-        <recordType>Lead.xCapital</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Lead_Status_History__c-Lead Status History Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Limit__c-Limit Layout</layout>
@@ -53019,6 +50656,9 @@
     <layoutAssignments>
         <layout>Onboarding__c-Onboarding V%2E2 Layout</layout>
         <recordType>Onboarding__c.Fleet_Lease</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OperatingHoursHoliday-Operating Hours Holiday Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
@@ -53281,7 +50921,7 @@
         <recordType>Salesforce_Request__c.Salesforce_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Salesforce_Request__c-Transport Payments</layout>
+        <layout>Salesforce_Request__c-Transportation Request</layout>
         <recordType>Salesforce_Request__c.Transport_Payments</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -53343,9 +50983,6 @@
         <layout>ServiceTerritoryMember-Service Territory Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Service_Appt_Date_Range_by_Work_Type__mdt-Service Appt Date Range by Work Type Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>SessionHijackingEventStore-Session Hijacking Event Store Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53382,9 +51019,6 @@
         <layout>Solution-Solution Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Splunk_Logging__mdt-Splunk Logging Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>State_Due_Date__mdt-State Due Date Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53392,14 +51026,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>TSE_Request__c-TSE Request Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-ACV Capital Task Layout</layout>
-        <recordType>Task.ACV_Capital_Task</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Expiring Dealer Documents Email Tracking</layout>
-        <recordType>Task.Expiring_Dealer_Documents_Email_Tracking</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-Inside Sales Layout</layout>
@@ -53411,6 +51037,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.ACV_Capital_Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-Task Layout</layout>
@@ -53454,23 +51084,6 @@
         <layout>Timeline__c-Timeline Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Title_Review_Document__c-Title Review Document Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Title_Review__c-Title Review Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Title__c-Title Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Title__c-Title Layout</layout>
-        <recordType>Title__c.Digital_Title</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Title__c-Title Layout</layout>
-        <recordType>Title__c.Physical_Title</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Transaction__c-Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53487,6 +51100,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Transportation_Email_Address__mdt-Transportation Email Address Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TravelMode-Travel Mode Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TriggerHandler__mdt-TriggerHandler Layout</layout>
@@ -54810,114 +52426,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>jiffle__JNBookMeeting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNBriefings</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNCMBookMeeting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNCMViewMeeting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNConsent</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNEbcBookMeeting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNEvents</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNGlobals</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNLogsAttachment</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMappingList</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMappingList_LEX</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMappings</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMappingsHelp</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMappings_LEX</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNMeetings</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNNewBriefings</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNNominationView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNNominations</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNNominationsList</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNOAuth</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNOAuthBatch</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNOAuthBatchHelp</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNOAuthHelp</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNOauth_LEX</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNSessions</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNValidateLeads</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>jiffle__JNViewMeeting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>maps__AccountPageLayoutNearby</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -54946,7 +52454,15 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>maps__AlignmentBuilder</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>maps__AlignmentComparison</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__AlignmentRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -54983,6 +52499,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>maps__CustomDispositionForm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__DataSetRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -55058,6 +52578,14 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>maps__NewAlignmentRedirect</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__NewDataSetRedirect</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>maps__Oops</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -55119,10 +52647,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>trailheadapp__Unassign_Users</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>updateVehicleCountFromGantt</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
@@ -55427,6 +52951,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>FSL__Work_Rule_Entry__c.FSL__Gap_Rule_Service</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>FSL__Work_Rule__c.FSL__Count_Rule</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -55523,6 +53052,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Lead.ACV_Capital</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Lead.Capital</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -55701,11 +53235,6 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Task.Expiring_Dealer_Documents_Email_Tracking</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <default>false</default>
         <recordType>Task.Inside_Sales</recordType>
         <visible>false</visible>
@@ -55734,31 +53263,6 @@
         <default>false</default>
         <recordType>Task.Transportation</recordType>
         <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Title__c.Digital_Title</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Title__c.Physical_Title</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>jiffle__Event_Master__c.jiffle__Activity_Master</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>jiffle__Event_Master__c.jiffle__Region</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>jiffle__Event_Master__c.jiffle__Topic</recordType>
-        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -56246,74 +53750,6 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>jiffle__Attendee__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Briefing__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Consecutive_Meeting__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Event__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Group_Registration__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__JNConfig__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__JNErrorLog__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Jifflenow_Configuration</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Jifflenow_Configuration_Lightning</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Jifflenow_Mappings</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Jifflenow_Mappings_Lightning</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Jifflenow_Meetings</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Mapping__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Meeting__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Registration__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Session__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>jiffle__Survey__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>maps__AdvRoute</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -56564,10 +54000,6 @@
     <tabVisibilities>
         <tab>standard-Order</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>standard-OrgMetric</tab>
-        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-OtherUserProfile</tab>

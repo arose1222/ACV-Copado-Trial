@@ -12,7 +12,7 @@ public class RequestInspectionCleanupBatchTest {
 
         List<WorkOrder> workOrderList = new List<WorkOrder>();
 
-        for(WorkType workType : [SELECT Id FROM WorkType WHERE Work_Type_Unique_ID__c = 'inspection' OR Work_Type_Unique_ID__c = 'true360' OR Work_Type_Unique_ID__c = 'siriusxm' OR Work_Type_Unique_ID__c = 'buyer signup']) {
+        for(WorkType workType : [SELECT Id FROM WorkType WHERE Work_Type_Unique_ID__c = 'inspection' OR Work_Type_Unique_ID__c = 'true360' OR Work_Type_Unique_ID__c = 'siriusxm' OR Work_Type_Unique_ID__c = 'buyersignup']) {
             WorkOrder workOrder = new WorkOrder(
                 AccountId = acc.Id,
                 WorkTypeId = workType.Id,
@@ -42,7 +42,7 @@ public class RequestInspectionCleanupBatchTest {
 
         List<WorkOrder> updatedWOList = [SELECT Id, WorkType.Work_Type_Unique_ID__c FROM WorkOrder];
         system.assert(updatedWOList.size() == 1, 'Expected 1 work order, actual = ' + updatedWOList.size());
-        system.assert(updatedWOList[0].WorkType.Work_Type_Unique_ID__c == 'buyer signup', 'Expected buyer signup, actual = ' + updatedWOList[0].WorkType.Work_Type_Unique_ID__c);
+        system.assert(updatedWOList[0].WorkType.Work_Type_Unique_ID__c == 'buyersignup', 'Expected buyersignup, actual = ' + updatedWOList[0].WorkType.Work_Type_Unique_ID__c);
     }
 
     @isTest

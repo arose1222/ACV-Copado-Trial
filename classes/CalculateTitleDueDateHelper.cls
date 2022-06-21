@@ -6,7 +6,6 @@
  * @date 05/10/2021
  * 
  * @history 06/09/2021 Manmeet Vaseer - Added logic to handle Legal vs Billing state.
- * 			01/08/2022 Manmeet Vaseer - Use Case.CreatedDate instead of Case.Auction_End__c date for the Due Date calculations (https://acvauctions.atlassian.net/browse/TDO-692).
  * 
  */
 public class CalculateTitleDueDateHelper {
@@ -21,7 +20,7 @@ public class CalculateTitleDueDateHelper {
      * @param c Case that will be updated with the Title Due Date.
      * 
      */
-    public static void setTitleDueDate(String sellerStateNew, Case c, Datetime caseCreatedDate)	{
+    public static void setTitleDueDate(String sellerStateNew, Case c)	{
         //Fetching the custom metadata and storing it in map with key as state and value as metadata record
         List<State_Due_Date__mdt> stateDueDateList = [SELECT Id,Title_Attached_If_False__c,Title_Attached_If_True__c,ABBREVIATION__c FROM State_Due_Date__mdt];
         Map<String,State_Due_Date__mdt> stateDueDateMap = new Map<String,State_Due_Date__mdt>();
@@ -32,15 +31,13 @@ public class CalculateTitleDueDateHelper {
         if(c.Title_Attached__c == false){
             if(stateDueDateMap.containsKey(sellerStateNew) && stateDueDateMap.get(sellerStateNew).Title_Attached_If_False__c != null){
                 Integer days = (Integer)stateDueDateMap.get(sellerStateNew).Title_Attached_If_False__c -1; 
-                Datetime dt = caseCreatedDate.addDays(days);
-                c.Title_Due_Date__c = dt; 
+                c.Title_Due_Date__c = c.Auction_End__c.addDays(days);
                 cases.add(c);
             }
             else{
                 if(stateDueDateMap.get('Default').Title_Attached_If_False__c!=null){
                     Integer days = (Integer)stateDueDateMap.get('Default').Title_Attached_If_False__c -1; 
-                    Datetime dt = caseCreatedDate.addDays(days);
-                    c.Title_Due_Date__c = dt;
+                    c.Title_Due_Date__c = c.Auction_End__c.addDays(days); 
                 	cases.add(c);
                 }
             } 
@@ -48,15 +45,13 @@ public class CalculateTitleDueDateHelper {
         else if(c.Title_Attached__c == true){
             if(stateDueDateMap.containsKey(sellerStateNew) && stateDueDateMap.get(sellerStateNew).Title_Attached_If_True__c != null){
                 Integer days =(Integer)stateDueDateMap.get(sellerStateNew).Title_Attached_If_True__c -1;                   
-                Datetime dt = caseCreatedDate.addDays(days);
-                c.Title_Due_Date__c = dt;
+                c.Title_Due_Date__c = c.Auction_End__c.addDays(days);
                 cases.add(c);
             }
             else{
                 if(stateDueDateMap.get('Default').Title_Attached_If_True__c!=null){
                     Integer days = (Integer)stateDueDateMap.get('Default').Title_Attached_If_True__c -1; 
-                    Datetime dt = caseCreatedDate.addDays(days);
-                    c.Title_Due_Date__c = dt;
+                    c.Title_Due_Date__c = c.Auction_End__c.addDays(days);  
                 	cases.add(c);
                 }
             } 
@@ -89,13 +84,13 @@ public class CalculateTitleDueDateHelper {
     /**
      * @description Create a map of Account Id and Legal/Billing State for the specified Cases.
      * 
-     * @param caseList A list of Cases for which associated Account will be used to create the map.
+     * @param cases A list of Cases for which associated Account will be used to create the map.
      * 
      * @retrun A map of Id & Account (that has Legal & Billing state info).
      */
-    public static Map<Id, Account> getAccountsFor(List<Case> caseList)	{
+    public static Map<Id, Account> getAccountsFor(List<Case> cases)	{
 		Set<Id> accountIds = new Set<Id>();
-        for (Case c : caseList) {
+        for (Case c : cases) {
             if (c.Seller_Dealership__c != null) {
                 accountIds.add(c.Seller_Dealership__c);
             }

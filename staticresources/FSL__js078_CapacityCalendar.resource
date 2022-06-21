@@ -458,7 +458,7 @@ function deleteCapacities(capacityIds) {
                 }
             } else if (event.type === 'exception') {
                 console.log(event.message);
-                alert(customLabels.Delete_capacity_failed);
+                alert(event.message);
             }
         }
     );

@@ -13,11 +13,6 @@
         <name>FSL__Resource_Absence_Resource_Calendar</name>
     </fieldSets>
     <fields>
-        <help><!-- The End Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time). --></help>
-        <label><!-- End Time (in resource&apos;s time zone) --></label>
-        <name>End_Time_in_resource_s_time_zone__c</name>
-    </fields>
-    <fields>
         <label><!-- Approved --></label>
         <name>FSL__Approved__c</name>
     </fields>
@@ -94,19 +89,13 @@
         <name>FSL__InternalSLRGeolocation__c</name>
     </fields>
     <fields>
+        <label><!-- Last Updated Epoch --></label>
+        <name>FSL__Last_Updated_Epoch__c</name>
+    </fields>
+    <fields>
         <label><!-- Scheduling Policy Used --></label>
         <name>FSL__Scheduling_Policy_Used__c</name>
         <relationshipLabel><!-- Resource Absences --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The Start Time for the Resource Absence in the time zone of the Service Resource (not converted to EST Time). --></help>
-        <label><!-- Start Time (in resource&apos;s time zone) --></label>
-        <name>Start_Time_in_resource_s_time_zone__c</name>
-    </fields>
-    <fields>
-        <help><!-- If set to true, we will need to calculate proper start/end times for the Service Resources time zone. --></help>
-        <label><!-- Verify Timezone --></label>
-        <name>Verify_Timezone__c</name>
     </fields>
     <recordTypes>
         <label><!-- Break --></label>
