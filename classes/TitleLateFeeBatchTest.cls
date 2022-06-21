@@ -5,11 +5,19 @@
  * @author Manmeet Vaseer
  * @date 08/02/2021
  * 
+ * @history
+ * 		04/21/2022 Manmeet Vaseer - https://acvauctions.atlassian.net/browse/TDO-828.
+ * 		06/08/2022 Manmeet Vaseer - https://acvauctions.atlassian.net/browse/TDO-935. Populate various emails from Case to Assigned Fee (when recrod is created).
+ * 
  */
 @IsTest(SeeAllData=false) 
 public class TitleLateFeeBatchTest {
+    
+    /**
+     * We want to calculate Late Fee one day after the Title Due Date (https://acvauctions.atlassian.net/browse/TDO-828).
+     */
     @isTest
-    static void testBatchSingleAccountSingleCase()	{
+    static void testGracePeriodOfOneDay()	{
         TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>(); // disable all triggers
         
         Fee__c aFee = new Fee__c(Name = 'Title Late Fee', Default_Amount__c=25, Max_Allowable_Fees__c=250, Type__c='Seller Fee');
@@ -42,7 +50,7 @@ public class TitleLateFeeBatchTest {
         newTitleCase.Title_Received_Date__c = null;        
         insert newTitleCase;
         
-        newTitleCase.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase.Title_Due_Date__c = System.now().addDays(-1); // Title is late by a day but one day is grace period so there should be no Late Fee.
         update newTitleCase;        
 
 		// Run the Batch - Create a new Assigned Fee record       
@@ -53,11 +61,72 @@ public class TitleLateFeeBatchTest {
         
         Id titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get('Title_Late_Fee').getRecordTypeId();
         List<Assigned_Fee__c> assignedFees = [SELECT Id, Total_Billable_Amount__c, Potential_Billable_Amount__c, Case__c, Account__c, Fee__c, Fee_Status__c, RecordTypeId FROM Assigned_Fee__c];
+        System.assertEquals(0, assignedFees.size(), 'There should be no Assigned Fee record.');
+    }
+    
+    @isTest
+    static void testBatchSingleAccountSingleCase()	{
+        TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>(); // disable all triggers
+        
+        Fee__c aFee = new Fee__c(Name = 'Title Late Fee', Default_Amount__c=25, Max_Allowable_Fees__c=250, Type__c='Seller Fee');
+        
+        String acctUniqueName = 'TLFBatchTest';        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer'); 
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+		newSellerAcct.Late_Title_Fee_Eligible__c = true;
+        newSellerAcct.Late_Title_Fee_Start_Date__c = System.today().addDays(-5); // 5 days ago
+        newSellerAcct.Unpaid_Title_Late_Fee__c = false;
+
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        newContact.Email = 'SellerContactEmail@email.com';
+        
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {aFee, newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        newSellerAcct.Primary_Contact__c = newContact.Id;
+        update newSellerAcct;
+            
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;    
+        newAuction.Payment_Status__c = 'Paid';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'New';
+        newTitleCase.Title_Received_Date__c = null;
+        //newTitleCase.Seller_Contact_Email__c = 'contact@email.com'; // Case's Selling dealers primary contact. It is set in Seller Contact.
+        //newTitleCase.Seller_TM_Email__c = 'sellertm@email.com'; // Should be the Selling dealerships account owner email. It is set automatically.
+        newTitleCase.Seller_Title_Clerk_Email__c = 'titleclerk@email.com';
+            
+        insert newTitleCase;
+       
+        newTitleCase.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
+        update newTitleCase;        
+
+		// Run the Batch - Create a new Assigned Fee record       
+        Test.startTest();
+        TitleLateFeeBatch acBatch = new TitleLateFeeBatch();
+        Database.executebatch(acBatch);
+        Test.stopTest();        
+        
+        Id titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get('Title_Late_Fee').getRecordTypeId();
+        List<Assigned_Fee__c> assignedFees = [SELECT Id, Total_Billable_Amount__c, Potential_Billable_Amount__c, Case__c, Account__c, Fee__c, Fee_Status__c, RecordTypeId, Seller_Contact_Email__c, Seller_Territory_Manager_Email__c, Seller_Title_Clerk_Email__c  FROM Assigned_Fee__c];
         System.assertEquals(1, assignedFees.size(), 'There should be one Assigned Fee record.');
         System.assertEquals('Fee Pending', assignedFees[0].Fee_Status__c, 'Assigned Fee record Fee Status should be Fee Pending.');
         System.assertEquals(titleLateFeeRecordTypeId, assignedFees[0].RecordTypeId, 'Assigned Fee Record Type should be Title_Late_Fee.');
         System.assertEquals(aFee.Default_Amount__c, assignedFees[0].Total_Billable_Amount__c, 'Assigned Fee should have 25 for Total Billable Amount..');
         System.assertEquals(aFee.Default_Amount__c, assignedFees[0].Potential_Billable_Amount__c, 'Assigned Fee should have 25 for Potential Billable Amount..');
+    
+        //System.assertEquals(newContact.Email, assignedFees[0].Seller_Contact_Email__c, 'Seller_Contact_Email__c');
+        //System.assertNotEquals(null, assignedFees[0].Seller_Territory_Manager_Email__c, 'Seller_Territory_Manager_Email__c');
+        System.assertEquals(newTitleCase.Seller_Title_Clerk_Email__c, assignedFees[0].Seller_Title_Clerk_Email__c, 'Seller_Title_Clerk_Email__c');
         
         List<Account> theAccount = [SELECT Total_Billable_Amount__c, Potential_Billable_Amount__c, Unpaid_Title_Late_Fee__c FROM Account WHERE Id = :assignedFees[0].Account__c];
         System.assertEquals(1, theAccount.size(), 'There should be one Account record.');
@@ -141,7 +210,7 @@ public class TitleLateFeeBatchTest {
         newTitleCase.Title_Received_Date__c = null;        
         insert newTitleCase;
         
-        newTitleCase.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase;        
 
         List<Case> cases = [SELECT Id, Seller_Dealership__c FROM Case];
@@ -151,7 +220,9 @@ public class TitleLateFeeBatchTest {
         Id titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get('Title_Late_Fee').getRecordTypeId();
         Assigned_Fee__c newAssignedFee = new Assigned_Fee__c(Case__c=newTitleCase.Id, Account__c=newTitleCase.Seller_Dealership__c, Override_Amount__c=aFee.Default_Amount__c,
                                                              Fee__c=aFee.Id, Fee_Status__c='Fee Pending', RecordTypeId=titleLateFeeRecordTypeId,
-                                                             Total_Billable_Amount__c=225, Potential_Billable_Amount__c=225);
+                                                             Total_Billable_Amount__c=225, Potential_Billable_Amount__c=225,
+                                                             Seller_Contact_Email__c='Seller_Contact_Email__c@email.com', Seller_Territory_Manager_Email__c='Seller_TM_Email__c@email.com',
+                                                             Seller_Title_Clerk_Email__c='Seller_Title_Clerk_Email__c@email.com');
         insert newAssignedFee;
         
 		// Run the Batch - Create a new Assigned Fee record       
@@ -254,7 +325,7 @@ public class TitleLateFeeBatchTest {
         newTitleCase.Title_Received_Date__c = null;        
         insert newTitleCase;
         
-        newTitleCase.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase;        
 
         List<Case> cases = [SELECT Id, Seller_Dealership__c FROM Case];
@@ -268,18 +339,22 @@ public class TitleLateFeeBatchTest {
         newTitleCase2.Title_Received_Date__c = null;        
         insert newTitleCase2;
         
-        newTitleCase2.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase2.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase2;        
         
         Id titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get('Title_Late_Fee').getRecordTypeId();
         Assigned_Fee__c newAssignedFee = new Assigned_Fee__c(Case__c=newTitleCase.Id, Account__c=newTitleCase.Seller_Dealership__c, Override_Amount__c=aFee.Default_Amount__c,
                                                              Fee__c=aFee.Id, Fee_Status__c='Fee Pending', RecordTypeId=titleLateFeeRecordTypeId,
-                                                             Total_Billable_Amount__c=200, Potential_Billable_Amount__c=200);
+                                                             Total_Billable_Amount__c=200, Potential_Billable_Amount__c=200,
+                                                             Seller_Contact_Email__c='Seller_Contact_Email__c@email.com', Seller_Territory_Manager_Email__c='Seller_TM_Email__c@email.com',
+                                                             Seller_Title_Clerk_Email__c='Seller_Title_Clerk_Email__c@email.com');
         insert newAssignedFee;
 
         Assigned_Fee__c newAssignedFee2 = new Assigned_Fee__c(Case__c=newTitleCase2.Id, Account__c=newTitleCase2.Seller_Dealership__c, Override_Amount__c=aFee.Default_Amount__c,
                                                              Fee__c=aFee.Id, Fee_Status__c='Fee Pending', RecordTypeId=titleLateFeeRecordTypeId,
-                                                             Total_Billable_Amount__c=25, Potential_Billable_Amount__c=25);
+                                                             Total_Billable_Amount__c=25, Potential_Billable_Amount__c=25,
+                                                             Seller_Contact_Email__c='Seller_Contact_Email__c@email.com', Seller_Territory_Manager_Email__c='Seller_TM_Email__c@email.com',
+                                                             Seller_Title_Clerk_Email__c='Seller_Title_Clerk_Email__c@email.com');
         insert newAssignedFee2;
         
 		// Run the Batch - Create a new Assigned Fee record       
@@ -417,13 +492,23 @@ public class TitleLateFeeBatchTest {
         newSellerAcct2.Unpaid_Title_Late_Fee__c = false;
         
         Contact newContact = TestUtility.createContact(newSellerAcct);
+        newContact.Email = 'SellerContactEmail@email.com';
+        
         Vehicle__c newVehicle = TestUtility.createVehicle();
 
         Contact newContact2 = TestUtility.createContact(newSellerAcct2);
+        newContact.Email = 'SellerContactEmail2@email.com';
+        
         Vehicle__c newVehicle2 = TestUtility.createVehicle();
         
         SObject[] newObjs = new SObject[] {aFee, newBuyerAcct, newSellerAcct, newContact, newVehicle, newSellerAcct2, newContact2, newVehicle2};
         insert newObjs;
+        
+        newSellerAcct.Primary_Contact__c = newContact.Id;
+        update newSellerAcct;
+
+        newSellerAcct2.Primary_Contact__c = newContact2.Id;
+        update newSellerAcct;
         
         Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
         newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
@@ -446,9 +531,10 @@ public class TitleLateFeeBatchTest {
         newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
         newTitleCase.Status = 'New';
         newTitleCase.Title_Received_Date__c = null;        
+        newTitleCase.Seller_Title_Clerk_Email__c = 'titleclerk@email.com';
         insert newTitleCase;
         
-        newTitleCase.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase;        
 
 		Case newTitleCase2 = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
@@ -456,9 +542,10 @@ public class TitleLateFeeBatchTest {
         newTitleCase2.Seller_Dealership__c = newSellerAcct.Id;
         newTitleCase2.Status = 'New';
         newTitleCase2.Title_Received_Date__c = null;        
+        newTitleCase2.Seller_Title_Clerk_Email__c = 'titleclerk2@email.com';
         insert newTitleCase2;
         
-        newTitleCase2.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase2.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase2;        
 
 		Case newTitleCase3 = TestUtility.createTitleCase(newAuction2, newBuyerAcct, newContact2);
@@ -466,9 +553,10 @@ public class TitleLateFeeBatchTest {
         newTitleCase3.Seller_Dealership__c = newSellerAcct2.Id;
         newTitleCase3.Status = 'New';
         newTitleCase3.Title_Received_Date__c = null;        
+        newTitleCase3.Seller_Title_Clerk_Email__c = 'titleclerk3@email.com';
         insert newTitleCase3;
         
-        newTitleCase3.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase3.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase3;        
 
 		Case newTitleCase4 = TestUtility.createTitleCase(newAuction2, newBuyerAcct, newContact2);
@@ -476,9 +564,10 @@ public class TitleLateFeeBatchTest {
         newTitleCase4.Seller_Dealership__c = newSellerAcct2.Id;
         newTitleCase4.Status = 'New';
         newTitleCase4.Title_Received_Date__c = null;        
+        newTitleCase4.Seller_Title_Clerk_Email__c = 'titleclerk4@email.com';
         insert newTitleCase4;
         
-        newTitleCase4.Title_Due_Date__c = System.today().addDays(-1); // Title is late by a day
+        newTitleCase4.Title_Due_Date__c = System.now().addDays(-2); // Title is late by a day
         update newTitleCase4;        
         
         Id titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get('Title_Late_Fee').getRecordTypeId();

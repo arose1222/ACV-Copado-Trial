@@ -83,7 +83,7 @@ public with sharing class liveAppraisalController {
                         ServiceTerritoryId = stId,
                         Origin__c = origin,
                         StartDate = earliestStart,
-                        Special_Instructions__c = 'Live Appraisal Event',
+                        Special_Instructions_for_VCI__c = 'Live Appraisal Event',
                         WorkTypeId = WHOLESALE_INSPECTION,
                         City = city,
                         Street = street,

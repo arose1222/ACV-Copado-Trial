@@ -148,6 +148,76 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Address_Subtype__c</fullName>
+        <externalId>false</externalId>
+        <label>Address Subtype</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Type</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>holding_lot</fullName>
+                    <default>false</default>
+                    <label>Holding Lot</label>
+                </value>
+                <value>
+                    <fullName>residential</fullName>
+                    <default>false</default>
+                    <label>Residential</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>delivery</controllingFieldValue>
+                <controllingFieldValue>pickup</controllingFieldValue>
+                <valueName>holding_lot</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>delivery</controllingFieldValue>
+                <controllingFieldValue>pickup</controllingFieldValue>
+                <valueName>residential</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>After_hour_deliveries_allowed__c</fullName>
+        <externalId>false</externalId>
+        <label>After hour deliveries allowed?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Type</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>billing</controllingFieldValue>
+                <controllingFieldValue>delivery</controllingFieldValue>
+                <valueName>Yes</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>billing</controllingFieldValue>
+                <controllingFieldValue>delivery</controllingFieldValue>
+                <valueName>No</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Alternate_Address_Name__c</fullName>
         <description>Provides an alternative Address name for the associated location</description>
         <externalId>false</externalId>
@@ -220,6 +290,112 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Monday_Friday_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Monday Friday End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+                <value>
+                    <fullName>1:00 PM</fullName>
+                    <default>false</default>
+                    <label>1:00 PM</label>
+                </value>
+                <value>
+                    <fullName>2:00 PM</fullName>
+                    <default>false</default>
+                    <label>2:00 PM</label>
+                </value>
+                <value>
+                    <fullName>3:00 PM</fullName>
+                    <default>false</default>
+                    <label>3:00 PM</label>
+                </value>
+                <value>
+                    <fullName>4:00 PM</fullName>
+                    <default>false</default>
+                    <label>4:00 PM</label>
+                </value>
+                <value>
+                    <fullName>5:00 PM</fullName>
+                    <default>false</default>
+                    <label>5:00 PM</label>
+                </value>
+                <value>
+                    <fullName>6:00 PM</fullName>
+                    <default>false</default>
+                    <label>6:00 PM</label>
+                </value>
+                <value>
+                    <fullName>7:00 PM</fullName>
+                    <default>false</default>
+                    <label>7:00 PM</label>
+                </value>
+                <value>
+                    <fullName>8:00 PM</fullName>
+                    <default>false</default>
+                    <label>8:00 PM</label>
+                </value>
+                <value>
+                    <fullName>9:00 PM</fullName>
+                    <default>false</default>
+                    <label>9:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Monday_Friday_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Monday-Friday Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>7:00 AM</fullName>
+                    <default>false</default>
+                    <label>7:00 AM</label>
+                </value>
+                <value>
+                    <fullName>8:00 AM</fullName>
+                    <default>false</default>
+                    <label>8:00 AM</label>
+                </value>
+                <value>
+                    <fullName>9:00 AM</fullName>
+                    <default>false</default>
+                    <label>9:00 AM</label>
+                </value>
+                <value>
+                    <fullName>10:00 AM</fullName>
+                    <default>false</default>
+                    <label>10:00 AM</label>
+                </value>
+                <value>
+                    <fullName>11:00 AM</fullName>
+                    <default>false</default>
+                    <label>11:00 AM</label>
+                </value>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Notes__c</fullName>
         <description>Notes related to the relationship between this Account and the Address association</description>
         <externalId>false</externalId>
@@ -259,6 +435,264 @@
         <type>MasterDetail</type>
     </fields>
     <fields>
+        <fullName>Saturday_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Saturday End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+                <value>
+                    <fullName>1:00 PM</fullName>
+                    <default>false</default>
+                    <label>1:00 PM</label>
+                </value>
+                <value>
+                    <fullName>2:00 PM</fullName>
+                    <default>false</default>
+                    <label>2:00 PM</label>
+                </value>
+                <value>
+                    <fullName>3:00 PM</fullName>
+                    <default>false</default>
+                    <label>3:00 PM</label>
+                </value>
+                <value>
+                    <fullName>4:00 PM</fullName>
+                    <default>false</default>
+                    <label>4:00 PM</label>
+                </value>
+                <value>
+                    <fullName>5:00 PM</fullName>
+                    <default>false</default>
+                    <label>5:00 PM</label>
+                </value>
+                <value>
+                    <fullName>6:00 PM</fullName>
+                    <default>false</default>
+                    <label>6:00 PM</label>
+                </value>
+                <value>
+                    <fullName>7:00 PM</fullName>
+                    <default>false</default>
+                    <label>7:00 PM</label>
+                </value>
+                <value>
+                    <fullName>8:00 PM</fullName>
+                    <default>false</default>
+                    <label>8:00 PM</label>
+                </value>
+                <value>
+                    <fullName>9:00 PM</fullName>
+                    <default>false</default>
+                    <label>9:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Saturday_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Saturday Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>7:00 AM</fullName>
+                    <default>false</default>
+                    <label>7:00 AM</label>
+                </value>
+                <value>
+                    <fullName>8:00 AM</fullName>
+                    <default>false</default>
+                    <label>8:00 AM</label>
+                </value>
+                <value>
+                    <fullName>9:00 AM</fullName>
+                    <default>false</default>
+                    <label>9:00 AM</label>
+                </value>
+                <value>
+                    <fullName>10:00 AM</fullName>
+                    <default>false</default>
+                    <label>10:00 AM</label>
+                </value>
+                <value>
+                    <fullName>11:00 AM</fullName>
+                    <default>false</default>
+                    <label>11:00 AM</label>
+                </value>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sunday_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Sunday End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+                <value>
+                    <fullName>1:00 PM</fullName>
+                    <default>false</default>
+                    <label>1:00 PM</label>
+                </value>
+                <value>
+                    <fullName>2:00 PM</fullName>
+                    <default>false</default>
+                    <label>2:00 PM</label>
+                </value>
+                <value>
+                    <fullName>3:00 PM</fullName>
+                    <default>false</default>
+                    <label>3:00 PM</label>
+                </value>
+                <value>
+                    <fullName>4:00 PM</fullName>
+                    <default>false</default>
+                    <label>4:00 PM</label>
+                </value>
+                <value>
+                    <fullName>5:00 PM</fullName>
+                    <default>false</default>
+                    <label>5:00 PM</label>
+                </value>
+                <value>
+                    <fullName>6:00 PM</fullName>
+                    <default>false</default>
+                    <label>6:00 PM</label>
+                </value>
+                <value>
+                    <fullName>7:00 PM</fullName>
+                    <default>false</default>
+                    <label>7:00 PM</label>
+                </value>
+                <value>
+                    <fullName>8:00 PM</fullName>
+                    <default>false</default>
+                    <label>8:00 PM</label>
+                </value>
+                <value>
+                    <fullName>9:00 PM</fullName>
+                    <default>false</default>
+                    <label>9:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sunday_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Sunday Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>7:00 AM</fullName>
+                    <default>false</default>
+                    <label>7:00 AM</label>
+                </value>
+                <value>
+                    <fullName>8:00 AM</fullName>
+                    <default>false</default>
+                    <label>8:00 AM</label>
+                </value>
+                <value>
+                    <fullName>9:00 AM</fullName>
+                    <default>false</default>
+                    <label>9:00 AM</label>
+                </value>
+                <value>
+                    <fullName>10:00 AM</fullName>
+                    <default>false</default>
+                    <label>10:00 AM</label>
+                </value>
+                <value>
+                    <fullName>11:00 AM</fullName>
+                    <default>false</default>
+                    <label>11:00 AM</label>
+                </value>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TimeZone__c</fullName>
+        <externalId>false</externalId>
+        <label>Timezone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>eastern</fullName>
+                    <default>false</default>
+                    <label>Eastern Time</label>
+                </value>
+                <value>
+                    <fullName>central</fullName>
+                    <default>false</default>
+                    <label>Central Time</label>
+                </value>
+                <value>
+                    <fullName>mountain</fullName>
+                    <default>false</default>
+                    <label>Mountain Time</label>
+                </value>
+                <value>
+                    <fullName>pacific</fullName>
+                    <default>false</default>
+                    <label>Pacific Time</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Transportation_Primary_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Transportation Primary Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Associated Locations</relationshipLabel>
+        <relationshipName>Associated_Locations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Type</fullName>
         <trackHistory>true</trackHistory>
         <type>Picklist</type>
@@ -283,6 +717,7 @@
         <active>true</active>
         <description>After an associated Location&apos;s Active To is filled, it cannot be deleted.</description>
         <errorConditionFormula>AND( 
+$Profile.Name &lt;&gt; &quot;System Administrator&quot;,
 ISCHANGED(ActiveTo), 
 ISNULL(ActiveTo),
 NOT(ISNULL(PRIORVALUE(ActiveTo))))</errorConditionFormula>

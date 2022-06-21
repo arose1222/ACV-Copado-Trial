@@ -32,6 +32,14 @@
                 <behavior>Edit</behavior>
                 <field>Bundled__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Has_Been_Rescheduled__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Is_Reschedule__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -51,7 +59,7 @@
                 <field>Completed_Canceled_Notes__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Dry_Run__c</field>
             </layoutItems>
             <layoutItems>
@@ -334,6 +342,11 @@
             <actionName>ServiceAppointment.Update_Vehicle_Count</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>6</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>ServiceAppointment.Dry_Run</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>7</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

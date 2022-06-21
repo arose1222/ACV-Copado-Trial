@@ -64,6 +64,8 @@
                     </div>
                 </div>
                 
+                    <lightning-textarea name="Special Instructions" label="Special Instructions for VCI" placeholder="This will show up on all Work Orders that this Revolving Appointment creates." value={timeline.Special_Instructions__c} onchange={handleInstructionsChange}></lightning-textarea>
+
                 <div class="slds-m-top_x-large slds-m-bottom_medium">
                     <lightning-input-address
                         address-label="Address:"

@@ -1,0 +1,63 @@
+<!-- page created to select the customizations that were different in the enviroment compare
+JN SF--1127 Ability to create a Change Request from the Env Compare diff 06-04-2020
+-->
+<apex:page Controller="FLODocs.FloCreateCrFromEnvCompareCtrl" showHeader="true" sidebar="true">
+    <c:StrongpointAnalytics />     
+<apex:slds />
+    <style type="text/css">
+        a:hover + .slds-popover.slds-popover_tooltip.slds-hide {
+            display : block!important;
+        }
+    </style>
+
+    <div class="slds-page-header">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;" />
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset"> Create Change Request</p>
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Create Change Request from Enviroment Compare">
+                            Create Change Request</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <apex:form >
+        <apex:pageMessages />
+                <div style="padding:5px;" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" id="svgDiv" class="divSvg">
+                    <span class="">Help</span>
+        <a href="javascript:void(0)" aria-describedby="help">
+            <svg class="slds-button__icon" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                     xlink:href="/apexpages/slds/latest/assets/icons/action-sprite/svg/symbols.svg#info">
+                </use>
+            </svg>
+        </a>
+                    <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left slds-hide" role="tooltip" id="help" 
+             style="position: absolute;top: 5px;left: 20px;">
+            <div class="slds-popover__body">This option is only available if you are doing the comparison from the source org</div>
+        </div>
+        		</div>
+        <div class="slds-form-element__row" >
+            <div class="slds-form-element slds-size--1-of-1">
+                <apex:outputPanel layout="block" style="width: 560px;text-align:center;">
+                    <c:FloMultiSelectList id="multi2" leftLabel="Select Customization(s)" leftOption="{!listCustomizations}" rightLabel="Selected Customization(s)"
+                        rightOption="{!selectedCustomizationsIds}" size="20" width="500px" />
+                </apex:outputPanel>
+            </div>
+        </div>
+        <br />
+        <div class="slds-form-element__row" align="center">
+            <apex:commandButton value="Create Change Request" styleClass="slds-button slds-button--brand slds-order--3" action="{!CreateCr}"
+            />
+            <!--
+            <apex:commandButton value="Go Back" styleClass="slds-button slds-button--brand slds-order--3" action="{!cancelbutton}" />
+            -->
+        </div>
+    </apex:form>
+</apex:page>

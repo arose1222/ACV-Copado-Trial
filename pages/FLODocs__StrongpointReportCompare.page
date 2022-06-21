@@ -1,0 +1,161 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.StrongpointEnvironmentCompareHelper" 
+        action="{!compareReports}" readOnly="true" contentType="{!IF(renderXls, 'application/vnd.ms-excel#tableExport.xls', '')}">
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+
+    <style>
+        table.viewTable td {
+            padding-right: 2px;
+            font-family: Monospace;
+            font-size: 10pt;
+            min-width: 30px;
+        }
+        table.viewTable span.inserted {
+            background-color: #80FF80;
+        }
+        table.viewTable span.deleted {
+            background-color: #FF8080;
+        }
+        table.viewTable {
+            empty-cells: show;
+            border-collapse: collapse;
+            margin-top: 45px;
+        }
+        div.footerPag {
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            background-color: #FFF;
+            border-top: 1px solid orange;
+        }
+        div.headerGoTo {
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background-color: #FFF;
+            border-bottom: 1px solid orange;
+        }
+    </style>
+    <apex:outputPanel id="tableBlock">
+        <table style="margin-top: 40px;">
+            <tr>
+                <th></th>
+                <th style="padding: 5px;border: 1px solid gray;text-align: center;">Index</th>
+                <apex:repeat value="{!columns}" var="cols">
+                    <th style="padding: 5px;border: 1px solid gray;text-align: center;">{!cols}</th>
+                </apex:repeat>
+            </tr>
+            <apex:repeat value="{!tableW}" var="rows">
+                <tr style="{!IF(rows.different && !rows.source, 'background-color: #FF8080;','')}
+                           {!IF(rows.different && rows.source, 'background-color: #80FF80;','')}">
+                    <td style="padding: 5px;text-align: center">
+                        <apex:outputPanel layout="none" rendered="{!rows.different && !rows.source}">-</apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!rows.different && rows.source}">+</apex:outputPanel>
+                    </td>
+                    <td style="padding: 5px;border: 1px solid gray;text-align: center">
+                        <apex:outputPanel layout="none" rendered="{!rows.source}">{!rows.lineIndex}</apex:outputPanel>
+                    </td>
+                    <apex:repeat value="{!rows.value}" var="cellValue">
+                        <td style="padding: 5px;border: 1px solid gray;">
+                            <apex:outputText value="{!cellValue}" escape="false"/>
+                        </td>
+                    </apex:repeat>
+                </tr>
+            </apex:repeat>
+        </table>
+    </apex:outputPanel>
+    <apex:outputPanel layout="block" styleClass="headerGoTo" id="pageHeader" rendered="{!!renderXls}">
+        <a href="#" class="goToNext" title="Go To Next Diff" style="float:left;margin-right: 10px;">
+            Go To Next Difference
+        </a>
+        <a href="#" class="goToPrev" title="Go To Prev Diff" style="float:left;margin-right: 10px;">
+            Go To Previous Difference
+        </a>
+        <apex:outputPanel style="color: red;font-weight: bold;" >
+            {!errorMessage}
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!errorMessage == ''}" style="float:left;">
+            <div style="background-color:#FF8080;float: left;width: 14px;height: 15px;"></div><span style="float:left;margin: 0 5px;">Missing from source</span>
+            <div style="background-color:#80FF80;float: left;width: 14px;height: 15px;"></div><span style="float:left;margin: 0 5px;">Missing from target</span>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!errorMessage == ''}"  style="float:right;">
+            Comparing by: 
+            <select onchange="selectCol()" id="columnSelector">
+                <apex:variable var="index" value="{!0}" />
+                <apex:repeat value="{!columns}" var="cols" >
+                    <option value="{!index}">{!cols}</option>
+                    <apex:variable var="index" value="{!index + 1}" />
+                </apex:repeat>
+            </select>
+        </apex:outputPanel>
+        <a href="JavaScript:void(0);" title="Export to Xls" style="float:right;margin-right: 20px;" onclick="exportTo();">
+            Export to Xls
+        </a>
+    </apex:outputPanel>
+    <apex:form >
+        <apex:actionFunction action="{!changeCompareColumn}" name="changeColumn" reRender="tableBlock" status="statusC">
+            <apex:param name="selectedColumn" id="selectedColumn" value="" />
+        </apex:actionFunction>
+    </apex:form>
+    <script type="text/javascript">
+        var numbers = {!goToDiffs};
+        var goToCurrent = 0;
+
+        // Goes to next diference
+        $(".goToNext").on('click', function(event) {
+            var currentDiff = numbers[goToCurrent];
+            if (goToCurrent < numbers.length - 1) {
+                goToCurrent++;
+            }
+            event.preventDefault();
+            console.log(goToCurrent);
+            console.log((40*currentDiff) + 30);
+            $('html, body').stop().animate({
+                scrollTop: (40*currentDiff) + 30
+            }, 1000);
+        });
+
+        // Goes to prev diference
+        $(".goToPrev").on('click', function(event) {
+            if (goToCurrent > 0) {
+                goToCurrent--;
+            }
+            var currentDiff = numbers[goToCurrent];
+            event.preventDefault();
+            console.log(goToCurrent);
+            $('html, body').stop().animate({
+                scrollTop: (40*currentDiff) + 30
+            }, 1000);
+        });
+
+        // Calls export URL
+        function exportTo() {
+            window.open(window.location.href + '&xls=true');
+            return false;
+        }
+
+        function selectCol() {
+            changeColumn($("#columnSelector").val());
+        }
+    </script>
+    <apex:actionStatus id="statusC">
+        <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                    <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                    <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                </div>
+            </div>
+        </apex:facet>
+        <apex:facet name="stop"></apex:facet>
+    </apex:actionStatus>
+</apex:page>

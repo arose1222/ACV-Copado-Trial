@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Reschedule_History_Related_List</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Reschedule_History_Related_List</fullName>
+        <fields>Rescheduled_From__c</fields>
+        <fields>Rescheduled_To__c</fields>
+        <fields>Rescheduled_Datetime__c</fields>
+        <fields>Rescheduled_By__c</fields>
+        <fields>Reason_for_Reschedule__c</fields>
+        <fields>Service_Resource__c</fields>
+        <fields>Original_Scheduled_Start_Time__c</fields>
+        <label>Reschedule History Related List</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used to track the history of service appointments being rescheduled.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Original_Scheduled_Start_Time__c</fullName>
+        <description>The time that the original Service Appointment was scheduled to start.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time that the original Service Appointment was scheduled to start.</inlineHelpText>
+        <label>Original Scheduled Start Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Reschedule__c</fullName>
+        <description>&quot;Cannot Complete Reason&quot; from the rescheduled Service Appointment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;Cannot Complete Reason&quot; from the rescheduled Service Appointment.</inlineHelpText>
+        <label>Reason for Reschedule</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reschedule__c</fullName>
+        <description>The parent reschedule object used to connect all related Reschedule Histories.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent reschedule object used to connect all related Reschedule Histories.</inlineHelpText>
+        <label>Reschedule</label>
+        <referenceTo>Reschedule__c</referenceTo>
+        <relationshipLabel>Reschedule Histories</relationshipLabel>
+        <relationshipName>Reschedule_Histories</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Rescheduled_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The user who initiated the reschedule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The user who initiated the reschedule.</inlineHelpText>
+        <label>Rescheduled By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Reschedule_Histories</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rescheduled_Datetime__c</fullName>
+        <description>The date and time that this reschedule occurred.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date and time that this reschedule occurred.</inlineHelpText>
+        <label>Rescheduled Datetime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Rescheduled_From__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The original service appointment that has been rescheduled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The original service appointment that has been rescheduled.</inlineHelpText>
+        <label>Rescheduled From</label>
+        <referenceTo>ServiceAppointment</referenceTo>
+        <relationshipLabel>Reschedule Histories</relationshipLabel>
+        <relationshipName>Reschedule_Histories</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rescheduled_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The new Service Appointment that resulted from the original being rescheduled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The new Service Appointment that resulted from the original being rescheduled.</inlineHelpText>
+        <label>Rescheduled To</label>
+        <referenceTo>ServiceAppointment</referenceTo>
+        <relationshipLabel>Reschedule Histories (Rescheduled To)</relationshipLabel>
+        <relationshipName>Reschedule_Histories1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Service_Resource__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Service Resource who was assigned to the original service appointment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Service Resource who was assigned to the original service appointment.</inlineHelpText>
+        <label>Service Resource</label>
+        <referenceTo>ServiceResource</referenceTo>
+        <relationshipLabel>Reschedule Histories</relationshipLabel>
+        <relationshipName>Reschedule_Histories</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Reschedule History</label>
+    <nameField>
+        <label>Reschedule History Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Reschedule Histories</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

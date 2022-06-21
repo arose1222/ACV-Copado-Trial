@@ -1,0 +1,18 @@
+<apex:page showHeader="true" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloChangeRequestButtonsController">
+	
+
+
+	<apex:form > 
+	    <apex:pageBlock >
+	    	<apex:pageMessages />
+	    	<apex:pageBlockSection >
+	            <apex:outputLabel >Select your file</apex:outputLabel>
+	        	<apex:inputFile id="myFile" value="{!uploadZip.Body}" fileName="{!uploadZip.name}"></apex:inputFile>
+	        </apex:pageBlockSection>
+	        <apex:commandButton id="uploadfile" value="Upload" action="{!upload}"/>
+	    </apex:pageBlock>
+
+
+	</apex:form>
+
+</apex:page>

@@ -7,10 +7,6 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SchedulingConstraintId</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -21,6 +17,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Address</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SchedulingConstraintId</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -35,6 +35,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>TopLevelTerritoryId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FSL__NumberOfServicesToDripFeed__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -93,9 +97,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>SchedulingConstraintId</fields>
-    </miniLayout>
     <relatedLists>
         <fields>Name</fields>
         <fields>ServiceResource</fields>

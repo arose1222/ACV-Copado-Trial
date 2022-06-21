@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Customization Controls --></label>
+        <name>FLODocs__Flo_CustomizationControls</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Data Sources --></label>
+        <name>FLODocs__Flo_CustomizationDataSources</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Deployments --></label>
+        <name>FLODocs__Flo_CustomizationDeployments</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Documentation --></label>
+        <name>FLODocs__Flo_CustomizationDocumentation</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Forms --></label>
+        <name>FLODocs__Flo_CustomizationForms</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Header Details --></label>
+        <name>FLODocs__Flo_CustomizationHeaderDetails</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Improvement --></label>
+        <name>FLODocs__Flo_CustomizationImprovement</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Layout --></label>
+        <name>FLODocs__Flo_CustomizationLayout</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Managed Package --></label>
+        <name>FLODocs__Flo_CustomizationManagedPackage</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Metadata --></label>
+        <name>FLODocs__Flo_CustomizationMetadata</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Other --></label>
+        <name>FLODocs__Flo_CustomizationOther</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Process --></label>
+        <name>FLODocs__Flo_CustomizationProcess</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Profile and Roles --></label>
+        <name>FLODocs__Flo_CustomizationProfileAndRoles</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Raw Data --></label>
+        <name>FLODocs__Flo_CustomizationRawData</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Report --></label>
+        <name>FLODocs__Flo_CustomizationReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Scripting --></label>
+        <name>FLODocs__Flo_CustomizationScripting</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Test --></label>
+        <name>FLODocs__Flo_CustomizationTest</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Customization Workflows --></label>
+        <name>FLODocs__Flo_CustomizationWorkflows</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- SessionSettingsFields --></label>
+        <name>FLODocs__SessionSettingsFields</name>
+    </fieldSets>
+    <fields>
+        <help><!-- These are the workflow actions detected in the workflow by the Strongpoint documentation engine. --></help>
+        <label><!-- Actions --></label>
+        <name>FLODocs__Actions__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checked means the record is Active, otherwise the record is Inactive --></help>
+        <label><!-- Active --></label>
+        <name>FLODocs__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Change request associated with the customization. --></help>
+        <label><!-- Add to Change Request --></label>
+        <name>FLODocs__Add_to_Change_Request__c</name>
+        <relationshipLabel><!-- Customizations (Change Request) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Check this box to alert the owner of the control --></help>
+        <label><!-- Alert Control Owner --></label>
+        <name>FLODocs__Alert_Control_Owner__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox alerts the process owner whenever an incident is detected --></help>
+        <label><!-- Alert Process Owner --></label>
+        <name>FLODocs__Alert_Process_Owner__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the message you want sent to the assignees on tasks or the recipients of alerts. If blank, the message will be CONTROL INCIDENT: {name of control} --></help>
+        <label><!-- Alert / Task Message --></label>
+        <name>FLODocs__Alert_Task_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Lines --></label>
+        <name>FLODocs__Amount_of_Lines__c</name>
+    </fields>
+    <fields>
+        <label><!-- Archive --></label>
+        <name>FLODocs__Archive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment Number Of Attempts --></label>
+        <name>FLODocs__Attachment_Number_Of_Attempts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of attempts that Strongpoint scripts parsed this Customization --></help>
+        <label><!-- Attempt # --></label>
+        <name>FLODocs__Attempt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Available For Use --></label>
+        <name>FLODocs__Available_For_Use__c</name>
+    </fields>
+    <fields>
+        <help><!-- Script Average Execution Time in milliseconds --></help>
+        <label><!-- Average Runtime --></label>
+        <name>FLODocs__Average_Runtime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Block --></label>
+        <name>FLODocs__Block__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is one or more FLO Customization record representing the bucket columns names fields  for this report. --></help>
+        <label><!-- Bucket Column Name --></label>
+        <name>FLODocs__Bucket_Column_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bucket --></label>
+        <name>FLODocs__Bucket__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Owner --></label>
+        <name>FLODocs__Business_Owner_Id__c</name>
+        <relationshipLabel><!-- Customizations (Business Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Business Status --></label>
+        <name>FLODocs__Business_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- The CPU time in milliseconds used to complete the request. --></help>
+        <label><!-- CPU Time --></label>
+        <name>FLODocs__CPU__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag the customisation as changed, this is before the change is actually evaluated. --></help>
+        <label><!-- Change Detected --></label>
+        <name>FLODocs__Change_Detected__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Level --></label>
+        <name>FLODocs__Change_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Log Verification --></label>
+        <name>FLODocs__Change_Log_Verification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clean Up Archived Date --></label>
+        <name>FLODocs__Clean_Up_Archived_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clean Up Restore Date --></label>
+        <name>FLODocs__Clean_Up_Restore_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clean Up Retain Date --></label>
+        <name>FLODocs__Clean_Up_Retain_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clean Up Rule Name --></label>
+        <name>FLODocs__Clean_Up_Rule_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field shows an overview of the clean-up classification --></help>
+        <label><!-- Clean-up Classification --></label>
+        <name>FLODocs__Clean_up_Classification__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the clean-up status of customizations that you plan to eliminate. --></help>
+        <label><!-- Clean-up Status --></label>
+        <name>FLODocs__Clean_up_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the ratio of comments to lines which is an indicator or the quality of the documentation. --></help>
+        <label><!-- Comment / Line Ratio --></label>
+        <name>FLODocs__Comment_Line_Ratio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Group --></label>
+        <name>FLODocs__Compliance_Group__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the conditions in the workflow organized by stage or action. --></help>
+        <label><!-- Conditions --></label>
+        <name>FLODocs__Conditions__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set this field to assign the tasks, issue or alerts to someone other than the owner. If blank, the control alerts or assign tasks etc to the owner. --></help>
+        <label><!-- Control Asignee --></label>
+        <name>FLODocs__Control_Asignee__c</name>
+        <relationshipLabel><!-- Customizations (Control Asignee) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is a custom field created for your account. Contact your administrator for details. --></help>
+        <label><!-- Control Count --></label>
+        <name>FLODocs__Control_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- Error(s) / Warning(s) encountered when the Control was run. If blank, there were no problems encountered. --></help>
+        <label><!-- Control Error / Warning --></label>
+        <name>FLODocs__Control_Error_Warning__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the frequency at which a control should be checked from Hourly, Daily, Weekly, Monthly or Yearly. Controls can be monitored to ensure that they are checked every period. --></help>
+        <label><!-- Control Frequency --></label>
+        <name>FLODocs__Control_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Daily</masterLabel>
+            <translation><!-- Daily --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hourly</masterLabel>
+            <translation><!-- Hourly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yearly</masterLabel>
+            <translation><!-- Yearly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is optional. Select Count to record the number --></help>
+        <label><!-- Control Type --></label>
+        <name>FLODocs__Control_Type__c</name>
+        <picklistValues>
+            <masterLabel>COUNT</masterLabel>
+            <translation><!-- COUNT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ISSUE</masterLabel>
+            <translation><!-- ISSUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOG</masterLabel>
+            <translation><!-- LOG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STORE DATA</masterLabel>
+            <translation><!-- STORE DATA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TASK</masterLabel>
+            <translation><!-- TASK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Determine if the customization is a control --></help>
+        <label><!-- Control --></label>
+        <name>FLODocs__Control__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the process that this customization controls. --></help>
+        <label><!-- Controlled Process --></label>
+        <name>FLODocs__Controlled_Process__c</name>
+        <relationshipLabel><!-- Customizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Checkbox to indicate whether if the profile is a custom creation or if it is standard --></help>
+        <label><!-- Custom Profile --></label>
+        <name>FLODocs__Custom_Profile__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the custom object name of the relevant custom object for this report - used to join a report to a custom object. --></help>
+        <label><!-- Report Object --></label>
+        <name>FLODocs__Custom_Record_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- User creator of the Customization --></help>
+        <label><!-- Customization Created By --></label>
+        <name>FLODocs__Customization_Created_By__c</name>
+        <relationshipLabel><!-- Customizations (Customization Created By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Created date of the Customization record. --></help>
+        <label><!-- Customization Created Date --></label>
+        <name>FLODocs__Customization_Created_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user who has modified the customizaiton --></help>
+        <label><!-- Customization Last Modified By --></label>
+        <name>FLODocs__Customization_Last_Modified_By__c</name>
+        <relationshipLabel><!-- Customizations (Customization Last Modified By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- DLU Status --></label>
+        <name>FLODocs__DLU_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Not Tracked: changes in data records are not tracked by Strongpoint
+Tracked, Blocking: changes in data records are blocked if there is no approved Change Request
+Tracked, Non-Blocking: changes in data records are logged by Strongpoint --></help>
+        <label><!-- Data Change Tracking --></label>
+        <name>FLODocs__Data_Change_Tracking__c</name>
+        <picklistValues>
+            <masterLabel>Not Tracked</masterLabel>
+            <translation><!-- Not Tracked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tracked, Blocking</masterLabel>
+            <translation><!-- Tracked, Blocking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tracked, Non-Blocking</masterLabel>
+            <translation><!-- Tracked, Non-Blocking --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Data Owner Public group --></help>
+        <label><!-- Data Owner Public group --></label>
+        <name>FLODocs__Data_Owner_Public_group__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is one or more FLO Customization record representing the data source(s) for this field. --></help>
+        <label><!-- Data Source(es) --></label>
+        <name>FLODocs__Data_Source_es__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the data type of any custom field --></help>
+        <label><!-- Data Type --></label>
+        <name>FLODocs__Data_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date DLU Analyzed --></label>
+        <name>FLODocs__Date_DLU_Analyzed__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the date that this customization was last used. Note: Used for particular objects such as CustomField, CustomObject, Apex (EventLogFile needs to be purchased), EmailTemplate, Reports, Dashboards, Document. --></help>
+        <label><!-- Date Last Used --></label>
+        <name>FLODocs__Date_Last_Used__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Difference Today DLU --></label>
+        <name>FLODocs__Days_Difference_Today_DLU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependency DLU --></label>
+        <name>FLODocs__Dependencies_DLU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependent Field 2 --></label>
+        <name>FLODocs__Dependent_Fields2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependent Field --></label>
+        <name>FLODocs__Dependent_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the description from the customization record. --></help>
+        <label><!-- Description --></label>
+        <name>FLODocs__Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Users using this customization ( Note: Retrieved for Apex Scripts when EventLogFile b is available) --></help>
+        <label><!-- Employee using this customization --></label>
+        <name>FLODocs__Employee_using_this_customization__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field enables the tracking of the changes of the selected record if it is of type &apos;CustomField&apos; --></help>
+        <label><!-- Enable Track History Field --></label>
+        <name>FLODocs__Enable_Track_History_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will be used by Strongpoint to make the retrieve with Encoded API Name. --></help>
+        <label><!-- Encoded API Name --></label>
+        <name>FLODocs__Encoded_API_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- CSV of fields used by this customization: FieldSet, Groups, SharingRules, etc etc --></help>
+        <label><!-- Extended Types Fields Raw --></label>
+        <name>FLODocs__Extended_Types_Fields_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the types that depend upon this field. (e.g: HomePageComponent, Queues, AnalyticSnapshot, etc) --></help>
+        <label><!-- Extended Types (Other) --></label>
+        <name>FLODocs__Extended_Types_Other__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the fields used in Extended Types (e.g: AnalyticSnapshot, PathAssistant, WebLink, etc) --></help>
+        <label><!-- Extended Types fields --></label>
+        <name>FLODocs__Extended_Types_fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contains custom fields used in a script, along with its variable declaration:
+&lt;Object&gt;.&lt;Custom Field&gt;:&lt;variable name&gt; --></help>
+        <label><!-- Extension field --></label>
+        <name>FLODocs__Extension_field__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field designates the approval policy and change management path relating to this customization.  If not specified, the policy from any related process applies.  Otherwise the default policy applies. --></help>
+        <label><!-- Change / Approval Policy --></label>
+        <name>FLODocs__FLO_Change_Approval_Policy__c</name>
+        <relationshipLabel><!-- Customizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to the Strongpoint representation of a Metadata Type --></help>
+        <label><!-- Scanner Log --></label>
+        <name>FLODocs__FLO_Scanner_Log__c</name>
+        <relationshipLabel><!-- Customizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Check this box if you want to enable Field History tracking --></help>
+        <label><!-- Field History --></label>
+        <name>FLODocs__Field_History__c</name>
+    </fields>
+    <fields>
+        <help><!-- The tracked Object&apos;s data records that this Report filters. --></help>
+        <label><!-- Filtered Data Records --></label>
+        <name>FLODocs__Filtered_Data_Records__c</name>
+        <relationshipLabel><!-- Change Log Filters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Filters --></label>
+        <name>FLODocs__Filters__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the Folder and File where Salesforce has the Metadata Component --></help>
+        <label><!-- Folder File Name --></label>
+        <name>FLODocs__Folder_File_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of fields used in a ListView,Layout,Form Visualforce type customization. --></help>
+        <label><!-- Layout Fields --></label>
+        <name>FLODocs__Form_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of Layouts in which the customization appear or is used. --></help>
+        <label><!-- Layouts --></label>
+        <name>FLODocs__Forms__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of functions used in the script --></help>
+        <label><!-- Functions --></label>
+        <name>FLODocs__Functions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Changed For Change Log Job --></label>
+        <name>FLODocs__Has_Changed_For_Change_Log_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Changed For Junction Job --></label>
+        <name>FLODocs__Has_Changed_For_Junction_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Flow Conditions To Be Processed --></label>
+        <name>FLODocs__Has_Flow_Conditions_To_Be_Processed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Help Text --></label>
+        <name>FLODocs__Help_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Use this field to make notes during clean-up and improvements. --></help>
+        <label><!-- Retain Reason --></label>
+        <name>FLODocs__Improvement_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checked when FLO Customization object is incomplete for Prototype Proposes --></help>
+        <label><!-- Incomplete Object --></label>
+        <name>FLODocs__Incomplete_Object__c</name>
+    </fields>
+    <fields>
+        <help><!-- Instructions for Resolution text in the alert email.  The user may input a description of the instruction to resolve the incident. --></help>
+        <label><!-- Instructions for Resolution --></label>
+        <name>FLODocs__Instructions_for_Resolution__c</name>
+    </fields>
+    <fields>
+        <help><!-- Salesforce Id of the customization --></help>
+        <label><!-- Internal Id --></label>
+        <name>FLODocs__Internal_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checked if the Standard Object is not triggerable and if Data Change Tracking is enabled. Data record changes cannot be triggered and must be processed via scheduled batch. --></help>
+        <label><!-- Is Data Tracking Batch --></label>
+        <name>FLODocs__Is_Data_Tracking_Batch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Install Or PostInstall --></label>
+        <name>FLODocs__Is_Install_Or_PostInstall__c</name>
+    </fields>
+    <fields>
+        <help><!-- Field to be used to detect if the record is 100% new. if it is, we will use it into Strongpoint Scanner jobs to retrieve, create customizations etc --></help>
+        <label><!-- Is New Record --></label>
+        <name>FLODocs__Is_New_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- Junction Verification --></label>
+        <name>FLODocs__Junction_Verification__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the last date that the control was run. --></help>
+        <label><!-- Last Control Run Date --></label>
+        <name>FLODocs__Last_Control_Run_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Date Change --></label>
+        <name>FLODocs__Last_Date_Change__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last modified date of the Metadata File. --></help>
+        <label><!-- Last Modified File Date --></label>
+        <name>FLODocs__Last_Modified_File_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- String to compare dates to avoid GMT and TimeZones of  users. --></help>
+        <label><!-- Last Modified File String --></label>
+        <name>FLODocs__Last_Modified_File_String__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last date in which the scanner run and evaluate the current customization. --></help>
+        <label><!-- Last Scanner Date --></label>
+        <name>FLODocs__Last_Spider_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the test date for Testing --></help>
+        <label><!-- Last Test Date --></label>
+        <name>FLODocs__Last_Test_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Time Run Attachment Job --></label>
+        <name>FLODocs__Last_Time_Run_Attachment_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Time Run Change Log Job --></label>
+        <name>FLODocs__Last_Time_Run_Change_Log_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Time Run Junction Job --></label>
+        <name>FLODocs__Last_Time_Run_Junction_Job__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last use date time --></help>
+        <label><!-- Last Used DateTime --></label>
+        <name>FLODocs__Last_Used_DateTime__c</name>
+    </fields>
+    <fields>
+        <help><!-- Raw of the references related to this Field (e.g: CustomField in account that references to a Lookup Object Field) --></help>
+        <label><!-- List (Raw) --></label>
+        <name>FLODocs__List_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom/Standard List used as data source by the customization. --></help>
+        <label><!-- List --></label>
+        <name>FLODocs__List__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last date of the customization that passed into FLO Make Join Script --></help>
+        <label><!-- Make Join Date --></label>
+        <name>FLODocs__Make_Join_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates the manageable state of the specified component if it is contained in a package:
+beta
+deleted
+deprecated
+installed
+released
+unmanaged --></help>
+        <label><!-- Manageable State --></label>
+        <name>FLODocs__Manageable_State__c</name>
+    </fields>
+    <fields>
+        <help><!-- Namespace for the Customization, if it is from a Managed Package/Unmanaged Package --></help>
+        <label><!-- Package --></label>
+        <name>FLODocs__Namespace_Prefix__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select date and time you want to start monitoring --></help>
+        <label><!-- Next Control Date Time --></label>
+        <name>FLODocs__Next_Control_Date_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field show if the user who has created this Customization is active or not. --></help>
+        <label><!-- Owner Active --></label>
+        <name>FLODocs__Owner_Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom field to hold custom fields of ListView, VisualforcePages, Layout --></help>
+        <label><!-- Layout Raw --></label>
+        <name>FLODocs__Pages_ListView_Raw__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Last Update Date --></label>
+        <name>FLODocs__Parent_Last_Update_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Parent customization, ex: record in which the field is present. --></help>
+        <label><!-- Base Record --></label>
+        <name>FLODocs__Parent__c</name>
+    </fields>
+    <fields>
+        <help><!-- User Permission for the Profile being read. It will store all User Permission enabled for the given profile --></help>
+        <label><!-- Permisions --></label>
+        <name>FLODocs__Permisions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Picklist values --></label>
+        <name>FLODocs__Picklist_values__c</name>
+    </fields>
+    <fields>
+        <help><!-- Strongpoint calculates Percentage of the records populated for this Custom Field being used in the Organization --></help>
+        <label><!-- % Populated --></label>
+        <name>FLODocs__Populate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Strongpoint retrieves # of records populated that exists for this particular CustomField and calculate % used. --></help>
+        <label><!-- Populated_on (Deprecated) --></label>
+        <name>FLODocs__Populated_on__c</name>
+    </fields>
+    <fields>
+        <label><!-- Process Build Attachment --></label>
+        <name>FLODocs__Process_Build_Attachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processed --></label>
+        <name>FLODocs__Processed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Process or steps in which the customization is used. --></help>
+        <label><!-- Process(es) / Step(s) --></label>
+        <name>FLODocs__Processes_Steps__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile Summary Fields --></label>
+        <name>FLODocs__Profile_Summary_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- URL to the salesforce object. --></help>
+        <label><!-- Record Link --></label>
+        <name>FLODocs__Record_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Strongpoint will count # of records for this particular Object (Standard &amp; Custom) --></help>
+        <label><!-- Total Records --></label>
+        <name>FLODocs__Records__c</name>
+    </fields>
+    <fields>
+        <help><!-- Change request associated with the customization. --></help>
+        <label><!-- Related Change Request --></label>
+        <name>FLODocs__Related_Change_Request__c</name>
+        <relationshipLabel><!-- Customizations (Related Change Request) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Process issue associated with the customization. --></help>
+        <label><!-- Risk / Requirement --></label>
+        <name>FLODocs__Related_Issue__c</name>
+        <relationshipLabel><!-- Customizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Required Fields --></label>
+        <name>FLODocs__Required_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used as information to Rescan the customization and evaluate the progress of Apex Batches to show &quot;In Progress&quot; in the FLO Customization --></help>
+        <label><!-- Rescanner --></label>
+        <name>FLODocs__Rescanner__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link to restore an archived report --></help>
+        <label><!-- Restore Url --></label>
+        <name>FLODocs__Restore_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retain --></label>
+        <name>FLODocs__Retain__c</name>
+    </fields>
+    <fields>
+        <help><!-- Error when retrieve - Deprecated / Future use --></help>
+        <label><!-- Retrieval Error --></label>
+        <name>FLODocs__Retrieval_Error__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Level --></label>
+        <name>FLODocs__Risk_Level_Indicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Level --></label>
+        <name>FLODocs__Risk_Level__c</name>
+    </fields>
+    <fields>
+        <help><!-- This are the roles that are using this customization --></help>
+        <label><!-- Roles using this customization --></label>
+        <name>FLODocs__Roles_using_this_customization__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of SOQL queries executed during the complete transaction where this script was executed --></help>
+        <label><!-- # of SOQL queries --></label>
+        <name>FLODocs__SOQL_queries__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom label to simplify user selection of Customization &quot;data&quot; records. Label format is &quot;data:[namespaceprefix: | null][apiname without __c][:custom | null] --></help>
+        <label><!-- Object Type Label --></label>
+        <name>FLODocs__SObject_Type_Label__c</name>
+    </fields>
+    <fields>
+        <help><!-- Salesforce Metadata Type --></help>
+        <label><!-- Salesforce Type --></label>
+        <name>FLODocs__Salesforce_Types__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checkbox to indicate to Strongpoint if the Retrieve and the Customization was executed and read. This will change in any Scanner, it just internal information --></help>
+        <label><!-- Scanner Read --></label>
+        <name>FLODocs__Scanner_Read__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the schedule of the Workflow customization --></help>
+        <label><!-- Schedule Type --></label>
+        <name>FLODocs__Schedule_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the schedule of the Workflow customization --></help>
+        <label><!-- Scheduled --></label>
+        <name>FLODocs__Scheduled__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the API Name of the customization --></help>
+        <label><!-- API Name --></label>
+        <name>FLODocs__ScriptId__c</name>
+    </fields>
+    <fields>
+        <help><!-- This value is calculated from the execution logs if available.  If the standard audit logs are available, these are used.  If not, an attempt is made based on the existing debug logs. --></help>
+        <label><!-- Script Average Run Time --></label>
+        <name>FLODocs__Script_Average_Run_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the comments in the script file. --></help>
+        <label><!-- Script Comments --></label>
+        <name>FLODocs__Script_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the fields that appear in the relevant script file. --></help>
+        <label><!-- Script Fields (Raw) --></label>
+        <name>FLODocs__Script_Fields_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the fields that appear in the relevant script file. --></help>
+        <label><!-- Script Fields --></label>
+        <name>FLODocs__Script_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- Script File last modified date --></help>
+        <label><!-- Script File Date --></label>
+        <name>FLODocs__Script_File_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the primary script file for this script customization. --></help>
+        <label><!-- Script File --></label>
+        <name>FLODocs__Script_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scripted --></label>
+        <name>FLODocs__Scripted__c</name>
+    </fields>
+    <fields>
+        <help><!-- Scripts used by other Customizations (ex: ApexClass in ApexPage) --></help>
+        <label><!-- Scripts (Raw) --></label>
+        <name>FLODocs__Scripts_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are scripts that change or read this field --></help>
+        <label><!-- Scripts --></label>
+        <name>FLODocs__Scripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the fields used in filter criteria or columns for this search. --></help>
+        <label><!-- Report/Search Fields (Raw) --></label>
+        <name>FLODocs__Search_Fields_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the fields used in filter criteria or columns for this search. --></help>
+        <label><!-- Report/Search Fields --></label>
+        <name>FLODocs__Search_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the filters that appear in the search --></help>
+        <label><!-- Report/Search Filters --></label>
+        <name>FLODocs__Search_Filters__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the formulas that appear in the search --></help>
+        <label><!-- Report/Search Formulas --></label>
+        <name>FLODocs__Search_Formulas__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the searches that depend upon this field. --></help>
+        <label><!-- Reports / Searches / Dashboards --></label>
+        <name>FLODocs__Searches__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Classification --></label>
+        <name>FLODocs__Security_Classification__c</name>
+    </fields>
+    <fields>
+        <label><!-- SoQL --></label>
+        <name>FLODocs__SoQL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spider Processed --></label>
+        <name>FLODocs__Spider_Processed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates whether a user has subscribed to this report --></help>
+        <label><!-- Subscriber --></label>
+        <name>FLODocs__Subscriber__c</name>
+    </fields>
+    <fields>
+        <help><!-- Prevent changes to be created --></help>
+        <label><!-- Suppress Change Log --></label>
+        <name>FLODocs__Suppress_Change_Log__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Class --></label>
+        <name>FLODocs__Test_Class__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the test record template for Testing --></help>
+        <label><!-- Test Template --></label>
+        <name>FLODocs__Test_Template__c</name>
+        <relationshipLabel><!-- Customizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- To Be Processed --></label>
+        <name>FLODocs__To_Be_Processed__c</name>
+    </fields>
+    <fields>
+        <label><!-- To be Archived --></label>
+        <name>FLODocs__To_be_Archived__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filled-in records --></label>
+        <name>FLODocs__Total_Records_Used__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field specifies whether duplicate issues are to be tracked or not. If checked, a record will be created each time that a given record is recorded. If unchecked, the system will check to ensure that there are no duplicates. --></help>
+        <label><!-- Track Duplicates --></label>
+        <name>FLODocs__Track_Duplicates__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the trigger type of the Workflow customization --></help>
+        <label><!-- Trigger Type --></label>
+        <name>FLODocs__Trigger_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Only --></label>
+        <name>FLODocs__Update_Only__c</name>
+    </fields>
+    <fields>
+        <label><!-- Users Subscribed --></label>
+        <name>FLODocs__Users_Subscribed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Users related to a particular Profile --></help>
+        <label><!-- Users related --></label>
+        <name>FLODocs__Users_related__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value Required --></label>
+        <name>FLODocs__Value_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the raw data workflow fields --></help>
+        <label><!-- Workflow/Approval Fields (Raw) --></label>
+        <name>FLODocs__Workflow_Fields_Raw__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom Fields of WorkflowRules, WorkflowFieldUpdate, ApprovalProcess. --></help>
+        <label><!-- Workflow/Approval Fields --></label>
+        <name>FLODocs__Workflow_Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the objects (fields, searches, scripts) used in the workflow. --></help>
+        <label><!-- Workflow/Approval Objects --></label>
+        <name>FLODocs__Workflow_Objects__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the raw data workflow scripts (e.g: Flows using Apex invocable methds) --></help>
+        <label><!-- Workflow Scripts (Raw) --></label>
+        <name>FLODocs__Workflow_Scripts_Raw__c</name>
+    </fields>
+    <fields>
+        <label><!-- Workflow --></label>
+        <name>FLODocs__Workflow__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the workflows related to this customization. --></help>
+        <label><!-- Workflows/Approvals --></label>
+        <name>FLODocs__Workflows__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the xml/code representation of the page for the customization.  Used to set some detailed fields. --></help>
+        <label><!-- XML/Code --></label>
+        <name>FLODocs__XML_Page__c</name>
+    </fields>
+    <fields>
+        <label><!-- isApexParserExecuted --></label>
+        <name>FLODocs__isApexParserExecuted__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of times the script executes per day - calculated by the advanced script monitoring. --></help>
+        <label><!-- # of Daily Script Executions --></label>
+        <name>FLODocs__of_Daily_Script_Executions__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field tracks the number of users who triggered the script in the last 24 hours based on available script server logs. --></help>
+        <label><!-- # of Daily Script Users --></label>
+        <name>FLODocs__of_Daily_Script_Users__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of different values for this field in the last 3 months --></help>
+        <label><!-- # of Values --></label>
+        <name>FLODocs__of_Values__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as FieldSet, WavesFields, Territory, etc. --></description>
+        <label><!-- Extended --></label>
+        <name>FLODocs__Extended</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as Page Layout, List View, CompactLayout,etc. --></description>
+        <label><!-- Form --></label>
+        <name>FLODocs__Form</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as CustomField, CustomObject, Articles, CustomMetadata, CustomSetting --></description>
+        <label><!-- Objects &amp; Fields --></label>
+        <name>FLODocs__Objects_Fields</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for all Types in the organization that they&apos;re not Script, Workflow, Report, etc families. --></description>
+        <label><!-- Other --></label>
+        <name>FLODocs__Other</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as Profile, Roles, PermissionSet, etc. --></description>
+        <label><!-- Profile &amp; Roles --></label>
+        <name>FLODocs__Profile_Roles</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as Report, ReportType, Searches, etc. --></description>
+        <label><!-- Report --></label>
+        <name>FLODocs__Report</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as ApexClass, ApexPage, ApexTrigger, etc. --></description>
+        <label><!-- Script --></label>
+        <name>FLODocs__Script</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This Record type will be for types such as Workflow, Flow, ApprovalProcess, etc. --></description>
+        <label><!-- Workflows &amp; Approvals --></label>
+        <name>FLODocs__Workflows_Approvals</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Add_Customizations --></label>
+        <name>FLODocs__Add_Customizations</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RescanVF --></label>
+        <name>FLODocs__RescanVF</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Run_Control --></label>
+        <name>FLODocs__Run_Control</name>
+    </webLinks>
+</CustomObjectTranslation>

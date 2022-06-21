@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>FLODocs__Field_API_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the field</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>API name of the field</inlineHelpText>
+        <label>Field API Name</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Is_Reference__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>True if this field is a lookup to another object.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>True if this field is a lookup to another object.</inlineHelpText>
+        <label>Is Reference</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Parent_SObject_API__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name of the field&apos;s parent object.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The API name of the field&apos;s parent object.</inlineHelpText>
+        <label>Parent SObject API</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Value of the field if it&apos;s not a reference.
+SObject API name if it is a reference.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Value of the field if it&apos;s not a reference.
+SObject API name if it is a reference.</inlineHelpText>
+        <label>Value</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Test Class SObject Dependency</label>
+    <pluralLabel>Test Class SObject Dependencies</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

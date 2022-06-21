@@ -1,0 +1,92 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <!-- <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text"><label>Cancel and close</label></span>
+            </button>
+
+            <template if:true={showSpinner}>
+                <div class="backdrop">
+                    <div class="spinner">
+                        <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+                    </div>
+                </div>
+            </template>
+
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Send Offer</h1>
+            </div>
+            <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1">
+                <div class="slds-m-around_medium">
+                    <template if:true={relatedVehicles}>
+                        <p>Following vehicles are eligible for a Guaranteed Offer Bundle:</p><br />
+                        <lightning-datatable key-field="Id" data={relatedVehicles} columns={columns}
+                            hide-checkbox-column show-row-number-column>
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={relatedVehicles}>
+                        <div class="slds-align_absolute-center">
+                            <strong>No Data Available</strong>
+                        </div>
+                    </template>
+                </div>
+                <div class="slds-m-around_medium">
+                    <strong>ACV Adjusted Bundle Price:</strong>&nbsp;${adjustedBundlePrice}
+                </div>
+                <div class="slds-m-around_medium">
+                    <p>Do you want to continue?</p>
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                    onclick={closeModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={sendMail}>Continue</button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div> -->
+    <lightning-quick-action-panel title="Send Offer">
+        <template if:true={showSpinner}>
+            <div class="backdrop">
+                <div class="spinner">
+                    <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+                </div>
+            </div>
+        </template>
+        <template if:false={showErrorMessage}>
+            <div class="slds-m-around_medium">
+                <template if:true={relatedVehicles}>
+                    <p>Following vehicles are eligible for a Guaranteed Offer Bundle:</p><br />
+                    <lightning-datatable key-field="Id" data={relatedVehicles} columns={columns} hide-checkbox-column
+                        show-row-number-column>
+                    </lightning-datatable>
+                </template>
+                <template if:false={relatedVehicles}>
+                    <div class="slds-align_absolute-center">
+                        <strong>No Data Available</strong>
+                    </div>
+                </template>
+            </div>
+            <div class="slds-m-around_medium">
+                <strong>ACV Adjusted Bundle Price:</strong>&nbsp;${adjustedBundlePrice}
+            </div>
+            <div class="slds-m-around_medium">
+                <p>Do you want to continue?</p>
+            </div>
+        </template>
+        <template if:true={showErrorMessage}>
+            <div class="slds-m-around_medium">
+                <p>{vehicleListSizeZeroError}</p>
+            </div>
+        </template>
+        <div slot="footer">
+            <lightning-button variant="neutral" label="Cancel" class="slds-m-right_small" onclick={closeModal}></lightning-button>
+            <lightning-button if:false={showErrorMessage} variant="brand" label="Continue" onclick={sendMail}></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

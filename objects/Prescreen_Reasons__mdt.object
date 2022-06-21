@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Include_For_Email_Notifications__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Include For Email Notifications</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Include_For_Time_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Include For Time Out</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Prescreen Reasons</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Include_For_Email_Notifications__c</columns>
+        <columns>Include_For_Time_Out__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <pluralLabel>Prescreen Reasons</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

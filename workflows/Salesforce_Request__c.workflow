@@ -937,7 +937,7 @@
     <fieldUpdates>
         <fullName>Assign_Resolutions</fullName>
         <field>Assigned_To__c</field>
-        <lookupValue>mmatyas@acvauctions.com</lookupValue>
+        <lookupValue>mgreene@acvauctions.com</lookupValue>
         <lookupValueType>User</lookupValueType>
         <name>Assign Resolutions</name>
         <notifyAssignee>false</notifyAssignee>
@@ -948,7 +948,7 @@
     <fieldUpdates>
         <fullName>Assign_pricing_24_Escalate</fullName>
         <field>Assigned_To__c</field>
-        <lookupValue>mario@acvauctions.com</lookupValue>
+        <lookupValue>zacee@acvauctions.com</lookupValue>
         <lookupValueType>User</lookupValueType>
         <name>Assign pricing 24 Escalate</name>
         <notifyAssignee>false</notifyAssignee>
@@ -1174,7 +1174,7 @@
     <fieldUpdates>
         <fullName>Resolutions_Assign_To</fullName>
         <field>Assigned_To__c</field>
-        <lookupValue>mmatyas@acvauctions.com</lookupValue>
+        <lookupValue>mgreene@acvauctions.com</lookupValue>
         <lookupValueType>User</lookupValueType>
         <name>Resolutions Assign To</name>
         <notifyAssignee>false</notifyAssignee>

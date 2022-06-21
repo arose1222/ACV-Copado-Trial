@@ -1,6 +1,9 @@
-/*
-    This class is contains REST method to create lead & related EULA/TOS object.
-*/
+/**
+ * This class is contains REST method to create lead & related EULA/TOS object.
+ * @author Jyothsna
+ * @since 2021
+ * @group Identity & Org
+ */
 @RestResource(urlMapping='/IdentityService/Registration/createLead')
 global class IdentityServiceRegistrationCreateLead {
     
@@ -132,7 +135,7 @@ global class IdentityServiceRegistrationCreateLead {
             insert eula;
 
 
-            if(isCreatedByBlitzTeam==true || marketPlaceReportUser== true)
+            if(isCreatedByBlitzTeam==true) // removed  || marketPlaceReportUser== true
             {
                 LeadConversion.AddressWrapper aw= LeadConversion.getLeadAddress(leadRecord.Id);
                 LeadConversion.ReturnWrapper rw= LeadConversion.updateAddAndConvertLead(leadRecord.Id, aw); 

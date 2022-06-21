@@ -568,6 +568,11 @@
                     <label>48 Hour Unwind Request</label>
                 </value>
                 <value>
+                    <fullName>Duplicate Title Requested</fullName>
+                    <default>false</default>
+                    <label>Duplicate Title Requested</label>
+                </value>
+                <value>
                     <fullName>48 Hour Update</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
@@ -721,6 +726,10 @@
             <valueSettings>
                 <controllingFieldValue>Titles</controllingFieldValue>
                 <valueName>48 Hour Unwind Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Titles</controllingFieldValue>
+                <valueName>Duplicate Title Requested</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Arbitration</controllingFieldValue>
@@ -1009,7 +1018,7 @@
         <fullName>Seller_Link__c</fullName>
         <description>Link to the Seller Account on the related ops case.  Within Salesforce this will work in all environments.  Will only work properly from an email template when used in production.</description>
         <externalId>false</externalId>
-        <formula>IF( $Organization.Id = &apos;00D8D0000004wdm&apos;, 
+        <formula>IF( $Organization.Id = &apos;00D1D000000jlqL&apos;, 
 HYPERLINK( &quot;https://acvauctions.lightning.force.com/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;),
 HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;)
 )</formula>

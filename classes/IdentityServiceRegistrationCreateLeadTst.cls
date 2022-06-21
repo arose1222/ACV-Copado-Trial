@@ -119,65 +119,65 @@ public class IdentityServiceRegistrationCreateLeadTst {
 
 
     //Registration Create Lead For Market Place Report User
-    @isTest
-    public static void testCreateLeadMarketPlaceReportUser(){
+    // @isTest
+    // public static void testCreateLeadMarketPlaceReportUser(){
         
-        String contactRTID = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
+    //     String contactRTID = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
        
-        IdentityServiceRegistrationCreateLead.LeadCreateRequest data = new IdentityServiceRegistrationCreateLead.LeadCreateRequest();
-        data.FirstName= 'Joe';
-        data.LastName= 'Pel';
-        data.CompanyName= 'SK Company';
-        data.DealerShip_DBAName = 'KS Dealers';
-        data.UserName= 'joepel@test.com'; 
-        data.Dealer_Type= 'Franchise';
-        data.Phone= '1234567890';
-        data.PhoneExt= '123';
-        data.Street= '640 Ellicott St #321';
-        data.City= 'Buffalo';
-        data.State= 'AK';
-        data.Zipcode= '14203';
-        data.ContactPreference='Text';
-        data.ReferralType='Search engines';
-        data.ReferralCode='Google';
-        data.SMSOptIn= 'true';
-        data.Website='www.testsk.com';
-        data.CarsInstock= 100;
-        data.DealersInterest= 'both';
-        data.EulaId='35a6aca0-3b2f-4eec-a202-0669a93379f2';
-        data.EulaTosAcceptedDate='2020-01-18 06:23:29';
-        data.CellPhone= '9876543210';
-        data.LanguagePreference= 'English';
-        data.UtmSource= 'anim';
-        data.UtmMedium= 'incididunt';
-        data.UtmCampaign= 'duis';
-        data.GoogleClickId= '1ba02580-db12-4fa2-85d9-cfe7d154379a';
-        data.MarketPlaceReportUser='true';
-        RestRequest req = new RestRequest();
-        RestResponse res = new RestResponse();
-        req.httpMethod = 'POST';
-        RestContext.request = req;
-        RestContext.response = res;
+    //     IdentityServiceRegistrationCreateLead.LeadCreateRequest data = new IdentityServiceRegistrationCreateLead.LeadCreateRequest();
+    //     data.FirstName= 'Joe';
+    //     data.LastName= 'Pel';
+    //     data.CompanyName= 'SK Company';
+    //     data.DealerShip_DBAName = 'KS Dealers';
+    //     data.UserName= 'joepel@test.com'; 
+    //     data.Dealer_Type= 'Franchise';
+    //     data.Phone= '1234567890';
+    //     data.PhoneExt= '123';
+    //     data.Street= '640 Ellicott St #321';
+    //     data.City= 'Buffalo';
+    //     data.State= 'AK';
+    //     data.Zipcode= '14203';
+    //     data.ContactPreference='Text';
+    //     data.ReferralType='Search engines';
+    //     data.ReferralCode='Google';
+    //     data.SMSOptIn= 'true';
+    //     data.Website='www.testsk.com';
+    //     data.CarsInstock= 100;
+    //     data.DealersInterest= 'both';
+    //     data.EulaId='35a6aca0-3b2f-4eec-a202-0669a93379f2';
+    //     data.EulaTosAcceptedDate='2020-01-18 06:23:29';
+    //     data.CellPhone= '9876543210';
+    //     data.LanguagePreference= 'English';
+    //     data.UtmSource= 'anim';
+    //     data.UtmMedium= 'incididunt';
+    //     data.UtmCampaign= 'duis';
+    //     data.GoogleClickId= '1ba02580-db12-4fa2-85d9-cfe7d154379a';
+    //     data.MarketPlaceReportUser='true';
+    //     RestRequest req = new RestRequest();
+    //     RestResponse res = new RestResponse();
+    //     req.httpMethod = 'POST';
+    //     RestContext.request = req;
+    //     RestContext.response = res;
 
-        Test.startTest();
-        SalesforceGatewayUserCreateLogic.disableGatewayLogic();
-        IdentityServiceRegistrationCreateLead.createLead(data);
-        Test.stopTest();
+    //     Test.startTest();
+    //     SalesforceGatewayUserCreateLogic.disableGatewayLogic();
+    //     IdentityServiceRegistrationCreateLead.createLead(data);
+    //     Test.stopTest();
 
-        System.Assert(RestContext.response.statuscode == 201, 'Bad Status Code: '+RestContext.response.statuscode + RestContext.response);
-        System.Assert([Select Count() from Lead Where FirstName='Joe' and LastName='Pel' and Company='SK Company' 
-        and Dealership_DBA_Name__c= 'KS Dealers' and Email='joepel@test.com' and  Dealer_Type__c='Franchise' and Phone='1234567890;123'
-         and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='AK' and PostalCode='14203'
-        and Referral__c='Search engines' and Referral_Code__c='Google' and SMS_Opt_In__c= true and Website='www.testsk.com'
-        and How_many_cars_do_you_stock__c= 100 and Interested_in_Buying__c= true and Interested_In_Selling__c= true
-        and Language_Preference__c='English' and MobilePhone='9876543210' and utm_source__c= 'anim' and  
-        utm_medium__c= 'incididunt' and utm_campaign__c= 'duis' and GCLID__c ='1ba02580-db12-4fa2-85d9-cfe7d154379a'] == 1, 'Incorrect number of leads');
-        System.Assert([Select Count() from Contact Where  FirstName='Joe' and LastName='Pel'] == 1, 'Incorrect number of Contacts');
-        System.Assert([Select Count() from Account Where  Name='SK Company'] == 1, 'Incorrect number of Accounts');
-        Datetime dt =Datetime.valueOfGmt(data.EulaTosAcceptedDate);
-        System.Assert([Select Count() from Eula_Tos__c Where Accepted_Date__c= :dt and Eula_Id__c='35a6aca0-3b2f-4eec-a202-0669a93379f2'] == 1, 
-                        'Incorrect number of Eula/TOS record');
-    }
+    //     System.Assert(RestContext.response.statuscode == 201, 'Bad Status Code: '+RestContext.response.statuscode + RestContext.response);
+    //     System.Assert([Select Count() from Lead Where FirstName='Joe' and LastName='Pel' and Company='SK Company' 
+    //     and Dealership_DBA_Name__c= 'KS Dealers' and Email='joepel@test.com' and  Dealer_Type__c='Franchise' and Phone='1234567890;123'
+    //      and LeadSource='Online Registration' and Street='640 Ellicott St #321' and City='Buffalo' and State='AK' and PostalCode='14203'
+    //     and Referral__c='Search engines' and Referral_Code__c='Google' and SMS_Opt_In__c= true and Website='www.testsk.com'
+    //     and How_many_cars_do_you_stock__c= 100 and Interested_in_Buying__c= true and Interested_In_Selling__c= true
+    //     and Language_Preference__c='English' and MobilePhone='9876543210' and utm_source__c= 'anim' and  
+    //     utm_medium__c= 'incididunt' and utm_campaign__c= 'duis' and GCLID__c ='1ba02580-db12-4fa2-85d9-cfe7d154379a'] == 1, 'Incorrect number of leads');
+    //     System.Assert([Select Count() from Contact Where  FirstName='Joe' and LastName='Pel'] == 1, 'Incorrect number of Contacts');
+    //     System.Assert([Select Count() from Account Where  Name='SK Company'] == 1, 'Incorrect number of Accounts');
+    //     Datetime dt =Datetime.valueOfGmt(data.EulaTosAcceptedDate);
+    //     System.Assert([Select Count() from Eula_Tos__c Where Accepted_Date__c= :dt and Eula_Id__c='35a6aca0-3b2f-4eec-a202-0669a93379f2'] == 1, 
+    //                     'Incorrect number of Eula/TOS record');
+    // }
 
 
     //Registration Create Lead For BlitzTeam - Duplicate Account

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FLODocs__cr_approved__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Add the Jira statuses who map to &quot;Approved&quot; status on the Change Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Add the Jira statuses who map to &quot;Approved&quot; status on the Change Request</inlineHelpText>
+        <label>CR Approved</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__cr_complete__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Add the Jira statuses who map to &quot;Complete&quot; status on the Change Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Add the Jira statuses who map to &quot;Complete&quot; status on the Change Request</inlineHelpText>
+        <label>CR Complete</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__cr_in_progress__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Add the Jira statuses who map to &quot;In Progress&quot; status on the Change Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Add the Jira statuses who map to &quot;In Progress&quot; status on the Change Request</inlineHelpText>
+        <label>CR In Progress</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__cr_pending_approval__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Add the Jira statuses who map to &quot;Pending Approval&quot; status on the Change Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Add the Jira statuses who map to &quot;Pending Approval&quot; status on the Change Request</inlineHelpText>
+        <label>CR Pending Approval</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__is_automatic_sync__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Automatic Sync</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Strongpoint Jira Integration Status</label>
+    <visibility>Public</visibility>
+</CustomObject>

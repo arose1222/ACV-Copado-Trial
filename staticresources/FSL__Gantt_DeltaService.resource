@@ -88,7 +88,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                     handleDeltaResponse(deltaResult, runCheckRules);
                 }).catch(function (ex) {
-                    utils.addNotification("Couldn’t update the Gantt", 'To see the latest changes, refresh the page.', null, null);
+                    utils.addNotification(customLabels.DeltaFailureTitle, customLabels.DeltaFailureMessage, null, null);
                     console.warn(ex);
                 });
             }

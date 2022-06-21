@@ -1,0 +1,71 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" contentType="application/json" controller="FLODocs.StrongpointJiraConnectController">
+{
+     "name": "SF Strongpoint Connect",
+     "description": "Strongpoint Connect add-on",
+     "key": "com.strongpoint.salesforce.addon",
+     "baseUrl": "{!base_url}",
+     "vendor": {
+         "name": "Strongpoint",
+         "url": "https://strongpoint.io"
+     },
+     "authentication": {
+         "type": "none"
+     },
+     "apiVersion": 2,
+     "modules": {
+         "generalPages": [
+            
+         ],
+         "webItems": [
+              {
+                  "key": "SF-example-tools-item",
+                  "location": "operations-operations",
+                  "weight": 10,
+                  "name": {
+                      "value": "Example app link"
+                  },
+                  "url": "/example-section-link"
+              }
+            ],
+            "webPanels": [
+                {
+                    "key": "salesforce-issue-right-panel",
+                    "location": "atl.jira.view.issue.right.context",
+                    "name": {
+                        "value": "Salesforce Change Request"
+                    },
+                    "url": "/FLODocs__changeRequestAppoved"            
+                }
+             ],
+         "jiraIssueTabPanels": [
+          {
+            "url": "/FLODocs__StrongpointJiraConnect",
+            "weight": 100,
+            "layout": {
+              "width": "100%",
+              "height": "300px"
+            },
+            "name": {
+              "value": "SF Strongpoint Connect"
+            },
+            "key": "SF-issue-tab"
+          }
+    ],
+    "jiraProjectTabPanels": [
+      {
+        "url": "/FLODocs__StrongpointJiraConnect",
+        "weight": 100,
+        "layout": {
+          "width": "100%",
+          "height": "300px"
+        },
+        "name": {
+          "value": "My Project Tab Panel"
+        },
+        "key": "SF-project-tab"
+      }
+    ],
+    "jiraProfileTabPanels": []
+    }
+}
+</apex:page>

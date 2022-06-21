@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction Object to store information about saved auction and bundle offer
+Process : Bundle Offer process
+Jira Ticket : PC-369
+Domain : Vehicle Intelligence</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ACV_Estimated_Price__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>ACV Estimated Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Bundle_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Adjusted Bundle Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Auction_ID__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Auction ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auction_Sale_Amount__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Auction Sale Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Bundled_Offer__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Bundled Offer</label>
+        <referenceTo>Bundled_Offer__c</referenceTo>
+        <relationshipLabel>BundleOfferVehicleAssociations</relationshipLabel>
+        <relationshipName>BundleOfferVehicleAssociations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Guaranteed_Pricing_Bundle_Vehicle_Id__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Guaranteed Pricing Bundle Vehicle Id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Auctioned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Is Auctioned</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.make__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Make</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.model__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Previous_Run_Auction_Id__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Previous Run Auction Id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Previous_Run_Floor_Bid__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Previous Run Floor Bid</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Run_High_Bid__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Previous Run High Bid</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Run_Number__c</fullName>
+        <description>Represent Number of times a Vehicle went for Auction</description>
+        <externalId>false</externalId>
+        <label>Run Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saved_Auction_ID__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Saved Auction ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Trim__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.trim__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Trim</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>Vehicle__r.vin__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VIN</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <label>Vehicle</label>
+        <referenceTo>Vehicle__c</referenceTo>
+        <relationshipLabel>BundleOfferVehicleAssociations</relationshipLabel>
+        <relationshipName>BundleOfferVehicleAssociations</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Year_Make_Model_Trim__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Vehicle__r.Year__c) &amp; &quot; &quot; &amp; Vehicle__r.make__c &amp; &quot; &quot; &amp; Vehicle__r.model__c &amp; &quot; &quot; &amp; Vehicle__r.trim__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year/Make/Model/Trim</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Vehicle__r.Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>id__c</fullName>
+        <description>Process : Bundle Offer process
+        Jira Ticket : PC-369
+        Domain : Vehicle Intelligence</description>
+        <externalId>true</externalId>
+        <label>id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>true</unique>
+    </fields>
+    <label>BundleOfferVehicleAssociation</label>
+    <nameField>
+        <displayFormat>BOVA-{00000}</displayFormat>
+        <label>BundleOfferVehicleAssociation Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>BundleOfferVehicleAssociations</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

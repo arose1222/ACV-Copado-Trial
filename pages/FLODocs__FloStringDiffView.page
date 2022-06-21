@@ -1,0 +1,4 @@
+<apex:page showHeader="false" sidebar="false" standardController="FLODocs__FLO_Change_Log__c" readOnly="true" extensions="FLODocs.FloEnviromentDiffViewController">
+	<c:StrongpointAnalytics /> 
+	<c:FloStringDiffViewComponent text2="{!xml2}" text1="{!xml1}" renderAsPDF="false" clId="{!FLODocs__FLO_Change_Log__c.id}"/>
+</apex:page>

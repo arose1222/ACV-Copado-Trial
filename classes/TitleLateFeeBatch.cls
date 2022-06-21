@@ -6,26 +6,70 @@
  * @author Manmeet Vaseer
  * @date 08/02/2021
  * 
+ * @history
+ * 		04/21/2022 Manmeet Vaseer - https://acvauctions.atlassian.net/browse/TDO-828. Calculate Title Late Fee based on 1 day grace period.
+ *									That is, we want to calucate Title Late fee one day after the Title is due.
+ * 
+ * 		06/08/2022 Manmeet Vaseer - https://acvauctions.atlassian.net/browse/TDO-935. Populate various emails from Case to Assigned Fee (when recrod is created).
+ * 
  */
-global with sharing class TitleLateFeeBatch implements Database.Batchable<SObject>, Database.AllowsCallouts {
+global with sharing class TitleLateFeeBatch implements Database.Batchable<SObject>, Database.AllowsCallouts, Database.Stateful {
     static String TITLE_LATE_FEE_RT = 'Title_Late_Fee';
+    
+    public Integer totalRecsReceived = 0;
+    public Integer totalRecsProcessed = 0;
     
     Fee__c fee = null;
     Id titleLateFeeRecordTypeId;
+    
+    private String lastNumDays = null; // fetch the Title Cases for Last X Number of Days.
+    
+    /* Fetch records between fromLastNumDays & toLastNumDays. */
+    private String fromLastNumDays = null;
+    private String toLastNumDays = null;
     
     /**
      * Intiliaze the Batch Job.
      * 
      */
     public TitleLateFeeBatch()	{
+        init();
+    }
+
+    /**
+     * Intiliaze the Batch Job.
+     * 
+     * @param lastNumDays It behaves likes last_n_days (SOQL). 
+     * 					  If lastNumDays=30, the batch query is going to fetch all the recrods for last 30 days.
+     */
+    public TitleLateFeeBatch(Integer lastNDays)	{
+        lastNumDays = String.valueOf(lastNDays);
+        init();
+    }
+
+    /**
+     * Intiliaze the Batch Job.
+     * To fetch records between two last_n_days.
+     * 
+     * @param fromLastNumDays Fetch all records that are older than last N days
+     * @param toLastNumDays Fetch all records for last N days.
+     * 					  If fromLastNDays=10 & toLastNDays=30, the batch query is going to fetch all the recrods for last 30 days that are older than 10 days.
+     * 					  That is, fetch records that are older than 10 days, upto last 30 days.
+     */
+    public TitleLateFeeBatch(Integer fromLastNDays, Integer toLastNDays)	{
+        fromLastNumDays = String.valueOf(fromLastNDays);
+        toLastNumDays = String.valueOf(toLastNDays);
+        init();
+    }
+    
+    private void init()	{
         this.titleLateFeeRecordTypeId = Schema.SObjectType.Assigned_Fee__c.getRecordTypeInfosByDeveloperName().get(TITLE_LATE_FEE_RT).getRecordTypeId();
 
         String titleLateFeeName = ACVUtility.getSalesforceSettings(new Set<String>{'Title_Late_Fee'}).get('Title_Late_Fee').Value__c;
         List<Fee__c> fees = [SELECT Id, Name, Default_Amount__c, Max_Allowable_Fees__c FROM Fee__c WHERE Name = :titleLateFeeName AND Type__c = 'Seller Fee' LIMIT 1];
         if(fees == null || fees.size() == 0) throw new TitleLateFeeBatchException('No Fee record is found for Title Late Fee of type Seller Fee. Please, create the required record in the Fee__c object');
-        this.fee = fees[0];
+        this.fee = fees[0];        
     }
-
     
     /**
      * Find all Cases where Title has not been received and enrolled in the late fee program.
@@ -45,7 +89,15 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
      * @param cases A batch of cases that will be processed to calculate Title Late Fee.
      */
     global void execute(Database.BatchableContext BC, List<Case> cases){
-        calculateLateFees(cases);
+        try	{
+            totalRecsReceived = totalRecsReceived + cases.size();
+        	calculateLateFees(cases);
+            totalRecsProcessed = totalRecsProcessed + cases.size();
+        }
+        catch(Exception e)	{
+            String logMsg = 'Found Error while Processing Batch: ' + e.getMessage();
+			makeSplunkLog(null, ACVUtility.currentLineNumber(), logMsg, e.getStackTraceString(), SplunkHelper.LOGLEVEL.ERROR);
+        }
     }
     
     /**
@@ -54,21 +106,25 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
      * @param BC Batch Context
      */
     global void finish(Database.BatchableContext BC){
+        String msg = 'Records Processed/Received: ' + totalRecsProcessed + '/' + totalRecsReceived + '\n';
+        msg = msg + 'Batch Finished.\n';
+        makeSplunkLog(null, 0, msg, '', SplunkHelper.LOGLEVEL.INFO);
+    } 
+    
+    public static void makeSplunkLog(Object anyObj, Integer lineNumber, String message, String stackTrace, SplunkHelper.LOGLEVEL LogLevel)	{
         SplunkHelper.Log infoLog = new SplunkHelper.Log();
         infoLog.componentName = 'TitleLateFeeBatch';
-        infoLog.domainSet = new Set<SplunkHelper.DOMAIN>{ SplunkHelper.DOMAIN.POST_TRANSACTION};
-        infoLog.location = 'TitleLateFeeBatch: '+ ACVUtility.currentLineNumber();
-        infoLog.logLevel = SplunkHelper.LOGLEVEL.INFO;
-        infoLog.message = 'TitleLateFeeBatch Finished';
-        infoLog.sfObject = 'Assigned_Fee__c';
-        infoLog.sfRecordId = BC.getJobId();
-        infoLog.stackTrace = 'TitleLateFeeBatch.finish: '+ ACVUtility.currentLineNumber();
-        infoLog.version = '1';
+        if(anyObj != null) infoLog.sfObject = JSON.serialize(anyObj);
+        infoLog.domainSet = new Set<SplunkHelper.DOMAIN>{ SplunkHelper.DOMAIN.ENTERPRISE_APPS};
+        infoLog.location = 'TitleLateFeeBatch: '+ lineNumber;
+        infoLog.logLevel = LogLevel;
+        infoLog.message = message;
+        infoLog.stackTrace = stackTrace;
+        infoLog.version = 'v1';
         infoLog.setContext(SplunkHelper.CONTEXT_TYPE.BATCH);
-        if(!Test.isRunningTest()){
-        	SplunkHelper.processLog(infoLog);
-        }
-    } 
+        
+        if(!Test.isRunningTest())	SplunkHelper.processLog(infoLog);
+    }
     
     /**
      * Fetch all Cases where Title is past due and dealership is part of the late fee program.
@@ -78,9 +134,17 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
     public String getQuery()	{
         String query = 'SELECT Id, Title_Received_Date__c, Title_Due_Date__c, CreatedDate, ' +
             'Seller_Dealership__c, Seller_Dealership__r.Late_Title_Fee_Eligible__c, Seller_Dealership__r.Late_Title_Fee_Start_Date__c, ' + 
-            'Seller_Dealership__r.Unpaid_Title_Late_Fee__c, Seller_Dealership__r.Total_Billable_Amount__c, Seller_Dealership__r.Potential_Billable_Amount__c  FROM Case ' + 
-            'WHERE Seller_Dealership__r.Late_Title_Fee_Eligible__c = true AND Title_Due_Date__c < TODAY';
+            'Seller_Dealership__r.Unpaid_Title_Late_Fee__c, Seller_Dealership__r.Total_Billable_Amount__c, Seller_Dealership__r.Potential_Billable_Amount__c, ' +
+            'Seller_Contact_Email__c, Seller_TM_Email__c, Seller_Title_Clerk_Email__c FROM Case ' + 
+            'WHERE Seller_Dealership__r.Late_Title_Fee_Eligible__c = true AND Title_Due_Date__c < YESTERDAY';
 
+        if(this.lastNumDays != null)	{
+            query = query + ' AND Title_Due_Date__c = LAST_N_DAYS:' + this.lastNumDays;
+        }
+        else if(this.fromLastNumDays != null && this.toLastNumDays != null)        {
+            query = query + ' AND Title_Due_Date__c = LAST_N_DAYS:' + this.toLastNumDays + ' AND Title_Due_Date__c < LAST_N_DAYS:' + this.fromLastNumDays;            
+        }
+        
 		return query;        
     }
     
@@ -96,8 +160,7 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
         // Get all unpaid fees related to each account
         List<Assigned_Fee__c> assignedFees = [SELECT Id, Fee_Status__c, Date_Fee_Accessed__c, Total_Billable_Amount__c, Potential_Billable_Amount__c, Fee__r.Max_Allowable_Fees__c, Fee__r.Default_Amount__c, 
                                               Case__c, Account__c, Account__r.Total_Billable_Amount__c, Account__r.Potential_Billable_Amount__c, Account__r.Unpaid_Title_Late_Fee__c 
-                                              FROM Assigned_Fee__c WHERE RecordTypeId = :this.titleLateFeeRecordTypeId AND Account__c IN :accountIds];
-        
+                                              FROM Assigned_Fee__c WHERE RecordTypeId = :this.titleLateFeeRecordTypeId AND Account__c IN :accountIds];        
         /*
          * We have unpaid fees (as Assigned Fee) from all the cases. We will create a map of Cases and related Assigned Fees so
          * that we can calcuate total billiable amount for each Assigned Fee.
@@ -155,10 +218,12 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
             sellerDealershipAcct = aCase.Seller_Dealership__r;
             updateAccounts.put(aCase.Seller_Dealership__c, aCase.Seller_Dealership__r);
         }
-        
+
         Assigned_Fee__c newAssignedFee = new Assigned_Fee__c(Case__c=aCase.Id, Account__c=aCase.Seller_Dealership__c, Override_Amount__c=this.fee.Default_Amount__c,
                                                              Fee__c=this.fee.Id, Fee_Status__c='Fee Pending', RecordTypeId=this.titleLateFeeRecordTypeId,
-                                                             Total_Billable_Amount__c=this.fee.Default_Amount__c, Potential_Billable_Amount__c=this.fee.Default_Amount__c);
+                                                             Total_Billable_Amount__c=this.fee.Default_Amount__c, Potential_Billable_Amount__c=this.fee.Default_Amount__c,
+                                                             Seller_Contact_Email__c=aCase.Seller_Contact_Email__c, Seller_Territory_Manager_Email__c=aCase.Seller_TM_Email__c,
+                                                             Seller_Title_Clerk_Email__c=aCase.Seller_Title_Clerk_Email__c);
         
         if(sellerDealershipAcct.Total_Billable_Amount__c == null) sellerDealershipAcct.Total_Billable_Amount__c = 0;
         if(sellerDealershipAcct.Potential_Billable_Amount__c == null) sellerDealershipAcct.Potential_Billable_Amount__c = 0;
@@ -167,7 +232,7 @@ global with sharing class TitleLateFeeBatch implements Database.Batchable<SObjec
         sellerDealershipAcct.Potential_Billable_Amount__c = sellerDealershipAcct.Potential_Billable_Amount__c + this.fee.Default_Amount__c;
         sellerDealershipAcct.Unpaid_Title_Late_Fee__c = true;    
         
-        newLateFees.add(newAssignedFee);                                           
+        newLateFees.add(newAssignedFee); 
     }
     
     private void updateExistingAssignedFee(Assigned_Fee__c assignedFee, Case aCase, Map<Id, Account> updateAccounts, Map<Id, Assigned_Fee__c> updateAssignedFees)	{

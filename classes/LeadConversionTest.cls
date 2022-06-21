@@ -144,40 +144,40 @@ public class LeadConversionTest {
     }
 
 
-    @isTest
-    public static void ConvertLeadMarketPlaceReportUser(){
+    // @isTest
+    // public static void ConvertLeadMarketPlaceReportUser(){
 
-        List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
-        leadRecLst[0].Market_Place_Report_User__c= true;
-        update leadRecLst;
+    //     List<lead> leadRecLst = [SELECT Id, Email, Company, Referral_Code__c FROM LEad WHERE EIN_Number__c= '456123' AND  State = 'AK' LIMIT 1];
+    //     leadRecLst[0].Market_Place_Report_User__c= true;
+    //     update leadRecLst;
 
-        Eula_Tos__C eulaTosRec = new Eula_Tos__c(Lead__c = leadRecLst[0].Id);
-        insert eulaTosRec;
+    //     Eula_Tos__C eulaTosRec = new Eula_Tos__c(Lead__c = leadRecLst[0].Id);
+    //     insert eulaTosRec;
 
-        insert TestUtility.createAccount();
-        Contact c1 = TestUtility.createContact([SELECT Id FROM Account][0]);
-        c1.Identity_Id__c = '111';
-        c1.Email = UserInfo.getUserEmail();
-        insert c1;
+    //     insert TestUtility.createAccount();
+    //     Contact c1 = TestUtility.createContact([SELECT Id FROM Account][0]);
+    //     c1.Identity_Id__c = '111';
+    //     c1.Email = UserInfo.getUserEmail();
+    //     insert c1;
 
-        Test.startTest();
-            SalesforceGatewayUserCreateLogic.disableGatewayLogic();
-            LeadConversion.ReturnWrapper rw= LeadConversion.updateAddAndConvertLead(leadRecLst[0].Id, LeadConversionTest.getAddress());
-        Test.stopTest();
+    //     Test.startTest();
+    //         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
+    //         LeadConversion.ReturnWrapper rw= LeadConversion.updateAddAndConvertLead(leadRecLst[0].Id, LeadConversionTest.getAddress());
+    //     Test.stopTest();
 
-        System.assert('Lead Conversion successful.' == rw.message, 'Resulted in an error. Error Message:'+ rw.message);
-        System.assert(false == rw.hasError, 'Resulted in an error.');
+    //     System.assert('Lead Conversion successful.' == rw.message, 'Resulted in an error. Error Message:'+ rw.message);
+    //     System.assert(false == rw.hasError, 'Resulted in an error.');
 
-        List<Account> accList = [SELECT Id FROM Account WHERE Legal_Name__c =:leadRecLst[0].Company]; // Account should be active.
-        System.assert(accList.size() == 1, 'Account is not generated');
+    //     List<Account> accList = [SELECT Id FROM Account WHERE Legal_Name__c =:leadRecLst[0].Company]; // Account should be active.
+    //     System.assert(accList.size() == 1, 'Account is not generated');
 
-        List<Contact> conList = [SELECT Id FROM Contact WHERE Email =:leadRecLst[0].Email and Role__c= 'readonly'];
-        System.assert(conList.size() == 1, 'Contact is not generated');
+    //     List<Contact> conList = [SELECT Id FROM Contact WHERE Email =:leadRecLst[0].Email and Role__c= 'readonly'];
+    //     System.assert(conList.size() == 1, 'Contact is not generated');
 
-        System.assert([SELECT COUNT() FROM Affiliation__c WHERE type__c = 'admin' AND Active__c = TRUE AND primary_contact__c= TRUE] == 1, 'Affiliation is not generated');
-        System.assert([SELECT COUNT() from AssociatedLocation WHERE ParentRecordId = :accList[0].Id AND ActiveTo = null] == 1, 'Associated Location is not generated');
-        System.assert([SELECT COUNT() FROM Eula_Tos__c WHERE Contact__c =: conList[0].Id] == 1, 'Contact is not updated on Eula Tos Object');
-    }
+    //     System.assert([SELECT COUNT() FROM Affiliation__c WHERE type__c = 'admin' AND Active__c = TRUE AND primary_contact__c= TRUE] == 1, 'Affiliation is not generated');
+    //     System.assert([SELECT COUNT() from AssociatedLocation WHERE ParentRecordId = :accList[0].Id AND ActiveTo = null] == 1, 'Associated Location is not generated');
+    //     System.assert([SELECT COUNT() FROM Eula_Tos__c WHERE Contact__c =: conList[0].Id] == 1, 'Contact is not updated on Eula Tos Object');
+    // }
 
     // This unit test validates the scenario when system finds a duplicate using the matching rules
     @isTest

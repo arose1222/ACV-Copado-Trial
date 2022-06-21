@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert to notify users when they are listed to approve/reject a CR</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Strongpoint Change Request Alert</name>
+    <style>none</style>
+    <subject>Strongpoint Change Request to approve</subject>
+    <textOnly>Dear {!FLODocs__FLO_Change_Request__c.FLODocs__Approver__c},
+
+You have a FLO Change Request to Approve/Reject.
+Please review the CR {!FLODocs__FLO_Change_Request__c.Link}  and move forward with the process.
+Regards,
+Strongpoint
+CONTACT FLODocs
+
+80 Peter Street, Toronto Ontario M5V1J9 | Phone: 877-368-7741 | Email: info@flo-partners.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

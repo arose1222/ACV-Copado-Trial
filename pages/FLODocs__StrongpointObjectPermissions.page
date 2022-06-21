@@ -1,0 +1,354 @@
+<apex:page controller="FLODocs.StrongpointObjectPermissionsController" showHeader="true" standardStylesheets="false" docType="html-5.0" sidebar="false" readOnly="true" tabStyle="FLODocs__tab">
+  <c:StrongpointAnalytics />
+  <apex:slds />
+  <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+  <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/verticalTabs.css')}"  />
+  <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/d3.v4.min.js')}" />
+
+
+  <apex:stylesheet value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"  />
+  <apex:includescript value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" />
+
+
+  <style>
+    h1 {
+      font-size: 80px;
+      text-align: left;
+    }
+      
+  progress, progress[role] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-size: auto;
+    height: 15px;
+    width: 100%;
+  }
+
+  .skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+  }
+
+  .skill {
+    margin-bottom: 1em;
+    position: relative;
+  }
+  .skill h3 {
+    color: #fff;
+    left: 1em;
+    line-height: 1;
+    position: absolute;
+    top: 1em;
+  }
+  .skill ::-webkit-progress-value {
+    -webkit-animation: bar-fill 2s;
+    width: 0px;
+  }
+
+  .skill-1::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-1::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  .skill-2::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-2::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  .skill-3::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-3::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  @-webkit-keyframes bar-fill {
+    0% {
+      width: 0;
+    }
+  }
+  @keyframes bar-fill {
+    0% {
+      width: 0;
+    }
+  }
+  ul li ul {
+    display: none;
+  }
+  td.left {
+    width: 85px !important;
+    height: auto;
+  }
+  td.left div{
+    width: 85px !important;
+  }
+
+  img#phHeaderLogoImage {
+    width: 85px;
+    height: 55px;
+  }
+  html {
+    line-height: 1;
+    background: none;
+    box-sizing: initial;
+  }
+  .crSections {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+  </style>
+  <apex:outputPanel >
+    <style>
+    .bPageBlock {
+      border-top: 0 !important;
+    }
+    .pbBody {
+      margin: 0 !important;
+    }
+    .pbSubheader {
+      background-color: orange!important;
+      padding: 8px !important;
+      color: #222 !important;
+    }
+    .bPageBlock {
+      border-top: 0 solid #d8dde6 !important;
+      border-left: 0px !important;
+      border-right: 0px !important;
+      border-bottom: 0px !important;
+      background: #FFF !important;
+      margin-bottom: 15px !important;
+    }
+    .relatedListIcon {
+      display: none !important;
+    }
+    .pbTitle h3 {
+      margin: 10px 0 !important;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-block;
+      padding: 0 10px !important;
+      background: transparent !important;
+      background-clip: border-box !important;
+      border: 1px solid #d8dde6 !important;
+      border-radius: 0.25rem !important;
+      font-size: 0.75rem !important;
+      line-height: 1.875rem !important;
+      text-decoration: none !important;
+      color: #0070d2 !important;
+      -webkit-appearance: none !important;
+      white-space: normal !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      transition: color 0.05s linear, background-color 0.05s linear !important;
+    }
+    .bRelatedList {
+      width: 100%;
+    }
+    </style>
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <div align="right">
+        <apex:form >
+            <apex:commandLink value="Export to XLS" action="{!getCreateExcel}" oncomplete="return false;" style="width:150px;" styleClass="slds-button slds-button--brand slds-order--3" />
+        </apex:form>
+    </div>
+    <div class="slds">
+        
+            <div class="slds-text-title_caps">Profile</div>
+            <br></br>
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                    <div class="slds-truncate" title="Profile Name">Profile Name</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Profile Name">Object Name</div>
+                  </th>                    
+
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Create">Create</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Read">Read</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Edit">Edit</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Delete">Delete</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="View All">View All</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Modify All">Modify All</div>
+                    </th>
+                  </apex:outputpanel>
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!profilePermsForAllObjects}" var="perms">
+                  <tr>
+                    <th scope="row" data-label="Profile Name">
+                      <div class="slds-truncate">{!perms.profileName}</div>
+                    </th>
+                    <th scope="row" data-label="Object Name">
+                      <div class="slds-truncate">{!perms.objectName}</div>
+                    </th>                     
+
+                    <apex:outputpanel layout="none">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isCreate, '', 'un')}checked.gif" title="{!IF(perms.isCreate, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                    <td data-label="Read">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isRead, '', 'un')}checked.gif" title="{!IF(perms.isRead, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <td data-label="Edit">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isEdit, '', 'un')}checked.gif" title="{!IF(perms.isEdit, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <apex:outputpanel layout="none">
+                      <td data-label="Delete">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isDelete, '', 'un')}checked.gif" title="{!IF(perms.isDelete, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="View All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isViewAll, '', 'un')}checked.gif" title="{!IF(perms.isViewAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="Modify All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isModifyAll, '', 'un')}checked.gif" title="{!IF(perms.isModifyAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>
+                </apex:repeat>
+                </tbody>
+              </table>
+            </div>
+            
+            <br></br>
+            <div class="slds-text-title_caps">Permission Set</div>
+            <br></br>
+        
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                
+                  <th scope="col">
+                    <div class="slds-truncate" title="Profile Name">Permission Set Name</div>
+                  </th>
+                                    <th scope="col">
+                    <div class="slds-truncate" title="Profile Name">Object Name</div>
+                  </th>    
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Create">Create</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Read">Read</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Edit">Edit</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Delete">Delete</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="View All">View All</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Modify All">Modify All</div>
+                    </th>
+                  </apex:outputpanel>
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!permissionSetForAllObjects}" var="perms">
+                  <tr>
+                    <th scope="row" data-label="PermissionSet Name">
+                      <div class="slds-truncate">{!perms.profileName}</div>
+                    </th>
+                    <th scope="row" data-label="Object Name">
+                      <div class="slds-truncate">{!perms.objectName}</div>
+                    </th>                      
+
+                    <apex:outputpanel layout="none">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isCreate, '', 'un')}checked.gif" title="{!IF(perms.isCreate, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                    <td data-label="Read">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isRead, '', 'un')}checked.gif" title="{!IF(perms.isRead, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <td data-label="Edit">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isEdit, '', 'un')}checked.gif" title="{!IF(perms.isEdit, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <apex:outputpanel layout="none">
+                      <td data-label="Delete">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isDelete, '', 'un')}checked.gif" title="{!IF(perms.isDelete, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="View All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isViewAll, '', 'un')}checked.gif" title="{!IF(perms.isViewAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="Modify All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isModifyAll, '', 'un')}checked.gif" title="{!IF(perms.isModifyAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>
+                </apex:repeat>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </apex:outputPanel>  
+    
+</apex:page>

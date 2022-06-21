@@ -189,7 +189,7 @@ global class SchedulingFramework implements Schedulable {
      */
     private static DateTime getNext5MinuteInterval( DateTime providedDT ) {
         // Get the last digit of the current time range
-        integer minuteCheck = getLastDigit( providedDT.time() );
+        integer minuteCheck = getLastDigit( providedDT.time() ); //33:29:39
         integer nextMinuteDigit = 10; // For Cases of 5-9, go to next 0 ending minute interval
         if ( minuteCheck < 5 ) { // For Cases of 0-4, go to next 5 ending minute interval
             nextMinuteDigit = 5;
@@ -200,6 +200,13 @@ global class SchedulingFramework implements Schedulable {
         nextRunDT = nextRunDT.addMinutes((-1)*minuteCheck);
         // Third Step - Add 5 or 10 Minutes (from above calculation) to get result
         nextRunDT = nextRunDT.addMinutes(nextMinuteDigit);
+        //compare two times - if the difference is less than 3 seconds (giving some padding):
+        if (nextRunDT.getTime() - providedDT.getTime() <= 3000) { //3000 milliseconds (3 seconds)
+            //add 5 more mins to nextRunDT
+            nextRunDT = nextRunDT.addMinutes(5);
+            //log to splunk that it needed to bump the time
+            logToSplunk(CLASS_NAME, SplunkHelper.LOGLEVEL.INFO, CLASS_NAME + ':208', 'Needed to push next run time back 5 minutes.', CLASS_NAME + ':208', UserInfo.getUserId());
+        }
 
         return nextRunDT;
     }

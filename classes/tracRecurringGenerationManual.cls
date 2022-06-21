@@ -3,15 +3,16 @@
  * @name tracRecurringGenerationManual
  * @author Daniel Labonte, Traction on Demand
  * @date 2019-09-28
+ * @see https://acvauctions.atlassian.net/browse/SI-564
  */
 
 public with sharing class tracRecurringGenerationManual {
     public static Boolean overrideDataSchedule = false;
 
-    public static void runBatch(Integer batchSize) {
-        overrideDataSchedule = true;
+    // public static void runBatch(Integer batchSize) {
+    //     overrideDataSchedule = true;
 
-        tracRecurringGenerationBatch batch = new tracRecurringGenerationBatch();
-        Database.executeBatch(batch, batchSize);
-    }
+    //     tracRecurringGenerationBatch batch = new tracRecurringGenerationBatch();
+    //     Database.executeBatch(batch, batchSize);
+    // }
 }

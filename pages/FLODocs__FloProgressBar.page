@@ -1,0 +1,689 @@
+<apex:page showHeader="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloProgressBarController" docType="html-5.0">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+		<apex:slds />
+		<style>
+
+		 /**
+			   * @name base
+			   * @selector .slds-path
+			   * @restrict div
+			   * @variant
+			   * @s1 false
+			   */
+			  .slds-path {
+			    margin-top: 1rem;
+			    border: transparent 1px solid;
+			    /**
+			     * @summary Indicates the coaching section is expanded
+			     *
+			     * @selector .slds-is-expanded
+			     * @restrict .slds-path
+			     */ }
+
+			  .slds-path.slds-is-expanded {
+			    padding-bottom: 1rem;
+			    border-color: #dddbda;
+			    background-color: white; }
+
+			  /**
+			   * @summary Allows the path itself to be responsive
+			   *
+			   * @selector .slds-path__track
+			   * @restrict .slds-path div
+			   */
+			  .slds-path__track {
+			    position: relative;
+			    top: -1rem;
+			    /**
+			     * Indicates the scroller is in the overflow state
+			     *
+			     * @selector .slds-has-overflow
+			     * @restrict .slds-path__track
+			     */ }
+
+			  .slds-path__track.slds-has-overflow {
+			    /**
+			       *
+			       * @summary Allows the path to scroll when necessary
+			       *
+			       * @selector .slds-path__scroller_inner
+			       * @restrict .slds-path__scroller div
+			       */ }
+
+			  .slds-path__track.slds-has-overflow .slds-path__scroller_inner {
+			    overflow: hidden; }
+
+			  .slds-path__track.slds-has-overflow .slds-path__scroller-container {
+			    position: relative;
+			    min-width: 0%;
+			    -ms-flex-positive: 1;
+			        flex-grow: 1;
+			    width: calc(100% - 4.75rem);
+			    padding-right: 4.75rem; }
+
+			  .slds-path__track.slds-has-overflow .slds-path__scroll-controls {
+			    display: -ms-flexbox;
+			    display: flex;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    bottom: 0;
+			    margin-right: 0.5rem;
+			    padding-left: 0.5rem;
+			    background-color: white; }
+
+			  /**
+			   * @summary Creates the scrolling container for tab overflow
+			   *
+			   * @selector .slds-path__scroller
+			   * @restrict .slds-path__track div
+			   */
+			  .slds-path__scroller {
+			    width: 100%; }
+
+			  /**
+			   * @summary Container for the buttons that control the scrolling
+			   *
+			   * @selector .slds-path__scroll-controls
+			   * @restrict .slds-path__track div
+			   *
+			   */
+			  .slds-path__scroll-controls {
+			    display: none; }
+
+			  /**
+			   * @summary Shows the stage name when in the smaller state
+			   *
+			   * @selector .slds-path__stage-name
+			   * @restrict .slds-path__track span
+			   *
+			   */
+			  .slds-path__stage-name {
+			    display: none; }
+
+			  /**
+			   * @summary Creates the container for toggle button and path
+			   *
+			   * @selector .slds-path__scroller_container
+			   * @restrict .slds-path__scroller div
+			   */
+			  .slds-path__scroller-container {
+			    width: 100%; }
+
+			  .slds-path__action {
+			    -ms-flex-negative: 0;
+			        flex-shrink: 0; }
+
+			  /**
+			   * @summary Horizontal list of stages in path component
+			   *
+			   * @selector .slds-path__nav
+			   * @restrict .slds-path__scroller_inner ul
+			   */
+			  .slds-path__nav {
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-align: start;
+			        align-items: flex-start;
+			    margin-right: 0.75rem;
+			    /**
+			    * @summary Creates the incomplete stage of the path
+			    *
+			    * @selector .slds-is-incomplete
+			    * @restrict .slds-path__item
+			    */
+			    /**
+			    * @summary Creates the active stage of the sales path
+			    *
+			    * @selector .slds-is-active
+			    * @restrict .slds-path__item
+			    * @notes This class must be placed on the item programatically when the guidance section is activated
+			    */
+			    /**
+			     * @summary Creates success stage of the path
+			     *
+			     * @selector .slds-is-won
+			     * @restrict .slds-path__item
+			     */
+			    /**
+			     * @summary Creates the completed stage of the path
+			     *
+			     * @selector .slds-is-complete
+			     * @restrict .slds-path__item
+			     */
+			    /**
+			     * @summary Creates the current stage of the path
+			     *
+			     * @selector .slds-is-current
+			     * @restrict .slds-path__item
+			     */
+			    /**
+			    * @summary Creates lost stage of the path
+			    *
+			    * @selector .slds-is-lost
+			    * @restrict .slds-path__item
+			    * @notes This class must be added to the "closed" stage with JS when the Sales Path is complete and the opportunity is lost
+			    */ }
+
+			  .slds-path__nav .slds-is-incomplete {
+			    background-color: #ecebea; }
+
+			  .slds-path__nav .slds-is-incomplete:hover {
+			    background-color: #dddbda; }
+
+			  .slds-path__nav .slds-is-incomplete .slds-path__link {
+			    color: #16325c; }
+
+			  .slds-path__nav .slds-is-active {
+			    background-color: #061c3f; }
+
+			  .slds-path__nav .slds-is-active .slds-path__link {
+			    color: white; }
+
+			  .slds-path__nav .slds-is-active:hover {
+			    background-color: #16325c; }
+
+			  .slds-path__nav .slds-is-active:hover + .slds-path__item:before {
+			    background-color: #16325c; }
+
+			  .slds-path__nav .slds-is-active + .slds-path__item:before {
+			    background-color: #061c3f; }
+
+			  .slds-path__nav .slds-is-active .slds-path__title,
+			  .slds-path__nav .slds-is-active.slds-is-won .slds-path__title {
+			    transform: rotateX(0deg); }
+
+			  .slds-path__nav .slds-is-active .slds-path__stage,
+			  .slds-path__nav .slds-is-active.slds-is-won .slds-path__stage {
+			    transform: rotateX(-180deg); }
+
+			  .slds-path__nav .slds-is-complete {
+			    background-color: #4bca81; }
+
+			  .slds-path__nav .slds-is-complete .slds-path__stage {
+			    transform: translateY(-50%) rotateX(0deg); }
+
+			  .slds-path__nav .slds-is-complete .slds-path__title {
+			    transform: rotateX(180deg); }
+
+			  .slds-path__nav .slds-is-complete .slds-path__link {
+			    color: #16325c; }
+
+			  .slds-path__nav .slds-is-complete:hover {
+			    background-color: #04844b; }
+
+			  .slds-path__nav .slds-is-complete:hover .slds-path__stage {
+			    transform: translateY(-50%) rotateX(-180deg); }
+
+			  .slds-path__nav .slds-is-complete:hover .slds-path__title {
+			    transform: rotateX(0deg); }
+
+			  .slds-path__nav .slds-is-complete:hover .slds-path__link {
+			    color: white; }
+
+			  .slds-path__nav .slds-is-current {
+			    background-color: #0070d2; }
+
+			  .slds-path__nav .slds-is-current:hover {
+			    background-color: #005fb2; }
+
+			  .slds-path__nav .slds-is-current + .slds-is-incomplete:before {
+			    background-color: #0070d2; }
+
+			  .slds-path__nav .slds-is-current:hover + .slds-is-incomplete:before {
+			    background-color: #005fb2; }
+
+			  .slds-path__nav .slds-is-lost,
+			  .slds-path__nav .slds-is-lost:hover {
+			    background-color: #c23934; }
+
+			  .slds-path__nav .slds-is-current .slds-path__link,
+			  .slds-path__nav .slds-is-lost .slds-path__link {
+			    color: white; }
+
+			  /**
+			   * @summary Individual stages of a path
+			   *
+			   * @selector .slds-path__item
+			   * @restrict .slds-path__nav li
+			   */
+			  .slds-path__item {
+			    overflow: hidden;
+			    position: relative;
+			    -ms-flex: 1 1 0%;
+			        flex: 1 1 0%;
+			    min-width: 5rem;
+			    text-align: center;
+			    perspective: 500px;
+			    transition: transform 0.1s ease-in-out, background-color 0.1s linear; }
+
+			  .slds-path__item:first-child {
+			    border-radius: 15rem 0 0 15rem; }
+
+			  .slds-path__item:last-child {
+			    border-radius: 0 15rem 15rem 0;
+			    border-right: 0; }
+
+			  .slds-path__item:before {
+			    content: '';
+			    display: block;
+			    position: absolute;
+			    top: 2px;
+			    left: -1rem;
+			    width: calc(2rem - (2px * 2));
+			    height: calc(2rem - (2px * 2));
+			    border: 2px solid white;
+			    border-left: 0;
+			    border-bottom: 0;
+			    background-clip: padding-box;
+			    transform: scale3d(0.8, 1.1, 1) rotate(45deg);
+			    transition: transform 0.1s ease-in-out, background-color 0.1s linear; }
+
+			  .slds-path__item:first-child:before {
+			    display: none; }
+
+			  .slds-path__item + .slds-is-complete:before,
+			  .slds-path__item + .slds-is-current:before {
+			    background-color: #4bca81; }
+
+			  .slds-path__item:hover + .slds-is-complete:before,
+			  .slds-path__item:hover + .slds-is-current:before {
+			    background-color: #04844b; }
+
+			  .slds-path__item + .slds-is-incomplete:before,
+			  .slds-path__item + .slds-is-lost:before {
+			    background-color: #ecebea; }
+
+			  .slds-path__item:hover + .slds-is-incomplete:before,
+			  .slds-path__item:hover + .slds-is-lost:before {
+			    background-color: #dddbda; }
+
+			  /**
+			   * @summary Contains the name of the stage
+			   *
+			   * @selector .slds-path__title
+			   * @restrict .slds-path__link span
+			   */
+			  .slds-path__title {
+			    max-width: 100%;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap; }
+
+			  /**
+			   * @summary Contains the check mark when the stage is completed
+			   *
+			   * @selector .slds-path__stage
+			   * @restrict .slds-path__link span
+			   */
+			  .slds-path__stage {
+			    position: absolute;
+			    top: 50%;
+			    left: 0.5rem;
+			    width: 100%;
+			    transform: translateY(-50%) rotateX(-180deg); }
+
+			  /**
+			   * @summary Creates actionable element inside of each path item
+			   *
+			   * @selector .slds-path__link
+			   * @restrict .slds-path__item a
+			   */
+			  .slds-path__link {
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+			    position: relative;
+			    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+			    line-height: 1.5rem;
+			    text-decoration: none;
+			    cursor: pointer; }
+
+			  .slds-path__link:hover {
+			    text-decoration: none; }
+
+			  .slds-path__link:focus {
+			    outline: 0; }
+
+			  .slds-path__title,
+			  .slds-path__stage {
+			    display: block;
+			    transition: transform 0.2s linear;
+			    -webkit-backface-visibility: hidden;
+			    backface-visibility: hidden; }
+
+			  /**
+			   * @summary Button that toggles visibility of stage's tabpanel
+			   *
+			   * @selector .slds-path__trigger
+			   * @restrict .slds-path button
+			   */
+			  .slds-path__trigger {
+			    -ms-flex-negative: 0;
+			        flex-shrink: 0;
+			    margin: 0 0.75rem;
+			    border-radius: 50%;
+			    transition: 0.1s transform ease-in-out; }
+
+			  .slds-flip_vertical,
+			  .slds-flip--vertical {
+			    transform: rotateX(180deg); }
+
+			  .slds-flip_horizontal,
+			  .slds-flip--horizontal {
+			    transform: rotateY(180deg); }
+
+			  /**
+			   * @summary Actionable button that invokes a completion of the path
+			   *
+			   * @selector .slds-path__mark-complete
+			   * @restrict .slds-path button
+			   */
+			  .slds-path__mark-complete {
+			    -ms-flex-negative: 0;
+			        flex-shrink: 0;
+			    margin-right: 0.75rem;
+			    border-radius: 15rem; }
+
+			  /**
+			   * @summary Actionable button that invokes a current stage of the path
+			   *
+			   * @selector .slds-path__mark-current
+			   * @restrict .slds-path button, .slds-path-coach button
+			   */
+			  .slds-path__mark-current {
+			    border-color: #061c3f;
+			    background-color: #061c3f; }
+
+			  .slds-path__mark-current:hover, .slds-path__mark-current:focus {
+			    background-color: #16325c; }
+
+			  /**
+			   * @summary Tabpanel of each stage of the path
+			   *
+			   * @selector .slds-path__content
+			   * @restrict .slds-path div
+			   */
+			  .slds-path__content {
+			    position: relative;
+			    top: -1rem;
+			    padding: 0 0.5rem; }
+
+			  /**
+			   * @summary Key field section of expanded tabpanel
+			   *
+			   * @selector .slds-path__keys
+			   * @restrict .slds-path__content div
+			   */
+			  .slds-path__keys {
+			    padding-left: 0.75rem; }
+
+			  /**
+			   * @summary Guidance section of expanded tabpanel
+			   *
+			   * @selector .slds-path__guidance
+			   * @restrict .slds-path__content div
+			   */
+			  .slds-path__guidance {
+			    margin-right: 0.5rem;
+			    padding-left: 0.75rem;
+			    padding-bottom: 0.25rem;
+			    background-color: white; }
+
+			  .slds-path__keys,
+			  .slds-path__guidance {
+			    width: 50%;
+			    margin-top: 1rem;
+			    padding-top: 0.5rem;
+			    padding-right: 0.75rem; }
+
+			  /**
+			   * @summary This creates the underlined titles in the coaching area
+			   *
+			   * @selector .slds-path__coach-title
+			   * @restrict .slds-path__keys div, .slds-path__guidance h2
+			   */
+			  .slds-path__coach-title {
+			    margin-bottom: 0.5rem;
+			    border-bottom: #dddbda 1px solid;
+			    padding-bottom: 0.5rem;
+			    font-size: 0.75rem;
+			    text-transform: uppercase;
+			    letter-spacing: 0.0625rem;
+			    line-height: 1.125; }
+
+			  /**
+			   * @summary This creates the space at the top of the guidance area
+			   *
+			   * @selector .slds-path__guidance-content
+			   * @restrict .slds-path__guidance div
+			   */
+			  .slds-path__guidance-content {
+			    padding-top: 0.5rem; }
+
+			  /**
+			   * @summary This class should be placed on a containing div when the Path container is between 565px and 1280px
+			   *
+			   * @selector .slds-region_medium
+			   * @restrict div
+			   */
+			  /**
+			   * @summary This class should be placed on a containing div when the Path container is between 360px and 564px
+			   *
+			   * @selector .slds-region_medium
+			   * @restrict div
+			   */
+			  .slds-region_small .slds-path__track,
+			  .slds-region_small .slds-path__coach {
+			    -ms-flex-wrap: wrap;
+			        flex-wrap: wrap;
+			    -ms-flex-align: start;
+			        align-items: flex-start; }
+
+			  .slds-region_small .slds-path__stage-name {
+			    display: block;
+			    margin-left: 0.75rem; }
+
+			  .slds-region_small .slds-path__action {
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
+			    -ms-flex-align: center;
+			        align-items: center;
+			    -ms-flex-line-pack: center;
+			        align-content: center;
+			    width: 100%;
+			    margin-top: 0.5rem;
+			    padding-right: 0.5rem;
+			    padding-left: 0.5rem; }
+
+			  .slds-region_small .slds-path__mark-complete {
+			    margin-right: 0; }
+
+			  .slds-region_small .slds-path__keys,
+			  .slds-region_small .slds-path__guidance {
+			    width: 100%;
+			    margin-right: 0; }
+	
+    	</style>
+	    
+	 
+		
+		
+
+	    <script>
+	    	function refreshPage() {
+	    		window.parent.location.href = '/{!crId}';
+	    	}
+
+	    	function markComplete(stati){
+	    		if(confirm('Are you sure to change Completation Status?')){
+	    			
+	    			markCompleteAF(stati);	
+	    			//window.opener.reloadPage();
+	    		}
+	    		
+	    	}
+	    	function changeStatus(){
+
+	    	}
+	    </script>
+	</head>
+
+	<body>
+
+
+	    <apex:form id="formi" >
+		    	<apex:outputPanel layout="block" rendered="{!showProgressBar}" styleClass="slds-scope">
+				    <apex:actionPoller rerender="progress" interval="5" action="{!actionCall}"/>
+
+				    <apex:outputPanel layout="block" id="progress">
+					    {!batchStatus} <a href="#" onclick="refreshPage();"> (Refresh Page) </a>
+					    <progress class="skill-1" max="100" value="{!percent}" style="width:100%;">
+					    </progress>
+				    </apex:outputPanel>
+				</apex:outputPanel>
+
+				<apex:actionFunction name="markCompleteAF" action="{!changeCompletationStatus}" reRender="outerPath" >
+					<apex:param name="status" value=""/>
+				</apex:actionFunction>
+
+				<apex:outputPanel id="outerPath">
+					<apex:outputPanel id="paths">
+
+						<div class="slds-scope" style="width:60%;margin-top:50px;margin: 0 auto;">
+
+							<div class="slds-path" style="margin-top: 25px;">
+								<div class="slds-grid slds-path__track">
+									<div class="slds-grid slds-path__scroller-container">
+										<div class="slds-path__scroller" role="application">
+											<div class="slds-path__scroller_inner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+												<ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+													<li class="slds-path__item {!IF(currentCR.Completion_Status__c =='Not Started','slds-is-active slds-is-current', IF(currentCR.Completion_Status__c =='In Progress','slds-is-complete','slds-is-complete') )}" role="presentation">
+														<a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-1" role="option" tabindex="-1" onclick="markComplete('Not Started');">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Stage Complete</span> -->
+															</span>
+															<span class="slds-path__title">Not Started</span>
+														</a>
+													</li>
+													<li class="slds-path__item {!IF(currentCR.Completion_Status__c =='In Progress','slds-is-active slds-is-current', IF(currentCR.Completion_Status__c =='Not Started','slds-is-incomplete','slds-is-complete') )}" role="presentation">
+														<a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2" role="option" tabindex="-1" onclick="markComplete('In Progress');">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use  xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Stage Complete</span> -->
+															</span>
+															<span class="slds-path__title">In Progress</span>
+														</a>
+													</li>
+													<li class="slds-path__item  {!IF(currentCR.Completion_Status__c =='Completed','slds-is-active slds-is-won slds-is-complete', IF(currentCR.Completion_Status__c =='Not Started','slds-is-incomplete','slds-is-incomplete') )}" role="presentation">
+														<a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="0" onclick="markComplete('Completed');">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Current Stage:</span> -->
+															</span>
+															<span class="slds-path__title">Completed</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="slds-grid slds-path__action">
+										<span class="slds-path__stage-name">Stage: Unqualified</span>
+										<button class="slds-button slds-button_brand slds-path__mark-complete" onclick="markComplete('Completed');return false;">
+											<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+												<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+											</svg>Mark Status as Complete</button>
+										</div>
+									</div>
+							</div>
+							<div class="slds-path" >
+								<div class="slds-grid slds-path__track">
+									<div class="slds-grid slds-path__scroller-container">
+										<div class="slds-path__scroller" role="application">
+											<div class="slds-path__scroller_inner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+												<ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+													<li class="slds-path__item  {!IF(currentCR.Approval_Status__c == null,'slds-is-active slds-is-current', IF(currentCR.Approval_Status__c =='Pending Approval','slds-is-complete',IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-complete')))}" role="presentation">
+														<a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-1" role="option" tabindex="-1">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Stage Complete</span> -->
+															</span>
+															<span class="slds-path__title">None</span>
+														</a>
+													</li>
+													<li class="slds-path__item {!IF(currentCR.Approval_Status__c =='Pending Approval','slds-is-active slds-is-current', IF(currentCR.Approval_Status__c =='Approved','slds-is-complete',IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-incomplete')))}" role="presentation">
+														<a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-4" role="option" tabindex="-1">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Stage Complete</span> -->
+															</span>
+															<span class="slds-path__title">Pending Approval</span>
+														</a>
+													</li>
+													<li class="slds-path__item {!IF(currentCR.Approval_Status__c =='Approved','slds-is-active slds-is-won slds-is-current', IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-incomplete') )}" role="presentation">
+														<a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2" role="option" tabindex="-1">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use  xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Stage Complete</span> -->
+															</span>
+															<span class="slds-path__title">Approved</span>
+														</a>
+													</li>
+													<li class="slds-path__item {!IF(currentCR.Approval_Status__c =='Rejected','slds-is-active slds-is-lost slds-is-current', IF(currentCR.Approval_Status__c =='Approved','slds-is-incomplete','slds-is-incomplete') )}" role="presentation">
+														<a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="0">
+															<span class="slds-path__stage">
+																<svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+																	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+																</svg>
+																<!-- <span class="slds-assistive-text">Current Stage:</span> -->
+															</span>
+															<span class="slds-path__title">Rejected</span>
+														</a>
+													</li>
+												
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="slds-grid slds-path__action" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+										<span class="slds-path__stage-name">Stage: Unqualified</span>
+										<button class="slds-button slds-button_brand slds-path__mark-complete">
+											<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+												<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+											</svg>Mark Approval as Approved</button>
+										</div>
+									</div>
+							</div>
+						</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				
+		</apex:form>
+		
+	</body>
+
+</html>
+	
+	
+</apex:page>

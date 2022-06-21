@@ -1,0 +1,17 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Scanner_Log__c">
+
+	<style type="text/css">
+      
+        input.btn[name="clone"] {
+            display: none;
+        }
+        input.btn[name="edit"] {
+            display: none;
+        }
+        input.btn[name="del"] {
+            display: none;
+        }
+      
+	</style>
+	<apex:detail inlineEdit="false" subject="{!FLODocs__FLO_Scanner_Log__c.id}" />
+</apex:page>

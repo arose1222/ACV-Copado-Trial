@@ -1,0 +1,240 @@
+<apex:page showHeader="false" sidebar="false" readOnly="true"  standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloImpactAnalysisCRSectionController" docType="HTML-5.0" action="{!initAction}">
+    
+
+        <apex:slds />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+        <!-- Latest compiled and minified CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/bootstrap.min.css')}" />
+        <!-- Optional theme -->
+        <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/bootstrap-theme.min.css')}" />
+        <!-- Latest compiled and minified JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/bootstrap.min.js')}"  />
+
+        <!-- Scopes  -->
+        <div class="slds-scope" style="font-size:15px;">
+            <button  class="slds-button slds-button_neutral " onclick="openWindow();return false;" style="font-size:10pt;">Open full screen</button>
+            <a class="slds-button slds-button_neutral" href="/apex/FLODocs__StrongpointImpactAnalysisExport?id={!FLO_Change_Request__c.id}" target="_blank" style="font-size:10pt;">Export to Excel</a>
+            <div class="slds-tabs_default">
+                 <ul class="slds-tabs--default__nav resultTabs" role="tablist">
+                    <li class="slds-tabs--default__item slds-active" title="Source" role="presentation" style="padding:10px;">
+                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" >Can Be Safely Deleted or Modified</a>
+                    </li>
+                    <li class="slds-tabs--default__item" title="Target" role="presentation" style="padding:10px;">
+                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Cannot Be Safely Deleted or Modified</a>
+                    </li>
+                    <li class="slds-tabs--default__item" title="Diff" role="presentation" style="padding:10px;">
+                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Inactive Customizations</a>
+                    </li>
+                </ul>
+                  <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+                    <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList.size > 0,true,false)}">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Customization</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <apex:repeat value="{!safetyImpactAnalysisList}" var="cus">
+                                <tr>
+                                    <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                </tr>
+                            </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:outputPanel>
+                     <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList.size == 0,true,false)}">
+                            <apex:outputText value="No Record to show"/>
+                        </apex:outputPanel>
+                  </div>
+                  <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+                        <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList.size > 0,true,false)}">
+                        <div class="container" style="margin: 0;padding: 0;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Customization</th>
+                                        <th>Warning</th>
+                                        <th>Impacted Customization</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <apex:repeat value="{!notSafetyImpactAnalysisList}" var="cus">
+                                        <tr>
+                                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                            <td><apex:outputText value="{!cus.warning_message}" escape="false"/></td>
+                                            <td>
+                                                <apex:repeat value="{!cus.impactedCustomization}" var="cusImp">
+                                                    <a target="_blank" href="/{!cusImp.Id}">{!cusImp.Name}</a><br/>
+                                                </apex:repeat>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList.size == 0,true,false)}">
+                        <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                  </div>
+                  <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+                      <apex:outputPanel rendered="{!IF(inactiveCustomizations.size > 0,true,false)}">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Customization</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!inactiveCustomizations}" var="cus">
+                                        <tr>
+                                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!IF(inactiveCustomizations.size == 0,true,false)}">
+                            <apex:outputText value="No Record to show"/>
+                        </apex:outputPanel>
+                  </div>
+            </div>
+        </div>
+
+        
+
+    <!--    <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }" >
+          <div class="container" style="font-size:15px;">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#A" data-toggle="tab">Can Be Safely Deleted or Modified</a></li>
+                <li class="nav"><a href="#B" data-toggle="tab">Cannot Be Safely Deleted or Modified</a></li>
+                <li class="nav"><a href="#C" data-toggle="tab">Inactive Customizations</a></li>
+            </ul>
+           
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="A">
+                    <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList.size > 0,true,false)}">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Customization</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <apex:repeat value="{!safetyImpactAnalysisList}" var="cus">
+                                <tr>
+                                    <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                </tr>
+                            </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList.size == 0,true,false)}">
+                        <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                </div>
+                <div class="tab-pane fade" id="B">
+                    <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList.size > 0,true,false)}">
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Customization</th>
+                                        <th>Warning</th>
+                                        <th>Impacted Customization</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <apex:repeat value="{!notSafetyImpactAnalysisList}" var="cus">
+                                        <tr>
+                                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                            <td><apex:outputText value="{!cus.warning_message}" escape="false"/></td>
+                                            <td>
+                                                <apex:repeat value="{!cus.impactedCustomization}" var="cusImp">
+                                                    <a target="_blank" href="/{!cusImp.Id}">{!cusImp.Name}</a><br/>
+                                                </apex:repeat>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList.size == 0,true,false)}">
+                        <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                </div>
+
+                <div class="tab-pane fade" id="C">
+                        <apex:outputPanel rendered="{!IF(inactiveCustomizations.size > 0,true,false)}">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Customization</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!inactiveCustomizations}" var="cus">
+                                        <tr>
+                                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!IF(inactiveCustomizations.size == 0,true,false)}">
+                            <apex:outputText value="No Record to show"/>
+                        </apex:outputPanel>
+                    </div>
+            </div>
+        </div>
+ 
+        </apex:outputPanel> -->
+
+        <script>
+
+            $('.resultTabs li a').click(function(){
+                var tabClicked = $(this).attr('id');
+                $('.resultTabs li').each(function() {
+                    $(this).removeClass('slds-active');
+                });
+                $(this).parent().addClass('slds-active');
+                $('.slds-tabs--default__content').each(function() {
+                    $(this).addClass('slds-hide');
+                    $(this).removeClass('slds-show');
+                });
+                if (tabClicked == 'tab-default-1__item') {
+                    $('[id$=tab-default-1]').addClass('slds-show');
+                    currentTab = 'tab-default-1__item';
+                }
+                if (tabClicked == 'tab-default-2__item') {
+                    $('[id$=tab-default-2]').addClass('slds-show');
+                    currentTab = 'tab-default-2__item';
+                }
+                if (tabClicked == 'tab-default-3__item') {
+                    $('[id$=tab-default-3]').addClass('slds-show');
+                    currentTab = 'tab-default-3__item';
+                }
+                if (tabClicked == 'tab-default-4__item') {
+                    $('[id$=tab-default-4]').addClass('slds-show');
+                    currentTab = 'tab-default-4__item';
+                }
+            })
+            function openWindow(){
+                openLookupPopup();
+            }
+            function openLookupPopup(){
+              var url= '/apex/FloImpactAnalysisCRSection?id={!FLO_Change_Request__c.Id}';
+              newWin=window.open(url, 'Popup','height=800,width=1100,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+              if (window.focus) {
+               newWin.focus();
+              }
+              return false;
+             }
+        </script>
+</apex:page>

@@ -1,6 +1,8 @@
 public class SalesforceGatewayUserCreateLogic extends TriggerInterface{
     
     private static boolean calledFromAPI = false;
+    // Get AVC User Record Type Id
+    private static String acvUserRtId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('ACV_User').getRecordTypeId();
 
     public override void afterInsert(List<SObject> insertList){
         Set<Id> contactIDSet = new Set<Id>();
@@ -15,7 +17,7 @@ public class SalesforceGatewayUserCreateLogic extends TriggerInterface{
         Map<Id,SalesforceGatewayUserCreate> outboundList = new Map<Id, SalesforceGatewayUserCreate>();
         Map<Id,SalesforceGatewayUserCreate> outboundList2 = new Map<Id, SalesforceGatewayUserCreate>();
         List<LoginHistory> lh = [SELECT Id, SourceIp,Browser FROM LoginHistory WHERE UserId = :UserInfo.getUserId() ORDER BY LoginTime DESC LIMIT 1];
-        List<Contact> runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];
+        List<Contact> runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() AND RecordTypeId =:acvUserRtId LIMIT 1];
         Integer jobSizeCounter = 1;
         //this list is empty check has a limited usecase, baiscally if we are creating a user in code for tests, or if we are logging into a user from a refreshed sandbox login history will not exist causing failures
         if(!lh.isEmpty()){

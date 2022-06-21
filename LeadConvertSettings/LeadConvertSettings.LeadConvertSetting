@@ -48,26 +48,6 @@
             <outputField>County__c</outputField>
         </mappingFields>
         <mappingFields>
-            <inputField>D_B_ID__c</inputField>
-            <outputField>D_B_ID__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Date_License_Received__c</inputField>
-            <outputField>Date_License_Received__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Date_Registered__c</inputField>
-            <outputField>Date_Registered__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Date_Tax_ID_Received__c</inputField>
-            <outputField>Date_Tax_ID_Received__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Dealer_Bank_Account_Owner_Email__c</inputField>
-            <outputField>Dealer_Bank_Account_Owner_Email__c</outputField>
-        </mappingFields>
-        <mappingFields>
             <inputField>Dealer_Bank_Account_Owner_First_Name__c</inputField>
             <outputField>Dealer_Bank_Account_Owner_First_Name__c</outputField>
         </mappingFields>
@@ -96,16 +76,32 @@
             <outputField>Document_Status__c</outputField>
         </mappingFields>
         <mappingFields>
+            <inputField>D_B_ID__c</inputField>
+            <outputField>D_B_ID__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Date_License_Received__c</inputField>
+            <outputField>Date_License_Received__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Date_Registered__c</inputField>
+            <outputField>Date_Registered__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Date_Tax_ID_Received__c</inputField>
+            <outputField>Date_Tax_ID_Received__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Dealer_Bank_Account_Owner_Email__c</inputField>
+            <outputField>Dealer_Bank_Account_Owner_Email__c</outputField>
+        </mappingFields>
+        <mappingFields>
             <inputField>DOT_Number__c</inputField>
             <outputField>DOT_Number__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>EIN_Number__c</inputField>
             <outputField>EIN_Number__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>How_many_cars_do_you_stock__c</inputField>
-            <outputField>Cars_Stocked__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>Floor_Plan_Provider__c</inputField>
@@ -118,6 +114,10 @@
         <mappingFields>
             <inputField>How_many_cars_do_you_sell_annually__c</inputField>
             <outputField>Annual_sales_Volume__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>How_many_cars_do_you_stock__c</inputField>
+            <outputField>Cars_Stocked__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>IST_Account_Owner__c</inputField>
@@ -180,6 +180,22 @@
             <outputField>No_DOT__c</outputField>
         </mappingFields>
         <mappingFields>
+            <inputField>Registration_Status__c</inputField>
+            <outputField>Registration_Status__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Sales_Per_Month__c</inputField>
+            <outputField>Sales_Per_Month__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Sole_Proprietorship__c</inputField>
+            <outputField>Sole_Proprietorship__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>Territory__c</inputField>
+            <outputField>OldTerritory__c</outputField>
+        </mappingFields>
+        <mappingFields>
             <inputField>num_indy_within_100_miles__c</inputField>
             <outputField>Num_Indy_Auction_Within_100_Miles__c</outputField>
         </mappingFields>
@@ -220,32 +236,16 @@
             <outputField>Registered_Business_Name__c</outputField>
         </mappingFields>
         <mappingFields>
-            <inputField>Registration_Status__c</inputField>
-            <outputField>Registration_Status__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Sales_Per_Month__c</inputField>
-            <outputField>Sales_Per_Month__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Sole_Proprietorship__c</inputField>
-            <outputField>Sole_Proprietorship__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>utm_medium__c</inputField>
-            <outputField>utm_medium__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Territory__c</inputField>
-            <outputField>OldTerritory__c</outputField>
-        </mappingFields>
-        <mappingFields>
             <inputField>utm_campaign__c</inputField>
             <outputField>utm_campaign__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>utm_content__c</inputField>
             <outputField>utm_content__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>utm_medium__c</inputField>
+            <outputField>utm_medium__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>utm_source__c</inputField>
@@ -276,6 +276,10 @@
     <objectMapping>
         <inputObject>Lead</inputObject>
         <mappingFields>
+            <inputField>Twitter_Handle__c</inputField>
+            <outputField>Twitter_Handle__c</outputField>
+        </mappingFields>
+        <mappingFields>
             <inputField>Comments__c</inputField>
             <outputField>IST_Discovery_Comments__c</outputField>
         </mappingFields>
@@ -303,29 +307,17 @@
             <inputField>SMS_Opt_In__c</inputField>
             <outputField>SMS_Opt_In__c</outputField>
         </mappingFields>
-        <mappingFields>
-            <inputField>Twitter_Handle__c</inputField>
-            <outputField>Twitter_Handle__c</outputField>
-        </mappingFields>
         <outputObject>Contact</outputObject>
     </objectMapping>
     <objectMapping>
         <inputObject>Lead</inputObject>
         <mappingFields>
-            <inputField>Average_Monthly_Sales__c</inputField>
-            <outputField>Average_Monthly_Sales__c</outputField>
-        </mappingFields>
-        <mappingFields>
-            <inputField>Average_Wholesale_Vehicle_Price__c</inputField>
-            <outputField>Average_Wholesale_Vehicle_Price__c</outputField>
-        </mappingFields>
-        <mappingFields>
             <inputField>Campaign_Message__c</inputField>
             <outputField>Campaign_Message__c</outputField>
         </mappingFields>
         <mappingFields>
-            <inputField>GCLID__c</inputField>
-            <outputField>GCLID__c</outputField>
+            <inputField>Average_Monthly_Sales__c</inputField>
+            <outputField>Average_Monthly_Sales__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>Capital_Product_Interest__c</inputField>
@@ -336,8 +328,16 @@
             <outputField>AdditionalComments__c</outputField>
         </mappingFields>
         <mappingFields>
+            <inputField>Average_Wholesale_Vehicle_Price__c</inputField>
+            <outputField>Average_Wholesale_Vehicle_Price__c</outputField>
+        </mappingFields>
+        <mappingFields>
             <inputField>Current_Floorplan_Provider__c</inputField>
             <outputField>Current_Floorplan_Provider__c</outputField>
+        </mappingFields>
+        <mappingFields>
+            <inputField>GCLID__c</inputField>
+            <outputField>GCLID__c</outputField>
         </mappingFields>
         <mappingFields>
             <inputField>How_many_cars_do_you_stock__c</inputField>

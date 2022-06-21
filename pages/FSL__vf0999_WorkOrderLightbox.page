@@ -95,11 +95,11 @@
                 <apex:pageBlock mode="detail">
 
                     <apex:pageBlockButtons >
-                        <apex:commandButton action="{!edit}" value="{!$Label.fsl__edit}" rendered="{!isEditable}"/>
-                        <apex:commandButton action="{!refresh}" value="{!$Label.fsl__refresh}" />
+                        <apex:commandButton action="{!edit}" value="{!$Label.FSL__Edit}" rendered="{!isEditable}"/>
+                        <apex:commandButton action="{!refresh}" value="{!$Label.FSL__Refresh}" />
                     </apex:pageBlockButtons>
 
-                    <apex:pageBlockSection title="{!$Label.fsl__workorder}" columns="2">
+                    <apex:pageBlockSection title="{!$Label.FSL__WorkOrder}" columns="2">
                         <apex:repeat value="{!$ObjectType.WorkOrder.FieldSets.FSL__Gantt_Lightbox}" var="d">
                             <apex:outputField value="{!WorkOrder[d]}"/>
                         </apex:repeat>

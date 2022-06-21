@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- CertificateFields --></label>
+        <name>FLODocs__CertificateFields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- FileUploadAndDownloadSecuritySettings --></label>
+        <name>FLODocs__FileUploadAndDownloadSecuritySettings</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- LAPFields --></label>
+        <name>FLODocs__LAPFields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- PasswordPoliciesFields --></label>
+        <name>FLODocs__PasswordPoliciesFields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- RemoteSiteSetting --></label>
+        <name>FLODocs__RemoteSiteSetting</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- SessionSettingsFields --></label>
+        <name>FLODocs__SessionSettingsFields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- SharingSettings --></label>
+        <name>FLODocs__SharingSettings</name>
+    </fieldSets>
+    <fields>
+        <help><!-- Certificate Expiration --></help>
+        <label><!-- CKM Certificate Expiration --></label>
+        <name>FLODocs__CKM_Certificate_Expiration__c</name>
+    </fields>
+    <fields>
+        <help><!-- Expired Certificate --></help>
+        <label><!-- CKM Expired Certificate --></label>
+        <name>FLODocs__CKM_Expired_Certificate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Key Size --></help>
+        <label><!-- CKM Key Size --></label>
+        <name>FLODocs__CKM_Key_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customization --></label>
+        <name>FLODocs__Customization__c</name>
+        <relationshipLabel><!-- FLO Health Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Number of security risk file types with Hybrid behavior --></help>
+        <label><!-- FSS number of Hybrid Behavior --></label>
+        <name>FLODocs__FSS_number_of_Hybrid_Behavior__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of Objects with Default External Access Set to Public --></help>
+        <label><!-- HS Number Object Default External Access --></label>
+        <name>FLODocs__HS_Number_Object_Default_External_Access__c</name>
+    </fields>
+    <fields>
+        <help><!-- Administrators Can Log in as Any User --></help>
+        <label><!-- LAP EnableAdminLoginAsAnyUser --></label>
+        <name>FLODocs__LAP_EnableAdminLoginAsAnyUser__c</name>
+    </fields>
+    <fields>
+        <help><!-- Password complexity requirement --></help>
+        <label><!-- PP Complexity --></label>
+        <name>FLODocs__PP_Complexity__c</name>
+    </fields>
+    <fields>
+        <help><!-- Maximum invalid login attempts --></help>
+        <label><!-- PP Max Login Attempts --></label>
+        <name>FLODocs__PP_MaxLoginAttempts__c</name>
+    </fields>
+    <fields>
+        <help><!-- User passwords expire in --></help>
+        <label><!-- PP expiration --></label>
+        <name>FLODocs__PP_expiration__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enforce password history --></help>
+        <label><!-- PP historyRestriction --></label>
+        <name>FLODocs__PP_historyRestriction__c</name>
+    </fields>
+    <fields>
+        <help><!-- Minimum password length --></help>
+        <label><!-- PP minimumPasswordLength --></label>
+        <name>FLODocs__PP_minimumPasswordLength__c</name>
+    </fields>
+    <fields>
+        <help><!-- Require a minimum 1 day password lifetime --></help>
+        <label><!-- PP minimumPasswordLifetime --></label>
+        <name>FLODocs__PP_minimumPasswordLifetime__c</name>
+    </fields>
+    <fields>
+        <help><!-- Obscure secret answer for password resets --></help>
+        <label><!-- PP obscureSecretAnswer --></label>
+        <name>FLODocs__PP_obscureSecretAnswer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Disable Protocol Security --></help>
+        <label><!-- RS Protocol Security Disable --></label>
+        <name>FLODocs__RS_Protocol_Security_Disable__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable Content Security Policy protection for email templates --></help>
+        <label><!-- SS EnableCSPOnEmail --></label>
+        <name>FLODocs__SS_EnableCSPOnEmail__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable clickjack protection for Setup pages --></help>
+        <label><!-- SS EnableClickjackSetup --></label>
+        <name>FLODocs__SS_EnableClickjackSetup__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable Content Sniffing protection --></help>
+        <label><!-- SS EnableContentSniffingProtection --></label>
+        <name>FLODocs__SS_EnableContentSniffingProtection__c</name>
+    </fields>
+    <fields>
+        <help><!-- Let users verify their identity by text (SMS) --></help>
+        <label><!-- SS EnableSMSIdentity --></label>
+        <name>FLODocs__SS_EnableSMSIdentity__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enforce login IP ranges on every request --></help>
+        <label><!-- SS EnforceIpRangesEveryRequest --></label>
+        <name>FLODocs__SS_EnforceIpRangesEveryRequest__c</name>
+    </fields>
+    <fields>
+        <help><!-- Require email confirmations for email address changes (applies to users in Experience Builder sites) --></help>
+        <label><!-- SS canConfirmEmailChangeInLightningCommu --></label>
+        <name>FLODocs__SS_canConfirmEmailChangeInLightningCommu__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable clickjack protection for non-Setup Salesforce pages --></help>
+        <label><!-- SS enableClickjackNonsetupSFDC --></label>
+        <name>FLODocs__SS_enableClickjackNonsetupSFDC__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable clickjack protection for customer Visualforce pages with standard headers --></help>
+        <label><!-- SS enableClickjackNonsetupUser --></label>
+        <name>FLODocs__SS_enableClickjackNonsetupUser__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable XSS protection --></help>
+        <label><!-- SS enableXSSProtection --></label>
+        <name>FLODocs__SS_enableXSSProtection__c</name>
+    </fields>
+    <fields>
+        <help><!-- Force logout on session timeout --></help>
+        <label><!-- SS forceLogoutOnSessionTimeout --></label>
+        <name>FLODocs__SS_forceLogoutOnSessionTimeout__c</name>
+    </fields>
+    <fields>
+        <help><!-- Force relogin after Login-As-User --></help>
+        <label><!-- SS forceRelogin --></label>
+        <name>FLODocs__SS_forceRelogin__c</name>
+    </fields>
+    <fields>
+        <help><!-- Require identity verification for email address changes --></help>
+        <label><!-- SS_identityConfirmationOnEmailChange --></label>
+        <name>FLODocs__SS_identityConfirmationOnEmailChange__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lock sessions to the domain in which they were first used --></help>
+        <label><!-- SS lockSessionsToDomain --></label>
+        <name>FLODocs__SS_lockSessionsToDomain__c</name>
+    </fields>
+    <fields>
+        <help><!-- Session Timeout --></help>
+        <label><!-- SS sessionTimeout --></label>
+        <name>FLODocs__SS_sessionTimeout__c</name>
+    </fields>
+</CustomObjectTranslation>

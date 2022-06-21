@@ -147,7 +147,6 @@
         <fields>WorkOrderNumber</fields>
         <fields>Status</fields>
         <fields>LineItemCount</fields>
-        <fields>Special_Instructions__c</fields>
         <fields>WorkTypeId</fields>
         <label>ACV Work Order Compact Layout</label>
     </compactLayouts>
@@ -1583,6 +1582,20 @@ JIRA:  CAP - 456</description>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Service_Appt_Map_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Used to specify certain field values on the Service Appointment when the Work Order is being created.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to specify certain field values on the Service Appointment when the Work Order is being created.</inlineHelpText>
+        <label>Service Appt Map Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Service_Territory__c</fullName>
         <description>Field added strictly for reporting, simply pulls the name of the Service Territory from the Account Level, of which the work order is based off of.</description>
         <externalId>false</externalId>
@@ -1604,6 +1617,17 @@ JIRA:  CAP - 456</description>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Special_Instructions_for_VCI__c</fullName>
+        <description>Special Instructions for VCI</description>
+        <externalId>false</externalId>
+        <label>Special Instructions for VCI</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>StartDate</fullName>

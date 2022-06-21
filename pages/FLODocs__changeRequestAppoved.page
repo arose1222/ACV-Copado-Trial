@@ -1,0 +1,209 @@
+<apex:page showHeader="false" sidebar="false" cache="false" controller="FLODocs.StrongpointJiraConnectController">
+
+<head>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui-experimental.min.css" media="all"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://strongpointflo.atlassian.net/atlassian-connect/all.js" data-options="sizeToParent:true"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-experimental.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-datepicker.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-soy.min.js"></script>
+
+    <style type="text/css">
+        #content {
+            background-color: white;
+            margin-top: 3%;
+            padding-bottom: 2%;
+        }
+
+        .strong_complete {
+            background: #14892c;
+            border: 1px solid #14892c;
+            border-radius: 3px;
+            color: #fff;
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 99%;
+            margin: 0;
+            padding: 2px 5px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .strong_progress {
+            background: #ffd351;
+            border: 1px solid #ffd351;
+            border-radius: 3px;
+            color: #594300;
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 99%;
+            margin: 0;
+            padding: 2px 5px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .strong_not_started {
+            background: #4a6785;
+            border: 1px solid #4a6785;
+            border-radius: 3px;
+            color: #fff;
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 99%;
+            margin: 0;
+            padding: 2px 8px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        #status {
+            /*padding-left: 12%;*/
+        }
+
+        #clickable-label {
+            /*margin-left: 37px;*/
+        }
+
+        strong.name {
+            box-sizing: border-box;
+            word-wrap: break-word;
+            word-break: break-word;
+            color: #707070;
+            display: inline-block;
+            font-weight: normal;
+            padding: 2px 5px 2px 0;
+            padding-right: 5px;
+            text-align: right;
+            width: 58px;
+        }
+    </style>
+</head>
+
+<body class="my-body" style="background-color:transparent;">
+    <span id="loggedMessage"></span>
+    <section id="my_content_panel" style="display:none" class="ac-content">
+        <strong class="name">Status:</strong>
+        <span id="status" class=""></span>
+        <br>
+        <strong class="name">Link:</strong>
+        <a id="clickable-label" class="aui-label" target="_blank" href="">Go to Record</a>
+        </br>
+    </section>
+    <script id="connect-loader" data-options="sizeToParent:true;">
+                /*(function () {
+
+                    var getUrlParam = function (param) {
+                        var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
+                        return decodeURIComponent(codedParam);
+                    };
+
+                    var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+                    var options = document.getElementById('connect-loader').getAttribute('data-options');
+
+                    var script = document.createElement("script");
+                    script.src = baseUrl + '/atlassian-connect/all.js';
+
+                    if (options) {
+                        script.setAttribute('data-options', options);
+                    }
+         
+                    document.getElementsByTagName("head")[0].appendChild(script);
+                })();*/
+    </script>
+
+    <script type="text/javascript">
+
+        console.log('CR Approved page start');
+
+        var jiraIssueKey = '';
+        var sfEp;
+        AJS.$(function () {
+            sfEp = sessionStorage.getItem("sessionURL");
+            var jiraIssueKey = AP._data.options.productContext["issue.key"];
+            var buttonpressed = "F" ;
+            var addNamespaceButtonPressed = "F"  ;
+            var addcustoButtonPressed = "F" ;
+            var manApproved = "F";
+            var overviewProcessed = "F";
+             jiraIssueKey = AP._data.options.productContext["issue.key"];
+            if(sfEp != null ){
+              if(jiraIssueKey != null){
+                obtainCRId(jiraIssueKey);
+              }
+            }
+            AP.sizeToParent();
+        });
+
+
+        function gatherCrData2(){
+            sessionStorage.setItem("cr_id", $('[id$="cr_exist"]').val() );
+            
+             var crID = sessionStorage.getItem("cr_id");
+             var crStage = sessionStorage.getItem("cr_id");
+             if ((crID != 'F') && (crID != null) && crID != ''){
+                $('#clickable-label').attr('href',sfEp + '/' + crID);
+                $("#status").val("Logged in " + sfEp);
+                $("#my_content_panel").show();
+                //getStatusForDisplay(crID);
+                //Status Again
+                var crStatus = $('[id$="cr_stage"]').val();
+                $('#status').text(crStatus);
+                if (crStatus == 'To Do') {
+                    $('#status').addClass('strong_not_started');
+                } else if (crStatus == 'In Progress') {
+                    $('#status').addClass('strong_progress');
+                } else if (crStatus == 'Completed' || crStatus == 'Closed' ) {
+                    $('#status').addClass('strong_complete');
+                }
+            }else {
+                if (sfEp == null || sfEp == '') {
+                    $("#loggedMessage").html("Not logged into Salesforce");
+                } else {
+                    $("#loggedMessage").html("Not Synced with Strongpoint");
+                }
+            }
+        }
+
+    </script>
+    <apex:form >
+        <apex:actionFunction name="getStatusForDisplay" action="{!getCrStatus}" oncomplete="updateStatus()" reRender="statusUpdate">
+            <apex:param name="crId" id="crId" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="obtainCRId" action="{!obtainCRIdMethod}" reRender="opData,statusUpdate" oncomplete="gatherCrData2()">
+            <apex:param name="jiraIssueKeyG" value="" id="issueKey"   /> 
+        </apex:actionFunction>
+        <apex:outputPanel id="opData">
+            <apex:inputHidden value="{!cr_exist}" id="cr_exist"  />
+            <apex:inputHidden value="{!crStage}" id="cr_stage"  />
+            <apex:outputText value="{!errorMessage}" id="errors" style="display: none;" />
+         </apex:outputPanel>
+        <apex:outputPanel id="statusUpdate">
+            <script>
+                function updateStatus() {
+                    var crStatus = '{!crStage}';
+                    $('#status').text(crStatus);
+                    if (crStatus == 'To Do') {
+                        $('#status').addClass('strong_not_started');
+                    } else if (crStatus == 'In Progress') {
+                        $('#status').addClass('strong_progress');
+                    } else if (crStatus == 'Completed' || crStatus == 'Closed' ) {
+                        $('#status').addClass('strong_complete');
+                    }
+                }
+            </script>
+        </apex:outputPanel>
+    </apex:form>
+</body>
+
+</apex:page>

@@ -1,3 +1,9 @@
+/**
+ * @author            : ACV Legacy
+ * @group             : Scheduling
+ * @last modified on  : 04-13-2022
+ * @last modified by  : dilan.chaves@globant.com
+**/
 @ isTest
 public with sharing class AssignmentManagerOwnerSelectionTest {
     @TestSetup
@@ -23,14 +29,11 @@ public with sharing class AssignmentManagerOwnerSelectionTest {
         newVinList.add(inboundLine);
         assignmentManagerCreateWorkLinesCont.createWorkOrders(JSON.serialize(newVinList));
         WorkOrder wo = [SELECT Id, OwnerId FROM WorkOrder LIMIT 1];
-        system.debug('WO: ' + wo);
-        Map<Id, Asset_Verification_Owners__mdt> avoMap = new Map<Id, Asset_Verification_Owners__mdt>([SELECT User_Record_Id__c FROM Asset_Verification_Owners__mdt WHERE Active__c = true]);
-        Boolean match = false;
-        for(Asset_Verification_Owners__mdt avo : avoMap.values()){
-            if(wo.OwnerId == avo.User_Record_Id__c){
-                match = true;
-            }
-        }
-        system.assert(match == true, 'The owner id for this Asset Verification work order is not correct.');
+        
+        List<Asset_Verification_Owners__mdt> avoList = [SELECT User_Record_Id__c FROM Asset_Verification_Owners__mdt WHERE Active__c = TRUE];
+
+        Id firstPersonId = avoList.get(0).User_Record_Id__c;
+
+        System.assertEquals(firstPersonId, wo.OwnerId, 'The owner id for this Asset Verification work order is not correct.');
     }
 }

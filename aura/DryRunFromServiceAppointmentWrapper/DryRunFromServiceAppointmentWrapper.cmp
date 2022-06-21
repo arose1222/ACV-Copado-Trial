@@ -1,0 +1,10 @@
+<!--
+  @description       : Wrapper component for Dry Run
+  @author            : v-dchaves@acvauctions.com
+  @group             : Scheduling
+  @last modified on  : 04-29-2022
+  @last modified by  : v-dchaves@acvauctions.com
+-->
+<aura:component implements="force:lightningQuickAction,force:hasRecordId">
+  <c:dryRunFromServiceAppointment recordId="{!v.recordId}" onclose="{!c.closeModal}"></c:dryRunFromServiceAppointment>
+</aura:component>

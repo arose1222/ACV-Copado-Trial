@@ -73,8 +73,8 @@ public class UpdateArbSpecialInstructionsTest {
         }
 
 
-        WorkOrder updatedWorkOrder = [SELECT Id, Special_Instructions__c FROM WorkOrder WHERE Id = :workOrder.Id];
-        system.assert(updatedWorkOrder.Special_Instructions__c == 'Test Description');
+        WorkOrder updatedWorkOrder = [SELECT Id, Special_Instructions_for_VCI__c FROM WorkOrder WHERE Id = :workOrder.Id];
+        system.assert(updatedWorkOrder.Special_Instructions_for_VCI__c == 'Test Description');
     }
 
     @isTest
@@ -107,8 +107,8 @@ public class UpdateArbSpecialInstructionsTest {
         insert woli;
 
 
-        WorkOrder updatedWorkOrder = [SELECT Id, Special_Instructions__c FROM WorkOrder WHERE Id = :workOrder.Id];
-        system.assert(String.isBlank(updatedWorkOrder.Special_Instructions__c));
+        WorkOrder updatedWorkOrder = [SELECT Id, Special_Instructions_for_VCI__c FROM WorkOrder WHERE Id = :workOrder.Id];
+        system.assert(String.isBlank(updatedWorkOrder.Special_Instructions_for_VCI__c));
     }
 
 }

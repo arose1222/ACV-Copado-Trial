@@ -110,7 +110,9 @@ public class ExperianCalloutService {
 		search_request.writeStringField('phone', (String)account.Phone);
         if(account.Tax_ID__c != null){
 			String taxId = account.Tax_ID__c.replaceAll('[^0-9]', '');
-			search_request.writeStringField('taxId', taxId);        
+            if (taxId.length() == 9) {
+                search_request.writeStringField('taxId', taxId);   
+            }     
         }
 		search_request.writeBooleanField('geo',true);
 		search_request.writeStringField('comments','Search-EXP');

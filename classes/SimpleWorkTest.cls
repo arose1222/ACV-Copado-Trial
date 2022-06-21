@@ -23,6 +23,8 @@ public class SimpleWorkTest {
         insert aff;
 
         FSLTestUtility.createAllStructureWithParentST( /*'Great Lakes',*/ 'Buffalo', '14209' );
+        
+        FSL.GlobalAPIS.addStatusTransition( 'New', 'Canceled' );
     }
 
     @IsTest

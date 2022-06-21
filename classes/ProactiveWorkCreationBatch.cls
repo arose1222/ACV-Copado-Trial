@@ -74,7 +74,7 @@ global class ProactiveWorkCreationBatch extends SchedulingInterface implements D
                 ServiceTerritoryId = accountIdaccountMap.get(accId).Service_Territory__c,
                 WorkTypeId = WORK_TYPE_ID,
                 Status = 'New',
-                Special_Instructions__c = PROACTIVE_WORK_SETTINGS.Appointment_Special_Instructions__c,
+                Special_Instructions_for_VCI__c = PROACTIVE_WORK_SETTINGS.Appointment_Special_Instructions__c,
                 Proactive_Work__c = true
             );
             workOrdersToInsert.add(newWorkOrder);

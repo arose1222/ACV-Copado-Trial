@@ -1,0 +1,675 @@
+<apex:page showHeader="true" docType="html-5.0" sidebar="false" controller="FLODocs.FloFinderController"  readOnly="true" tabStyle="FLODocs__tab">
+
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/jquery.dataTables.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/jquery.dataTables.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+     
+        
+        <style type="text/css">
+          .zen .zen-tabMenu a {
+              color: #353535 !important;
+              font-family: Arial,Helvetica,sans-serif !important;
+          }
+          html {
+              line-height: 1;
+              background: none;
+              box-sizing: initial;
+          }
+          .material-switch > input[type="checkbox"] {
+              display: none;
+          }
+          .material-switch > label {
+              cursor: pointer;
+              height: 0px;
+              position: relative;
+              width: 40px;
+          }
+          .material-switch > label::before {
+              background: rgb(0, 0, 0);
+              box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+              border-radius: 8px;
+              content: '';
+              height: 16px;
+              margin-top: -8px;
+              position:absolute;
+              opacity: 0.3;
+              transition: all 0.4s ease-in-out;
+              width: 40px;
+          }
+          .material-switch > label::after {
+              background: rgb(255, 255, 255);
+              border-radius: 16px;
+              box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+              content: '';
+              height: 24px;
+              left: -4px;
+              margin-top: -8px;
+              position: absolute;
+              top: -4px;
+              transition: all 0.3s ease-in-out;
+              width: 24px;
+          }
+          .material-switch > input[type="checkbox"]:checked + label::before {
+              background: inherit;
+              opacity: 0.5;
+          }
+          .material-switch > input[type="checkbox"]:checked + label::after {
+              background: inherit;
+              left: 20px;
+          }
+  
+          .slds-dropdown--inverse {
+              background: #FFF !important;/*#FFC55A;*/
+              border-top: 3px solid orange !important;
+              border-left: 0 solid !important;
+              border-right: 0 solid !important;
+              border-bottom: 0 solid !important;
+              margin-top: -3px !important;
+              font-family: 'Salesforce Sans',Arial,sans-serif;
+          }
+          .bPageBlock {
+              border-top: 0px solid !important;
+          }
+          .pbBody {
+              margin: 0 !important;
+          }
+          .slds-dropdown__item a {
+              text-decoration: none;
+              color: #747474 !important;
+              /*font-weight: bold;*/
+              font-family: 'Salesforce Sans',Arial,sans-serif;
+          }
+          .slds-dropdown-trigger button.slds-button {
+              color: #747474 !important;
+          }
+          .pbSubheader {
+              background-color: #f7f9fb !important;
+              padding: 8px !important;
+              color: #222 !important;
+              border-bottom: 1px solid #d8dde6 !important;
+          }
+          .bPageBlock {
+              border: 0 !important;
+              background: #FFF !important;
+          }
+          .slds-dropdown {
+              margin-top: 0;
+              border-radius: 0 0 0.25rem 0.25rem;
+          }
+          ol li {
+              margin-left: 0;
+          }
+          .information p {
+              margin: 10px;
+          }
+          .slds-button--brand  {
+              padding-top: 0 !important;
+              padding-bottom: 0 !important;
+              padding-left: 1rem !important;
+              padding-right: 1rem !important;
+              background-color: #0070d2 !important;
+              background: #0070d2 !important;
+              border: 1px solid #0070d2 !important;
+              color: white !important;
+          }
+          .message.errorM3 {
+              display:none;
+          }
+          .schedulerWrapper .slds-form-element {
+              display: inline-block;
+              margin-right: 20px;
+              min-width: 140px;
+          }
+          .dateInput {
+              min-height: 23px;
+              line-height: 1;
+          }
+          div.slds-input input {
+              background-color: white;
+              color: #16325c;
+              border: 1px solid #d8dde6;
+              border-radius: 0.25rem;
+              width: 100%;
+              transition: border 0.1s linear, background-color 0.1s linear;
+              display: inline-block;
+              padding: 0 1rem 0 0.75rem;
+              line-height: 1.875rem;
+              min-height: calc(1.875rem + (1px * 2));
+              max-width: 250px;
+              margin-left: 20px
+          }
+          div.slds-input select {
+              background-color: white;
+              color: #16325c;
+              border: 1px solid #d8dde6;
+              border-radius: 0.25rem;
+              width: 100%;
+              transition: border 0.1s linear, background-color 0.1s linear;
+              display: inline-block;
+              padding: 0 1rem 0 0.75rem;
+              line-height: 1.875rem;
+              min-height: calc(1.875rem + (1px * 2));
+              max-width: 200px;
+          }
+          div.slds-input {
+              border: 0;
+          }
+          button.mainMenuButton:hover div {
+              display: block !important;
+          }
+          li.mainMenuButton:hover div {
+              display: block !important;
+          }
+  
+          span.submenuList {
+              margin-left: 200px;
+              margin-top: -34px !important;
+              box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+          }
+  
+          li.subMenuButton:hover span.subMenuList {
+              display: block !important;
+              margin-left: 200px;
+              margin-top: -34px !important;
+              box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+          }
+  
+          li.subMenuButton {
+              min-width: 200px;
+          }
+  
+          .slds-tabs--default__item {
+              margin-left: 1.5em !important;
+          }
+  
+          .slds-tabs--default__item.slds-active:after, .slds-tabs--default__item.slds-is-active:after {
+              background-color: orange !important;
+          }
+          ul > li.slds-tabs--default__item {
+              margin-bottom: 0;
+          }
+          .slds-trial-header {
+              height: 40px !important;
+              padding: 0 !important;
+          }
+  
+          .slds-trial-header a:not(.slds-button--neutral):hover, .slds-trial-header a:not(.slds-button--neutral):focus, .slds-trial-header button:not(.slds-button--neutral):hover, .slds-trial-header button:not(.slds-button--neutral):focus {
+              color: currentColor;
+          }
+  
+          ul.flodocslinksUl {
+              font-size: 1rem;
+              font-family: 'Salesforce Sans',Arial,sans-serif;
+              padding: 20px 0;
+          }
+  
+          ul.flodocslinksUl  li{
+              padding: 5px 0;
+          }
+  
+          /*ul.flodocslinksUl li ul {
+              visibility: hidden;
+              opacity: 0;
+              transition: visibility 0s, opacity 2s linear;
+          }*/
+  
+          ul.flodocslinksUl li:hover ul {
+              /*display:block !important;
+              visibility: visible;
+              opacity: 1;*/
+          }
+          #collapseall {
+              font-size: 1rem;
+              font-family: 'Salesforce Sans',Arial,sans-serif;
+          }
+          #expandall {
+              font-size: 1rem;
+              font-family: 'Salesforce Sans',Arial,sans-serif;
+          }
+          .successMessage {
+              padding: 5px;
+              text-align: center;
+              background-color: #4bca81;
+              color: white;
+              font-weight: bold;
+          }
+          .errorMessage {
+              padding: 5px;
+              text-align: center;
+              background-color: #d4504c;
+              color: white;
+              font-weight: bold;
+          }
+  
+          .slds-dropdown__list li:hover{
+              background-color: orange;
+          }
+  
+          .toTheRight {
+              float: right;
+          }
+  
+          .toTheLeft {
+              float: left;
+          }
+  
+          td.left {
+              width: 85px !important;
+              height: auto;
+          }
+          td.left div{
+              width: 85px !important;
+          }
+          img#phHeaderLogoImage {
+              width: 85px;
+              height: 55px;
+          }
+      </style>
+
+        <script>
+
+             function pressButton(){
+                  var allSelected = '';
+                      $(".selectColumns option:selected").each(function(){
+                    allSelected+=allSelected!='' ? ', '+this.value : this.value;
+                  });
+                  alert(allSelected);
+                  doSearchAF(allSelected);
+                  return false;
+              }
+
+              function searchTextJs(){
+                doSearchByTextAF();
+              }
+
+              function pdfExport(){
+
+              }
+
+              function excelExport(){
+
+              }
+
+              function searchCustomizationsWordTyped(){
+
+                  var searchQuery = $(".inputAhead").val();
+
+                  $('#custosName').html('');
+                   //it should return an array with knowledge articles
+                   if(searchQuery != null && searchQuery != '' && searchQuery.length > 3){
+
+                       Visualforce.remoting.Manager.invokeAction(
+                          '{!$RemoteAction.FloFinderController.getCustomizations}',
+                          searchQuery,
+                          function(result, event){
+                              if (event.status) {
+
+                                  var resultList = '<ul class="slds-lookup__list" role="presentation">';
+                                  console.log('result: ' ,result);
+                                  for(var i = 0 ; i < result.length ; i++){
+                                      resultList += '<li class="slds-lookup__item" ><a role="option" onclick="articleSuggestedClick(\'' + result[i].Id + '\');">' + result[i].Name + '</a> -  </li>';
+                                  }
+                                  resultList += '</ul>';
+                                  $('#custosName').show();
+                                  $('#custosName').html('');
+                                  $('#custosName').append(resultList);
+                              } else if (event.type === 'exception') {
+                                      document.getElementById("noArticles").innerHTML =
+                                      event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                              } else {
+                                  document.getElementById("responseErrors").innerHTML = event.message;
+                              }
+                          },
+                          {escape: true}
+                          );
+                   }else{
+                      $('#custosName').hide();
+                   }
+              }
+
+        </script>
+        <style>
+          .slds [hidden], .slds template {
+              display: block;
+          }
+          div.wrapper {
+            text-align: center;
+          }
+          div.wrapper div {
+            margin-top: 5px;
+          }
+          div.wrapper h1 {
+            font-size: 12pt;
+          }
+          div.filters {
+            margin-top: 10px;
+          }
+          div.filters div {
+            margin-bottom: 5px;
+            font-weight: bold;
+          }
+          .connectionMessage {
+            color: blue; font-weight: strong;
+          }
+          .centerContent {
+            text-align: center;
+          }
+          span.modalLink {
+            text-decoration: none;
+            color: blue;
+            font-size: 12pt;
+            cursor: pointer;
+            font-weight: bold;
+          }
+          div.remoteSiteMessage {
+            background-color: #ffc;
+            padding: 5px;
+            margin: 5px;
+          }
+          .bPageBlock {
+            border-top: 4px solid #c9af82 !important;
+          }
+          .pbSubheader {
+            background-color: #c9af82 !important;
+          }
+          .requiredSpan {
+            background-color: #c00;
+            padding: 3px 1px;
+            margin-right: 1px;
+          }
+          input {
+            max-width: 540px;
+          }
+
+          a.slds-input {
+            max-width: 50px;
+            border: 0;
+          }
+          select.slds-input {
+            max-width: 540px;
+          }
+          td.buttonCell {
+            width: 40px;
+          }
+          legend {
+            border-bottom: 1px solid orange;
+            width: 100%;
+            margin: 15px 0;
+            padding: 15px 0;
+            font-size: 1rem !important;
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+            font-weight: 300 !important;
+          }
+          span.required {
+            color:red;
+            font-weight: bold;
+            font-size: 0.85rem;
+          }
+          .slds-button--brand  {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            background-color: #0070d2 !important;
+            background: #0070d2 !important;
+            border: 1px solid #0070d2 !important;
+            color: white !important;
+          }
+          .message.errorM3 {
+            border: 0;
+            margin: 0;
+          }
+          div.messageText span h4 {
+            font-family: 'Salesforce Sans',Arial,sans-serif !important;
+          }
+
+          table.messageTable tbody tr td span ul {
+            font-family: 'Salesforce Sans',Arial,sans-serif !important;
+          }
+
+          .pbSubheader {
+            background-color: orange!important;
+            padding: 8px !important;
+            color: #222 !important;
+          }
+          .bPageBlock {
+            border: 0 !important;
+            background: #FFF !important;
+          }
+          body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
+            background: #FFF;
+            border-width: 0;
+            /* border-color: #e0e3e5; */
+            color: #000;
+            font-size: .9em;
+            font-weight: 300;
+            padding: 0.5rem;
+          }
+          table.list {
+            border: 0;
+            border-bottom: 1px solid #e0e3e5;
+            border-top: 1px solid #e0e3e5;
+          }
+          .pageWrapper {
+            padding: 10px 40px;
+          }
+          .paginationControlls {
+            text-align: center;
+            border: 1px solid #ededed;
+            margin-top: -17px;
+            padding: 20px;
+          }
+          .paginationLinks {
+            color: #0070d2 !important;
+            font-weight: bold;
+          }
+          td.left {
+            width: 85px !important;
+            height: auto;
+          }
+          td.left div{
+            width: 85px !important;
+          }
+          img#phHeaderLogoImage {
+            width: 85px;
+            height: 55px;
+          }
+        </style>
+    
+    <body>
+      
+      <div class="slds">
+
+        <apex:form id="searchForm">
+
+        <c:StrongpointMenu />
+        
+        <div class="slds-page-header">
+          <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+              <div class="slds-media slds-no-space slds-grow">
+                <div class="slds-media__figure">
+                  <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                </div>
+                <div class="slds-media__body">
+                  <p class="slds-text-title--caps slds-line-height--reset">Strongpoint Finder</p>
+                  <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Finds Customization records in your Salesforce instance.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+         <div class="pageWrapper">
+
+              <apex:actionfunction name="doSearchByTextAF" action="{!doSearchByText}" rerender="custoTable,charts" status="statusC" />
+              <fieldset class="slds-form--compound">
+                <legend class="slds-form-element__label slds-text-title--caps">Filters</legend>
+                 <div class="slds-grid">
+                  <div class="slds-col">
+                      <div class="slds-form-element__group">
+                        <div class="slds-form-element__row">
+                          <div class="slds-form-element slds-size--1-of-1">
+                            <label class="slds-form-element__label" for="input-04">Search by text/API Name:</label> <br/>
+                             <apex:inputText value="{!searchByText}" label="Search by text/API Name" styleClass="slds-input inputAhead searchByTextOrApiName" id="searchByTextOrApiName"/>
+                            <div class="slds-lookup__menu" role="listbox" id="custosName" style="display:none;"></div>
+                          </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                          <fieldset class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <apex:inputCheckbox id="checkbox-14" value="{!includeDep}" rendered="false"/>
+                                <!--
+                                <label class="slds-checkbox__label" for="checkbox-3">
+                                  <span class="slds-checkbox_faux"></span>
+                                  <span class="slds-form-element__label">Include Dependencies</span>
+                                </label>
+                                -->
+                                <apex:inputCheckbox id="checkbox-13" value="{!includePackage}" />
+                                <label class="slds-checkbox__label" for="checkbox-4">
+                                  <span class="slds-checkbox_faux"></span>
+                                  <span class="slds-form-element__label">Include components from packages</span>
+                                </label>
+                            </div>
+                          </fieldset>
+                        </div>
+                        <div class="slds-form-element__row">
+                          <div class="slds-form-element slds-size--1-of-1">
+                            <label class="slds-form-element__label" for="input-03">Customization Type:</label><br/>
+                            <apex:selectList label="Select Metadata Type"  value="{!metadataSelected}"  size="5" multiselect="true" styleClass="slds-input" style="overflow: auto;resize: both;">
+                                <apex:selectOptions value="{!sfdcTypes}" />
+                            </apex:selectList>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="slds-col">
+                     <div class="slds-form-element__group">
+                        <div class="slds-form-element__row">
+                          <div class="slds-form-element slds-size--1-of-1">
+                            <label class="slds-form-element__label" for="input-03">Created By:</label><br/>
+                            <apex:selectList label="Select User" value="{!userSelected}"  size="5" multiselect="true" styleClass="slds-input" style="overflow: auto;resize: both;">
+                                <apex:selectOptions value="{!users}"/>
+                            </apex:selectList>
+                          </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                          <div class="slds-form-element slds-size--1-of-1">
+                            <label class="slds-form-element__label" for="input-03">Created After:</label><br/>
+                            <apex:input type="date" value="{!createdAfter}" styleClass="slds-input"/>
+                          </div>
+                        </div>
+                         <div class="slds-form-element__row">
+                          <div class="slds-form-element slds-size--1-of-1">
+                            <label class="slds-form-element__label" for="input-03">Modified After:</label><br/>
+                            <apex:input type="date" value="{!modifiedAfter}" styleClass="slds-input"/>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <div >
+                <apex:commandButton value="Find" onclick="searchTextJs();return false;" style="width:150px;" styleClass="slds-button slds-button--brand slds-order--3" />
+                <apex:commandLink value="Export to PDF" target="_blank" action="{!createPdf}" style="width:150px;" styleClass="slds-button slds-button--brand slds-order--3" />
+                <apex:commandLink value="Export to XLS" action="{!getCreateExcel}" oncomplete="return false;" target="_blank" style="width:150px;" styleClass="slds-button slds-button--brand slds-order--3" />
+              </div>
+              <apex:outputPanel id="charts" rendered="false">
+                <apex:chart data="{!custoGraphList}" width="1200" height="300" theme="Salesforce" resizable="true">
+                    <apex:legend position="right" spacing="5"/>
+                    <apex:axis type="Category" position="left" fields="sfdcType" title="Salesforce Types" ></apex:axis>
+                    <apex:axis type="Numeric" position="bottom" fields="direct,dependency" title="# of Direct Match/Dependencies"></apex:axis>
+                    <apex:barSeries orientation="horizontal" stacked="true" axis="bottom" xField="direct,dependency" yField="sfdcType" title="Direct Match,Dependency" tips="true"></apex:barSeries>
+                </apex:chart>
+              </apex:outputPanel>
+              <fieldset class="slds-form--compound">
+                <legend class="slds-form-element__label slds-text-title--caps">Results</legend>
+                  <apex:outputPanel id="custoTable"  >
+                    <script>
+                        
+                        //j$ = jQuery.noConflict();
+                        $(document).ready( function () {
+                            var contactTable = $('[id$="custable"]').DataTable({
+                            });
+                        });
+                        
+                    </script>
+                    <table id="custable" class="display">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>API Name</th>
+                                <th>Direct/Dependency</th>
+                                <th>Last Modified Date / DLU</th>
+                                <th>Created By</th>
+                                <th>Modified By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <apex:repeat value="{!customizationLists}" var="listCus">
+                                <apex:repeat value="{!listCus}" var="cus">
+                                <tr>
+                                    <td><a href="/{!cus.custId}" target="_blank">{!cus.name}</a></td>
+                                    <td>{!cus.sfdcType}</td>
+                                    <td>{!cus.api_name}</td>
+                                    <td>{!cus.directMessage}</td>
+                                    <td><apex:outputText value="{0, date, MMMM d','  yyyy}">
+                                            <apex:param value="{!cus.lastMetadataModified}" />
+                                        </apex:outputText></td>
+                                    <td>{!cus.createdBy}</td>
+                                    <td>{!cus.lastModifiedBy}</td>
+                                </tr>
+                            </apex:repeat>
+                            </apex:repeat>
+                        </tbody>
+                    </table>
+                </apex:outputPanel>
+                </fieldset>
+         </div>
+        
+        <apex:actionStatus id="statusC">
+            <apex:facet name="start">
+              <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: white;">
+                &nbsp;
+              </div>
+              <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+              </div>
+            </apex:facet>
+              <apex:facet name="stop"></apex:facet>
+        </apex:actionStatus>
+
+      </apex:form>
+
+      </div>
+    </body>
+
+    <script>
+
+      $(document).ready(function() {
+
+        //SF-1165 When press enter the wizard is displayed
+        $('.searchByTextOrApiName').on('keypress', function (e) {
+          if(e.which === 13){
+            searchTextJs();
+            event.preventDefault();
+          }
+        });
+
+      });         
+
+    </script>
+
+    </html>
+</apex:page>

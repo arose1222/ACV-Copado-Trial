@@ -1,0 +1,646 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.JiraController" action="{!initChangeRequest}" standardStylesheets="false"  cache="false" >
+   <head>
+    <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnectFDL}"/>
+    <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnect}"/>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all"></link>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui.min.css" media="all"></link>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui-experimental.min.css" media="all"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--     <script src="https://strongpointflo.atlassian.net/atlassian-connect/all.js" data-options="sizeToParent:true"></script>  -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-experimental.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-datepicker.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-soy.min.js"></script>
+  <script src="https://connect-cdn.atl-paas.net/all.js"></script>
+<style type="text/css">
+            .slds-icon_x-small,
+            .slds-icon--x-small {
+            width: 1rem;
+            height: 1rem;
+            line-height: 1; }
+
+            .slds-icon__container {
+            display: inline-block;
+            border-radius: 0.25rem;
+            line-height: 1;
+            /**
+            * @summary Circle container for icons
+            * @selector .slds-icon_container_circle
+            * @restrict .slds-icon_container
+            */ }
+
+            .slds-icon {
+            width: 2rem;
+            height: 2rem;
+            fill: white; }
+
+            .slds-icon-standard-announcement {
+            background-color: #62b7ed; }
+
+            #aui-flag-container {
+                position: fixed;
+                top: 45px!important;
+                right: 30px;
+                z-index: 2;
+            }
+
+            .my_field_group{
+                width: 200px;
+                margin: 0;
+                float: left;
+            }
+           .my_button{
+                box-sizing: border-box;
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 3.01px;
+                color:#555353;
+                cursor: pointer;
+                display: inline-block;
+                font-family: inherit;
+                font-size: 14px;
+                font-variant: normal;
+                font-weight: 400;
+                height: 2.14285714em;
+                line-height: 1.42857143;
+                margin: 10px;
+                padding: 4px 50px;
+                text-decoration: none;
+                vertical-align: baseline;
+                white-space: nowrap;
+            }
+            .my_button:disabled,
+              button[disabled]{
+                color:#c2baba;
+              }
+            .bottomButton {
+              width: 500px;
+            }
+            .ap-iframe{
+                width: 100%;
+                height: 400px!important;
+            }
+            .module>.mod-content iframe {
+                border: 0;
+                margin: 0;
+                height: 500px;
+                padding: 0;
+                width: 100%;
+            }
+            html { height: 100%; } body { min-height: 100%; }
+            #my_container input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            /* Set a style for all buttons */
+            #my_container button {
+                background-color: #205081;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            /* Add a hover effect for buttons */
+            #my_container button:hover {
+                opacity: 0.8;
+            }
+            /* Add padding to containers */
+            #my_container .container {
+                padding: 16px;
+            }
+             /* The "Forgot password" text */
+            #my_container span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            .tableSuggest{
+                font-size:12px;
+            }
+
+            .tooltipHover:hover + .tooltipText {
+                visibility: visible;
+                opacity: 1;
+            }   
+            .tooltipText {
+                visibility: hidden;
+                width: 450px !important;
+                background-color: #FFF;
+                position: absolute;
+                padding: 20px;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                overflow: hidden;
+                left: -400px;
+                z-index: 1;
+            }
+            .customizationContainer {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                justify-content: flex-start;
+                margin: 10px;
+                
+            }
+            .custoSearchWrapper {
+                display: flex;
+                flex-direction: row;
+                margin: 5px 0px;
+            }
+            .custoInput {
+              width: 100%;
+            }
+            .custoSearchLabel {
+              margin: 1px;
+              font-weight: bold;
+            }
+            .customizationList {
+                height: 300px;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #595959;
+                border-radius: 2px;
+                overflow: scroll;
+                background-color: #d8d5d5;
+            }
+            .drdPanel{
+              height: 600px;
+              width: 100%;
+              margin: 10px;
+              border-style: solid;
+              border-width: 1px;
+              border-color: #595959;
+              border-radius: 2px;
+              overflow: scroll;
+            }
+            .searchResultBlock {
+              height: 300px;
+              width: 85%;
+              margin: 10px;
+              border-style: solid;
+              border-width: 1px;
+              border-color: #595959;
+              border-radius: 2px;
+              overflow: scroll;
+            }
+
+
+            .bodyDiv {
+              overflow:scroll;
+            }
+            table#bodyTable {
+              table-layout: fixed;
+            }
+            .fa-10x {
+              font-size: 10em;
+            }
+            .cust {
+              position:absolute;
+              top:5%;
+              left:15%;
+                color: orange;
+                display: none;
+            }
+
+            .custform {
+              position:relative;
+              left:20%;
+              margin-right: 40px;
+              margin-left: 40px;
+              //display:none;
+              margin-bottom: 10px;
+              margin-top: 10px;
+              float: left;
+              color: orange;
+            }
+            #loadingdatagif{
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+              align:center;
+            }
+
+
+            #mainlist,.attrwrapper{
+              position:absolute;
+              left:20px;
+              top:40px;
+              border:2px solid black;
+              align:center;
+              text-align: center;
+                display: none;
+            }
+            #svgdiv,#svg{
+              /*position:absolute;*/
+              left:0px;
+              top:0px;
+              background-color: #FFFFFF;
+
+            }
+
+            #custdetail{
+              border: 0px;
+              height: 1000px;
+              width: 80%;
+              position: fixed;
+            }
+
+            .listcell,.openlistcell{
+              align:center;
+              height:25px;
+              min-width:250px;
+              width: auto;
+              background-color: #CED8F6;
+              border:1px solid gray;
+              font-size:10px;
+              text-align: center;
+              //onclick: explodedView(this.id);
+            }
+
+            .listcell{
+              cursor:pointer;
+            }
+
+            .openlistcell{
+              cursor:wait;
+            }
+
+            .listtext{
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+            .details{
+              word-wrap: break-word;
+              background-color: white;
+            }
+
+            .attrlabel{
+              align:center;
+              height:25px;
+              min-width:250px;
+              width: auto;
+              background-color: #DDDDDD;
+              border:1px solid black;
+              font-size:small;
+              font-weight:bold;
+              text-align: center;
+              vertical-align:text-bottom;
+            }
+            .scriptid{
+              align:center;
+              height:25px;
+              min-width:250px;
+              width: auto;
+              background-color: #CCCCCC;
+              border:1px solid gray;
+              font-size:small;
+              text-align: center;
+            }
+
+            body{
+              height: 1500px;
+            }
+            .backButton {
+              display: none;
+              position: absolute;
+            }
+            .btn {
+              padding: 5px;
+            }
+
+            .remove-button {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-align: center;
+            vertical-align: middle;
+            -ms-flex-pack: center;
+            justify-content: center;
+            border: 1px solid #dddbda;
+            transition: border 0.15s linear;
+            background-color: #c23934;
+            border-color: #c23934;
+            color: white; }
+
+            .slds-button--brand {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-align: center;
+            vertical-align: middle;
+            -ms-flex-pack: center;
+                justify-content: center;
+            border: 1px solid #dddbda;
+            transition: border 0.15s linear;
+            background-color: #0070d2;
+            border-color: #0070d2;
+            color: white; }
+
+            .slds-input {
+            background-color: white;
+            border: 1px solid #dddbda;
+            border-radius: 0.25rem;
+            width: 100%;
+            transition: border 0.1s linear, background-color 0.1s linear;
+            -webkit-appearance: none;
+            display: inline-block;
+            padding: 0 1rem 0 0.75rem;
+            line-height: 1.875rem;
+            min-height: calc(1.875rem + (1px * 2));}
+
+            
+
+            /* height: 300px; background-color: #F26060; */
+        </style>
+        <script>
+        function popuImpactAnalysis(id) {
+            //a064T000000LjOJQA0
+            if(id != null && id != ''){
+              var url = '{!sfEndpoint}' + '/apex/FLODocs__FloImpactAnalysisCRSection?id=' + id;
+              window.open(url,'Popup','height=700,width=550');
+            }
+            
+        }
+
+        function openDRD(name, id) {
+          var pathArray = window.location.href.split( '/jira' );
+          var url = pathArray[0]+ '/jira/JiraDRD?sessionId={!sessionId}&sfEndpoint={!sfEndpoint}&ids={!existingCustomizationsIds}';
+          //var url = 'https://devstrongpoint-developer-edition.na136.force.com/jira/JiraDRD?sessionId={!sessionId}&sfEndpoint={!sfEndpoint}&ids={!existingCustomizationsIds}';
+          
+          window.open(url, 'Popup', 'height=500, width=800');
+        }
+        function openChangeRequestCustoAddError(){
+          AP.flag.create({
+                        type: 'error',
+                        title: 'ERROR',
+                        body: 'Change Request is already Approved/Completed and cannot add/remove customizations to it.'
+                  });  
+            
+        }
+        var showOpenChangeRequestCustoAddError ='{!showOpenChangeRequestCustoAddError}';
+        
+        if(showOpenChangeRequestCustoAddError == 'true'){             
+            openChangeRequestCustoAddError();
+        }
+        </script>
+  </head>
+
+<!--- LOGIN PAGE -->
+<apex:outputPanel id="loginWrapper" layout="block" rendered="{!!isLoggedIn}">
+    <script>
+    AP.events.emitPublic('customPublicEvent');
+    </script>
+    <div class="aui-page-header">
+        <div class="aui-page-header-main">
+        </div>
+        <div id="aui-message-bar"></div>
+      </div>
+      <div data-nc-container="top-left" id="yui_3_17_2_1_1508616918708_344" style="background-color: #053561;">
+            <img src="//static1.squarespace.com/static/59709e3f893fc0cc2912ef0e/t/59709f5df5e2311272d2bd81/1508344372790/?format=1500w"
+                alt="Strongpoint" class="Header-branding-logo"/>
+      </div>
+      <div class="aui-flatpack-example" style="padding-top: 8px;">
+      <div id="my_container" class="container">
+        <apex:form >
+            <!-- <div class="" style="float: right;padding-right: 1%;">
+                <apex:inputCheckbox id="sandbox_account" value="{!isSandbox}">
+                    <label for=""><i>Sandbox Account? </i></label>
+                </apex:inputCheckbox>
+            </div> -->
+            
+            <div style="float:right">
+                    <apex:inputCheckbox id="isSandbox" value="{!isSandbox}">Is Sandbox account? </apex:inputCheckbox>         
+            </div>
+            <label><b>Username</b></label>
+            <apex:inputText id="email"   value="{!sfUsername}" ></apex:inputText>            
+            <label><b>Password</b></label>
+            <apex:inputSecret id="password"   value="{!sfPassword}" reDisplay="true" ></apex:inputSecret>
+            <label><b>Security Token</b></label>
+            <apex:inputSecret id="token"   value="{!sfToken}" reDisplay="true" ></apex:inputSecret>
+            <apex:commandButton action="{!handleLogin}"   value="Connect" styleClass="my_button" />
+            <apex:pageMessages id="showmsg"></apex:pageMessages>
+            <apex:outputPanel id="sessionInfo">
+                <apex:inputHidden value="{!sessionId}" id="sessionId"/>
+                <apex:inputHidden value="{!userId}" id="userId"/>
+                <apex:inputHidden value="{!orgName}" id="orgName"/>
+                <apex:inputHidden value="{!sfEndpoint}" id="sfEndpoint"/>
+                <apex:inputHidden value="{!jiraTicket}" id="jiraTicket"/>
+                <apex:inputHidden value="{!isLoggedIn}" id="isLoggedIn"/>
+                <apex:param name="one" value="" />
+            </apex:outputPanel>
+            <script>
+                 AJS.$('input[id$="jiraTicket"]').val(AP._data.options.productContext["issue.key"]);
+            </script>
+        </apex:form>
+    </div>
+        </div>
+</apex:outputPanel>
+
+
+
+<!--- MAIN PAGE -->
+<apex:outputPanel id="pageWrapper" layout="block" rendered="{!isLoggedIn}" style="background-color:white;">
+        <script>
+                AP.events.emitPublic('customPublicEvent');
+                </script>
+    <apex:outputPanel id="contentWrapper" layout="block">
+        <!---The image-->
+        <div data-nc-container="top-left" id="yui_3_17_2_1_1508616918708_344" style="background-color: #053561;">
+          <img src="//static1.squarespace.com/static/59709e3f893fc0cc2912ef0e/t/59709f5df5e2311272d2bd81/1508344372790/?format=1500w"
+              alt="Strongpoint" class="Header-branding-logo" />
+        </div>
+        <apex:form >
+        
+            <!---Synced with: ... and Change Account-->
+            <apex:outputPanel id="firstRow" layout="block" style="margin: 0px 5px;">
+                    <div class="slds-text-heading_large" >
+                <apex:outputText title="The Salesforce account that this ticket is currently synchronized with. You can change this account by clicking “Change Account”." value="Synchronized with: {0}" style="position: absolute; left: 0px; margin: 10px;">
+                    <apex:param value="{!sfEndpoint}"/>
+                </apex:outputText>
+                    </div>
+                <apex:commandButton title="Click to change the orgID this ticket is linked to." action="{!changeAccount}"   value="Change Account" styleClass="my_button" style="position: absolute; right: 0px;padding: 4px 10px;"/>
+            </apex:outputPanel>
+            <!---Change level Required-->
+            <apex:outputPanel id="secondRow" layout="block" style="margin: 0px 5px;">
+                <apex:outputText title="The Strongpoint Change and Approval Policy that was applied based on the customizations you added to this ticket" value="Policy: {0}" style="position: absolute; top:124px; left: 0px; margin: 10px;">                  
+                        <apex:param value="{!policy}"/>
+                </apex:outputText>
+                <apex:outputText title="The Change Level required based on the customizations added to this ticket and the Strongpoint Change and Approval Policy applied" value="Change Level Req: {0}" style="position: absolute; top:124px; left: 257px; margin: 10px;" >                  
+                    <apex:param value="{!changeLevelReq}"/>    
+                </apex:outputText>
+            </apex:outputPanel>
+
+            <!---Affected Bundle Id-->
+            <apex:outputPanel id="thirdRow" layout="block">
+                <div style="height: 50px;"></div>
+                <!-- <apex:outputPanel id="bundleIdSearchWrapper" layout="block" 
+                        styleClass="customizationContainer"> 
+                    <label styleClass="custoSearchLabel">Affected Bundle ID</label>
+                    <apex:inputText value="{!bundleId}"  
+                                html-placeholder="Add affected bundle ID..."
+                                styleClass="custoInput"
+                                style="width: 90%;"/>
+                </apex:outputPanel> -->
+            </apex:outputPanel>
+            <!---Existing and Proposed Customization Blocks-->
+            <apex:outputPanel id="fourRow" layout="block" style="display: flex; flex-direction: row; justify-content: flex-start;">
+                <!---Existing Customization Block-->      
+                <apex:outputPanel id="existingCustomizationsContainer" layout="block" 
+                  styleClass="customizationContainer">
+                    <label id="existingCustomizationsLabel" title="Customizations that you have selected that exist in the Salesforce account are listed here." styleClass="custoSearchLabel"><strong>Existing Customizations</strong></label>
+                    
+                      <apex:outputPanel id="customizationSearchWrapper" layout="block" 
+                        styleClass="custoSearchWrapper">
+                            <apex:inputText value="{!customizationSearchTerm}" 
+                            title="For existing customizations, enter the name or part of the name of the customization and click + to open a window to select the customizations."
+                            id="customizationSearchTerm" 
+                            html-placeholder="Add customization..."
+                            styleClass="slds-input"/>
+                        <apex:commandButton action="{!searchExistingCustomizations}"
+                         value="+" styleClass="slds-button--brand" title="For existing customizations, enter the name or part of the name of the customization and click + to open a window to select the customizations."/>                             
+                      </apex:outputPanel>
+                    
+                    <apex:outputPanel id="existingCustomizationsList" layout="block" 
+                      styleClass="customizationList">
+                        <script>
+                          var showOpenChangeRequestDeleteCustoError ='{!showOpenChangeRequestDeleteCustoError}';
+                          if(showOpenChangeRequestDeleteCustoError == 'true'){             
+                              openChangeRequestCustoAddError();
+                          }
+                        </script>
+                        <apex:pageBlock > 
+                            <apex:pageBlockTable value="{!existingCustomizations}" var="custo" 
+                                                styleClass="slds-table slds-table--boredered slds-table--cell-buffer" 
+                                                headerClass="slds-text-title--caps">
+                                <apex:column value="{!custo.Name}" style="font-size:12px;" />
+                                <apex:column >
+                                        <apex:commandButton value="x" action="{!removeExisting}" rerender="existingCustomizationsList" styleclass="remove-button">
+                                                <apex:param name="custIdToRemove" value="{!custo.internalId}" assignTo="{!removeThisId}"/>
+                                            </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>                        
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <!---Existing Customization Block-->      
+                <apex:outputPanel id="proposedCustomizationsContainer" layout="block" 
+                  styleClass="customizationContainer">
+                    <label id="proposedCustomizationsLabel" title="API Names of proposed customizations that you added are listed here." styleClass="custoSearchLabel"><strong>Proposed Customizations</strong></label>
+                      <apex:outputPanel id="addProposedWrapper" layout="block" 
+                        styleClass="custoSearchWrapper"> 
+                        <apex:inputText value="{!proposedCustomizationInput}" 
+                            id="proposedCustomizationInput" 
+                            html-placeholder="Add customization..."
+                            styleClass="slds-input" title="For new customizations enter a valid API Name and click +. It will appear in the Proposed Customizations field."/>
+                        <apex:commandButton title="For new customizations enter a valid API Name and click +. It will appear in the Proposed Customizations field." action="{!addProposedCustomization}" value="+" styleClass="slds-button--brand"/>
+                      </apex:outputPanel>
+                    <apex:outputPanel id="proposedCustomizationsList" layout="block" 
+                      styleClass="customizationList">
+                        <script>
+                          var showOpenChangeRequestDeletePropCustoError ='{!showOpenChangeRequestDeletePropCustoError}';
+                            if(showOpenChangeRequestDeletePropCustoError == 'true'){             
+                              openChangeRequestCustoAddError();
+                          }
+                        </script>
+                        <apex:pageBlock >
+                            <apex:pageBlockTable value="{!proposedCustomizations}" var="custo" 
+                                                styleClass="slds-table slds-table--boredered slds-table--cell-buffer" 
+                                                headerClass="slds-text-title--caps" >
+                                <apex:column value="{!custo}" style="font-size:12px;"/>
+                                <apex:column >
+                                        <apex:commandButton value="x" action="{!removeCustProposedExisting}" rerender="proposedCustomizationsList" styleclass="remove-button">
+                                                <apex:param name="custProposedToRemove" value="{!custo}" assignTo="{!removeProposedThisName}"/>
+                                            </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>
+                    </apex:outputPanel>
+                </apex:outputPanel>           
+            </apex:outputPanel>
+            
+            <!---Search Results Modal-->
+            <apex:outputPanel id="searchResultsModal" layout="block" rendered="{!doShowSearchResults}">
+                    <div id="lookupResults" style="position: absolute;margin-left: 13%;box-sizing: border-box;left: 0;right: 0;padding: 10px;background: white;margin-left: auto;margin-right: auto;border: 1px solid black;/* visibility: hidden; */z-index: 9999;width: 500px;top: 150px;">
+            <label id="searchResultsTitle" styleClass="custoSearchLabel" style="margin: 5px; font-weight: 700 !important;">Search Results</label>                
+                <apex:outputPanel id="searchResults" layout="block" 
+                  styleClass="searchResultBlock">
+                    <apex:pageBlock > 
+                        <apex:pageBlockTable value="{!searchResults}" var="result" 
+                                            styleClass="slds-table slds-table--boredered slds-table--cell-buffer" 
+                                            style="margin: 10px !important;"
+                                            headerClass="slds-text-title--caps">
+                          <apex:column value="{!result.Name}" style="font-size:11px;"/>
+                          <apex:column >
+                              <td style="position:relative;">
+                                  <a data-aui-trigger="" aria-controls="more-details-30" href="#" style="color: #3572b0!important;" aria-expanded="false" class="tooltipHover aui-alignment-target" resolved="" aria-haspopup="true" id="{!result.scriptId}">View</a>
+                                  <div class="tooltipText aui-inline-dialog-contents" style="width:150px !important;left: -150px; z-index:99999">
+                                      <p><strong>Type</strong>: <i>{!result.salesforceType}</i></p>
+                                      <p><strong>API Name</strong>: {!result.scriptId}</p>
+                                  </div>
+                              </td>
+                          </apex:column>                          
+                          <apex:column >
+                                                <div class="slds-checkbox">
+                                <apex:inputCheckbox value="{!result.isSelected}" styleClass="slds-assistive-text typeCheck" id="checklog"/>
+                                <label for="a" class="slds-checkbox--faux">
+                                    <span class="slds-assistive-text"></span>
+                                </label>
+                              </div>
+                          </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>                        
+                </apex:outputPanel>
+                <apex:commandButton action="{!closeSearchResults}" 
+                    value="Close" styleClass="my_button"/>
+                <apex:commandButton action="{!addSelectedCustomizations}" 
+                    value="Add Selected Customizations" styleClass="my_button" style="padding: 4px 10px;" />           
+                </div>
+                </apex:outputPanel>
+
+            <!-- <apex:outputPanel id="tableCustoPopup" rendered="{!doShowSearchResults}">
+                <div class="aui-dialog2-content" style="max-height: 365px;">
+                    <table class="aui popUpTable">
+                        <thead>
+                            <tr>
+                                <th id="name">Name</th>
+                                <th id="type">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                              <apex:repeat var="result" value="{!searchResults}">
+                                  <tr>
+                                    <td headers="name">
+                                        <input type="checkbox" name="" style="margin-right: 8px;" value="{!result.isSelected}" />
+                                        <input hidden="true" value="{!result.scriptId} -- {!result.salesforceType}"/>
+                                    </td>
+
+                                    </tr>
+                              </apex:repeat>      
+                        </tbody>
+                    </table>
+                </div>
+            </apex:outputPanel> -->
+            
+            <!---DRD, Impact Analysis, and Push Buttons-->
+            <apex:outputPanel >
+                
+                    <apex:commandButton title="Click to display the DRD on the customizations listed in the Existing Customizations field. " action="{!openDRD}" oncomplete="openDRD(); return false;" value=" View DRD" styleClass="my_button" style="position: absolute; left: 0px;" />
+                
+                
+                    <!--<input type="button" onclick="popuImpactAnalysis('{!changeRequestId}');" value="Impact Analysis" /> -->
+                    <apex:commandButton title="Click to display the impact analysis on the customizations listed in the Existing Customizations field" onclick="popuImpactAnalysis('{!changeRequestId}');" value="Impact Analysis" styleClass="my_button" style="position: absolute; left: 33%;"/>
+                
+                    <apex:commandButton disabled="{!!isEnabledPushButton}" title="When “Is Automatic Sync” is turned off in Salesforce Setup>Custom Settings>Strongpoint Jira Integration Status> Manage, use the “Push” button to synchronize state changes to the Jira ticket to the Strongpoint Change Request" action="{!pushChangeRequest}" value="Push" styleClass="my_button" style="position: absolute; right: 0px;"/>
+                
+            </apex:outputPanel>
+  
+        </apex:form>
+    </apex:outputPanel>
+</apex:outputPanel>
+</apex:page>

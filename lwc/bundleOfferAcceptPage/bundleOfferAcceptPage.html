@@ -1,0 +1,45 @@
+<template>
+    <div class="c-template">
+        <template if:true={showSpinner}>
+            <div class="backdrop">
+                <div class="spinner">
+                    <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+                </div>
+            </div>
+        </template>
+        <template if:false={showSpinner}>
+            <div class="thank-you-opt">
+                <!-- <img class="logo"
+                    src="https://www.baincapitalventures.com/assets/acv_logo_CMYK_full_color_black_tag_no_overlay-362x169.png" /> -->
+                <img class="logo" src={ACVLogo}>
+                <template if:false={alreadyActivated}>
+                    <h3>Your bundle has been confirmed!</h3>
+                    <p>All vehicles will be launched shortly into our No Reserve Sale.</p>
+                </template>
+                <template if:true={alreadyActivated}>
+                    <h3>Your bundle has already been activated!</h3>
+                </template>
+                <div><a href="https://app.acvauctions.com/myacv/active/selling">view active selling</a></div>
+            </div>
+            <!-- <div class="c-body">
+                <div class="c-header">
+                    <img class="logo" border="0" src={ACVLogo} alt="ACV AUCTIONS" width="auto" data-responsive="true"
+                        data-proportionally-constrained="false">
+                </div>
+                <div class="msg-div">
+                    <div class="slds-notify_container slds-is-relative">
+                        <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                            <span class="slds-assistive-text"></span>
+
+                            <div class="slds-notify__content">
+                                <h2 class="slds-text-heading_small">
+                                    {displayMessage}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </template>
+    </div>
+</template>

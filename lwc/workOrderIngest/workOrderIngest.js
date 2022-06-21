@@ -18,6 +18,7 @@ import checkRevolvingAppt from '@salesforce/apex/workOrderIngestPermissions.chec
 import retrieveOffers from '@salesforce/apex/OffersAPI.retrieveOffers';
 import saveOffer from '@salesforce/apex/workOrderIngestController.saveOffer';
 import saveOfferNoAvailability from '@salesforce/apex/workOrderIngestController.saveOfferNoAvailability';
+import updateWork from '@salesforce/apex/workOrderIngestController.updateWork';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -51,7 +52,7 @@ export default class workOrderIngest extends LightningElement {
     @track selectedList;
     today;
     showLoadingSpinner = false;
-    
+
     toggleSpinner() {
         this.showLoadingSpinner = !this.showLoadingSpinner;
     }
@@ -113,6 +114,7 @@ export default class workOrderIngest extends LightningElement {
         this.workOrderInfo.BSUCheck = false;
         this.workOrderInfo.date = this.today;
         this.workOrderInfo.NotificationRequest = false;
+
     }
 
     handleContactSearch(event){
@@ -142,6 +144,8 @@ export default class workOrderIngest extends LightningElement {
             this.workOrderInfo.contact = undefined;
         }
 
+        this.isContactUpdated = true;
+
     }
 
 
@@ -158,8 +162,6 @@ export default class workOrderIngest extends LightningElement {
     viewStates = ['Time', 'Revolving', 'Day', 'Vehicles', 'Address', 'Contact', 'Inspection Notes', 'Summary', 'Processing', 'RevolvingModal'];
     @track currentState;
 
-    // insertedWorkOrderIds = [];
-
     inspectionOffers = [];
     true360Offers = [];
     siriusxmOffers = [];
@@ -174,8 +176,6 @@ export default class workOrderIngest extends LightningElement {
     siriusXMDuration;
 
     offerButtonClass = 'slds-button slds-button_stretch ';
-    // inspectionAM = this.offerButtonClass + 'greyColor';
-    // .IdId;
 
     inspectionAMOffer;
     inspectionPMOffer;
@@ -184,16 +184,9 @@ export default class workOrderIngest extends LightningElement {
     siriusXMAMOffer;
     siriusXMPMOffer;
 
-    // inspectionPM = this.offerButtonClass + 'greyColor';
-    // inspectionPMOfferId;
-    // true360AM = this.offerButtonClass + 'greyColor';
-    // true360AMOfferId
-    // true360PM = this.offerButtonClass + 'greyColor';
-    // true360PMOfferId;
-    // siriusXMAM = this.offerButtonClass + 'greyColor';
-    // siriusXMAMOfferId;
-    // siriusXMPM = this.offerButtonClass + 'greyColor';
-    // siriusXMPMOfferId;
+    isAddressChanged = false;
+    isContactUpdated = false;
+    isSpecialInstructionsAdded = false;
 
     handleRevolvingClose(){
         this.closeModal();
@@ -374,18 +367,24 @@ export default class workOrderIngest extends LightningElement {
 
 
     handleAddress(event){
-        this.workOrderInfo.city = event.detail.city;
-        this.workOrderInfo.state = event.detail.province;
-        this.workOrderInfo.zip = event.detail.postalCode;
-        this.workOrderInfo.country = event.detail.country;
-        this.workOrderInfo.street = event.detail.street;
+        if(this.workOrderInfo.city != event.detail.city || this.workOrderInfo.state != event.detail.province || this.workOrderInfo.zip != event.detail.postalCode || this.workOrderInfo.country != event.detail.country || this.workOrderInfo.street != event.detail.street){
+
+            this.isAddressChanged = true;
+
+            this.workOrderInfo.city = event.detail.city;
+            this.workOrderInfo.state = event.detail.province;
+            this.workOrderInfo.zip = event.detail.postalCode;
+            this.workOrderInfo.country = event.detail.country;
+            this.workOrderInfo.street = event.detail.street;
+        }
     }
     handleNotes(event){
         this.workOrderInfo.notes = event.detail.value;
+        this.isSpecialInstructionsAdded = true;
     }
 
     handleNextClick(){
-
+        console.log(this.currentState);
         switch(this.currentState){
             case 'Time':
                 if(this.timeSelection === 'ASAP' || this.timeSelection === 'Now'){
@@ -430,31 +429,83 @@ export default class workOrderIngest extends LightningElement {
                 } else if(this.workOrderInfo.T360Count > 0 && this.account.Halt_True360_Appointments__c) {
                     this.displayToast('True 360', 'This dealership is not approved for any True 360 inspections at this time. Please direct the dealer to call (716) 954-9515 or email ar@true360.com with questions.', 'error', 'sticky');
                 } else {
-                    this.currentState = 'Address';
+
+                    if(this.workOrderInfo.time != 'Later'){
+                        this.currentState = 'Address';
+                    } else {
+
+                        this.currentState = 'Processing';
+                        this.toggleSpinner();
+
+                        submitWOs({woInfoJSON: JSON.stringify(this.workOrderInfo), isProcessingOffers: true}).then(result =>{
+                            if(result.status == 'Success'){
+
+                                this.inspectionWOId = result.inspectionWOId;
+                                this.true360WOId = result.true360WOId;
+                                this.siriusXMWOId = result.siriusXMWOId;
+
+                                if(result.inspectionDuration){this.inspectionDuration = this.processDuration(result.inspectionDuration)};
+                                if(result.true360Duration){this.true360Duration = this.processDuration(result.true360Duration)};
+                                if(result.siriusXMDuration){this.siriusXMDuration = this.processDuration(result.siriusXMDuration)};
+
+                                this.toggleSpinner();
+                                this.currentState = 'Address';
+
+                            } else {
+                                this.toggleSpinner();
+                                this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', result.message, 'error', 'sticky');
+                            }
+
+                        }).catch(error =>{
+
+                            this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', error.body.message, 'error', 'sticky');
+                            this.closeModal();
+
+                        })
+                    }
                 }
 
-                //do stuff
                 break;
 
             case 'Address':
+
                 this.currentState = 'Contact';
-                //do stuff
                 break;
 
             case 'Contact':
                 this.currentState = 'Notes';
-                //do stuff
                 break;
 
             case 'Notes':
 
-                this.currentState = 'Summary';
-
                 if(this.workOrderInfo.timeSelection == 'Later' && !this.isOnlyBSU()){
                     this.nextButtonLabel = 'Check Availability';
+                    if(this.isAddressChanged || this.isSpecialInstructionsAdded || this.isContactUpdated){
+                        this.currentState = 'Processing';
+                        this.toggleSpinner();
+                        updateWork({woInfoJSON: JSON.stringify(this.workOrderInfo), inspectionWOId: this.inspectionWOId, true360WOId: this.true360WOId, siriusXMWOId: this.siriusXMWOId}).then(result =>{
+                            if(result.status == 'Success'){
+                                this.toggleSpinner();
+                                this.currentState = 'Summary';
+                            } else {
+                                this.toggleSpinner();
+                                this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', result.message, 'error', 'sticky');
+                            }
+
+                        }).catch(error =>{
+                            this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', error.body.message, 'error', 'sticky');
+                            this.closeModal();
+                        })
+                    } else {
+                        this.currentState = 'Summary';
+                        break;
+                    }
+
                 } else {
+
                     this.nextButtonLabel = 'Finish';
                     this.nextIconName = 'utility:like';
+                    this.currentState = 'Summary';
                 }
 
                 break;
@@ -466,28 +517,7 @@ export default class workOrderIngest extends LightningElement {
                     this.nextButtonLabel = 'next';
                     this.nextIconName = 'utility:like';
 
-                    submitWOs({woInfoJSON: JSON.stringify(this.workOrderInfo), isProcessingOffers: true}).then(result =>{
-
-                        if(result.status == 'Success'){
-
-                            this.inspectionWOId = result.inspectionWOId;
-                            this.true360WOId = result.true360WOId;
-                            this.siriusXMWOId = result.siriusXMWOId;
-
-                            if(result.inspectionDuration){this.inspectionDuration = this.processDuration(result.inspectionDuration)};
-                            if(result.true360Duration){this.true360Duration = this.processDuration(result.true360Duration)};
-                            if(result.siriusXMDuration){this.siriusXMDuration = this.processDuration(result.siriusXMDuration)};
-
-                            this.processGetOffers(this.inspectionWOId, this.true360WOId, this.siriusXMWOId);
-
-
-                        } else {
-                            this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', result.message, 'error', 'sticky');
-                        }
-
-                    }).catch(error =>{
-                        this.displayToast('Error - If the issue is unclear, Please open an R&I with the following details:', error.body.message, 'error', 'sticky');
-                    })
+                    this.processGetOffers(this.inspectionWOId, this.true360WOId, this.siriusXMWOId);
 
                 } else {
                     this.currentState = 'Processing';
@@ -662,10 +692,13 @@ export default class workOrderIngest extends LightningElement {
             }
             if ( lingeringMinutes > 0 ) {
                 durationString += ' and ';
-                remindingMinutes = lingeringMinutes;
+                // remindingMinutes = lingeringMinutes;
+                durationString += lingeringMinutes + ' minutes';
             }
+        } else {
+            durationString += remindingMinutes + ' minutes';
         }
-        if ( remindingMinutes > 0 ) { durationString += remindingMinutes + ' minutes'; }
+        // if ( remindingMinutes > 0 ) { durationString += remindingMinutes + ' minutes'; }
         return durationString;
     }
 

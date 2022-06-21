@@ -1,0 +1,1641 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Customization__c" extensions="FLODocs.FloCustomizationViewEditController" docType="html-5.0">
+  <base target="_parent" />
+  <c:StrongpointAnalytics />
+  <apex:slds />
+  <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+  <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/verticalTabs.css')}"  />
+  <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/d3.v4.min.js')}" />
+
+
+  <apex:stylesheet value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"  />
+  <apex:includescript value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" />
+
+
+  <style>
+  progress, progress[role] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-size: auto;
+    height: 15px;
+    width: 100%;
+  }
+
+  .skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+  }
+
+  .skill {
+    margin-bottom: 1em;
+    position: relative;
+  }
+  .skill h3 {
+    color: #fff;
+    left: 1em;
+    line-height: 1;
+    position: absolute;
+    top: 1em;
+  }
+  .skill ::-webkit-progress-value {
+    -webkit-animation: bar-fill 2s;
+    width: 0px;
+  }
+
+  .skill-1::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-1::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  .skill-2::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-2::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  .skill-3::-webkit-progress-value {
+    background: #1797c0;
+  }
+
+  .skill-3::-webkit-progress-bar {
+    background: #ccc;
+  }
+
+  @-webkit-keyframes bar-fill {
+    0% {
+      width: 0;
+    }
+  }
+  @keyframes bar-fill {
+    0% {
+      width: 0;
+    }
+  }
+  ul li ul {
+    display: none;
+  }
+  td.left {
+    width: 85px !important;
+    height: auto;
+  }
+  td.left div{
+    width: 85px !important;
+  }
+
+  img#phHeaderLogoImage {
+    width: 85px;
+    height: 55px;
+  }
+  html {
+    line-height: 1;
+    background: none;
+    box-sizing: initial;
+  }
+  .crSections {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+  </style>
+
+  <script>
+  jQuery.noConflict();
+  function rescanCusto(){
+    if(confirm('Are you sure you want to Rescan this Customization?')){
+      rescanAF();
+    }
+  }
+    
+    function modalCustomFields(custoId){
+        var pageURL= "/apex/FloCustomFieldPolicy?custoId="+custoId;
+        var popupWinWidth ="1000";
+        var popupWinHeight ="900";
+        var left = (screen.width/2)-(popupWinWidth/2); 
+        var top = (screen.height/2)-(popupWinHeight/2);
+        var newWin = window.open(pageURL, 'Popup', 'resizable=yes, titlebar=yes, width=' + popupWinWidth + ', height=' + popupWinHeight + ', top='+ top + ', left=' + left);
+                
+        return newWin;
+    }
+
+  function saveCusto(){
+    if(confirm('Are you sure you want to save this Customization?')){
+
+    }
+  }
+  function reloadPage (){
+    window.parent.location.href = '/{!floCusto.Id}';
+  }
+
+  function runControlBatchJs(){
+    if(confirm('Are you sure you want to Run Control of this Customization?')){
+      runControlAF();
+    }
+  }
+  jQuery(function ($) {
+    $('.saveButton').removeClass('btn');
+
+    $('#tab-default-10__item').click();
+
+    function editCusto(){
+      $('#ModalCusto').toggle();
+    }
+
+    function modalCustoJs(){
+      $('#ModalCusto').toggle();
+      saveAf();
+    }
+
+    $('.slds-vertical-tabs__link').click(function() {
+      var elemId = $(this).attr('id');
+      elemId = elemId.replace('__nav', '');
+      $('.slds-show').each(function() {
+        if(!$(this).hasClass('slds-tabs--default__content')){
+          $(this).removeClass('slds-show');
+          $(this).addClass('slds-hide');
+        }
+      });
+      $('#' + elemId).addClass('slds-show');
+      $('.slds-is-active').each(function() {
+        $(this).removeClass('slds-is-active');
+      });
+      $(this).parent().addClass('slds-is-active');
+    });
+
+
+  });
+
+  </script>
+
+  <apex:outputPanel >
+    <style>
+    .bPageBlock {
+      border-top: 0 !important;
+    }
+    .pbBody {
+      margin: 0 !important;
+    }
+    .pbSubheader {
+      background-color: orange!important;
+      padding: 8px !important;
+      color: #222 !important;
+    }
+    .bPageBlock {
+      border-top: 0 solid #d8dde6 !important;
+      border-left: 0px !important;
+      border-right: 0px !important;
+      border-bottom: 0px !important;
+      background: #FFF !important;
+      margin-bottom: 15px !important;
+    }
+    .relatedListIcon {
+      display: none !important;
+    }
+    .pbTitle h3 {
+      margin: 10px 0 !important;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-block;
+      padding: 0 10px !important;
+      background: transparent !important;
+      background-clip: border-box !important;
+      border: 1px solid #d8dde6 !important;
+      border-radius: 0.25rem !important;
+      font-size: 0.75rem !important;
+      line-height: 1.875rem !important;
+      text-decoration: none !important;
+      color: #0070d2 !important;
+      -webkit-appearance: none !important;
+      white-space: normal !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      transition: color 0.05s linear, background-color 0.05s linear !important;
+    }
+    .bRelatedList {
+      width: 100%;
+    }
+    </style>
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+
+    <div class="slds">
+
+      <apex:form id="frmCandEdit" >
+        <apex:pageMessages />
+        <div class="slds-page-header">
+          <div class="slds-grid">
+            <div class="sldsc-ol slds-has-flexi-truncate">
+              <div class="slds-media slds-no-space slds-grow">
+                <div class="slds-media__figure">
+                  <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                </div>
+                <div class="slds-media__body">
+                  <p class="slds-text-title_caps slds-line-height_reset">FLO Customization</p>
+                  <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="this should match the Record Title">{!FLODocs__FLO_Customization__c.Name}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+              <div class="slds-button-group" role="group">
+                <!-- <button type="button" class="slds-button slds-button--neutral" onclick="editCusto();return false;">Edit</button> -->
+                <apex:commandButton styleClass="slds-button slds-button--neutral saveButton" value="Save" action="{!save}" onclick="updateTrackingSave()" />
+                <apex:actionFunction action="{!updateTrackingSave}" name="updateTrackingSave" rerender="showstate"></apex:actionFunction>
+                <button type="button" class="slds-button slds-button--neutral" onclick="rescanCusto();return false;">Rescan</button>
+                <button type="button" class="slds-button slds-button--neutral" style="display: {!IF(FLO_Customization__c.Salesforce_Types__c == 'Report','block','none')};" onclick="runControlBatchJs();return false;">Run Control</button>
+                <a href="/{!FLO_Customization__c.Internal_Id__c}" class="slds-button slds-button--neutral" style="text-decoration: none;" target="_blank">Go To Record</a>
+                <!--INIT SF-1205 Add Restore button to Reports-->
+                <apex:commandLink rendered="{!isRestore}" action="/apex/FloDocs__CleanUpRulesCusto?itr=false&id={!FLODocs__FLO_Customization__c.Id}" styleclass="slds-button slds-button--neutral" style="text-decoration: none;" target="_blank" value="Restore"></apex:commandLink>
+                <!--END SF-1205-->
+                  <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                      <button type="button" class="slds-button slds-button--neutral" onclick="saveDescription();return false;">
+                          Update Description and Help Text
+                      </button>
+                  </apex:outputPanel>
+                  <!-- 85662 CustomFields (existing) should inherit the policy where the CustomObject belongs to -->
+                  <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject'}">
+                      <button type="button" class="slds-button slds-button--neutral" onclick="modalCustomFields('{!FLODocs__FLO_Customization__c.Id}');return false;">
+                          Set Policy
+                      </button>
+                  </apex:outputPanel>
+                  <!-- 85662 CustomFields (existing) should inherit the policy where the CustomObject belongs to -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <apex:actionFunction name="saveAf" action="{!save}" oncomplete="editCusto()"/> -->
+        <apex:actionFunction name="runControlAF" action="{!runControlBatch}" />
+        <apex:actionFunction name="saveDescription" action="{!saveMetadata}" status="status" reRender="dummyRender"/>
+        <apex:actionFunction name="rescanAF" action="{!rescannerFromViewPage}" rerender="progressContainer"/>
+        <apex:actionStatus id="status">
+          <apex:facet name="start">
+            <div >
+              <div class="slds-spinner_container">
+                <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                  <span class="slds-assistive-text">Loading</span>
+                  <div class="slds-spinner__dot-a"></div>
+                  <div class="slds-spinner__dot-b"></div>
+                </div>
+              </div>
+            </div>
+          </apex:facet>
+        </apex:actionStatus>
+        <!-- <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-medium-size--4-of-12 slds-p-around--medium">
+                <h3 class="slds-text-heading--small slds-m-bottom--large slds-section__title">Basic Information</h3>
+            </div>
+            <div class="slds-col slds-medium-size--8-of-12 slds-p-around--medium">
+            </div>
+        </div> -->
+        <apex:outputPanel id="dummyRender" >
+          <ul style="list-style: none;float: left;width: 45%; margin: 20px" >
+            <!-- <apex:repeat value="{!$ObjectType.FLO_Customization__c.FieldSets.Flo_CustomizationHeaderDetails}" var="w">  -->
+
+
+            <!--        <apex:outputPanel rendered="{!(w.label != 'Salesforce Type') || (w.label == 'Salesforce Type' && !contains(FLO_Customization__c.Name, 'StandardField') && !contains(FLO_Customization__c.Name, 'StandardObject'))}">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLO_Customization__c.Fields[w].InlineHelpText}">
+                <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}">&nbsp;
+                          <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                  hideOnEdit="editButton" event="ondblclick"
+                                  changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                          </apex:outputField>
+                      </div>
+                   </li>
+                </apex:outputPanel> -->
+
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <span class="slds-form-element__label">Base Record</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!floCusto['Parent__c']}">&nbsp;
+                  <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                          hideOnEdit="editButton" event="ondblclick"
+                                          changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                </apex:outputField>
+              </div>
+            </li>
+
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <span class="slds-form-element__label">Owner Id</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!floCusto['OwnerId']}">&nbsp;
+                  <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                          hideOnEdit="editButton" event="ondblclick"
+                                          changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                </apex:outputField>
+              </div>
+            </li>
+
+
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <span class="slds-form-element__label">Description</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!floCusto['Description__c']}">&nbsp;
+                  <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                          hideOnEdit="editButton" event="ondblclick"
+                                          changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                </apex:outputField>
+              </div>
+            </li>
+            <apex:outputPanel rendered="{!!contains(FLODocs__FLO_Customization__c.Name, 'StandardField') && !contains(FLODocs__FLO_Customization__c.Name, 'StandardObject')}">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                <span class="slds-form-element__label">Salesforce Type</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!floCusto['Salesforce_Types__c']}">&nbsp;
+                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                            hideOnEdit="editButton" event="ondblclick"
+                                            changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                  </apex:outputField>
+                </div>
+              </li>
+            </apex:outputPanel>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <span class="slds-form-element__label">API Name</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!floCusto['ScriptId__c']}">&nbsp;
+                  <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                          hideOnEdit="editButton" event="ondblclick"
+                                          changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                </apex:outputField>
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <span class="slds-form-element__label">Help Text</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!floCusto['Help_Text__c']}">&nbsp;
+                  <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                          hideOnEdit="editButton" event="ondblclick"
+                                          changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                </apex:outputField>
+              </div>
+            </li>
+
+            <!-- </apex:repeat> -->
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+              <apex:outputpanel layout="block" id="progressContainer">
+                <apex:outputpanel layout="none" rendered="{!showProgressBar}" >
+                  <span class="slds-form-element__label">Scanner Progress</span>
+                  <div class="slds-form-element__control">
+                    <apex:actionPoller rerender="progress" interval="5" action="{!actionCall}"/>
+                    <apex:outputPanel layout="block" id="progress">
+                      {!batchStatus} <a href="#" onclick="location.reload();"> (Refresh Page) </a>
+                      <progress class="skill-1" max="100" value="{!percent}">
+                      </progress>
+                    </apex:outputPanel>
+                  </div>
+                </apex:outputpanel>
+              </apex:outputpanel>
+            </li>
+          </ul>
+        </apex:outputPanel>
+        <div class="slds-grid slds-wrap" style="float: left; width: 45%; padding: 5px; border: 1px solid #d8dde6; margin: 20px;">
+          <div style="margin-top: -17px; margin-left: 12px; background: #FFF; width: 120px; text-align: center; padding: 5px; border: 1px solid #d8dde6;">
+            <h3>Related Objects</h3>
+          </div>
+          <div style="width: 100%">
+            <c:StrongpointRelatedObjects custId="{!FLODocs__FLO_Customization__c.Id}" />
+          </div>
+        </div>
+        <div class="slds-tabs_default">
+          <div class="slds-section  slds-section__title-action">
+            <h3 class="slds-section__title  ">Details</h3>
+          </div>
+          <ul class="slds-tabs--default__nav resultTabs" role="tablist">
+            <li class="slds-tabs--default__item " title="Source" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item" >Metadata</a>
+            </li>
+            <!-- <li class="slds-tabs--default__item" title="Target" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Scripting</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Reports</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item">Layouts</a>
+            </li> -->
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" id="tab-default-5__item">Improvement</a>
+            </li>
+            <!-- <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-6" id="tab-default-6__item">Workflows</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" id="tab-default-7__item">Data Sources</a>
+            </li> -->
+            <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'ApexClass' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'ApexPage'}">
+              <li class="slds-tabs--default__item" title="Permissions" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-8" id="tab-default-8__item">Permissions</a>
+              </li>
+            </apex:outputpanel>
+            <!--SF-1799 Display Health Settings for Sessions Settings, Password Policies, LoginAccessPolicies, FileUploadAndDownloadSecuritySettings, CertificateAndKeyManagements and RemoteSiteSetting -->
+            <apex:outputpanel layout="none" rendered="{!FLO_Customization__c.Salesforce_Types__c == 'SessionSettings' || FLO_Customization__c.Salesforce_Types__c == 'PasswordPolicies' || FLO_Customization__c.Salesforce_Types__c == 'LoginAccessPolicies' || FLO_Customization__c.Salesforce_Types__c == 'FileUploadAndDownloadSecuritySettings' || FLO_Customization__c.Salesforce_Types__c == 'Certificate' || FLO_Customization__c.Salesforce_Types__c == 'RemoteSiteSetting' || FLO_Customization__c.Salesforce_Types__c == 'SharingSettings' }">
+              <li class="slds-tabs--default__item" title="Health Settings" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-14" id="tab-default-14__item">Health Settings</a>
+              </li>
+            </apex:outputpanel>
+            <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+              <li class="slds-tabs--default__item" title="Data Classification" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-8" id="tab-default-15__item">Data Classification</a>
+              </li>
+            </apex:outputpanel>            
+            <!-- SF-1433 diplay Controls tab only if Enterprise Compliance license -->
+            <apex:outputpanel layout="none" rendered="{!isEnterpriseCompliance}">
+              <li class="slds-tabs--default__item " title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-9" id="tab-default-9__item">Controls</a>
+              </li>
+            </apex:outputpanel>
+            <li class="slds-tabs--default__item slds-active" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="true" aria-controls="tab-default-10" id="tab-default-10__item">DRD</a>
+            </li>
+            <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c != 'Profile' && FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c != 'PermissionSet'}">
+              <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-11" id="tab-default-11__item">Raw Data</a>
+              </li>
+            </apex:outputpanel>    
+            <!-- GF 20220221 94091 Create a new tab to add the different metadata fields  -->
+            <apex:outputpanel layout="none" rendered="{!relatedCustomizationProfilePS != null && (FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet')}">
+              <li class="slds-tabs--default__item" title="Documentation" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-16" id="tab-default-16__item">Raw Data</a>
+              </li>
+            </apex:outputpanel>             
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Related Lists</a>
+            </li>
+            <!-- <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-11" id="tab-default-11__item">Integrations</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Managed Package</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-13" id="tab-default-13__item">Extended (Other)</a>
+            </li> -->
+          </ul>
+          <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;" class="crSections">
+
+                <!-- <apex:repeat value="{!$ObjectType.FLO_Customization__c.FieldSets.Flo_CustomizationMetadata}" var="md">  -->
+
+                <!--    <apex:outputpanel layout="none" rendered="{!((md.label == 'Employee using this customization' || md.label == 'Roles using this customization') && FLO_Customization__c[md] != null) || (md.label != 'Employee using this customization' && md.label != 'Roles using this customization')}">
+                          <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLO_Customization__c.Fields[md].InlineHelpText}">
+                      <span class="slds-form-element__label">{!md.label}</span>
+                            <div class="slds-form-element__control">
+                              <apex:outputField value="{!FLO_Customization__c[md]}"/>&nbsp;
+                            </div>
+                         </li>
+                       </apex:outputpanel> -->
+
+                <!-- title="{!$ObjectType.FLO_Customization__c.Fields[md].InlineHelpText}" -->
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Date Last Used</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Date_Last_Used__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Data Type</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Data_Type__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <!-- Sf-1561 CustomFields Required not available in the Metadata JN 09 February 2021-->
+                <apex:outputpanel layout="none" rendered="{!floCusto['Salesforce_Types__c'] == 'CustomField'}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Required</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['FLODocs__Value_Required__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <!--Sf-1561 CustomFields Required not available in the Metadata JN 09 February 2021 -->
+                <apex:outputpanel layout="none" rendered="{!floCusto['Employee_using_this_customization__c'] != null}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Employee using this customization</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['Employee_using_this_customization__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Last Modified Date</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['LastModifiedDate']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Active</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Active__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <apex:outputpanel layout="none" rendered="{!floCusto['Salesforce_Types__c'] == 'EmailTemplate'}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Available For Use</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['Available_For_Use__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Package</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Namespace_Prefix__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <apex:outputpanel layout="none" rendered="{!floCusto['Roles_using_this_customization__c'] != null}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Roles using this customization</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['Roles_using_this_customization__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">List</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['List__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Last Modified File Date</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Last_Modified_File_Date__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Customization Created By</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Customization_Created_By__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Customization Created Date</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Customization_Created_Date__c']}"/>&nbsp;
+                  </div>
+                </li>
+                <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                  <span class="slds-form-element__label">Customization Last Modified By</span>
+                  <div class="slds-form-element__control">
+                    <apex:outputField value="{!floCusto['Customization_Last_Modified_By__c']}"/>&nbsp;
+                  </div>
+                </li>
+
+
+
+
+                <!-- </apex:repeat> -->
+
+
+
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationScripting}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationReport}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                 <!-- Sf-1575 AgAmerica: Need to identify if a field is used as a bucket column on reports JN 09 February 2021-->
+                 <apex:outputpanel layout="none" rendered="{!floCusto['Salesforce_Types__c'] == 'Report'}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Bucket</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['FLODocs__Bucket__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <!--Sf-1575 AgAmerica: Need to identify if a field is used as a bucket column on reports JN 09 February 2021 -->
+                <!-- Sf-1582 Ability to know the subscriber users to a Report JN 12 february 2021-->
+                <apex:outputpanel layout="none" rendered="{!floCusto['salesforce_types__c']  == 'Report'}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Subscriber</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['FLODocs__Subscriber__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                   <apex:outputpanel layout="none" rendered="{!floCusto['salesforce_types__c']  == 'Report'}">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Subscribed Users</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['FLODocs__users_subscribed__c']}"/>&nbsp; 
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                 <!-- Sf-1582 Ability to know the subscriber users to a Report JN 12 february 2021-->
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationForms}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationWorkflows}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationDataSources}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationProfileAndRoles}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationManagedPackage}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationOther}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationLayout}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c[w] != null}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+                
+                  <apex:outputPanel layout="none" rendered="{!isCustomField}">
+                        <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                          <span class="slds-form-element__label">Enable Track History Field</span>
+                          <div class="slds-form-element__control">
+                            <apex:inputCheckbox value="{!floCusto.FLODocs__Enable_Track_History_Field__c}"/>&nbsp;
+                          </div>
+                        </li>
+                        <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                              <span class="slds-form-element__label">Date DLU Analyzed</span>
+                              <div class="slds-form-element__control">
+                                <apex:outputField value="{!floCusto.FLODocs__Date_DLU_Analyzed__c}"/>&nbsp;
+                              </div>
+                          </li>
+                          <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                              <span class="slds-form-element__label">Parent Last Update Date</span>
+                              <div class="slds-form-element__control">
+                                <apex:outputField value="{!floCusto.FLODocs__Parent_Last_Update_Date__c}"/>&nbsp;
+                              </div>
+                          </li>
+                          <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                              <span class="slds-form-element__label">DLU Status</span>
+                              <div class="slds-form-element__control">
+                                <apex:outputField value="{!floCusto.FLODocs__DLU_Status__c}"/>&nbsp;
+                              </div>
+                          </li>
+                          <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                              <span class="slds-form-element__label">Dependency DLU</span>
+                              <div class="slds-form-element__control">
+                                <apex:outputField value="{!floCusto.FLODocs__Dependencies_DLU__c}"/>&nbsp;
+                              </div>
+                          </li>
+                          <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                              <span class="slds-form-element__label">% Populated</span>
+                              <div class="slds-form-element__control">
+                                <apex:outputField value="{!floCusto.FLODocs__Populate__c}"/>&nbsp;
+                              </div>
+                          </li>
+                  </apex:outputPanel>
+                
+              </ul>
+            </div>
+          </div>
+          <!--   <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationScripting}" var="sc">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                    {!sc.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLO_Customization__c[sc]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <!--                            <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationReport}" var="rep">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!rep.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLO_Customization__c[rep]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <!--                            <div id="tab-default-4" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-4__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationForms}" var="f">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!f.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLO_Customization__c[f]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <div id="tab-default-5" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-5__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;">
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationImprovement}" var="w">
+                  <apex:outputpanel layout="none" rendered="{!(((packageType > 0) || (packageType == 0 && (w.label != 'Add to Change Request' && w.label != 'Change / Approval Policy'))) && ((!isReportField && w.label != 'Retain Reason' && w.label != 'Clean Up Rule Name' && w.label != 'Clean Up Archived Date' && w.label != 'Clean Up Restore Date' && w.label != 'Clean Up Retain Date') || (isReportField)))}">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}">
+                          <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                  hideOnEdit="editButton" event="ondblclick"
+                                                  changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                        </apex:outputField>
+                      </div>
+                    </li>
+                  </apex:outputpanel>
+                </apex:repeat>
+              </ul>
+            </div>
+          </div>
+          <!--                            <div id="tab-default-6" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-6__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationWorkflows}" var="w">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!w.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <!--                            <div id="tab-default-7" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-7__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationDataSources}" var="w">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!w.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <div id="tab-default-8" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-8__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                    <div class="slds-truncate" title="Profile Name">Profile Name</div>
+                  </th>
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject'}">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Create">Create</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Read">Read</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Edit">Edit</div>
+                    </th>
+                  </apex:outputpanel>
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject'}">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Delete">Delete</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="View All">View All</div>
+                    </th>
+                    <th scope="col">
+                      <div class="slds-truncate" title="Modify All">Modify All</div>
+                    </th>
+                  </apex:outputpanel>
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!profilePerms}" var="perms">
+                  <tr>
+                    <th scope="row" data-label="Profile Name">
+                      <div class="slds-truncate">{!perms.profileName}</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isCreate, '', 'un')}checked.gif" title="{!IF(perms.isCreate, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                    <td data-label="Read">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isRead, '', 'un')}checked.gif" title="{!IF(perms.isRead, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <td data-label="Edit">
+                      <div class="slds-truncate">
+                        <img src="/img/checkbox_{!IF(perms.isEdit, '', 'un')}checked.gif" title="{!IF(perms.isEdit, 'Checked', 'Not Checked')}" />
+                      </div>
+                    </td>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject'}">
+                      <td data-label="Delete">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isDelete, '', 'un')}checked.gif" title="{!IF(perms.isDelete, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="View All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isViewAll, '', 'un')}checked.gif" title="{!IF(perms.isViewAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                      <td data-label="Modify All">
+                        <div class="slds-truncate">
+                          <img src="/img/checkbox_{!IF(perms.isModifyAll, '', 'un')}checked.gif" title="{!IF(perms.isModifyAll, 'Checked', 'Not Checked')}" />
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>
+                </apex:repeat>
+                </tbody>
+              </table>
+            </div>              
+          </div>
+
+          <!--SF-1799 -->
+          <div id="tab-default-14" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-14__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                    <div class="slds-truncate" title="Setting Name">Setting Name</div>
+                  </th>
+                  <apex:outputpanel layout="none">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Value">Value</div>
+                    </th>
+                  </apex:outputpanel>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!--Session Settings-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'SessionSettings'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__SessionSettingsFields}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr>
+                  </apex:repeat>
+                </apex:outputPanel>
+
+                <!--Password Policies-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PasswordPolicies'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__PasswordPoliciesFields}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr>
+                  </apex:repeat>
+                </apex:outputPanel>
+
+                <!--Login Access Policies-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'LoginAccessPolicies'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__LAPFields}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr>
+                  </apex:repeat>
+                </apex:outputPanel> 
+
+                <!--FileUploadAndDownloadSecuritySettings-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'FileUploadAndDownloadSecuritySettings'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__FileUploadAndDownloadSecuritySettings}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr>
+                  </apex:repeat>
+                </apex:outputPanel> 
+
+                <!--SharingSettings-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'SharingSettings'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__SharingSettings}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr>
+                  </apex:repeat>
+                </apex:outputPanel> 
+                
+                <!--	CertificateAndKeyManagement-->
+                <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Certificate'}">
+                    <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__CertificateFields}" var="f">
+                      <tr>
+                        <th scope="row" data-label="Setting Name">
+                          <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                        </th>
+                        <apex:outputpanel layout="none">
+                          <td data-label="Value">
+                            <div style="padding-left: 10px;">
+                              <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                            </div>
+                          </td>
+                        </apex:outputpanel>
+                      </tr> 
+                    </apex:repeat>
+                </apex:outputPanel> 
+
+
+                
+                 <!--	RemoteSiteSetting-->
+                 <apex:outputPanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'RemoteSiteSetting'}">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Health_Check__c.FieldSets.FLODocs__RemoteSiteSetting}" var="f">
+                    <tr>
+                      <th scope="row" data-label="Setting Name">
+                        <div class="slds-truncate">{!$ObjectType.FLO_Health_Check__c.Fields[f].InlineHelpText}</div>
+                      </th>
+                      <apex:outputpanel layout="none">
+                        <td data-label="Value">
+                          <div style="padding-left: 10px;">
+                            <apex:outputField value="{!relatedHealthCheck[f]}"/>
+                          </div>
+                        </td>
+                      </apex:outputpanel>
+                    </tr> 
+                  </apex:repeat>
+              </apex:outputPanel> 
+                </tbody>
+              </table>
+            </div>              
+          </div>
+
+          <div id="tab-default-15" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-15__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                    <div class="slds-truncate" title="Data Classification">Data Classification</div>
+                  </th>
+                  <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                    <th scope="col">
+                      <div class="slds-truncate" title="Create">Value</div>
+                    </th>
+                  </apex:outputpanel>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" data-label="Business Owner">
+                      <div class="slds-truncate">Business Owner</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                           <!--//ADO-101782 First error: Update failed. FIELD_INTEGRITY_EXCEPTION, Business Owner: id value of incorrect type: 00G1S0000010FlQUAU: [FLODocs__Business_Owner_Id__c] JN-->
+                           <apex:outputPanel rendered="{!FLODocs__FLO_Customization__c.FLODocs__Business_Owner_Id__c!=null}"><!-- jn added this apex outpanel-->
+                           <apex:outputField value="{!FLODocs__FLO_Customization__c.FLODocs__Business_Owner_Id__c}"/>
+                         </apex:outputPanel><!-- jn added this apex outpanel-->
+                         <apex:outputPanel rendered="{!FLODocs__FLO_Customization__c.FLODocs__Data_Owner_Public_group__c!=null}"><!-- jn added this apex outpanel-->
+                         <apex:outputField value="{!FLODocs__FLO_Customization__c.FLODocs__Data_Owner_Public_group__c}"/>
+                       </apex:outputPanel><!-- jn added this apex outpanel-->
+                        <!--//ADO-101782 First error: Update failed. FIELD_INTEGRITY_EXCEPTION, Business Owner: id value of incorrect type: 00G1S0000010FlQUAU: [FLODocs__Business_Owner_Id__c] JN-->
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>               
+                  <tr>
+                    <th scope="row" data-label="Business Status">
+                      <div class="slds-truncate">Business Status</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          {!FLODocs__FLO_Customization__c.FLODocs__Business_Status__c}
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Compliance Group">
+                      <div class="slds-truncate">Compliance Group</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          {!FLODocs__FLO_Customization__c.FLODocs__Compliance_Group__c}
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>
+                  <tr>
+                    <th scope="row" data-label="Security Classification">
+                      <div class="slds-truncate">Security Classification</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          {!FLODocs__FLO_Customization__c.FLODocs__Security_Classification__c}
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                                    
+                </tbody>
+              </table>
+            </div>              
+          </div>
+
+          <!-- GF 20220221 94091 Create a new tab to add the different metadata fields  -->
+          <div id="tab-default-16" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-16__item">
+
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;">  
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationDocumentation}" var="w">
+                  <apex:outputpanel layout="none">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                      <span class="slds-form-element__label">{!w.label}</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}"/>&nbsp;
+                      </div>
+                    </li>
+                  </apex:outputpanel>                    
+                </apex:repeat>
+              </ul>
+            </div>                  
+            
+            <p></p>
+
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <tbody>
+                  <tr>
+                    <th scope="row" data-label="Base">
+                      <div class="slds-truncate">Base</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_BaseXml__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>               
+                  <tr>
+                    <th scope="row" data-label="Base">
+                      <div class="slds-truncate">Application Visibility</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Application_Visibility__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>               
+                  <tr>
+                    <th scope="row" data-label="User Permissions">
+                      <div class="slds-truncate">User Permissions</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_User_Permissions__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Object Permissions">
+                      <div class="slds-truncate">Object Permissions</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Object_Permissions__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Field Permissions">
+                      <div class="slds-truncate">Field Permissions</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Field_Permissions__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Class Access">
+                      <div class="slds-truncate">Class Access</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Class_Access__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Page Access">
+                      <div class="slds-truncate">Page Access</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Page_Access__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="RecordType Visibility">
+                      <div class="slds-truncate">RecordType Visibility</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_RecordType_Visibility__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="RecordType Visibility">
+                      <div class="slds-truncate">Layout Assignment</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Layout_Assignment__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                
+                  <tr>
+                    <th scope="row" data-label="Login Hours">
+                      <div class="slds-truncate">Login Hours</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Login_Hours__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Ip Ranges">
+                      <div class="slds-truncate">Ip Ranges</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Ip_Ranges__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Tab Visibility">
+                      <div class="slds-truncate">Tab Visibility</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Tab_Visibility__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Action Override">
+                      <div class="slds-truncate">Action Override</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Action_Override__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Category Group Visibility">
+                      <div class="slds-truncate">Category Group Visibility</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Category_Group_Visibility__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="Custom Permissions">
+                      <div class="slds-truncate">Custom Permissions</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_Custom_Permissions__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                  <tr>
+                    <th scope="row" data-label="External Data Source Access">
+                      <div class="slds-truncate">External Data Source Access</div>
+                    </th>
+                    <apex:outputpanel layout="none" rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Profile' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'PermissionSet'}">
+                      <td data-label="Create">
+                        <div class="slds-truncate">                          
+                          <apex:outputField value="{!relatedCustomizationProfilePS.FLODocs__Profile_External_Data_Source_Access__c}"/>
+                        </div>
+                      </td>
+                    </apex:outputpanel>
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>              
+          </div>
+
+          <div id="tab-default-9" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-9__item">
+            <!-- SF-1435 add Data_Change_Tracking__c field to Controls tab -->
+            <!-- SF-1434 only render if SObject and remove Custom Setting dependency -->
+            
+            <apex:pageBlock title="Application Configuration Data Tracking" 
+                            rendered="{!FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomObject' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'Report' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'ApexClass'}" 
+                            mode="inlineEdit">    
+                <div class="slds-grid slds-wrap" style="margin:0 20px">
+                  <ul style="list-style: none;width: 100%;">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                        title="{!$ObjectType.FLO_Customization__c.Fields.Data_Change_Tracking__c.InlineHelpText}"
+                        style="display: {!IF(FLO_Customization__c.Salesforce_Types__c == 'CustomObject','block','none')};">
+                      <span class="slds-form-element__label">{!$ObjectType.FLO_Customization__c.Fields.Data_Change_Tracking__c.Label}</span>
+                      <apex:outputField value="{!FLODocs__FLO_Customization__c.FLODocs__Data_Change_Tracking__c}">
+                        <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                hideOnEdit="editButton" event="ondblclick"
+                                                changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                      </apex:outputField>
+                    </li>
+                  </ul>
+                </div>
+                <div class="slds-grid slds-wrap" style="margin:0 20px">
+                  <ul style="list-style: none;width: 100%;">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                        title="{!$ObjectType.FLO_Customization__c.Fields.Filtered_Data_Records__c.InlineHelpText}"
+                        style="display: {!IF(FLO_Customization__c.Salesforce_Types__c == 'Report' || FLO_Customization__c.Salesforce_Types__c == 'ApexClass','block','none')};">
+                      <span class="slds-form-element__label">{!$ObjectType.FLO_Customization__c.Fields.Filtered_Data_Records__c.Label}</span>
+                      <apex:outputField value="{!FLODocs__FLO_Customization__c.FLODocs__Filtered_Data_Records__c}">
+                        <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                hideOnEdit="editButton" event="ondblclick"
+                                                changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                      </apex:outputField>
+                    </li>
+                  </ul>
+                </div>
+            </apex:pageBlock>
+            
+            
+            <!-- SF-1432 separate the Agent Controls from App Data Tracking -->
+            <apex:pageBlock title="Agent Controls" mode="inlineEdit">
+                <div class="slds-grid slds-wrap" style="margin:0 20px">
+                  <ul style="list-style: none;width: 100%;">
+                    <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationControls}" var="w">
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                        <span class="slds-form-element__label">{!w.label}</span>
+                        <div class="slds-form-element__control">
+                          <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" >
+                            <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                    hideOnEdit="editButton" event="ondblclick"
+                                                    changedStyleClass="myBoldClass" resetFunction="resetInlineEdit" />
+                          </apex:outputField>
+                        </div>
+                      </li>
+                    </apex:repeat>
+                  </ul>
+                </div>
+            </apex:pageBlock>
+          </div>
+          <div id="tab-default-10" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-10__item">
+            <div class="slds-grid slds-wrap" >
+              
+              <iframe id="DRDIframe" src="/apex/FLOERDViewRefactor?isDRDFromCusto=true&cName={!URLENCODE(FLO_customization__c.Name)}&cId={!URLENCODE(FLO_customization__c.Id)}&isRecordView=true" style="width: 100%;height: 400px;" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"></iframe>
+            </div>
+          </div>
+          <div id="tab-default-11" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-11__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;">
+                <apex:variable value="{!0}" var="rowNumber"/> <!--For handle the iteration of the repeat loop -->
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationRawData}" var="w">
+                  <!-- Sf-1575 AgAmerica: Need to identify if a field is used as a bucket column on reports JN 10 February 2021-->
+                  <apex:variable var="rowNumber" value="{!rowNumber + 1}"/>  
+                  <apex:outputpanel layout="none" rendered="{!IF(rowNumber==12,true,false)}"><!-- to show the bucket column name in the position 12 of the loop in the raw data fieldset-->
+                   <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                     <span class="slds-form-element__label">Bucket Column Name</span>
+                     <div class="slds-form-element__control">
+                       <apex:outputField value="{!floCusto['FLODocs__Bucket_Column_Name__c']}"/>&nbsp;
+                     </div>
+                   </li>
+                 </apex:outputpanel>
+                 <!--Sf-1575 AgAmerica: Need to identify if a field is used as a bucket column on reports JN 10 February 2021 -->
+                  <!--Identify Picklist values in a separate field SF 1715 JN -->
+                  <apex:outputpanel layout="none" rendered="{!IF(rowNumber==13 &&(FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'CustomField' || FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == 'GlobalValueSet') ,true,false)}"><!-- to show the bucket column name in the position 12 of the loop in the raw data fieldset-->
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                    <span class="slds-form-element__label">Picklist Values</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!floCusto['FLODocs__Picklist_values__c']}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:outputpanel>
+                <!--Identify Picklist values in a separate field SF 1715 JN -->
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" title="{!$ObjectType.FLODocs__FLO_Customization__c.Fields[w].InlineHelpText}">
+                    <span class="slds-form-element__label">{!w.label}</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}">
+                        <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                hideOnEdit="editButton" event="ondblclick"
+                                                changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                      </apex:outputField>
+                    </div>
+                  </li>
+                </apex:repeat>
+              </ul>
+            </div>
+          </div>
+          <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+            <div class="slds-grid slds-wrap">
+              <!-- <apex:relatedList list="FLO_Change_Logs__r" rendered="{!packageType > 0}" />
+                                <apex:relatedList list="CombinedAttachments" />
+                                <apex:relatedList list="Histories" /> -->
+            </div>
+          </div>
+          <!--                            <div id="tab-default-13" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                   <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationManagedPackage}" var="w">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!w.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+          <!--                           <div id="tab-default-14" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-13__item">
+                            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                                 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationOther}" var="w">
+                                    <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                        <div class="slds-form-element slds-p-around--medium">
+                                            <label class="slds-form-element__label">
+                                                {!w.label}
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                         </div> -->
+        </div>
+
+        <c:StrongpointAnnouncement />
+      </apex:form>
+      <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+        <div class="slds-grid slds-wrap">
+          <apex:relatedList list="Change_Log_Filter_Reports__r" rendered="{!packageType==2 && FLODocs__FLO_Customization__c.FLODocs__Salesforce_Types__c == null && FLODocs__FLO_Customization__c.FLODocs__SObject_Type_Label__c != null}"/><hr style="width: 100%;" />
+          <apex:relatedList list="FLO_Change_Logs__r" rendered="{!AND(packageType >0, packageType!=3)}"/><hr style="width: 100%;" /><!--1737 old code : rendered="{!packageType >0}" -->
+          <apex:relatedList list="CombinedAttachments" /><hr style="width: 100%;" />
+          <apex:relatedList list="Histories" /><hr style="width: 100%;" />
+        </div>
+      </div>
+    </div>
+
+  </apex:outputPanel>
+
+
+
+  <script>
+  jQuery(function ($) {
+    $('.resultTabs li a').click(function(){
+      var tabClicked = $(this).attr('id');
+      $('.resultTabs li').each(function() {
+        $(this).removeClass('slds-active');
+      });
+      $(this).parent().addClass('slds-active');
+      $('.slds-tabs--default__content').each(function() {
+        $(this).addClass('slds-hide');
+        $(this).removeClass('slds-show');
+      });
+      if (tabClicked == 'tab-default-1__item') {
+        $('[id$=tab-default-1]').addClass('slds-show');
+        currentTab = 'tab-default-1__item';
+      }
+      if (tabClicked == 'tab-default-2__item') {
+        $('[id$=tab-default-2]').addClass('slds-show');
+        currentTab = 'tab-default-2__item';
+      }
+      if (tabClicked == 'tab-default-3__item') {
+        $('[id$=tab-default-3]').addClass('slds-show');
+        currentTab = 'tab-default-3__item';
+      }
+      if (tabClicked == 'tab-default-4__item') {
+        $('[id$=tab-default-4]').addClass('slds-show');
+        currentTab = 'tab-default-4__item';
+      }
+      if (tabClicked == 'tab-default-5__item') {
+        $('[id$=tab-default-5]').addClass('slds-show');
+        currentTab = 'tab-default-5__item';
+      }
+      if (tabClicked == 'tab-default-6__item') {
+        $('[id$=tab-default-6]').addClass('slds-show');
+        currentTab = 'tab-default-6__item';
+      }
+      if (tabClicked == 'tab-default-7__item') {
+        $('[id$=tab-default-7]').addClass('slds-show');
+        currentTab = 'tab-default-7__item';
+      }
+      if (tabClicked == 'tab-default-8__item') {
+        $('[id$=tab-default-8]').addClass('slds-show');
+        currentTab = 'tab-default-8__item';
+      }
+      if (tabClicked == 'tab-default-9__item') {
+        $('[id$=tab-default-9]').addClass('slds-show');
+        currentTab = 'tab-default-9__item';
+      }
+      if (tabClicked == 'tab-default-10__item') {
+                document.getElementById('DRDIframe').src="/apex/FLOERDViewRefactor?isDRDFromCusto=true&cName={!URLENCODE(FLODocs__FLO_Customization__c.Name)}&cId={!URLENCODE(FLODocs__FLO_Customization__c.Id)}&isRecordView=true";
+                document.getElementById('DRDIframe').contentWindow.location.reload(true);        
+        $('[id$=tab-default-10]').addClass('slds-show');
+        currentTab = 'tab-default-10__item';
+      }
+      if (tabClicked == 'tab-default-11__item') {
+        $('[id$=tab-default-11]').addClass('slds-show');
+        currentTab = 'tab-default-11__item';
+      }
+      if (tabClicked == 'tab-default-12__item') {
+        $('[id$=tab-default-12]').addClass('slds-show');
+        currentTab = 'tab-default-12__item';
+      }
+      if (tabClicked == 'tab-default-13__item') {
+        $('[id$=tab-default-13]').addClass('slds-show');
+        currentTab = 'tab-default-13__item';
+      }
+      if (tabClicked == 'tab-default-14__item') {
+        $('[id$=tab-default-14]').addClass('slds-show');
+        currentTab = 'tab-default-14__item';
+      }
+      if (tabClicked == 'tab-default-15__item') {
+        $('[id$=tab-default-15]').addClass('slds-show');
+        currentTab = 'tab-default-15__item';
+      }
+      if (tabClicked == 'tab-default-16__item') {
+        $('[id$=tab-default-16]').addClass('slds-show');
+        currentTab = 'tab-default-16__item';
+      }
+    })
+    $('#tab-default-10__item').click();
+    $('#tab-default-10__item').click();
+  });
+  </script>
+  <style>
+  .sfdc_richtext{
+    color:#16325c;/*to change the style of rich text in raw data*/
+    font-family: "Salesforce Sans",Arial,sans-serif;
+  }
+  </style>
+</apex:page>

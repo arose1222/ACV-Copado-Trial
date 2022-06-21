@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Indicates the activation of the FLO Process Record --></help>
+        <label><!-- Active --></label>
+        <name>FLODocs__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Additional approves to be consider in any change request associated to this process --></help>
+        <label><!-- Additional Approvers --></label>
+        <name>FLODocs__Additional_Approvers__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status to be manually set, and organize process(es) by archiving by status --></help>
+        <label><!-- Archive Status --></label>
+        <name>FLODocs__Archive_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assign from Record --></label>
+        <name>FLODocs__Assign_from_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned Employee --></label>
+        <name>FLODocs__Assigned_Employee__c</name>
+        <relationshipLabel><!-- Processes (Assigned Employee) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the implementer assigned to implement this process or step --></help>
+        <label><!-- Assigned Implementer --></label>
+        <name>FLODocs__Assigned_Implementer__c</name>
+        <relationshipLabel><!-- Processes (Assigned Implementer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This holds the current step in the assistant for this process.  It is used to ensure the assistant loads at the correct step. --></help>
+        <label><!-- Assistant Step --></label>
+        <name>FLODocs__Assistant_Step__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field designates the approval policy and audit path relating to this process.  If not specified, the next highest policy applies.  If none is found, the default policy applies. --></help>
+        <label><!-- Audit / Approval Policy --></label>
+        <name>FLODocs__Audit_Approval_Policy__c</name>
+        <relationshipLabel><!-- Processes --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- These are comments or ideas about the process --></help>
+        <label><!-- Comment / Ideas --></label>
+        <name>FLODocs__Comment_Ideas__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are objects that function as controls on the process.  This designation allows the change management system to ensure that any changes to the controls may be specially highlighted. --></help>
+        <label><!-- Controls --></label>
+        <name>FLODocs__Controls__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the flag used to tell the backend script to copy all children. --></help>
+        <label><!-- Copy Children --></label>
+        <name>FLODocs__Copy_Children__c</name>
+    </fields>
+    <fields>
+        <help><!-- This records the process that this process is copied from.  Used when copying a process to create a new draft. --></help>
+        <label><!-- Copy Of --></label>
+        <name>FLODocs__Copy_Of__c</name>
+        <relationshipLabel><!-- Processes (Copy Of) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The level of process maturity of the process. --></help>
+        <label><!-- Current Process Maturity Score --></label>
+        <name>FLODocs__Current_Process_Maturity_Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- Estimate of the effort involved in applying the documented process. --></help>
+        <label><!-- Estimated Implementation Effort --></label>
+        <name>FLODocs__Estimated_Implementation_Effort__c</name>
+    </fields>
+    <fields>
+        <help><!-- The fields relevant to the customization. --></help>
+        <label><!-- Fields --></label>
+        <name>FLODocs__Fields__c</name>
+    </fields>
+    <fields>
+        <help><!-- Description of the first step of the process, the starting point of the process. --></help>
+        <label><!-- First Step Description --></label>
+        <name>FLODocs__First_Step_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- The starting point of the process. EDITED. --></help>
+        <label><!-- First Step --></label>
+        <name>FLODocs__First_Step__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of forms used within the process. --></help>
+        <label><!-- Visualforce Page(s)/Component(s) --></label>
+        <name>FLODocs__Forms__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the process maturity score of this process. --></help>
+        <label><!-- Initial Process Maturity Score --></label>
+        <name>FLODocs__Initial_Process_Maturity_Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- Description of the process last step. --></help>
+        <label><!-- Last Step Description --></label>
+        <name>FLODocs__Last_Step_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the process last step. --></help>
+        <label><!-- Last Step --></label>
+        <name>FLODocs__Last_Step__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this field to indicate that material risk analysis has been completed for this process. --></help>
+        <label><!-- Material Risk Assessed --></label>
+        <name>FLODocs__Material_Risk_Assessed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date in which the process will be reviewed. --></help>
+        <label><!-- Next Process Review Date --></label>
+        <name>FLODocs__Next_Process_Review_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a link to another process record - not the parent. --></help>
+        <label><!-- Next Process --></label>
+        <name>FLODocs__Next_Process__c</name>
+        <relationshipLabel><!-- Processes (Next Process) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Flag the process as process without steps. --></help>
+        <label><!-- No Step --></label>
+        <name>FLODocs__No_Step__c</name>
+        <relationshipLabel><!-- Processes (No Step) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Process number for identification. --></help>
+        <label><!-- Number --></label>
+        <name>FLODocs__Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customizations related to a process other than Fields, Forms, Searches, Scripts, Workflows or Controls. --></help>
+        <label><!-- Other Customizations --></label>
+        <name>FLODocs__Other_Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the step for the &quot;other&quot; outcome of a decision --></help>
+        <label><!-- Other Step --></label>
+        <name>FLODocs__Other_Step__c</name>
+        <relationshipLabel><!-- Processes (Other Step) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- High level overview of the process. --></help>
+        <label><!-- Overview --></label>
+        <name>FLODocs__Overview__c</name>
+    </fields>
+    <fields>
+        <help><!-- Parent process. --></help>
+        <label><!-- Parent --></label>
+        <name>FLODocs__Parent__c</name>
+        <relationshipLabel><!-- Processes (Parent) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the number of the parent process. --></help>
+        <label><!-- Parent # --></label>
+        <name>FLODocs__Parent_num__c</name>
+    </fields>
+    <fields>
+        <help><!-- Roles entitled to see the process - if blank, process is public. --></help>
+        <label><!-- Process Audience --></label>
+        <name>FLODocs__Process_Audience__c</name>
+    </fields>
+    <fields>
+        <help><!-- Detail explanation of the project. --></help>
+        <label><!-- Process Description --></label>
+        <name>FLODocs__Process_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is an auto-generated svg image of the process created by Strongpoint --></help>
+        <label><!-- Process Diagram --></label>
+        <name>FLODocs__Process_Diagram__c</name>
+    </fields>
+    <fields>
+        <help><!-- Employees entitled to edit the process record. --></help>
+        <label><!-- Process Editors --></label>
+        <name>FLODocs__Process_Editors__c</name>
+    </fields>
+    <fields>
+        <help><!-- Roles involve in the process. --></help>
+        <label><!-- Process Participants --></label>
+        <name>FLODocs__Process_Participants__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is used to ensure all processes appear in the correct order by number. --></help>
+        <label><!-- Rank --></label>
+        <name>FLODocs__Rank__c</name>
+    </fields>
+    <fields>
+        <help><!-- Redirect - Beta --></help>
+        <label><!-- RedirectPopupTo --></label>
+        <name>FLODocs__RedirectPopupTo__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are reports relevant to the step or process --></help>
+        <label><!-- Reports --></label>
+        <name>FLODocs__Reports__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are scripts / Apex classes and triggers used in the process. --></help>
+        <label><!-- Apex Class(es)/Trigger(s) --></label>
+        <name>FLODocs__Scripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are searches relevant to the step or process --></help>
+        <label><!-- Searches --></label>
+        <name>FLODocs__Searches__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the order in which items are displayed on the high level process view --></help>
+        <label><!-- Shape Order --></label>
+        <name>FLODocs__Shape_Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field tracks whether the process described is a current or proposed process. --></help>
+        <label><!-- Status --></label>
+        <name>FLODocs__Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This designates the type of process step. --></help>
+        <label><!-- Step Type --></label>
+        <name>FLODocs__Step_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subsidiary --></label>
+        <name>FLODocs__Subsidiary__c</name>
+        <relationshipLabel><!-- Processes --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- These are processes that support this process but are not part of its workflow. --></help>
+        <label><!-- Supporting Processes --></label>
+        <name>FLODocs__Supporting_Processes__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the date by which the implementation and testing should be completed. --></help>
+        <label><!-- Target Implementation Date --></label>
+        <name>FLODocs__Target_Implementation_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the target score for this process by the review date. --></help>
+        <label><!-- Target Process Maturity Score --></label>
+        <name>FLODocs__Target_Process_Maturity_Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date of the Test for this FLO Process --></help>
+        <label><!-- Test Date --></label>
+        <name>FLODocs__Test_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Test template related to the FLO Process --></help>
+        <label><!-- Test Template --></label>
+        <name>FLODocs__Test_Template__c</name>
+        <relationshipLabel><!-- Processes --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Number formula --></help>
+        <label><!-- RANK / Text (Formula) --></label>
+        <name>FLODocs__Text_Formula__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates that this Process will be to Archived --></help>
+        <label><!-- To Archive --></label>
+        <name>FLODocs__To_Archive__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to update the owner to change on all child processes.  This will override any existing owner. --></help>
+        <label><!-- Update Child Owners and Approvers --></label>
+        <name>FLODocs__Update_Child_Owners_and_Approvers__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field updates the Audit / Approval Policy on child processes  overriding any existing policy.  If left unchecked, the policy propagates until a different policy is detected. --></help>
+        <label><!-- Update Child Process Policies --></label>
+        <name>FLODocs__Update_Child_Process_Policies__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to update the status of all child processes and steps.  This will override any existing process status. --></help>
+        <label><!-- Update Child Statuses --></label>
+        <name>FLODocs__Update_Child_Statuses__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the workflows/flows/approval processes used in this process or step --></help>
+        <label><!-- Workflow(s)/Flow(s)/Approval Process(es) --></label>
+        <name>FLODocs__Workflows__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the step / subprocess triggered in the positive case of the decision --></help>
+        <label><!-- Yes Step --></label>
+        <name>FLODocs__Yes_Step__c</name>
+        <relationshipLabel><!-- Processes (Yes Step) --></relationshipLabel>
+    </fields>
+</CustomObjectTranslation>

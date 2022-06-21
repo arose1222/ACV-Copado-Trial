@@ -26,7 +26,9 @@ global class ExpireRevolvingAppointmentsBatch extends SchedulingInterface implem
         // scheduling
         ExpireRevolvingAppointmentsBatch saradb = new ExpireRevolvingAppointmentsBatch();
         //batch size of 100
-        Database.executeBatch(saradb, 100);
+        // Database.executeBatch(saradb, 100);
+        //Temporarily setting batch size to 1 as we debug an issue with splunk logging failing
+        Database.executeBatch(saradb, 1);
     }
 
     global void execute(Database.BatchableContext bc, List<ServiceAppointment> scope){

@@ -195,6 +195,18 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Auction_End_Date__c</fullName>
+        <description>Auction End Date for Associated Case</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Auction_End__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Auction End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Case__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Case associated with the fee.</description>
@@ -303,6 +315,74 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Seller_Contact_Email__c</fullName>
+        <description>Seller contact email form the related case - Populated via Flow Called &quot;Title late Fee Assigned Email&quot;</description>
+        <externalId>false</externalId>
+        <label>Seller Contact Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Territory_Manager_Email__c</fullName>
+        <description>Seller contact email form the related case - Populated via Flow Called &quot;Title late Fee Assigned Email&quot;</description>
+        <externalId>false</externalId>
+        <label>Seller Territory Manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Territory_Manager__c</fullName>
+        <description>Seller TM associated with the Case for use in Title late Fee Assessed Email</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Seller_Territory_Manager__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Territory Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seller_Title_Clerk_Email__c</fullName>
+        <description>Seller contact email form the related case - Populated via Flow Called &quot;Title late Fee Assigned Email&quot;</description>
+        <externalId>false</externalId>
+        <label>Seller Title Clerk Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Send_Title_Late_Fee_Email_To_Seller__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag is set to true by TitleLateFeeBatch when an Assigned Fee record is created. A Workflow will trigger and send the emails to Seller notifying that they have start occurring late fee on the title.</description>
+        <externalId>false</externalId>
+        <label>Send Title Late Fee Email To Seller</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title_Due_Date__c</fullName>
+        <description>Title Due date associated with the Case for use in Title late Fee Assessed Email</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Title_Due_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Title Due Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Total_Billable_Amount__c</fullName>
         <description>Currently, it holds the the total amount of unpaid Title late fee. Later, we can add other outstanding balance.</description>
         <externalId>false</externalId>
@@ -314,6 +394,32 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Vin_Last_6__c</fullName>
+        <description>last 6 of Vin associated with the Case for use in Title late Fee Assessed Email</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Vehicle_VIN_Last_6__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle Vin Last 6</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Year_Make_Model__c</fullName>
+        <description>Year make Model of vehicle associated with the Case for use in Title late Fee Assessed Email</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Vehicle_Year_Make_Model__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vehicle/Year/Make/Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Assigned Fee</label>
     <nameField>

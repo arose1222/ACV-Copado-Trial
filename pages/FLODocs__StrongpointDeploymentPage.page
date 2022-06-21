@@ -1,0 +1,880 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.StrongpointDeploymentController" docType="html-5.0">
+    
+
+    <style>
+        .breadcrumbSpacing .bDescription {
+            margin-top: 40px;
+        }
+        .breadcrumbSpacingEdit .bDescription {
+            margin-top: 15px;
+        }
+        body .bPageTitle {
+            margin-bottom: 0;
+        }
+        .breadcrumbParent .ptBreadcrumb a {
+            color:#015ba7;
+            text-decoration: none;
+            margin-bottom: 0;
+        }
+        .breadcrumbParent .ptBreadcrumb {
+            height: auto;
+            margin-top: 3px;
+            margin-bottom: 0;
+            font-family: 'Verdana', 'Geneva', sans-serif;
+            font-size: 91.3%;
+            vertical-align: middle;
+        }
+        .longRunningTests {
+            background-color: #e7bc49;
+            color: white;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .coverageWarning {
+            background-color: #e7bc49;
+            color: white;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .coverageFailure {
+            background-color: #d68184;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .fatalError {
+            background-color: #d68184;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .errorHeader {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom:4px;
+            display: inline-block;
+        }
+        .longRunning {
+            color: white;
+        }
+        .warningInfo {
+            font-size:1.2em;
+        }
+        table.warnings {
+            margin-left: -2px;
+            margin-top: 6px;
+        }
+        table.warnings td.warningInfo {
+            color: white;
+            font-size:1.2em;
+            font-family: "Arial";
+            padding-right: 50px;
+        }
+        li.warningInfo {
+            margin-left: 1.1em;
+        }
+        ul.coverage_warnings {
+            padding: 0px;
+            margin: 0px;
+            margin-top: 5px;
+        }
+        .componentType {
+            white-space: nowrap;
+        }
+        .statusImage {
+            float: left;
+            padding-right:7px;
+            padding-top: 2px;
+        }
+        #incompleteDeploymentsContainer {
+            border: 1px solid #eaeaea;
+            border-radius:5px;
+            margin-top:10px;
+            margin-bottom: 15px;
+        }
+        div.tooltipDiv:hover + div {
+            display:block !important;
+        }
+    </style>
+    <apex:slds />
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/jquery.dataTables.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/jquery.dataTables.css')}" />
+    <div class="slds-page-header">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset">Deploy Customizations</p>
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Deployment Tool</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <apex:form >
+
+        <fieldset class="slds-form--compound" style="margin: 1rem;">
+            <apex:outputPanel layout="hidden" rendered="{!isDeploy}" >
+                <legend class="slds-form-element__label slds-text-title--caps" style="padding: 1rem 0rem;font-size: 1rem;border-bottom: 1px solid orange;width: 100%;">Environments</legend>
+            </apex:outputPanel>
+            <apex:outputPanel layout="hidden" rendered="{!!isDeploy}" >
+                <legend class="slds-form-element__label slds-text-title--caps" style="padding: 1rem 0rem;font-size: 1rem;border-bottom: 1px solid orange;width: 100%;">Select or Create Environments</legend>
+            </apex:outputPanel>
+            <apex:outputPanel layout="none" rendered="{!isDeploy}">
+                <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size--1-of-2" style="display: inline-block;width: 40%;margin-right: 10%;">
+                            <fieldset class="slds-form--compound">
+                                <legend class="slds-form-element__label slds-text-title--caps" style="font-size: 0.75rem !important;font-weight: bold !important;">Source Environment</legend>
+                            </fieldset>
+                            <!-- SF-1232 Remove 'Run Scan' feature status bar
+                            <apex:outputPanel id="sourceScanProgress2">
+                                <apex:outputPanel layout="block" rendered="{!showProgressBar}" styleClass="slds-scope" id="sourceProgressBar2">
+                                    <apex:actionPoller rerender="sourceProgressBar2" interval="5" action="{!checkSourceScanStatus}"/>
+
+                                    <apex:outputPanel layout="block" id="progress2">
+                                        {!batchStatus}
+                                        <progress class="skill-1" max="100" value="{!percent}" style="width:100%;">
+                                        </progress>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            -->
+                            <apex:outputPanel layout="block" id="sourceMessage2" >
+                                <apex:outputPanel layout="block" rendered="{!sourceLoginMessage != ''}" >   
+                                    {!sourceLoginMessage}
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="block" styleclass="slds-form-element__label" id="depSourceBlock" style="margin: 10px 0;font-size: 0.9rem;">
+                                <apex:outputText value="{!sourceSelectedEnviromentName}" />
+                            </apex:outputPanel>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <!-- SF-1235 Remove 'Test Connection' button
+                                    <apex:commandButton action="{!testConnectionSource}" value="Test Connection" reRender="sourceMessage2" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                    -->
+                                    <!-- <button class="slds-button slds-button--brand" onclick="setSourceCreds(); return false;">
+                                        Save Credentials
+                                    </button> -->
+
+                                    <!-- SF-1232 Remove 'Run Scan' button
+                                    <apex:commandButton action="{!rescanSource}" value="Run Scan" reRender="sourceScanProgress2" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-2" style="display: inline-block;width: 40%;margin-right: 10%;">
+                            <fieldset class="slds-form--compound">
+                                <legend class="slds-form-element__label slds-text-title--caps" style="font-size: 0.75rem !important;font-weight: bold !important;">Target Environment</legend>
+                            </fieldset>
+                            <!-- SF-1232 Remove 'Run Scan' feature progress bar
+                            <apex:outputPanel id="targetScanProgress2">
+                                <apex:outputPanel layout="block" rendered="{!showTargetProgressBar}" styleClass="slds-scope" id="targetProgressBar2">
+                                    <apex:actionPoller rerender="targetProgressBar2" interval="5" action="{!checkTargetScanStatus}"/>
+
+                                    <apex:outputPanel layout="block" id="tProgress2">
+                                        {!batchTargetStatus}
+                                        <progress class="skill-1" max="100" value="{!targetpercent}" style="width:100%;">
+                                        </progress>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            -->
+                            <apex:outputPanel layout="block" id="targetMessage2" >
+                                <apex:outputPanel layout="block" rendered="{!targetLoginMessage != ''}" >
+                                    {!targetLoginMessage}
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="block" styleclass="slds-form-element__label" id="depTargetBlock" style="margin: 10px 0;font-size: 0.9rem;">
+                                <apex:outputText value="{!targetSelectedEnviromentName}" />
+                            </apex:outputPanel>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <!-- SF-1235 Remove 'Test Connection' button
+                                    <apex:commandButton action="{!testConnectionTarget}" value="Test Connection" reRender="targetMessage2" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                    -->
+                                    <!-- <button class="slds-button slds-button--brand" onclick="setTargetCreds(); return false;">
+                                        Save Credentials
+                                    </button> -->
+
+                                    <!-- SF-1232 Remove 'Run Scan' button
+                                    <apex:commandButton action="{!rescanTarget}" value="Run Scan" reRender="targetScanProgress2" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                    -->
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel layout="none" rendered="{!!isDeploy}">
+                <apex:outputPanel layout="block" id="saveError">
+                    <div class="coverageFailure" style="display: {!IF(saveErrorMessage != '','block','none')}">
+                        <span class="warningInfo"><apex:outputText value="{!saveErrorMessage}" escape="false"/></span>
+                    </div>
+                </apex:outputPanel>
+                <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size--1-of-2" style="display: inline-block;width: 50%;margin-right: 10%;min-width: 366px;">
+                            <fieldset class="slds-form--compound">
+                                <legend class="slds-form-element__label slds-text-title--caps" style="font-size: 0.75rem !important;font-weight: bold !important;">Source Environment</legend>
+                                <!-- SF-1232 Remove 'Run Scan' feature
+                                <apex:outputPanel id="sourceScanProgress">
+                                    <apex:outputPanel layout="block" rendered="{!showProgressBar}" styleClass="slds-scope" id="sourceProgressBar">
+                                        <apex:actionPoller rerender="sourceProgressBar" interval="5" action="{!checkSourceScanStatus}"/>
+
+                                        <apex:outputPanel layout="block" id="progress">
+                                            {!batchStatus}
+                                            <progress class="skill-1" max="100" value="{!percent}" style="width:100%;">
+                                            </progress>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                -->
+                                <apex:outputPanel layout="block" id="sourceMessage" >
+                                    <apex:outputPanel layout="block" rendered="{!sourceLoginMessage != ''}" >   
+                                        {!sourceLoginMessage}
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="block" styleclass="slds-form-element__group" id="sourceBlock">
+                                    <div class="slds-form-element__row">
+                                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-size--1-of-1" id="sourceEnvSelect">
+                                            <label class="slds-form-element__label" for="input-03">Saved Environments:</label><br/>
+                                            <apex:selectList value="{!sourceSelectedEnviroment}" size="1" styleClass="slds-input" onchange="callforCredsSource()">
+                                                <apex:selectOptions value="{!savedEnviroments}" />
+                                            </apex:selectList>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+                                            <apex:inputText value="{!sourceUsername}" id="sourceUserName" styleClass="slds-input"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+                                            <apex:inputSecret value="{!sourcePassword}" styleClass="slds-input"  redisplay="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Token: </label><br/>
+                                            <apex:inputSecret value="{!sourceToken}" styleClass="slds-input"  redisplay="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Sandbox:</label>
+                                            <apex:inputCheckbox value="{!isSourceSandbox}" />
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <apex:commandButton action="{!testConnectionSource}" value="Test Connection" reRender="sourceMessage" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                            <button class="slds-button slds-button--brand" onclick="setSourceCreds(); return false;">
+                                                Save Credentials
+                                            </button>
+                                            <!-- SF-1232 Remove 'Run Scan' button
+                                            <apex:commandButton action="{!rescanSource}" value="Run Scan" reRender="sourceScanProgress" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                            -->
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </fieldset>
+                        </div>
+
+                        <div class="slds-form-element slds-size--1-of-2" style="display: inline-block;width: 50%;margin-right: 10%;min-width: 366px;">
+                            <fieldset class="slds-form--compound">
+                                <legend class="slds-form-element__label slds-text-title--caps" style="font-size: 0.75rem !important;font-weight: bold !important;">Target Environment</legend>
+                                <!-- SF-1232 Remove 'Run Scan' feature
+                                <apex:outputPanel id="targetScanProgress">
+                                    <apex:outputPanel layout="block" rendered="{!showTargetProgressBar}" styleClass="slds-scope" id="targetProgressBar">
+                                        <apex:actionPoller rerender="targetProgressBar" interval="5" action="{!checkTargetScanStatus}"/>
+
+                                        <apex:outputPanel layout="block" id="tProgress">
+                                            {!batchTargetStatus}
+                                            <progress class="skill-1" max="100" value="{!targetpercent}" style="width:100%;">
+                                            </progress>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                -->
+                                <apex:outputPanel layout="block" id="targetMessage" >
+                                    <apex:outputPanel layout="block" rendered="{!targetLoginMessage != ''}" >
+                                        {!targetLoginMessage}
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="block" styleclass="slds-form-element__group" id="targetBlock">
+                                    <div class="slds-form-element__row">
+                                        <apex:outputPanel layout="block" StyleClass="slds-form-element slds-size--1-of-1" id="targetEnvSelect">
+                                            <label class="slds-form-element__label" for="input-03">Saved Environments:</label><br/>
+                                            <apex:selectList value="{!targetSelectedEnviroment}" size="1" styleClass="slds-input" onchange="callforCredsTarget()">
+                                                <apex:selectOptions value="{!savedEnviroments}" />
+                                            </apex:selectList>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+                                            <apex:inputText value="{!targetUsername}" id="targetUsername" styleClass="slds-input"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+                                            <apex:inputSecret value="{!targetPassword}" styleClass="slds-input" redisplay="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Token: </label><br/>
+                                            <apex:inputSecret value="{!targetToken}" styleClass="slds-input"  redisplay="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <label class="slds-form-element__label" for="input-03">Sandbox: </label>
+                                            <apex:inputCheckbox value="{!isTargetSandbox}" />
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-1">
+                                            <apex:commandButton action="{!testConnectionTarget}" value="Test Connection" reRender="targetMessage" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                            <button class="slds-button slds-button--brand" onclick="setTargetCreds(); return false;">
+                                                Save Credentials
+                                            </button>
+                                            <!-- SF-1232 Remove 'Run Scan' feature button
+                                            <apex:commandButton action="{!rescanTarget}" value="Run Scan" reRender="targetScanProgress" styleClass="slds-button slds-button--brand slds-order--3"/>
+                                            -->
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </fieldset>
+                        </div>
+
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </fieldset>
+
+        <apex:outputPanel layout="block" rendered="{!!isDeploy}" style="text-align: center; padding: 15px;">
+            <apex:commandButton action="{!deployCR}" value="Save" styleClass="slds-button slds-button--brand slds-order--3" 
+                style="font-size: 12pt;" oncomplete="closeWindow()" reRender="deploymentCROpen, saveError" status="statusC"/>
+
+            <apex:outputPanel layout="block" id="deploymentCROpen">
+                <script>
+                    function closeWindow(){
+                        var errors = '{!saveErrorMessage}';
+                        console.log(errors);
+                        if (errors == 'No Errors') {
+                            window.opener.open("/{!deployCRId}", "_blank");
+                            //window.opener.top.location.href = window.location.hostname + "/{!deployCRId}";
+                            window.self.close();
+                        }
+                    }
+                </script>
+            </apex:outputPanel>
+        </apex:outputPanel>
+          <apex:messages />
+        <apex:outputPanel layout="hidden" rendered="{!isDeploy}" id="deploymentPanel">
+            <script>
+                function openOverlay() {
+                    $('.loadingOverlay').show();
+                }
+                function closeOverlay() {
+                    var shouldClose = '{!runPoll}';
+                    console.log(shouldClose);
+
+                    if (shouldClose == 'false') {
+                        $('.loadingOverlay').hide();
+                    }
+                }
+                function openDeployOverlay() {
+                    $('.deployOverlay').show();
+                }
+                function closeDeployOverlay() {
+                    var shouldClose = '{!runPoll}';
+                    console.log(shouldClose);
+
+                    if (shouldClose == 'false') {
+                        $('.deployOverlay').hide();
+                    }
+                }
+                function closeToast() {
+                    $('.slds-notify_container').hide();
+                }
+            </script>
+            
+            <!-- SHOW PROGRESS ABOUT DEPLOYMENT: Running Test, Deploying, etc -->
+            <div class="deployOverlay" style="display: {!IF(deployment && runPoll,'block','none')};">
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                    &nbsp;
+                </div>
+                <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 25% 25%;">
+                    <div style="display: inline-block; padding: 2px; background-color: #fff; width: 100%;">
+                        <apex:outputPanel >
+                            <img src="/img/loading.gif" style="float: left; margin: 8px;" />In Progress: {!stateDetailComponent} <br/>
+                            <!-- <apex:outputLink dir="a" target="_blank"  value="/changemgmt/monitorDeploymentsDetails.apexp?retURL=/changemgmt/monitorDeployment.apexp&asyncId={!asyncDeployId}" rel="/changemgmt/monitorDeploymentsDetails.apexp?retURL=/changemgmt/monitorDeployment.apexp&asyncId={!asyncDeployId}"> 
+                              More deployment details...
+                            </apex:outputLink> -->
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </div>
+
+            <apex:actionPoller interval="5" action="{!retrieveCS}" enabled="{!runPoll && deployment == false}" onsubmit="openOverlay()" oncomplete="closeOverlay()" reRender="custoTable,deploymentPanel"/>            
+            <apex:actionPoller interval="5" action="{!CheckDeployment}" onsubmit="openDeployOverlay()" enabled="{!deployment && runPoll}" oncomplete="closeDeployOverlay()" reRender="custoTable,deploymentPanel"/>
+
+            <!-- SF-1253 Improve Unit Test UI: always show
+            <apex:outputPanel layout="block" style="padding: 0 17px 5px 17px;" rendered="{!retrievedCorrect}">
+            -->
+            <apex:outputPanel layout="block" style="padding: 0 17px 5px 17px;">
+                <span id="j_id0:j_id7:j_id9">
+                    <legend class="slds-form-element__label slds-text-title--caps" style="padding: 1rem 0rem;font-size: 1rem;border-bottom: 1px solid orange;width: 100%;">
+                        Unit Test Options 
+                    </legend>
+                    <!-- SF-1235 Improve Unit Test UI: use Salesforce https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_deploy_running_tests.htm --> 
+                </span>
+                <div style="margin-top: 20px">
+                    <!--<apex:selectRadio value="{!testLevel}" layout="pageDirection" onchange="onChangeTestLevel(this.value); setRetrievedCorrect();"> -->
+                    <apex:selectRadio value="{!testLevel}" layout="pageDirection" onchange="setRetrievedCorrect();"> 
+                        <apex:selectOptions value="{!optionsTestLevel}" id="selectedTestLevel"/>
+                    </apex:selectRadio>                     
+                </div>
+                <apex:outputPanel layout="none" rendered="{!displayUnitTestClassesEdit}">
+                    <!-- <div style="margin-top: 20px;display:none;" id="testClasesPanel"> -->
+                    <div style="margin-top: 20px;display:block;" id="testClasesPanel">                      
+                        <span>
+                            Specify Test To Run
+                        </span>
+                        <apex:inputText value="{!testToRun}" styleClass="slds-input" id="inputTestToRun"/>
+                    </div>
+                </apex:outputPanel>
+                <!--
+                <div id="testClasesPanel" style="display:block;" >
+                    <div>
+                    <span>
+                        Select Test Classes
+                    </span>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium" style="width: 700px;">
+                        <c:FloMultiSelectList id="multi2" leftLabel="Select Test Class" leftOption="{!listTestClassesOptions}" rightLabel="Selected Test Class(es)" rightOption="{!selectedTestClasses}" size="7" width="296px" isCustomization="false" isTestClass="true"/>
+                    </div>
+                </div>
+                -->
+
+                <!--
+                <div>
+                    <div class="slds-checkbox--add-button" style="margin: 7px 0; position: relative;">
+                        <apex:inputCheckbox value="{!runTests}" styleClass="slds-assistive-text runTests" id="runTests"/>
+                        <label for="{!$Component.runTests}" class="slds-checkbox--faux" style="margin-right: 10px">
+                            <span class="slds-assistive-text"></span>
+                        </label>
+                        <span style="position: absolute;top: 20%;">
+                            Run Tests
+                        </span>
+                    </div>              
+                    
+                    <div>
+                        <span>
+                            Specify Test To Run (Optional)
+                        </span>
+                        <apex:inputText value="{!testToRun}" styleClass="slds-input"/>
+                    </div>
+                </div>
+                -->
+            </apex:outputPanel>
+            <fieldset class="slds-form--compound" style="margin: 1rem;">
+
+                <legend class="slds-form-element__label slds-text-title--caps" style="padding: 1rem 0rem;font-size: 1rem;border-bottom: 1px solid orange;width: 100%;">
+                    Customizations to deploy 
+
+                </legend>
+                 <div class="slds-form-element__row" style="display: flow-root;">
+                    <apex:outputPanel layout="none" id="buttonsPanel" >
+                        <apex:commandButton action="{!DeployZipFile}" value="Deploy Retrieved Customizations" styleClass="slds-button slds-button--success slds-order--3" style="float: right;margin-left: 15px;" onclick="openDeployOverlay()" reRender="deploymentPanel" rendered="{!retrievedCorrect}"/>
+                        <apex:commandButton action="{!ValidateZipFile}" value="Validate Customizations" styleClass="slds-button slds-button--success slds-order--3" style="float: right;margin-left: 15px;" onclick="openDeployOverlay()" reRender="deploymentPanel" rendered="{!retrievedCorrect}"/>
+                        <apex:commandButton action="{!retrieveProcess}" value="Retrieve Selected Customizations" styleClass="slds-button slds-button--brand slds-order--3" style="float: right;margin-left: 15px;" onclick="openOverlay()" oncomplete="closeOverlay()" reRender="deploymentPanel" />
+                        <!-- SF-1245 remove'Check Dependencies' button
+                        <apex:commandButton action="{!checkDependencies}" value="Check Dependencies" styleClass="slds-button slds-button--brand slds-order--3" style="float: right;margin-left: 15px;" onclick="openOverlay()" oncomplete="closeOverlay()" reRender="deploymentPanel" />
+                        -->
+                    </apex:outputPanel>
+                </div>
+                <apex:outputPanel layout="block" id="custoTable" >
+
+                    <!-- SHOW PROGRESS ABOUT DEPLOYMENT: Running Test, Deploying, etc -->
+                   <!--  <apex:outputPanel rendered="{!deployment && runPoll}">
+                        <img src="/img/loading.gif" /> In progress: {!stateDetailComponent} <br/>
+                        <apex:outputLink dir="a" target="_blank"  value="/changemgmt/monitorDeploymentsDetails.apexp?retURL=/changemgmt/monitorDeployment.apexp&asyncId={!asyncDeployId}" rel="/changemgmt/monitorDeploymentsDetails.apexp?retURL=/changemgmt/monitorDeployment.apexp&asyncId={!asyncDeployId}"> 
+                          More deployment details...
+                        </apex:outputLink>
+                    </apex:outputPanel> -->
+
+                    <!-- SHOW PROGRESS CODE COVERAGE FAILURES -->
+                    <div id="" class="coverageFailure" style="display: {!IF(unitTestFailureMessages != null,'block','none')}">
+                        <div>
+                            <!--<img class="statusImage" src="img/cautioncirclewhite.png"/>-->
+                          <span>
+                            <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                   xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#warning')}"/>
+                            </svg>
+                            <span class="errorHeader">Unit Test Failures</span>
+                          </span>
+                        </div>
+                        <span class="warningInfo"><apex:outputText value="{!unitTestFailureMessages}" escape="false"/></span>
+                        <ul border="0" class="coverage_warnings">
+                            <span id="MonitorDeploymentsDetailsPage:detailsForm:j_id79" style="display: none;"></span>
+                        </ul>
+                    </div>
+                    <!-- SHOW PROGRESS RETRIEVE FAILURES -->
+                    <div id="" class="coverageFailure" style="display: {!IF(retrieveErrors != null,'block','none')}">
+                        <div>
+                            <!--<img class="statusImage" src="img/cautioncirclewhite.png"/>-->
+                          <span>
+                            <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                   xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#warning')}"/>
+                            </svg>
+                            <span class="errorHeader">Retrieve Failures</span>
+                          </span>
+                        </div>
+                        <span class="warningInfo">{!retrieveErrors}</span>
+                        <ul border="0" class="coverage_warnings">
+                            <span id="MonitorDeploymentsDetailsPage:detailsForm:j_id79" style="display: none;"></span>
+                        </ul>
+                    </div>
+
+                      <!-- SHOW SUCCESS RETRIEVE ZIP -->
+                    <div class="slds-notify_container" style="display: {!IF(retrievedCorrect && !deployment,'block','none')}">
+                      <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                        <span class="slds-assistive-text">Success</span>
+                           <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" 
+                                style="padding: 3px;font-size: 16px;font-weight: bold;" onclick="closeToast();return false">
+                                X
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        <div class="slds-notify__content slds-grid">
+                          <div class="slds-col slds-align-middle">
+                            <h2 class="slds-text-heading--small "> Components successfully retrieved.</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SHOW SUCCESS Deployed ZIP -->
+                    <!-- SF-1236 Distinguish between successful validation and successful deployment -->
+                    <div class="slds-notify_container" style="display: {!IF((deployedMessage == 'Succeeded' || deployedMessage == 'Validation Completed') && testsFailures.size == 0,'block','none')}">
+                      <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                        <span class="slds-assistive-text">Success</span>
+                             <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" 
+                                style="padding: 3px;font-size: 16px;font-weight: bold;" onclick="closeToast();return false">
+                                X
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        <div class="slds-notify__content slds-grid">
+                          <div class="slds-col slds-align-middle">
+                            <h2 class="slds-text-heading--small " style="display: {!IF(deployedMessage == 'Succeeded','block','none')}"> 
+                                Components successfully deployed.
+                            </h2>
+                            <h2 class="slds-text-heading--small " style="display: {!IF(deployedMessage != 'Succeeded','block','none')}"> 
+                                Components successfully validated.</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                      <div class="coverageFailure" style="display: {!IF(deployedMessage = 'error','block','none')}">
+                        <div>
+                            <!--<img class="statusImage" src="img/cautioncirclewhite.png"/>-->
+                          <span>
+                            <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                   xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#warning')}"/>
+                            </svg>
+                            <span class="errorHeader">Deployment Failures</span>
+                          </span>
+                        </div>
+                        <span class="warningInfo"><apex:outputText value="{!deployErrors}" escape="false"/></span>
+                        <ul border="0" class="coverage_warnings">
+                            <span id="MonitorDeploymentsDetailsPage:detailsForm:j_id79" style="display: none;"></span>
+                        </ul>
+
+                        <!-- <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
+                          <span class="slds-assistive-text">error</span>
+                          <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                          </span>
+                          <div class="slds-notify__content">
+                            <h2 class="slds-text-heading_small ">{!deployErrors}</h2>
+                          </div>
+                          <button class="slds-button slds-button_icon slds-notify__close slds-button_icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                        </div> -->
+                      </div>
+             
+
+                    
+                    <!-- not used; test failures are reported above -------------------------------------------
+                    <apex:outputPanel rendered="{!IF(testsFailures.size > 0,'true','false')}">
+
+                        <div id="" class="coverageFailure" style="display: {!IF(testsFailures.size > 0,'block','none')}; padding-right: 20px;">
+                            <div>
+                                <!- <img class="statusImage" src="img/cautioncirclewhite.png"/> ->
+                              <span>
+                                <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                       xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#warning')}"/>
+                                </svg>
+                                <span class="errorHeader">Apex Test Failures</span>
+                              </span>
+                            </div>
+                            <span class="warningInfo">
+                                <table id="custable2" class="display slds-table slds-table_bordered slds-table_cell-buffer">
+                                    <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Method</th>
+                                            <th scope="col">Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!testsFailures}" var="t">
+                                                <tr>
+                                                    <td scope="row">{!t.className}</td>
+                                                    <td scope="row">{!t.methodName}</td>
+                                                    <td scope="row">{!t.failureMessage}</td>
+                                                </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </span>
+                            <ul border="0" class="coverage_warnings">
+                                <span id="MonitorDeploymentsDetailsPage:detailsForm:j_id79" style="display: none;"></span>
+                            </ul>
+                        </div>
+                    </apex:outputPanel>
+                    ----------------------------------------------------------------------------------------------------->
+                    
+                    <!-- SF-1245 Remove "Check Dependencies"
+                     <apex:outputPanel rendered="{!IF(dependencies.size > 0 || dependenciesError != '','true','false')}">
+
+                        <div id="" class="coverageFailure" style="display: {!IF(dependencies.size > 0 || dependenciesError != '','block','none')}; padding-right: 20px;">
+                            <div>
+                                <!- <img class="statusImage" src="img/cautioncirclewhite.png"/> -> IF RESTORED, CLOSE COMMENT
+                              <span>
+                                <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#warning')}"/>
+                                </svg><span class="errorHeader">
+                                  Dependencies Missing in Target</span>
+                              </span>
+                                <apex:commandButton action="{!importSelected}" value="Import Seleted Into Change Request" styleClass="slds-button slds-button--brand slds-order--3" style="float: right;margin-left: 15px;" onclick="openOverlay()" oncomplete="closeOverlay()" reRender="deploymentPanel" rendered="{!IF(dependencies.size > 0,'true','false')}"/>
+                            </div>
+                            <span class="warningInfo">
+                                <table id="custable" class="display slds-table slds-table_bordered slds-table_cell-buffer" style="display: {!IF( dependencies.size > 0,'block','none')};">
+                                    <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <th scope="col">Is Selected?</th>
+                                            <th scope="col">API Name</th>
+                                            <th scope="col">Salesforce Type</th>
+                                            <!- <th scope="col">Deploy Component Messages</th> -> IF RESTORED, CLOSE COMMENT
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!dependencies}" var="c">
+                                            <tr>
+                                                <td scope="row">
+                                                    <apex:inputCheckbox onChange="changeSelected('{!c.custoId}',this.checked);return false;" value="{!c.isSelected}" />
+                                                </td>
+                                                <td scope="row">{!c.custoName}</td>
+                                                <td scope="row">{!c.custoType}</td>
+                                                <!- <td scope="row">{!c.deployMessage}</td> -> IF RESTORED, CLOSE COMMENT
+                                                <!- style="background-color: {!IF(c.deployMessage == 'success','green','red' )};" -> IF RESTORED, CLOSE COMMENT
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                                {!dependenciesError}
+                            </span>
+                        </div>
+                    </apex:outputPanel>
+                    -->
+
+                    <div class="slds-form-element__group">
+                        <div class="slds-form-element__row">
+                            
+                            <table id="custable" class="display slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col">Is Selected?</th>
+                                        <th scope="col">API Name</th>
+                                        <th scope="col">Salesforce Type</th>
+                                        <th scope="col">Deployment Messages</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!custos}" var="custs">
+                                        <apex:repeat value="{!custs}" var="c">
+                                            <tr>
+                                                <td scope="row">
+                                                    <!-- there is no changeSelected() method anywhere 
+                                                    <apex:inputCheckbox onChange="changeSelected('{!c.custoId}',this.checked);return false;" value="{!c.isSelected}" />
+                                                    -->
+                                                    <apex:inputCheckbox value="{!c.isSelected}" />
+                                                </td>
+                                                <td scope="row">{!c.custoName}</td>
+                                                <td scope="row">{!c.custoType}</td>
+                                                <td scope="row">{!c.deployMessage}</td>
+                                                <!-- style="background-color: {!IF(c.deployMessage == 'success','green','red' )};" -->
+                                            </tr>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </fieldset>
+            
+        </apex:outputPanel>
+
+        <div class="saveCredsModal" style="display: none;">
+            <apex:outputPanel layout="block" id="saveCredsModal">
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="closeModal(); return false;">
+                                 X
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="header43" class="slds-text-heading--medium">Save Credentials</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">Environment Name: <span class="required">*</span></label><br/>
+                                    <apex:inputText value="{!toSaveCreds.FLODocs__Custom_Name__c}" id="toSaveName" styleClass="slds-input" maxlength="19"/><br/>
+                                    <apex:outputText value="{!credNameError}" rendered="{!credNameError != ''}" style="color:red;"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+                                    <apex:inputText value="{!toSaveCreds.FLODocs__Username__c}" id="toSaveUsername" styleClass="slds-input" /><br/>
+                                    <apex:outputText value="{!credUserNameError}" rendered="{!credUserNameError != ''}" style="color:red;"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+                                    <apex:inputSecret value="{!toSaveCreds.FLODocs__Password__c}" styleClass="slds-input" redisplay="true"/><br/>
+                                    <apex:outputText value="{!credPasswordError}" rendered="{!credPasswordError != ''}" style="color:red;"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">Token: <span class="required">*</span></label><br/>
+                                    <apex:inputSecret value="{!toSaveCreds.FLODocs__Token__c}" styleClass="slds-input" redisplay="true"/><br/>
+                                    <apex:outputText value="{!credTokenError}" rendered="{!credTokenError != ''}" style="color:red;"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">Sandbox: </label>
+                                    <apex:inputCheckbox value="{!toSaveCreds.FLODocs__Sandbox__c}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <apex:commandButton action="{!saveEnviroment}" value="Save" reRender="sourceBlock, targetBlock, saveCredsModal" styleClass="slds-button slds-button--brand slds-order--3" oncomplete="closeModalAfterSave()" status="statusC"/>
+                            <!-- <button class="slds-button slds-button--brand">Save</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+                <script>
+                    function closeModalAfterSave() {
+                        if ({!closeModal}) {
+                            $('div.saveCredsModal').hide();
+                        }
+                    }
+                </script>
+            </apex:outputPanel>
+        </div>
+
+        <apex:actionFunction action="{!setEnviromenCredsSource}" name="setSourceCreds" reRender="saveCredsModal" oncomplete="openSaveModal();" status="statusC"/>
+        <apex:actionFunction action="{!setEnviromenCredsTarget}" name="setTargetCreds" reRender="saveCredsModal" oncomplete="openSaveModal();" status="statusC"/>
+
+        <apex:actionFunction action="{!setEnviromentSource}" name="getsourceCreds" reRender="sourceBlock" status="statusC"/>
+        <apex:actionFunction action="{!setEnviromentTarget}" name="gettargetCreds" reRender="targetBlock" status="statusC"/>
+
+        <apex:actionFunction action="{!resetRetrievedCorrect}" name="setRetrievedCorrect" reRender="deploymentPanel" status="statusC"/>
+
+        <apex:actionStatus id="statusC">
+            <apex:facet name="start">
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                    &nbsp;
+                </div>
+                <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                    <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                        <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                        <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                    </div>
+                </div>
+            </apex:facet>
+            <apex:facet name="stop"></apex:facet>
+        </apex:actionStatus>
+
+        <div class="loadingOverlay" style="display: none;">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 25% 45%;">
+                <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                    <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                    <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                </div>
+            </div>
+        </div>
+
+    </apex:form>
+
+    <script>
+        function openSaveModal() {
+            $('div.saveCredsModal').show();
+        }
+        function closeModal() {
+            $('div.saveCredsModal').hide();
+        }
+        function callforCredsTarget(){
+            gettargetCreds();
+        }
+
+        function callforCredsSource() {
+            getsourceCreds();
+        }
+
+        function onChangeTestLevel(testLevel) {
+            if(testLevel == 'RunSpecifiedTests') {
+                document.getElementById('testClasesPanel').style.display = 'block';
+                $('input[id*="inputTestToRun"]').val('');
+            } else {
+                document.getElementById('testClasesPanel').style.display = 'none';              
+            }
+        }
+    </script>
+</apex:page>

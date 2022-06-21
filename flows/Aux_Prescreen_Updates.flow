@@ -39,13 +39,6 @@
                     <stringValue>Under Review</stringValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>$Record__Prior.Aux_Prescreen_Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>$Record.Aux_Prescreen_Status__c</elementReference>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Under_Review_Updates</targetReference>
             </connector>
@@ -62,10 +55,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record__Prior.Aux_Prescreen_Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>$Record.Aux_Prescreen_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
                 <rightValue>
-                    <elementReference>$Record.Aux_Prescreen_Status__c</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -84,10 +77,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record__Prior.Aux_Prescreen_Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>$Record.Aux_Prescreen_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
                 <rightValue>
-                    <elementReference>$Record.Aux_Prescreen_Status__c</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -102,12 +95,13 @@ Merged paths for testing</description>
     <formulas>
         <name>ReasonbasedonOwner</name>
         <dataType>String</dataType>
-        <expression>RIGHT({!$Record.Owner:Group.Name},
-(LEN({!$Record.Owner:Group.Name}) - FIND(&apos;: &apos;, {!$Record.Owner:Group.Name})-1)
+        <expression>IF(LEFT({!$Record.Owner:Group.Name}, 3) = &quot;Aux&quot;,
+RIGHT({!$Record.Owner:Group.Name},(LEN({!$Record.Owner:Group.Name}) - FIND(&apos;:&apos;, {!$Record.Owner:Group.Name})-1)),
+{!$Record.Owner:Group.Name}
 )</expression>
     </formulas>
     <interviewLabel>Aux Prescreen Updates {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Aux Prescreen Updates</label>
+    <label>Aux Prescreen Updates (if)</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -222,5 +216,5 @@ Merged paths for testing</description>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

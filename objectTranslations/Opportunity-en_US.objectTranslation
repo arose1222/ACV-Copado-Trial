@@ -519,6 +519,11 @@
         <name>Intelliscore_Plus_Risk_Class__c</name>
     </fields>
     <fields>
+        <help><!-- Dealer has shown interest in Daily Fee. --></help>
+        <label><!-- Interest in Daily Fee --></label>
+        <name>Interest_in_Daily_Fee__c</name>
+    </fields>
+    <fields>
         <label><!-- Inventory Turn Time --></label>
         <name>Inventory_Turn_Time__c</name>
     </fields>
@@ -576,6 +581,10 @@
     <fields>
         <label><!-- Management Meeting Scheduled --></label>
         <name>Management_Meeting_Scheduled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Line Limit Elegible --></label>
+        <name>Max_Line_Limit_Elegible__c</name>
     </fields>
     <fields>
         <label><!-- Next Step, Issues, or Objections --></label>
@@ -644,10 +653,6 @@
         <label><!-- Price Book --></label>
         <name>Price_Book__c</name>
         <picklistValues>
-            <masterLabel>2021 Price Book</masterLabel>
-            <translation><!-- 2021 Price Book --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>60 for 60 Tax Season 2022</masterLabel>
             <translation><!-- 60 for 60 Tax Season 2022 --></translation>
         </picklistValues>
@@ -712,8 +717,68 @@
             <translation><!-- Advantage - $75 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>May 25 2021 Price Book</masterLabel>
-            <translation><!-- May 25 2021 Price Book --></translation>
+            <masterLabel>April 2022 - Daily Fee - A</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - B</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - C</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - D</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - E</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Gold</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Orange Elite</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Daily Fee - Silver</masterLabel>
+            <translation><!-- April 2022 - Daily Fee - Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - A</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - B</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - C</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - D</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - E</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Gold</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Orange Elite</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>April 2022 - Flat Fee - Silver</masterLabel>
+            <translation><!-- April 2022 - Flat Fee - Silver --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -842,6 +907,42 @@
     <fields>
         <label><!-- Report Recipients --></label>
         <name>Report_Recipients__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Grade --></label>
+        <name>Risk_Grade__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OE</masterLabel>
+            <translation><!-- OE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Seller Dealership ID --></label>
@@ -1055,6 +1156,10 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
         <name>ACV_Capital_Fastpass_Lost_Reason_Req</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- you don&apos;t have enough permissions to update this field --></errorMessage>
+        <name>ACV_Capital_Max_Line_Limit_Eligible</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Please add a the &quot;Other Reason&quot; why the opportunity was marked closed lost. --></errorMessage>
         <name>ACV_Capital_Other_Reason_Required</name>
     </validationRules>
@@ -1069,6 +1174,10 @@ Credit Product cannot be blank nor have a value of &apos;Unsure&apos;.  Both req
     <validationRules>
         <errorMessage><!-- Please enter Year Incorporated --></errorMessage>
         <name>ACV_Capital_Year_Incorporated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- you don&apos;t have enough permissions to update this field --></errorMessage>
+        <name>ACV_Capital_field_Risk_Grade</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- The Account associated with this opportunity is not compliant.  Once the account becomes compliant the opportunity stage can be updated. --></errorMessage>

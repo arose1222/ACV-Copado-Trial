@@ -1,0 +1,474 @@
+<apex:page showHeader="false" sidebar="false" readOnly="true" controller="FLODocs.StrongpointExportObjectController" action="{!buildXMLFile}" contentType="txt/xml#ObjectExport.xls" cache="true">
+	<apex:outputText value="{!xlsHeader}"/>
+		<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:o="urn:schemas-microsoft-com:office:office"
+		 xmlns:x="urn:schemas-microsoft-com:office:excel"
+		 xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:html="http://www.w3.org/TR/REC-html40">
+		<Styles>
+			<!--<Style ss:ID="Default" ss:Name="Normal">
+	            <Alignment ss:Vertical="Bottom"></Alignment>
+	            <Borders></Borders>
+	            <Font></Font>
+	            <Interior></Interior>
+	            <NumberFormat></NumberFormat>
+	            <Protection></Protection>
+	        </Style>-->
+		 	<Style ss:ID="s1">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment/>
+				<Font ss:Bold="1" ss:Color="#FFFFFF"></Font>
+				<NumberFormat/>
+   				<Interior ss:Color="#3a3f6e" ss:Pattern="Solid"></Interior>
+		 	</Style>
+		 	<Style ss:ID="s100">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment/>
+				<Font ss:Bold="1" ss:Color="#FFFFFF"></Font>
+				<NumberFormat/>
+   				<Interior ss:Color="#FF0000" ss:Pattern="Solid"></Interior>
+		 	</Style>
+
+
+		 	<Style ss:ID="s2">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Font ss:Size="9"  x:Family="Swiss" ss:FontName="Calibri" />
+		 	</Style>
+		 	<Style ss:ID="s3">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#FFA500" ss:Pattern="Solid"/>
+		 	</Style>
+		 	<Style ss:ID="s4">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   				<Interior ss:Color="#FFA500" ss:Pattern="Solid"/>
+   				<Font x:Family="Swiss"  ss:FontName="Calibri"  ss:Size="14" ss:Bold="1"/>
+		 	</Style>
+		 	<Style ss:ID="s5">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#98FB98" ss:Pattern="Solid"/>
+		 	</Style>
+		 	<Style ss:ID="s6">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#f6ce83" ss:Pattern="Solid"/>
+		 	</Style>
+		</Styles>
+
+	    <Worksheet ss:Name="Summary">
+			<Table x:FullColumns="1" x:FullRows="1">
+				<Column ss:Width="125"/>
+				<Column ss:Width="300"/>
+				<Column ss:Width="300"/>
+				<Row>
+					 <Cell ss:StyleID="s1"><Data ss:Type="String" >Created By:</Data></Cell>
+					 <Cell ss:StyleID="s2"><Data ss:Type="String" >{!currentUserName}</Data></Cell>
+				</Row>
+				<Row>
+					 <Cell ss:StyleID="s1"><Data ss:Type="String" >Created Date:</Data></Cell>
+					 <Cell ss:StyleID="s2"><Data ss:Type="String" >{!currentDate}</Data></Cell>
+				</Row>
+				<Row>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				<apex:outputPanel layout="none" rendered="{!isLimitReached}">
+					<Row>
+						 <Cell ss:MergeAcross="2" ss:StyleID="s100" ><Data ss:Type="String" ></Data></Cell>
+						 <Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						 <Cell ss:MergeAcross="2" ss:StyleID="s100"><Data ss:Type="String" >TOO MANY OBJECTS SELECTED - PLEASE REDUCE THE AMOUNT OF OBJECTS, PROFILES SELECTED</Data></Cell>
+						 <Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+					 <Cell ss:MergeAcross="2" ss:StyleID="s100" ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				</apex:outputPanel>
+
+				<Row>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+
+
+				 <Row>
+					 <Cell ss:MergeAcross="1" ss:StyleID="s1"><Data ss:Type="String" >Objects</Data></Cell>
+				</Row>
+				<apex:repeat value="{!objInformation}" var="oi">
+					<Row>
+						 <Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!oi.objName}</Data></Cell>
+					</Row>
+				</apex:repeat>
+				<Row>
+					<Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				<Row>
+					<Cell ss:MergeAcross="1" ss:StyleID="s1"><Data ss:Type="String" >Profiles</Data></Cell>
+				</Row>
+				<apex:repeat value="{!profileIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+					<Row>
+						<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+					</Row>
+				</apex:repeat>
+				<Row>
+					<Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				<Row>
+					<Cell ss:MergeAcross="1" ss:StyleID="s1"><Data ss:Type="String" >Permission Sets</Data></Cell>
+				</Row>
+				<apex:repeat value="{!permissionSetIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+					<Row>
+						<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+					</Row>
+				</apex:repeat>
+    		</Table>
+	    </Worksheet>
+
+		<apex:repeat value="{!objInformation}" var="oi">
+		    <Worksheet ss:Name="{!oi.objName}">
+				<Table x:FullColumns="1" x:FullRows="1">
+					<Column ss:Width="200"/>
+					<Column ss:Width="200"/>
+					<Column ss:Width="135"/>
+					<Column ss:Width="60"/>
+					<Column ss:Width="60"/>
+					<Column ss:Width="60"/>
+					<Column ss:Width="100"/>
+					<Column ss:Width="100"/>
+					<Column ss:Width="100"/>
+					<Row>
+						<Cell ><Data ss:Type="String" ></Data></Cell>
+						<Cell ss:MergeAcross="2" ss:StyleID="s4"><Data ss:Type="String" >{!oi.objName}</Data></Cell>
+						<Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						<Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Name</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Label</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Plural Label</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >SharingModel</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Deprecated</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >EnableActivities</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >CompactLayoutAssigment</Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:StyleID="s2"><Data ss:Type="String">{!oi.objName}</Data></Cell>
+					 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!oi.label}</Data></Cell>
+					 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!oi.pluralLabel}</Data></Cell>
+					 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!oi.sharingModel}</Data></Cell>
+					 	<Cell ss:StyleID="{!IF(oi.deprecated, 's5', 's6')}"><Data ss:Type="String">{!oi.deprecated}</Data></Cell>
+					 	<Cell ss:StyleID="{!IF(oi.enableActivities, 's5', 's6')}"><Data ss:Type="String">{!oi.enableActivities}</Data></Cell>
+					 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!oi.compactLayoutAssigment}</Data></Cell>
+					</Row>
+					<Row>
+						<Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:MergeAcross="6" ss:StyleID="s3"><Data ss:Type="String" >Object Permission</Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Profile</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Create</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Delete</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >View All</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Modify All</Data></Cell>
+					</Row>
+					<apex:repeat value="{!oi.objPpList}" var="op">
+						<Row>
+							<Cell ss:StyleID="s2"><Data ss:Type="String" >{!oi.objPpList[op].profileName}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canCreate, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canCreate}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canRead, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canRead}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canEdit, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canEdit}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canDelete, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canDelete}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canViewAll, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canViewAll}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPpList[op].canModifyAll, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPpList[op].canModifyAll}</Data></Cell>
+						</Row>
+					</apex:repeat>
+					<Row>
+						<Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:MergeAcross="6" ss:StyleID="s3"><Data ss:Type="String" >Object Permission (Permission Set)</Data></Cell>
+					</Row>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Permission Set</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Create</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Delete</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >View All</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Modify All</Data></Cell>
+					</Row>
+					<apex:repeat value="{!oi.objPermSetpList}" var="op">
+						<Row>
+							<Cell ss:StyleID="s2"><Data ss:Type="String" >{!oi.objPermSetpList[op].profileName}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canCreate, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canCreate}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canRead, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canRead}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canEdit, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canEdit}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canDelete, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canDelete}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canViewAll, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canViewAll}</Data></Cell>
+							<Cell ss:StyleID="{!IF(oi.objPermSetpList[op].canModifyAll, 's5', 's6')}"><Data ss:Type="String" >{!oi.objPermSetpList[op].canModifyAll}</Data></Cell>
+						</Row>
+					</apex:repeat>
+					<apex:outputPanel layout="none" rendered="{!customFields}">
+							 <Row>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+						    <apex:outputPanel rendered="{!IF(amountOfProfiles > 0,true,false)}"> <Cell ss:MergeAcross="{!amountOfProfiles}" ss:StyleID="s1"><Data ss:Type="String" >PROFILES</Data></Cell></apex:outputPanel>
+							<apex:outputPanel rendered="{!IF(amountOfPermissionSets > 0,true,false)}"><Cell ss:MergeAcross="{!amountOfPermissionSets}" ss:StyleID="s1"><Data ss:Type="String" >PERMISSION SETS</Data></Cell> </apex:outputPanel>
+						</Row>
+						<Row>
+							<Cell ss:MergeAcross="8" ss:StyleID="s3"><Data ss:Type="String" >Custom Fields</Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<apex:repeat value="{!profileIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+								<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+						 	</apex:repeat>
+						 	<apex:repeat value="{!permissionSetIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+								<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+						 	</apex:repeat>
+						</Row>
+						<Row>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Field Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >API Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Data Type</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Length</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Is Required</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Is External Id</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Picklist Values and (API Names)</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Controlling</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Inline Help Text</Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<apex:repeat value="{!profileIds}" var="pp">
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						 	</apex:repeat>
+						 	<apex:repeat value="{!permissionSetIds}" var="pp">
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						 	</apex:repeat>
+						</Row>
+						<apex:repeat value="{!oi.customFieldInfo}" var="fi">
+							<Row>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.fieldName}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.apiName}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.dataType}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.length}</Data></Cell>
+							 	<Cell ss:StyleID="{!IF(fi.required, 's5', 's6')}"><Data ss:Type="String">{!fi.required}</Data></Cell>
+							 	<Cell ss:StyleID="{!IF(fi.externalId, 's5', 's6')}"><Data ss:Type="String">{!fi.externalId}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!SUBSTITUTE(fi.picklistValues, '<', '< ')}" escape="false"/></Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!fi.controlingField}"/></Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!fi.inlineHelpText}"/></Data></Cell>
+							 	<Cell ><Data ss:Type="String" ></Data></Cell>
+							 	<apex:repeat value="{!profileIds}" var="pid">
+									<Cell ss:StyleID="{!IF(fi.ppList[pid].canRead, 's5', 's6')}"><Data ss:Type="String">{!fi.ppList[pid].canRead}</Data></Cell>
+									<Cell ss:StyleID="{!IF(fi.ppList[pid].canEdit, 's5', 's6')}"><Data ss:Type="String">{!fi.ppList[pid].canEdit}</Data></Cell>
+								</apex:repeat>
+								<apex:repeat value="{!permissionSetIds}" var="pid">
+									<Cell ss:StyleID="{!IF(fi.ppsetList[pid].canRead, 's5', 's6')}"><Data ss:Type="String">{!fi.ppsetList[pid].canRead}</Data></Cell>
+									<Cell ss:StyleID="{!IF(fi.ppsetList[pid].canEdit, 's5', 's6')}"><Data ss:Type="String">{!fi.ppsetList[pid].canEdit}</Data></Cell>
+								</apex:repeat>
+							</Row>
+						</apex:repeat>
+					</apex:outputPanel>
+					<apex:outputPanel layout="none" rendered="{!standardFields}">
+						<Row>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:MergeAcross="8" ss:StyleID="s3"><Data ss:Type="String" >Standard Fields</Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<apex:repeat value="{!profileIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+								<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+						 	</apex:repeat>
+						 	<apex:repeat value="{!permissionSetIds}" var="pp" rendered="{!!ISBLANK(profileIdToName)}">
+								<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >{!profileIdToName[pp]}</Data></Cell>
+						 	</apex:repeat>
+						</Row>
+						<Row>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Field Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >API Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Data Type</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Length</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Is Required</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Is External Id</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Picklist Values and (API Names)</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Controlling</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Inline Help Text</Data></Cell>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+							<apex:repeat value="{!profileIds}" var="pp">
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						 	</apex:repeat>
+						 	<apex:repeat value="{!permissionSetIds}" var="pp">
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Read</Data></Cell>
+								<Cell ss:StyleID="s1"><Data ss:Type="String" >Edit</Data></Cell>
+						 	</apex:repeat>
+						</Row>
+						<apex:repeat value="{!oi.standardFieldInfo}" var="fi">
+							<Row>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.fieldName}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.apiName}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.dataType}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!fi.length}</Data></Cell>
+							 	<Cell ss:StyleID="{!IF(fi.required, 's5', 's6')}"><Data ss:Type="String">{!fi.required}</Data></Cell>
+							 	<Cell ss:StyleID="{!IF(fi.externalId, 's5', 's6')}"><Data ss:Type="String">{!fi.externalId}</Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!SUBSTITUTE(fi.picklistValues, '<', '< ')}" escape="false"/></Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!fi.controlingField}"/></Data></Cell>
+							 	<Cell ss:StyleID="s2"><Data ss:Type="String"><apex:outputText value="{!fi.inlineHelpText}"/></Data></Cell>
+							 	<Cell ><Data ss:Type="String" ></Data></Cell>
+							 	<apex:repeat value="{!profileIds}" var="pid">
+									<Cell ss:StyleID="{!IF(fi.ppList[pid].canRead, 's5', 's6')}"><Data ss:Type="String">{!fi.ppList[pid].canRead}</Data></Cell>
+									<Cell ss:StyleID="{!IF(fi.ppList[pid].canEdit, 's5', 's6')}"><Data ss:Type="String">{!fi.ppList[pid].canEdit}</Data></Cell>
+								</apex:repeat>
+								<apex:repeat value="{!permissionSetIds}" var="pid">
+									<Cell ss:StyleID="{!IF(fi.ppsetList[pid].canRead, 's5', 's6')}"><Data ss:Type="String">{!fi.ppsetList[pid].canRead}</Data></Cell>
+									<Cell ss:StyleID="{!IF(fi.ppsetList[pid].canEdit, 's5', 's6')}"><Data ss:Type="String">{!fi.ppsetList[pid].canEdit}</Data></Cell>
+								</apex:repeat>
+							</Row>
+						</apex:repeat>
+					</apex:outputPanel>
+					<apex:outputPanel layout="none" rendered="{!buttonsAndLinks}">
+						<Row>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:MergeAcross="5" ss:StyleID="s3"><Data ss:Type="String" >Web Links</Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Api Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Link Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Description</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Type</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Behavior</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Source</Data></Cell>
+						</Row>
+						<apex:repeat value="{!oi.wlList}" var="wi">
+							<Row>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!wi.apiName}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!wi.linkName}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!wi.description}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!wi.wlType}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!wi.behavior}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" ><apex:outputText value="{!SUBSTITUTE(wi.source, '<', '< ')}" escape="false"/></Data></Cell>
+							</Row>
+						</apex:repeat>
+					</apex:outputPanel>
+					<apex:outputPanel layout="none" rendered="{!formulaFields}">
+						<Row>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:MergeAcross="1" ss:StyleID="s3"><Data ss:Type="String" >Formula Fields</Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Api Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Formula</Data></Cell>
+						</Row>
+						<apex:repeat value="{!oi.formulaInfo}" var="formula">
+							<Row>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" >{!formula.formulaName}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String" ><apex:outputText value="{!SUBSTITUTE(formula.formula, '<', '< ')}" escape="false"/> </Data></Cell>
+							</Row>
+						</apex:repeat>
+					</apex:outputPanel>
+					<apex:outputPanel layout="none" rendered="{!recordTypesFields}">
+						<Row>
+							<Cell ><Data ss:Type="String" ></Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:MergeAcross="8" ss:StyleID="s3"><Data ss:Type="String" >Record Types</Data></Cell>
+						</Row>
+						<Row>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Developer Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Namespace Prefix</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >Description</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >IsActive</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >LastModified Date</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >LastModified By Name</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >CreatedDate</Data></Cell>
+							<Cell ss:StyleID="s1"><Data ss:Type="String" >CreatedDate By Name</Data></Cell>
+						</Row>
+						<apex:repeat value="{!oi.rtList}" var="rt">
+							<Row>
+
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.Name}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.DeveloperName}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.NamespacePrefix}</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.Description}</Data></Cell>
+								<Cell ss:StyleID="{!IF(rt.IsActive == 'true', 's5', 's6')}"><Data ss:Type="String">{!rt.IsActive }</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.LastModifiedDate }</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.LastModifiedById }</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.CreatedDate }</Data></Cell>
+								<Cell ss:StyleID="s2"><Data ss:Type="String">{!rt.CreatedById }</Data></Cell>
+							</Row>
+						</apex:repeat>
+					</apex:outputPanel>
+	    		</Table>
+	    		<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+				   <Selected></Selected>
+				   <FreezePanes></FreezePanes>
+				   <FrozenNoSplit></FrozenNoSplit>
+				   <SplitVertical>1</SplitVertical>
+				   <LeftColumnRightPane>1</LeftColumnRightPane>
+				   <ActivePane>1</ActivePane>
+				   <ProtectObjects>False</ProtectObjects>
+				   <ProtectScenarios>False</ProtectScenarios>
+				 </WorksheetOptions>
+		    </Worksheet>
+		</apex:repeat>
+
+	</Workbook>
+</apex:page>

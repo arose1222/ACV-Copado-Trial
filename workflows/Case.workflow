@@ -372,6 +372,10 @@
             <field>Seller_Title_Clerk_Email__c</field>
             <type>email</type>
         </recipients>
+        <recipients>
+            <recipient>areilly@acvauctions.com</recipient>
+            <type>user</type>
+        </recipients>
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Inform_Seller_of_Title_Late_Fee</template>
@@ -2245,7 +2249,7 @@ ISPICKVAL(Denial_Status__c,&quot;Denial Recalled&quot;)
             <name>Send_Seller_Shipping_Label</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Digital_Title__c</field>
             <operation>equals</operation>

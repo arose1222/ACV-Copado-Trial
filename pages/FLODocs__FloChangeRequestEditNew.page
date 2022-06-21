@@ -1,0 +1,1156 @@
+<apex:page showHeader="true" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloChangeRequestEditNewController" lightningStylesheets="true" standardStylesheets="false">
+  <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+
+          <script>
+            function importFromProcessesJS(){
+                if(confirm('Do you want to Import  Customizations for the Selected Affected Process(es)?' )){
+                    importFromProcessesAF();
+                }
+            }
+            function modalCustoJs(){
+              $('#ModalCustomization').toggle();
+              drawCardTable('custo');
+            }
+            function modalDataJs(){
+              $('#ModalDataRecord').toggle();
+              drawCardTable('data');
+            }
+            function modalProcessJs(){
+              $('#ModalProcess').toggle();
+              drawCardTable('process');
+            }
+            function modalPropProcessJs(){
+              $('#ModalPropProcess').toggle(); 
+              drawCardTable('propProcess');
+            }
+            function modalUserJs(){
+              $('#ModalUser').toggle();
+              drawCardTable('additionalApprovers');
+            }
+            function modalDevAssignJs(){
+              $('#ModalDevAssign').toggle();
+              drawCardTable('deploy');
+            }
+            function modalDeveloperJs(){
+              $('#ModalDeveloper').toggle();
+              drawCardTable('developer');
+            }
+
+            function cancelCR(){
+              cancelCRAF();
+            }
+
+            function saveCR(){
+              //JN 21 january 2021 to avoid multiples clicks and multiples execution of the function save
+              var but = document.getElementById('saveButton');
+              but.disabled = true;
+              //JN 21 january 2021 to avoid multiples clicks and multiples execution of the function save
+              
+              var crApproved = '{!changeRequest.FLODocs__Approval_Status__c}';
+
+              //GF 20200803 SF-1280 Change Request: Approval Status is set automatically to "Approved" when the CR Completion Status is set to "Completed"
+              var crSelectedCompletionStatus = document.getElementById('j_id0:changeRequestForm:selectCompletionStatus');
+              var crSelectedApprovalStatus = document.getElementById('j_id0:changeRequestForm:selectApprovalStatus');
+              
+              if(crSelectedCompletionStatus != null && crSelectedCompletionStatus != undefined && crSelectedApprovalStatus != null && crSelectedApprovalStatus != undefined && crSelectedApprovalStatus.value == 'Pending Approval' && crSelectedCompletionStatus.value == 'Completed') {
+                alert('You can not change the completion status as "Completed" when the approval status is "Pending Approval"');
+              } else {
+                if (crApproved == 'Approved') {
+                  if(confirm('You are trying to modified an Approved Change Request and modifications will not be applied. Would you like to continue?' )){
+                    saveCRAF();
+                  }
+                } else {
+                  saveCRAF();
+                }
+              }
+            }
+
+            function drawCardTable(cardId){
+              
+              $('#'+cardId).find('tbody').find('tr').remove();
+              var rightSectionId = '';
+              var counterId = '';
+              var counterName = '';
+
+
+              if(cardId == 'custo'){
+
+                rightSectionId = 'rightListSelected Customization(s)';
+                counterIdName = 'custoCount';
+                counterName = 'Customizations';
+
+              }else if(cardId == 'data'){
+
+                rightSectionId = 'rightListSelected Data Record(s)';
+                counterIdName = 'dataRecordCount';
+                counterName = 'Data Records';
+
+              }else if(cardId == 'process'){
+
+                rightSectionId = 'rightListSelected Process(es)';
+                counterIdName = 'custoProcess';
+                counterName = 'Process(es)';
+
+              }else if(cardId == 'propProcess'){
+
+                rightSectionId = 'rightListSelected Proposed Process(es)';
+                counterIdName = 'custoPropProcess';
+                counterName = 'Proposed Process(es)';
+
+              }else if(cardId == 'additionalApprovers'){
+
+                rightSectionId = 'rightListSelected Additional Approver(s)';
+                counterIdName = 'countAdditionalApprovers';
+                counterName = 'Additional Approver(s)';
+
+              }else if(cardId == 'developer'){
+
+                rightSectionId = 'rightListSelected Developers';
+                counterIdName = 'countDeveloper';
+                counterName = 'Developers';
+
+              }else if(cardId == 'deploy'){
+
+                rightSectionId = 'rightListSelected Deployment Assigned';
+                counterIdName = 'countDeploy';
+                counterName = 'Deployment Assigned';
+
+              }
+
+              var options = document.getElementById(rightSectionId).getElementsByTagName('option');
+              var htmlTr = '';
+              var counterQuantity = 0;
+              if(options != null){
+                counterQuantity = options.length;
+                for(var i = 0 ; i < options.length ; i++){
+                   htmlTr += '<tr class="slds-hint-parent">';
+                   htmlTr += '<th scope="row">';
+                   htmlTr += '<div class="slds-truncate" title="'+options[i].innerHTML+'"><a href="/'+options[i].value+'">'+options[i].innerHTML+'</a></div>';
+                   htmlTr += '</th>';
+                   htmlTr += '</tr>';
+                }
+              }
+              $('#'+cardId).find('tbody').append(htmlTr);
+              $('#'+counterIdName).html(counterName+ ' ' + '('+counterQuantity+')');
+            }
+
+            function getToolTip(val){
+
+              changeToolTip(val);
+
+              return false;
+            }
+            
+          </script>
+          <style>
+            .pcHeaderStyle {
+              text-align: center;
+            }
+          </style>
+        
+
+          <apex:form id="changeRequestForm">
+            <apex:actionFunction name="importFromProcessesAF" action="{!importFromProcesses}" status="statusC" reRender="multi2Wrap"/>
+            <apex:actionFunction name="saveCRAF" action="{!save}" status="statusC"/>
+            <apex:actionFunction name="cancelCRAF" action="{!cancel}" status="statusC"/>
+
+            <apex:actionFunction name="changeToolTip" action="{!changeToolTipApex}" status="statusC" reRender="pcSection" >
+              <apex:param value="" name="tc"/>
+            </apex:actionFunction>
+           
+            <!-- ############################## -->
+            <!-- This will work in Classic UI -->
+            <!-- ############################## -->
+            <!-- <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme3' }"> -->
+            <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme31231231' }">
+               <apex:Pagemessages />
+              <apex:sectionHeader title=" Change Request" subtitle="New/Edit  Change Request"/>
+              <apex:pageBlock title="Change Request Info">
+                <apex:pageBlockButtons >
+                  <!-- <apex:commandButton action="{!save}" value="Save" status="statusC"/> -->
+                  <button type="button" class="btn" onclick="saveCR();">Save</button>
+                  <apex:commandButton action="{!cancel}" value="Cancel" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection title="Main" collapsible="false" columns="2">
+                  <apex:inputField required="true" value="{!changeRequest.Name}" />
+                  <apex:inputField required="true" value="{!changeRequest.FLODocs__Change_Type__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__Completion_Status__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__Parent_Change_Request__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__External_Change_Request_Number__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__External_Link__c}" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Scope" collapsible="false" columns="2" id="scopePb">
+                      <apex:inputField required="true" value="{!changeRequest.FLODocs__Change_Overview__c}" style="width: 360px; height: 200px"/>
+                     
+                      <apex:outputPanel id="multi2Wrap">
+                         <c:FloMultiSelectList id="multi2" leftLabel="Select  Customization" leftOption="{!listCustomizationsOptions}" rightLabel="Selected Customization(s)" rightOption="{!selectedCustomization}" size="7" width="250px" isCustomization="true"/>
+                      </apex:outputPanel>
+                      <!-- Proposed Customizations -->
+
+                      <!-- <apex:outputPanel layout="block" style="text-align: center;padding: 20px;" id="pcBlock">
+                        <apex:outputLabel value="Proposed Customizations" for="pcTable" style="font-weight: bold;"/>
+                        <apex:variable value="{!0}" var="index" />
+                        <apex:pageBlockTable value="{!proposed}" var="pc" id="pcTable" style="margin-top: 20px;" headerClass="pcHeaderStyle">
+                          <apex:column headerValue="API Name" >
+                            <apex:inputText value="{!pc.apiName}" style="width: 100%;"/>
+                          </apex:column> 
+                          <apex:column headerValue="Salesforce Type" > 
+                            <apex:selectList value="{!pc.salesforceType}" size="1" style="width: 100%;" onchange="getToolTip(this.value);">
+                              <apex:selectOptions value="{!sfdcTypes}"/>
+                            </apex:selectList>
+                          </apex:column>
+
+                          <apex:column headerValue="Help Tooltip" > 
+                            <apex:outputText value="{!typeChoosen}" />
+                          </apex:column>
+                          <apex:column headerValue="Actions" > 
+                            <apex:commandLink value="Del" action="{!delPcRow}" reRender="pcBlock" status="statusC">
+                              <apex:param value="{!index}" name="delRow" />
+                            </apex:commandLink>
+                            <apex:variable value="{!(index + 1)}" var="index" />
+                          </apex:column>
+                        </apex:pageBlockTable>
+                        <apex:outputPanel layout="block" style="text-align: right;padding: 10px;">
+                          <apex:commandLink value="Add Row" action="{!addPcRow}" reRender="pcBlock" status="statusC"/>
+                        </apex:outputPanel>
+                        <apex:actionStatus id="statusC">
+                          <apex:facet name="start">
+                            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                              &nbsp;
+                            </div>
+                            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                              <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                                <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                                <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                              </div>
+                            </div>
+                          </apex:facet>
+                          <apex:facet name="stop"></apex:facet>
+                        </apex:actionStatus>
+                      </apex:outputPanel> -->
+                       <!-- <apex:inputField value="{!changeRequest.Affected_Bundle_Id__c}" /> -->
+                      <!-- <apex:inputField value="{!changeRequest.Proposed_Customizations__c}" style="width: 360px; height: 100px"/> -->
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Scope - Processes" collapsible="false" columns="2" id="scopePb2">
+                    <c:FloMultiSelectList id="multi1" leftLabel="Select Affected Processes" leftOption="{!listAffProccessesOptions}" rightLabel="Selected Process(es)" rightOption="{!selectedAffectedProcesses}" size="7" width="150px"/>
+                    <c:FloMultiSelectList id="multi3" leftLabel="Select Proposed Process(es)" leftOption="{!listPropProccessesOptions}" rightLabel="Selected Proposed Process(es)" rightOption="{!selectedPropProcesses}" size="7" width="150px"/>
+                    <apex:commandButton value="Import From Process(es)" onclick="importFromProcessesJS(); return false;" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Approval" collapsible="false" columns="2">
+                  <apex:inputField value="{!changeRequest.FLODocs__Approval_Status__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__Stage__c}" />
+                  <apex:inputField value="{!changeRequest.FLODocs__Approver_Notes__c}" />
+                  <c:FloMultiSelectList id="multi4" leftLabel="Select Additional Approver(s)" isUser="true" leftOption="{!listAddApproversOptions}" rightLabel="Selected Additional Approver(s)" rightOption="{!selectedAddApprovers}" size="7" width="230px"/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Deployments" collapsible="false" columns="2">
+
+                   <c:FloMultiSelectList id="multi5" leftLabel="Select Developers" isUser="true" leftOption="{!listDevelopersOptions}" rightLabel="Selected Developers" rightOption="{!selectedDevelopers}" size="7" width="230px"/>
+                   <c:FloMultiSelectList id="multi6" leftLabel="Select Deployment assigned" isUser="true" leftOption="{!listDeploymentAssOptions}" rightLabel="Selected Deployment Assigned" rightOption="{!selectedDeploymentAss}" size="7" width="230px"/>
+                  <apex:inputField value="{!changeRequest.FLODocs__Deployment_Date__c}" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Controls" collapsible="false" columns="2">
+                  <apex:inputField value="{!changeRequest.FLODocs__Results_Filter__c}" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Field Set Section" collapsible="false" columns="2">
+                  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__CR_Editable_Fields}" var="f"> 
+                    <apex:inputField value="{!changeRequest[f]}" /><br/>
+                  </apex:repeat>
+                </apex:pageBlockSection>
+              </apex:pageBlock>
+            </apex:outputPanel>
+
+            <!-- ############################## -->
+            <!-- This will work in Lightning UI -->
+            <!-- ############################## -->
+
+            <!-- <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }" > -->
+            <apex:outputPanel >
+             <apex:Pagemessages />
+              <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+              <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+              <div class="slds">
+                <div class="slds-page-header">
+                  <div class="slds-grid">
+                    <div class="slds-col slds-has-flexi-truncate">
+                      <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                           <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                        </div>
+                        <div class="slds-media__body">
+                          <p class="slds-text-title--caps slds-line-height--reset">New Change Request</p>
+                          <apex:outputPanel layout="none" rendered="{!changeRequest.id == null}">
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Create Change Request</h1>
+                          </apex:outputPanel>
+                          <apex:outputPanel layout="none" rendered="{!changeRequest.id != null}">
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Edit Change Request</h1>
+                          </apex:outputPanel>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <fieldset class="slds-form--compound">
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">  <!-- Row 1 -->
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-01">Change Request Name<span style="color:red;">*</span></label>
+                        <apex:inputText value="{!changeRequest.Name}" styleClass="slds-input" />
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-02">Change Type</label>
+                        <div class="slds-select_container" >
+                          <apex:selectList size="1" value="{!changeRequest.FLODocs__Change_Type__c}" styleClass="slds-select" required="true">
+                            <apex:selectOptions value="{!changeTypePicklist}" />
+                          </apex:selectList>
+                        </div>
+                      </div>                      
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-02">Change Request Group</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputField value="{!changeRequest.FLODocs__Change_Request_Group__c}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form-element__row">  <!-- Row 2 -->
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-01">External Change Request Number</label>
+                        <apex:inputText value="{!changeRequest.FLODocs__External_Change_Request_Number__c}" styleClass="slds-input"/>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-02">External Link</label>
+                        <apex:inputText value="{!changeRequest.FLODocs__External_Link__c}" styleClass="slds-input"/>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-02">Release</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputField value="{!changeRequest.FLODocs__Release__c}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form-element__row">  <!-- Row 3 -->
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-01">Status</label>
+                          <div class="slds-select_container" >
+                            <!-- SF-1266 support custom CR status
+                            <apex:selectList size="1" value="{!changeRequest.FLODocs__Completion_Status__c}" styleClass="slds-select">
+                                <apex:selectOptions value="{!completationStatusPicklist}" />
+                            </apex:selectList>
+                            -->
+                            <apex:selectList size="1" value="{!changeRequest.FLODocs__Custom_Status__c}" styleClass="slds-select">
+                                <apex:selectOptions value="{!statusPicklist}" />
+                                <apex:actionSupport event="onchange" action="{!setCompletionStatus}" reRender="None"/>
+                            </apex:selectList>
+                          </div>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-02">Priority</label>
+                        <apex:inputText value="{!changeRequest.FLODocs__Priority__c}" styleClass="slds-input"/>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" >
+                        <label class="slds-form-element__label" for="input-02">Parent Change Request</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputField value="{!changeRequest.FLODocs__Parent_Change_Request__c}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form-element__row">  <!-- Row 4 -->
+                      <div class="slds-form-element slds-size--1-of-3" >
+                        <label class="slds-form-element__label" for="input-02">Stage</label>
+                          <div class="slds-select_container" >
+                              <apex:selectList size="1" value="{!changeRequest.FLODocs__Stage__c}" styleClass="slds-select">
+                                  <apex:selectOptions value="{!stagePicklist}" />
+                              </apex:selectList>
+                          </div>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-02">Development Effort</label>
+                        <apex:inputText value="{!changeRequest.FLODocs__Dev_Effort__c}" styleClass="slds-input"/>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-02">Business Analyst</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputField value="{!changeRequest.FLODocs__Assigned_BA__c}" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset class="slds-form--compound" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                  <div class="slds-section  slds-section__title-action">
+                    <h3 class="slds-section__title  ">Release Information</h3>
+                  </div>
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size--1-of-2" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                      <label class="slds-form-element__label" for="input-02">Is Release</label>
+                      <div class="slds-form-element__control">
+                        <apex:inputCheckbox value="{!changeRequest.FLODocs__Is_Release__c}" />
+                      </div>
+                    </div>
+                    <div class="slds-form-element slds-size--1-of-2" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                      <label class="slds-form-element__label" for="input-02">Scheduled Release Date</label>
+                      <div class="slds-form-element__control">
+                        <apex:inputField value="{!changeRequest.FLODocs__Release_Date__c}" />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset class="slds-form--compound">
+                  <div class="slds-section  slds-section__title-action">
+                    <h3 class="slds-section__title  ">Scope</h3>
+                  </div>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="input-03">Change Overview<span style="color:red;">*</span></label>
+                        <apex:inputTextarea id="changeRequestChangeOverview" value="{!changeRequest.FLODocs__Change_Overview__c}" styleClass="slds-input" />
+                      </div>
+                    </div>  <!-- move customizations to new row -->
+                    
+                    <div class="slds-form-element__row" style="display:{!IF(changeRequest.Is_Release__c,'none','')}">
+                      <div class="slds-form-element slds-size--1-of-2">
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span id="custoCount" class="slds-text-heading--small">Customizations ({!selectedCustomization.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                              <button id='btnAddCustomization' type="button" class="slds-button slds-button--brand" onclick="modalCustoJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="height: 220px;overflow:auto;">
+                            <table id="custo" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedCustomizationlgt}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div id='lnkAddCustomization' class="slds-card__footer"><a href="javascript:void(0);" onclick="modalCustoJs();">View All</a></div>
+                        </article>
+                       </div>
+                    <!-- </div> -->
+
+                    <!-- <div class="slds-form-element__row"> -->
+                      <div class="slds-form-element slds-size--1-of-2">
+                      <!-- </div>
+                      <apex:outputPanel layout="block" id="pcBlock" styleClass="slds-form-element slds-size--1-of-2"> -->
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span id="custoCount" class="slds-text-heading--small">Proposed Customizations</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                          </div>
+                          <div class="slds-card__body" style="height: 220px;overflow:auto;">
+                            <apex:outputPanel id="pcSection">
+                              <apex:pageMessages />
+                                <apex:variable value="{!0}" var="index" />
+                                <table id="custo" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                                  <thead>
+                                    <tr class="slds-text-title--caps">
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">API Name</div>
+                                      </th>
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">Salesforce Type</div>
+                                      </th>
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">Actions</div>
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <apex:repeat value="{!proposed}" var="pc">
+                                        <tr class="slds-hint-parent">
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:inputText value="{!pc.apiName}" style="width: 100%;" disabled="{!changeRequest.FLODocs__Change_Type__c == 'Jira'}"/>
+                                            </div>
+                                          </td>
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:selectList value="{!pc.salesforceType}" size="1" style="width: 100%;" onchange="getToolTip(this.value);" disabled="{!changeRequest.FLODocs__Change_Type__c == 'Jira'}"> 
+                                                <apex:selectOptions value="{!sfdcTypes}"/>
+                                              </apex:selectList>
+                                            </div>
+                                          </td>
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:commandLink value="Del" action="{!delPcRow}" reRender="pcSection" status="statusC" rendered="{!changeRequest.FLODocs__Change_Type__c != 'Jira'}">
+                                                <apex:param value="{!index}" name="delRow" />
+                                              </apex:commandLink>
+                                              <apex:variable value="{!(index + 1)}" var="index" />
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </apex:repeat>
+                                  </tbody>
+                                </table>
+
+                            </apex:outputPanel>
+                          </div>
+                          <div class="slds-card__footer" id="btnAddRowPropCust">
+                            <apex:outputPanel layout="block" style="text-align: right;padding: 10px;">
+                              <apex:commandLink value="Add Row" action="{!addPcRow}" reRender="pcSection" status="statusC" />
+                            </apex:outputPanel>
+                          </div>
+                        </article>
+                      <!-- </apex:outputPanel> -->
+                      </div>
+                    </div>
+
+                    <!-- SF-1594 only display Data Record edit section if Enterprise License and not a Release CR -->
+                    <div class="slds-form-element__row"  style="display:{!IF((!changeRequest.Is_Release__c && isEnterpriseCompliance),'','none')}">
+                      <div class="slds-form-element slds-size--1-of-2">
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span id="dataRecordCount" class="slds-text-heading--small">Data Records ({!selectedDataRecords.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                              <button id='btnAddDataRecord' type="button" class="slds-button slds-button--brand" onclick="modalDataJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="height: 220px;overflow:auto;">
+                            <table id="data" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedDataRecordslgt}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div id='lnkAddDataRecord' class="slds-card__footer"><a href="javascript:void(0);" onclick="modalDataJs();">View All</a></div>
+                        </article>
+                       </div>
+                    <!-- </div> -->
+
+                    <!-- <div class="slds-form-element__row"> -->
+                      <div class="slds-form-element slds-size--1-of-2">
+                      <!-- </div>
+                      <apex:outputPanel layout="block" id="pdBlock" styleClass="slds-form-element slds-size--1-of-2"> -->
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span id="dataRecordCount" class="slds-text-heading--small">Proposed Data Records</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                          </div>
+                          <div class="slds-card__body" style="height: 220px;overflow:auto;">
+                            <apex:outputPanel id="pdSection">
+                              <apex:pageMessages />
+                                <apex:variable value="{!0}" var="index" />
+                                <table id="data" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                                  <thead>
+                                    <tr class="slds-text-title--caps">
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">Record Name</div>
+                                      </th>
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">Object Api</div>
+                                      </th>
+                                      <th scope="col">
+                                        <div class="slds-truncate" title="Name">Actions</div>
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <apex:repeat value="{!proposedData}" var="pd">
+                                        <tr class="slds-hint-parent">
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:inputText value="{!pd.recordName}" style="width: 100%;" disabled="{!changeRequest.FLODocs__Change_Type__c == 'Jira'}"/>
+                                            </div>
+                                          </td>
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:selectList value="{!pd.sobjectApiName}" size="1" style="width: 100%;" onchange="getToolTip(this.value);" disabled="{!changeRequest.FLODocs__Change_Type__c == 'Jira'}"> 
+                                                <apex:selectOptions value="{!trackedObjects}"/>
+                                              </apex:selectList>
+                                            </div>
+                                          </td>
+                                          <td scope="row">
+                                            <div class="slds-truncate" >
+                                              <apex:commandLink value="Del" action="{!delPdRow}" reRender="pdSection" status="statusC" rendered="{!changeRequest.FLODocs__Change_Type__c != 'Jira'}">
+                                                <apex:param value="{!index}" name="delRow" />
+                                              </apex:commandLink>
+                                              <apex:variable value="{!(index + 1)}" var="index" />
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </apex:repeat>
+                                  </tbody>
+                                </table>
+
+                            </apex:outputPanel>
+                          </div>
+                          <div class="slds-card__footer" id="btnAddRowPropData">
+                            <apex:outputPanel layout="block" style="text-align: right;padding: 10px;">
+                              <apex:commandLink value="Add Row" action="{!addPdRow}" reRender="pdSection" status="statusC" />
+                            </apex:outputPanel>
+                          </div>
+                        </article>
+                      <!-- </apex:outputPanel> -->
+                      </div>
+                    </div>
+                    
+                    <script>
+                        var changeTypeValue = "{!changeRequest.FLODocs__Change_Type__c}";
+                        if(changeTypeValue == "Jira"){
+                            document.getElementById('btnAddCustomization').disabled = true;
+                            document.getElementById('lnkAddCustomization').innerHTML = '';
+                            document.getElementById('btnAddRowPropCust').innerHTML = '';
+                            document.getElementById('btnAddDataRecord').disabled = true;
+                            document.getElementById('lnkAddDataRecord').innerHTML = '';
+                            document.getElementById('btnAddRowPropData').innerHTML = '';
+                            document.getElementById('{!$Component.changeRequestForm.changeRequestName}').disabled = true;
+                            document.getElementById('{!$Component.changeRequestForm.changeRequestChangeOverview}').disabled = true;
+                        }
+                    </script>                    
+                    <div class="slds-form-element__row">
+                       <div class="slds-form-element slds-size--1-of-2">
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span class="slds-text-heading--small" id="custoProcess">Process(es) ({!selectedAffectedProcesses.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                               <button type="button" class="slds-button slds-button--brand" onclick="modalProcessJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="height: 120px;overflow:auto;">
+                            <table id="process" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedAffectedProcesses}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                            </div>
+                            <div class="slds-card__footer"><a href="javascript:void(0);" onclick="modalProcessJs();">View All</a></div>
+                          </article>
+                       </div>
+                       <div class="slds-form-element slds-size--1-of-2">
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span class="slds-text-heading--small" id="custoPropProcess">Proposed Process(es) ({!selectedPropProcesses.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                                <button type="button" class="slds-button slds-button--brand" onclick="modalPropProcessJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="height: 120px;overflow:auto;">
+                            <table id="propProcess" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedPropProcesses}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="slds-card__footer"><a href="javascript:void(0);" onclick="modalPropProcessJs();">View All</a></div>
+                        </article>
+                       </div>
+                       
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset class="slds-form--compound" style="display: {!If(canChangeApprovalStatus,'','none')}">
+                  <div class="slds-section  slds-section__title-action">
+                    <h3 class="slds-section__title  ">Approval</h3>
+                  </div>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size--1-of-2">
+                         <label class="slds-form-element__label" for="input-02">Approval Status</label>
+                          <div class="slds-select_container" >
+                              <apex:selectList size="1" value="{!changeRequest.FLODocs__Approval_Status__c}" styleClass="slds-select" id="selectApprovalStatus">
+                                  <apex:selectOptions value="{!approvalStatusPicklist}" />
+                              </apex:selectList>
+                          </div>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="input-02">Stage</label>
+                          <div class="slds-select_container" >
+                              <apex:selectList size="1" value="{!changeRequest.FLODocs__Stage__c}" styleClass="slds-select">
+                                  <apex:selectOptions value="{!stagePicklist}" />
+                              </apex:selectList>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="input-03">Approver Notes</label>
+                        <apex:inputTextarea value="{!changeRequest.FLODocs__Approver_Notes__c}" styleClass="slds-input" />
+                      </div>
+                       <div class="slds-form-element slds-size--1-of-2">
+                         <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span class="slds-text-heading--small" id="countAdditionalApprovers">Additional Approver(s) ({!selectedAddApprovers.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                               <button type="button" class="slds-button slds-button--brand" onclick="modalUserJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="overflow:auto;">
+                            <table id="additionalApprovers" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedAddApprovers}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="slds-card__footer"><a href="javascript:void(0);" onclick="modalCustoJs();">View All</a></div>
+                        </article>
+                      </div>
+                    </div>
+           
+                  </div>
+                </fieldset>
+                <fieldset class="slds-form--compound">
+                  <div class="slds-section  slds-section__title-action">
+                    <h3 class="slds-section__title  ">Deployment</h3>
+                  </div>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="input-06">Deployment Date</label> <br/>
+                         <apex:inputField value="{!changeRequest.FLODocs__Deployment_Date__c}" id="compareLogDate" styleClass="slds-input"/>
+                         <apex:message for="compareLogDate" styleClass="locationError" />
+                      </div> 
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <article class="slds-card">
+                          <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                 
+                                </span>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2>
+                                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                    <span class="slds-text-heading--small" id="countDeploy">Deployment Staff ({!selectedDeploymentAss.size})</span>
+                                  </a>
+                                </h2>
+                              </div>
+                            </header>
+                            <div class="slds-no-flex">
+                               <button type="button" class="slds-button slds-button--brand" onclick="modalDevAssignJs();" >Add</button>
+                            </div>
+                          </div>
+                          <div class="slds-card__body" style="overflow:auto;">
+                            <table id="deploy" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <apex:repeat value="{!selectedDeploymentAss}" var="c">
+                                    <tr class="slds-hint-parent">
+                                      <th scope="row">
+                                        <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                      </th>
+                                    </tr>
+                                  </apex:repeat>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="slds-card__footer"><a href="javascript:void(0);" onclick="modalCustoJs();">View All</a></div>
+                        </article>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3">
+                        <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                          <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                              <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                               
+                              </span>
+                            </div>
+                            <div class="slds-media__body">
+                              <h2>
+                                <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                  <span class="slds-text-heading--small" id="countDeveloper">Development Staff ({!selectedDevelopers.size})</span>
+                                </a>
+                              </h2>
+                            </div>
+                          </header>
+                          <div class="slds-no-flex">
+                                <button type="button" class="slds-button slds-button--brand" onclick="modalDeveloperJs();" >Add </button>
+                          </div>
+                        </div>
+                        <div class="slds-card__body" style="overflow:auto;">
+                          <table id="developer" class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                            <thead>
+                              <tr class="slds-text-title--caps">
+                                <th scope="col">
+                                  <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <apex:repeat value="{!selectedDevelopers}" var="c">
+                                  <tr class="slds-hint-parent">
+                                    <th scope="row">
+                                      <div class="slds-truncate" title="{!c.Label}"><a href="/{!c.Value}">{!c.Label}</a></div>
+                                    </th>
+                                  </tr>
+                                </apex:repeat>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="slds-card__footer"><a href="javascript:void(0);" onclick="modalCustoJs();">View All</a></div>
+                        </article>
+                      </div>
+                    </div>
+                    <div class="slds-form-element__row" >
+                      <div class="slds-form-element slds-size--1-of-3" >
+                        <label class="slds-form-element__label" for="input-02">Requires Manual Deployment Steps</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputCheckbox value="{!changeRequest.FLODocs__Requires_Manual_Deployment_Steps__c}" />
+                        </div>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-06">Pre-Deployment Steps</label> <br/>
+                        <apex:inputField value="{!changeRequest.FLODocs__Pre_Deployment_Steps__c}" styleClass="slds-input"/>
+                      </div>
+                      <div class="slds-form-element slds-size--1-of-3" style="display:{!IF($Setup.FLODocs__Strongpoint_Release_Management__c.FLODocs__isEnabled__c,'block','none')}">
+                        <label class="slds-form-element__label" for="input-06">Post-Deployment Steps</label> <br/>
+                        <apex:inputField value="{!changeRequest.FLODocs__Post_Deployment_Steps__c}" styleClass="slds-input"/>
+                      </div>  
+                    </div>
+                  </div>
+                </fieldset>
+                <br/>
+                <br/>
+                <br/>
+
+                <!-- #################################### -->
+                <!-- MODAL HTML Lightning to be displayed -->
+                <!-- #################################### -->
+                <div id="ModalCustomization" style="display:none;" >
+                  <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                      <!-- RR 20201017 make the Add Customizations container much wider to allow for long Customization names -->
+                      <div class="slds-modal__container" style="max-width:80rem; width:80%;">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 id="header43" class="slds-text-heading--medium">Add Customizations</h2>
+                          <p class="slds-m-top--x-small">Select customizations to be added to the Change Request.</p>
+                           <apex:commandButton value="Import From Process(es)" onclick="importFromProcessesJS(); return false;" />
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                          <!-- <apex:outputPanel id="multi2Wrap"> -->
+                            <!-- RR 20201017 make the customization selector lists much wider (from 196px => 600px) to accomodate long names --> 
+                            <c:FloMultiSelectList id="multi2" leftLabel="Select Customization" leftOption="{!listCustomizationsOptions}" rightLabel="Selected Customization(s)" rightOption="{!selectedCustomization}" size="7" width="600px" isCustomization="true"/>
+                          <!-- </apex:outputPanel> -->
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral" onclick="modalCustoJs(); return false;">Save</button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="slds-backdrop slds-backdrop--open"></div>
+                </div>
+
+                <div id="ModalDataRecord" style="display:none;" >
+                  <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                      <!-- RR 20201017 make the Add Customizations container much wider to allow for long Customization names -->
+                      <div class="slds-modal__container" style="max-width:80rem; width:80%;">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 id="header43" class="slds-text-heading--medium">Add Data Records</h2>
+                          <p class="slds-m-top--x-small">Select data records to be added to the Change Request.</p>
+                            <!-- <apex:commandButton value="Import From Process(es)" onclick="importFromProcessesJS(); return false;" /> -->
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                          <c:FloMultiSelectList id="multi9" leftLabel="Select Data Records" leftOption="{!listDataRecordOptions}" rightLabel="Selected Data Record(s)" rightOption="{!selectedDataRecords}" size="7" width="600px" isDataRecord="true"/>
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral" onclick="modalDataJs(); return false;">Save</button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="slds-backdrop slds-backdrop--open"></div>
+                </div>
+
+                <div id="ModalUser" style="display:none;" >
+                  <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                      <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 id="header43" class="slds-text-heading--medium">Add additional approver(s)</h2>
+                          <p class="slds-m-top--x-small">Select Additional Approver(s) to be added into the Change Request.</p>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                          <c:FloMultiSelectList id="multi4" leftLabel="Select Additional Approver(s)" isUser="true" leftOption="{!listAddApproversOptions}" rightLabel="Selected Additional Approver(s)" rightOption="{!selectedAddApprovers}" size="7" width="196px"/>
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral" onclick="modalUserJs(); return false;">Save</button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="slds-backdrop slds-backdrop--open"></div>
+                  </div>
+
+
+                  <div id="ModalDevAssign" style="display:none;" >
+                  <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                      <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 id="header433" class="slds-text-heading--medium">Add Deployment Assigned</h2>
+                          <p class="slds-m-top--x-small">Select Deployment Assigned to be added into the Change Request.</p>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                               <c:FloMultiSelectList id="multi6" leftLabel="Select Deployment assigned" isUser="true" leftOption="{!listDeploymentAssOptions}" rightLabel="Selected Deployment Assigned" rightOption="{!selectedDeploymentAss}" size="7" width="196px"/>
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral" onclick="modalDevAssignJs(); return false;">Save</button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="slds-backdrop slds-backdrop--open"></div>
+                  </div>
+
+                <div id="ModalDeveloper" style="display:none;" >
+                  <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                      <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 id="header433" class="slds-text-heading--medium">Add Developers</h2>
+                          <p class="slds-m-top--x-small">Select Developers to be added into the Change Request.</p>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                             <c:FloMultiSelectList id="multi5" leftLabel="Select Developers" isUser="true" leftOption="{!listDevelopersOptions}" rightLabel="Selected Developers" rightOption="{!selectedDevelopers}" size="7" width="196px"/>
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral" onclick="modalDeveloperJs(); return false;">Save</button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="slds-backdrop slds-backdrop--open"></div>
+                </div>
+
+                <div id="ModalProcess" style="display:none;" >
+                    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                          <div class="slds-modal__header">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                              <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="header433" class="slds-text-heading--medium">Add Process(es)</h2>
+                            <p class="slds-m-top--x-small">Select process(es) to be added into the Change Request.</p>
+                          </div>
+                          <div class="slds-modal__content slds-p-around--medium">
+                                <c:FloMultiSelectList id="multi1" leftLabel="Select Affected Processes" leftOption="{!listAffProccessesOptions}" rightLabel="Selected Process(es)" rightOption="{!selectedAffectedProcesses}" size="7" width="196px"/> 
+                          </div>
+                          <div class="slds-modal__footer">
+                            <button class="slds-button slds-button--neutral" onclick="modalProcessJs(); return false;">Save</button>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                  </div>
+
+                  <div id="ModalPropProcess" style="display:none;" >
+                    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                          <div class="slds-modal__header">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                              <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="header433" class="slds-text-heading--medium">Add Proposed Process(es)</h2>
+                            <p class="slds-m-top--x-small">Select proposed process(es) to be added into the Change Request.</p>
+                          </div>
+                          <div class="slds-modal__content slds-p-around--medium">
+                               <c:FloMultiSelectList id="multi3" leftLabel="Select Proposed Process(es)" leftOption="{!listPropProccessesOptions}" rightLabel="Selected Proposed Process(es)" rightOption="{!selectedPropProcesses}" size="7" width="150px"/>
+                          </div>
+                          <div class="slds-modal__footer">
+                            <button class="slds-button slds-button--neutral" onclick="modalPropProcessJs(); return false;">Save</button>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                  </div>
+
+                  
+
+                  <div class="slds-docked-form-footer">
+                    <button class="slds-button slds-button--icon slds-button--icon-error" title="Review the Following Errors">
+                      <span class="slds-assistive-text">Settings</span>
+                    </button>
+                    <button type="button" class="slds-button slds-button--neutral" onclick="cancelCR();">Cancel</button>
+                    <button type="button" class="slds-button slds-button--brand" onclick="saveCR();" id="saveButton" >Save</button>
+                  </div>
+               </div>
+            </apex:outputPanel>
+          </apex:form>
+          <apex:actionStatus id="statusC">
+            <apex:facet name="start">
+              <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                &nbsp;
+              </div>
+              <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                  <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                  <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                </div>
+              </div>
+            </apex:facet>
+              <apex:facet name="stop"></apex:facet>
+          </apex:actionStatus>
+</apex:page>

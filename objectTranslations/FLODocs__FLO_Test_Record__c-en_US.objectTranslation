@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Process Owner to be assigned into the Test Record --></help>
+        <label><!-- Assign Process Owner --></label>
+        <name>FLODocs__Assign_Process_Owner__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is  the change being tested. --></help>
+        <label><!-- Change Tested --></label>
+        <name>FLODocs__Change_Tested__c</name>
+        <relationshipLabel><!-- Test Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Create for CR --></label>
+        <name>FLODocs__Create_for_CR__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the customizations being tested.  This field is optional but should be used if the test did not fully complete. --></help>
+        <label><!-- Customization --></label>
+        <name>FLODocs__Customization__c</name>
+        <relationshipLabel><!-- Test Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Data input to test - or to make any Regression, Exploratory test --></help>
+        <label><!-- Data Input Fields --></label>
+        <name>FLODocs__Data_Input_Fields__c</name>
+        <relationshipLabel><!-- Test Records (Data Input Fields) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data Input Form --></label>
+        <name>FLODocs__Data_Input_Form__c</name>
+        <relationshipLabel><!-- Test Records (Data Input Form) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Data set selected for the Test --></help>
+        <label><!-- Data set --></label>
+        <name>FLODocs__Data_set__c</name>
+    </fields>
+    <fields>
+        <help><!-- Expected outcome to be add manually for the test --></help>
+        <label><!-- Expected Outcome --></label>
+        <name>FLODocs__Expected_Outcome__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>FLODocs__ExternalId__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the parent testing record. --></help>
+        <label><!-- Parent Test --></label>
+        <name>FLODocs__Parent_Test__c</name>
+        <relationshipLabel><!-- Test Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the process issue that the test relates to. --></help>
+        <label><!-- Process Issue Tested --></label>
+        <name>FLODocs__Process_Issue_Tested__c</name>
+        <relationshipLabel><!-- Test Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the process being tested. --></help>
+        <label><!-- Process --></label>
+        <name>FLODocs__Process__c</name>
+        <relationshipLabel><!-- Test Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the status of the test. --></help>
+        <label><!-- Status --></label>
+        <name>FLODocs__Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the tester&apos;s notes from the test. --></help>
+        <label><!-- Test Notes --></label>
+        <name>FLODocs__Test_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of the FLO Test Record --></help>
+        <label><!-- Test Number --></label>
+        <name>FLODocs__Test_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the test plan from the process or step that you are testing. --></help>
+        <label><!-- Test Script --></label>
+        <name>FLODocs__Test_Script__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Template --></label>
+        <name>FLODocs__Test_Template__c</name>
+        <relationshipLabel><!-- Test Records (Test Template) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the type of test being conducted. --></help>
+        <label><!-- Test Type --></label>
+        <name>FLODocs__Test_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Deprecated --></help>
+        <label><!-- UPDATE CHILD ASSIGNED --></label>
+        <name>FLODocs__UPDATE_CHILD_ASSIGNED__c</name>
+    </fields>
+</CustomObjectTranslation>

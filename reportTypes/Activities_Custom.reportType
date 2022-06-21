@@ -4,6 +4,10 @@
     <category>activities</category>
     <deployed>true</deployed>
     <description>Custom Report based on Primary Object = Activities.</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>UserAsOwner</relationship>
+    </join>
     <label>Activities - Custom</label>
     <sections>
         <columns>
@@ -575,6 +579,79 @@
             <field>Account.Sales_Region_Formula__c</field>
             <table>Activity</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account.Id</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account.Name</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RecordType.Id</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RecordType.DeveloperName</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account.ACV_Capital_Sales_Rep__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner.Id</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id__c</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner.Profile</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner.IsActive</field>
+            <table>Activity</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Profile</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Name</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Manager</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserRole</field>
+            <table>Activity.UserAsOwner</table>
+        </columns>
+        <masterLabel>Assigned To</masterLabel>
     </sections>
 </ReportType>

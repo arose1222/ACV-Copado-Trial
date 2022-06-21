@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- CR Editable Fields --></label>
+        <name>FLODocs__CR_Editable_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Effort And Estimations --></label>
+        <name>FLODocs__Effort_And_Estimations</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Approval --></label>
+        <name>FLODocs__StrongpointCRApproval</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Controls --></label>
+        <name>FLODocs__StrongpointCRControls</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Deployment --></label>
+        <name>FLODocs__StrongpointCRDeployment</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Main --></label>
+        <name>FLODocs__StrongpointCRMain</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Process --></label>
+        <name>FLODocs__StrongpointCRProcess</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CR Scope --></label>
+        <name>FLODocs__StrongpointCRScope</name>
+    </fieldSets>
+    <fields>
+        <help><!-- Activation status of the Change Request --></help>
+        <label><!-- Active --></label>
+        <name>FLODocs__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Additional approvers to be selected as the approvers of the Change Request --></help>
+        <label><!-- Additional Approvers --></label>
+        <name>FLODocs__Additional_Approvers__c</name>
+    </fields>
+    <fields>
+        <help><!-- ManagedPackage Namespace to be used to group changes --></help>
+        <label><!-- Affected Package Namespace --></label>
+        <name>FLODocs__Affected_Bundle_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the process to be changed. --></help>
+        <label><!-- Affected Process(es) --></label>
+        <name>FLODocs__Affected_Processes__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Approvers Reason --></label>
+        <name>FLODocs__All_Approvers_Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the approval status of the change request. --></help>
+        <label><!-- Approval Status --></label>
+        <name>FLODocs__Approval_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approve process --></label>
+        <name>FLODocs__Approve_process__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field shows the users who have approved the change request by clicking the approve button. The approve button requires that the approver check the impact analysis before approving. --></help>
+        <label><!-- Approved By --></label>
+        <name>FLODocs__Approved_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved Is Included in Mandated --></label>
+        <name>FLODocs__Approved_Is_Included_in_Mandated__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the notes made by the approver explaining the approval decision. --></help>
+        <label><!-- Approver Notes --></label>
+        <name>FLODocs__Approver_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the person whose approval is required for the specified change. It is set by the approval script based on the approval path rules. --></help>
+        <label><!-- Approver --></label>
+        <name>FLODocs__Approver__c</name>
+        <relationshipLabel><!-- Change Requests (Approver) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field tracks whether the data for the fields in question has been archived.  This must be set to Skip, Complete or Manually Completed in order to proceed to delete fields. --></help>
+        <label><!-- Archiving Status --></label>
+        <name>FLODocs__Archiving_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Business Analyst assigned to this Change Request. --></help>
+        <label><!-- Assigned BA --></label>
+        <name>FLODocs__Assigned_BA__c</name>
+        <relationshipLabel><!-- Change Requests (Assigned BA) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- When check enable the auto approve of the noncompliance changes detected that belong to the bundle specify in Affected Bundle Id --></help>
+        <label><!-- Auto-Approve Based On Bundle --></label>
+        <name>FLODocs__Auto_Approve_Based_On_Bundle__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the expected cost of the change. --></help>
+        <label><!-- Budgeted Cost --></label>
+        <name>FLODocs__Budgeted_Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are the hours of time expected to complete the change, if known. --></help>
+        <label><!-- Budgeted Hours --></label>
+        <name>FLODocs__Budgeted_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the change level required by the applicable policy rules. --></help>
+        <label><!-- Change Level Required --></label>
+        <name>FLODocs__Change_Level_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a summary of the desired change. --></help>
+        <label><!-- Change Overview --></label>
+        <name>FLODocs__Change_Overview__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field shows the approval path rules determined by the system to be applicable. --></help>
+        <label><!-- Policy --></label>
+        <name>FLODocs__Change_Policy__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Group associated with this Change Request. --></help>
+        <label><!-- Change Request Group --></label>
+        <name>FLODocs__Change_Request_Group__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Change Request Type --></label>
+        <name>FLODocs__Change_Request_Type__c</name>
+        <picklistValues>
+            <masterLabel>Customizations</masterLabel>
+            <translation><!-- Customizations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Records</masterLabel>
+            <translation><!-- Data Records --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Change Stage --></label>
+        <name>FLODocs__Change_Stage__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the type of change: Minor -  an adjustment to a current process not requiring a new customization or new code, Major - an adjustment to an existing process that requires new customizations to be created or new code to be written, New Process --></help>
+        <label><!-- Change Type --></label>
+        <name>FLODocs__Change_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completion Date --></label>
+        <name>FLODocs__Completion_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the stage of completion for the change request. --></help>
+        <label><!-- Completion Status --></label>
+        <name>FLODocs__Completion_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the process issue that the change request was created from. --></help>
+        <label><!-- Created From --></label>
+        <name>FLODocs__Created_From__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Custom Change Request Status --></help>
+        <label><!-- Status --></label>
+        <name>FLODocs__Custom_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field shows the status of the customization import process --></help>
+        <label><!-- Customization Import Status --></label>
+        <name>FLODocs__Customization_Import_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customizations related to the FLO Change Request --></help>
+        <label><!-- Customizations --></label>
+        <name>FLODocs__Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Existing data records associated with the Change Request. --></help>
+        <label><!-- Data Records --></label>
+        <name>FLODocs__Data_Records__c</name>
+    </fields>
+    <fields>
+        <help><!-- User assigned to the deployment related to a FLO Change Request --></help>
+        <label><!-- Deployment Assigned --></label>
+        <name>FLODocs__Deployment_Assigned__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the date the deployment is scheduled to be completed. --></help>
+        <label><!-- Deployment Date --></label>
+        <name>FLODocs__Deployment_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number that represents the relative or absolute Development Effort for this Change Request. (Story Points, Hours, Days, etc.) --></help>
+        <label><!-- Dev Effort --></label>
+        <name>FLODocs__Dev_Effort__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the names of the developers who worked on the change. --></help>
+        <label><!-- Developers --></label>
+        <name>FLODocs__Developers__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>FLODocs__ExternalId__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Approver user to the external system ticket --></help>
+        <label><!-- External Approved By --></label>
+        <name>FLODocs__External_Approved_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- External System ticket number --></help>
+        <label><!-- External Change Request Number --></label>
+        <name>FLODocs__External_Change_Request_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- The user that created the External system ticket --></help>
+        <label><!-- External Created By --></label>
+        <name>FLODocs__External_Created_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- The user that made the last change to the external system ticket --></help>
+        <label><!-- External Last modified By --></label>
+        <name>FLODocs__External_Last_modified_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the link to any external record relevant to the change such as an external change management record. --></help>
+        <label><!-- External Link --></label>
+        <name>FLODocs__External_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Standard Issue type from the External System --></help>
+        <label><!-- External Type --></label>
+        <name>FLODocs__External_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level requirement --></label>
+        <name>FLODocs__FLO_level_requirement__c</name>
+    </fields>
+    <fields>
+        <label><!-- LastApprover --></label>
+        <name>FLODocs__Flo_LastApprover__c</name>
+    </fields>
+    <fields>
+        <help><!-- Order of approvers in the FLO  Change Request - Internal use / Logic --></help>
+        <label><!-- Order Approver --></label>
+        <name>FLODocs__Flo_Order_Approver__c</name>
+    </fields>
+    <fields>
+        <help><!-- When check execute the impact analysis --></help>
+        <label><!-- Impact Analysis --></label>
+        <name>FLODocs__Impact_Analysis__c</name>
+    </fields>
+    <fields>
+        <help><!-- These are processes other than the affected processes which could be impacted by changes to the specified customizations. --></help>
+        <label><!-- Impacted Processes --></label>
+        <name>FLODocs__Impacted_Processes__c</name>
+    </fields>
+    <fields>
+        <help><!-- History related to all the customizations being imported from Change Set, Manifest XML and manually updated --></help>
+        <label><!-- Import Customizations History --></label>
+        <name>FLODocs__Import_Customizations_History__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field triggers the import of customizations from the &amp;quot;Affected Processes&amp;quot; and potentially their children.  You can decide which process(es) to import and whether to include their subprocesses as the import begins. --></help>
+        <label><!-- Import From Processes --></label>
+        <name>FLODocs__Import_From_Processes__c</name>
+    </fields>
+    <fields>
+        <help><!-- True if this Change Request represents a Release. The Customizations from all related (child) Change Requests are rolled up into this Release for deployment. --></help>
+        <label><!-- Is Release --></label>
+        <name>FLODocs__Is_Release__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field stores the mandated approvers based on the rules set in the relevant Approval Path records. --></help>
+        <label><!-- Mandated Approver(s) --></label>
+        <name>FLODocs__Mandated_Approvers__c</name>
+    </fields>
+    <fields>
+        <help><!-- Field to flag manual update. --></help>
+        <label><!-- Manually Change --></label>
+        <name>FLODocs__Manually_Change__c</name>
+    </fields>
+    <fields>
+        <help><!-- Internal Use - (CaseID linked to the CR) --></help>
+        <label><!-- Originating Case --></label>
+        <name>FLODocs__Originating_Case__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Issue originated from Process Issue related to the Parent Change Request --></help>
+        <label><!-- Originating Issue / RFC (Formula) --></label>
+        <name>FLODocs__Originating_Issue_RFC_Formula__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set this field to record the change request that this change request or deployment record relates. --></help>
+        <label><!-- Parent Change Request --></label>
+        <name>FLODocs__Parent_Change_Request__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Manual steps required after deployment. --></help>
+        <label><!-- Post-Deployment Steps --></label>
+        <name>FLODocs__Post_Deployment_Steps__c</name>
+    </fields>
+    <fields>
+        <help><!-- Manual steps required prior to deployment. --></help>
+        <label><!-- Pre-Deployment Steps --></label>
+        <name>FLODocs__Pre_Deployment_Steps__c</name>
+    </fields>
+    <fields>
+        <help><!-- The priority of this Change Request, typically relative to others in the same Release or Sprint. --></help>
+        <label><!-- Priority --></label>
+        <name>FLODocs__Priority__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customizations to be created in the future, and get pre-approval of those customizations. The information of the API Name of the customizations must be equal and match to the ones to be created. (e.g: CustomField = Account.FieldA__c, or ContactTrigger = A --></help>
+        <label><!-- Proposed Customization(s) --></label>
+        <name>FLODocs__Proposed_Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Proposed (ie - not yet created) data records associated with the Change Request. --></help>
+        <label><!-- Proposed Data Records --></label>
+        <name>FLODocs__Proposed_Data_Records__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the process that is proposed to replace the existing process --></help>
+        <label><!-- Proposed Process(es) --></label>
+        <name>FLODocs__Proposed_Process_es__c</name>
+    </fields>
+    <fields>
+        <help><!-- Use to indicate that the record is being created in a push from another account --></help>
+        <label><!-- Push --></label>
+        <name>FLODocs__Push__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the reason of the Change request --></help>
+        <label><!-- Reason --></label>
+        <name>FLODocs__Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- his field records any person who has rejected the change request. Rejecting a change request stops further approval processes. This field is cleared if the approver subsequently approves the Change Request. --></help>
+        <label><!-- Rejected By --></label>
+        <name>FLODocs__Rejected_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- Planned date for the release. --></help>
+        <label><!-- Release Date --></label>
+        <name>FLODocs__Release_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The parent Change Request representing the Release that this Change Request belongs to. --></help>
+        <label><!-- Release --></label>
+        <name>FLODocs__Release__c</name>
+        <relationshipLabel><!-- Release Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Remove inactive customizations - N/A --></help>
+        <label><!-- Remove Inactive Customizations --></label>
+        <name>FLODocs__Remove_Inactive_Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- True if either manual pre- or post-deployment steps are required. --></help>
+        <label><!-- Requires Manual Deployment Steps --></label>
+        <name>FLODocs__Requires_Manual_Deployment_Steps__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter values that must be return by the report in order to clear it. (see field description for samples) --></help>
+        <label><!-- Results Filter --></label>
+        <name>FLODocs__Results_Filter__c</name>
+    </fields>
+    <fields>
+        <help><!-- Search Customization - N/A - Future --></help>
+        <label><!-- Search Customization --></label>
+        <name>FLODocs__Search_Customization__c</name>
+    </fields>
+    <fields>
+        <help><!-- Search Process --></help>
+        <label><!-- Search Process --></label>
+        <name>FLODocs__Search_Process__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Id --></label>
+        <name>FLODocs__SourceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Enviroment --></label>
+        <name>FLODocs__Source_Enviroment__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the stage of the change request (see description for value details) --></help>
+        <label><!-- Stage --></label>
+        <name>FLODocs__Stage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status-DEPRECATED --></label>
+        <name>FLODocs__Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Id --></label>
+        <name>FLODocs__TargetId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Environment --></label>
+        <name>FLODocs__Target_Environment__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Customizations --></label>
+        <name>FLODocs__Customizations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Data Records --></label>
+        <name>FLODocs__Data_Records</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- New_FLO_Change_Request --></label>
+        <name>FLODocs__New_FLO_Change_Request</name>
+    </webLinks>
+</CustomObjectTranslation>

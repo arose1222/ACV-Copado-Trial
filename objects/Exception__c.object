@@ -1321,16 +1321,22 @@
         <columns>Review_Decision__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Dealer_ID__c</columns>
+        <columns>Batch_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Exception__c.Titles</value>
+            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
         </filters>
         <filters>
             <field>CREATED_DATE</field>
             <operation>equals</operation>
             <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Exceptions_Found__c</field>
+            <operation>contains</operation>
+            <value>unwind</value>
         </filters>
         <label>Priorirty Title Exceptions</label>
     </listViews>
@@ -1349,10 +1355,33 @@
         <columns>Batch_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Status__c</field>
+            <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Open</value>
+            <value>Exception__c.ML_Titles,Exception__c.Titles</value>
         </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>unwind</value>
+        </filters>
+        <label>Unpaid Exceptions</label>
+    </listViews>
+    <listViews>
+        <fullName>Unwind_Title_Exceptions</fullName>
+        <columns>Related_Auction__c</columns>
+        <columns>Related_Case__c</columns>
+        <columns>Batch_Id__c</columns>
+        <columns>NAME</columns>
+        <columns>Exceptions_Found__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1364,11 +1393,11 @@
             <value>TODAY</value>
         </filters>
         <filters>
-            <field>Title_Scanned_By__c</field>
+            <field>Exceptions_Found__c</field>
             <operation>contains</operation>
-            <value>lewis</value>
+            <value>unwind</value>
         </filters>
-        <label>Unpaid Exceptions</label>
+        <label>Unwind Title Exceptions - Today</label>
     </listViews>
     <listViews>
         <fullName>priority</fullName>

@@ -295,7 +295,10 @@ export default class RecurringEvent extends NavigationMixin(LightningElement) {
         this.occurrenceIds.push('');
     }
 
-
+    handleInstructionsChange(e) {
+        this.timeline.Special_Instructions__c = e.detail.value;
+    }
+    
     /**
      * @description saves the timeline record when the save button is clicked
      */

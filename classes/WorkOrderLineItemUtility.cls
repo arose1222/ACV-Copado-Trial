@@ -94,7 +94,7 @@ public class WorkOrderLineItemUtility {
                     if (workRecord.ServiceAppointments[0]?.Bundled__c == true) {
                         continue;
                     }
-
+                    
                     for ( WorkOrderLineItem workItemRecord : workRecord.WorkOrderLineItems ) {
                         /* Flag Logic:
                         *   If any Line Item status is on hold, the work order is on hold (on hold is higher priority than in progress)
@@ -145,9 +145,11 @@ public class WorkOrderLineItemUtility {
                         workOrderStatusMap.put( workRecord.Id, workRecord.status );
                     }
                     else if(canceledFlag){
-                        workRecord.status = CANCELED_STATUS;
-                        workOrderUpdateLst.add(workRecord);
-                        workOrderStatusMap.put(workRecord.id, workRecord.status);
+                        if(workRecord.status != CANCELED_STATUS) {
+                            workRecord.status = CANCELED_STATUS;
+                            workOrderUpdateLst.add(workRecord);
+                            workOrderStatusMap.put(workRecord.id, workRecord.status);
+                        }
                     } else if ( cannotCompleteFlag ) {
                         workRecord.status = CANNOT_COMPLETE_STATUS;
                         workOrderUpdateLst.add(workRecord);
@@ -183,7 +185,6 @@ public class WorkOrderLineItemUtility {
                 if(sa.Status == woStatusMap.get(sa.ParentRecordId)){continue;}
 
                 sa.Status = woStatusMap.get(sa.ParentRecordId);
-
                 if ( woStatusMap.get(sa.ParentRecordId) == CANCELED_STATUS ) {
                     sa.Completed_Canceled_Notes__c = 'All Work Order Line Items were cancelled for this appointment, so it has been automatically updated to reflect this';
                 } else if ( woStatusMap.get(sa.ParentRecordId) == CANNOT_COMPLETE_STATUS ) {

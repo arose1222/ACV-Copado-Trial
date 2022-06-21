@@ -101,7 +101,7 @@
         <connector>
             <targetReference>Get_Account_Record</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>Buyer_payment_Method_1__c</field>
             <operator>Contains</operator>
@@ -109,11 +109,18 @@
                 <stringValue>acv_capital</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>Buyer_payment_Method_1__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>acv_capital_ta_hold</stringValue>
+            </value>
+        </filters>
         <object>Case</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <description>collect all emails from the Alt Capital email addresses on the Account Record to populate into the title information Case Record</description>
         <name>Account_alternate_emails</name>

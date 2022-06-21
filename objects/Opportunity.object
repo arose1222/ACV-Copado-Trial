@@ -1617,6 +1617,17 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Interest_in_Daily_Fee__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Dealer has shown interest in Daily Fee. Jira ticket https://acvauctions.atlassian.net/browse/CSO-573</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Dealer has shown interest in Daily Fee.</inlineHelpText>
+        <label>Interest in Daily Fee</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Inventory_Turn_Time__c</fullName>
         <description>CSO-215:  SFDC Lead Gen: Lead to Oppty Mapping</description>
         <externalId>false</externalId>
@@ -1785,6 +1796,19 @@ IF(Business_Intelliscore_Plus_Rating__c  &lt;= 100,1,null))))))</formula>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Max_Line_Limit_Elegible__c</fullName>
+        <description>Dealers are going to be charged based on risk from now on.
+https://acvauctions.atlassian.net/browse/CSO-573</description>
+        <externalId>false</externalId>
+        <label>Max Line Limit Elegible</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Name</fullName>
@@ -1976,19 +2000,9 @@ Anticipated Yearly Volume</description>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>2021 Price Book</fullName>
-                    <default>false</default>
-                    <label>2021 Price Book</label>
-                </value>
-                <value>
                     <fullName>60 for 60 Tax Season 2022</fullName>
                     <default>false</default>
                     <label>60 for 60 Tax Season 2022</label>
-                </value>
-                <value>
-                    <fullName>A /  Orange Elite Pricing 9.28.21</fullName>
-                    <default>false</default>
-                    <label>A /  Orange Elite Pricing 9.28.21</label>
                 </value>
                 <value>
                     <fullName>AAA Pricebook 9.23.21</fullName>
@@ -1996,29 +2010,19 @@ Anticipated Yearly Volume</description>
                     <label>AAA Pricebook 9.23.21</label>
                 </value>
                 <value>
-                    <fullName>TA Hold - $50</fullName>
+                    <fullName>Fast Pay - $100</fullName>
                     <default>false</default>
-                    <label>Advantage - $50</label>
+                    <label>Accelerate - $100</label>
                 </value>
                 <value>
-                    <fullName>TA Hold - $75</fullName>
+                    <fullName>Fast Pay - $125</fullName>
                     <default>false</default>
-                    <label>Advantage - $75</label>
+                    <label>Accelerate - $125</label>
                 </value>
                 <value>
-                    <fullName>TA Hold - $100</fullName>
+                    <fullName>Fast Pay - $150</fullName>
                     <default>false</default>
-                    <label>Advantage - $100</label>
-                </value>
-                <value>
-                    <fullName>TA Hold - $125</fullName>
-                    <default>false</default>
-                    <label>Advantage - $125</label>
-                </value>
-                <value>
-                    <fullName>TA Hold - $150</fullName>
-                    <default>false</default>
-                    <label>Advantage - $150</label>
+                    <label>Accelerate - $150</label>
                 </value>
                 <value>
                     <fullName>Fast Pay -  $30</fullName>
@@ -2046,24 +2050,120 @@ Anticipated Yearly Volume</description>
                     <label>Accelerate - $75</label>
                 </value>
                 <value>
-                    <fullName>Fast Pay - $100</fullName>
+                    <fullName>TA Hold - $100</fullName>
                     <default>false</default>
-                    <label>Accelerate - $100</label>
+                    <label>Advantage - $100</label>
                 </value>
                 <value>
-                    <fullName>Fast Pay - $125</fullName>
+                    <fullName>TA Hold - $125</fullName>
                     <default>false</default>
-                    <label>Accelerate - $125</label>
+                    <label>Advantage - $125</label>
                 </value>
                 <value>
-                    <fullName>Fast Pay - $150</fullName>
+                    <fullName>TA Hold - $150</fullName>
                     <default>false</default>
-                    <label>Accelerate - $150</label>
+                    <label>Advantage - $150</label>
                 </value>
                 <value>
-                    <fullName>May 25 2021 Price Book</fullName>
+                    <fullName>TA Hold - $50</fullName>
                     <default>false</default>
-                    <label>May 25 2021 Price Book</label>
+                    <label>Advantage - $50</label>
+                </value>
+                <value>
+                    <fullName>TA Hold - $75</fullName>
+                    <default>false</default>
+                    <label>Advantage - $75</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - A</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - A</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - B</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - B</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - C</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - C</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - D</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - D</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - E</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - E</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - Gold</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - Gold</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - Orange Elite</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - Orange Elite</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Daily Fee - Silver</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Daily Fee - Silver</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - A</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - A</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - B</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - B</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - C</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - C</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - D</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - D</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - E</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - E</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - Gold</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - Gold</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - Orange Elite</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - Orange Elite</label>
+                </value>
+                <value>
+                    <fullName>April 2022 - Flat Fee - Silver</fullName>
+                    <default>false</default>
+                    <label>April 2022 - Flat Fee - Silver</label>
+                </value>
+                <value>
+                    <fullName>A /  Orange Elite Pricing 9.28.21</fullName>
+                    <default>false</default>
+                    <label>A /  Orange Elite Pricing 9.28.21</label>
+                </value>
+                <value>
+                    <fullName>2021 Price Book</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>2021 Price Book</label>
                 </value>
                 <value>
                     <fullName>60 for 60 Price book - Fall 21 Promo</fullName>
@@ -2076,6 +2176,12 @@ Anticipated Yearly Volume</description>
                     <default>false</default>
                     <isActive>false</isActive>
                     <label>May 2021 Price Book</label>
+                </value>
+                <value>
+                    <fullName>May 25 2021 Price Book</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>May 25 2021 Price Book</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2373,6 +2479,63 @@ Anticipated Yearly Volume</description>
         <trackHistory>false</trackHistory>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Risk_Grade__c</fullName>
+        <description>Dealers are going to be charged based on risk.
+https://acvauctions.atlassian.net/browse/CSO-573</description>
+        <externalId>false</externalId>
+        <label>Risk Grade</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>D</label>
+                </value>
+                <value>
+                    <fullName>E</fullName>
+                    <default>false</default>
+                    <label>E</label>
+                </value>
+                <value>
+                    <fullName>OE</fullName>
+                    <default>false</default>
+                    <label>OE</label>
+                </value>
+                <value>
+                    <fullName>Gold</fullName>
+                    <default>false</default>
+                    <label>Gold</label>
+                </value>
+                <value>
+                    <fullName>Silver</fullName>
+                    <default>false</default>
+                    <label>Silver</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Seller_Dealership_ID__c</fullName>
@@ -2872,6 +3035,342 @@ Anticipated Yearly Volume</description>
         <label>ACV Capital Referred  - With Date</label>
     </listViews>
     <listViews>
+        <fullName>AM1_2_Buy_Mid_Atl_Carolinas_Matt_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>contains</operation>
+            <value>Justin Bacon,Melissa Towart,Phil Schaper,Steven Pusateri,Vinny Sherman</value>
+        </filters>
+        <label>AM1,2 Buy - Mid Atl, Carolinas - Matt B</label>
+    </listViews>
+    <listViews>
+        <fullName>AM1_2_Buy_North_Midwest_Matt_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>equals</operation>
+            <value>Jake Murray,Matt Kean</value>
+        </filters>
+        <label>AM1,2 Buy - North/Midwest - Matt B</label>
+    </listViews>
+    <listViews>
+        <fullName>AM1_2_Mid_Atl_Carolinas_Mike_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Justin Bacon,Melissa Towart,Phil Schaper,Steven Pusateri,Vinny Sherman</value>
+        </filters>
+        <label>AM1,2 Sell - Mid Atl, Carolinas - Matt B</label>
+    </listViews>
+    <listViews>
+        <fullName>AM1_2_Sell_North_Midwest_Matt_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Jake Murray,Matt Kean</value>
+        </filters>
+        <label>AM1,2 Sell - North/Midwest - Matt B</label>
+    </listViews>
+    <listViews>
+        <fullName>AM_1_2_Buy_Side_All_your_regions_Dan</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>contains</operation>
+            <value>Dan Pearson,Tim Proehl,Michael Cuddahee,Daniel Gilbert,Steven Gothan,David Spencer,Mark Mackowski,Darrion Rhodes</value>
+        </filters>
+        <label>AM 1,2 Buy Side- All your regions -Dan</label>
+    </listViews>
+    <listViews>
+        <fullName>AM_1_2_Buy_Side_Mike_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>equals</operation>
+            <value>Meghana Reddy,Robert DiVita,Jesse Kitzen,Brandon Sciandra,Andrew Patszalek</value>
+        </filters>
+        <label>AM 1,2 Buy Side - Mike B</label>
+    </listViews>
+    <listViews>
+        <fullName>AM_1_2_Sell_Side_All_your_regions_Dan</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Dan Pearson,Tim Proehl,Michael Cuddahee,Daniel Gilbert,Steven Gothan,David Spencer,Mark Mackowski,Darrion Rhodes</value>
+        </filters>
+        <label>AM 1,2 Sell Side- All your regions -Dan</label>
+    </listViews>
+    <listViews>
+        <fullName>AM_1_2_Sell_Side_Mike_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Meghana Reddy,Robert DiVita,Jesse Kitzen,Brandon Sciandra,Andrew Patszalek</value>
+        </filters>
+        <label>AM 1,2 Sell Side - Mike B</label>
+    </listViews>
+    <listViews>
         <fullName>Account_Manager_Dealmaker_Ops</fullName>
         <columns>CORE.USERS.FULL_NAME</columns>
         <columns>Auction__c</columns>
@@ -2912,7 +3411,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Account_Manager__c</field>
             <operation>equals</operation>
-            <value>Lee Lomenzo,Jake Bass,Christina Caito,Michael Eady,Jackson Risner,Joe Naylor,Kylie Eaton,Paul Incorvaia,Sierra Vielhauer</value>
+            <value>Lee Lomenzo,Jake Bass,Jackson Risner,Joe Naylor,Kylie Eaton,Sierra Vielhauer,Hyrum Montes</value>
         </filters>
         <label>Account Manager Dealmaker Ops</label>
     </listViews>
@@ -3079,7 +3578,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Auction_End_Date_Time__c</field>
             <operation>greaterOrEqual</operation>
-            <value>4/15/2022 6:00 PM</value>
+            <value>5/27/2022 6:00 PM</value>
         </filters>
         <label>All Areas and Regions</label>
     </listViews>
@@ -3567,7 +4066,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>OPPORTUNITY.STAGE_NAME</field>
             <operation>equals</operation>
-            <value>Closed Lost</value>
+            <value>Application Sent</value>
         </filters>
         <filters>
             <field>OPPORTUNITY.NAME</field>
@@ -3902,7 +4401,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Seller_IST__c</field>
             <operation>contains</operation>
-            <value>Arcoraci,Limoncelli,Rhodes,Spencer,Mackowski</value>
+            <value>Reddy,Divita,Patszalek,Sciandra,Kitzen</value>
         </filters>
         <label>Dealmaker - Sell Side - Tyler</label>
     </listViews>
@@ -4073,6 +4572,40 @@ Anticipated Yearly Volume</description>
         <label>IST - Yesterday Close No Sale</label>
     </listViews>
     <listViews>
+        <fullName>Copy_of_Jidd_Motors</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Opty_Auction_Status__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <columns>Auction_Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY,YESTERDAY</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Bidder__c</field>
+            <operation>contains</operation>
+            <value>Firas Diwan</value>
+        </filters>
+        <label>Copy of Jidd Motors</label>
+    </listViews>
+    <listViews>
         <fullName>Copy_of_Matt_Scheff_Central</fullName>
         <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
         <columns>Auction_End_Date_Time__c</columns>
@@ -4224,6 +4757,100 @@ Anticipated Yearly Volume</description>
             <value>Opportunity.Deal_Maker</value>
         </filters>
         <label>Dealmaker - Open Ops James</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_5_13_Focus_Buy_Side_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_Region__c</field>
+            <operation>equals</operation>
+            <value>Northern California,Midwest,Mountain West</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>notEqual</operation>
+            <value>Brian Doust,Jake Bass,Chris Murphy,Sierra Vielhauer</value>
+        </filters>
+        <label>Dealmaker - 5/13 Focus Buy Side -Nick B</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_5_13_Focus_Sell_side_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_Region__c</field>
+            <operation>equals</operation>
+            <value>Northern California,Midwest,Mountain West</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>notEqual</operation>
+            <value>Brian Doust,Jake Bass,Chris Murphy,Sierra Vielhauer</value>
+        </filters>
+        <label>Dealmaker - 5/13 Focus Sell side -Nick B</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_Adam_L</fullName>
@@ -4528,6 +5155,48 @@ Anticipated Yearly Volume</description>
             <value>Bridgett Moffett</value>
         </filters>
         <label>Dealmaker - Bridgett Moffett</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_Buy_Side_AM_1_2_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>contains</operation>
+            <value>Mark Lorenz,Owen Feeley,Michael Swedene,Colin Maloney,Jason Frizlen,Jason Conidi</value>
+        </filters>
+        <label>Dealmaker - Buy Side AM 1,2 - Nick B</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_Buy_Side_Early_Joel_Chu</fullName>
@@ -4887,6 +5556,90 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker - Christina</label>
     </listViews>
     <listViews>
+        <fullName>Dealmaker_Colin_Maloney_Buy_Mike_N</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>contains</operation>
+            <value>Colin Maloney</value>
+        </filters>
+        <label>Dealmaker - Colin Maloney Buy - Mike N</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_Colin_Maloney_Sell_Mike_N</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Colin Maloney</value>
+        </filters>
+        <label>Dealmaker - Colin Maloney Sell - Mike N</label>
+    </listViews>
+    <listViews>
         <fullName>Dealmaker_Cory_Buy_Side</fullName>
         <columns>Auction_End_Date_Time__c</columns>
         <columns>VIN_Last_Six__c</columns>
@@ -5075,6 +5828,90 @@ Anticipated Yearly Volume</description>
             <value>Elisa Galante</value>
         </filters>
         <label>Dealmaker - Elisa</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_Frank_Masi_Buy_Side_Mike_N</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Buyer_IST__c</field>
+            <operation>contains</operation>
+            <value>Frank Masi</value>
+        </filters>
+        <label>Dealmaker - Frank Masi Buy Side - Mike N</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_Frank_Masi_Sell_Side_Mike_N</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Frank Masi</value>
+        </filters>
+        <label>Dealmaker - Frank Masi Sell Side -Mike N</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_Gerard_Buy_Side</fullName>
@@ -6438,6 +7275,43 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker - NJ-Philly Metro Region Lizz</label>
     </listViews>
     <listViews>
+        <fullName>Dealmaker_Nation_Wide_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Dealmaker - Nation Wide - Nick B</label>
+    </listViews>
+    <listViews>
         <fullName>Dealmaker_New_England_Region</fullName>
         <columns>CORE.USERS.FULL_NAME</columns>
         <columns>Seller_IST__c</columns>
@@ -6986,6 +7860,48 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker - Sara</label>
     </listViews>
     <listViews>
+        <fullName>Dealmaker_Saturday_Coverage_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>equals</operation>
+            <value>Cory Bertozzi,Ethan Randall,Corey Guetti,Nicole Klonowski</value>
+        </filters>
+        <label>Dealmaker - Saturday Coverage -Nick B</label>
+    </listViews>
+    <listViews>
         <fullName>Dealmaker_Sell_Side_Dan_Erbacher_GNY</fullName>
         <columns>Auction_End_Date_Time__c</columns>
         <columns>Seller_Primary_Contact__c</columns>
@@ -7196,6 +8112,48 @@ Anticipated Yearly Volume</description>
         <label>Dealmaker - Sell Side Mike Albini (GNY)</label>
     </listViews>
     <listViews>
+        <fullName>Dealmaker_Sell_Side_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Mark Lorenz,Owen Feeley,Michael Swedene,Colin Maloney,Jason Frizlen,Jason Conidi</value>
+        </filters>
+        <label>Dealmaker - Sell Side AM 1,2 - Nick B</label>
+    </listViews>
+    <listViews>
         <fullName>Dealmaker_Sell_Side_Nicole_K_GNY</fullName>
         <columns>Auction_End_Date_Time__c</columns>
         <columns>Seller_Primary_Contact__c</columns>
@@ -7314,6 +8272,48 @@ Anticipated Yearly Volume</description>
             <value>Sierra Vielhauer</value>
         </filters>
         <label>Dealmaker Sierra Sell Side</label>
+    </listViews>
+    <listViews>
+        <fullName>Dealmaker_Sr_Sell_Side_Nick_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Joe Hacherl,Rachel Fiske,Gerard Dixon,Joshua Royce</value>
+        </filters>
+        <label>Dealmaker - Sr. Sell Side - Nick B</label>
     </listViews>
     <listViews>
         <fullName>Dealmaker_TX</fullName>
@@ -7462,7 +8462,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Buyer_IST__c</field>
             <operation>contains</operation>
-            <value>Spencer,Rhodes,Mackowski,Limoncelli,Arcoraci</value>
+            <value>Schaper,Pusateri,Kean,Lorenz,Murray,Platten,Pickelhaupt</value>
         </filters>
         <filters>
             <field>Auto_sell__c</field>
@@ -7855,7 +8855,7 @@ Anticipated Yearly Volume</description>
         <filters>
             <field>Auction_End_Date_Time__c</field>
             <operation>greaterOrEqual</operation>
-            <value>4/15/2022 5:00 PM</value>
+            <value>5/9/2022 5:00 PM</value>
         </filters>
         <label>East</label>
     </listViews>
@@ -8284,6 +9284,45 @@ Anticipated Yearly Volume</description>
             <value>Opportunity.Deal_Maker</value>
         </filters>
         <label>Jenna Dealmaker - Open Ops</label>
+    </listViews>
+    <listViews>
+        <fullName>Jidd_Motors1</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Opty_Auction_Status__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <columns>Auction_Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Bidder__c</field>
+            <operation>contains</operation>
+            <value>Firas Diwan</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>equals</operation>
+            <value>Counter_Sent,Awaiting_Acceptance</value>
+        </filters>
+        <label>Jidd Motors</label>
     </listViews>
     <listViews>
         <fullName>Kaley_Northeast_Metro</fullName>
@@ -9091,6 +10130,48 @@ Anticipated Yearly Volume</description>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>SR_Sell_Side_All_your_regions_Dan</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Kaley Doyle,Steven Gardner,Alisha Netto,Ethan Randall,Nick Arcoraci</value>
+        </filters>
+        <label>SR Sell Side- All your regions -Dan</label>
+    </listViews>
+    <listViews>
         <fullName>SaraF_of_Dealmaker_Open_Ops</fullName>
         <columns>CORE.USERS.FULL_NAME</columns>
         <columns>Seller_IST__c</columns>
@@ -9166,6 +10247,48 @@ Anticipated Yearly Volume</description>
         <label>Saturday Bridgett Open Ops 11/9</label>
     </listViews>
     <listViews>
+        <fullName>Sell_Side_NE_Metro_Mid_South_Dan_D</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Kaley Doyle,Steven Gardner,Alisha Netto</value>
+        </filters>
+        <label>SR Sell Side-NE Metro, Mid South-Dan</label>
+    </listViews>
+    <listViews>
         <fullName>Spring_Into_Savings_My_Opportunities</fullName>
         <columns>OPPORTUNITY.CREATED_DATE</columns>
         <columns>CORE.USERS.FULL_NAME</columns>
@@ -9205,6 +10328,90 @@ Anticipated Yearly Volume</description>
             <value>New,Referred</value>
         </filters>
         <label>Spring Into Savings - New Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>Sr_Sell_Side_All_Regions_Matt_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>contains</operation>
+            <value>Cory Bertozzi,Corey Guetti,Donovan Cywilko,Marlee Gillmor</value>
+        </filters>
+        <label>Sr Sell Side All Regions - Matt B</label>
+    </listViews>
+    <listViews>
+        <fullName>Sr_Sell_Side_Mike_B</fullName>
+        <columns>Auction_End_Date_Time__c</columns>
+        <columns>Seller_Primary_Contact__c</columns>
+        <columns>Bidder__c</columns>
+        <columns>Price_Variance_Percentage__c</columns>
+        <columns>High_Bid__c</columns>
+        <columns>Floor_Price__c</columns>
+        <columns>Price_Variance__c</columns>
+        <columns>Link_to_Auction_Manager__c</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>Auto_sell__c</columns>
+        <columns>Seller_IST__c</columns>
+        <columns>Buyer_IST__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Auction_End_Date_Time__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Opty_Auction_Status__c</field>
+            <operation>contains</operation>
+            <value>counter_sent</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.Deal_Maker</value>
+        </filters>
+        <filters>
+            <field>Auto_sell__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Seller_IST__c</field>
+            <operation>equals</operation>
+            <value>Phil Stasiak,Zachary Derrico,Austin Dorr,John Luraschi</value>
+        </filters>
+        <label>Sr Sell Side - Mike B</label>
     </listViews>
     <listViews>
         <fullName>Steve_Graveyard_Shift</fullName>
@@ -10399,19 +11606,75 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>60 for 60 Tax Season 2022</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>A %2F  Orange Elite Pricing 9%2E28%2E21</fullName>
+                <fullName>AAA Pricebook 9%2E23%2E21</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>AAA Pricebook 9%2E23%2E21</fullName>
+                <fullName>April 2022 - Daily Fee - A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - Orange Elite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Daily Fee - Silver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - Orange Elite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>April 2022 - Flat Fee - Silver</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10444,10 +11707,6 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Fast Pay - %2475</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10522,6 +11781,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10789,10 +12083,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -10822,10 +12112,6 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Fast Pay - %2475</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10884,6 +12170,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11150,10 +12471,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -11237,6 +12554,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11518,6 +12870,41 @@ Anticipated Yearly Volume</description>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Tax_Lien__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -11789,10 +13176,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -11876,6 +13259,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12235,10 +13653,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -12322,6 +13736,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12604,10 +14053,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -12691,6 +14136,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13086,10 +14566,6 @@ Anticipated Yearly Volume</description>
         <picklistValues>
             <picklist>Price_Book__c</picklist>
             <values>
-                <fullName>2021 Price Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Fast Pay -  %2430</fullName>
                 <default>false</default>
             </values>
@@ -13119,10 +14595,6 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Fast Pay - %2475</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>May 25 2021 Price Book</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -13181,6 +14653,41 @@ Anticipated Yearly Volume</description>
             </values>
             <values>
                 <fullName>Standard RSM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Grade__c</picklist>
+            <values>
+                <fullName>A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13319,6 +14826,19 @@ ISBlANK(TEXT(Closed_Lost_Reason__c)))</errorConditionFormula>
         <errorMessage>A Reason is required when marking the stage &quot;Closed Lost&quot;</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>ACV_Capital_Max_Line_Limit_Eligible</fullName>
+        <active>true</active>
+        <description>Field that should only be updated by UnderWriters
+US https://acvauctions.atlassian.net/browse/CSO-573</description>
+        <errorConditionFormula>AND(
+AND(RecordType.Name = &quot;ACV Capital Referral&quot;,
+ISCHANGED(Max_Line_Limit_Elegible__c),
+NOT( $User.Alias =&apos;DZdro&apos;),
+NOT( $User.Alias =&apos;scimato&apos;),
+NOT( $User.Alias =&apos;MSnyd&apos;)))</errorConditionFormula>
+        <errorMessage>you don&apos;t have enough permissions to update this field</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>ACV_Capital_Other_Reason_Required</fullName>
         <active>false</active>
         <description>Closed Lost other reason is required.</description>
@@ -13373,6 +14893,18 @@ Year_Incorporated__c =&apos;&apos;,
 ISPICKVAL( StageName , &apos;Underwriting&apos;)
 )</errorConditionFormula>
         <errorMessage>Please enter Year Incorporated</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACV_Capital_field_Risk_Grade</fullName>
+        <active>true</active>
+        <description>CSO-579 prevents users except for 3 underwriters from changing value</description>
+        <errorConditionFormula>AND(
+				RecordType.Name = &quot;ACV Capital Referral&quot;,
+				ISCHANGED( Risk_Grade__c ),
+				NOT( $User.Alias =&apos;DZdro&apos;),
+				NOT( $User.Alias =&apos;scimato&apos;),
+				NOT( $User.Alias =&apos;MSnyd&apos;))</errorConditionFormula>
+        <errorMessage>you don&apos;t have enough permissions to update this field</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FastPass_Cant_move_Stage_Until_Compliant</fullName>

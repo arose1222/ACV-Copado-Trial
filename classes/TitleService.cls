@@ -51,6 +51,10 @@
  * 		03/08/2022 Manmeet Vaseer - Added new Case.Title__c field and populate it in the Created event.
  * 		03/14/2022 Manmeet Vaseer - Title Review created & updated events.
  * 		04/05/2022 Manmeet Vaseer - Title Review Document Added event.
+ * 		04/25/2022 Manmeet Vaseer - Added Row Lock retries.
+ * 		04/27/2022 Manmeet Vaseer - A shell Case & Title records will be created. Later, we will add Related Records using TitleServicePopulateRelatedDataBatch.
+ * 									This is to avoid ROW LOCK issue.
+ * 		05/06/2022 Manmeet Vaseer - Dedup payload based on event id.
  * 
  */ 
 @RestResource(urlMapping='/titleService')
@@ -104,6 +108,9 @@ global class TitleService {
              */
             List<String> acvTitleReviewExternalIds = new List<String>();
             
+            // Remove any duplicate Events
+            titleList = dedupPayloadByEventId(titleList);
+            
             // Process all the Events and populate the event specific list.
             for(TitleDefinition aTitle : titleList)	{
                 /*
@@ -134,7 +141,18 @@ global class TitleService {
             }            
                         
             if(createdEvents.size() > 0)	createTitles(createdEvents);
-            if(updatedEvents.size() > 0)	updateTitles(updatedEvents, acvTitlesExternalIds);
+            
+            /*
+             * Disabling Titles update event as per discussion with Matt G. (we don't need it).
+             * Also, there is an issue where same Title Id is being updated in 2 different events that are being sent by the backend/Producer at the same time/payload.
+             * So, either backend needs to ensure that they don't send 2 different updated events for the same Title Id in a same payload.
+             * Or, we need to modify the updateTitles() logic in a way that we don't insert same Title Ids in updatedCases list to avoid 'Duplicate id in list'
+             * error when updating the Cases.
+             * 
+             * Salesforce solution could be we check the updatedCases list for the existing Title Id and if it exists then we modify the same instance of Case.
+             */
+            //if(updatedEvents.size() > 0)	updateTitles(updatedEvents, acvTitlesExternalIds); 
+            
             //if(deletedEvents.size() > 0)	deleteTitles(deletedEvents);
             //if(undeletedEvents.size() > 0)	undeleteTitles(undeletedEvents);
             if(dealershipNoteAddedEvents.size() > 0)	addDealershipsNote(dealershipNoteAddedEvents, acvTitlesExternalIds);
@@ -150,8 +168,12 @@ global class TitleService {
             // Errors found while processing the events.
             res.errors = true; 
             res.message = e.getMessage();
-            
-        	makeSplunkLog(ENDPOINT_URL, 'POST', titleList, res, 500, ACVUtility.currentLineNumber(), 'Found Error while Processing Events: ' + e.getMessage(), '', e.getStackTraceString(), SplunkHelper.LOGLEVEL.ERROR);
+
+            String logMsg = 'Found Error while Processing Events: ' + e.getMessage();
+        	makeSplunkLog(ENDPOINT_URL, 'POST', titleList, res, 500, ACVUtility.currentLineNumber(), logMsg, '', e.getStackTraceString(), SplunkHelper.LOGLEVEL.ERROR);
+            //ErrorLogHandler.addError('Title Service', 'Error', logMsg, e.getStackTraceString(), JSON.serialize(titleList));
+            //ErrorLogHandler.save();
+            if(Test.isRunningTest())	throw e;
         }
         
         return res;
@@ -208,7 +230,9 @@ global class TitleService {
             }
         }
         
-        if(addTitleReviewDocs.size() > 0) insert addTitleReviewDocs;
+        if(addTitleReviewDocs.size() > 0) {
+			upsertWithRetry(true, addTitleReviewDocs, 'Title_Review_Document__c'); // insert
+        }
     }    
     
    /**
@@ -260,7 +284,9 @@ global class TitleService {
             } // listOfAvailableFieldNamesInJson not Null
         } // for td
         
-        if(updatedTitleReviews.size() > 0) update updatedTitleReviews;
+        if(updatedTitleReviews.size() > 0) {
+			upsertWithRetry(false, updatedTitleReviews, 'Title_Review__c'); // update
+        }
     }
 
     /**
@@ -325,7 +351,9 @@ global class TitleService {
             }
         }
         
-        if(newTitleReviews.size() > 0) insert newTitleReviews;
+        if(newTitleReviews.size() > 0) {
+			upsertWithRetry(true, newTitleReviews, 'Title_Review__c'); // insert
+        }
     }
     
     /**
@@ -401,8 +429,21 @@ global class TitleService {
             }
         } //for
         
-        if(newDealershipNotes.size() > 0) insert newDealershipNotes;
+        if(newDealershipNotes.size() > 0) {
+			upsertWithRetry(true, newDealershipNotes, 'Dealership_Note__c'); // insert
+        }
     }
+    
+    
+   /*
+    * Disabling Titles update event as per discussion with Matt G. (we don't need it YET).
+    * Also, there is an issue where same Title Id is being updated in 2 different events that are being sent by the backend/Producer at the same time/payload.
+    * So, either backend needs to ensure that they don't send 2 different updated events for the same Title Id in a same payload.
+    * Or, we need to modify the updateTitles() logic in a way that we don't insert same Title Ids in updatedCases list to avoid 'Duplicate id in list'
+    * error when updating the Cases.
+    * 
+    * Salesforce solution could be we check the updatedCases list for the existing Title Id and if it exists then we modify the same instance of Case.
+    */
     
     /**
      * Update title case records.
@@ -411,6 +452,7 @@ global class TitleService {
      * @acvTitlesExternalIds A list of associated ACV Titles External Ids.
      * 
      */
+    /*
     private static void updateTitles(List<TitleDefinition> titleList, List<String> acvTitlesExternalIds)	{
  
         // Nothing to do if there are no records.
@@ -442,11 +484,11 @@ global class TitleService {
         
 		// Process each updated event        
         for(TitleDefinition td : titleList)	{
-            /*
-             * Only process the events if listOfAvailableFieldNamesInJson is not empty.
-             * 
-             * See TitleDefinition class for info on listOfAvailableFieldNamesInJson.
-             */
+            //
+            // Only process the events if listOfAvailableFieldNamesInJson is not empty.
+            // 
+            // See TitleDefinition class for info on listOfAvailableFieldNamesInJson.
+            //
             List<String> listOfAvailableFieldNamesInJson = td.metadata.listOfAvailableFieldNamesInJson;
             if(listOfAvailableFieldNamesInJson != null && listOfAvailableFieldNamesInJson.size() > 0) {
                 // Find out if ACV Titles External Id is GUID or INT type.
@@ -466,11 +508,11 @@ global class TitleService {
                 // Fetch the Case record from the map using ACV External Titles Id.
                 Case aCase = acvTitleExtIdCaseMap.get(acvTitlesExternalId);
                 if(aCase != null)	{
-                    /*
-                     * listOfAvailableFieldNamesInJson only has a list of field/property names that were updated by the
-                     * datahub Titles Producer. This helps update the field value to null/blank. In other words, we only
-                     * update the Salesforce fields that are present in the listOfAvailableFieldNamesInJson.
-                     */
+                    //
+                    // listOfAvailableFieldNamesInJson only has a list of field/property names that were updated by the
+                    // datahub Titles Producer. This helps update the field value to null/blank. In other words, we only
+                    // update the Salesforce fields that are present in the listOfAvailableFieldNamesInJson.
+                    //
                     if(listOfAvailableFieldNamesInJson.contains('titleAbsent')) aCase.Title_Attached__c = td.titleAbsent;
                     if(listOfAvailableFieldNamesInJson.contains('digitalTitle')) aCase.Digital_Title__c = td.digitalTitle;
                     if(listOfAvailableFieldNamesInJson.contains('status')) aCase.Status = td.status;
@@ -485,9 +527,9 @@ global class TitleService {
                     updatedCases.add(aCase);
                 }
                 
-                /*
-                 * Also update the associated Title__c record.
-                 */
+                //
+                // Also update the associated Title__c record.
+                //
                 Title__c aTitle = acvTitleExtIdTitleMap.get(acvTitlesExternalId);
                 if(aTitle != null)	{
                     //aTitle.Title_Id_Type__c = td.titleIdType; // don't want to update the Title Id Type if we cannot update the TitleId.
@@ -506,7 +548,8 @@ global class TitleService {
         if(updatedCases.size() > 0) update updatedCases;
         if(updatedTitles.size() > 0) update updatedTitles;        
     }
-    
+    */
+
     /**
      * Create title case records.
      * 
@@ -519,9 +562,6 @@ global class TitleService {
         
 		Map<String,Case> titleExternalIdCaseMap = new Map<String,Case>();
 		Map<String,Title__c> titleExternalIdTitleObjMap = new Map<String,Title__c>();
-        
-        // Load various maps in bulk - it is mostly used to load Salesforce Ids using data provided in the event.
-        IdMaps variousMaps = mapAllIds(titleList);
         
         // Create Case of Title Informatin Record Type
         Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Title Information').getRecordTypeId();
@@ -540,14 +580,6 @@ global class TitleService {
                 acvTitlesExternalId = String.valueOf(aTitle.legacyTitleId);
             }
             
-            // Find various Salesforce Ids from the maps.
-            String buyerContactId = variousMaps.userIdContactIdMap.get(String.valueOf(aTitle.buyerUserId));
-            String sellerContactId = variousMaps.userIdContactIdMap.get(String.valueOf(aTitle.sellerUserId));
-            String buyerAcctId = variousMaps.dealerIdAccountIdMap.get(String.valueOf(aTitle.buyerOrganizationId));
-            String sellerAcctId = variousMaps.dealerIdAccountIdMap.get(String.valueOf(aTitle.sellerOrganizationId));
-            String vehicleId = variousMaps.vinVehicleIdMap.get(String.valueOf(aTitle.vehicle.vin));
-            String auctionId = variousMaps.auctionNumberAuctionIdMap.get(String.valueOf(aTitle.legacyAuctionId));
-            
             // Create a new case record.
             Case aNewCase = new Case (
                 RecordTypeId = caseRecordTypeId,
@@ -555,13 +587,7 @@ global class TitleService {
                 Title_Attached__c = aTitle.titleAbsent,
                 Digital_Title__c = aTitle.digitalTitle,
                 Status = aTitle.status,
-                AccountId = buyerAcctId,
-                ContactId = buyerContactId,
-                Seller_Dealership__c = sellerAcctId,
-                //Vehicle_Id__c = vehicleId,
-                Vehicle__c = vehicleId,
-                Vehicle_VIN__c = aTitle.vehicle.vin,
-                Auction_Number__c = auctionId
+                Vehicle_VIN__c = aTitle.vehicle.vin
             );
             
             // it is used later to get the Case Id for the associated Title__c.
@@ -574,13 +600,15 @@ global class TitleService {
             Title__c aNewTitle = new Title__c (
                 RecordTypeId = titleRecordTypeId,
                 Name = acvTitlesExternalId,
+                ACV_Titles_External_ID__c = acvTitlesExternalId,
                 Title_Id_Type__c = aTitle.titleIdType,
                 Buyer_User_Id__c = String.valueOf(aTitle.buyerUserId),
                 Seller_User_Id__c = String.valueOf(aTitle.sellerUserId),
                 Buyer_Organization_Id__c = String.valueOf(aTitle.buyerOrganizationId),
                 Seller_Organization_Id__c = String.valueOf(aTitle.sellerOrganizationId),
                 VIN__c = String.valueOf(aTitle.vehicle.vin),
-                Legacy_Auction_Id__c = String.valueOf(aTitle.legacyAuctionId)
+                Legacy_Auction_Id__c = String.valueOf(aTitle.legacyAuctionId),
+                Is_Pending_Related_Info__c = true
             );
             
             // it is used later to get the Title__c Id for the associated Case.
@@ -588,10 +616,10 @@ global class TitleService {
             
             newCases.add(aNewCase);
             newTitles.add(aNewTitle);
-        }
+        } // for
         
         if(newCases.size() > 0) {
-            insert newTitles;
+			upsertWithRetry(true, newTitles, 'Title__c'); // insert
             
             // Associate Title__c Id with Case
             for(Case c : newCases)	{
@@ -599,73 +627,18 @@ global class TitleService {
                 if(t != null)	c.Title__c = t.Id;
             }
             
-            insert newCases;
-        
+			upsertWithRetry(true, newCases, 'Case'); // insert
+                                
             // Associate Case Id with Title__c
             for(Title__c t : newTitles)	{
                 Case c = titleExternalIdCaseMap.get(t.Name);
                 if(c != null)	t.Case__c = c.Id;
             }
             
-            update newTitles;
+			upsertWithRetry(false, newTitles, 'Title__c'); // update
         }
     }
     
-    /**
-     * Create mapping between Salesforce Ids and various fields in the Event.
-     * 
-     * @titleList A list of titles records/events that will be mapped.
-     * 
-     */
-    private static IdMaps mapAllIds(List<TitleDefinition> titleList)	{        
-		List<String> dealerIds = new List<String>();
-        List<String> userIds = new List<String>();
-        List<String> vins = new List<String>();
-        List<String> auctionIds = new List<String>();
-        
-        // Collect all values from the events of specific types.
-        for(TitleDefinition aTitle : titleList)	{
-            if(aTitle.sellerUserId != null) userIds.add(String.valueOf(aTitle.sellerUserId));
-            if(aTitle.buyerUserId != null) userIds.add(String.valueOf(aTitle.buyerUserId));
-            
-            if(aTitle.sellerOrganizationId != null) dealerIds.add(String.valueOf(aTitle.sellerOrganizationId));
-            if(aTitle.buyerOrganizationId != null) dealerIds.add(String.valueOf(aTitle.buyerOrganizationId));
-            
-            if(aTitle.vehicle.vin != null) vins.add(aTitle.vehicle.vin);
-            
-            if(aTitle.legacyAuctionId != null) auctionIds.add(String.valueOf(aTitle.legacyAuctionId));
-        }
-        
-        // A collection of maps
-        IdMaps variousMaps = new IdMaps();
-        
-        // Fetch all the Salesforce Id for the corresponding Dealer Ids in the events.
-		List<Account> accts = [SELECT Id, Dealership_ID__c FROM Account WHERE Dealership_ID__c IN :dealerIds];
-        for(Account a : accts)	{
-            variousMaps.dealerIdAccountIdMap.put(a.Dealership_ID__c, a.Id);
-        }
-        
-        // Fetch all the Salesforce Id for the corresponding buyer/seller User Ids in the events.
-		List<Contact> conts = [SELECT Id, ID__c FROM Contact WHERE ID__c IN :userIds];
-        for(Contact c : conts)	{
-            variousMaps.userIdContactIdMap.put(c.ID__c, c.Id);
-        }
-
-        // Fetch all the Salesforce Id for the corresponding Vehicle VIN in the events.
-		List<Vehicle__c> vehicles = [SELECT Id, Name FROM Vehicle__c WHERE Name IN :vins];
-        for(Vehicle__c v : vehicles)	{
-            variousMaps.vinVehicleIdMap.put(v.Name, v.Id);
-        }
-
-        // Fetch all the Salesforce Id for the corresponding Auction Number in the events.
-		List<Auction__c> auctions = [SELECT Id, Name FROM Auction__c WHERE Name IN :auctionIds];
-        for(Auction__c v : auctions)	{
-            variousMaps.auctionNumberAuctionIdMap.put(v.Name, v.Id);
-        }
-        
-        return variousMaps;
-    }
-
     private static IdMaps populateMapsForTitleReviewDocuments(List<TitleDefinition> titleList)	{        
         List<String> userIds = new List<String>();
         
@@ -760,6 +733,70 @@ global class TitleService {
         public Map<String,String> auctionNumberAuctionIdMap = new Map<String,String>();        
         public Map<String,String> acvTitleExtIdTitleMap = new Map<String,String>();        
     }
+ 
+    static void upsertWithRetry(Boolean isInsert, List<SObject> objs, String objApiName)	{
+        if(objs != null && objs.size() > 0)	{
+            Integer retry = 3;
+            while(retry > 0)	{
+                String upsertType = 'insert';
+                try {
+                    if(isInsert)	{
+                        insert objs;
+                    }
+                    else {
+                        upsertType = 'update';
+                        update objs;
+                    }
+                    retry = 0;
+                }
+                catch(Exception e)	{
+                    String msg = e.getMessage();
+                    if(retry > 0 && !String.isBlank(msg) && msg.contains('UNABLE_TO_LOCK_ROW'))	{
+                        //sleepForWhile(500); //half a second delay
+                    }
+                    else {
+                        String logMsg = 'Exception: Unable to ' + upsertType + ' ' + objApiName + ': ' + msg;
+        				makeSplunkLog(ENDPOINT_URL, 'POST', objs, null, 500, ACVUtility.currentLineNumber(), logMsg, '', e.getStackTraceString(), SplunkHelper.LOGLEVEL.ERROR);                       
+                        throw e;
+                    }
+                    
+                    retry = retry - 1;
+                }
+            } // while
+        }
+    }
     
+    // Not Safe for CPU - find other alternative
+    static private void sleepForWhile(Integer delayInMilliseconds)	{
+        Long startingTime = System.now().getTime(); // Num milliseconds since Jan 1 1970
+        while (System.now().getTime() - startingTime < delayInMilliseconds)  {
+            // Do nothing until desired delay has passed
+        }    
+    }
+    
+   /**
+     * Remove duplicate events from the payload using event id.
+     * 
+     * @titleList A list of titles records that will be deduped.
+     * 
+     * @return Deduped list of payload.
+     */
+    static private List<TitleDefinition> dedupPayloadByEventId(List<TitleDefinition> titleList)	{
+        List<TitleDefinition> retTitleList = new List<TitleDefinition>();
+        
+        Map<String, TitleDefinition> titleMap = new Map<String, TitleDefinition>();
+        
+        if(titleList != null)	{            
+            for(TitleDefinition aTitle : titleList)	{
+                String eventId = aTitle.metadata?.eventId;
+                if(!String.isBlank(eventId)) titleMap.put(eventId, aTitle);
+            }
+            
+            retTitleList = titleMap.values();
+        }
+                   
+        return retTitleList;
+    }
+        
 	public class TitleServiceException extends Exception {}    
 }

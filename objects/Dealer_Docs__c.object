@@ -937,6 +937,32 @@
         <label>Docs with Extension Granted</label>
     </listViews>
     <listViews>
+        <fullName>Expired_Insurance_Docs</fullName>
+        <columns>NAME</columns>
+        <columns>Dealer_ID__c</columns>
+        <columns>Account__c</columns>
+        <columns>Document_Type__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Insurance_Company_Name__c</columns>
+        <columns>Inventory_Coverage_Amount__c</columns>
+        <columns>Expiration_Date__c</columns>
+        <columns>Capital_Primary_Contact_Email__c</columns>
+        <columns>Compliant__c</columns>
+        <columns>Compliance_Issues__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Dealer_Docs__c.Certificate_of_Insurance</value>
+        </filters>
+        <filters>
+            <field>Expiration_Date__c</field>
+            <operation>lessThan</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Expired Insurance Docs To Date</label>
+    </listViews>
+    <listViews>
         <fullName>In_Compliance_Docs_Jenna</fullName>
         <columns>NAME</columns>
         <columns>Account__c</columns>
@@ -2144,6 +2170,15 @@ RecordType.DeveloperName != &apos;Resale_Certificate&apos;))</errorConditionForm
         <description>AL_Sales_Tax__c and MTC__c cannot both be marked as true.</description>
         <errorConditionFormula>AND(AL_Sales_Tax__c = true, MTC__c = true)</errorConditionFormula>
         <errorMessage>Cannot have both AL Sales Tax and MTC selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Confirmation_Doc_Must_Have_Related_Lic</fullName>
+        <active>true</active>
+        <description>All confirmation docs must have a related license populated to be created/edited.</description>
+        <errorConditionFormula>RecordType.DeveloperName = &apos;License_Renewal_Confirmation&apos;
+&amp;&amp;
+Related_Dealer_License__c = null</errorConditionFormula>
+        <errorMessage>Related Dealer License needs to be populated for a confirmation document to be created or edited.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Confirmation_Doc_Not_Editable</fullName>

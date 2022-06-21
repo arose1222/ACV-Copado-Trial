@@ -1,0 +1,30 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+    aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <template if:true={activeSpinner}>
+            <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+        </template>
+        <div class="slds-modal__container modal-container">
+            <header class="slds-modal__header modal-header-bottom">
+                <a class="slds-modal__close close-button" data-id="close" onclick={handleCloseModal}>
+                    <img data-id="close" src={closeButtonIcon}>
+                </a>
+                <!-- <h4 id="modal-heading-01" class=" modal-header">Claim Underwriting</h4> -->
+                <p style="font-size: 17px;text-align: left;"><strong>Delete Address</strong></p>
+            </header>
+           
+            <div class="slds-modal__content slds-p-around_large pd-0" id="modal-content-id-1">
+                <div class="slds-grid slds-wrap slds-align_absolute-center" style="margin: 1rem 10px 1.5rem;">
+                    <p style="text-align: center;"> <strong> Would you like to delete the address?</strong></p>
+                </div>
+                <div class="slds-align_absolute-center" style="margin-bottom: 20px;margin-right: 20px;margin-top: 40px;">
+                    <button class="slds-button slds-button_neutral" style="width: 80px; height: 30px;
+                    border: 1px solid #9E1F2A;" onclick={handleCloseModal} data-id="cancel">CANCEL</button> &ensp; &ensp;
+                    <button class="slds-button slds-button_brand" style=" width: 80px; height: 30px; "
+                        onclick={handleDeleteAddress} data-id="assign">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open modal-backdrop"></div>
+</template>

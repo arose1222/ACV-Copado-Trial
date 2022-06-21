@@ -1,0 +1,1590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>These records track the persons who need to  approve changes and be alerted when unapproved changes occur.   The audit path identifies key people who need to be alerted in a given context by reason of process, customization type,  specific customization</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>FLODocs__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>It represents the activation of the policy.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It represents the activation of the policy.</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Applications_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes related to AppMenu, CustomApp, Custom Tab, etc</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes related to AppMenu, CustomApp, Custom Tab, etc</inlineHelpText>
+        <label>Application Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Approvals_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to Approval Processes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to Approval Processes</inlineHelpText>
+        <label>Approval Process Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Business_Processes_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to Business Processes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to Business Processes</inlineHelpText>
+        <label>Business Process Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Configuration_And_Rule_Data_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Application Configuration Changes (Data)</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Control_Assignee_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is checked when there is a control assignee approval in Control Policies</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is checked when there is a control assignee approval in Control Policies</inlineHelpText>
+        <label>Control Assignee Approval</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Control_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of change control required for searches and reports used as controls.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of change control required for searches and reports used as controls.</inlineHelpText>
+        <label>Control Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Control_Owner__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is checked where there is a control owner in Control Policies</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is checked where there is a control owner in Control Policies</inlineHelpText>
+        <label>Control Owner</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes related to Custom Fields, Custom Objects</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes related to Custom Fields, Custom Objects</inlineHelpText>
+        <label>Data Model Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Quality_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field sets the level of change control required for any changes to any kind of rules</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field sets the level of change control required for any changes to any kind of rules</inlineHelpText>
+        <label>Data Quality Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Security_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to Data Security Changes, like TransactionSecurity and History Retention Policy</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to Data Security Changes, like TransactionSecurity and History Retention Policy</inlineHelpText>
+        <label>Data Security Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Default_Policy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field flags the default rule set for a company.  If populated, it overrides, the standard default of only requiring approval  and communication to the affected process owners</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set this field to mark this set of rules as the default rule set.  There can be only one for each account.</inlineHelpText>
+        <label>Default Policy</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Einstein_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to WaveApplications and any other Wave Analytics</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to WaveApplications and any other Wave Analytics</inlineHelpText>
+        <label>Einstein Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Executive_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>A business user of exec. level that needs to approve the change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A business user of exec. level that needs to approve the change.</inlineHelpText>
+        <label>Executive Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>FLO_Changes_Approval_Policies2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__External_Access_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to Callcenter components, Community, CustomSite, etc</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to Callcenter components, Community, CustomSite, etc</inlineHelpText>
+        <label>External Site Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Final_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The final approver has the final approval right for any affected process. In the event of multiple rules applying, the final approver from the directly affected process will govern.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This specific approver must approve all changes affected by this rule. This should only be used for highly critical changes since it can create bottlenecks</inlineHelpText>
+        <label>Final Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>FLO_Changes_Approval_Policies1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Flow_Process_Builder_Workflow_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Change control required for any changes to workflows or any object referred to in a workflow.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Change control required for any changes to Flows, Workflows, Process Builders or any objects referred to therein.</inlineHelpText>
+        <label>Flow, Workflow &amp; Process Builder Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__General_Settings_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the change level required for Salesforce changes to Salesforce setup objects including Settings, enabled features and preferences.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the change level required for Salesforce changes to Salesforce setup objects including Settings, enabled features and preferences</inlineHelpText>
+        <label>General Settings Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Health_Check_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Health Check Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Identity_and_Access_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to Identity and Access Changes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to Identity and Access Changes</inlineHelpText>
+        <label>Identity and Access Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Include_Process_Editors_as_Alternates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field permits approval by process editors in place of  the main process owner.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set this field to allow any process editor to approve the change.</inlineHelpText>
+        <label>Include Process Editors as Alternates</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Instructions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are the instructions for using the FLO Audit / Approval Path record.
+
+FLO Audit / Approval Path records have two functions:
+
+1.  They group processes and customizations into groups for various purposes including audit.
+
+2.  They define the approval rules for changes to processes and customizations.
+
+These rules override a basic rules that every change must be tied to a business process and that the change must be approved by the owner of that process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are the instructions for using the FLO Audit / Approval Path record.</inlineHelpText>
+        <label>Instructions:</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Labels_and_Translations_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to Labels and Translations</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to Labels and Translations</inlineHelpText>
+        <label>Label and Translation Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Layout_and_Record_Types_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to Layouts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to Layouts.</inlineHelpText>
+        <label>Layout Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Log_XML_Only_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Determine if an XML only change will be flag as non compliance</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determine if an XML only change will be flag as non compliance</inlineHelpText>
+        <label>Log XML Only Change</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Management_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the job title of the management approver</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the job title of the management approver</inlineHelpText>
+        <label>Management Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Max_of_Approvals_Required__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field allows the approval to be considered complete if a given number of approvers have approved the change.  If blank, all approvers are required.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field allows the approval to be considered complete if a given number of approvers have approved the change.  If blank, all approvers are required.</inlineHelpText>
+        <label>Max # of Approvals Required</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Merge_Approval_Lists__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field toggles on the behavior of merging the approval lists from different approval policies where more than one applies to a given change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field toggles on the behavior of merging the approval lists from different approval policies where more than one applies to a given change.</inlineHelpText>
+        <label>Merge Approval Lists</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__No_Order_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is checked when no order is required in Management Policies</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is checked when no order is required in Management Policies</inlineHelpText>
+        <label>No Order Required</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Non_Conf_Change_Customization_Alerts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field governs whether customization owners should be alerted of any non-conforming changes to objects affecting their processes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this field to alert customization owners if any non-conforming changes are made to their customizations.</inlineHelpText>
+        <label>Non-Conf Change Customization Alerts</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Non_conforming_Change_Process_Alerts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field governs whether process owners should be alerted of any non-conforming changes to objects affecting their processes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to alert process owners immediately if there is a non-conforming change to an object tied to one of their processes.</inlineHelpText>
+        <label>Non-conforming Change Process Alerts</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Other_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the change control level to be applied to any objects not included in the other categories</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the change control level to be applied to any objects not included in the other categories</inlineHelpText>
+        <label>Other Changes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Parent_Policy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the parent policy for this policy.  Policies inherit properties from parent policies.  Parents are required unless the policy is the top default policy.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the parent policy for this policy.  Policies inherit properties from parent policies.  Parents are required unless the policy is the top default policy.</inlineHelpText>
+        <label>Parent Policy</label>
+        <referenceTo>FLODocs__FLO_Change_Approval_Policy__c</referenceTo>
+        <relationshipName>FLO_Changes_Approval_Policies</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Preliminary_Approvers__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>These are the users designated to approve changes prior to any approval by process owners.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter specific user designated to approve changes prior to any other approvers.</inlineHelpText>
+        <label>Preliminary Approvers</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>FLO_Changes_Approval_Policies</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Procees_Owner_s__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is checked where there is a process owner approval in Control Policies</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is checked where there is a process owner approval in Control Policies</inlineHelpText>
+        <label>Procees Owner(s)</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Profile_and_Permission_Set_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes related to PermissionSet and Profiles</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes related to PermissionSet and Profiles</inlineHelpText>
+        <label>Profile and Permission Set Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Reports_Dashboards_ListViews_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of change control required for changes to any search or report not used in a script or workflow and not used as a control.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of change control required for changes to any search or report not used in a script or workflow and not used as a control.</inlineHelpText>
+        <label>Reports, Dashboards &amp; ListViews Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Require_Affected_Customization_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field specifies whether approval is required from the owner of each item and affected item.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to require approval by the owner of each item and affected item.</inlineHelpText>
+        <label>Require Affected Customization Approval</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Require_Affected_Process_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field governs whether affected process approval is required.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to require approval by all affected processes in addition to designated process.</inlineHelpText>
+        <label>Require Affected Process Approval</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Require_Impacted_Customization_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field designates that the owners of any impacted customizations approve changes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field designates that the owners of any impacted customizations approve changes.</inlineHelpText>
+        <label>Require Impacted Customization Approval</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Require_Parent_Process_Owner_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This checkbox requires approval from all owners of parent processes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox requires approval from all owners of parent processes.</inlineHelpText>
+        <label>Require Parent Process Owner Approval</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Require_Related_Process_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This box designates that the owner  or editors of any related process must approve any changes impacting objects used in their process. 
+
+A process is related if it isn&apos;t specified but  is related to a specified customization.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This box designates that the owner  or editors of any related process must approve any changes impacting objects used in their process.
+
+A process is related if it isn&apos;t specified but  is related to a specified customization.</inlineHelpText>
+        <label>Require Related Process Approval</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Roles_and_Profiles_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes to Roles, Profiles, Permission Sets, and Permission Set Groups.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes to Roles, Profiles, Permission Sets, and Permission Set Groups.</inlineHelpText>
+        <label>Role, Profile &amp; PermissionSet Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Salesforce_Set_Up_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the change level required for Salesforce changes to Salesforce setup objects including Sites, Settings, Communities, Sharing Rules, Knowledge bases, sites, enabled features and preferences.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the change level required for Salesforce changes to Salesforce setup objects including Sites, Settings, Communities, Sharing Rules, Knowledge bases, sites, enabled features and preferences.</inlineHelpText>
+        <label>Salesforce Set Up Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Scripted_Object_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field sets the level of change control required for any changes to ApexClass, ApexComponent or any object referred to in a script/code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field sets the level of change control required for any changes to ApexClass, ApexComponent or any object referred to in a script/code.</inlineHelpText>
+        <label>Code Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Scripted_Objects_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the change request level defined for any changes to scripts, workflows or any object referred to in a script or workflow.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field sets the level of change control required for any changes to scripts, workflows or any object referred to in a script or workflow.</inlineHelpText>
+        <label>Scripted Objects Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Search_and_Report_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of change control required  for changes to any search or report not used in a script or workflow and not used as a control.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of change control required  for changes to any search or report not used in a script or workflow and not used as a control.</inlineHelpText>
+        <label>Report and List View Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Sequential_Approval_Requests__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field determines whether approval requests are sent one at a time or all at once.  If checked, they go out one at a time in the order:  first approver, process approvers (by process id), impacted process approvers (by id), customization approvers (by id), impacted customization approvers (by id), executive approver, last approver.  Approvals stop when all approvals received  or rejection is received.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field determines whether approval requests are sent one at a time or all at once.</inlineHelpText>
+        <label>Sequential Approval Requests</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Sharing_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to Sharing objects</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to Sharing objects</inlineHelpText>
+        <label>Sharing Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Subsidiary__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Coma separated list with the internal ids of the subsidiaries where this policy apply</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Coma separated list with the internal id of the subsidiary where this policy apply</inlineHelpText>
+        <label>Subsidiary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Templates_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to Templates and letterheads</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to Templates and Letterheads</inlineHelpText>
+        <label>Template Changes</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>true</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Territories_Control__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to objects affecting Territories</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to objects affecting Territories</inlineHelpText>
+        <label>Territories Changes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Log Changes Only</fullName>
+                    <default>false</default>
+                    <label>Log Changes Only</label>
+                </value>
+                <value>
+                    <fullName>Process Issue Only</fullName>
+                    <default>false</default>
+                    <label>Process Issue Only</label>
+                </value>
+                <value>
+                    <fullName>Change Request</fullName>
+                    <default>false</default>
+                    <label>Change Request</label>
+                </value>
+                <value>
+                    <fullName>Sandbox Development &amp; Testing</fullName>
+                    <default>false</default>
+                    <label>Sandbox Development &amp; Testing</label>
+                </value>
+                <value>
+                    <fullName>Full Software Development Lifecycle</fullName>
+                    <default>false</default>
+                    <label>Full Software Development Lifecycle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the Title of the Executive Approver (Management)</description>
+        <externalId>false</externalId>
+        <formula>FLODocs__Executive_Approver__r.Title</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the Title of the Executive Approver (Management)</inlineHelpText>
+        <label>Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Update_Child_Policies__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field governs whether any changes to the  specified IT and Management approvers are passed to  child policies.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set this field to update specified IT and Management approvers on Child Policies.</inlineHelpText>
+        <label>Update Child Policies</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__User_Role_Profile_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Changes of the user profile - When the user has changed the profile FLODocs will create a Change Log</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Changes of the user profile - When the user has changed the profile FLODocs will create a Change Log</inlineHelpText>
+        <label>User Role and Profile Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Web_Related_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the level of control required for changes to objects affecting web objects (eg CustomSite, Network (Communities), etc)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the level of control required for changes to objects affecting web objects (eg CustomSite, Network (Communities), etc)</inlineHelpText>
+        <label>Web-Related Changes</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Change_Control_Levels</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Wizard__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Wizard</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Change / Approval Policy</label>
+    <listViews>
+        <fullName>FLODocs__All_Policies_v3</fullName>
+        <columns>NAME</columns>
+        <columns>FLODocs__Default_Policy__c</columns>
+        <columns>FLODocs__Executive_Approver__c</columns>
+        <columns>FLODocs__Final_Approver__c</columns>
+        <columns>FLODocs__Control_Changes__c</columns>
+        <columns>FLODocs__Scripted_Object_Control__c</columns>
+        <columns>FLODocs__General_Settings_Control__c</columns>
+        <columns>FLODocs__Data_Quality_Control__c</columns>
+        <columns>FLODocs__Data_Control__c</columns>
+        <columns>FLODocs__Applications_Control__c</columns>
+        <columns>FLODocs__Templates_Control__c</columns>
+        <columns>FLODocs__Labels_and_Translations_Control__c</columns>
+        <columns>FLODocs__Layout_and_Record_Types_Control__c</columns>
+        <columns>FLODocs__Reports_Dashboards_ListViews_Control__c</columns>
+        <columns>FLODocs__Flow_Process_Builder_Workflow_Control__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Policies (v3)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__All_Policies_v4</fullName>
+        <columns>NAME</columns>
+        <columns>FLODocs__Default_Policy__c</columns>
+        <columns>FLODocs__Preliminary_Approvers__c</columns>
+        <columns>FLODocs__Final_Approver__c</columns>
+        <columns>FLODocs__Executive_Approver__c</columns>
+        <columns>FLODocs__Control_Changes__c</columns>
+        <columns>FLODocs__Scripted_Object_Control__c</columns>
+        <columns>FLODocs__Data_Control__c</columns>
+        <columns>FLODocs__Flow_Process_Builder_Workflow_Control__c</columns>
+        <columns>FLODocs__Applications_Control__c</columns>
+        <columns>FLODocs__Templates_Control__c</columns>
+        <columns>FLODocs__Labels_and_Translations_Control__c</columns>
+        <columns>FLODocs__Layout_and_Record_Types_Control__c</columns>
+        <columns>FLODocs__Reports_Dashboards_ListViews_Control__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Policies (v4)</label>
+    </listViews>
+    <nameField>
+        <label>Change / Approval Policy Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Changes / Approval Policies</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FLODocs__Scripted_Objects_Changes__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Salesforce_Set_Up_Changes__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Search_and_Report_Changes__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Other_Changes__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Control_Changes__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Control_Assignee_Approval__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Control_Changes__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Salesforce_Set_Up_Changes__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Scripted_Objects_Changes__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Search_and_Report_Changes__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Web_Related_Changes__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Executive_Approver__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FLODocs__Final_Approver__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Executive_Approver__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Final_Approver__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Profile_and_Permission_Set_Changes__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Salesforce_Set_Up_Changes__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Scripted_Objects_Changes__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Search_and_Report_Changes__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FLODocs__Web_Related_Changes__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Scripted_Objects_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Search_and_Report_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Salesforce_Set_Up_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Web_Related_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Other_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Control_Changes__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Preliminary_Approvers__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Final_Approver__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>FLODocs__Create_Change_Request</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Request Approval for Policy Change</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/FLODocs__FloChangeRequestEditNew?pid={!FLODocs__FLO_Change_Approval_Policy__c.Id}&amp;retURL=/{!URLENCODE(FLODocs__FLO_Change_Approval_Policy__c.Id)}</url>
+    </webLinks>
+</CustomObject>

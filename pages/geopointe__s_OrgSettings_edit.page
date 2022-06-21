@@ -168,8 +168,7 @@
           <apex:outputLabel value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Routes_Disabled__c.label}" for="disableRoutes" />
           <apex:inputCheckBox value="{!orgSettings.routesDisabled}" id="disableRoutes" />
         </apex:pageBlockSectionItem>
-        <!-- 92dd3d80-5dd6-11ec-bc57-ffd3a3574b8e - ResourceViewGroups Feature Flag -->
-        <apex:pageBlockSectionItem rendered="{!isResourceViewGroupsFeatureEnabled}">
+        <apex:pageBlockSectionItem >
           <apex:outputLabel value="{!$ObjectType.geopointe__Settings2__c.fields.geopointe__Resource_View_Groups_Enabled__c.label}" for="resourceViewGroupsEnabled" />
           <apex:inputCheckBox value="{!orgSettings.resourceViewGroupsEnabled}" id="resourceViewGroupsEnabled" />
         </apex:pageBlockSectionItem>

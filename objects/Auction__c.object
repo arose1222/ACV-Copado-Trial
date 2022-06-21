@@ -2500,16 +2500,24 @@ True = Auction</inlineHelpText>
         <columns>status__c</columns>
         <columns>Winning_Bid_Price__c</columns>
         <columns>end_time__c</columns>
+        <columns>start_time__c</columns>
+        <columns>Private_Lane__c</columns>
+        <columns>Private_Lane_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>status__c</field>
+            <field>Seller_Dealer_ID__c</field>
             <operation>equals</operation>
-            <value>counter_sent,Counter Sent</value>
+            <value>1887</value>
         </filters>
         <filters>
-            <field>end_time__c</field>
+            <field>status__c</field>
+            <operation>contains</operation>
+            <value>Counter Accepted,Counter Original Accepted,Ended Accepted</value>
+        </filters>
+        <filters>
+            <field>auto_sell__c</field>
             <operation>equals</operation>
-            <value>TODAY</value>
+            <value>1</value>
         </filters>
         <label>All Active Auctions</label>
     </listViews>

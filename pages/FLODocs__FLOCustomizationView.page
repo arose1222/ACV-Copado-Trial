@@ -1,0 +1,771 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Customization__c" extensions="FLODocs.FloCustomizationViewEditController" docType="html-5.0">
+	<c:StrongpointAnalytics />
+		<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+		<style>
+			progress, progress[role] {
+			  -webkit-appearance: none;
+			  -moz-appearance: none;
+			  appearance: none;
+			  border: none;
+			  background-size: auto;
+			  height: 15px;
+			  width: 100%;
+			}
+
+			.skill-list {
+			  list-style: none;
+			  margin: 0;
+			  padding: 1em;
+			}
+
+			.skill {
+			  margin-bottom: 1em;
+			  position: relative;
+			}
+			.skill h3 {
+			  color: #fff;
+			  left: 1em;
+			  line-height: 1;
+			  position: absolute;
+			  top: 1em;
+			}
+			.skill ::-webkit-progress-value {
+			  -webkit-animation: bar-fill 2s;
+			  width: 0px;
+			}
+
+			.skill-1::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-1::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			.skill-2::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-2::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			.skill-3::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-3::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			@-webkit-keyframes bar-fill {
+			  0% {
+			    width: 0;
+			  }
+			}
+			@keyframes bar-fill {
+			  0% {
+			    width: 0;
+			  }
+			}
+	    </style>
+
+		<script>
+		jQuery.noConflict();
+		function rescanCusto(){
+					if(confirm('Are you sure you want to Rescan this Customization?')){
+						rescanAF();
+					}
+				}
+
+			function saveCusto(){
+				if(confirm('Are you sure you want to save this Customization?')){
+					
+				}
+			}
+			function reloadPage (){
+				window.parent.location.href = '/{!floCusto.Id}';
+			}
+
+			function runControlBatchJs(){
+				if(confirm('Are you sure you want to Run Control of this Customization?')){
+					runControlAF();
+				}
+			}
+		jQuery(function ($) {
+			
+
+			function editCusto(){
+				 $('#ModalCusto').toggle(); 
+			}
+
+			function modalCustoJs(){
+			  $('#ModalCusto').toggle(); 
+			  saveAf();
+			}
+		});
+		</script>
+		<!-- Classic UI Header Details -->
+	<apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme3' }">
+		<apex:sectionHeader title="Customization" subtitle="{!FLODocs__FLO_Customization__c.Name}"/>
+		<apex:form >
+			<c:StrongpointAnnouncement />
+			<apex:actionFunction name="rescanAF" action="{!rescannerFromViewPage}" rerender="progressContainer"/>
+			<apex:actionFunction name="runControlAF" action="{!runControlBatch}" />
+			<apex:pageBlock mode="inlineEdit">
+			    <apex:pageBlockButtons >
+			    	<!-- <apex:commandButton value="Edit" action="{!}" /> -->
+			    	<apex:commandButton value="Run Control" onclick="runControlBatchJs(); return false;" rendered="{!IF(floCusto.FLODocs__Salesforce_Types__c == 'Report',true,false)}" />
+			    	<apex:commandButton value="Rescan" onclick="rescanCusto();return false;" oncomplete="reloadPage();" />
+			    	<!-- <apex:commandButton value="Delete" action="{!deleteJoins}" /> -->
+			    	<apex:commandButton value="Save" action="{!save}" />
+			    </apex:pageBlockButtons>
+			    <apex:pageBlockSection title="Customization Detail" collapsible="false" showHeader="false" columns="2" id="progressContainer">
+			      <!-- Maybe here we should use FieldSet to add Future fields into the managed package -->
+			      	<apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationHeaderDetails}" var="hd"> 
+						<apex:outputField value="{!FLODocs__FLO_Customization__c[hd]}" />
+					</apex:repeat>
+					<apex:pageBlockSectionItem rendered="{!showProgressBar}">
+						<apex:outputLabel for="progressContainer" value="Scanner Progress" />
+						<apex:outputPanel layout="block" >
+						    <apex:actionPoller rerender="progress" interval="5" action="{!actionCall}"/>
+							<apex:outputPanel layout="block" id="progress">
+							    {!batchStatus} <a href="#" onclick="location.reload();"> (Refresh Page) </a>
+							    <progress class="skill-1" max="100" value="{!percent}">
+							    </progress>
+						    </apex:outputPanel>
+						</apex:outputPanel>
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+				<apex:pageBlockSection columns="1" collapsible="false" showHeader="false">
+					<apex:tabPanel switchType="client" selectedTab="name2" id="theTabPanel" style="width: 100%;margin-top: 20px;">
+				        <apex:tab label="Metadata" name="metadata" id="tabOne">
+				        	<apex:pageBlockSection title="Metadata" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationMetadata}" var="md">
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[md]}" rendered="{!((md.label == 'Employee using this customization' || md.label == 'Roles using this customization' || md.label == 'Date Last Used') && FLODocs__FLO_Customization__c[md] != null) || (md.label != 'Employee using this customization' && md.label != 'Roles using this customization' && md.label != 'Date Last Used')}"/>
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        	<!-- <apex:outputField value="{!FLO_Customization__c.Date_Last_Used__c}" label="DLU" /> -->
+				        </apex:tab>
+				        <apex:tab label="Scripting" name="scripting" id="tabTwo">
+				        	<apex:pageBlockSection title="Scripting" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationScripting}" var="sc"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[sc]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Reports" name="reports" id="tabThree">
+				        	<apex:pageBlockSection title="Reports" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationReport}" var="rep"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[rep]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Layouts" name="layouts" id="tabFour">
+				        	<apex:pageBlockSection title="Layouts" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationForms}" var="f"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[f]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Improvement" name="improvements" id="tabSix">
+				        	<apex:pageBlockSection title="Improvement" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationImprovement}" var="imp"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[imp]}" rendered="{!((packageType > 0) || (packageType == 0 && (imp.label != 'Add to Change Request' && imp.label != 'Change / Approval Policy')))}"/>
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Workflows" name="workflows" id="tabSeven">
+				        	<apex:pageBlockSection title="Workflows" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationWorkflows}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Data Sources" name="dataSources" id="tabEight">
+				        	<apex:pageBlockSection title="Data Sources" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationDataSources}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Profiles" name="profiles" id="tabTen">
+				        	<apex:pageBlockSection title="Profiles" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationProfileAndRoles}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Controls" name="controls" id="tabEleven" rendered="{!packageType > 1}">
+				        	<apex:pageBlockSection title="Controls" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationControls}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Test" name="test" id="tabTwuelve">
+				        	<apex:pageBlockSection title="Test" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationTest}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Raw Data" name="rawData" id="tabThirdteen">
+				        	<apex:pageBlockSection title="Raw Data" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationRawData}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				        <apex:tab label="Managed Package" name="packages" id="tabFourteen">
+				        	<apex:pageBlockSection title="Raw Data" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationManagedPackage}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				         <apex:tab label="Extended (Other)" name="extended" id="tabFiftheen">
+				        	<apex:pageBlockSection title="Extended (Other)" collapsible="false" showHeader="false" columns="2">
+						        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationOther}" var="w"> 
+									<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+								</apex:repeat>
+							</apex:pageBlockSection>
+				        </apex:tab>
+				    </apex:tabPanel>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:form>
+		<apex:relatedList list="FLO_Change_Logs__r" rendered="{!packageType > 0}" />
+		<apex:relatedList list="CombinedAttachments" />
+		<apex:relatedList list="Histories" />
+	</apex:outputPanel>
+
+	<apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }" >
+		<style>
+			.bPageBlock {
+            	border-top: 0 !important;
+	        }
+	        .pbBody {
+	            margin: 0 !important;
+	        } 
+	        .pbSubheader {
+	            background-color: orange!important;
+	            padding: 8px !important;
+	            color: #222 !important;
+	        }
+	        .bPageBlock {
+	            border-top: 0 solid #d8dde6 !important;
+	            border-left: 0px !important;
+	            border-right: 0px !important;
+	            border-bottom: 0px !important;
+	            background: #FFF !important;
+	            margin-bottom: 15px !important;
+	         }
+	         .relatedListIcon {
+	         	display: none !important;
+	         }
+	         .pbTitle h3 {
+	         	margin: 10px 0 !important;
+	         }
+
+	         .btn {
+			    position: relative;
+			    display: inline-block;
+			    padding: 0 10px !important;
+			    background: transparent !important;
+			    background-clip: border-box !important;
+			    border: 1px solid #d8dde6 !important;
+			    border-radius: 0.25rem !important;
+			    font-size: 0.75rem !important;
+			    line-height: 1.875rem !important;
+			    text-decoration: none !important;
+			    color: #0070d2 !important;
+			    -webkit-appearance: none !important;
+			    white-space: normal !important;
+			    -webkit-user-select: none !important;
+			    -moz-user-select: none !important;
+			    -ms-user-select: none !important;
+			    user-select: none !important;
+			    transition: color 0.05s linear, background-color 0.05s linear !important;
+			}
+		</style>
+	    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+
+     	 <div class="slds">
+		        <div class="slds-page-header">
+				  <div class="slds-grid">
+				    <div class="slds-col slds-has-flexi-truncate">
+				      <div class="slds-media slds-no-space slds-grow">
+				        <div class="slds-media__figure">
+				       		 <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+				        </div>
+				        <div class="slds-media__body">
+				          <p class="slds-text-title_caps slds-line-height_reset">FLO Customization</p>
+				          <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="this should match the Record Title">{!FLODocs__FLO_Customization__c.Name}</h1>
+				        </div>
+				      </div>
+				    </div>
+				    <div class="slds-col slds-no-flex slds-grid slds-align-top">
+				      <div class="slds-button-group" role="group">
+
+				      	 <button type="button" class="slds-button slds-button--neutral" onclick="editCusto();return false;">Edit</button>
+				         <button type="button" class="slds-button slds-button--neutral" onclick="rescanCusto();return false;">Rescan</button>
+                   		 <button type="button" class="slds-button slds-button--neutral" style="display: {!IF(FLO_Customization__c.Salesforce_Types__c == 'Report','block','none')};" onclick="runControlBatchJs();return false;">Run Control</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<apex:form id="frmCandEdit" >
+					<apex:actionFunction name="saveAf" action="{!save}" oncomplete="editCusto()"/>
+					<apex:actionFunction name="runControlAF" action="{!runControlBatch}" />
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-medium-size--4-of-12 slds-p-around--medium">
+                            <h3 class="slds-text-heading--small slds-m-bottom--large slds-section__title">Basic Information</h3>
+                        </div>
+                        <div class="slds-col slds-medium-size--8-of-12 slds-p-around--medium">
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap">
+                        <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationHeaderDetails}" var="field">
+                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+                                <div class="slds-form-element slds-p-around--medium">
+                                    <label class="slds-form-element__label">
+                                        {!field.label}
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputField value="{!FLODocs__FLO_Customization__c[field.fieldPath]}" style="display:none"></apex:outputField>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+
+                    <div class="slds-tabs_default">
+                    	 <div class="slds-section  slds-section__title-action">
+		                    <h3 class="slds-section__title  ">Details</h3>
+		                  </div>
+                    	 <ul class="slds-tabs--default__nav resultTabs" role="tablist">
+							<li class="slds-tabs--default__item slds-active" title="Source" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" >Metadata</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Target" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Scripting</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Reports</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item">Forms</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" id="tab-default-5__item">Improvement</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-6" id="tab-default-6__item">Workflows</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" id="tab-default-7__item">Data Sources</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-8" id="tab-default-8__item">Roles</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-9" id="tab-default-9__item">Controls</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-10" id="tab-default-10__item">Test</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-11" id="tab-default-11__item">Raw Data</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Managed Package</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-13" id="tab-default-13__item">Extended (Other)</a>
+							</li>
+						</ul>
+						 <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+						 	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationMetadata}" var="md">
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12" style="display: {!IF(((md.label == 'Employee using this customization' || md.label == 'Roles using this customization' || md.label == 'Date Last Used') && FLODocs__FLO_Customization__c[md] != null) || (md.label != 'Employee using this customization' && md.label != 'Roles using this customization' && md.label != 'Date Last Used'),'block','none')}">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                    	<apex:outputPanel rendered="{!((md.label == 'Employee using this customization' || md.label == 'Roles using this customization' || md.label == 'Date Last Used') && FLODocs__FLO_Customization__c[md] != null) || (md.label != 'Employee using this customization' && md.label != 'Roles using this customization' && md.label != 'Date Last Used')}">
+		                                        	{!md.label}
+		                                        </apex:outputPanel>
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                      <apex:outputField value="{!FLODocs__FLO_Customization__c[md]}" rendered="{!((md.label == 'Employee using this customization' || md.label == 'Roles using this customization' || md.label == 'Date Last Used') && FLODocs__FLO_Customization__c[md] != null) || (md.label != 'Employee using this customization' && md.label != 'Roles using this customization' && md.label != 'Date Last Used')}"/>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		 <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationScripting}" var="sc"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        	{!sc.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+												<apex:outputField value="{!FLODocs__FLO_Customization__c[sc]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationReport}" var="rep"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!rep.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+												<apex:outputField value="{!FLODocs__FLO_Customization__c[rep]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-4" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-4__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationForms}" var="f"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!f.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[f]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-5" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-5__item">
+                   		  	<div class="slds-grid slds-wrap">
+								<apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationImprovement}" var="imp"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!imp.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[imp]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-6" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-6__item">
+                   		  	<div class="slds-grid slds-wrap">
+								  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationWorkflows}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-7" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-7__item">
+                   		  	<div class="slds-grid slds-wrap">
+								<apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationDataSources}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-8" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-8__item">
+                   		  	<div class="slds-grid slds-wrap">
+								  <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationProfileAndRoles}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-9" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-9__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationControls}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-10" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-10__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationTest}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-11" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-11__item">
+                   		  	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationRawData}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		  <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+                   		  	<div class="slds-grid slds-wrap">
+								   <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationManagedPackage}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                   		 <div id="tab-default-13" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-13__item">
+                   		 	<div class="slds-grid slds-wrap">
+								 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationOther}" var="w"> 
+		                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+		                                <div class="slds-form-element slds-p-around--medium">
+		                                    <label class="slds-form-element__label">
+		                                        {!w.label}
+		                                    </label>
+		                                    <div class="slds-form-element__control">
+		                                    	<apex:outputField value="{!FLODocs__FLO_Customization__c[w]}" />
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </apex:repeat>
+		                    </div>
+                   		 </div>
+                    </div>
+
+
+	                <div id="ModalCusto" style="display:none;" >
+	                    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+	                        <div class="slds-modal__container">
+	                          <div class="slds-modal__header">
+	                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+	                              <span class="slds-assistive-text">Close</span>
+	                            </button>
+	                            <h2 id="header433" class="slds-text-heading--medium">Edit Customization</h2>
+	                            <p class="slds-m-top--x-small">Edit page.</p>
+	                          </div>
+	                          <div class="slds-modal__content slds-p-around--medium">
+	                               	<div class="slds-section slds-is-open">
+									  <h3 class="slds-section__title slds-theme_shade">
+									    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Improvement Section</span>
+									  </h3>
+									  <div aria-hidden="false" class="slds-section__content">
+									   		<div class="slds-grid slds-wrap">
+												<apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationImprovement}" var="imp"> 
+						                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+						                                <div class="slds-form-element slds-p-around--medium">
+						                                    <label class="slds-form-element__label">
+						                                        {!imp.label}
+						                                    </label>
+						                                    <div class="slds-form-element__control">
+						                                    	<apex:inputField value="{!FLODocs__FLO_Customization__c[imp]}" />
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </apex:repeat>
+						                    </div>
+									  </div>
+									</div>
+									<div class="slds-section slds-is-open">
+									  <h3 class="slds-section__title slds-theme_shade">
+									    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Control Section</span>
+									  </h3>
+									  <div aria-hidden="false" class="slds-section__content">
+										    <div class="slds-grid slds-wrap">
+												 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationControls}" var="w"> 
+						                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+						                                <div class="slds-form-element slds-p-around--medium">
+						                                    <label class="slds-form-element__label">
+						                                        {!w.label}
+						                                    </label>
+						                                    <div class="slds-form-element__control">
+						                                    	<apex:inputField value="{!FLODocs__FLO_Customization__c[w]}" />
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </apex:repeat>
+						                    </div>
+									  </div>
+									</div>
+									<div class="slds-section slds-is-open">
+									  <h3 class="slds-section__title slds-theme_shade">
+									    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Test Section</span>
+									  </h3>
+									  <div aria-hidden="false" class="slds-section__content">
+										    <div class="slds-grid slds-wrap">
+												 <apex:repeat value="{!$ObjectType.FLODocs__FLO_Customization__c.FieldSets.FLODocs__Flo_CustomizationTest}" var="w"> 
+						                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-12">
+						                                <div class="slds-form-element slds-p-around--medium">
+						                                    <label class="slds-form-element__label">
+						                                        {!w.label}
+						                                    </label>
+						                                    <div class="slds-form-element__control">
+						                                    	<apex:inputField value="{!FLODocs__FLO_Customization__c[w]}" />
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </apex:repeat>
+						                    </div>
+									  </div>
+									</div>
+
+	                          </div>
+	                          <div class="slds-modal__footer">
+	                            <button class="slds-button slds-button--neutral" onclick="editCusto(); return false;">Cancel</button>
+	                            <button class="slds-button slds-button--neutral" onclick="modalCustoJs(); return false;">Save</button>
+	                          </div>
+	                        </div>
+	                    </div>
+	                    <div class="slds-backdrop slds-backdrop--open"></div>
+	                </div>
+
+					<c:StrongpointAnnouncement />
+                </apex:form>
+
+                <div class="slds-section  slds-section__title-action">
+               	 <h3 class="slds-section__title  ">Related Lists</h3>
+             	 </div>
+		</div>
+		<apex:relatedList list="FLO_Change_Logs__r" rendered="{!packageType > 0}" />
+		<apex:relatedList list="CombinedAttachments" />
+		<apex:relatedList list="Histories" />
+	</apex:outputPanel>
+		
+
+
+	<script>
+	jQuery(function ($) {
+		$('.resultTabs li a').click(function(){
+			var tabClicked = $(this).attr('id');
+			$('.resultTabs li').each(function() {
+				$(this).removeClass('slds-active');
+			});
+			$(this).parent().addClass('slds-active');
+			$('.slds-tabs--default__content').each(function() {
+				$(this).addClass('slds-hide');
+				$(this).removeClass('slds-show');
+			});
+			if (tabClicked == 'tab-default-1__item') {
+				$('[id$=tab-default-1]').addClass('slds-show');
+				currentTab = 'tab-default-1__item';
+			}
+			if (tabClicked == 'tab-default-2__item') {
+				$('[id$=tab-default-2]').addClass('slds-show');
+				currentTab = 'tab-default-2__item';
+			}
+			if (tabClicked == 'tab-default-3__item') {
+				$('[id$=tab-default-3]').addClass('slds-show');
+				currentTab = 'tab-default-3__item';
+			}
+			if (tabClicked == 'tab-default-4__item') {
+				$('[id$=tab-default-4]').addClass('slds-show');
+				currentTab = 'tab-default-4__item';
+			}
+			if (tabClicked == 'tab-default-5__item') {
+				$('[id$=tab-default-5]').addClass('slds-show');
+				currentTab = 'tab-default-5__item';
+			}
+			if (tabClicked == 'tab-default-6__item') {
+				$('[id$=tab-default-6]').addClass('slds-show');
+				currentTab = 'tab-default-6__item';
+			}
+			if (tabClicked == 'tab-default-7__item') {
+				$('[id$=tab-default-7]').addClass('slds-show');
+				currentTab = 'tab-default-7__item';
+			}
+			if (tabClicked == 'tab-default-8__item') {
+				$('[id$=tab-default-8]').addClass('slds-show');
+				currentTab = 'tab-default-8__item';
+			}
+			if (tabClicked == 'tab-default-9__item') {
+				$('[id$=tab-default-9]').addClass('slds-show');
+				currentTab = 'tab-default-9__item';
+			}
+			if (tabClicked == 'tab-default-10__item') {
+				$('[id$=tab-default-10]').addClass('slds-show');
+				currentTab = 'tab-default-10__item';
+			}
+			if (tabClicked == 'tab-default-11__item') {
+				$('[id$=tab-default-11]').addClass('slds-show');
+				currentTab = 'tab-default-11__item';
+			}
+			if (tabClicked == 'tab-default-12__item') {
+				$('[id$=tab-default-12]').addClass('slds-show');
+				currentTab = 'tab-default-12__item';
+			}
+			if (tabClicked == 'tab-default-13__item') {
+				$('[id$=tab-default-13]').addClass('slds-show');
+				currentTab = 'tab-default-13__item';
+			}
+		})
+		// function openWindow(){
+		// 	openLookupPopup();
+		// }
+	});
+	</script>
+</apex:page>

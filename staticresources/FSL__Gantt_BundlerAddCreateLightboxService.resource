@@ -67,6 +67,15 @@
                 $scope.showData = true;
             });
 
+            sfdcService.callRemoteAction(RemoteActions.checkBundleConfig).then(function (res) {
+
+                if (res == false) {
+
+                    $scope.errorMode = ERROR_NO_POLICY;
+                    $scope.errorMsg = customLabels.NoBundleConfig;
+                }
+            });
+
             sfdcService.callRemoteAction(RemoteActions.getBundleApexMode).then(function (res) {
 
                 $scope.isNativeMode = res;
@@ -78,7 +87,7 @@
                         $scope.bundlerPolicyArr = [];
                         $scope.bundlerPolicyMap = {};
 
-                        if (res.length == 0) {
+                        if (res.length == 0 && $scope.errorMode != ERROR_NO_POLICY) {
 
                             $scope.errorMode = ERROR_NO_POLICY;
                             $scope.errorMsg = customLabels.NoBundlePolicies;

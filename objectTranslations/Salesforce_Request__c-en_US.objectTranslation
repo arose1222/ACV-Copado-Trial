@@ -1097,6 +1097,84 @@ Employment Status Request - Select which days in a week to have employee work --
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Select the reason for your unwind - if selecting an  arb or 48 Hour notice reason, please see manager for how to submit those requests. --></help>
+        <label><!-- Unwind Reason --></label>
+        <name>Unwind_Reason__c</name>
+        <picklistValues>
+            <masterLabel>ACV Auctions Nonpayment</masterLabel>
+            <translation><!-- ACV Auctions Nonpayment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACV Capital Nonpayment</masterLabel>
+            <translation><!-- ACV Capital Nonpayment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction Error</masterLabel>
+            <translation><!-- Auction Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auction Modification</masterLabel>
+            <translation><!-- Auction Modification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Component Not Covered</masterLabel>
+            <translation><!-- Component Not Covered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disclosure Dispute</masterLabel>
+            <translation><!-- Disclosure Dispute --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Double Sale</masterLabel>
+            <translation><!-- Double Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodwill</masterLabel>
+            <translation><!-- Goodwill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Goodwill Issue</masterLabel>
+            <translation><!-- Other Goodwill Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Past Arbitration Time Frame - 10-Day Arbitration</masterLabel>
+            <translation><!-- Past Arbitration Time Frame - 10-Day Arbitration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Past Arbitration Time Frame - 48hr ACV Transport</masterLabel>
+            <translation><!-- Past Arbitration Time Frame - 48hr ACV Transport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller Cancelled Transaction</masterLabel>
+            <translation><!-- Seller Cancelled Transaction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title Issue</masterLabel>
+            <translation><!-- Title Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation Issue</masterLabel>
+            <translation><!-- Transportation Issue --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- ACV Relaunch and Return to Seller picked-up by buyer will automatically create an inspection --></help>
+        <label><!-- Unwind Type --></label>
+        <name>Unwind_Type__c</name>
+        <picklistValues>
+            <masterLabel>ACV Relaunch</masterLabel>
+            <translation><!-- ACV Relaunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Return to Seller</masterLabel>
+            <translation><!-- Return to Seller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rewind</masterLabel>
+            <translation><!-- Rewind --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <help><!-- Level of Urgency for this ticket to be completed. 1 = 2 weeks, 2-4 = 1 week,5-6 = 3-5 days, 7 = 2 days, 8-9 =Tomorrow, 10 = Today. --></help>
         <label><!-- Urgency --></label>
         <name>Urgency__c</name>

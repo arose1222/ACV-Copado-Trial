@@ -22,7 +22,7 @@ public class EnforceSingleServiceAppointmentTest {
     @IsTest
     static void makeServiceAppointment(){
 
-        WorkOrder woRec = [ SELECT Id, ServiceTerritoryId, AccountId, Duration, DurationType, WorkTypeId, Inspection_Number_of_Vehicles__c, Account.Name, OwnerId, Subject, 
+        WorkOrder woRec = [ SELECT Id, Service_Appt_Map_Id__c, ServiceTerritoryId, AccountId, Duration, DurationType, WorkTypeId, Inspection_Number_of_Vehicles__c, Account.Name, OwnerId, Subject, 
                                 Description, Street, City, PostalCode, State, Country FROM WorkOrder LIMIT 1 ];
         
         System.assertEquals( 1, [ SELECT Count() FROM ServiceAppointment ], 'There was an unexpected amount of Service Appointments in the system' );

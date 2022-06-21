@@ -1,40 +1,243 @@
-<template>
-    <template if:true={activeSpinner}>
-            <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
-        </template>
+<template>  
     <lightning-accordion class="example-accordion" active-section-name="addAddress">
+        <template if:true={activeSpinner}>
+            <lightning-spinner alternative-text="Uploading......" size="medium" variant="brand"></lightning-spinner>
+        </template>
+    <lightning-accordion-section name="addAddress" label="Add Address">
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2">
+                <lightning-combobox style="margin: 5px;" name="Address Type" label="Address Type" required="true"
+                    value={selectedType} options={addressType} onchange={handleTypeChange}></lightning-combobox>
+
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning-combobox style="margin: 5px;" name="AddressSubType" disabled={addressSubTypeDisabled} 
+                    label="Address Sub Type" value={selectedSubType} options={addressSubType}
+                    onchange={handleAddressSubTypeChange}></lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2">
+                <lightning-combobox style="margin: 4px;" name="Afterhourdeliveriesallowed"
+                    disabled={afterHourDisabled} label="After hour deliveries allowed?"
+                    value={selectedAfterHourDelivery} options={afterHourDelivery}
+                    onchange={handleAfterHourDelivery}></lightning-combobox>
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning-record-edit-form object-api-name="AssociatedLocation" id="AssociatedLocationForm">
+                    <lightning-input-field style="margin: 4px;" field-name="Transportation_Primary_Contact__c"
+                        onchange={handleContactSelection}> </lightning-input-field>
+                </lightning-record-edit-form>
+            </div>
+        </div>
+
+
+        <lightning-input-address show-address-lookup address-label="Address" street-label="Street" city-label="City"
+            country-label="Country" province-label="State" postal-code-label="Zip Code" street={newAddress.street}
+            city={newAddress.city} country={newAddress.country} province={newAddress.province}
+            postal-code={newAddress.postalCode} country-options={getCountryOptions}
+            province-options={getStateOptions} onchange={handleAddressChange} required>
+        </lightning-input-address>
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <lightning-input type="text" label="Alternate Address Name" value={altName}
+                    onchange={handleAltNameChange}>
+                </lightning-input>
+
+            </div>
+            <div class="slds-col">
+                <lightning-textarea type="text" label="Address Notes" value={addressNotes}
+                    onchange={handleNoteChange}>
+                </lightning-textarea>
+            </div>
+        </div>
+
         
-        <!-- <lightning-accordion-section name="deactivateAddresses" label="Deactivate Existing Address">
-            Place holder for future development
-        </lightning-accordion-section> -->
-        <lightning-accordion-section name="addAddress" label="Add Address">
-            <lightning-combobox
-            name="Address Type"
-            label="Address Type"
-            value={selectedType}
-            options={addressType}
-            onchange={handleTypeChange} ></lightning-combobox>
-            <lightning-input-address
-                show-address-lookup
-                address-label="Address"
-                street-label="Street"
-                city-label="City"
-                country-label="Country"
-                province-label="State"
-                postal-code-label="Zip Code"
-                street={newAddress.street}
-                city={newAddress.city}
-                country={newAddress.country}
-                province={newAddress.province}
-                postal-code={newAddress.postalCode}
-                country-options={getCountryOptions}
-                province-options={getStateOptions}
-                onchange={handleAddressChange} required >
-            </lightning-input-address>
-            <lightning-input type="text" label="Alternate Address Name" value={altName} onchange={handleAltNameChange}></lightning-input>
-            <lightning-textarea type="text" label="Address Notes" value={addressNotes} onchange={handleNoteChange}></lightning-textarea>
-            <br/>
-            <right><lightning-button variant="brand-outline" label="Save Address" title="Save Address" onclick={handleSave} class="slds-m-left_x-small"></lightning-button></right>
-        </lightning-accordion-section>
-    </lightning-accordion>
+        <template if:true={checkAddressType}>
+            <div>
+                <p><b>Operating Hours</b></p>
+            </div>
+
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-combobox name="TimeZone" label="Time Zone"
+                        value={selectedTimeZone} options={timeZone} onchange={handleTimeZone}></lightning-combobox>
+                </div>
+                
+            </div>
+
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-combobox name="Monday-Friday Start Time" label="Monday-Friday Start Time" data-id="MonFriStartTime"
+                    value={selectedMonFriStartTime} options={mondayFridayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+
+                </div>
+                <div class="slds-col">
+                    <lightning-combobox name="Monday-Friday End Time" label="Monday-Friday End Time" data-id="MonFriEndTime"
+                    value={selectedMonFriEndTime} options={mondayFridayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+
+                </div>
+            </div>
+            
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                   
+                        <lightning-combobox name="Saturday Start Time" label="Saturday Start Time" data-id="SaturdayStartTime"
+                        value={selectedSatStartTime} options={saturdayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                </div>
+                <div class="slds-col">
+
+                        <lightning-combobox name="Saturday End Time" label="Saturday End Time" data-id="SaturdayEndTime"
+                        value={selectedSatEndTime} options={saturdayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+
+                        <lightning-combobox name="Sunday Start Time" label="Sunday Start Time" data-id="SundayStartTime"
+                        value={selectedSunStartTime} options={sundayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+
+                </div>
+                <div class="slds-col">
+                   
+
+                        <lightning-combobox name="Sunday End Time" label="Sunday End Time" data-id="SundayEndTime"
+                        value={selectedSunEndTime} options={sundayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                </div>
+            </div>
+        </template>
+        
+        <br />
+        <lightning-button variant="brand-outline" label="Save Address" title="Save Address" onclick={handleSave}
+            class="slds-m-left_x-small"></lightning-button>
+    </lightning-accordion-section>
+
+    <br />
+    
+    <lightning-accordion-section name="viewAddress" label="Address List">
+
+        <table if:false={onMobile} style="table-layout: fixed;" class="slds-table slds-table_cell-buffer slds-table_bordered"
+            aria-label="Example default base table of Opportunities">
+            <thead class="fix">
+                <tr class="slds-line-height_reset">
+
+                    <th class="slds-size_2-of-12" scope="col">
+
+                        <div class="slds-truncate slds-float_left" title="AddressType">Address Type</div>
+
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Address">Address</div>
+                    </th>
+
+                    <th class="slds-size_4-of-12" scope="col">
+                        <div class="slds-truncate" title="Notes">Notes</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="AlternateAddress">Alternate Address</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="" title="">Action</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={addresslist} for:item="addr" for:index="index">
+
+                    <tr style="vertical-align: top" class="slds-hint-parent" key={addr.Id}>
+
+                        <td scope="row">
+
+                            <div class="slds-truncate slds-float_left" title="AddressType">
+                                {addr.Location.Type}
+                            </div>
+                        </td>
+
+                        <td data-label="Address">
+                            <div style="width: 100%;">
+                                <lightning-formatted-address street={addr.Location.Location.VisitorAddress.Street}
+                                    city={addr.Location.Location.VisitorAddress.City}
+                                    country={addr.Location.Location.VisitorAddress.Country}
+                                    province={addr.Location.Location.VisitorAddress.State}
+                                    postal-code={addr.Location.Location.VisitorAddress.PostalCode}>
+                                </lightning-formatted-address>
+
+                            </div>
+                        </td>
+
+                        <td data-label="Notes" >
+                            <div style="width: 100%;" class="slds-truncate slds-float_left" title="Notes">
+                                {addr.Location.Notes__c}
+                            </div>
+                        </td>
+
+                        <td data-label="AlternateAddress">
+                            <div style="width: 100%;" class="slds-truncate slds-float_left" title="AlternateAddress">
+                                {addr.Location.Alternate_Address_Name__c}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="slds-truncate slds-float_left">
+                                <div class="slds-form-element">
+                                    <button class="slds-button slds-button_neutral"
+                                            style=" width: 80px; height: 30px; vertical-align: 50%;"
+                                            onclick={handleEdit} data-id={addr.Location.Id}>EDIT</button>
+                                    <br/>
+                                    <button class="slds-button slds-button_destructive"
+                                            data-label="Delete"
+                                            style=" width: 80px; height: 30px; vertical-align: 50%;"
+                                            onclick={handleDelete} data-id={addr.Location.Id} disabled={addr.OneBilling}>DELETE</button>
+                                </div>
+                                
+                            </div>
+                        </td>
+
+                    </tr>
+                </template>
+            </tbody>
+
+        </table>
+
+        <div if:true={onMobile}>
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={addresslist} for:item="addr" for:index="index">
+                        <li class="slds-item" key={addr.Id}>
+                            <article class="slds-tile slds-tile_board">
+                                <h2 class="slds-tile__title">{addr.Location.Type}</h2>
+                                <lightning-formatted-address street={addr.Location.Location.VisitorAddress.Street}
+                                    city={addr.Location.Location.VisitorAddress.City}
+                                    country={addr.Location.Location.VisitorAddress.Country}
+                                    province={addr.Location.Location.VisitorAddress.State}
+                                    postal-code={addr.Location.Location.VisitorAddress.PostalCode}>
+                                </lightning-formatted-address>
+                                <div class="slds-tile__detail">
+                                    </br>
+                                    <button class="slds-button slds-button_neutral"
+                                            style=" width: 80px; height: 30px; vertical-align: 50%;"
+                                            onclick={handleEdit} data-id={addr.Location.Id}>EDIT</button>
+                                    </br>
+                                    <button class="slds-button slds-button_destructive"
+                                            style=" width: 80px; height: 30px; vertical-align: 50%;"
+                                            onclick={handleDelete} data-id={addr.Location.Id} disabled={addr.OneBilling}>DELETE</button>                                              
+                                </div>
+                            </article>
+                        </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-accordion-section>
+</lightning-accordion>
+
+    <template if:true={showDeletePopup}>
+        <c-delete-address-pop-up addressid={addressId} oncancelled={handleChildCancel}></c-delete-address-pop-up>
+    </template>
+
+    <template if:true={showEditPopup}>  
+        <c-update-Address-To-Account addressid={addressId} recordid={recordId} onupdate={handleChildEdit}></c-update-Address-To-Account>
+    </template>
+    
 </template>

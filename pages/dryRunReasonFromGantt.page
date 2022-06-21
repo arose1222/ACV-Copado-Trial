@@ -1,0 +1,25 @@
+<!--
+  @description       : 
+  @author            : v-dchaves@acvauctions.com
+  @group             : 
+  @last modified on  : 05-02-2022
+  @last modified by  : v-dchaves@acvauctions.com
+-->
+<apex:page standardController="ServiceAppointment">
+    <apex:includeLightning />
+
+    <div id='LightningComponentid'></div>
+
+    <!-- Component invokation -->
+    <script>
+        $Lightning.use("c:dryRunReasonFromGanttApp", function() {
+            $Lightning.createComponent("c:DryRunFromServiceAppointment",
+            { 
+                recordId : '{!$CurrentPage.parameters.id}',
+                fromGantt : true
+            },
+            "LightningComponentid",
+            );
+        });
+    </script>
+</apex:page>

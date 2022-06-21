@@ -306,6 +306,7 @@ global class RevolvingTest {
                 Timeline__r.Account__r.Service_Territory__c,
                 Timeline__r.Account__r.Service_Territory__r.OperatingHours.TimeZone,
                 Timeline__r.Average_Number_Cars__c,
+                Timeline__r.Special_Instructions__c,
                 Timeline__r.Work_Type__c,
                 Timeline__r.Work_Type__r.DurationInMinutes,
                 Timeline__r.Street__c,

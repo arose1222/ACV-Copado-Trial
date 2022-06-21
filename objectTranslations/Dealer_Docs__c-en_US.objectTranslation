@@ -289,6 +289,10 @@
         <name>Cannot_have_AL_Sales_Tax_AND_MTC_true</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Related Dealer License needs to be populated for a confirmation document to be created or edited. --></errorMessage>
+        <name>Confirmation_Doc_Must_Have_Related_Lic</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- This document should not need its information changed after creation. Please submit a salesforce Requests &amp; Inquiries ticket if you need something changed. --></errorMessage>
         <name>Confirmation_Doc_Not_Editable</name>
     </validationRules>

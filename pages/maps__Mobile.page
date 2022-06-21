@@ -44,12 +44,12 @@
 
         <apex:stylesheet value="{!URLFOR($Resource.maps__MapsStyles, 'Mobile/s1Mobile/css/test.css')}"/>
 
-        <link rel="stylesheet" type="text/css" href="{!resourcePaths['MapsJS']}/MapsPhone/dist/main.css"></link>
+        <link rel="stylesheet" type="text/css" href="{!resourcePaths['VueMobile']}/build/main.css"></link>
         <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.MapsFonts, 'styles.css')}" />
 
         <script
             type='text/javascript'
-            src='{!GoogleURL}/maps/api/js?v=3.46&client=gme-cloudbiltinc&libraries=places,visualization,drawing,geometry'
+            src='{!GoogleURL}/maps/api/js?v=3.47&client=gme-cloudbiltinc&libraries=places,visualization,drawing,geometry'
         ></script>
 
         <!-- Google Maps - Spiderfy (https://github.com/jawj/OverlappingMarkerSpiderfier) -->
@@ -2370,7 +2370,7 @@
 <script type='text/javascript' src="{!resourcePaths['MapsJS']}/MARecordProcessJS.js"></script>
 <script type='text/javascript' src="{!resourcePaths['MapsJS']}/MapAnythingPlottingJS.js"></script>
 <script type='text/javascript' src="{!resourcePaths['MapsJS']}/MATerritoryBuilder.js"></script>
-<script async="true" defer="true" src="{!resourcePaths['MapsJS']}/MapsPhone/dist/bundle.js"/>
+<script async="true" defer="true" src="{!resourcePaths['VueMobile']}/build/bundle.js"/>
 <script async="true" defer="true" src="{!resourcePaths['MapsJS']}/MATabletJS.js"></script>
 <script type='text/javascript' src="{!URLFOR($Resource.Maps3rdPartyPlugins, 'google/cryptojs/core-min.js')}"></script>
 

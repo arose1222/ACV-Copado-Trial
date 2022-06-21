@@ -37,10 +37,10 @@ public class ContactACVUserChangeEventTest {
         Test.startTest();
         //Update Active flag
         Contact newCon = new Contact();
-        newCon = [SELECT ID, Id__c, MobilePhone
+        newCon = [SELECT ID, Id__c, Programmatic_Sms_Opt_In__c
         FROM Contact Where LastName='Contact1'];
         System.debug(newCon);
-        newCon.MobilePhone = '123456789';
+        newCon.Programmatic_Sms_Opt_In__c = true;
         update newCon;
         System.debug(newCon);
         Integration_Result__c integrationTest= [Select id, Status_Code__c, Request_Message__c, Status_Message__c From Integration_Result__c Where recordId__c=:newCon.id];

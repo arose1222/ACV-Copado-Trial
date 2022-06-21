@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>FLODocs__API_Endpoint__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Base URL for the API.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Base URL for the API.</inlineHelpText>
+        <label>API Endpoint</label>
+        <required>true</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Access_Token_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Authorization Server URL for the Access Token request.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Authorization Server URL for the Access Token request.</inlineHelpText>
+        <label>Access Token URL</label>
+        <required>true</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__AuthProvider_Plugin_Class__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Custom AuthProvider class</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Custom AuthProvider class</inlineHelpText>
+        <label>AuthProvider Plugin Class</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Authorization_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Resource URL for the OAuth2 Authorization Request (code).</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Resource URL for the OAuth2 Authorization Request (code).</inlineHelpText>
+        <label>Authorization URL</label>
+        <required>true</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Service_Class__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Concrete Data Service class name.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Concrete Data Service class name.</inlineHelpText>
+        <label>Data Service Class</label>
+        <length>80</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Default_Scope__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Default scope of the OAuth2 granted credential.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Default scope of the OAuth2 granted credential.</inlineHelpText>
+        <label>Default Scope</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__RemoteSiteSetting_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Base URL for the OAuth2 Authorization and Access Token requests.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Base URL for the OAuth2 Authorization and Access Token requests.</inlineHelpText>
+        <label>Remote Site Setting URL</label>
+        <required>true</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Resource_Class__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Designates the class of OAuth2 resource. 
+Git =&gt; various Git-based version control services (eg, GitHub, GitLab, Bitbucket)
+Salesforce =&gt; Salesforce</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Designates the class of OAuth2 resource. 
+Git =&gt; various Git-based version control services (eg, GitHub, GitLab, Bitbucket)
+Salesforce =&gt; Salesforce</inlineHelpText>
+        <label>Resource Class</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Git</fullName>
+                    <default>true</default>
+                    <label>Git</label>
+                </value>
+                <value>
+                    <fullName>Salesforce</fullName>
+                    <default>false</default>
+                    <label>Salesforce</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>OAuth2 Resource Type</label>
+    <pluralLabel>OAuth2 Resource Types</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

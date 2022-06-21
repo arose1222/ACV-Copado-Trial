@@ -17,6 +17,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Address_Subtype__c</fullName>
+        <description>Address Subtype as entered from address management LWC.  From Associated Location</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Address Subtype</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Address__c</fullName>
         <description>Indicates the Street Address</description>
         <externalId>false</externalId>
@@ -28,6 +41,17 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>After_hour_deliveries_allowed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Populated from Address Management LWC.  From AssociatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>After hour deliveries allowed</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Changed_By_Sf_User_Id__c</fullName>
@@ -118,6 +142,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Monday_Friday_End_Time__c</fullName>
+        <description>End time for Monday through friday from address management LWC. From associatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Monday Friday End Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Monday_Friday_Start_Time__c</fullName>
+        <description>Start time for Monday through Friday from address management LWC. From associatedLocation.</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Monday Friday Start Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Name__c</fullName>
         <description>Indicates an Address Events Alternative Address Name</description>
         <externalId>false</externalId>
@@ -183,6 +233,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Saturday_End_Time__c</fullName>
+        <description>End time for saturday from Address Management LWC. From associatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Saturday End Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saturday_Start_Time__c</fullName>
+        <description>Start Time for Saturday from address management LWC. From AssociatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Saturday Start Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>State__c</fullName>
         <description>Address State</description>
         <externalId>false</externalId>
@@ -193,6 +269,59 @@
         <length>255</length>
         <required>false</required>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sunday_End_Time__c</fullName>
+        <description>End time for Sunday from address management LWC. From AssociatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Sunday End Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sunday_Start_Time__c</fullName>
+        <description>Start time for Sunday from address management lwc. From AssociatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Sunday Start Time</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Timezone__c</fullName>
+        <description>Time zone of dealership from address management LWC. from AssociatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Timezone</label>
+        <length>24</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Primary_Contact__c</fullName>
+        <description>The ID__c of the Transportation Primary Contact as selected in the address management LWC.  from associatedLocation</description>
+        <externalId>false</externalId>
+        <isFilteringDisabled>false</isFilteringDisabled>
+        <isNameField>false</isNameField>
+        <isSortingDisabled>false</isSortingDisabled>
+        <label>Transportation Primary Contact</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

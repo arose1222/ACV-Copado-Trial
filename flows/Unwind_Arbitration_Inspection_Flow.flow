@@ -47,7 +47,7 @@
             <label>Work Order Exists</label>
         </rules>
     </decisions>
-    <description>Removed Number of Vehicles</description>
+    <description>ID-3615 Special Instructions field needs to be changed to Long text.</description>
     <formulas>
         <description>Account ID based on Vehicle Location (Buyer, Seller, Other Physical Address)</description>
         <name>AccountId_for_Vehicle_Location</name>
@@ -207,7 +207,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Special_Instructions__c</field>
+            <field>Special_Instructions_for_VCI__c</field>
             <value>
                 <elementReference>$Record.Notes_for_Inspector__c</elementReference>
             </value>

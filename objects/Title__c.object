@@ -155,6 +155,19 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>ACV_Titles_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Unique Title Id populated by backend through Title Service.</description>
+        <externalId>true</externalId>
+        <label>ACV Titles External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Buyer_Organization_Id__c</fullName>
         <description>Buyer Account Id - populated by the backed (engineering team) using SF TitleService.</description>
         <externalId>false</externalId>
@@ -193,6 +206,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Is_Pending_Related_Info__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>We only create shell Case &amp; Title records when we get a &apos;created&apos; event in TitleService. A batch file is run separately to populate related salesforce ids to avoid Row Lock error. This field is set to False by the batch file that populates the related salesforce ids in Case &amp; Title records.</description>
+        <externalId>false</externalId>
+        <label>Is Pending Related Info</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Legacy_Auction_Id__c</fullName>

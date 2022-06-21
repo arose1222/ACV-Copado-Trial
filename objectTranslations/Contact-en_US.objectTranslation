@@ -343,6 +343,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Programmatic SMS Opt In --></label>
+        <name>Programmatic_Sms_Opt_In__c</name>
+    </fields>
+    <fields>
         <label><!-- Promotion Code --></label>
         <name>Promotion_Code__c</name>
     </fields>
@@ -556,7 +560,7 @@
         <name>Lead_Conversion_Must_Be_Merged</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Mailing Postal Code must be either 99999 or 99999-9999 --></errorMessage>
+        <errorMessage><!-- US postal code must be in 99999 or 99999-9999 format. Canadian postal code must be in A9A 9A9 format. --></errorMessage>
         <name>Mailing_postal_code_must_be_valid</name>
     </validationRules>
     <validationRules>

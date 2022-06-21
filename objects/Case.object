@@ -4047,6 +4047,17 @@ IF(INCLUDES( Title_Problem_Subset__c , &quot;Incorrect Address on Reassignment&q
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>Is_using_a_factoring_company__c</fullName>
+        <description>Pulls from the Account to see if the transporter works with a factoring company.</description>
+        <externalId>false</externalId>
+        <formula>Transporter_Account__r.Works_With_Factoring_Company__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is using a factoring company?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Issued_Check_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Issued Check Amount</label>
@@ -4768,6 +4779,22 @@ ROUND((NOW() - CreatedDate),0))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Open_QC_Count__c</fullName>
+        <description>Looks at the number of QC records associated with the case that are open.  This field is used to create a validation rule to only allow the title case status to be updated from problem or return to seller if field is 0.
+
+Populated Via Flow Open QC Count on case.</description>
+        <externalId>false</externalId>
+        <label>Open QC Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Open_to_Close__c</fullName>
@@ -9496,9 +9523,7 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Vehicle_Make__c</columns>
         <columns>Vehicle_Model__c</columns>
-        <columns>Vehicle_Year__c</columns>
         <columns>Auction_Number__c</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
         <columns>Time_Under_Review__c</columns>
@@ -9511,9 +9536,9 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>Case.Arbitration_Claim,Case.Support</value>
         </filters>
         <filters>
-            <field>VIN__c</field>
+            <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>1FTFX1EV3AFB89175</value>
+            <value>Closed</value>
         </filters>
         <label>Arb - All Cases Reviewed</label>
     </listViews>
@@ -12059,12 +12084,12 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <filters>
             <field>Title_Scanner__c</field>
             <operation>contains</operation>
-            <value>Leila</value>
+            <value>brandi</value>
         </filters>
         <filters>
-            <field>Title_Scanned_Time__c</field>
+            <field>Title_Sent_Date__c</field>
             <operation>equals</operation>
-            <value>TODAY</value>
+            <value>5/13/2022</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -12446,6 +12471,8 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+        <columns>Unwind_Type__c</columns>
+        <columns>Unwind_Reason__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -13683,12 +13710,9 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <columns>Vehicle_Year_Make_Model__c</columns>
         <columns>Odometer_Reading_formula__c</columns>
         <columns>Buyer_Name__c</columns>
-        <columns>EP_Label_Generated_By__c</columns>
+        <columns>Title_Sent_Date__c</columns>
         <columns>Payment_Method__c</columns>
         <columns>Easypost_Tracker__c</columns>
-        <columns>Title_Scanned_Time__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Batch_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.RECORDTYPE</field>
@@ -13701,21 +13725,26 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
             <value>1</value>
         </filters>
         <filters>
-            <field>Title_Scanner__c</field>
-            <operation>contains</operation>
-            <value>oksana</value>
-        </filters>
-        <filters>
             <field>Title_Scanned_Time__c</field>
             <operation>equals</operation>
-            <value>YESTERDAY</value>
+            <value>N_DAYS_AGO:5</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>Sent</value>
         </filters>
-        <label>leila QC Report (outbound)</label>
+        <filters>
+            <field>Buyer_Name__c</field>
+            <operation>contains</operation>
+            <value>FCM Dallas</value>
+        </filters>
+        <filters>
+            <field>Payment_Method__c</field>
+            <operation>contains</operation>
+            <value>acv_</value>
+        </filters>
+        <label>FCM Dallas to Pay</label>
     </listViews>
     <listViews>
         <fullName>manual_QC</fullName>
@@ -28589,6 +28618,23 @@ Reviewed__c &lt;&gt; Total_Complaint_Count__c)</errorConditionFormula>
         <active>true</active>
         <errorConditionFormula>RecordType.Name = &apos;CR Review&apos; &amp;&amp; Total_Complaint_Count__c &lt; 1 &amp;&amp; NOT(isPickval(Review_Classification__c,&apos;&apos;)) &amp;&amp;  IsClosed</errorConditionFormula>
         <errorMessage>Please add a Complaint record as to why this CR is Avoidable</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Can_Not_Update_Title_Case_to_Work_Rec</fullName>
+        <active>false</active>
+        <description>Can not update title case to working or received from problem or return to seller - This is to prevent updating the title case without closing out the QC object - Case field Open QC Count populated via flow</description>
+        <errorConditionFormula>AND(
+$Profile.Name != &quot;System Administrator&quot;,
+$Profile.Name != &quot;API Only User&quot;,
+Open_QC_Count__c &lt;&gt; 0,
+$Setup.TitleProblemStatus__c.DisableValidation__c = FALSE,
+ISCHANGED(Status),
+OR(ISPICKVAL(Status, &apos;Working&apos;),
+ISPICKVAL(Status, &apos;Received&apos;)),
+OR(NOT(ISPICKVAL(PRIORVALUE(Status), &apos;Problem&apos;)),
+NOT(ISPICKVAL(PRIORVALUE(Status), &apos;Return to Seller&apos;)),
+NOT(ISPICKVAL(PRIORVALUE(Status), &apos;48 Hour Notice&apos;))))</errorConditionFormula>
+        <errorMessage>You can not update the title case to Working or Received.  You must change the status of the case by closing out all Quality Control Records</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Can_not_Finalize_if_Central_Dispatch</fullName>

@@ -137,6 +137,7 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
         'Title_No_48_Hour_Update': [
             {label: 'Buyer Reported Problem', value: 'Buyer Reported Problem'},
             {label: 'Buyer Title Status', value: 'Buyer Title Status'},
+            {label: 'Duplicate Title Requested', value: 'Duplicate Title Requested'},
             {label: 'Seller Title Status', value: 'Seller Title Status'},
             {label: '48 Hour Notice Request', value: '48 Hour Notice Request'},
             {label: 'Other', value: 'Other'}
@@ -542,10 +543,12 @@ export default class CaseCreateUtility extends NavigationMixin(LightningElement)
                                     if (results.Status == 'Sent') {
                                         // has Buyer Reported Problem but NO 48 Hour Unwind Request
                                         item.callTypeOptions = this.callTypeDependencies['Title_No_48_Hour_Update'];
+                                        console.log('Title_No_48_Hour_Update');
                                     }
                                     else {
                                         // no Buyer Reported Problem or 48 Hour Unwind Request
                                         item.callTypeOptions = this.callTypeDependencies['Title_No_48_Hour_Update_No_Buyer_Problem'];
+                                        console.log('Title_No_48_Hour_Update_No_Buyer_Problem');
                                     }
                                 }
                                 else { //has 48 Hour Unwind Request, but NO 48 Hour Notice Request

@@ -2,10 +2,12 @@ public class SalesforceGatewayUserupdateLogic extends TriggerInterface{
     //added as part of IO-1646 - refactoring code
     private static List<LoginHistory> lh;
     private static List<Contact> runningUserContact;
+    // Get AVC User Record Type Id
+    private static String acvUserRtId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('ACV_User').getRecordTypeId();
     //static init block
     static{
         lh = [SELECT Id, SourceIp,Browser FROM LoginHistory WHERE UserId = :UserInfo.getUserId() ORDER BY LoginTime DESC LIMIT 1];
-        runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];
+        runningUserContact = [Select Id, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() AND RecordTypeId =:acvUserRtId LIMIT 1];
     }
     public override void afterUpdate(Map<Id,sObject> oldMap, Map<Id,sObject> newMap){
         Map<Id,Contact> newConMap = (Map<Id,Contact>) newMap;

@@ -1,0 +1,239 @@
+<apex:page showHeader="true" sidebar="true"  standardController="FLODocs__Search_Clean_up_Rule__c" extensions="FLODocs.StrongpointAutomatedCleanUpViewCtrl">
+	<apex:slds />
+	<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+
+	<script>
+		$(document).ready(function() {
+			$('#includeAllBtn').click( function() {
+				$('.include').prop({checked: true});
+				$('.exclude').removeAttr('checked');
+			});
+			$('#excludeAllBtn').click( function() {
+				$('.exclude').prop({checked: true});
+				$('.include').removeAttr('checked');
+			});
+			$('.include').click( function() {
+				$(this).parent().parent().next().find('.exclude').prop({checked: false});
+			});
+			$('.exclude').click( function() {
+				$(this).parent().parent().prev().find('.include').prop({checked: false});
+			});
+		});
+		
+		function includeAll(allOrNoneCheckbox) {
+
+		    // Find parent table
+		    var container = allOrNoneCheckbox;
+		    while (container.tagName != "TABLE") {
+		        container = container.parentNode;
+		    }
+
+		    // Switch all checkboxes
+		    var inputs = container.getElementsByTagName("input");
+		    var myElement  = getApexElementByID('input','include');
+		    var checked = allOrNoneCheckbox.checked;
+		    for (var i = 0; i < inputs.length; i++) { 
+		        var input = inputs.item(i);
+		        if (input.type == "checkbox" && myElement != -1) {
+		             input.checked = true;
+		        }
+		    }
+		}
+		function excludeAll(allOrNoneCheckbox) {
+
+		    // Find parent table
+		    var container = allOrNoneCheckbox;
+		    while (container.tagName != "TABLE") {
+		        container = container.parentNode;
+		    }
+
+		    // Switch all checkboxes
+		    var inputs = container.getElementsByTagName("input");
+		    var checked = allOrNoneCheckbox.checked;
+		    for (var i = 0; i < inputs.length; i++) { 
+		        var input = inputs.item(i);
+		        if (input.type == "checkbox") {
+		             input.checked = false;
+		        }
+		    }
+		}
+
+		function getApexElementByID(tagname, eid) {
+            var tags = document.getElementsByTagName(tagname); //get a bunch of tags.
+            var regex = new RegExp(":" + eid + "$");
+            for (var i=0; i < tags.length; i++) {
+                if (tags[i].getAttribute("id") != null) {
+                    var idVal = tags[i].getAttribute("id");
+                    var pos = idVal.search(regex);
+                    if (pos != -1) return tags[i];
+                }
+            }
+            return null;
+        }
+
+	</script>
+
+	<style type="text/css">
+		.disabledClass{
+		    cursor: not-allowed;
+		    pointer-events: none;
+		    opacity: 0.5;
+		 }
+	</style>
+
+	<apex:form >
+		<div class="slds">
+			<div class="slds-page-header">
+				<div class="slds-grid">
+					<div class="sldsc-ol slds-has-flexi-truncate">
+						<div class="slds-media slds-no-space slds-grow">
+							<div class="slds-media__figure">
+								<img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+							</div>
+							<div class="slds-media__body">
+								<p class="slds-text-title_caps slds-line-height_reset">Automated Report Clean Up Rules</p>
+								<h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="this should match the Record Title">	New Clean Up Rule Preview
+								</h1>
+							</div>
+						</div>
+					</div>
+					<div class="slds-col slds-no-flex slds-grid slds-align-top">
+						<div class="slds-button-group" role="group">
+							<apex:commandLink action="{!cancel}" value="Back" styleClass="slds-button slds-button--neutral" />
+							<apex:commandLink action="{!deleteLogic}" value="Delete" styleClass="slds-button slds-button--neutral" rendered="{!canDelete}"/>
+							<apex:commandLink action="{!Automate}" value="Automate" styleClass="slds-button slds-button--neutral   {!IF(OR(cleanupRule.FLODocs__RunNow__c,cleanupRule.FLODocs__Automated__c),'disabledClass', '')}" />
+							<apex:commandLink action="{!runNow}" value="Run Now" styleClass="slds-button slds-button--neutral   {!IF(OR(cleanupRule.FLODocs__RunNow__c,cleanupRule.FLODocs__Automated__c),'disabledClass', '')}" />
+							<apex:outputPanel layout="none" rendered="{!cleanupRule.FLODocs__RunNow__c || cleanupRule.FLODocs__Automated__c}" >
+								<apex:commandLink action="{!deschedule}" value="Deschedule" styleClass="slds-button slds-button--neutral" />
+							</apex:outputPanel>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-text-longform">
+			<div class="slds-panel__section" style="padding: 0px;">
+				<ul style="list-style: none;">
+		        	<li style="float: left;width: 31%;margin-left: 6px; margin-bottom: 10px;">
+		        		<ul style="list-style: none; display: block;margin: 0;">
+							<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">RULE NAME</span>
+			            		<div class="slds-form-element__control">
+				            		<apex:outputText value="{!cleanupRule.Name}" />&nbsp;
+				            	</div>
+				         	</li>
+							<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">NUMBER OF REPORTS TO CLEAN UP</span>
+			            		<div class="slds-form-element__control">
+				            		<apex:outputText value="{!reportCount}" />&nbsp;
+				            	</div>
+				         	</li>
+							<!-- <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">NUMBER OF REPORT OWNERS</span>
+			            		<div class="slds-form-element__control">
+				            		<apex:outputText value="{!reportCount}" />&nbsp;
+				            	</div>
+				         	</li> -->
+							<!--<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">NUMBER OF REPORT USERS</span>
+			            		<div class="slds-form-element__control">
+				            		<apex:outputText value="0" />&nbsp;
+				            	</div>
+				         	</li>-->
+							<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">RULE FILTERS</span>
+			            		<div class="slds-form-element__control" style="margin-left:20px">
+			            			<apex:outputText value="{!cleanupRule.FLODocs__Overview__c}" escape="false" />&nbsp;
+				            		<!--Date Last Used, Retained/Restored before 1 months ago AND <br />
+									Access is Public AND <br />
+									Report is not Scheduled AND <br />
+									Report is not less than a month old AND <br />-->
+				            	</div>
+				         	</li>
+							<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+								<span class="slds-form-element__label">NOTIFY REPORT OWNERS PRIOR TO ARCHIVE</span>
+			            		<div class="slds-form-element__control">
+				            		<apex:outputText value="{!cleanupRule.FLODocs__Notify_Search_Owners_Prior_to_Archive__c}" />&nbsp;
+				            	</div>
+				         	</li>
+							
+					    </ul>
+					</li>
+				</ul>
+			</div>
+			<div class="slds-section  slds-section__title-action" style="margin-top:10px">
+                <h3 class="slds-section__title" style="padding: 0; margin: 0;">Report List </h3>
+            </div>
+            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+						<div class="slds-button-group" role="group">
+							<button type="button" class="slds-button slds-button--neutral" id="includeAllBtn">Include All</button>
+							<button type="button" class="slds-button slds-button--neutral" id="excludeAllBtn">Exclude All</button>
+						</div>
+		    </div>
+		    <div class="slds-section  slds-section__title-action" style="margin-top:10px">
+            </div>
+			<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+				<thead>
+					<tr class="slds-text-title--caps">
+						<th scope="col">
+							<div class="slds-truncate" title="Scanner Name">INCLUDE</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Action">NAME </div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Action">API Name</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Action">OWNER </div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Action">DATE CREATED </div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Action">DATE LAST USED </div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<apex:repeat value="{!toDisplayCustos}" var="custos">
+						<tr>
+							<td scope="row" >
+								<div class="slds-truncate" >
+									<apex:inputCheckbox value="{!custos.include}" styleClass="include"/>
+								</div>
+							</td>
+							
+							<td scope="row" >
+								{!custos.custo.Name}
+							</td>
+							<td scope="row" >
+								<div class="slds-truncate" >
+									{!custos.custo.ScriptId__c}
+								</div>
+							</td>
+							<td scope="row" >
+								<div class="slds-truncate" >
+									{!custos.custo.Customization_Created_By__r.FirstName} {!custos.custo.Customization_Created_By__r.LastName} 
+								</div>
+							</td>
+							<td scope="row" data-label="Init/List Metadata Backend">
+								<div class="slds-truncate" title="Init/List Metadata Backend">
+								<apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!custos.custo.FLODocs__Customization_Created_Date__c}" /> </apex:outputText> 
+
+									
+								</div>
+							</td>
+							<td scope="row" data-label="Init/List Metadata Backend">
+								<div class="slds-truncate" title="Init/List Metadata Backend">
+								<apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!custos.custo.FLODocs__Date_Last_Used__c}" /> </apex:outputText> 
+								</div>
+							</td>
+						</tr>
+					</apex:repeat>
+				</tbody>
+			</table>
+		</div>
+	</apex:form>
+</apex:page>

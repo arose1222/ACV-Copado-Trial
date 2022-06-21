@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Completed --></label>
+        <name>FLODocs__Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- This Stage will be calculated based on FLO Customization Records created against the ones the FLO scanner count. For more information see Field description. --></help>
+        <label><!-- Customization Stage --></label>
+        <name>FLODocs__Customization_Stage__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of customization records created by Strongpoint of this type --></help>
+        <label><!-- Documented Record Count --></label>
+        <name>FLODocs__Documented_Record_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- VERIFIED: Means the counts match 
+RESCANNER: Means the type should be selected on the scanner page and rescanned. 
+DEDUPLICATE: Means that the deduplicate tool should be run.
+NOT DETECTED: Means that no records of that type have been located. --></help>
+        <label><!-- Retrieved Stage --></label>
+        <name>FLODocs__Retrieved_Stage__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom label to simplify user selection of Customization &quot;data&quot; records. Label format is &quot;data:[namespaceprefix: | null][apiname without __c][:custom | null] --></help>
+        <label><!-- Object Type Label --></label>
+        <name>FLODocs__SObject_Type_Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- Salesforce Type --></label>
+        <name>FLODocs__Salesforce_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of records identified by the scanner during data gathering.  It corresponds to the number of  items in each type. --></help>
+        <label><!-- Scanner Count --></label>
+        <name>FLODocs__Scanner_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- # of total customization based on the entire org. Would be useful to re-scanner based on this number --></help>
+        <label><!-- Total Customization --></label>
+        <name>FLODocs__Total_Customization__c</name>
+    </fields>
+</CustomObjectTranslation>

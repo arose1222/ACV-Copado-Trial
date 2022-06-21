@@ -6,8 +6,6 @@ public class trac_WorkOrderTriggerHandler extends TriggerInterface{
     private final static String STATUS_COMPLETED = 'Completed';
     private final static String STATUS_ASSIGNED = 'Assigned';
 
-    private static WorkType STANDARD_INSPECTION_WT = [SELECT DurationInMinutes FROM WorkType WHERE Name =: tracConstants.WORKTYPE_DEALER_STANDARD_INSPECTION];
-
     public override void beforeInsert(List<SObject> newList){
         assignWorkOrderToQueue((List<WorkOrder>)newList);
         //assignWorkTypeFromQuickction((List<WorkOrder>)newList);

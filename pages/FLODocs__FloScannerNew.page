@@ -1,0 +1,1904 @@
+<apex:page controller="FLODocs.FloScannerController" showHeader="true"  sidebar="false" docType="html-5.0" action="{!checkInitConection}" tabStyle="FLODocs__tab">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/jquery-ui.js')}"  />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/jquery-ui.css')}"  />
+
+    <style type="text/css">
+        .zen .zen-tabMenu a {
+            color: #353535 !important;
+            font-family: Arial,Helvetica,sans-serif !important;
+        }
+        html {
+            line-height: 1;
+            background: none;
+            box-sizing: initial;
+        }
+        .material-switch > input[type="checkbox"] {
+            display: none;
+        }
+        .material-switch > label {
+            cursor: pointer;
+            height: 0px;
+            position: relative;
+            width: 40px;
+        }
+        .material-switch > label::before {
+            background: rgb(0, 0, 0);
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            content: '';
+            height: 16px;
+            margin-top: -8px;
+            position:absolute;
+            opacity: 0.3;
+            transition: all 0.4s ease-in-out;
+            width: 40px;
+        }
+        .material-switch > label::after {
+            background: rgb(255, 255, 255);
+            border-radius: 16px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            content: '';
+            height: 24px;
+            left: -4px;
+            margin-top: -8px;
+            position: absolute;
+            top: -4px;
+            transition: all 0.3s ease-in-out;
+            width: 24px;
+        }
+        .material-switch > input[type="checkbox"]:checked + label::before {
+            background: inherit;
+            opacity: 0.5;
+        }
+        .material-switch > input[type="checkbox"]:checked + label::after {
+            background: inherit;
+            left: 20px;
+        }
+
+        .slds-dropdown--inverse {
+            background: #FFF !important;/*#FFC55A;*/
+            border-top: 3px solid orange !important;
+            border-left: 0 solid !important;
+            border-right: 0 solid !important;
+            border-bottom: 0 solid !important;
+            margin-top: -3px !important;
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+        }
+        .bPageBlock {
+            border-top: 0px solid !important;
+        }
+        .pbBody {
+            margin: 0 !important;
+        }
+        .slds-dropdown__item a {
+            text-decoration: none;
+            color: #747474 !important;
+            /*font-weight: bold;*/
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+        }
+        .slds-dropdown-trigger button.slds-button {
+            color: #747474 !important;
+        }
+        .pbSubheader {
+            background-color: #f7f9fb !important;
+            padding: 8px !important;
+            color: #222 !important;
+            border-bottom: 1px solid #d8dde6 !important;
+        }
+        .bPageBlock {
+            border: 0 !important;
+            background: #FFF !important;
+         }
+        .slds-dropdown {
+            margin-top: 0;
+            border-radius: 0 0 0.25rem 0.25rem;
+        }
+        ol li {
+            margin-left: 0;
+        }
+        .information p {
+            margin: 10px;
+        }
+        .slds-button--brand  {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            background-color: #0070d2 !important;
+            background: #0070d2 !important;
+            border: 1px solid #0070d2 !important;
+            color: white !important;
+        }
+        .message.errorM3 {
+            display:none;
+        }
+        .schedulerWrapper .slds-form-element {
+            display: inline-block;
+            margin-right: 20px;
+            min-width: 140px;
+        }
+        .dateInput {
+            min-height: 23px;
+            line-height: 1;
+        }
+        div.slds-input input {
+            background-color: white;
+            color: #16325c;
+            border: 1px solid #d8dde6;
+            border-radius: 0.25rem;
+            width: 100%;
+            transition: border 0.1s linear, background-color 0.1s linear;
+            display: inline-block;
+            padding: 0 1rem 0 0.75rem;
+            line-height: 1.875rem;
+            min-height: calc(1.875rem + (1px * 2));
+            max-width: 250px;
+            margin-left: 20px
+        }
+        div.slds-input select {
+            background-color: white;
+            color: #16325c;
+            border: 1px solid #d8dde6;
+            border-radius: 0.25rem;
+            width: 100%;
+            transition: border 0.1s linear, background-color 0.1s linear;
+            display: inline-block;
+            padding: 0 1rem 0 0.75rem;
+            line-height: 1.875rem;
+            min-height: calc(1.875rem + (1px * 2));
+            max-width: 200px;
+        }
+        div.slds-input {
+            border: 0;
+        }
+        button.mainMenuButton:hover div {
+            display: block !important;
+        }
+        li.mainMenuButton:hover div {
+            display: block !important;
+        }
+
+        span.submenuList {
+            margin-left: 200px;
+            margin-top: -34px !important;
+            box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+        }
+
+        li.subMenuButton:hover span.subMenuList {
+            display: block !important;
+            margin-left: 200px;
+            margin-top: -34px !important;
+            box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+        }
+
+        li.subMenuButton {
+             min-width: 200px;
+        }
+
+        .slds-tabs--default__item {
+            margin-left: 1.5em !important;
+        }
+
+        .slds-tabs--default__item.slds-active:after, .slds-tabs--default__item.slds-is-active:after {
+            background-color: orange !important;
+        }
+        ul > li.slds-tabs--default__item {
+            margin-bottom: 0;
+        }
+        .slds-trial-header {
+            height: 40px !important;
+            padding: 0 !important;
+        }
+
+        .slds-trial-header a:not(.slds-button--neutral):hover, .slds-trial-header a:not(.slds-button--neutral):focus, .slds-trial-header button:not(.slds-button--neutral):hover, .slds-trial-header button:not(.slds-button--neutral):focus {
+            color: currentColor;
+        }
+
+        ul.flodocslinksUl {
+            font-size: 1rem;
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+            padding: 20px 0;
+        }
+
+        ul.flodocslinksUl  li{
+            padding: 5px 0;
+        }
+
+        /*ul.flodocslinksUl li ul {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 2s linear;
+        }*/
+
+        ul.flodocslinksUl li:hover ul {
+            /*display:block !important;
+            visibility: visible;
+            opacity: 1;*/
+        }
+        #collapseall {
+            font-size: 1rem;
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+        }
+        #expandall {
+            font-size: 1rem;
+            font-family: 'Salesforce Sans',Arial,sans-serif;
+        }
+        .successMessage {
+            padding: 5px;
+            text-align: center;
+            background-color: #4bca81;
+            color: white;
+            font-weight: bold;
+        }
+        .errorMessage {
+            padding: 5px;
+            text-align: center;
+            background-color: #d4504c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .slds-dropdown__list li:hover{
+            background-color: orange;
+        }
+
+        .toTheRight {
+            float: right;
+        }
+
+        .toTheLeft {
+            float: left;
+        }
+
+        td.left {
+            width: 85px !important;
+            height: auto;
+        }
+        td.left div{
+            width: 85px !important;
+        }
+        img#phHeaderLogoImage {
+            width: 85px;
+            height: 55px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        (function(myContext){
+            myContext.ForceUI = myContext.ForceUI || {};
+
+            myContext.ForceUI.isSalesforce1 = function() {
+                return((typeof sforce != 'undefined') && sforce && (!!sforce.one));
+            }
+        })(this);
+
+        function onObjectClick(objUrl, objName) {
+            var url = '';
+
+            if (ForceUI.isSalesforce1()) {
+              if(document.referrer.indexOf(".lightning.force.com") > 0){
+                url = '/lightning/o/' + objName + '/list';
+              } else {
+                url = '/one/one.app?source=aloha#/sObject/' + objName + '/list';
+              }
+            } else {
+                url = objUrl;
+            }
+
+            window.open(url, '_blank')
+            return false;
+        }
+
+        function onObjectClickNew(objUrl, objName, objId) {
+            var url = '';
+
+            if (ForceUI.isSalesforce1()) {
+              if(document.referrer.indexOf(".lightning.force.com") > 0){
+                url = '/lightning/o/' + objName + '/list?filterName=' + objId;
+              } else {
+                url = '/one/one.app?source=aloha#/sObject/' + objName + '/list?filterName=' + objId;
+              }
+            } else {
+                url = objUrl;
+            }
+
+            window.open(url, '_blank')
+            return false;
+        }
+
+        var openGettingStarted = '{!openModal}';
+        $(document).ready(function(){
+            if ('{!conectionErrorMessage}' == 'The connection was successful'
+                || '{!conectionErrorMessage}' == '') {
+                $('.metadataConectionMessage').hide();
+            }
+
+            openGettingStartedOnStart();
+
+            /*$("#gettingStarted").focusout(function() {
+                $('#gettingStarted').toggle();
+            });*/
+        });
+
+        function messageColors() {
+            var errorText = $('.metadataConectionMessage').find('p').text();
+
+            if (errorText.indexOf('The connection was successful') > -1) {
+                $('.metadataConectionMessage').lass('successMessage');
+                $('.metadataConectionMessage').removeClass('errorMessage');
+            } else {
+                $('.metadataConectionMessage').removeClass('successMessage');
+                $('.metadataConectionMessage').addClass('errorMessage');
+            }
+        }
+
+        function openDialogTypes(){
+            $('#ModalTypes').toggle();
+        }
+
+        function openGettingStartedOnStart() {
+            if (openGettingStarted == 'true') {
+                toggleDialogGettingStarted();
+            }
+        }
+
+        function toggleDialogGettingStarted(){
+            $('[id$=ModalGettingStarted]').toggle();
+            $('.metadataConectionMessage').hide();
+        }
+
+        function openCloseMenuItem(menuItem){
+            $('#'+menuItem).toggle();
+        }
+
+        function testConnection() {
+            testConectionAction();
+        }
+
+        function createRequest(host, name) {
+            var request =
+                '<?xml version="1.0" encoding="utf-8"?>' +
+                '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+                    '<env:Header>' +
+                        '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' +
+                            '<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' +
+                        '</urn:SessionHeader>' +
+                    '</env:Header>' +
+                    '<env:Body>' +
+                        '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                            '<metadata xsi:type="RemoteSiteSetting">' +
+                                '<fullName>' + name + '</fullName>' +
+                                '<description>SFDC to SFDC metadata api.</description>' +
+                                '<disableProtocolSecurity>false</disableProtocolSecurity>' +
+                                '<isActive>true</isActive>' +
+                                '<url>' + host + '</url>' +
+                            '</metadata>' +
+                        '</createMetadata>' +
+                    '</env:Body>' +
+                '</env:Envelope>';
+            return request;
+        }
+
+        function createRemoteSite()
+        {
+            // Disable button
+            document.getElementById('createremotesitebtn').disabled = true;
+            // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+            var binding = new XMLHttpRequest();
+            var binding2 = new XMLHttpRequest();
+            var binding3 = new XMLHttpRequest();
+            //var myDomainHost = '{!generalHost}'.replace('visual.force.com', 'my.salesforce.com').replace('--flodocs', '');
+            var request = createRequest('{!generalHost}', '{!rssNameString}_General');
+            var request2 = createRequest('https://{!Host}', '{!rssNameString}');
+            var request3 = createRequest('{!myDomainUrl}', '{!rssNameString}_myDomain');
+
+            binding.open('POST', '{!generalHost}/services/Soap/m/31.0');
+            binding.setRequestHeader('SOAPAction','""');
+            binding.setRequestHeader('Content-Type', 'text/xml');
+            binding.onreadystatechange =
+                function() {
+                    if(this.readyState==4) {
+                        var parser = new DOMParser();
+                        var doc  = parser.parseFromString(this.response, 'application/xml');
+                        var errors = doc.getElementsByTagName('errors');
+                        var messageText = '';
+                        for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                            messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+                        console.log('first request error' + messageText);
+                    }
+                }
+            binding.send(request);
+
+            binding2.open('POST', '{!generalHost}/services/Soap/m/31.0');
+            binding2.setRequestHeader('SOAPAction','""');
+            binding2.setRequestHeader('Content-Type', 'text/xml');
+            binding2.onreadystatechange =
+                function() {
+                    if(this.readyState==4) {
+                        var parser = new DOMParser();
+                        var doc  = parser.parseFromString(this.response, 'application/xml');
+                        var errors = doc.getElementsByTagName('errors');
+                        var messageText = '';
+                        for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                            messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+                        console.log('second request error' + messageText);
+                    }
+                }
+            binding2.send(request2);
+
+            binding3.open('POST', '{!generalHost}/services/Soap/m/31.0');
+            binding3.setRequestHeader('SOAPAction','""');
+            binding3.setRequestHeader('Content-Type', 'text/xml');
+            binding3.onreadystatechange =
+                function() {
+                    if(this.readyState==4) {
+                        var parser = new DOMParser();
+                        var doc  = parser.parseFromString(this.response, 'application/xml');
+                        var errors = doc.getElementsByTagName('errors');
+                        var messageText = '';
+                        for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                            messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+                        displayMetadataResponse(messageText);
+                    }
+                }
+            binding3.send(request3);
+        }
+    </script>
+
+    <div class="slds">
+        <apex:form >
+            <div class="slds-trial-header slds-grid" style="font-size: 1rem;font-family: 'Salesforce Sans',Arial,sans-serif;background-color: #FFF;">
+                <div class="slds-tabs--default">
+                    <ul class="slds-tabs--default__nav" role="tablist">
+                        <li class="slds-tabs--default__item slds-active" role="presentation" onclick="goToToolAction('home')">
+                            <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" >
+                                Home
+                            </a>
+                        </li>
+                        <li class="slds-tabs--default__item mainMenuButton" role="presentation">
+                            <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">
+                                Support
+                            </a>
+                            <div class="slds-dropdown slds-dropdown--inverse slds-dropdown--left" id="gettingStarted" style="display:none;">
+                                <ul class="slds-dropdown__list" role="menu">
+                                    <li class="slds-dropdown__item slds-is-selected" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="0" onclick="toggleDialogGettingStarted(); return false;">
+                                            <span class="slds-truncate">
+                                                <apex:outputPanel rendered="{!step == 6}">
+                                                    <svg class="slds-icon slds-icon--selected slds-icon--x-small slds-m-right--x-small" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <span class="slds-assistive-text">
+                                                    Completed:
+                                                </span>
+                                                Getting Started Wizard
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('statusReport')">
+                                        <!-- GF: TODO decomentar                                        
+                                        <a href="{!urlBase}/apex/FloStatusReport" role="menuitem" tabindex="-1">
+                                        -->
+                                            <span class="slds-truncate">
+                                                Status Report
+                                            </span>
+                                        </a>
+                                    </li>
+                                      <li class="slds-dropdown__item" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('governorReport')">
+                                        <!-- GF: TODO decomentar
+                                        <a href="{!urlBase}/apex/StrongpointGovernorReport" role="menuitem" tabindex="-1">
+                                        -->
+                                            <span class="slds-truncate">
+                                                Platform Governor Status
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <!--
+                                        <apex:commandLink value="User Guide" action="{!getmindTouchUrl}" target="_blank"/>
+                                        -->
+                                        <apex:outputLink value="https://help.strongpoint.io/Strongpoint_for_Salesforce/index.htm" id="userGuide">User Guide</apex:outputLink>
+                                        <!-- <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="openUserGuide()">
+                                            <span class="slds-truncate">
+                                                User Guide
+                                            </span>
+                                        </a> -->
+                                    </li>
+                                    <apex:outputPanel layout="none" rendered="{!hasCustomizeApp}">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('creds')">
+                                            <!-- GF: TODO decomentar
+                                            <a href="{!urlBase}/apex/FloCredentials" role="menuitem" tabindex="-1">
+                                            -->                                                
+                                                <span class="slds-truncate">
+                                                    Add Credentials
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('jira')">
+                                            <!-- GF: TODO decomentar
+                                            <a href="{!urlBase}/apex/StrongpointJiraCredentials" role="menuitem" tabindex="-1">
+                                            -->                                                
+                                                <span class="slds-truncate">
+                                                    Add Jira Credentials
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('upgradeDowngrade')">
+                                            <!-- GF: TODO decomentar
+                                            <a href="{!urlBase}/apex/UpgradeDowngradePackage" role="menuitem" tabindex="-1">
+                                            -->                                                                                               
+                                                <span class="slds-truncate">
+                                                    Upgrade/Downgrade Package
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </apex:outputPanel>
+                                    <apex:repeat value="{!supportLinks}" var="link" >
+                                      <li class="slds-dropdown__item" role="presentation">
+                                        <a href="{!link.Link__c}" role="menuitem" tabindex="-1" target="_blank">
+                                            <span class="slds-truncate" >
+                                            {!link.Name}
+                                            </span>
+                                        </a>
+                                      </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="slds-tabs--default__item mainMenuButton" title="Tools" role="presentation">
+                            <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">
+                                Tools
+                            </a>
+                            <div class="slds-dropdown slds-dropdown--inverse slds-dropdown--left" id="toolsMenu" style="display:none;">
+                                <ul class="slds-dropdown__list" role="menu">
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="{!urlBase}/apex/FLOERDViewRefactor" role="menuitem" tabindex="-1">
+                                            <span class="slds-truncate">
+                                                   Dependency Relationship Diagram (DRD)
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('scanner')">
+                                        <!-- GF: TODO decomentar
+                                        <a href="{!urlBase}/apex/StrongpointScanner" role="menuitem" tabindex="-1">
+                                        -->    
+                                            <span class="slds-truncate" >
+                                                Strongpoint Scanners
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="{!urlBase}/apex/FloFinder" role="menuitem" tabindex="-1">
+                                            <span class="slds-truncate">
+                                                 Finder
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                            <a href="{!urlBase}/apex/StrongpointObjectExport" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate">
+                                                     Export Objects
+                                                </span>
+                                            </a>
+                                    </li>
+                                     <apex:outputpanel layout="none" rendered="{!NOT (isDocOnly)}">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="{!urlBase}/apex/FloEnvironmentComparison" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate">
+                                                     Environment Comparison
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="{!urlBase}/apex/StrongpointAgentBlock" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate">
+                                                    Agent Blocking
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </apex:outputpanel>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('schedule')">
+
+                                        <!-- GF: TODO decomentar
+                                        <a href="{!urlBase}/apex/FloScheduleController" role="menuitem" tabindex="-1">
+                                        -->    
+                                            <span class="slds-truncate" >
+                                                 Scheduler
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <!--
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="goToToolAction('changeLogCleanUpTool')">
+                                            <span class="slds-truncate" >
+                                                Change Logs Clean Up
+                                            </span>
+                                        </a>
+                                    </li>
+                                    -->
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="{!urlBase}/apex/StrongpointCredentialsHandler" role="menuitem" tabindex="-1" >
+                                            <span class="slds-truncate" >
+                                              Credentials Handler
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <ul class="slds-dropdown__list " role="menu">
+                                            <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                                <a href="{!urlBase}/apex/StrongpointAutomatedCleanUpView" role="menuitem" tabindex="-1">
+                                                    <span class="slds-truncate">
+                                                        Automated Report Clean Up Tool
+                                                    </span>
+                                                      <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </a>
+                                                <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;margin-left:100%;">
+                                                    <ul class="slds-dropdown__list" role="menu">
+                                                        <li class="slds-dropdown__item">
+                                                            <a href="{!report_cleanup_rules}" target="_blank">Report Clean Up Rules</a>
+                                                        </li>
+                                                        <li class="slds-dropdown__item">
+                                                            <a href="{!report_cleanup_status}" target="_blank">Report Clean Up Status</a>
+                                                        </li>
+                                                        <li class="slds-dropdown__item">
+                                                            <a href="{!archived_reports}" target="_blank">Archived Reports</a>
+                                                        </li>
+                                                        <li class="slds-dropdown__item">
+                                                            <a href="{!retained_reports}" target="_blank">Retained Reports</a>
+                                                        </li>
+                                                        <li class="slds-dropdown__item">
+                                                            <a href="{!reports_to_be_archived}" target="_blank">Reports to be Archived</a>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="slds-has-divider--top-space" role="separator"></li>
+                                    <li class="slds-dropdown__item" role="presentation">
+                                        <a href="javascript:void(0);" role="menuitem" tabindex="-1" onclick="testConectionMenuAction()">
+                                            <span class="slds-truncate">
+                                                <svg class="slds-icon slds-icon--x-small slds-m-right--x-small" aria-hidden="true">
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+                                                </svg>
+                                                Test Connection
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="slds-tabs--default__item mainMenuButton" title="Reports" role="presentation">
+                            <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item">
+                                Reports / List Views
+                            </a>
+                            <div class="slds-dropdown slds-dropdown--inverse slds-dropdown--left" id="toolsMenu" style="display:none;">
+                                <ul class="slds-dropdown__list " role="menu">
+                                    <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                        <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                            <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                <span class="toTheLeft">
+                                                    Customizations
+                                                </span>
+                                                <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                        <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                            <ul class="slds-dropdown__list" role="menu">
+                                                <!-- RR/20190610 <li class="slds-dropdown__item">
+                                                    <a href="#" target="_blank" onclick="onObjectClick('{!flo_Customization}', 'FLODocs__FLO_Customization__c');return false;">Customization</a>
+                                                </li>
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="{!urlBase}/apex/FLOERDView" role="menuitem" tabindex="-1">
+                                                        <span class="slds-truncate">
+                                                            DRD View
+                                                        </span>
+                                                    </a>
+                                                </li>   -->
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!customization_Search}" target="_blank">All Customizations</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_People_Related_to_Customization}" target="_blank">People Related To Customization</a>
+                                                </li>
+                                                <!-- <li class="slds-dropdown__item">
+                                                    <a href="{!missing_Customization}" target="_blank">Missing Customization</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!customizations_with_No_Active_Owner}" target="_blank">Customizations with No Active Owner</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_standard_fields_overview}" target="_blank">Standard Objects Overview</a>
+                                                </li> -->
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customization_Impact_Search}" target="_blank">Customization Impact</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                        <a href="{!Permission_with_Cust}" target="_blank">Permission with customization</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                        <a href="{!Permission_with_prof}" target="_blank">Permission with profile/permset</a>
+                                                </li>
+                                                <!--<li class="slds-dropdown__item" role="presentation">
+                                                    <a href="{!urlBase}/apex/StrongpointObjectPermissions" role="menuitem" tabindex="-1">
+                                                        <span class="slds-truncate">
+                                                            Permissions
+                                                        </span>
+                                                    </a>
+                                                </li>-->                                                
+                                               <!--  <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Field_Impact_Search}" target="_blank">Customization Field Impact Search</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customization_TTL_Search}" target="_blank">Customizations Expired</a>
+                                                </li> -->
+                                            </ul>
+                                        </span>
+                                    </li>
+                                    <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                        <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                            <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                <span class="toTheLeft">
+                                                    Clean Up
+                                                </span>
+                                                <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                        <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                            <ul class="slds-dropdown__list" role="menu">
+                                                <li class="slds-dropdown__item">
+                                                    <a href="#" target="_blank" onclick="onObjectClickNew('{!flo_Default_Clean_Up_List_View}', 'FLODocs__FLO_Customization__c', '{!flo_Default_Clean_Up_List_View_Id}'); return false;">Default Clean Up List View</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Open_Clean_Ups_Status_View}" target="_blank">Open Clean Up Status</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Clean_Up_By_Process_Search}" target="_blank">Clean Up By Controlled Process</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Clean_Up_Awaiting_Info}" target="_blank">Clean Up Waiting for Info</a>
+                                                </li>
+
+                                                <!-- SF-817 RR/20190611 uncomment this when the new fLO_Excluded_From_Clean_up field is added to the FloScannerController  -->
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Excluded_From_Clean_Up}" target="_blank">Customizations Excluded from Clean Up</a>
+                                                </li>
+
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Unused_Fields}" target="_blank">Unused Fields</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Unused_Scripts}" target="_blank">Unused Scripts</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Unused_Reports}" target="_blank">Unused Reports</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customizations_With_No_Active_Owner}" target="_blank">Customizations with Inactive Owners</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customizations_With_No_Process}" target="_blank">Customizations without Related Processes</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customizations_Missing_Help_Text}" target="_blank">Custom Fields without Help Text</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Customizations_Missing_Description}" target="_blank">Custom Fields without Description</a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </li>
+                                    <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                        <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                            <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                <span class="toTheLeft">
+                                                    Script Management
+                                                </span>
+                                                <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                        <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                            <ul class="slds-dropdown__list" role="menu">
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Script_Errors}" target="_blank">Process Issues to Fix Script Errors</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_of_line_of_codes}" target="_blank">Script Size (Lines of Code)</a>
+                                                </li>
+                                                <!--    <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Yesterday_Script_Errors}" target="_blank">Yesterday's Script Errors</a>
+                                                </li> -->
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Last_Run_Date_By_Script}" target="_blank">Script Last Run Date</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_Scripts_with_no_data}" target="_blank">Scripts without Related Users</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!flo_SOQL_queries_CPU_Time}" target="_blank">Script Queries And CPU Time</a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a href="{!fLO_Unused_Scripts}" target="_blank">Unused Scripts</a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </li>
+                                    <apex:outputpanel layout="none" rendered="{!OR(isFullPackage, isChangeMan) }">
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Change Enablement
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#" target="_blank" onclick="onObjectClick('{!fLO_Change_Approval_Policy}', 'FLODocs__FLO_Change_Approval_Policy__c'); return false;"> Approval Policy List View</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#" target="_blank" onclick="onObjectClick('{!fLO_Change_Request}', 'FLODocs__FLO_Change_Request__c');return false;"> Change Request List View</a>
+                                                    </li>
+                                                    <!-- <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Policy_Change_Alert}" target="_blank">Policy Changes</a>
+                                                    </li> -->
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Approval_Override}" target="_blank">Approval Override</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!what_Changed}" target="_blank">What Changed?</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Open_Noncompliant_without_Bundle}" target="_blank">Unresolved Non-Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Managed_Bundle_Updates}" target="_blank">Managed Package Updates</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Noncompliant_Changes_Resolved}" target="_blank">Resolved Non-Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Compliant_Changes}" target="_blank">Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Consolidated_Change_By_Type}" target="_blank">Consolidated Change By Type</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Deployed_Change_Report}" target="_blank">Deployed Changes</a>
+                                                    </li>
+                                                  <!--   <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Changes_Bundles}" target="_blank">Changes with Packages</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Changes_with_out_Bundles}" target="_blank">Changes without Packages</a>
+                                                    </li> -->
+                                                    <!-- <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Bundle_Updates_To_Approve}" target="_blank">Package Updates To Approve</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!customizations_Not_Being_Used_by_Process}" target="_blank">Customizations Not Being Used By Process</a>
+                                                    </li> -->
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Release and Deployment
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!deployment_success}" target="_blank">Successful Deployments</a>
+                                                    </li>
+                                                     <li class="slds-dropdown__item">
+                                                        <a href="{!deployment_with_failures}" target="_blank">Deployments with Failures</a>
+                                                    </li>
+                                                      <li class="slds-dropdown__item">
+                                                        <a href="{!deployment_pending_approval}" target="_blank">Deployments Pending Approval</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!env_compare_logs}" target="_blank">Environment Compare Logs</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!rollback_logs}" target="_blank">Rollback Logs</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Testing
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#" target="_blank" onclick="onObjectClick('{!fLO_Test_Record}', 'FLODocs__FLO_Test_Record__c'); return false;"> Test Records List View</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Test_Overview}" target="_blank">All Tests</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!FLO_Processes_with_No_Test_Script}" target="_blank">Processes without Test Scripts</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <!-- RR/20190610 <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Map Customizations
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Bundles_With_No_Process}" target="_blank">Packages with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Scripts_With_No_Process}" target="_blank">Apex Scripts with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Scripted_Objects_With_No_Process}" target="_blank">Scripted Objects with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Workflows_With_No_Process}" target="_blank">Workflows with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Custom_Records_With_No_Process}" target="_blank">Custom Object with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Custom_Record_Fields_With_No_Process}" target="_blank">Custom Fields with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Active_Searches_With_No_Process}" target="_blank">Active Searches with No Process</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Customizations_With_No_Process}" target="_blank">Customizations with No Process</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Implementation
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Process_Implementation_View}" target="_blank">Implementation Assignments and Status</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Prototype_Customizations}" target="_blank">Planned Customizations</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Processes_Missing_Description}" target="_blank">Processes with No Work Instructions</a>
+                                                    </li>
+                                                  <!--   <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Process_Improvement_Projects}" target="_blank">Improvement Projects</a>
+                                                    </li>  ->
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Process Issues
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#" target="_blank" onclick="onObjectClick('{!flo_Process_Issue}', 'FLODocs__FLO_Process_Issue__c');return false;" > Process Issue</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Process_Issue_Overview}" target="_blank">Process Issue Overview</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>   -->
+                                    </apex:outputpanel>
+                                    <apex:outputpanel layout="none" rendered="{!isFullPackage}">
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Controls
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_controls}" target="_blank">Controlled Customizations</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_controls_changes_unresolved}" target="_blank">Unresolved Controls Violations</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_controls_changes_resolved}" target="_blank">Resolved Controls Violations</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!pre_Approved_Control_Incidents_Audit}" target="_blank">Pre-Approved Control Incidents</a>
+                                                    </li>
+
+                                                </ul>
+                                            </span>
+                                        </li>
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Audit Reports
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_open_non_Compliant_audit}" target="_blank">Unresolved Non-Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Managed_Bundle_Updates}" target="_blank">Managed Package Updates</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_resolved_nonCompliant_Changes_Audit}" target="_blank">Resolved Non-Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_compliant_changes_audit}" target="_blank">Compliant Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!platform_Changes_Audit}" target="_blank">Platform Changes</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Consolidated_Change_By_Type}" target="_blank">Consolidated Changes By Type</a>
+                                                    </li>
+                                                     <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_deployed_changes_audit}" target="_blank">Deployed Changes</a>
+                                                    </li>
+                                                     <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Unresolved_Control_Incidents_Audit}" target="_blank">Unresolved Control Incidents</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_resolved_Control_Incidents_Audit}" target="_blank">Resolved Control Incidents</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!pre_Approved_Control_Incidents_Audit}" target="_blank">Pre-Approved Control Incidents</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel layout="none" rendered="{!OR(isFullPackage, isChangeMan) }">
+                                        <li class="slds-dropdown__item subMenuButton" role="presentation">
+                                            <a href="#" target="_blank" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate toTheLeft" style="width: 100%">
+                                                    <span class="toTheLeft">
+                                                        Processes
+                                                    </span>
+                                                    <svg class="slds-icon slds-icon--x-small slds-m-right--x-small toTheRight" aria-hidden="true">
+                                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <span class="slds-dropdown slds-dropdown--inverse slds-dropdown--left subMenuList" id="toolsMenu" style="display:none;">
+                                                <ul class="slds-dropdown__list" role="menu">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#" target="_blank" onclick="onObjectClick('{!flo_Process}', 'FLODocs__FLO_Process__c');return false;">Processes List View</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Processes_Missing_Overview}" target="_blank">Processes without Overviews</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!flo_Processes_Missing_Description}" target="_blank">Processes without Descriptions</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!FLO_Processes_with_No_Test_Script}" target="_blank">Processes without Test Scripts</a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="{!fLO_Process_Participant_View}" target="_blank">Process Participants</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </li>
+                                    </apex:outputpanel>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <apex:actionFunction name="testConectionMenuAction" action="{!testMetadataConection}" reRender="conectionResult" status="toolStatus" oncomplete="messageColors()"/>
+            <apex:actionFunction name="openUserGuide" action="{!getmindTouchUrl}" status="userGuideStatus" reRender="conectionResult"/>
+
+            <apex:actionStatus id="userGuideStatus">
+                <apex:facet name="start">
+                <div >
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+                </apex:facet>
+            </apex:actionStatus>
+
+            <apex:actionFunction action="{!goToTool}" reRender="toolsWrapper" name="goToToolAction" status="toolStatus">
+                <apex:param id="toolToGo" name="toolToGo" value="" assignTo="{!displayingTool}"/>
+            </apex:actionFunction>
+            <apex:actionStatus id="toolStatus">
+                <apex:facet name="start">
+                <div >
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+                </apex:facet>
+            </apex:actionStatus>
+
+            <apex:outputPanel layout="block" id="conectionResult">
+                <apex:outputPanel layout="block" rendered="{!conectionErrorMessage != ''}" styleClass="metadataConectionMessage {!IF(conectionErrorMessage = 'The connection was successful', 'successMessage', 'errorMessage')}">
+                    <p style="font-size: 16px;margin-bottom: 10px;margin-top: 15px;">
+                        {!conectionErrorMessage}
+                        <span style="float: right;padding-right: 10px;cursor: pointer;" class="closeMessage">X</span>
+                    </p>
+                </apex:outputPanel>
+                <script>
+                    $('.closeMessage').click(function(){
+                        $(this).parent().parent().slideToggle();
+                    });
+                </script>
+            </apex:outputPanel>
+            <apex:outputPanel id="toolsWrapper">
+                <c:FloHomeReports showGraph="true" rendered="{!displayingTool == 'home'}" renderFull="{!OR(isFullPackage, isChangeMan)}"  compliantChanges="{!noncompliant_changes_by_type_graph2}" customizationByType="{!customization_by_type_graph2}" customizationsUpdatedByType="{!customization_changes_by_type_graph}"/>
+                <apex:outputPanel rendered="{!displayingTool == 'scanner'}" >
+                    <!--
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset"> Scanner</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title"> Metadata Scanner</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <c:FloScannerComponent />
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!displayingTool == 'schedule'}">
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset"> Scheduler</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Schedule Process Run</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <c:FloSchedule />
+                </apex:outputPanel>
+
+                <apex:outputPanel rendered="{!displayingTool == 'changeLogCleanUpTool'}">
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset"> Change Logs Clean Up Tool</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Schedule Change Logs Clean Up</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <c:FloChangeLogCleanUpTool />
+                </apex:outputPanel>
+
+                <apex:outputPanel rendered="{!displayingTool == 'creds'}">
+                    <!--
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset"> Credentials</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Set or Update Credentials</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <c:FloCredentials showSave="true" />
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!displayingTool == 'jira'}">
+                    <!--
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset">Jira Credentials</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Set or Update Jira Credentials</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <c:StrongpointJiraCredentials />
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!displayingTool == 'upgradeDowngrade'}" id="upgrade">
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset">Upgrade/Downgrade package</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">Upgrade/Downgrade package</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="slds-form-element" style="text-align: center; padding: 30px;margin-bottom: 30px;">
+                        <div class="slds-form-element__control" style="font-size: 25pt;margin-left: 40px;">
+                            <apex:outputPanel layout="block" rendered="{!!ISBLANK(upgradeDowngradeMessage)}" style="text-align: center;color: #FFF;padding: 20px;font-size: 14pt;font-weight: bold;border-radius: 10px;background-color: #04844b;">
+                                {!upgradeDowngradeMessage}
+                            </apex:outputPanel>
+                            <div class="slds-form-element__control" style="float: left;width: 100%;margin-top: 54px;">
+                                <label class="slds-form-element__label" for="text-input-01" style="font-size: 17pt;">Input Authorization Token</label>
+                                <apex:inputText value="{!upgradeHash}" styleClass="slds-input" id="secondHash"/>
+                            </div>
+                            <p style="font-size: 16px;">
+                                In orther to upgrade or downgrade your Strongpoint installation please contact your Strongpoint Support.
+                                If you already have an authorization key, please add it in the input above and click Accept.
+                            </p>
+                        </div>
+                    </fieldset>
+                    <div style="text-align:center;">
+                        <!-- <apex:commandButton styleClass="slds-button slds-button--brand slds-order--3" action="{!upDown}" value="Accept" rerender="toolsWrapper" oncomplete="location.reload();"/> -->
+                        <apex:commandButton styleClass="slds-button slds-button--brand slds-order--3" action="{!upDown}" value="Accept" rerender="upgrade, toolsWrapper" status="status"/>
+                    </div>
+                </apex:outputPanel>
+
+                <c:FloStatusReport rendered="{!displayingTool == 'statusReport'}" />
+
+                <c:StrongpointGovernorReport rendered="{!displayingTool == 'governorReport'}" />
+            </apex:outputPanel>
+
+            <apex:outputPanel layout="block" id="ModalGettingStarted" style="display:none;">
+                <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal--large" aria-labelledby="header43">
+                    <div class="slds-modal__container">
+                        <apex:outputpanel layout="block" styleClass="slds-modal__header" id="modalCloseButton">
+                            <apex:outputpanel layout="none" rendered="{!openModal}">
+                                <div >
+                                    <img src="{!$Resource.FLO_Logo}" width="200" height="150" align="center"/>
+                                </div>
+                            </apex:outputpanel>
+                            <apex:outputpanel layout="none" rendered="{!!openModal}">
+                                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="toggleDialogGettingStarted(); return false;">
+                                    <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                                        <use xlink:href="{!URLFOR($Resource.SLDS22, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+                                <div >
+                                    <img src="{!$Resource.FLO_Logo}" width="200" height="150" align="center"/>
+                                </div>
+                                <!-- <h2 id="header43" class="slds-text-heading--medium">Getting Started</h2> -->
+                            </apex:outputpanel>
+                        </apex:outputpanel>
+                        <apex:outputPanel layout="block" styleclass="slds-modal__content slds-grow slds-p-around--medium" id="modalSteps">
+
+                            <apex:actionStatus id="status">
+                                <apex:facet name="start">
+                                <div >
+                                    <div class="slds-spinner_container">
+                                        <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                                            <span class="slds-assistive-text">Loading</span>
+                                            <div class="slds-spinner__dot-a"></div>
+                                            <div class="slds-spinner__dot-b"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </apex:facet>
+                            </apex:actionStatus>
+
+
+                            <apex:outputPanel layout="block" id="step1" rendered="{!step == 1}">
+                                <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                    Welcome to Initial Setup Wizard <br/>
+                                    Please select the package type you've purchased
+                                </div>
+                               <!-- <div style="float:left; width:20%">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                </div> -->
+                                <div >
+                                    <apex:outputPanel layout="block" rendered="{!!ISBLANK(packageError)}" style="text-align: center;color: red;font-size: 14pt;">
+                                        {!packageError}
+                                    </apex:outputPanel>
+                                    <c:SPTChoosePackageType packageType="{!showFullVersion}" hashkeyInput="{!hashKeyHandler}" packageSelection="true"/>
+
+                                    <apex:actionFunction action="{!selectPackageType}" name="selectPack" rerender="pswrapper" status="status">
+                                        <apex:param name="packageType" id="packageType" value=""/>
+                                    </apex:actionFunction>
+                                </div>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step2" rendered="{!step == 2}">
+                                <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                    Welcome to Initial Setup Wizard <br/>
+                                    Add username/pass/token of the Admin as well as the ConnectedApp information
+                                </div>
+                                <!-- <div style="float:left; width:20%">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                </div> -->
+                                <div >
+                                    <apex:outputPanel rendered="{!hasCustomizeApp}">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Salesforce Username</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!conectionInfo.FLODocs__Salesforce_Username__c}" styleClass="slds-input" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Salesforce Password</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputSecret value="{!conectionInfo.FLODocs__Salesforce_password__c}" styleClass="slds-input"  redisplay="true"/>
+                                                <!-- <apex:inputField value="{!conectionInfo.FLODocs__Salesforce_password__c}" styleClass="slds-input" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Salesforce Security Token</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputSecret value="{!conectionInfo.FLODocs__Salesforce_Security_Token__c}" styleClass="slds-input"  redisplay="true"/>
+                                                <!-- <apex:inputField value="{!conectionInfo.FLODocs__Salesforce_Security_Token__c}" styleClass="slds-input" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Salesforce Consumer Key</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputSecret value="{!conectionInfo.FLODocs__Connected_App_Consumer_Key__c}" styleClass="slds-input"  redisplay="true"/>
+                                                <!-- <apex:inputField value="{!conectionInfo.FLODocs__Connected_App_Consumer_Key__c}" styleClass="slds-input" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Salesforce Consumer Secret</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputSecret value="{!conectionInfo.FLODocs__Connected_App_Consumer_Secret__c}" styleClass="slds-input" redisplay="true"/>
+                                                <!-- <apex:inputField value="{!conectionInfo.FLODocs__Connected_App_Consumer_Secret__c}" styleClass="slds-input" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="information">
+                                          <div class="slds-notify slds-notify--toast" role="alert">
+                                            <span class="slds-assistive-text">Error</span>
+                                            <div class="slds-notify__content slds-grid">
+                                              <div class="slds-col slds-align-middle">
+                                                <h2 class="slds-text-heading--small">To run Strongpoint scanners you must create a connectedApp in Setup > Create > Apps</h2>
+                                                <p>Useful link about how to create ConnectedApp: <a target="_blank" href="https://help.salesforce.com/articleView?id=sf.connected_app_create.htm&type=5">here</a></p>
+                                                <p style="font-size: 18px;">Steps to follow:</p>
+                                                <ul style="font-size: 18px;">
+                                                    <li>Create a connected app in Setup > Create > Apps</li>
+                                                    <li>Extract its consumer key and secret key from the ConnectedApp created</li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!!hasCustomizeApp}">
+                                        <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                            In Order to add Credentials you need customize application system permission<br/>
+                                            Get in touch with your System Administrator
+                                        </div>
+                                    </apex:outputPanel>
+                                    <!--
+                                    <script>
+                                        $("input[type='Password']").focus(function(){
+                                            this.type = 'Password';
+                                        })
+                                    </script>
+                                    -->
+                                </div>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step3" rendered="{!step == 3}">
+                                <apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="rssSettings">
+                                    <apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>
+                                </apex:actionFunction>
+                                <apex:actionFunction name="testConectionAction" action="{!testMetadataConection}" rerender="rssSettings" status="status" />
+                                <apex:outputPanel id="rssSettings">
+                                   <!--  <div style="float:left; width:20%">
+                                        <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                    </div> -->
+                                    <div >
+                                        <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                            <!-- Welcome to Post Install Wizard <br/> -->
+                                            Remote Site Setting Configuration
+                                        </div>
+                                        <apex:outputPanel rendered="{!NOT(MetadataConnectionWarning)}">
+                                            <p style="font-size: 18px;margin-bottom: 20px;margin-top: 60px;"><b>Status</b>: Strongpoint remote site setting created</p>
+                                            <p style="font-size: 18px;color:red;"><b>Important</b>: You need to add general Salesforce Server of your ORG in Remote Site Settings</p>
+                                            <ul style="margin-left: 25%;font-size: 18px;margin-top: 10px;margin-bottom: 20px;">
+                                             <li>Go to Setup > Security Controls > Remote Site Settings</li>
+                                             <li>URL Sample: https://na3.salesforce.com you can extract it from Home Tab and then get the URL.</li>
+                                            </ul>
+                                        </apex:outputPanel>
+
+                                        <apex:outputPanel rendered="{!MetadataConnectionWarning}">
+                                            <p style="font-size: 18px;margin-bottom: 20px;margin-top: 55px;">Important Post Install Step:</p>
+                                            <p style="font-size: 18px;">In order to utilise the features of Strongpoint Scanner Tool, you need to permit the tool access to the Salesforce Metadata API. This can be accomplished by adding a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> with this Salesforce Server URL <b>{!generalHost}</b></p>
+                                            <p style="font-size: 18px;margin-bottom: 10px;margin-top: 15px;">
+                                                Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you.
+                                                <input id="createremotesitebtn" class="slds-button slds-button--brand slds-order--3" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
+                                            </p>
+                                        </apex:outputPanel>
+                                        <p style="font-size: 18px;"><b>Help Link</b>: <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_remote_site_settings.htm" target="_new">Remote Site Setting Overview!</a></p>
+                                        <div style="text-align: center; margin:30px;">
+                                            <apex:outputPanel rendered="{!conectionErrorMessage != ''}">
+                                                <p style="font-size: 14px;margin-bottom: 10px;margin-top: 15px;">
+                                                    {!conectionErrorMessage}
+                                                </p>
+                                            </apex:outputPanel>
+                                            <input id="testConectionbtn" class="slds-button slds-button--brand slds-order--3" type="button" onclick="testConnection();" value="Test Connection" style="font-size: 16px;"/>
+                                        </div>
+                                        <apex:outputPanel rendered="{!MetadataConnectionWarning}">
+                                            <div class="slds-notify slds-notify--alert slds-theme--alert-texture" role="alert" style="background-color: #FFF;">
+                                                <span class="slds-assistive-text">Error</span>
+                                                <h2>
+                                                 {!metadataApiException} <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_remote_site_settings.htm">More Information</a></h2>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step4" rendered="{!step == 4}" >
+                            <!--     <div style="float:left; width:20%">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                </div> -->
+                                <apex:outputPanel layout="block" id="scannerContainer" >
+                                    <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                        Welcome to Post Install Wizard <br/>
+                                        Run Your First Scan! Test2
+                                    </div>
+
+                                    <apex:outputPanel layout="none" rendered="{!changeLogCreation!=null && changeLogCreation.FLODocs__change_log_creation_panel_enabled__c}">
+                                      <apex:outputPanel layout="block" id="changeLogCreationMessage" rendered="{!changeLogCreationSaved}" >
+                                          <p style="font-size: 16px;">
+                                              The Change Log creation flag was saved.
+                                          </p>
+                                      </apex:outputPanel>
+                                      <h3 class="slds-section-title--divider dividers">Change Log Creation</h3>
+                                      <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row" data-label="Enabled">
+                                              <div class="slds-truncate" title="By enabling the checkbox, this org will create Change Logs and Workflows/Reports joins. You can disable this checkbox in case the current org is used for dev or if you are using this sandbox org for another purpose and you want to free space."><apex:inputField value="{!changeLogCreation.FLODocs__change_log_creation_value__c}" />Enabled</div>
+                                            </th>
+                                          </tr>
+                                          <td data-label="Button">
+                                                    <div class="slds-truncate" >
+                                                                <apex:commandButton styleClass="slds-button slds-button--brand slds-order--3" id="saveBtn" value="Save" reRender="changeLogCreationMessage" action="{!saveChangeLogCreation}" />
+                                                    </div>
+                                                  </td>
+                                        </tbody>
+                                      </table>
+                                    </apex:outputPanel>
+
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <c:FloScannerComponent />
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step5" rendered="{!step == 5}"  >
+                               <!--  <div style="float:left; width:20%">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                </div> -->
+                                <apex:outputPanel layout="block" id="schedulerContainer" >
+                                    <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                        Welcome to Initial Setup Wizard <br/>
+                                        Schedule Automated Scanners!
+                                    </div>
+                                    <c:FloSchedule />
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step6" rendered="{!step == 6 && NOT(isDocOnly)}">
+                                <!-- <div style="float:left; width:20%">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" align="left"/>
+                                </div> -->
+                                <apex:outputPanel layout="block">
+                                    <div style="text-align: center; margin:20px 20px 40px 20px; font-size:16pt;">
+                                        Welcome to Initial Setup Wizard <br/>
+                                        Select Default Approvers For Policies!
+                                    </div>
+                                    <div>
+                                        <div class="slds-form-element" style="margin-top:20px">
+                                            <label class="slds-form-element__label" for="text-input-01">Preliminary Approvers</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!defaultPolicie.FLODocs__Preliminary_Approvers__c}" styleClass="slds-input" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element" style="margin-top:20px">
+                                            <label class="slds-form-element__label" for="text-input-01">Final Approver</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!defaultPolicie.FLODocs__Final_Approver__c}" styleClass="slds-input" />
+                                            </div>
+                                        </div>
+                                        <div style="text-align: right;margin: 30px;">
+                                            <apex:commandButton Styleclass="slds-button slds-button--brand slds-order--3" id="createNewPoli" action="{!openNewPoli}" reRender="renderNewPoli" value="+ Create your own" immediate="true" />
+                                            <apex:outputPanel id="renderNewPoli" >
+                                                <apex:outputPanel layout="block" styleClass="newPoli" style="text-align: left;" rendered="{!createNewPol}">
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Name</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.Name}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <!--
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Scripted Objects Changes</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.Scripted_Objects_Changes__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Search and Report Changes</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.Search_and_Report_Changes__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Salesforce Setup Changes</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.Salesforce_Set_Up_Changes__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Web-Related Changes</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.Web_Related_Changes__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Other Changes</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.FLODocs__Other_Changes__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                -->    
+                                                <!-- GF 20200226 Policy Granularity -->
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Scripted Objects Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Scripted_Object_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">General Settings Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__General_Settings_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>                                                    
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Data Quality Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Data_Quality_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>                  
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Data Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Data_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Applications Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Applications_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Templates Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Templates_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Labels and Translations Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Labels_and_Translations_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>               
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Layout and RecordTypes Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Layout_and_Record_Types_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>                                                                   
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Reports and Dashboards and ListViews Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Reports_Dashboards_ListViews_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Einstein Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Einstein_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Identity and Access Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Identity_and_Access_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">External Access Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__External_Access_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Roles and Profiles Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Roles_and_Profiles_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Data Security Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Data_Security_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Sharing Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Sharing_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Territories Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Territories_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Approvals Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Approvals_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Business Processes Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Business_Processes_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Flow and Process Builder and Workflow Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Flow_Process_Builder_Workflow_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Health Check Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Health_Check_Control__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>                                                
+                                                <div class="slds-form-element" style="margin-top:20px">
+                                                    <label class="slds-form-element__label" for="text-input-01">Other Changes</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputField value="{!newPolicie.FLODocs__Other_Changes__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>                                                    
+                                                                                                    
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Preliminary Approvers</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.FLODocs__Preliminary_Approvers__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element" style="margin-top:20px">
+                                                        <label class="slds-form-element__label" for="text-input-01">Final Approver</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:inputField value="{!newPolicie.FLODocs__Final_Approver__c}" styleClass="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" id="step7" rendered="{!step == 7}" >
+                                <div style="width:100%;text-align: center;margin-top: 60px;">
+                                    <img src="{!$Resource.FLO_Logo}" width="350" height="200" />
+                                </div>
+                                <apex:outputPanel layout="block">
+                                    <div style="text-align: center; margin:20px 20px 40px 20px; font-size: 19pt; line-height: 3rem;">
+                                        Your organization is prepared to start using Strongpoint!<br />
+                                        You will receive an email once the scanners are done<br />
+                                        Thank you!
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleclass="slds-modal__footer slds-grid slds-grid--align-spread" id="progressButtonsAndBar">
+                            <apex:outputPanel layout="block" id="modalProgress" styleclass="slds-progress slds-progress--shade slds-order--2">
+                                <ol class="slds-progress__list">
+                                    <li class="{!IF(step>=1, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-1-tooltip" onclick="goToStepAction(1);return false;">
+                                            <span class="slds-assistive-text">Step 1</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=2, 'slds-progress__item slds-is-active', 'slds-progress__item')}" >
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-2-tooltip" onclick="goToStepAction(2);return false;">
+                                            <span class="slds-assistive-text">Step 2</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=3, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-3-tooltip" onclick="goToStepAction(3);return false;">
+                                            <span class="slds-assistive-text">Step 3</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=4, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-4-tooltip" onclick="goToStepAction(4);return false;">
+                                            <span class="slds-assistive-text">Step 4</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=5, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-5-tooltip" onclick="goToStepAction(5);return false;">
+                                            <span class="slds-assistive-text">Step 5</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=6, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-6-tooltip" onclick="goToStepAction(6);return false;">
+                                            <span class="slds-assistive-text">Step 6</span>
+                                        </button>
+                                    </li>
+                                    <li class="{!IF(step>=7, 'slds-progress__item slds-is-active', 'slds-progress__item')}">
+                                        <button class="slds-button slds-progress__marker" aria-describedby="step-7-tooltip" onclick="goToStepAction(7);return false;">
+                                            <span class="slds-assistive-text">Step 7</span>
+                                        </button>
+                                    </li>
+                                </ol>
+                                <div class="slds-progress-bar">
+                                    <span class="slds-progress-bar__value" style="width:{!progressBarWidth}%;">
+                                        <span class="slds-assistive-text">Progress: {!progressBarWidth}%</span>
+                                    </span>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputpanel layout="none" rendered="{!!openModal}">
+                                <button class="slds-button slds-button--neutral slds-order--1" onclick="toggleDialogGettingStarted(); return false;">Cancel</button>
+                            </apex:outputpanel>
+                            <apex:commandButton styleClass="slds-button slds-button--brand slds-order--3" action="{!progressControl}" reRender="modalSteps, modalProgress,progressButtonsAndBar" value="Next" status="status" rendered="{!step < 7}"/>
+                            <apex:outputPanel layout="none" rendered="{!step >= 7}">
+                                <button class="slds-button slds-button--success slds-order--2" onclick="toggleDialogGettingStarted(); return false;">
+                                    Done
+                                </button>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open" ></div>
+            </apex:outputPanel>
+
+            <apex:actionFunction action="{!goToStep}" reRender="modalSteps, modalProgress, progressButtonsAndBar" name="goToStepAction" status="status" >
+                <apex:param id="stepToGo" name="stepToGo" value=""/>
+            </apex:actionFunction>
+
+            <!-- GF - comment out to load the page faster
+            <c:StrongpointAnnouncement />
+            -->
+
+        </apex:form>
+
+
+
+
+    </div>
+</html>
+</apex:page>

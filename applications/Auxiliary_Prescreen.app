@@ -37,7 +37,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>Admin</profile>
+        <profile>System Platform Developer</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -46,7 +46,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>Admin</profile>
+        <profile>System Platform Developer</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -55,7 +55,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -64,7 +64,7 @@
         <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
         <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>Condition_Report_Prescreen__c</tabs>
     <tabs>Inventory_Life_Cycle__c</tabs>

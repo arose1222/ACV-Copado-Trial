@@ -474,4 +474,92 @@ public class ServiceAppointmentStatusIconTest {
         Test.stopTest();
     }
 
+    @IsTest
+    static void testServiceAppointmentDryRunChanged() {
+        Test.startTest();
+            String urlExpected = ACVUtility.getStaticResourceURLByName(new List<String>{'FSLDryRun'}).get('FSLDryRun');
+            List<ServiceAppointment> testSvcApptList = [ SELECT Id, status, FSL__GanttIcon__c, Dry_Run__c 
+                                                           FROM ServiceAppointment 
+                                                          WHERE Subject = 'vciServiceAppointmentSubject' ];
+
+            for (ServiceAppointment sa : testSvcApptList) {
+                sa.Dry_Run__c = true;
+            }
+            update testSvcApptList;
+
+            // query
+            List<ServiceAppointment> checkServiceAppointmentGanttIcon = [SELECT Id, status, FSL__GanttIcon__c
+                                                                           FROM ServiceAppointment
+                                                                          WHERE Subject = 'vciServiceAppointmentSubject' ];
+
+            // system.asserts
+            System.assertEquals(urlExpected, checkServiceAppointmentGanttIcon[0].FSL__GanttIcon__c, 'Service Appointment Dry Run Icons do not match.');
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void testServiceAppointmentDryRunAndCommittedChanged() {
+        Test.startTest();
+            String urlCommittedExpected = ACVUtility.getStaticResourceURLByName(new List<String>{'FSLCommitted'}).get('FSLCommitted');
+            String urlExpected = ACVUtility.getStaticResourceURLByName(new List<String>{'FSLDryRun'}).get('FSLDryRun');
+            List<ServiceAppointment> testSvcApptList = [ SELECT Id, Status, Committed__c, FSL__GanttIcon__c, Dry_Run__c 
+                                                           FROM ServiceAppointment 
+                                                          WHERE Subject = 'vciServiceAppointmentSubject' ];
+
+            for (ServiceAppointment sa : testSvcApptList) {
+                sa.committed__c = True;
+                sa.Dry_Run__c = true;
+            }
+            update testSvcApptList;
+
+            // query
+            List<ServiceAppointment> checkServiceAppointmentGanttIcon = [SELECT Id, Status, Committed__c, FSL__GanttIcon__c
+                                                                           FROM ServiceAppointment
+                                                                          WHERE Subject = 'vciServiceAppointmentSubject' ];
+
+            // system.asserts
+            System.assertEquals(urlCommittedExpected + ';' + urlExpected, checkServiceAppointmentGanttIcon[0].FSL__GanttIcon__c, 'Service Appointment Dry Run Icons do not match.');
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void testServiceAppointmentRescheduled() {
+        Test.startTest();
+        String cannotCompleteUrlExpected = ACVUtility.getStaticResourceURLByName(new List<String>{'FSLCannotComplete'}).get('FSLCannotComplete');
+        String rescheduleUrlExpected = ACVUtility.getStaticResourceURLByName(new List<String>{'FSLRescheduled'}).get('FSLRescheduled');
+        
+        ServiceAppointment testSvcAppt = [ SELECT Id, status, FSL__GanttIcon__c, Cannot_Complete_Reason__c, Completed_Canceled_Notes__c 
+                                                   FROM ServiceAppointment 
+                                                   WHERE Subject = 'vciServiceAppointmentSubject' LIMIT 1];
+        
+        ServiceResource testSvcResource = [SELECT Id FROM ServiceResource LIMIT 1];
+        
+        // Create Assigned Resource:
+        AssignedResource vciAssignedResource = new AssignedResource(
+            ServiceResourceId = testSvcResource.Id,
+            ServiceAppointmentId = testSvcAppt.Id
+        );
+        insert vciAssignedResource;
+        
+        testSvcAppt = [ SELECT Id, status, FSL__GanttIcon__c, Cannot_Complete_Reason__c, Completed_Canceled_Notes__c 
+                                                  FROM ServiceAppointment 
+                                                  WHERE Subject = 'vciServiceAppointmentSubject' LIMIT 1];
+        
+        testSvcAppt.status = 'Cannot Complete';
+        testSvcAppt.Cannot_Complete_Reason__c = 'Other';
+        testSvcAppt.Completed_Canceled_Notes__c = 'Notes for Other Reason';
+        testSvcAppt.Has_Been_Rescheduled__c = true;
+        
+        update testSvcAppt;
+        
+        // query
+        List<ServiceAppointment> checkServiceAppointmentGanttIcon = [SELECT Id, status, FSL__GanttIcon__c
+                                                                     FROM ServiceAppointment
+                                                                     WHERE Subject = 'vciServiceAppointmentSubject' ];
+        
+        // system.asserts
+        System.assertEquals(cannotCompleteUrlExpected + ';' + rescheduleUrlExpected, checkServiceAppointmentGanttIcon[0].FSL__GanttIcon__c, 'Service Appointment Reschedule Icons do not match.');
+        Test.stopTest();
+    }
+
 }

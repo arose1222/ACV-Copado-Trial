@@ -1,0 +1,725 @@
+<apex:page showHeader="false" sidebar="false" readOnly="true" controller="FLODocs.StrongpointExportObjectController" action="{!buildXMLFile}"  contentType="txt/xml#UserExport.xls" cache="true">
+	<apex:outputText value="{!xlsHeader}"/>
+
+	<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:o="urn:schemas-microsoft-com:office:office"
+		 xmlns:x="urn:schemas-microsoft-com:office:excel"
+		 xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:html="http://www.w3.org/TR/REC-html40">
+		 <Styles>
+		 	<Style ss:ID="s1">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment/>
+				<Font ss:Bold="1" ss:Color="#FFFFFF"></Font>
+				<NumberFormat/>
+   				<Interior ss:Color="#3a3f6e" ss:Pattern="Solid"></Interior>
+		 	</Style>
+		 	<Style ss:ID="s100">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment/>
+				<Font ss:Bold="1" ss:Color="#FFFFFF"></Font>
+				<NumberFormat/>
+   				<Interior ss:Color="#FF0000" ss:Pattern="Solid"></Interior>
+		 	</Style>
+
+		 	<Style ss:ID="s2">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Font ss:Size="9"  x:Family="Swiss" ss:FontName="Calibri" />
+		 	</Style>
+		 	<Style ss:ID="s3">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#FFA500" ss:Pattern="Solid"/>
+		 	</Style>
+		 	<Style ss:ID="s4">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   				<Interior ss:Color="#FFA500" ss:Pattern="Solid"/>
+   				<Font x:Family="Swiss"  ss:FontName="Calibri"  ss:Size="14" ss:Bold="1"/>
+		 	</Style>
+		 	<Style ss:ID="s5">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#98FB98" ss:Pattern="Solid"/>
+		 	</Style>
+		 	<Style ss:ID="s6">
+		 		<Borders>
+				    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+				    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+			    </Borders>
+				<Alignment ss:Vertical="Top" ss:WrapText="0"/>
+   				<Interior ss:Color="#f6ce83" ss:Pattern="Solid"/>
+		 	</Style>
+		 <Style ss:ID="s87">
+            <Borders>
+                <Border ss:LineStyle="Continuous" ss:Position="Top" ss:Weight="1"></Border>
+                <Border ss:LineStyle="Continuous" ss:Position="Bottom" ss:Weight="1"></Border>
+                <Border ss:LineStyle="Continuous" ss:Position="Left" ss:Weight="1"></Border>
+                <Border ss:LineStyle="Continuous" ss:Position="Right" ss:Weight="1"></Border>
+            </Borders>
+            <Font ss:FontName="Calibri" ss:Italic="1" x:Family="Swiss"></Font>
+            <Interior ss:Color="#C0C0C0" ss:Pattern="Solid"></Interior>
+        </Style>
+		</Styles>
+
+		<Worksheet ss:Name="Summary">
+			<Table x:FullColumns="1" x:FullRows="1">
+				<Column ss:Width="125"/>
+				<Column ss:Width="300"/>
+				<Column ss:Width="300"/>
+				<Row>
+					 <Cell ss:StyleID="s1"><Data ss:Type="String" >Created By:</Data></Cell>
+					 <Cell ss:StyleID="s2"><Data ss:Type="String" >{!currentUserName}</Data></Cell>
+				</Row>
+				<Row>
+					 <Cell ss:StyleID="s1"><Data ss:Type="String" >Created Date:</Data></Cell>
+					 <Cell ss:StyleID="s2"><Data ss:Type="String" >{!currentDate}</Data></Cell>
+				</Row>
+				<Row>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				<apex:outputPanel layout="none" rendered="{!isLimitReached}">
+					<Row>
+						 <Cell ss:MergeAcross="2" ss:StyleID="s100" ><Data ss:Type="String" ></Data></Cell>
+						 <Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+						 <Cell ss:MergeAcross="2" ss:StyleID="s100"><Data ss:Type="String" >TOO MANY USERS SELECTED - PLEASE REDUCE THE AMOUNT OF USERS SELECTED</Data></Cell>
+						 <Cell ><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<Row>
+					 <Cell ss:MergeAcross="2" ss:StyleID="s100" ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				</apex:outputPanel>
+				<Row>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+					 <Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+				<Row>
+					<Cell ss:StyleID="s1"><Data ss:Type="String" >Users</Data></Cell>
+					<Cell  ss:StyleID="s1"><Data ss:Type="String" >Profile</Data></Cell>
+					<Cell  ss:StyleID="s1"><Data ss:Type="String" >Permission Sets</Data></Cell>
+				</Row>
+				<apex:repeat value="{!usersIds}" var="pp" rendered="{!!ISBLANK(usersWithName)}">
+					<Row>
+						<Cell  ss:StyleID="s3"><Data ss:Type="String" >{!usersWithName[pp]}</Data></Cell>
+						<Cell  ss:StyleID="s3"><Data ss:Type="String" >{!usersWithProfile[pp]}</Data></Cell>
+						<Cell  ss:StyleID="s3"><Data ss:Type="String" ></Data></Cell>
+					</Row>
+					<apex:repeat value="{!usersWithPermissionSet[pp]}" var="rr" rendered="{!!ISBLANK(usersWithPermissionSet[pp])}">
+					 	<Row>
+							<Cell  ss:StyleID="s3"><Data ss:Type="String" ></Data></Cell>
+							<Cell  ss:StyleID="s3"><Data ss:Type="String" ></Data></Cell>
+							<Cell  ss:StyleID="s3"><Data ss:Type="String" >{!rr}</Data></Cell>
+						</Row>
+					</apex:repeat>
+				</apex:repeat>
+				<Row>
+					<Cell ><Data ss:Type="String" ></Data></Cell>
+				</Row>
+    		</Table>
+	    </Worksheet>
+
+	    <apex:repeat value="{!usersIds}" var="pp">
+				 <apex:param name="userId" value="{!pp}" />
+	    	 <Worksheet ss:Name="{!usersById[pp].FirstName + ' '+usersById[pp].LastName}">
+	    	 	  <Table border="1">
+	    	 	  	<Column ss:AutoFitWidth="0" ss:Width="30"></Column>
+		        	<Column ss:AutoFitWidth="0" ss:Width="225"></Column>
+		        	<Column ss:AutoFitWidth="0" ss:Width="89.25"></Column>
+
+			        	<Row ss:AutoFitHeight="0" ss:Height="27.75">
+			        		<Cell></Cell>
+			        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+			        			<Data ss:Type="String">User Name</Data>
+			        		</Cell>
+			        		<Cell ss:MergeAcross="2" ss:StyleID="s4">
+			        			<Data ss:Type="String">{!usersById[pp].FirstName + ' ' + usersById[pp].LastName}</Data>
+			        		</Cell>
+			        	</Row>
+			        		<Row ss:AutoFitHeight="0" ss:Height="27.75">
+			        		<Cell></Cell>
+			        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+			        			<Data ss:Type="String">Email</Data>
+			        		</Cell>
+			        		<Cell ss:MergeAcross="2" ss:StyleID="s87">
+			        			<Data ss:Type="String">{!usersById[pp].Email}</Data>
+			        		</Cell>
+			        	</Row>
+			        	<Row>
+			        		<Cell></Cell>
+			        		<Cell ss:StyleID="s4" ss:MergeAcross="0"><Data ss:Type="String" >Role</Data></Cell>
+			        		<Cell ss:StyleID="s87" ss:MergeAcross="2"><Data ss:Type="String">{!usersById[pp].UserRole.Name}</Data></Cell>
+			        	</Row>
+			        	<Row>
+			        		<Cell></Cell>
+			        		<Cell ss:StyleID="s4" ss:MergeAcross="0"><Data ss:Type="String" >Title</Data></Cell>
+			        		<Cell ss:StyleID="s87" ss:MergeAcross="2"><Data ss:Type="String">{!usersById[pp].Title}</Data></Cell>
+			        	</Row>
+		        		<Row>
+		        			<Cell></Cell>
+		        			<Cell ss:StyleID="s4" ss:MergeAcross="0"> <Data ss:Type="String">Department</Data></Cell>
+		        			<Cell ss:StyleID="s87" ss:MergeAcross="2"><Data ss:Type="String">{!usersById[pp].Department}</Data></Cell>
+		        		</Row>
+
+
+			        	<Row></Row>
+			        	<Row ss:AutoFitHeight="0" ss:Height="27.75">
+			        		<Cell></Cell>
+			        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+			        			<Data ss:Type="String">Profile Name</Data>
+			        		</Cell>
+			        		<Cell ss:MergeAcross="8" ss:StyleID="s4">
+			        			<Data ss:Type="String">{!userWithInnerProfile[pp].name}</Data>
+			        		</Cell>
+			        	</Row>
+			        	<Row ss:AutoFitHeight="0" ss:Height="27.75">
+			        		<Cell></Cell>
+			        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+			        			<Data ss:Type="String">Profile Description</Data>
+			        		</Cell>
+			        		<Cell ss:MergeAcross="8" ss:StyleID="s87">
+			        			<Data ss:Type="String">{!userWithInnerProfile[pp].description}</Data>
+			        		</Cell>
+			        	</Row>
+		        		<Row>
+		        		<Cell></Cell>
+		        		<Cell ss:StyleID="s4">
+		        			<Data ss:Type="String">Custom Profile</Data></Cell>
+		        			<Cell ss:StyleID="s87"><Data ss:Type="String">{!userWithInnerProfile[pp].isCustom}</Data></Cell>
+		        		</Row>
+		        		<Row>
+		        			<Cell></Cell>
+		        			<Cell ss:StyleID="s4"> <Data ss:Type="String">User License</Data></Cell>
+		        			<Cell ss:StyleID="s87"><Data ss:Type="String">{!userWithInnerProfile[pp].userLicense}</Data></Cell>
+		        		</Row>
+		        		<Row></Row>
+		        		<Row></Row>
+		        		<Row>
+		        			<Cell></Cell>
+            		   		<Cell  ss:StyleID="s1"><Data ss:Type="String" >Permission Sets</Data></Cell>
+            		    </Row>
+            		    <apex:repeat value="{!usersWithPermissionSet[pp]}" var="rr" rendered="{!!ISBLANK(usersWithPermissionSet[pp])}">
+						 	<Row>
+						 		<Cell></Cell>
+								<Cell  ss:StyleID="s3"><Data ss:Type="String" >{!rr}</Data></Cell>
+							</Row>
+						</apex:repeat>
+
+
+		        		<Row></Row>
+		        		<Row>
+		        			<Cell></Cell>
+		        			<Cell></Cell>
+		        			<Cell ss:MergeAcross="5" ss:StyleID="s4">
+		        				<Data ss:Type="String">{!userWithInnerProfile[pp].name}</Data>
+		        			</Cell>
+            		    </Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	<Cell></Cell>
+            		   	<Cell ss:StyleID="s1">
+            		   		<Data ss:Type="String">Object Permissions</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Create</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Read</Data>
+            		   	</Cell>
+
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Edit</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Delete</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">View All</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Modify All</Data>
+            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!userWithInnerProfile[pp].objPpList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsCreate, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsCreate}</Data></Cell>
+							<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsRead, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsRead}</Data></Cell>
+							<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsEdit, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsEdit}</Data></Cell>
+							<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsDelete, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsDelete}</Data></Cell>
+							<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsViewAllRecords, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsViewAllRecords}</Data></Cell>
+							<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].objPpList[obj].PermissionsModifyAllRecords, 's5', 's6')}"><Data ss:Type="String" >{!userWithInnerProfile[pp].objPpList[obj].PermissionsModifyAllRecords}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		    <Row></Row>
+            		    <Row ss:AutoFitHeight="0" ss:Height="20">
+            		    	<Cell></Cell>
+            		    	<Cell ss:StyleID="s1">
+            		    		<Data ss:Type="String">Tab Visibility</Data>
+            		    	</Cell>
+            		    	<Cell ss:StyleID="s87">
+            		    		<Data ss:Type="String">Visibility</Data>
+            		    	</Cell>
+            		    </Row>
+
+            		    <apex:repeat value="{!userWithInnerProfile[pp].profTabVisibilityList}"  var="obj">
+            		    <Row ss:AutoFitHeight="0" ss:Height="20">
+            		    	<Cell></Cell>
+            		    	<Cell >
+            		    		<Data ss:Type="String">{!obj.tabName}</Data>
+            		    	</Cell>
+
+            		    	<Cell ss:StyleID="{!IF(obj.visibility == 'DefaultOn', 's5', 's6')}"><Data ss:Type="String" >{!obj.visibility}</Data></Cell>
+
+            		    </Row>
+            			</apex:repeat>
+
+            			<Row></Row>
+            			<Row ss:AutoFitHeight="0" ss:Height="20">
+            				<Cell></Cell>
+            				<Cell ss:StyleID="s1">
+            					<Data ss:Type="String">Tab Visibility</Data>
+            				</Cell>
+            				<Cell ss:StyleID="s87">
+            					<Data ss:Type="String">Visibility</Data>
+            				</Cell>
+            			</Row>
+
+            			<apex:repeat value="{!userWithInnerProfile[pp].profTabVisibilityList}"  var="obj">
+	            			<Row ss:AutoFitHeight="0" ss:Height="20">
+	            				<Cell></Cell>
+	            				<Cell >
+	            					<Data ss:Type="String">{!obj.tabName}</Data>
+	            				</Cell>
+
+	            				<Cell ss:StyleID="{!IF(obj.visibility == 'DefaultOn', 's5', 's6')}"><Data ss:Type="String" >{!obj.visibility}</Data></Cell>
+	            			</Row>
+            			</apex:repeat>
+
+	            		<Row></Row>
+	            		<Row ss:AutoFitHeight="0" ss:Height="20">
+	            			<Cell></Cell>
+	            			<Cell ss:StyleID="s1">
+	            				<Data ss:Type="String">User Permissions</Data>
+	            			</Cell>
+	            		</Row>
+
+	            		<apex:repeat value="{!userWithInnerProfile[pp].userPermissions}"  var="obj">
+		            		<Row ss:AutoFitHeight="0" ss:Height="20">
+		            			<Cell></Cell>
+		            			<Cell >
+		            				<Data ss:Type="String">{!obj}</Data>
+		            			</Cell>
+		            		</Row>
+		            	</apex:repeat>
+
+		            	<Row></Row>
+		            	 <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Apex Class</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visible</Data>
+	            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!userWithInnerProfile[pp].apexPpList}"  var="apex">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	    <Cell></Cell>
+            		   	    <Cell >
+		                        <Data ss:Type="String">{!apex}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].apexPpList[apex], 's5', 's6')}"><Data ss:Type="String" >{!IF(userWithInnerProfile[pp].apexPpList[apex],'enable','hidden') }</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Visualforce Pages</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visible</Data>
+	            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!userWithInnerProfile[pp].pagePpList}"  var="page">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	    <Cell></Cell>
+            		   	    <Cell >
+		                        <Data ss:Type="String">{!page}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(userWithInnerProfile[pp].pagePpList[page], 's5', 's6')}"><Data ss:Type="String" >{!IF(userWithInnerProfile[pp].pagePpList[page],'enable','hidden') }</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+	    	 	  </Table>
+	    	 </Worksheet>
+	    </apex:repeat>
+
+	  <!--   <apex:repeat value="{!innerProfiles}" var="pp">
+	        <Worksheet ss:Name="{!pp.name}">
+	        	  <Table border="1">
+		        	<Column ss:AutoFitWidth="0" ss:Width="30"></Column>
+		        	<Column ss:AutoFitWidth="0" ss:Width="225"></Column>
+		        	<Column ss:AutoFitWidth="0" ss:Width="89.25"></Column>
+		        	<Row></Row>
+		        	<Row ss:AutoFitHeight="0" ss:Height="27.75">
+		        		<Cell></Cell>
+		        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+		        			<Data ss:Type="String">Profile Name</Data>
+		        		</Cell>
+		        		<Cell ss:MergeAcross="8" ss:StyleID="s4">
+		        			<Data ss:Type="String">{!pp.name}</Data>
+		        		</Cell>
+		        	</Row>
+		        	<Row ss:AutoFitHeight="0" ss:Height="27.75">
+		        		<Cell></Cell>
+		        		<Cell ss:MergeAcross="0" ss:StyleID="s4">
+		        			<Data ss:Type="String">Profile Description</Data>
+		        		</Cell>
+		        		<Cell ss:MergeAcross="8" ss:StyleID="s87">
+		        			<Data ss:Type="String">{!pp.description}</Data>
+		        		</Cell>
+		        	</Row>
+		        	<Row>
+		        		<Cell></Cell>
+		        		<Cell ss:StyleID="s4">
+		        			<Data ss:Type="String">Custom Profile</Data></Cell>
+		        			<Cell ss:StyleID="s87"><Data ss:Type="String">{!pp.isCustom}</Data></Cell>
+		        		</Row>
+		        		<Row>
+		        			<Cell></Cell>
+		        			<Cell ss:StyleID="s4"> <Data ss:Type="String">User License</Data></Cell>
+		        			<Cell ss:StyleID="s87"><Data ss:Type="String">{!pp.userLicense}</Data></Cell>
+		        		</Row>
+		        		<Row></Row>
+		        		<Row>
+		        			<Cell></Cell>
+		        			<Cell></Cell>
+		        			<Cell ss:MergeAcross="5" ss:StyleID="s4">
+		        				<Data ss:Type="String">{!pp.name}</Data>
+		        			</Cell>
+            		   </Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	<Cell></Cell>
+            		   	<Cell ss:StyleID="s1">
+            		   		<Data ss:Type="String">Object Permissions</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Create</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Read</Data>
+            		   	</Cell>
+
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Edit</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Delete</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">View All</Data>
+            		   	</Cell>
+            		   	<Cell ss:StyleID="s87">
+            		   		<Data ss:Type="String">Modify All</Data>
+            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!pp.objPpList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsCreate, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsCreate}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsRead, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsRead}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsEdit, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsEdit}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsDelete, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsDelete}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsViewAllRecords, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsViewAllRecords}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.objPpList[obj].PermissionsModifyAllRecords, 's5', 's6')}"><Data ss:Type="String" >{!pp.objPpList[obj].PermissionsModifyAllRecords}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		    <Row></Row>
+            		    <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Application Visibility</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visible</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Default</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.profAppVisibilityList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.name}</Data>
+		                    </Cell>
+		                    <Cell ss:StyleID="{!IF(obj.isVisible, 's5', 's6')}"><Data ss:Type="String" >{!obj.isVisible}</Data></Cell>
+		                    <Cell ss:StyleID="{!IF(obj.isDefault, 's5', 's6')}"><Data ss:Type="String" >{!obj.isDefault}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		   <Row></Row>
+            		    <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Tab Visibility</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visibility</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.profTabVisibilityList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.tabName}</Data>
+		                    </Cell>
+
+		                    <Cell ss:StyleID="{!IF(obj.visibility == 'DefaultOn', 's5', 's6')}"><Data ss:Type="String" >{!obj.visibility}</Data></Cell>
+
+		                   </Row>
+            		   </apex:repeat>
+
+            		    <Row></Row>
+            		    <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">External Data Sources Access</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Enabled</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.profDataSourceAccessList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.name}</Data>
+		                    </Cell>
+		                    <Cell ss:StyleID="{!IF(obj.enabled, 's5', 's6')}"><Data ss:Type="String" >{!obj.enabled}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">User Permissions</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.userPermissions}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj}</Data>
+		                    </Cell>
+		                   </Row>
+            		   </apex:repeat>
+            		   <Row></Row>
+
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Login IP Ranges</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Ip Start Address</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Ip End Address</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Description</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.ipRangePpList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.start}</Data>
+		                    </Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.stop}</Data>
+		                    </Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!obj.description}</Data>
+		                    </Cell>
+		                   </Row>
+            		   </apex:repeat>
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Custom Permissions</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Label</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Is Protected?</Data>
+	            		   	</Cell>
+
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Description</Data>
+	            		   	</Cell>
+            		   </Row>
+            		    <apex:repeat value="{!pp.customPermPpList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!pp.customPermPpList[obj].name}</Data>
+		                    </Cell>
+		                   	<Cell><Data ss:Type="String" >{!pp.customPermPpList[obj].label}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.customPermPpList[obj].isProtected, 's5', 's6')}"><Data ss:Type="String" >{!pp.customPermPpList[obj].isProtected}</Data></Cell>
+							<Cell><Data ss:Type="String" >{!pp.customPermPpList[obj].description}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Connected Applications</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Options Allowed Admin Approved Users</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Options RefreshToken Validity Metric</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Options Has Session Level Policy</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Options Is Internal</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Mobile Session Timeout</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Pin Length</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Start Url</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Mobile Start Url</Data>
+	            		   	</Cell>
+            		   </Row>
+            		   <apex:repeat value="{!pp.connAppPpList}"  var="obj">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+		                    <Cell></Cell>
+		                    <Cell >
+		                        <Data ss:Type="String">{!pp.connAppPpList[obj].Name}</Data>
+		                    </Cell>
+							<Cell ss:StyleID="{!IF(pp.connAppPpList[obj].OptionsAllowAdminApprovedUsersOnly, 's5', 's6')}"><Data ss:Type="String" >{!pp.connAppPpList[obj].OptionsAllowAdminApprovedUsersOnly}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.connAppPpList[obj].OptionsRefreshTokenValidityMetric, 's5', 's6')}"><Data ss:Type="String" >{!pp.connAppPpList[obj].OptionsRefreshTokenValidityMetric}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.connAppPpList[obj].OptionsHasSessionLevelPolicy, 's5', 's6')}"><Data ss:Type="String" >{!pp.connAppPpList[obj].OptionsHasSessionLevelPolicy}</Data></Cell>
+							<Cell ss:StyleID="{!IF(pp.connAppPpList[obj].OptionsIsInternal, 's5', 's6')}"><Data ss:Type="String" >{!pp.connAppPpList[obj].OptionsIsInternal}</Data></Cell>
+							<Cell><Data ss:Type="String" >{!pp.connAppPpList[obj].MobileSessionTimeout}</Data></Cell>
+							<Cell><Data ss:Type="String" >{!pp.connAppPpList[obj].PinLength}</Data></Cell>
+							<Cell><Data ss:Type="String" >{!pp.connAppPpList[obj].StartUrl}</Data></Cell>
+							<Cell><Data ss:Type="String" >{!pp.connAppPpList[obj].MobileStartUrl}</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Apex Class</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visible</Data>
+	            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!pp.apexPpList}"  var="apex">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	    <Cell></Cell>
+            		   	    <Cell >
+		                        <Data ss:Type="String">{!apex}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(pp.apexPpList[apex], 's5', 's6')}"><Data ss:Type="String" >{!IF(pp.apexPpList[apex],'enable','hidden') }</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+
+            		   <Row></Row>
+            		   <Row ss:AutoFitHeight="0" ss:Height="20">
+	            		   	<Cell></Cell>
+	            		   	<Cell ss:StyleID="s1">
+	            		   		<Data ss:Type="String">Visualforce Pages</Data>
+	            		   	</Cell>
+	            		   	<Cell ss:StyleID="s87">
+	            		   		<Data ss:Type="String">Visible</Data>
+	            		   	</Cell>
+            		   </Row>
+
+            		   <apex:repeat value="{!pp.pagePpList}"  var="page">
+            		   	 <Row ss:AutoFitHeight="0" ss:Height="20">
+            		   	    <Cell></Cell>
+            		   	    <Cell >
+		                        <Data ss:Type="String">{!page}</Data>
+		                    </Cell>
+		                   	<Cell ss:StyleID="{!IF(pp.pagePpList[page], 's5', 's6')}"><Data ss:Type="String" >{!IF(pp.pagePpList[page],'enable','hidden') }</Data></Cell>
+		                   </Row>
+            		   </apex:repeat>
+                </Table>
+	        </Worksheet>
+	    </apex:repeat>
+
+	     <apex:repeat value="{!permissionSetIds}" var="pp">
+	        <Worksheet ss:Name="{!profileIdToName[pp]}">
+	        </Worksheet>
+	    </apex:repeat>-->
+		</Workbook>
+</apex:page>

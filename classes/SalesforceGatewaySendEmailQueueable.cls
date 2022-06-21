@@ -5,6 +5,8 @@ public class SalesforceGatewaySendEmailQueueable implements Queueable, Database.
 
     private final string endpointURL = '/api/v1/user/welcome';
     @TestVisible public List<String> data = new List<String>();
+    // Get AVC User Record Type Id
+    private static String acvUserRtId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('ACV_User').getRecordTypeId();
     
     public SalesforceGatewaySendEmailQueueable(List<String> input){
         data = input;
@@ -18,7 +20,7 @@ public class SalesforceGatewaySendEmailQueueable implements Queueable, Database.
         
         //Get login history and Identity Id of running user
         List<LoginHistory> lh = [SELECT Id, SourceIp,Browser FROM LoginHistory WHERE UserId = :UserInfo.getUserId() ORDER BY LoginTime DESC LIMIT 1];
-        List<Contact> runningUserContact = [Select Id, Email, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() LIMIT 1];
+        List<Contact> runningUserContact = [Select Id, Email, Identity_Id__c FROM Contact WHERE email = :UserInfo.getUserEmail() AND RecordTypeId =:acvUserRtId LIMIT 1];
         
         if(runningUserContact.size() < 1 || String.isBlank(runningUserContact[0]?.Identity_Id__c)){
             throw new CustomException('You do not have an active Identity Id, please contact a System Admin for assistance');

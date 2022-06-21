@@ -1,0 +1,398 @@
+<apex:page showHeader="false" sidebar="false" showQuickActionVfHeader="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloChangeRequestButtonsController" docType="html-5.0">
+	<c:StrongpointAnalytics />
+	<apex:slds />
+	<style>
+		.buttonEdit{
+			background: transparent url('/img/icon/custom51_100/pencil16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonDelete{
+			background: transparent url('/img/func_icons/util/recycle.gif') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonApprove{
+			background: transparent url('/img/permissions_confirm16.gif') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonReject{
+			background: transparent url('/img/permissions_deny16.gif') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonImpactAnalysis{
+			background: transparent url('/img/knowledge/publishing/knowledgemanagement16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 114px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonRescan{
+			background: transparent url('/img/icon/custom51_100/gears16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonDeploy{
+			background: transparent url('/img/icon/contracts16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.buttonRecalculate{
+			background: transparent url('/img/icon/contracts16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+
+		.buttonChangeSet{
+			background: transparent url('/img/icon/contracts16.png') no-repeat scroll top right !important;
+			color: #444 !important;
+			display: block;
+			float: left;
+			width: 100px;
+			font: normal 12px arial, sans-serif;
+			margin-right: 6px !important;
+			padding-right: 18px !important; /* sliding doors padding */
+			text-decoration: none !important;
+		}
+
+		.container{
+			text-align: center;
+			/*margin-left: 5%;*/
+			width: 100%;
+			display:flex;
+			overflow: auto;
+		}
+
+		.container button{
+			width : 100px;
+			height:35px;
+			background: whitesmoke !important;
+			font-size: 12px !important;
+			font-weight: bold;
+		}
+	</style>
+	<script>
+
+		 (function(myContext){
+            myContext.ForceUI = myContext.ForceUI || {};
+
+            myContext.ForceUI.isSalesforce1 = function() {
+                return((typeof sforce != 'undefined') && sforce && (!!sforce.one));
+            }
+        })(this);
+        
+        function onObjectClick(objUrl,crId) {
+          var url = '';
+          if (ForceUI.isSalesforce1()) {
+            url = '/one/one.app?source=aloha#/sObject/'+crId+'/edit';
+          } else {
+            url = objUrl;
+          }
+          window.open(url, '_parent');
+          return false;
+        }
+
+
+		function reloadPage (){
+			window.parent.location.href = '/{!cr.Id}';
+		}
+		function approveJs(){
+			//if(confirm('Are you sure you want to approve this Change Request?')){
+			//	approveAF();
+			//}
+			//openDialog();
+			openLookupPopup();
+		}
+
+		function changeSetJs(){
+			openLookupPopupCS();
+		}
+
+
+		function changeDeployment(){
+			openLookupPopupDeploy();
+		}
+
+		function openDialog(){
+				  $( "#dialog-message" ).dialog({
+				      modal: true,
+				      buttons: {
+				        Ok: function() {
+				          $( this ).dialog( "close" );
+				        }
+				      }
+				    });
+		}
+		function rejectJs(){
+			if(confirm('Are you sure you want to reject this Change Request?')){
+				rejectAF();
+			}
+		}
+		function impactAnalysisJS(){
+			impactAnalisisAF();
+		}
+		function editJs(){
+
+			onObjectClick('/apex/FloChangeRequestEditNew?id={!cr.Id}','{!cr.Id}');
+			//window.parent.location.href = ;
+		}
+		function deleteJs(){
+			if(confirm('Are you sure you want to Delete this Change Request?')){
+				deleteAF();
+			}
+		}
+		function rescanJs(){
+			if(confirm('Are you sure you want to Rescan this Change Request?')){
+				rescanAF();
+			}
+		}
+		function deployJs(){
+			var url= '/apex/StrongpointDeploymentPage?crId={!cr.Id}&envSelect=true';
+			newWin2=window.open(url, 'Popup','height=800,width=1300,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			if (window.focus) {
+				newWin2.focus();
+			}
+	      	return false;
+			/*if(confirm('Are you sure you want to deploy this Change Request?')){
+				deployAF();
+				window.parent.location.href = '/{!newDeployCR}';
+			}*/
+		}
+
+		function uploadZipJs(){
+			var url= '/apex/StrongpointUploadFile?id={!cr.Id}';
+			newWin2=window.open(url,'height=200,width=700,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			if (window.focus) {
+				newWin2.focus();
+			}
+	      	return false;
+		}
+     	function versionControlJs(){
+        	var url = '/apex/StrongpointVersionControlPage?crId={!cr.Id}';
+        	newWin2 = window.open(url, 'Popup', 'height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+       	 	if (window.focus)
+        	{
+            	newWin2.focus();
+        	}
+        	return false;
+    	}
+
+		function rollbackJs(){
+			var url= '/apex/StrongpointRollback?crId={!cr.Id}&tid={!cr.TargetId__c}&sid={!cr.SourceId__c}';
+			newWin2=window.open(url, 'Popup','height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			if (window.focus) {
+				newWin2.focus();
+			}
+	      	return false;
+		}
+
+		function reCalculatePolicyJs(){			
+			if(confirm('Are you sure you want to Refresh this Change Request?')){					
+					reCalculateAF();
+			}
+		}
+		function deployPageReload(){
+		}
+		 var newWin=null;
+		
+
+		function openLookupPopup(){
+		  var url= '/apex/FloApproverNotes?id={!cr.Id}';
+		  newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+		  if (window.focus) {
+		   newWin.focus();
+		  }
+      	  return false;
+	     }
+
+		 function closeLookupPopup()
+		 {
+		    if (null!=newWin)
+		    {
+		       newWin.close();
+		    }  
+		 }
+
+		function closeLookupPopupCS()
+		 {
+		    if (null!=newWin2)
+		    {
+		       newWin2.close();
+		    }  
+		 }
+
+		var newWin2 = null;
+		function openLookupPopupCS(){
+			 var url= '/apex/FloGetChangeSet?id={!FLO_Change_Request__c.Id}';
+			newWin2=window.open(url, 'Popup','height=500,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			  if (window.focus) {
+			newWin2.focus();
+			  }
+	      	  return false;
+		}
+
+
+		function openLookupPopupDeploy(){
+			var url= '/apex/StrongpointDeploymentPage?crId={!FLO_Change_Request__c.Id}&sid={!cr.SourceId__c}&tid={!cr.TargetId__c}';
+			newWin2=window.open(url, 'Popup','height=800,width=1000,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			if (window.focus) {
+				newWin2.focus();
+			}
+	      	return false;
+		}
+
+		function CRSync(){
+			var url= '/apex/StrongpointCRSync?id={!FLO_Change_Request__c.Id}';
+			newWin2=window.open(url, 'Popup','height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+			if (window.focus) {
+				newWin2.focus();
+			}
+	      	return false;
+		}
+    
+    	function submitForApproval()
+  		{			
+			//GF 20211001 SF-1313 Add warning message to CR "Submit for Approval" action  
+			if({!isApproved}) {
+				if(confirm('This Change Request has already been approved. Are you sure you want to re-submit for approval?')) {
+    				submitforACR();
+				}
+			} else {
+				submitforACR();
+			}
+  		}
+    
+    	function completeCRJs()
+  		{
+    		completeCRAF();
+  		}
+		
+	</script>
+
+	
+
+	<apex:form >
+		<apex:pageMessages />
+		<apex:outputPanel layout="none" rendered="{!packageType > 0}">
+			<apex:actionFunction name="approveAF" action="{!approve}" oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="rejectAF" action="{!reject}" oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="impactAnalisisAF" action="{!impactAnalysis}" oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="rescanAF" action="{!rescan}"  oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="deployAF"  action="{!deployCR}" status="status"/>
+			<apex:actionFunction name="deleteAF"  action="{!deleteCR}" oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="reCalculateAF"  action="{!reCalculateCR}" oncomplete="reloadPage();" status="status"/>
+            <apex:actionFunction name="submitforACR" action="{!submitCR}" oncomplete="reloadPage();" status="status"/>
+			<apex:actionFunction name="changeSetAF" action="{!changeSet}" oncomplete="reloadPage();" status="status"/>
+            <apex:actionFunction name="completeCRAF" action="{!completeCR}" oncomplete="reloadPage();" status="status"/>
+           
+		</apex:outputPanel>
+		
+
+		<div id="buttons" class="slds-scope container">
+
+			<apex:outputPanel layout="none" rendered="{!packageType > 0}">
+				<div class="slds-button-group" role="group" style="margin: 0 auto;">
+					<apex:outputPanel layout="none" rendered="{!packageType > 0}">
+						<button class="slds-button slds-button_neutral" style="display:{!IF(isJira,'none','block')}" onclick="editJs();return false;">Edit</button>
+						<button class="slds-button slds-button_neutral" style="display:{!IF(isCompleted && isApproved,'none','block')}" onclick="reCalculatePolicyJs();return false;">Recalculate</button>
+						<!-- <button class="slds-button slds-button_neutral" onclick="deleteJs();return false;">Delete</button> -->
+                        <button class="slds-button slds-button_neutral" style="display:{!IF(isCompleted && isApproved,'none','block')};width: 160px;" onclick="submitForApproval();return false;">Submit for Approval</button>
+						<button class="slds-button slds-button_neutral" style="display:{!IF(isCompleted && isApproved,'none','block')}" onclick="approveJs();return false;">Approve</button>
+						<button class="slds-button slds-button_neutral" style="display:{!IF(isCompleted && isApproved,'none','block')}" onclick="rejectJs();return false;">Reject</button>
+						<button class="slds-button slds-button_neutral" style="display:{!IF(isCompleted && isApproved,'none','block')}" onclick="rescanJs();return false;">Rescan</button>
+					</apex:outputPanel>
+					<apex:outputPanel layout="none" rendered="{!packageType > 0}">
+						<button class="slds-button slds-button_neutral" onclick="CRSync();return false;" style="display:{!IF(displaySyncCRButton,'block','none')}">Sync CR</button> 
+						<button class="slds-button slds-button_neutral" onclick="deployJs();return false;" style="display:{!IF(!isDeployment && !isExecuteRollback && isApproved,'block','none')}">Deploy</button>
+						<button class="slds-button slds-button_neutral" onclick="uploadZipJs();return false;" style="display:{!IF(isDeployment && isApproved && !isCompleted,'block','none')}">Upload Zip</button>
+						<button class="slds-button slds-button_neutral" onclick="changeSetJs();return false;" style="width: 170px !important;display:{!IF(!isCompleted,'block','none')}">Import Customizations</button>
+						<button class="slds-button slds-button_neutral" onclick="changeDeployment();return false;" style="width: 150px !important; display:{!IF(isDeployment && isApproved && !isCompleted,'block','none')}">Deploy Changes</button>
+						<button class="slds-button slds-button_neutral" onclick="rollbackJs();return false;" style="display:{!IF(isRollback,'block','none')}">Rollback</button>
+						<button class="slds-button slds-button_neutral" onclick="rollbackJs();return false;" style="width: 150px !important; display:{!IF(isExecuteRollback,'block','none')};">Execute Rollback</button>
+                        <button class="slds-button slds-button_neutral" onclick="completeCRJs();return false;" style="display:{!IF(!isCompleted,'block','none')};width: 110px !important;">Complete CR</button>
+						<button class="slds-button slds-button_neutral" style="display:{!IF(vcsIsEnabled && hasVCSCredentials && cr.Customizations__c != null && cr.Customizations__c != '','block','none')}; width: 150px  !important" onclick="versionControlJs();return false;">Version Control</button>
+                    </apex:outputPanel>
+				</div>
+			</apex:outputPanel>
+
+			<!-- <apex:commandButton styleClass="buttonEdit"  value="Edit" onclick="editJs();return false;" />
+			<apex:commandButton styleClass="buttonRecalculate"  value="Recalculate" onclick="reCalculatePolicyJs();return false;" />
+			<apex:commandButton styleClass="buttonDelete" value="Delete" onclick="deleteJs();return false;" />
+			<apex:commandButton styleClass="buttonApprove" value="Approve" onclick="approveJs();return false;" rendered="{!isApproverRejecter}" />
+			<apex:commandButton styleClass="buttonReject" value="Reject" onclick="rejectJs();return false;" rendered="{!isApproverRejecter}"/>
+			<apex:commandButton styleClass="buttonRescan" value="Rescan" onclick="rescanJs();return false;" />
+			<apex:commandButton styleClass="buttonDeploy" value="Deploy" onclick="deployJs();return false;" rendered="{!isApproved && !isDeployment}"/>
+			<apex:commandButton styleClass="buttonChangeSet" value="Import Customizations" onclick="changeSetJs();return false;" style="width: 155px;"/>
+			<apex:commandButton styleClass="buttonChangeSet" value="Deploy Changes" onclick="changeDeployment();return false;" style="width: 155px;" rendered="{!isDeployment && isApproved}"/> -->
+		</div>
+	</apex:form>
+	<apex:actionStatus id="status">
+	    <apex:facet name="start">
+	    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+	        &nbsp;
+	    </div>
+	    <div style="position: fixed;top: -5px; z-index: 1001; margin-left: 40%;">
+	        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;height: 27px;">
+	            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+	            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+	        </div>
+	    </div>
+	    </apex:facet>
+	</apex:actionStatus>
+</apex:page>

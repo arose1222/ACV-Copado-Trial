@@ -1,0 +1,32 @@
+<apex:page showHeader="true" sidebar="false" standardStylesheets="true" controller="FLODocs.FloRemoteSitePageController" >
+
+
+        <c:FloRemoteSiteHelper rssName="Strongpoint_metadata_api"
+            rssDescription="SFDC to SFDC metadata api."
+            pageOverview="Tool to create Remote Site Settings for Strongpoint Scanner"
+            pageOverviewLinkURL="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_remote_site_settings.htm"
+            pageOverviewLinkText="Remote Site Setting Overview!"
+            pageSectionTitle="Welcome to Post Install Page"
+            pageSectionSubTitle="Strongpoint Configure Installation"
+            />
+
+
+        <apex:pageBlock title="Strongpoint ConnectedApp">
+            <apex:pageMessage strength="3" severity="Info" summary="To run Strongpoint scanners you must create a connectedApp in Setup > Create > Apps"/>
+            <p>Useful link about how to create ConnectedApp: <a target="_blank" href="https://help.salesforce.com/articleView?id=sf.connected_app_create.htm&type=5">here</a></p>
+            <p>Steps to follow:</p>
+            <ul>
+                <li>Create a connected app in Setup > Create > Apps</li>
+                <li>Extract its consumer key and secret key from the ConnectedApp created</li>
+                <li>Add username/pass/token of the Admin as well as the ConnectedApp information mentioned above in <apex:outputLink target="_blank" value="/{!floConnectServ}"> Strongpoint Connection Service record</apex:outputLink></li>
+
+            </ul>
+            <p></p>
+            <!--
+            <apex:form >
+              <apex:inputCheckbox value="{!isSandboxOrDeveloperOrg}" />Development Org
+            </apex:form>
+            -->
+        </apex:pageBlock>
+
+</apex:page>

@@ -1,0 +1,65 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.StrongpointBlockActionController" tabStyle="Change_Requests__tab" action="{!calculateObject}">
+
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <style>
+        .sptColors {
+            background-color: #3A3F71;
+            /*ORANGE #f47a20*/
+        }
+        .h1Styles {
+            color: #f47a20;
+            font-family: Salesforce Sans,Arial,sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 40px;
+            letter-spacing: 0em;
+            line-height: 1.1em;
+            text-transform: none;
+
+        }
+        .h2Styles{
+            font-family: Salesforce Sans,Arial,sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1.2em;
+            /*font-family: Salesforce Sans,Arial,sans-serif;*/
+            font-weight: 300;
+            font-style: normal;
+            font-size: 15px;
+            letter-spacing: 0em;
+            line-height: 1.4em;
+            text-transform: none;
+            color:  #766f6b;
+        }
+        .container{
+            margin: 30px;
+        }
+        .containerPerBlock{
+                margin: 30px;
+                /*text-align: center;*/
+        }
+    </style>
+    
+    <apex:outputPanel rendered="{!onlyDoc}">
+        <div style="background-color: #3A3F71; width: 100%;height: 75px;">
+            <img align="left" src="http://static1.squarespace.com/static/59709e3f893fc0cc2912ef0e/t/59709f5df5e2311272d2bd81/1517337485695/%3Fformat=1500w" style="max-width: 226px;"/>
+        </div>
+        <div class="slds-container_medium" data-reactid="108" style="margin: 20px;">
+            <div class="containerPerBlock" data-reactid="109" style="font-size: 8pt;">
+                <!-- <br/> -->
+                <h2 class="h2Styles" >Hey there! &nbsp;Thanks for your interest in doing more with Change Requests using Strongpoint for Salesforce. &nbsp;&nbsp;</h2><br/><br/>
+                <h2 class="h2Styles">This feature is an ideal way to defend your system. &nbsp;It provides a clear impact analysis of any proposed changes you are seeking to make - helping you to avoid breaking your business processes.</h2><br/><br/>
+                <h2 class="h2Styles">It also makes your change projects much easier by documenting approvals, or linking to approvals residing in existing ticketing systems (such as Jira and ServiceNow). This means you have a documented link between actual changes and approvals, without having to do manual reconciliations. </h2><br/><br/>
+                <h2 class="h2Styles">AND you can use this feature to enable pre-deployment and post-deployment environment comparisons, so you can be sure that you have properly deployed what was in fact tested and approved.</h2><br/><br/>
+                <h2 class="h2Styles"> To find out more and get a quote on this safe, and fast, feature <a style="text-decoration: none; color: blue;" href="https://strongpoint.io/strongpoint-for-salesforce" target="_blank">click here</a> and one of us from here at Strongpoint will get back to you right away.</h2>
+            </div>
+            <hr data-reactid="110" />
+        </div>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!!onlyDoc}">
+        <apex:detail subject="{!FLODocs__FLO_Change_Request__c.id}" relatedList="true"/>
+        <apex:form >
+            <c:StrongpointAnnouncement />
+        </apex:form>
+    </apex:outputPanel>
+</apex:page>

@@ -1,0 +1,27 @@
+/*
+This file is generated and isn't the actual source code for this
+managed global class.
+This read-only file shows the class's global constructors,
+methods, variables, and properties.
+To enable code to compile, all methods return null.
+*/
+global class OAuth2AuthProvider extends Auth.AuthProviderPluginClass {
+    global OAuth2AuthProvider() {
+
+    }
+    global String getCustomMetadataType() {
+        return null;
+    }
+    global Auth.UserData getUserInfo(Map<String,String> authProviderConfiguration, Auth.AuthProviderTokenResponse response) {
+        return null;
+    }
+    global Auth.AuthProviderTokenResponse handleCallback(Map<String,String> authProviderConfiguration, Auth.AuthProviderCallbackState callbackState) {
+        return null;
+    }
+    global System.PageReference initiate(Map<String,String> authProviderConfiguration, String state) {
+        return null;
+    }
+    global override Auth.OAuthRefreshResult refresh(Map<String,String> authProviderConfiguration, String refreshToken) {
+        return null;
+    }
+}

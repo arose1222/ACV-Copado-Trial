@@ -104,9 +104,7 @@ global class TitlesAutomationAPI {
                                                 FROM Case
                                                 WHERE Auction_Number_Searchable__c = :auctionNumber
                                                 AND RecordTypeId = :TitlesAutomationAPI.TITLE_CASE_RT
-                                                AND IsClosed = false
-                                                AND Digital_Title__c = false
-                                                AND Status != 'New'
+                                                AND ((IsClosed = false AND Status != 'New') OR (IsClosed = true AND Status = 'Closed Unwound'))
                                                 ];
 
             if ( associatedCaseLst.isEmpty() ) {
@@ -288,7 +286,7 @@ global class TitlesAutomationAPI {
      *  Validate if the Case has any excpetions
      * @param  Case auctionCase     Title Case of specific Auction
      */
-    private static void checkForExceptions( Case auctionCase ) {
+    private static void checkForExceptions( Case auctionCase) {
         List<String> exceptionList = new List<String>();
 
         // if ( assignToPayments(auctionCase.Payment_Method__c) ) {
@@ -313,6 +311,11 @@ global class TitlesAutomationAPI {
             exceptionList.add('Unwind/Problem Exception');
         }
 
+        // https://acvauctions.atlassian.net/browse/TDO-906
+        if(hasUnwindCaseType(auctionCase.Auction_Number__r.Id))	{
+            exceptionList.add('Potential pending/approved unwind for this auction');
+        }
+        
         // Insert Exception with Related Case and Auction Id set
         if ( !exceptionList.isEmpty() ) {
             Id titleExcId = insertExc(String.valueof(exceptionList), auctionCase);
@@ -322,6 +325,24 @@ global class TitlesAutomationAPI {
         }
     }
 
+    /**
+     * Check for open Unwind Case Record Type. We will create an Exception record if there is an Unwind Case Record Type associated with the Auction.
+     * 
+     * https://acvauctions.atlassian.net/browse/TDO-906
+     */
+    private static boolean hasUnwindCaseType(String auctionNumber)	{
+     	List<Case> cases = [SELECT Id, CaseNumber FROM Case
+                                                WHERE Auction_Number__c = :auctionNumber
+                                                AND RecordType.DeveloperName = 'Unwind'
+                            					AND Unwind_Type__c IN ('Return_to_Seller', 'Scrap', 'ACV_Relaunch')
+                                                AND Status IN (null, '', 'Awaiting Approval', 'Unwound', 'Inspection', 'Closed', 'Closed (Resold)', 'Parked', 'Sold')
+        ];
+        
+        if(cases != null && cases.size() > 0) return true;
+        
+        return false;
+    }
+    
     /**
      * assignToPayments
      *  If the Buyer Payment method is not [AFC | ACH | Check | NextGear | ZipMark | ACH_PUSH] then return true
@@ -440,7 +461,6 @@ global class TitlesAutomationAPI {
                 AND ClosedDate < :today6pmGMT
                 AND Payment_Method__c = :paymentMethod
                 AND EasyPost_Tracker__c != null
-                AND Digital_Title__c = false
                 AND Title_Scanner__c = :TitlesAutomationAPI.runningUser.Id
                 ORDER BY ClosedDate ASC 
                 LIMIT 1];

@@ -65,6 +65,7 @@ global class RevolvingGenerationBatch implements Database.Batchable<SObject>, Da
                                 'Timeline__r.Account__r.Service_Territory__c,' +
                                 'Timeline__r.Account__r.Service_Territory__r.OperatingHours.TimeZone,' +
                                 'Timeline__r.Average_Number_Cars__c,' +
+                                'Timeline__r.Special_Instructions__c,' +
                                 'Start_Time__c,End_Time__c,' +
                                 'Farthest_Date_Generated__c ' +
                             'FROM Occurrence__c ' +

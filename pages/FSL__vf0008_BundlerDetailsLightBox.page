@@ -214,10 +214,10 @@
             
             <apex:pageBlock mode="maindetail">
                 <apex:pageBlockButtons >
-                    <apex:commandButton action="{!refresh}" value="{!$Label.fsl__refresh}"/>
+                    <apex:commandButton action="{!refresh}" value="{!$Label.FSL__Refresh}"/>
                 </apex:pageBlockButtons>
-			    <apex:pageBlockSection title="{!$Label.fsl__bundlerdetails}" columns="2">
-                    <apex:outputLabel styleClass="anLabel">{!$Label.fsl__appointmentnumber}
+			    <apex:pageBlockSection title="{!$Label.FSL__BundlerDetails}" columns="2">
+                    <apex:outputLabel styleClass="anLabel">{!$Label.FSL__AppointmentNumber}
                         <apex:outputLink styleClass="anLink" value="/{!bundleService.Id}" target="_blank">{!bundleService.AppointmentNumber}</apex:outputLink>
                     </apex:outputLabel>
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Bundler_Lightbox}" var="d">
@@ -226,9 +226,9 @@
 				</apex:pageBlockSection>
             </apex:pageBlock>
             
-            <apex:pageBlock title="{!$Label.fsl__additionalbundlemembers}" id="bundleMembersSibilingsBlock">
+            <apex:pageBlock title="{!$Label.FSL__AdditionalBundleMembers}" id="bundleMembersSibilingsBlock">
                 <apex:pageBlockButtons rendered="{!bundleMemberSiblings.size > 0}">
-                    <apex:commandButton value="{!$Label.fsl__removemembers}" styleClass="removeSelected" onclick="detachSAFromBundleWithCheckbox('rerenderForm2'); return false;" rendered="{!bundleMemberSiblings.size > 0}"/>
+                    <apex:commandButton value="{!$Label.FSL__RemoveMembers}" styleClass="removeSelected" onclick="detachSAFromBundleWithCheckbox('rerenderForm2'); return false;" rendered="{!bundleMemberSiblings.size > 0}"/>
                 </apex:pageBlockButtons>
                 <apex:variable var="i" value="{!1}"/>
                 <apex:pageBlockTable value="{!bundleMemberSiblings}" var="sa_siblings" rendered="{!bundleMemberSiblings.size > 0}">   
@@ -241,23 +241,23 @@
                         </apex:facet>
                         <input type="checkbox" onclick="selectSAcheckbox('{!sa_siblings.Id}')" value='{!sa_siblings.Id}' class="saCheckbox"/>
                     </apex:column>     
-                    <apex:column headerValue="{!$Label.fsl__action}">
-                        <apex:outputLink title="{!$Label.fsl__editrecord} {!i} - {!sa_siblings.AppointmentNumber}" value="/{!sa_siblings.id}/e?">{!$Label.fsl__edit}</apex:outputLink>&nbsp;|&nbsp;
-                        <apex:outputLink title="{!$Label.fsl__removerecord} {!i} - {!sa_siblings.AppointmentNumber}" target="_self" onclick="detachSAFromBundle('{!sa_siblings.Id}', 'rerenderForm2', this); return false;">{!$Label.fsl__removeaction}</apex:outputLink>
+                    <apex:column headerValue="{!$Label.FSL__Action}">
+                        <apex:outputLink title="{!$Label.FSL__EditRecord} {!i} - {!sa_siblings.AppointmentNumber}" value="/{!sa_siblings.id}/e?">{!$Label.FSL__Edit}</apex:outputLink>&nbsp;|&nbsp;
+                        <apex:outputLink title="{!$Label.FSL__RemoveRecord} {!i} - {!sa_siblings.AppointmentNumber}" target="_self" onclick="detachSAFromBundle('{!sa_siblings.Id}', 'rerenderForm2', this); return false;">{!$Label.FSL__RemoveAction}</apex:outputLink>
                         <apex:variable var="i" value="{!i + 1}"/>
                     </apex:column>
-					<apex:column headerValue="{!$Label.fsl__appointmentnumber}">
+					<apex:column headerValue="{!$Label.FSL__AppointmentNumber}">
 						<apex:outputLink value="/{!sa_siblings.Id}" target="_blank">{!sa_siblings.AppointmentNumber}</apex:outputLink>
 					</apex:column>
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Bundle_Members_Siblings}" var="d">
                         <apex:column rendered="{!IF(OR(d == 'AppointmentNumber', d == 'ParentRecordId'), false, true)}" value="{!sa_siblings[d]}"/>
                     </apex:repeat>
-                    <apex:column headerValue="{!$Label.fsl__requiredskills}">
+                    <apex:column headerValue="{!$Label.FSL__RequiredSkills}">
                         <span class="truncate skills {!sa_siblings['ParentRecordId']}" title=""></span>
                     </apex:column>
                 </apex:pageBlockTable>
                 <apex:pageBlockTable value="{!bundleMemberSiblings}" var="sa_siblings" rendered="{!bundleMemberSiblings.size = 0}">   
-                    <apex:column headerValue="{!$Label.fsl__no_records}"/>
+                    <apex:column headerValue="{!$Label.FSL__No_records}"/>
                 </apex:pageBlockTable>
 			</apex:pageBlock>
 
@@ -272,20 +272,20 @@
                 
             <apex:actionFunction action="{!refresh}" name="rerenderForm1" rerender="Form1" immediate="true" oncomplete="$('.removeSelected').prop('disabled', true);"/>
             <apex:pageBlock mode="maindetail" rendered="{!IF(AND(bundlePolicyFieldExist == true , isNativeMode == false), true, false)}">
-                <apex:pageBlockSection title="{!$Label.fsl__bundledetails}" columns="2">
-                    <apex:outputLabel styleClass="anLabel">{!$Label.fsl__bundlepolicyname}
+                <apex:pageBlockSection title="{!$Label.FSL__BundleDetails}" columns="2">
+                    <apex:outputLabel styleClass="anLabel">{!$Label.FSL__BundlePolicyName}
                         <!-- <apex:outputLink styleClass="bpLink" value="/{!bundleService['BundlePolicyId']}" target="_blank">{!ServiceAppointment.BundlePolicy.Name}</apex:outputLink> -->
-                        <apex:outputLink styleClass="bpLink" value="/{!bundleService['BundlePolicyId']}" target="_blank">{!$Label.fsl__bundleopenpolicy}</apex:outputLink>
+                        <apex:outputLink styleClass="bpLink" value="/{!bundleService['BundlePolicyId']}" target="_blank">{!$Label.FSL__BundleOpenPolicy}</apex:outputLink>
                     </apex:outputLabel>
                 </apex:pageBlockSection>
             </apex:pageBlock>
-            <apex:pageBlock title="{!$Label.fsl__bundlemembers}"> 
+            <apex:pageBlock title="{!$Label.FSL__BundleMembers}"> 
 
                 <apex:pageMessages id="messages" /> 
 
                 <apex:pageBlockButtons rendered="{!bundleChilds.size > 0}">
-                    <apex:commandButton value="{!$Label.fsl__removemembers}" styleClass="removeSelected" onclick="detachSAFromBundleWithCheckbox('rerenderForm1'); return false;" rendered="{!bundleChilds.size > 0}"/>
-                    <apex:commandButton action="{!refresh}" value="{!$Label.fsl__refresh}"/>
+                    <apex:commandButton value="{!$Label.FSL__RemoveMembers}" styleClass="removeSelected" onclick="detachSAFromBundleWithCheckbox('rerenderForm1'); return false;" rendered="{!bundleChilds.size > 0}"/>
+                    <apex:commandButton action="{!refresh}" value="{!$Label.FSL__Refresh}"/>
                 </apex:pageBlockButtons>
                 <apex:variable var="i" value="{!1}"/>
                 <apex:pageBlockTable value="{!bundleChilds}" var="sa_members" rendered="{!bundleChilds.size > 0}">   
@@ -298,24 +298,24 @@
                         </apex:facet>
                         <input type="checkbox" onclick="selectSAcheckbox('{!sa_members.Id}')" value='{!sa_members.Id}' class="saCheckbox"/>
                     </apex:column> 
-                    <apex:column headerValue="{!$Label.fsl__action}">
-                        <apex:outputLink title="{!$Label.fsl__editrecord} {!i} - {!sa_members.AppointmentNumber}" value="/{!sa_members.id}/e?">{!$Label.fsl__edit}</apex:outputLink>&nbsp;|&nbsp;
-                        <apex:outputLink title="{!$Label.fsl__removerecord} {!i} - {!sa_members.AppointmentNumber}" styleClass="removeButton" target="_self" onclick="detachSAFromBundle('{!sa_members.Id}', 'rerenderForm1', this); return false;" >{!$Label.fsl__removeaction}</apex:outputLink>
+                    <apex:column headerValue="{!$Label.FSL__Action}">
+                        <apex:outputLink title="{!$Label.FSL__EditRecord} {!i} - {!sa_members.AppointmentNumber}" value="/{!sa_members.id}/e?">{!$Label.FSL__Edit}</apex:outputLink>&nbsp;|&nbsp;
+                        <apex:outputLink title="{!$Label.FSL__RemoveRecord} {!i} - {!sa_members.AppointmentNumber}" styleClass="removeButton" target="_self" onclick="detachSAFromBundle('{!sa_members.Id}', 'rerenderForm1', this); return false;" >{!$Label.FSL__RemoveAction}</apex:outputLink>
                         <apex:variable var="i" value="{!i + 1}"/>
                     </apex:column>
-					<apex:column headerValue="{!$Label.fsl__appointmentnumber}">
+					<apex:column headerValue="{!$Label.FSL__AppointmentNumber}">
 						<apex:outputLink value="/{!sa_members.Id}" target="_blank">{!sa_members.AppointmentNumber}</apex:outputLink>
 					</apex:column>
 					<apex:repeat value="{!$ObjectType.ServiceAppointment.FieldSets.FSL__Bundle_Members}" var="d">
                         <apex:column rendered="{!IF(OR(d == 'AppointmentNumber', d == 'ParentRecordId'), false, true)}" value="{!sa_members[d]}"/>
                     </apex:repeat>
-                    <apex:column headerValue="{!$Label.fsl__requiredskills}">
+                    <apex:column headerValue="{!$Label.FSL__RequiredSkills}">
                         <span class="truncate skills {!sa_members['ParentRecordId']}" title=""></span>
                     </apex:column>
                 </apex:pageBlockTable>
                 
                 <apex:pageBlockTable value="{!bundleChilds}" var="sa_members" rendered="{!bundleChilds.size = 0}">   
-                    <apex:column headerValue="{!$Label.fsl__no_records}"/>
+                    <apex:column headerValue="{!$Label.FSL__No_records}"/>
                 </apex:pageBlockTable>
 			</apex:pageBlock>
 		</apex:form>

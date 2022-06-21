@@ -24,9 +24,9 @@ public class UpdateArbSpecialInstructions extends TriggerInterface {
         }
 
         List<WorkOrder> workOrderUpdateList = new List<WorkOrder>();
-        for(WorkOrder wo : [SELECT Id, Special_Instructions__c, createdbyId FROM WorkOrder WHERE Id IN :workOrderIdToWoliMap.keySet()]){
-            if(userIdList.contains(wo.createdbyId) && String.isBlank(wo.Special_Instructions__c)){
-                wo.Special_Instructions__c = workOrderIdToWoliMap.get(wo.Id)?.Description;
+        for(WorkOrder wo : [SELECT Id, Special_Instructions_for_VCI__c, createdbyId FROM WorkOrder WHERE Id IN :workOrderIdToWoliMap.keySet()]){
+            if(userIdList.contains(wo.createdbyId) && String.isBlank(wo.Special_Instructions_for_VCI__c)){
+                wo.Special_Instructions_for_VCI__c = workOrderIdToWoliMap.get(wo.Id)?.Description;
                 workOrderUpdateList.add(wo);
             }
         }

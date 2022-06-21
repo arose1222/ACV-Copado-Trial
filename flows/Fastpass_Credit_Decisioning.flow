@@ -20,52 +20,11 @@
     </actionCalls>
     <apiVersion>54.0</apiVersion>
     <decisions>
-        <description>using either the initial entry conditions OR using the &apos;Experian Test__c&apos; field OR &apos; FastPass Approval&apos; = &apos;New&apos;</description>
-        <name>Automation_Trigger</name>
-        <label>Automation Trigger</label>
-        <locationX>182</locationX>
-        <locationY>288</locationY>
-        <defaultConnector>
-            <targetReference>Get_RecordType_ID_2</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Initial Entry Conditions</defaultConnectorLabel>
-        <rules>
-            <name>Experian_Test</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Experian_Test__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_RecordType_ID_2</targetReference>
-            </connector>
-            <label>Experian Test</label>
-        </rules>
-        <rules>
-            <name>FastPass_Approval_New</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.FastPass_Approval__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>New</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_RecordType_ID_2</targetReference>
-            </connector>
-            <label>FastPass Approval = New</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>Conditions required to undergo fastpass approval</description>
         <name>eligibility</name>
         <label>eligibility</label>
         <locationX>182</locationX>
-        <locationY>624</locationY>
+        <locationY>408</locationY>
         <defaultConnectorLabel>Not Eligible</defaultConnectorLabel>
         <rules>
             <name>Proceed_with_FastPass_Approval</name>
@@ -143,6 +102,13 @@
                     <numberValue>5000.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Experian_BI_Score__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>100.0</numberValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>FastPass_Approval_Approved</targetReference>
             </connector>
@@ -150,7 +116,7 @@
         </rules>
     </decisions>
     <interviewLabel>Fastpass Credit Decisioning {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Fastpass Credit Decisioning - Additional Parameters</label>
+    <label>Fastpass Credit Decisioning - DEFAULT + New Parameter</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -256,7 +222,7 @@
         <name>Get_RecordType_ID_2</name>
         <label>Get RecordType ID 2</label>
         <locationX>182</locationX>
-        <locationY>504</locationY>
+        <locationY>288</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>eligibility</targetReference>
@@ -414,7 +380,7 @@ Credit_Fail_Reason__c</description>
         <name>Update_FastPass_Approval_Call_Experian_API</name>
         <label>Update FastPass Approval + Call Experian API</label>
         <locationX>50</locationX>
-        <locationY>744</locationY>
+        <locationY>528</locationY>
         <inputAssignments>
             <field>FastPass_Approval__c</field>
             <value>
@@ -427,10 +393,10 @@ Credit_Fail_Reason__c</description>
         <locationX>386</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Automation_Trigger</targetReference>
+            <targetReference>Get_RecordType_ID_2</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>1 AND 2 AND 3 AND (4 OR 5)</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>Active__c</field>
             <operator>EqualTo</operator>
@@ -452,20 +418,6 @@ Credit_Fail_Reason__c</description>
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>Experian_Test__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>FastPass_Approval__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>New</stringValue>
-            </value>
-        </filters>
         <object>Account</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <scheduledPaths>
@@ -480,5 +432,5 @@ Credit_Fail_Reason__c</description>
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

@@ -1,0 +1,100 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+    <div class="slds-modal__container" style="width: 75% !important;max-width: 75% !important;">
+       
+        <header class="slds-modal__header modal-header-bottom">
+            <a class="slds-modal__close close-button" data-id="close" onclick={handleCloseModal}>
+                <img data-id="close" src={closeButtonIcon}>
+            </a>
+            <p style="font-size: 17px;text-align: left;"><strong>Update Address</strong></p>
+        </header>
+                      
+        <div class="slds-modal__content slds-p-around_large pd-0 slds-is-relative"  id="modal-content-id-1">         
+            <template if:true={activeSpinner}>
+                <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass" variant="brand"></lightning-spinner>
+            </template>
+                <!--Address Type-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_2-of-2">                  
+                        <p style="font-size: 14px;">Address Type:<strong> {addressType}</strong></p>
+                    </div>                                        
+                </div>
+
+                <!--Alternate Address Name-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_2-of-2">                              
+                        <lightning-input class="validate" type="text" label="Alternate Address Name" value={addressAlternate} onchange={alternateChange} field-level-help="This Location Name will show on the release slip instead of Dealer Name if this address is selected for Transportation"></lightning-input><!--value={addr.Alternate_Address_Name__c}-->                                                
+                    </div>                                        
+                </div>
+
+                <!--Notes-->                
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_2-of-2">                              
+                        <lightning-textarea class="validate" type="Notes" label="Notes" value={addressNotes} onchange={addressNotesChange}></lightning-textarea>                                           
+                    </div>                                        
+                </div>       
+
+                <template if:true={isOperatingHours}>
+                    <!--Operating Hours-->
+                    <div>
+                        <p><b>Operating Hours</b></p>
+                    </div>
+                
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <lightning-combobox class="validate" name="TimeZone" label="Time Zone"
+                                value={selectedTimeZone} options={timeZone} onchange={handleTimeZone}></lightning-combobox>
+                        </div>                    
+                    </div>
+                
+                    <!--Monday-Friday-->
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Monday-Friday Start Time" label="Monday-Friday Start Time" data-id="MonFriStartTime" 
+                            value={selectedMonFriStartTime} options={mondayFridayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox>    
+                        </div>
+                        <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Monday-Friday End Time" label="Monday-Friday End Time" data-id="MonFriEndTime"
+                            value={selectedMonFriEndTime} options={mondayFridayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!--Saturday-->
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Saturday Start Time" label="Saturday Start Time" data-id="SaturdayStartTime"
+                            value={selectedSatStartTime} options={saturdayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox> 
+                        </div>
+                        <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Saturday End Time" label="Saturday End Time" data-id="SaturdayEndTime"
+                            value={selectedSatEndTime} options={saturdayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!--Sunday-->
+                    <div class="slds-grid slds-wrap">
+                       <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Sunday Start Time" label="Sunday Start Time" data-id="SundayStartTime"
+                            value={selectedSunStartTime} options={sundayStartTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                       </div>
+                       <div class="slds-size_1-of-2">    
+                            <lightning-combobox class="validate" dropdown-alignment="auto" name="Sunday End Time" label="Sunday End Time" data-id="SundayEndTime"
+                            value={selectedSunEndTime} options={sundayEndTimeOptions} onchange={changeOperatingHours}></lightning-combobox>
+                       </div>
+                    </div>
+                </template>
+        
+            <div class="slds-align_absolute-center" style="margin-bottom: 20px;margin-right: 20px;margin-top: 40px;">
+                <!--Cancel Button-->
+                <button class="slds-button slds-button_neutral" style="width: 80px; height: 30px;
+                    border: 1px solid #9E1F2A;" onclick={handleCloseModal} data-id="cancel" disabled={disabledButton}>CANCEL</button> &ensp; &ensp;
+                <!--Update Button-->
+                <button class="slds-button slds-button_brand" data-id="assign" style="width: 80px; height: 30px;" onclick={handleUpdateAddress}  disabled={disabledButton}>UPDATE</button> 
+            </div>        
+        </div>        
+
+    </div>
+</section>
+<div class="slds-backdrop slds-backdrop_open modal-backdrop"></div>
+</template>

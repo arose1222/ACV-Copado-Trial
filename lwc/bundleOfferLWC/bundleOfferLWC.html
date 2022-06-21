@@ -1,0 +1,97 @@
+<template>
+<!-- 		<template if:true={isEditOnly}>
+				<c-lookup custom-key="master" data-item="master" selection={VehicleSelection} errors={errors.vehicles}
+									onsearch={hanleVehicleSearch} onselectionchange={handleVehicleSelectionChange}
+									label="Add Vehicle" name="VehicleReference" placeholder="Search Vehicle to Add">
+				</c-lookup>
+				<div class="slds-has-error slds-form-element__help redText" role="alert">
+						{errors.branding}
+				</div>
+		</template> -->
+		
+		
+   <lightning-card title="Bundle Offer Vehicle List" icon-name="custom:custom63">
+       <div class="slds-m-around_medium">
+           <template if:true={bundleOffer.data}>
+							 <template if:true={bundleOffer.data.length}>
+									 <div class="slds-grid slds-gutters">
+											 <div class="slds-col">
+													 <span><p class="slds-float_left">Selected Records: <b style="color:red;">{recordsCount}</b></p></span>
+											 </div>
+											 <div class="slds-col">
+													 <span>                    
+															 <lightning-button label="Delete Vehicles"
+																								 icon-name="utility:delete"
+																								 onclick={deleteVehicles}
+																								 class="slds-float_right"
+																								 disabled={isDisabled}
+																								 variant="destructive" ></lightning-button>
+													 </span>
+											 </div>
+									 </div><br/>
+									 <lightning-datatable
+																				key-field="Id"
+																				data={bundleOffer.data}
+																				columns={columns}
+																				onsave={handleSave}
+																				draft-values={draftValues}
+																				onrowselection={getSelectedRecords}>
+									 </lightning-datatable>
+							 </template>
+							 <template if:false={bundleOffer.data.length}>
+									 <div class="slds-align_absolute-center">
+											 <strong>No Data Available</strong>
+									 </div>
+							 </template>
+           </template>
+           <template if:true={bundleOffer.error}>
+               <!-- handle Apex error -->
+           </template>
+       </div>
+   </lightning-card>
+	 <br/>
+	<lightning-card title="Others Available Vehicles" icon-name="custom:custom63">
+       <div class="slds-m-around_medium">
+					 
+           <template if:true={avaliableVehicles.data}>
+							 <template if:true={avaliableVehicles.data.length}>
+									 <div class="slds-grid slds-gutters">
+											 <div class="slds-col">
+													 <span><p class="slds-float_left">Selected Vehicles: {vehicleRecordsCount}</p></span>
+											 </div>
+											 <div class="slds-col">
+													 <span>
+															 <div class="slds-clearfix">
+
+																		<lightning-button label="Add Vehicles"
+																											icon-name="utility:record_create" 
+																											onclick={addVehicles}
+																											disabled={isVDisabled}
+																											class="slds-float_right"
+																											></lightning-button>
+															 </div>
+													 </span>
+											 </div>
+									 </div><br/>
+									 <lightning-datatable
+											 key-field="Id"
+											 data={avaliableVehicles.data}
+											 columns={vehicleCols}
+											 onrowselection={getSelectedVehicleRecords}
+											 data-id="vehicleDatatable"
+									 >
+									 </lightning-datatable>
+							 </template>
+							 <template if:false={avaliableVehicles.data.length}>
+									 <div class="slds-align_absolute-center">
+											 <strong>No Data Available</strong>
+									 </div>
+							 </template>
+           </template>
+           <template if:true={avaliableVehicles.error}>
+               <!-- handle Apex error -->
+           </template>
+       </div>
+   </lightning-card>
+		
+</template>

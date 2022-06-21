@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Base URL for the API. --></help>
+        <label><!-- API Endpoint --></label>
+        <name>FLODocs__API_Endpoint__c</name>
+    </fields>
+    <fields>
+        <help><!-- Authorization Server URL for the Access Token request. --></help>
+        <label><!-- Access Token URL --></label>
+        <name>FLODocs__Access_Token_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom AuthProvider class --></help>
+        <label><!-- AuthProvider Plugin Class --></label>
+        <name>FLODocs__AuthProvider_Plugin_Class__c</name>
+    </fields>
+    <fields>
+        <help><!-- Resource URL for the OAuth2 Authorization Request (code). --></help>
+        <label><!-- Authorization URL --></label>
+        <name>FLODocs__Authorization_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Concrete Data Service class name. --></help>
+        <label><!-- Data Service Class --></label>
+        <name>FLODocs__Data_Service_Class__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default scope of the OAuth2 granted credential. --></help>
+        <label><!-- Default Scope --></label>
+        <name>FLODocs__Default_Scope__c</name>
+    </fields>
+    <fields>
+        <help><!-- Base URL for the OAuth2 Authorization and Access Token requests. --></help>
+        <label><!-- Remote Site Setting URL --></label>
+        <name>FLODocs__RemoteSiteSetting_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Designates the class of OAuth2 resource. 
+Git =&gt; various Git-based version control services (eg, GitHub, GitLab, Bitbucket)
+Salesforce =&gt; Salesforce --></help>
+        <label><!-- Resource Class --></label>
+        <name>FLODocs__Resource_Class__c</name>
+        <picklistValues>
+            <masterLabel>Git</masterLabel>
+            <translation><!-- Git --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesforce</masterLabel>
+            <translation><!-- Salesforce --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

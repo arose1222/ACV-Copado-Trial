@@ -1,0 +1,6 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.FloRescanCustomizationController" action="{!initAction}" >
+	<script>
+		alert('{!JSENCODE(messageToDisplay)}');
+		window.history.back();
+	</script>
+</apex:page>

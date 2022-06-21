@@ -1,0 +1,679 @@
+<apex:page showHeader="true" sidebar="false" standardController="FLODocs__Search_Clean_up_Rule__c" extensions="FLODocs.StrongpointAutomatedCleanUpViewCtrl">
+    <c:StrongpointAnalytics />    
+<apex:slds />
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <script>
+
+
+        $(document).ready(function(){
+            updateFilterSummary()
+        });
+
+
+
+        
+
+        function updateFilterSummary(){
+
+            var currentText2 = '';
+            $("[id$=filter]").html( currentText2 );
+            $("[id$=filterHidden]").val( currentText2 );
+
+            if($('[id$=reportName]').val() != ''){
+                //filter summary text
+                if(currentText2 != ''){
+                    var currentText1 = 'Name starts with ' + $('[id$=reportName]').val();
+                    currentText2 =  '<br />'  + $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Name starts with ' + $('[id$=reportName]').val();
+                    currentText2 = '<br />'  + currentText2 + $("[id$=filter]").html() + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+            }else{
+                $("[id$=filter]").html(currentText2.replace('Name starts with ', '')); 
+            }
+
+            if($('[id$=reportScriptID]').val() != ''){
+                //filter summary text
+                if(currentText2 != ''){
+                    var currentText1 = 'ID starts with ' + $('[id$=reportScriptID]').val();
+                    currentText2 =  '<br />' + $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'ID starts with ' + $('[id$=reportScriptID]').val();
+                    currentText2 = '<br />' + currentText2 + $("[id$=filter]").html() + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+            }else{
+                $("[id$=filter]").html(currentText2.replace('ID starts with ', '')); 
+            }
+      
+            if($('[id$=monthsSinceLastRetained]').val() > 0){
+                //filter summary text
+                if(currentText2 != ''){
+                    var currentText1 = 'Date Last Used, Retained before ' + $('[id$=monthsSinceLastRetained]').val() + ' months ago';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Date Last Used, Retained before ' + $('[id$=monthsSinceLastRetained]').val() + ' months ago';
+                    currentText2 = currentText2 + $("[id$=filter]").html() + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+            }else{
+                $("[id$=filter]").html(currentText2.replace('Date Last Used, Retained before ' + $('[id$=monthsSinceLastRetained]').val() + ' months ago', '')); 
+                $("[id$=filterHidden]").val( currentText2.replace('Date Last Used, Retained before ' + $('[id$=monthsSinceLastRetained]').val() + ' months ago', '') );
+            
+            }
+
+            
+            //not needed as of the moment as per check in Netsuite
+            /*if($('[id$=notifySearchOwners]').is(':checked')){
+                if(currentText != ''){
+                    var currentText1 = 'Notify Report Owners Prior to Archive';
+                    currentText =  $("[id$=filter]").text() + ' <br>AND<br> ' + currentText1 + '<br>';
+                    $("[id$=filter]").html( currentText );
+                }else{
+                    currentText = 'Notify Report Owners to Archive';
+                    currentText = currentText + $("[id$=filter]").text();
+                    $("[id$=filter]").html( currentText );
+                }
+                
+            }else{
+                $("[id$=filter]").html(currentText.replace('Notify Report Owners Prior to Archive', '')); 
+                //$("[id$=filter]").html(currentText.replace('AND', '')); 
+            }
+
+            if($('[id$=notifySearchUsers]').is(':checked')){
+                if(currentText !=''){
+                    var currentText1 = 'Notify Report Users Prior to Archive';
+                    currentText =  $("[id$=filter]").text() + ' <br>AND<br> ' + currentText1 + '<br>';
+                    $("[id$=filter]").html( currentText );
+                }else{
+                    currentText = 'Notify Report Users to Archive';
+                    currentText = currentText + $("[id$=filter]").text();
+                    $("[id$=filter]").html( currentText );
+                }
+                
+            }else{
+                $("[id$=filter]").html(currentText.replace('Notify Report Users Prior to Archive', '')); 
+                //$("[id$=filter]").html(currentText.replace('AND', '')); 
+            }*/
+
+            //exclude checkboxes
+            var currentText = '';
+            $("[id$=warning]").html( currentText );
+
+            if(!$('[id$=excludePrivateReports]').is(':checked')){
+        
+                //warning summary text
+                if(currentText !=''){
+                    var currentText1 = 'Includes Reports in Shared Folders';
+                    currentText =   $("[id$=warning]").html() + currentText1 + '<br>';
+                    $("[id$=warning]").html( currentText);
+                }else{
+                    currentText = 'Includes Reports in Shared Folders';
+                    currentText =  currentText  + '<br>' + $("[id$=warning]").html();
+                    $("[id$=warning]").html( currentText);
+                }
+
+                //filter summary text
+                if(currentText2 != ''){
+                    var currentText1 = 'Access is either Public or Shared';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Access is either Public or Shared';
+                    currentText2 = currentText2 + $("[id$=filter]").html();
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+            }else{
+                //warning summary text
+                $("[id$=warning]").html(currentText.replace('Includes Reports in Shared Folders', '')); 
+                
+                //filter summary texts
+                if(currentText2 != ''){
+                    var currentText1 = 'Access is Public';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br/>';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Access is Public';
+                    currentText2 = currentText2 + $("[id$=filter]").html();
+                    $("[id$=filter]").html( currentText2 + '<br/>');
+                    $("[id$=filterHidden]").val( currentText2 + '<br/>');
+                }
+            }
+
+            if(!$('[id$=excludeScheduledReports]').is(':checked')){
+                
+                //warning summary text
+                /*if(currentText !=''){
+                    var currentText1 = 'Includes Scheduled Reports';
+                    currentText =  $("[id$=warning]").html() + ' <br>' + currentText1;
+                    $("[id$=warning]").html( currentText);
+                }else{
+                    currentText = 'Includes Scheduled Reports';
+                    currentText =  currentText  + ' <br>'  + $("[id$=warning]").html();
+                    $("[id$=warning]").html( currentText + '<br>');
+                }*/
+
+                //filter summary text
+                $("[id$=filter]").html(currentText2.replace('Report is not Scheduled', '')); 
+                $("[id$=filterHidden]").val( currentText2.replace('Report is not Scheduled', ''));
+            }else{
+                //$("[id$=warning]").html(currentText.replace('Includes Scheduled Reports', '')); 
+                //filter summary texts
+                if(currentText2 != ''){
+                    var currentText1 = 'Report is not Scheduled';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br/>';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Report is not Scheduled ';
+                    currentText2 = currentText2 + $("[id$=filter]").html();
+                    $("[id$=filter]").html( currentText2 + '<br/>');
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+            }
+
+            if(!$('[id$=excludeReportsLessThanAMonthOld]').is(':checked')){
+
+                //warning summary
+                if(currentText !=''){
+                    var currentText1 = 'Includes Reports Less Than A Month Old';
+                    currentText =  $("[id$=warning]").html() + currentText1  + ' <br>';
+                    $("[id$=warning]").html( currentText);
+                }else{
+                    currentText = 'Includes Reports Less Than A Month Old';
+                    currentText = currentText  + ' <br>'  + $("[id$=warning]").html();
+                    $("[id$=warning]").html( currentText);
+
+                }
+
+                //filter summary text
+                if(currentText2 != ''){
+                    var currentText1 = 'Includes Reports Less Than A Month Old';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Includes Reports Less Than A Month Old';
+                    currentText2 = currentText2 + $("[id$=filter]").html();
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }
+
+                //filter summary
+                //$("[id$=filter]").html(currentText2.replace('Report is not Less Than A Month Old', '')); 
+                //$("[id$=filterHidden]").val( currentText2.replace('Report is not Less Than A Month Old', '') );
+            }else{
+                $("[id$=warning]").html(currentText.replace('Includes Reports Less Than A Month Old', '')); 
+                
+                //filter summary texts
+                if(currentText2 != ''){
+                    var currentText1 = 'Report is not Less Than A Month Old';
+                    currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br>';
+                    $("[id$=filter]").html( currentText2 );
+                    $("[id$=filterHidden]").val( currentText2 );
+                }else{
+                    currentText2 = 'Report is not Less Than A Month Old';
+                    currentText2 = currentText2 + $("[id$=filter]").html();
+                    $("[id$=filter]").html( currentText2 + '<br/>');
+                    $("[id$=filterHidden]").val( currentText2 + '<br/>');
+                }
+            }
+
+
+            // -- REPORT OWNERS --
+
+            if(document.getElementById('rightListSelected Report Owner(s)').options.length > 0){
+                var selectedUsers = '';
+                var selectedUsersIds = '';
+                for( var i = 0 ; i <  document.getElementById('rightListSelected Report Owner(s)').options.length ; i ++ ){
+                    selectedUsersIds +=  document.getElementById('rightListSelected Report Owner(s)').options[i].value + ', ';
+                    selectedUsers += document.getElementById('rightListSelected Report Owner(s)').options[i].innerHTML + ', ';
+                }
+                if(!$('[id$=excludeOwnerCheck]').is(':checked')){
+                    if(currentText2 != ''){
+                        var currentText1 = 'Owner anyof  [' + selectedUsers  + ']';
+                        currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }else{
+                        currentText2 = 'Owner anyof  [' + selectedUsers + ']';
+                        currentText2 = currentText2 + $("[id$=filter]").html() + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }
+                } else {
+                    if(currentText2 != ''){
+                        var currentText1 = 'Owner noneof  [' + selectedUsers  + ']';
+                        currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }else{
+                        currentText2 = 'Owner noneof  [' + selectedUsers + ']';
+                        currentText2 = currentText2 + $("[id$=filter]").html() + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }
+
+                }
+            }
+
+            // -- ROLES --
+
+            if(document.getElementById('rightListSelected Role(s)').options.length > 0){
+                var selectedRoles = '';
+                var selectedUsersIds = '';
+                for( var i = 0 ; i <  document.getElementById('rightListSelected Role(s)').options.length ; i ++ ){
+                    selectedUsersIds +=  document.getElementById('rightListSelected Role(s)').options[i].value + ', ';
+                    selectedRoles += document.getElementById('rightListSelected Role(s)').options[i].innerHTML + ', ';
+                }
+                if(!$('[id$=excludeRolesCheck]').is(':checked')){
+                    if(currentText2 != ''){
+                        var currentText1 = 'Roles anyof  [' + selectedRoles  + ']';
+                        currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }else{
+                        currentText2 = 'Roles anyof  [' + selectedRoles + ']';
+                        currentText2 = currentText2 + $("[id$=filter]").html() + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }
+                } else {
+                    if(currentText2 != ''){
+                        var currentText1 = 'Roles noneof  [' + selectedRoles  + ']';
+                        currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1 + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }else{
+                        currentText2 = 'Roles noneof  [' + selectedRoles + ']';
+                        currentText2 = currentText2 + $("[id$=filter]").html() + '<br />';
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }                    
+                }
+            }
+
+            // -- INACTIVE OWNERS --
+
+            if(!$('[id$=allInactiveOwnersCheck]').is(':checked')){
+                if(document.getElementById('rightListSelected Inactive Owner(s)').options.length > 0){                
+                    var selectedUsers = '';
+                    var selectedUsersIds = '';
+                    for( var i = 0 ; i <  document.getElementById('rightListSelected Inactive Owner(s)').options.length ; i ++ ){
+                        selectedUsersIds +=  document.getElementById('rightListSelected Inactive Owner(s)').options[i].value + ', ';
+                        selectedUsers += document.getElementById('rightListSelected Inactive Owner(s)').options[i].innerHTML + ', ';
+                    }
+                    if(currentText2 != ''){
+                        var currentText1 = 'Inactive Owner anyof  [' + selectedUsers + ']';
+                        currentText2 =  $("[id$=filter]").html() + ' AND ' + currentText1;
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }else{
+                        currentText2 = 'Inactive Owner anyof  [' + selectedUsers + ']';
+                        currentText2 = currentText2 + $("[id$=filter]").html();
+                        $("[id$=filter]").html( currentText2 );
+                        $("[id$=filterHidden]").val( currentText2 );
+                    }
+                }
+            } else {
+                $("[id$=filter]").html( $("[id$=filter]").html() + ' AND All Inactive Owner' );
+                $("[id$=filterHidden]").val( $("[id$=filterHidden]").val() + ' AND All Inactive Owner' );                    
+            }
+
+        }
+
+
+        function exlcudeRecords(type,input){
+
+            var isTrue = input.checked;
+
+            if(type == 'inactive'){
+                var selectedUsers = '';
+                var selectedUsersIds = '';
+                for( var i = 0 ; i <  document.getElementById('rightListSelected Inactive Owner(s)').options.length ; i ++ ){
+                    selectedUsersIds +=  document.getElementById('rightListSelected Inactive Owner(s)').options[i].value + ', ';
+                    selectedUsers += document.getElementById('rightListSelected Inactive Owner(s)').options[i].innerHTML + ', ';
+                }
+                var textToReplace = 'Inactive Owner anyof  [' + selectedUsers + ']';
+
+                if(isTrue){
+                    if(selectedUsers == '') {
+                        if ($('#filter:contains("All Inactive Owner")').length == 0) {                        
+                            $("[id$=filter]").html( $("[id$=filter]").html() + ' AND All Inactive Owner'); 
+                            $("[id$=filterHidden]").val( $("[id$=filterHidden]").val() + ' AND All Inactive Owner');
+                        }
+                    } else {
+                        $("[id$=filter]").html( $("[id$=filter]").html().replace(textToReplace, 'All Inactive Owner')); 
+                        $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace(textToReplace, 'All Inactive Owner'));
+                    }
+                }else{
+                    if(selectedUsers == '') {
+                        $("[id$=filter]").html( $("[id$=filter]").html().replace(' AND All Inactive Owner', '')); 
+                        $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace(' AND All Inactive Owner', ''));
+                    } else {
+                        $("[id$=filter]").html( $("[id$=filter]").html().replace('All Inactive Owner', textToReplace)); 
+                        $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace('All Inactive Owner', textToReplace)); 
+                    }                    
+                }
+            }else if(type == 'reportOwners'){
+                if(isTrue){
+                    $("[id$=filter]").html( $("[id$=filter]").html().replace('Owner anyof  [', 'Owner noneof  [')); 
+                    $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace('Owner anyof  [', 'Owner noneof  [') );
+                }else{
+                    $("[id$=filter]").html($("[id$=filter]").html().replace('Owner noneof  [', 'Owner anyof  [')); 
+                    $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace('Owner noneof  [', 'Owner anyof  [') );
+                }
+            }else if(type == 'roles'){
+                if(isTrue){
+                    $("[id$=filter]").html( $("[id$=filter]").html().replace('Roles anyof  [', 'Roles noneof  [')); 
+                    $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace('Roles anyof  [', 'Roles noneof  [') );
+                }else{
+                    $("[id$=filter]").html($("[id$=filter]").html().replace('Roles noneof  [', 'Roles anyof  [')); 
+                    $("[id$=filterHidden]").val( $("[id$=filterHidden]").val().replace('Roles noneof  [', 'Roles anyof  [') );
+                }
+            }
+        }
+    </script>
+    <apex:form >
+        <div class="slds">
+            <div class="slds-page-header">
+                <apex:pageMessages />
+                <div class="slds-grid">
+                    <div class="sldsc-ol slds-has-flexi-truncate">
+                        <div class="slds-media slds-no-space slds-grow">
+                            <div class="slds-media__figure">
+                                <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                            </div>
+                            <div class="slds-media__body">
+                                <p class="slds-text-title_caps slds-line-height_reset">
+                                    <apex:outputText value="Automated Report Clean Up Rules" rendered="{!!isCustomField}"/>
+                                    <apex:outputText value="New Custom Field Clean Up Rule" rendered="{!isCustomField}"/>
+                                </p>
+                                <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="this should match the Record Title">  Create New Clean Up Rule
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                        <div class="slds-button-group" role="group">
+                            <apex:commandLink action="{!saveLogic}" value="Save" styleClass="slds-button slds-button--neutral"/>
+                            <apex:commandLink action="{!deleteLogic}" value="Delete" styleClass="slds-button slds-button--neutral" rendered="{!canDelete}"/>
+                            <a href="/apex/FloScanner" class="slds-button slds-button--neutral" style="text-decoration: none;">Cancel</a>
+                            <apex:commandLink action="{!redirectToPreview}" value="Save & Preview" styleClass="slds-button slds-button--neutral" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-text-longform">
+            <div class="slds-panel__section" style="padding: 0px;">
+                <ul style="list-style: none;">
+                    <li style="float: left;width: 31%;margin-left: 6px; margin-bottom: 10px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+                            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                <span class="slds-form-element__label">NAME</span>
+                                <div class="slds-form-element__control">
+                                    <apex:inputField value="{!cleanupRule.Name}" required="true" />&nbsp;
+                                </div>
+                            </li>
+                            <!-- <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                <span class="slds-form-element__label">RULE OWNER</span>
+                                <div class="slds-form-element__control">
+                                    <apex:selectList value="{!selectedRuleOwner}" multiselect="true" size="10" required="true">
+                                        <apex:selectOptions value="{!userList}"/>
+                                    </apex:selectList>
+                                </div>
+                            </li> -->
+                        </ul>
+                    </li>
+                    <li style="float: left;width: 31%;margin-left: 6px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+                            <apex:outputPanel layout="none">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">DESCRIPTION</span>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField value="{!cleanupRule.FLODocs__Description__c}" />&nbsp;
+                                    </div>
+                                </li>
+                            </apex:outputPanel>                                
+                            <apex:outputPanel layout="none" rendered="{!!isCustomField}">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">NOTIFY REPORT OWNERS PRIOR TO ARCHIVE</span>
+                                    <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                        <apex:inputField id="notifySearchOwners" value="{!cleanupRule.FLODocs__Notify_Search_Owners_Prior_to_Archive__c}" onclick="updateFilterSummary();"/>&nbsp;
+                                    </div>
+                                </li>
+                                <!--<li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">NOTIFY REPORT USERS PRIOR TO ARCHIVE</span>
+                                    <div class="slds-form-element__control" style="float: left;">
+                                        <apex:inputField id="notifySearchUsers" value="{!cleanupRule.Notify_Search_Users_Prior_to_Archive__c}" onclick="updateFilterSummary();" />&nbsp;
+                                    </div>
+                                </li>-->
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!isCustomField}">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">NOTIFY CUSTOM FIELD OWNERS PRIOR TO ARCHIVE</span>
+                                    <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                        <apex:inputField value="{!cleanupRule.FLODocs__Notify_Search_Owners_Prior_to_Archive__c}" />&nbsp;
+                                    </div>
+                                </li>
+                            </apex:outputPanel>             
+                            <apex:outputPanel layout="none">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">INACTIVE</span>
+                                    <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                        <apex:inputField value="{!cleanupRule.FLODocs__Inactive__c}" />&nbsp;
+                                    </div>
+                                </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">AUTOMATIC</span>
+                                    <div class="slds-form-element__control" style="float: left;margin-top: 5px;margin-left: -4px;">
+                                        
+                                        <apex:outputField value="{!cleanupRule.FLODocs__Automated__c}"  />&nbsp;
+                                        <!--
+                                        <apex:inputField value="{!cleanupRule.FLODocs__Automated__c}" html-disabled="true"/>&nbsp;
+                                        -->
+                                    </div>
+                                </li>
+                            </apex:outputPanel>                                                                               
+                        </ul>
+                    </li>
+                    <li style="float: left;width: 31%;margin-left: 6px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+                            <apex:outputPanel layout="none" rendered="{!!isCustomField}">
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label">FILTER SUMMARY</span>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputpanel >
+                                            <apex:outputText id="filter" value="{!filterSummary}"/>
+                                            <apex:inputHidden value="{!filterSummary}" id="filterHidden" />
+                                        </apex:outputpanel>
+                                    </div>
+                                </li>
+                                <li><br /></li>
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                    <span class="slds-form-element__label" style="color:#ffffff;">Warning:</span>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputpanel ><apex:outputText id="warning" style="color:red;"/></apex:outputpanel>
+                                    </div>
+                                </li>
+                                <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px; margin-top: 30px;">
+                                    <span class="slds-form-element__label"><strong>Please Note:</strong> The following reports are excluded from clean up</span>
+                                    <div class="slds-form-element__control" style="margin-left: 20px;">
+                                        - Reports in Private folders <br/>
+                                        <!--
+                                        - Reports from managed packages <br/>                                        
+                                        - Reports with script/script deployment dependencies, workflow dependencies, field/data sourcing dependencies, and documented integration dependencies <br/>
+                                        -->
+                                        - Agent control reports <br/>
+                                        - Reports with Change/Approval Policy that requires a Change Record <br/>
+                                    </div>
+                                </li>
+                             </apex:outputPanel> 
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="slds-section  slds-section__title-action" style="margin-top:10px">
+                <h3 class="slds-section__title" style="padding: 0; margin: 0;">Basic Filters</h3>
+            </div>
+            <div class="slds-text-longform">
+                <div class="slds-panel__section" style="padding: 0px;">
+                    <ul style="list-style: none;">
+                        <li style="float: left;width: 31%;margin-left: 6px; margin-bottom: 10px;">
+                            <ul style="list-style: none; display: block;margin: 0;">
+                                <apex:outputPanel layout="none" rendered="{!!isCustomField}">
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">REPORT NAME</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField id="reportName" value="{!cleanupRule.FLODocs__Search_Name__c}" onchange="updateFilterSummary();"/>&nbsp;
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">REPORT API NAME</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField id="reportScriptID" value="{!cleanupRule.FLODocs__Search_ScriptID__c}" onchange="updateFilterSummary();"/>&nbsp;
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">MONTHS SINCE DATE LAST USED, RETAINED</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField id="monthsSinceLastRetained" value="{!cleanupRule.FLODocs__Months_Since_Last_Used_Retained_Restored__c}" onchange="updateFilterSummary();" required="true"/>&nbsp;
+                                        </div>
+                                    </li>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="none" rendered="{!isCustomField}">
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">CUSTOM FIELD NAME</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField value="{!cleanupRule.FLODocs__Search_Name__c}" />&nbsp;
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">CUSTOM FIELD API NAME</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField value="{!cleanupRule.FLODocs__Search_ScriptID__c}" />&nbsp;
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">MONTHS SINCE DATE LAST USED, RETAINED</span>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField value="{!cleanupRule.FLODocs__Months_Since_Last_Used_Retained_Restored__c}" />&nbsp;
+                                        </div>
+                                    </li>
+                                </apex:outputPanel>
+                            </ul>
+                        </li>
+                        <li style="float: left;width: 31%;margin-left: 6px;">
+                            <ul style="list-style: none; display: block;margin: 0;">
+                                <apex:outputPanel layout="none" rendered="{!!isCustomField}">
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">EXCLUDE REPORTS IN SHARED FOLDERS</span>
+                                        <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                            <apex:inputField id="excludePrivateReports" value="{!cleanupRule.FLODocs__Exlcude_Private_Searches__c}" onclick="updateFilterSummary();"/>&nbsp;
+                                        </div>
+                                    </li>
+                                    <!-- <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">EXCLUDE SCHEDULED REPORTS</span>
+                                        <div class="slds-form-element__control" style="float: left;">
+                                            <apex:inputField id="excludeScheduledReports" value="{!cleanupRule.Exclude_Scheduled_Searches__c}" onclick="updateFilterSummary();"/>&nbsp;
+                                        </div>
+                                    </li> -->
+                                    <!-- <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">EXCLUDE REPORTS THAT SEND TRIGGERED EMAILS</span>
+                                        <div class="slds-form-element__control" style="float: left;">
+                                            <apex:inputField value="{!Search_Clean_up_Rule__c.Exclude_Search_That_Send_Triggered_Email__c}" />&nbsp;
+                                        </div>
+                                    </li> -->
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">EXCLUDE REPORTS LESS THAN A MONTH OLD</span>
+                                        <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                            <apex:inputField id="excludeReportsLessThanAMonthOld" value="{!cleanupRule.FLODocs__Exclude_Searches_Less_Than_A_Month_Old__c}" onclick="updateFilterSummary();"/>&nbsp;
+                                        </div>
+                                    </li>
+                                    <!-- <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 2px;">
+                                        <span class="slds-form-element__label">EXCLUDE REPORTS AVAILABLE AS SUBLIST</span>
+                                        <div class="slds-form-element__control" style="float: left;">
+                                            <apex:inputField value="{!Search_Clean_up_Rule__c.Exclude_Searches_Available_As_Sublist__c}" />&nbsp;
+                                        </div>
+                                    </li> -->
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="none" rendered="{!isCustomField}">
+                                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="border: 0; margin-bottom: 10px;">
+                                        <span class="slds-form-element__label">CUSTOM FIELD PARENT OBJECT</span>
+                                        <div class="slds-form-element__control">
+                                            <!-- <apex:selectList value="{!selectedUser}" multiselect="true" size="10">
+                                                <apex:selectOptions value="{!parentObjects}"/>
+                                            </apex:selectList> -->
+                                        </div>
+                                    </li>
+                                </apex:outputPanel>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slds-section  slds-section__title-action" style="margin-top:10px">
+                <h3 class="slds-section__title" style="padding: 0; margin: 0;">Advanced Filters</h3>
+            </div>
+            <div class="slds-text-longform">
+                <div class="slds-panel__section" style="padding: 0px;">
+                        <div style="width: 45%;float:left;">
+                        <c:FloMultiSelectList isAutoClean="true" isUser="true" id="multi1" leftLabel="Select Report Owners" leftOption="{!listReportOwnersOptions}" rightLabel="Selected Report Owner(s)" rightOption="{!selectedReportOwners}" size="7" width="200px" />
+                                    <span class="slds-form-element__label">EXCLUDE OWNER(S)</span>
+                                    <div class="slds-form-element__control" style="float: left;margin-top: 5px;margin-left: 57%;">
+                                        <apex:inputField value="{!cleanupRule.FLODocs__Exclude_Owner_s__c}" id="excludeOwnerCheck" onchange="exlcudeRecords('reportOwners',this);" />&nbsp;                                        
+                                    </div>
+                        </div>
+                        <div style="width: 45%;float:left;">
+                            <c:FloMultiSelectList id="multi2" isUserRole="true" leftLabel="Select Roles" leftOption="{!listRolesOptions}" rightLabel="Selected Role(s)" rightOption="{!selectedRoles}" isAutoClean="true" size="7" width="200px" />
+                            <span class="slds-form-element__label">EXCLUDE ROLE(S)</span>
+                            <div class="slds-form-element__control" style="float: left;margin-top: 5px;margin-left: 57%;">
+                                <apex:inputField value="{!cleanupRule.FLODocs__Exclude_Roles__c}"  id="excludeRolesCheck" onchange="exlcudeRecords('roles',this);"/>&nbsp;
+                            </div>
+                        </div>
+                        <div style="width: 45%">
+                            <c:FloMultiSelectList id="multi3" isInactiveUser="true" leftLabel="Select Inactive Owners" leftOption="{!listInactiveOwnersOptions}" rightLabel="Selected Inactive Owner(s)" isAutoClean="true" rightOption="{!selectedInactiveOwners}" size="7" width="200px" />
+                            <span class="slds-form-element__label">ALL INACTIVE OWNERS</span>
+                            <div class="slds-form-element__control" style="float: left;margin-top: 5px;">
+                                <apex:inputField value="{!cleanupRule.FLODocs__All_Inactive_Owners__c}" id="allInactiveOwnersCheck" onchange="exlcudeRecords('inactive',this);" />&nbsp;
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+    
+    <!-- Cha 8/14/18 -->
+    <script>
+    function saveForm(){
+        saveCleanupRule();
+        reloadPage();
+        return false;
+    }
+    function closeAndRefresh(){
+         console.log('CLOSE');
+         reloadPage();
+    }
+    function reloadPage (){
+        window.parent.location.href = '/{!cleanupRule.Id}';
+    }
+    </script>
+
+</apex:page>

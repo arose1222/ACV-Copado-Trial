@@ -1581,8 +1581,10 @@ scheduler.attachEvent("onSchedulerReady", function () {
     scheduler.templates.ZoomLevel6_date = scheduler.templates.ZoomLevel4_date;
     scheduler.templates.ZoomLevel7_date = scheduler.templates.ZoomLevel4_date;
     scheduler.templates.MonthlyView_date = scheduler.templates.ZoomLevel4_date;
-    scheduler.templates.MTDView = scheduler.templates.ZoomLevel4_date;
-    scheduler.templates.LongView = scheduler.templates.ZoomLevel4_date;
+
+    // W-10299029
+    scheduler.templates.MTDView_date = scheduler.templates.ZoomLevel4_date;
+    scheduler.templates.LongView_date = scheduler.templates.ZoomLevel4_date;
 });
 
 function generateHoursMinutes(timeInMinutes) {

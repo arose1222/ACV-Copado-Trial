@@ -17,7 +17,9 @@ public class WorkTypeGanttColor extends TriggerInterface {
        Map<Id, WorkOrder> woMap = new Map<Id, WorkOrder>( [ SELECT Id, WorkTypeId FROM WorkOrder WHERE Id IN :workOrderIDs ] );
        
        for (ServiceAppointment saLoop : svcApptList) {
-           saLoop.FSL__GanttColor__c = ( color != null ? color : workTypeMap.get(woMap.get(saLoop.work_order__c)?.workTypeId)?.Work_Type_Color__c);
+           if(saLoop.FSL__GanttColor__c == null) {
+                saLoop.FSL__GanttColor__c = ( color != null ? color : workTypeMap.get(woMap.get(saLoop.work_order__c)?.workTypeId)?.Work_Type_Color__c);
+           }
        }
    }
 

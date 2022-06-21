@@ -1,0 +1,68 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.JiraController" action="{!initCRlink}" standardStylesheets="false"  cache="false" >
+        <apex:slds />
+        <head>
+                <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnectFDL}"/>
+                <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnect}"/>
+                <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all"></link>
+                <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui.min.css" media="all"></link>
+                <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui-experimental.min.css" media="all"></link>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <!--     <script src="https://strongpointflo.atlassian.net/atlassian-connect/all.js" data-options="sizeToParent:true"></script>  -->
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui.min.js"></script>
+                <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-experimental.min.js"></script>
+                <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-datepicker.min.js"></script>
+                <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-soy.min.js"></script>
+              <script src="https://connect-cdn.atl-paas.net/all.js"></script>
+              <script>
+                      function  showOutputPanel(){
+                        if('{!isLoggedIn}'=='true' && '{!inactive}'=='false'){
+                              return True;  
+                        }else{
+                                return False;
+                        }
+
+                        function ticketDoesntExist(){
+                                if ('{!changeRequestId}'==null || '{!changeRequestId}').equals('') {
+                                        return true;
+                                }else{
+                                        return false;
+                                }
+                        }
+
+                      }
+              </script>
+              </head>
+              <script>
+                  //event that reload page and its called from oncomplete in jirachangerequest
+              AP.events.onPublic('customPublicEvent', function(){
+                        location.reload();
+                        });
+              </script>
+              <!--if the user isnt logged -->
+              <apex:outputPanel id="notLogged" layout="block" rendered="{!!isLoggedIn}">
+                  <label>User not logged.</label>
+              </apex:outputPanel>
+              <!--if the user is logged -->
+              <apex:outputPanel id="CRLink" layout="block" style="margin: 0px 5px;" rendered="{!isLoggedIn}">
+                      <!--if the id from cr is null or cr is inactive -->
+                      <apex:outputPanel layout="block" rendered="{!If(changeRequestId == null || inactive==true, true, false)}">
+                                <label>CR doesn't exist in SF</label>
+                      </apex:outputPanel>
+                      <!--if the id from cr isnt null and cr isnt inactive -->
+        <apex:outputPanel layout="block" rendered="{!If(changeRequestId != null && inactive==false, true, false)}">
+            <div>
+            <label>Status: </label>
+            <apex:outputText value="{!Approvalstatus}" >
+            <!-- <apex:param value="{!sfEndpoint}"/>-->
+            </apex:outputText>
+            / 
+            <apex:outputText value="{!completionStatus}" ></apex:outputText>
+            </div>
+    <div>
+                <label>Link: </label>
+                <a href="{!urlToGo}" target="_blank">Go To Record</a>
+    </div>
+        </apex:outputPanel>
+            </apex:outputPanel>
+</apex:page>

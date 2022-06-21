@@ -1,0 +1,558 @@
+<apex:page showHeader="true" sidebar="false" docType="html-5.0" standardController="FLODocs__FLO_Process_Issue__c" extensions="FLODocs.FloProcessIssueEditNewController">
+	<c:StrongpointAnalytics /> 
+	<base target="_parent" />
+	<apex:slds />
+		<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+		<apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/verticalTabs.css')}"  />
+        <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/d3.v4.min.js')}" />
+
+
+        <apex:stylesheet value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"  />
+        <apex:includescript value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" />
+
+       	
+       	<style>
+			progress, progress[role] {
+			  -webkit-appearance: none;
+			  -moz-appearance: none;
+			  appearance: none;
+			  border: none;
+			  background-size: auto;
+			  height: 15px;
+			  width: 100%;
+			}
+
+			.skill-list {
+			  list-style: none;
+			  margin: 0;
+			  padding: 1em;
+			}
+
+			.skill {
+			  margin-bottom: 1em;
+			  position: relative;
+			}
+			.skill h3 {
+			  color: #fff;
+			  left: 1em;
+			  line-height: 1;
+			  position: absolute;
+			  top: 1em;
+			}
+			.skill ::-webkit-progress-value {
+			  -webkit-animation: bar-fill 2s;
+			  width: 0px;
+			}
+
+			.skill-1::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-1::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			.skill-2::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-2::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			.skill-3::-webkit-progress-value {
+			  background: #1797c0;
+			}
+
+			.skill-3::-webkit-progress-bar {
+			  background: #ccc;
+			}
+
+			@-webkit-keyframes bar-fill {
+			  0% {
+			    width: 0;
+			  }
+			}
+			@keyframes bar-fill {
+			  0% {
+			    width: 0;
+			  }
+			}
+			ul li ul {
+			    display: none;
+			}
+			td.left {
+	            width: 85px !important;
+	            height: auto;
+	        }
+	        td.left div{
+	            width: 85px !important;
+	        }
+
+			img#phHeaderLogoImage {
+	            width: 85px;
+	            height: 55px;
+	        }
+	        html {
+	            line-height: 1;
+	            background: none;
+	            box-sizing: initial;
+	        }
+	    </style>
+
+		<script>
+		jQuery.noConflict();
+		function rescanCusto(){
+					if(confirm('Are you sure you want to Rescan this Customization?')){
+						rescanAF();
+					}
+				}
+
+			function saveCusto(){
+				if(confirm('Are you sure you want to save this Customization?')){
+					
+				}
+			}
+		
+			function runControlBatchJs(){
+				if(confirm('Are you sure you want to Run Control of this Customization?')){
+					runControlAF();
+				}
+			}
+		jQuery(function ($) {
+			$('.saveButton').removeClass('btn');
+
+			$('#tab-default-10__item').click();
+
+			function editCusto(){
+				 $('#ModalCusto').toggle(); 
+			}
+
+			function modalCustoJs(){
+			  $('#ModalCusto').toggle(); 
+			  saveAf();
+			}
+
+			$('.slds-vertical-tabs__link').click(function() {
+				var elemId = $(this).attr('id');
+				elemId = elemId.replace('__nav', '');
+				$('.slds-show').each(function() {
+					if(!$(this).hasClass('slds-tabs--default__content')){
+						$(this).removeClass('slds-show');
+						$(this).addClass('slds-hide');	
+					}
+				});
+				$('#' + elemId).addClass('slds-show');
+				$('.slds-is-active').each(function() {
+					$(this).removeClass('slds-is-active');
+				});
+				$(this).parent().addClass('slds-is-active');
+			});
+
+		
+		});
+		</script>
+
+	<apex:outputPanel >
+		<style>
+			.bPageBlock {
+            	border-top: 0 !important;
+	        }
+	        .pbBody {
+	            margin: 0 !important;
+	        } 
+	        .pbSubheader {
+	            background-color: orange!important;
+	            padding: 8px !important;
+	            color: #222 !important;
+	        }
+	        .bPageBlock {
+	            border-top: 0 solid #d8dde6 !important;
+	            border-left: 0px !important;
+	            border-right: 0px !important;
+	            border-bottom: 0px !important;
+	            background: #FFF !important;
+	            margin-bottom: 15px !important;
+	         }
+	         .relatedListIcon {
+	         	display: none !important;
+	         }
+	         .pbTitle h3 {
+	         	margin: 10px 0 !important;
+	         }
+
+	         .btn {
+			    position: relative;
+			    display: inline-block;
+			    padding: 0 10px !important;
+			    background: transparent !important;
+			    background-clip: border-box !important;
+			    border: 1px solid #d8dde6 !important;
+			    border-radius: 0.25rem !important;
+			    font-size: 0.75rem !important;
+			    line-height: 1.875rem !important;
+			    text-decoration: none !important;
+			    color: #0070d2 !important;
+			    -webkit-appearance: none !important;
+			    white-space: normal !important;
+			    -webkit-user-select: none !important;
+			    -moz-user-select: none !important;
+			    -ms-user-select: none !important;
+			    user-select: none !important;
+			    transition: color 0.05s linear, background-color 0.05s linear !important;
+			}
+			.bRelatedList {
+				width: 100%;
+			}
+		</style>
+	    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+
+     	 <div class="slds">
+		        <div class="slds-page-header">
+				  <div class="slds-grid">
+				    <div class="sldsc-ol slds-has-flexi-truncate">
+				      <div class="slds-media slds-no-space slds-grow">
+				        <div class="slds-media__figure">
+				       		 <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+				        </div>
+				        <div class="slds-media__body">
+				          <p class="slds-text-title_caps slds-line-height_reset">Process Issue</p>
+				          <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="this should match the Record Title">{!processIssue.Name}</h1>
+				        </div>
+				      </div>
+				    </div>
+				    <div class="slds-col slds-no-flex slds-grid slds-align-top">
+				    	<apex:form >
+					      	<div class="slds-button-group" role="group">
+						      	<a href="/{!processIssue.id}/e" class="slds-button slds-button--neutral" style="text-decoration: none;">Edit</a>
+						      	<a href="/apex/FLODocs__FloChangeRequestEditNew?pi={!FLO_Process_Issue__c.Id}&retURL=/{!URLENCODE(FLO_Process_Issue__c.Id)}" class="slds-button slds-button--neutral" style="text-decoration: none;">Create Change Request</a>
+						      	<!-- <apex:commandButton action="{!createServiceNowIssue}" value="Create/Update Incident in Service Now" /> -->
+						      	<!-- <button type="button" class="slds-button slds-button--neutral" onclick="editPI();return false;">Edit</button> 
+						      	<button type="button" class="slds-button slds-button--neutral" onclick="editCusto();return false;">Create Change Request</button>-->
+					      	</div>
+					    </apex:form>
+				    </div>
+				  </div>
+				</div>
+				<apex:form id="frmCandEdit" >
+					<apex:actionFunction name="saveAf" action="{!save}" oncomplete="editCusto()"/>
+					<apex:actionStatus id="status">
+                        <apex:facet name="start">
+                        <div >
+                            <div class="slds-spinner_container">
+                                <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                                    <span class="slds-assistive-text">Loading</span>
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div> 
+                        </div>
+                        </apex:facet>
+                    </apex:actionStatus>
+ 					<div class="slds-text-longform">
+						<div class="slds-panel__section" style="padding: 0px;">
+					        <ul style="list-style: none;">
+					        	<li class="slds-form-element slds-hint-parent slds-border_bottom">
+				            		<div class="slds-form-element__control" style="text-align: center;margin-bottom: 10px;">
+					            		Change Level: &nbsp;&nbsp; <apex:outputText value="{!processIssue.FLODocs__Change_Level__c}" style=";" escape="false"/>
+					            	</div>
+					         	</li>
+					        </ul>	
+
+					        <ul style="list-style: none;">
+					        	<li style="float: left;width: 31%;margin-left: 6px;">
+					        		<ul style="list-style: none; display: block;margin: 0;">
+
+
+											<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Name.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Name']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Parent_Issue__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Parent_Issue__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.OwnerId.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['OwnerId']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Type__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Type__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Status__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Status__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Severity__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Severity__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+
+									</ul>
+								</li>
+								<li style="float: left;width: 31%;margin-left: 6px;">
+									<ul style="list-style: none; display: block;margin: 0;">
+											<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Issue_Description__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Issue_Description__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+								         
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Customizations__c.label}</span>
+							            		<div class="slds-form-element__control" style="overflow: auto;max-height: 105px;">
+								            		<apex:outputField value="{!processIssue['Customizations__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+								         
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Approver__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Approver__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+										
+									</ul>
+								</li>
+								<li style="float: left;width: 31%;margin-left: 6px;">
+									<ul style="list-style: none; display: block;margin: 0;">
+											<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Process__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Process__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+											<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.External_Ticket_Number__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['External_Ticket_Number__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.External_Ticket_Link__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['External_Ticket_Link__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+
+								         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+												<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Approval_Status__c.label}</span>
+							            		<div class="slds-form-element__control">
+								            		<apex:outputField value="{!processIssue['Approval_Status__c']}" />&nbsp;
+								            	</div>
+								         	</li>
+										
+									</ul>
+								</li>
+							</ul>
+					    </div>
+					</div>
+
+                    <div class="slds-tabs_default">
+                    	 <div class="slds-section  slds-section__title-action">
+		                    <h3 class="slds-section__title  ">Details</h3>
+		                  </div>
+                    	 <ul class="slds-tabs--default__nav resultTabs" role="tablist">
+							<li class="slds-tabs--default__item " title="Source" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-default-1" id="tab-default-1__item" >Implementation</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Related Records</a>
+							</li>
+							<li class="slds-tabs--default__item" title="Diff" role="presentation">
+								<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-13" id="tab-default-13__item">DRD</a>
+							</li>							
+						</ul>
+						 <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+								<div class="slds-grid slds-wrap" style="margin:0 20px">
+	                   		  		<ul style="list-style: none;width: 100%;">
+	                   		  			<li style="float: left;width: 45%;margin-left: 6px;">
+							        		<ul style="list-style: none; display: block;margin: 0;">
+									        	<!-- <apex:repeat value="{!$ObjectType.FLO_Change_Request__c.FieldSets.StrongpointCRApproval}" var="w" first="0" rows="5">  -->
+													<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label"> {!$ObjectType.FLO_Process_Issue__c.fields.Target_Resolution_Date__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Target_Resolution_Date__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+										         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label"> {!$ObjectType.FLO_Process_Issue__c.fields.Originating_URL__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Originating_URL__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+										         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label"> {!$ObjectType.FLO_Process_Issue__c.fields.Request_Process_Help__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Request_Process_Help__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+											</ul>
+										</li>
+										<li style="float: left;width: 45%;margin-left: 6px;">
+											<ul style="list-style: none; display: block;margin: 0;">
+									        	<!-- <apex:repeat value="{!$ObjectType.FLO_Change_Request__c.FieldSets.StrongpointCRApproval}" var="w" first="5" > 	   -->
+									        		<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label"> {!$ObjectType.FLO_Process_Issue__c.fields.Related_Test__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Related_Test__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+										         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label"> {!$ObjectType.FLO_Process_Issue__c.fields.Effort_Required__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Effort_Required__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+										         	<li class="slds-form-element slds-hint-parent slds-border_bottom" >
+														<span class="slds-form-element__label">{!$ObjectType.FLO_Process_Issue__c.fields.Test__c.label}</span>
+									            		<div class="slds-form-element__control">
+										            		<apex:outputField value="{!processIssue['Test__c']}" />&nbsp;
+										            	</div>
+										         	</li>
+											</ul>
+										</li>
+							        </ul>
+			                    </div>
+                   		</div>
+                   		 <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+                   		  	<div class="slds-grid slds-wrap">
+								<!-- <apex:relatedList list="FLO_Change_Logs__r" />
+								<apex:relatedList list="CombinedAttachments" />
+								<apex:relatedList list="Histories" /> -->
+		                    </div>
+						</div>
+						<!-- //SF-1020 - DRD in Change Requests and Process Issues - 20191212 -->
+						<div id="tab-default-13" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-13__item">
+							<div class="slds-grid slds-wrap">								
+								<iframe id="DRDIframe" src="/apex/FLOERDViewRefactor?isDRDFromPI=true&processIssueId={!URLENCODE(processIssue.Id)}&isRecordView=false" style="width: 100%;height: 400px;" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"></iframe>
+					   		</div>
+					   </div>							
+                    </div>
+					<c:StrongpointAnnouncement />
+                </apex:form>
+                <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-12__item">
+           		  	<div class="slds-grid slds-wrap">
+						<apex:relatedList list="FLO_Change_Logs__r" /><hr style="width: 100%;" />
+						<apex:relatedList list="FLO_Change_Requests__r" /><hr style="width: 100%;" />
+						<apex:relatedList list="FLO_Customizations__r" /><hr style="width: 100%;" />
+						<apex:relatedList list="CombinedAttachments" /><hr style="width: 100%;" />
+						<apex:relatedList list="Histories" /><hr style="width: 100%;" />
+                    </div>
+           		 </div>
+		</div>
+		
+	</apex:outputPanel>
+		
+
+
+	<script>
+	jQuery(function ($) {
+		$('.resultTabs li a').click(function(){
+			var tabClicked = $(this).attr('id');
+			$('.resultTabs li').each(function() {
+				$(this).removeClass('slds-active');
+			});
+			$(this).parent().addClass('slds-active');
+			$('.slds-tabs--default__content').each(function() {
+				$(this).addClass('slds-hide');
+				$(this).removeClass('slds-show');
+			});
+			if (tabClicked == 'tab-default-1__item') {
+				$('[id$=tab-default-1]').addClass('slds-show');
+				currentTab = 'tab-default-1__item';
+			}
+			if (tabClicked == 'tab-default-2__item') {
+				$('[id$=tab-default-2]').addClass('slds-show');
+				currentTab = 'tab-default-2__item';
+			}
+			if (tabClicked == 'tab-default-3__item') {
+				$('[id$=tab-default-3]').addClass('slds-show');
+				currentTab = 'tab-default-3__item';
+			}
+			if (tabClicked == 'tab-default-4__item') {
+				$('[id$=tab-default-4]').addClass('slds-show');
+				currentTab = 'tab-default-4__item';
+			}
+			if (tabClicked == 'tab-default-5__item') {
+				$('[id$=tab-default-5]').addClass('slds-show');
+				currentTab = 'tab-default-5__item';
+			}
+			if (tabClicked == 'tab-default-6__item') {
+				$('[id$=tab-default-6]').addClass('slds-show');
+				currentTab = 'tab-default-6__item';
+			}
+			if (tabClicked == 'tab-default-7__item') {
+				$('[id$=tab-default-7]').addClass('slds-show');
+				currentTab = 'tab-default-7__item';
+			}
+			if (tabClicked == 'tab-default-8__item') {
+				$('[id$=tab-default-8]').addClass('slds-show');
+				currentTab = 'tab-default-8__item';
+			}
+			if (tabClicked == 'tab-default-9__item') {
+				$('[id$=tab-default-9]').addClass('slds-show');
+				currentTab = 'tab-default-9__item';
+			}
+			if (tabClicked == 'tab-default-10__item') {
+				$('[id$=tab-default-10]').addClass('slds-show');
+				currentTab = 'tab-default-10__item';
+			}
+			if (tabClicked == 'tab-default-11__item') {
+				$('[id$=tab-default-11]').addClass('slds-show');
+				currentTab = 'tab-default-11__item';
+			}
+			if (tabClicked == 'tab-default-12__item') {
+				$('[id$=tab-default-12]').addClass('slds-show');
+				currentTab = 'tab-default-12__item';
+			}
+			if (tabClicked == 'tab-default-13__item') {
+				document.getElementById('DRDIframe').src="/apex/FLOERDViewRefactor?isDRDFromPI=true&processIssueId={!URLENCODE(processIssue.Id)}&isRecordView=false";
+				document.getElementById('DRDIframe').contentWindow.location.reload(true);				
+				$('[id$=tab-default-13]').addClass('slds-show');
+				currentTab = 'tab-default-13__item';
+			}
+			if (tabClicked == 'tab-default-14__item') {
+				$('[id$=tab-default-14]').addClass('slds-show');
+				currentTab = 'tab-default-14__item';
+			}
+		})
+		// function openWindow(){
+		// 	openLookupPopup();
+		// }
+
+		jQuery('#tab-default-10__item').click();
+		$('#tab-default-10__item').click();
+
+		// $('.list > h3').click(function() {
+	 //    	$(this).parent().find('ul').toggle();
+		// });
+
+	});
+
+	</script>
+	
+	
+</apex:page>

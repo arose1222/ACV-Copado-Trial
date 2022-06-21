@@ -1,0 +1,1703 @@
+<apex:page showHeader="true" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" docType="html-5.0"
+           extensions="FLODocs.FloImpactAnalysisCRSectionController,FLODocs.FloChangeRequestButtonsController,FLODocs.FloProgressBarController"
+           action="{!init}">
+  <base target="_parent"/>
+  <c:StrongpointAnalytics />
+  <apex:slds />
+  <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/verticalTabs.css')}"/>
+  <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/d3.v4.min.js')}"/>
+  <style>
+  progress, progress[role]
+  {
+    -webkit-appearance : none;
+    -moz-appearance    : none;
+    appearance         : none;
+    border             : none;
+    background-size    : auto;
+    height             : 15px;
+    width              : 100%;
+  }
+
+  .skill-list
+  {
+    list-style : none;
+    margin     : 0;
+    padding    : 1em;
+  }
+
+  .skill
+  {
+    margin-bottom : 1em;
+    position      : relative;
+  }
+
+  .skill h3
+  {
+    color       : #fff;
+    left        : 1em;
+    line-height : 1;
+    position    : absolute;
+    top         : 1em;
+  }
+
+  .skill ::-webkit-progress-value
+  {
+    -webkit-animation : bar-fill 2s;
+    width             : 0px;
+  }
+
+  .skill-1::-webkit-progress-value
+  {
+    background : #1797c0;
+  }
+
+  .skill-1::-webkit-progress-bar
+  {
+    background : #ccc;
+  }
+
+  .skill-2::-webkit-progress-value
+  {
+    background : #1797c0;
+  }
+
+  .skill-2::-webkit-progress-bar
+  {
+    background : #ccc;
+  }
+
+  .skill-3::-webkit-progress-value
+  {
+    background : #1797c0;
+  }
+
+  .skill-3::-webkit-progress-bar
+  {
+    background : #ccc;
+  }
+
+  @-webkit-keyframes bar-fill
+  {
+    0%
+    {
+      width : 0;
+    }
+  }
+
+  @keyframes bar-fill
+  {
+    0%
+    {
+      width : 0;
+    }
+  }
+
+  ul li ul
+  {
+    display : none;
+  }
+
+  td.left
+  {
+    width  : 85px !important;
+    height : auto;
+  }
+
+  td.left div
+  {
+    width : 85px !important;
+  }
+
+  img#phHeaderLogoImage
+  {
+    width  : 85px;
+    height : 55px;
+  }
+
+  html
+  {
+    line-height : 1;
+    background  : none;
+    box-sizing  : initial;
+  }
+  </style>
+  <script>
+  jQuery.noConflict();
+
+  function onObjectClick(objUrl, crId)
+  {
+    var url = '';
+    if (ForceUI.isSalesforce1())
+    {
+      url = '/one/one.app?source=aloha#/sObject/' + crId + '/edit';
+    } else
+    {
+      url = objUrl;
+    }
+    window.open(url, '_parent');
+    return false;
+  }
+
+  function editJs()
+  {
+    onObjectClick('/apex/FloChangeRequestEditNew?id={!cr.Id}', '{!cr.Id}');
+  }
+
+  (function (myContext)
+  {
+    myContext.ForceUI = myContext.ForceUI || {};
+    myContext.ForceUI.isSalesforce1 = function ()
+    {
+      return ((typeof sforce != 'undefined') && sforce && (!!sforce.one));
+    }
+  })(this);
+
+  function openDialog()
+  {
+    $("#dialog-message").dialog({
+      modal: true,
+      buttons: {
+        Ok: function ()
+        {
+          $(this).dialog("close");
+        }
+      }
+    });
+  }
+
+  function rejectJs()
+  {
+    if (confirm('Are you sure you want to reject this Change Request?'))
+    {
+      rejectAF();
+    }
+  }
+
+  function impactAnalysisJS()
+  {
+    impactAnalisisAF();
+  }
+
+  function deleteJs()
+  {
+    if (confirm('Are you sure you want to Delete this Change Request?'))
+    {
+      deleteAF();
+    }
+  }
+
+  function rescanJs()
+  {
+      //SF-1632 List View and Custom Field (Proposed Customization) issue during 'Rescan' AD 18032021
+      //Warning Message for wrong API Name in Proposed Customizations field
+      var warningMessage='\n\nWarning: If you\'re adding a Proposed Customization, please make sure the API Name structure is valid. The Rescan process will not run it if the API Name is invalid.';
+      var exampleTextMessage= '\nExamples:\n - CustomField: My_Custom_Object__c.My_Custom_Field__c\n - ListView: My_Custom_Object__c.My_Custom_List_View\n - ApexClass: MyApexClass';      
+      if (confirm('Are you sure you want to Rescan this Change Request?'+warningMessage+exampleTextMessage))
+      {
+          rescanAF();
+      }
+  }
+
+  function deployJs()
+  {
+    var url = '/apex/StrongpointDeploymentPage?crId={!FLO_Change_Request__c.Id}&envSelect=true';
+    newWin2 = window.open(url, 'Popup', 'height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+  function versionControlJs()
+    {
+        var url = '/apex/StrongpointVersionControlPage?crId={!FLO_Change_Request__c.Id}';
+        newWin2 = window.open(url, 'Popup', 'height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus)
+        {
+            newWin2.focus();
+        }
+        return false;
+    }
+
+  function CRSync()
+  {
+    var url = '/apex/StrongpointCRSync?id={!FLO_Change_Request__c.Id}';
+    newWin2 = window.open(url, 'Popup', 'height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+  function reCalculatePolicyJs()
+  {
+    if (confirm('Are you sure you want to Refresh this Change Request?'))
+    {
+      reCalculateAF();
+    }
+  }
+
+  function submitForApprobal()
+  {
+    //GF 20211001 SF-1313 Add warning message to CR "Submit for Approval" action
+    if({!isApproved}) {
+				if(confirm('This Change Request has already been approved. Are you sure you want to re-submit for approval?')) {
+          submitforACR();
+				}
+			} else {
+				submitforACR();
+			}    
+  }
+
+  function deployPageReload()
+  {
+  }
+
+  var newWin = null;
+
+  function openLookupPopup()
+  {
+    var url = '/apex/FloApproverNotes?id={!FLO_Change_Request__c.Id}';
+    newWin = window.open(url, 'Popup', 'height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin.focus();
+    }
+    return false;
+  }
+
+  function closeLookupPopup()
+  {
+    if (null != newWin)
+    {
+      newWin.close();
+    }
+  }
+
+  function closeLookupPopupCS()
+  {
+    if (null != newWin2)
+    {
+      newWin2.close();
+    }
+  }
+
+  var newWin2 = null;
+
+  function openLookupPopupCS()
+  {
+    var url = '/apex/FloGetChangeSet?id={!FLO_Change_Request__c.Id}';
+    newWin2 = window.open(url, 'Popup', 'height=500,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+
+  function openLookupPopupDeploy()
+  {
+    var url = '/apex/StrongpointDeploymentPage?crId={!cr.Id}&sid={!cr.SourceId__c}&tid={!cr.TargetId__c}';
+    newWin2 = window.open(url, 'Popup', 'height=800,width=1000,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+  function openLookupPopupCommit()
+    {
+        var url = '/apex/StrongpointCommitVersionControlPage?crId={!cr.Id}';
+        newWin2 = window.open(url, 'Popup', 'height=800,width=1000,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus)
+        {
+            newWin2.focus();
+        }
+        return false;
+    }
+     
+  function markComplete(stati, approveStatus)
+  {
+    // SF-1266 Support custom CR statuses
+    if ({!hasCustomCrStatuses}) {
+      alert('When using custom statuses, you must "Edit" to update the status.');
+    } else {
+      if(stati == 'Completed' && approveStatus == 'Pending Approval') {
+        alert('You can not change the status to Completed.');
+      } else {
+        if (confirm('Are you sure you want to change the Completion Status?'))  // SF-1249 fix confirmation message
+        {
+
+          markCompleteAF(stati);
+          //window.opener.reloadPage();
+        }
+      }
+    }
+  }
+
+  function uploadZipJs()
+  {
+    var url = '/apex/StrongpointUploadFile?id={!cr.Id}';
+    newWin2 = window.open(url, 'height=200,width=700,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+  function rollbackJs()
+  {
+    var url = '/apex/StrongpointRollback?crId={!cr.Id}&tid={!cr.TargetId__c}&sid={!cr.SourceId__c}';
+    newWin2 = window.open(url, 'Popup', 'height=800,width=900,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus)
+    {
+      newWin2.focus();
+    }
+    return false;
+  }
+
+  function reloadPage()
+  {
+    window.parent.location.href = '/{!cr.Id}';
+  }
+
+  function reloadPageToList()
+  {
+  }
+
+  function approveJs()
+  {
+    openLookupPopup();
+  }
+
+  function changeSetJs()
+  {
+    openLookupPopupCS();
+  }
+
+  function changeDeployment()
+  {
+    openLookupPopupDeploy();
+  }
+  </script>
+  <apex:outputPanel >
+    <style>
+    .bPageBlock
+    {
+      border-top : 0 !important;
+    }
+
+    .pbBody
+    {
+      margin : 0 !important;
+    }
+
+    .pbSubheader
+    {
+      background-color : orange !important;
+      padding          : 8px !important;
+      color            : #222 !important;
+    }
+
+    .bPageBlock
+    {
+      border-top    : 0 solid #d8dde6 !important;
+      border-left   : 0px !important;
+      border-right  : 0px !important;
+      border-bottom : 0px !important;
+      background    : #FFF !important;
+      margin-bottom : 15px !important;
+    }
+
+    .relatedListIcon
+    {
+      display : none !important;
+    }
+
+    .pbTitle h3
+    {
+      margin : 10px 0 !important;
+    }
+
+    .btn
+    {
+      position            : relative;
+      display             : inline-block;
+      padding             : 0 10px !important;
+      background          : transparent !important;
+      background-clip     : border-box !important;
+      border              : 1px solid #d8dde6 !important;
+      border-radius       : 0.25rem !important;
+      font-size           : 0.75rem !important;
+      line-height         : 1.875rem !important;
+      text-decoration     : none !important;
+      color               : #0070d2 !important;
+      -webkit-appearance  : none !important;
+      white-space         : normal !important;
+      -webkit-user-select : none !important;
+      -moz-user-select    : none !important;
+      -ms-user-select     : none !important;
+      user-select         : none !important;
+      transition          : color 0.05s linear, background-color 0.05s linear !important;
+    }
+
+    .bRelatedList
+    {
+      width : 100%;
+    }
+    </style>
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"/>
+    <apex:form id="frmCandEdit">
+      <div class="slds-page-header">
+        <div class="slds-grid">
+          <div class="slds-col slds-has-flexi-truncate">
+            <div class="slds-media slds-no-space slds-grow">
+              <div class="slds-media__figure">
+                <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+              </div>
+              <div class="slds-media__body">
+                <div style="float:left;">
+                  <p class="slds-text-title--caps slds-line-height--reset">Change Request</p>
+                  <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate"
+                      title="this should match the Record Title" style="float:left;">{!cr.Name}
+                  </h1>
+                </div>
+                <div style="float:initial;">
+                  <apex:actionFunction name="approveAF" action="{!approve}" oncomplete="reloadPage();" status="status"/>
+                  <apex:actionFunction name="rejectAF" action="{!reject}" oncomplete="reloadPage();" status="status"/>
+                  <apex:actionFunction name="impactAnalisisAF" action="{!impactAnalysis}" oncomplete="reloadPage();"
+                                       status="status"/>
+                  <apex:actionFunction name="rescanAF" action="{!rescan}" oncomplete="reloadPage();" status="status"/>
+                  <apex:actionFunction name="deployAF" action="{!deployCR}" status="status"/>
+                  <apex:actionFunction name="deleteAF" action="{!deleteCR}"
+                                       oncomplete="reloadPageToList(); return false;" status="status"/>
+                  <apex:actionFunction name="reCalculateAF" action="{!reCalculateCR}" oncomplete="reloadPage();"
+                                       status="status"/>
+                  <apex:actionFunction name="changeSetAF" action="{!changeSet}" oncomplete="reloadPage();"
+                                       status="status"/>
+                  <apex:actionFunction name="submitforACR" action="{!submitCR}" oncomplete="reloadPage();"
+                                       status="status"/>
+                  <div id="buttons" class="slds-scope container" style="width: 100%;">
+                    <apex:outputPanel layout="none" rendered="{!packageType > 0}">
+                      <div class="slds-button-group" role="group" style="margin: 0 auto;">
+                        <apex:outputPanel layout="none" rendered="{!packageType > 0}" id="panelButton1">
+                          <button class="slds-button slds-button_neutral " onclick="editJs();return false;">Edit
+                          </button>
+                          <apex:outputPanel layout="none" rendered="{!!isCompleted}">
+                            <button class="slds-button slds-button_neutral" onclick="submitForApprobal();return false;"
+                                    style="display:{!IF(isCompleted && isApproved,'none','block')};width: 160px;">Submit
+                              for Approval
+                            </button>
+                          </apex:outputPanel>
+                          <button class="slds-button slds-button_neutral"
+                                  style="display:{!IF(isApproved,'none','block')}"
+                                  onclick="reCalculatePolicyJs();return false;">Recalculate
+                          </button>
+                          <!-- <apex:outputPanel layout="none" rendered="{!hasCustomizeApp}">
+                             <button class="slds-button slds-button_neutral" onclick="deleteJs();return false;">Delete</button>
+                         </apex:outputPanel> -->
+                         <apex:outputPanel layout="none" rendered="{!!isCompleted}">
+                            <button class="slds-button slds-button_neutral"
+                                    style="display:{!IF(isApproved,'none','block')}" onclick="approveJs();return false;">
+                              Approve
+                            </button>
+                          </apex:outputPanel>
+                          <apex:outputPanel layout="none" rendered="{!!isCompleted}">
+                            <button class="slds-button slds-button_neutral"
+                                    style="display:{!IF(isApproved,'none','block')}" onclick="rejectJs();return false;">
+                              Reject
+                            </button>
+                          </apex:outputPanel>
+                          <button class="slds-button slds-button_neutral"
+                                  style="display:{!IF(isCompleted && isApproved,'none','block')}"
+                                  onclick="rescanJs();return false;">Rescan
+                          </button>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!packageType > 0}" id="panelButton2">
+                          <apex:outputPanel layout="none" rendered="{!!isCompleted}">
+                            <button class="slds-button slds-button_neutral" onclick="CRSync();return false;" style="display:{!IF(displaySyncCRButton,'block','none')}">Sync CR
+                            </button>
+                          </apex:outputPanel>
+                          <button class="slds-button slds-button_neutral" onclick="deployJs();return false;"
+                                  style="display:{!IF(!isDeployment && !isExecuteRollback && isApproved,'block','none')}">
+                            Deploy
+                          </button>
+                          <button class="slds-button slds-button_neutral" onclick="versionControlJs();return false;"
+                                  style="display:{!IF(vcsIsEnabled && hasVCSCredentials && cr.Customizations__c != null && cr.Customizations__c != '','block','none')};width: 160px;">
+                            Version Control
+                          </button> 
+                          <button class="slds-button slds-button_neutral" onclick="uploadZipJs();return false;"
+                                  style="display:{!IF(isDeployment && isApproved && !isCompleted,'block','none')}">
+                            Upload Zip
+                          </button>
+                          <apex:outputPanel layout="none" rendered="{!!isCompleted}">
+                            <button class="slds-button slds-button_neutral" onclick="changeSetJs();return false;"
+                                    style="width: 170px !important;display:{!IF(!isCompleted && !isApproved,'block','none')}">
+                              Import Customizations
+                            </button>
+                          </apex:outputPanel>                            
+                          <button class="slds-button slds-button_neutral" onclick="changeDeployment();return false;"
+                                  style="width: 150px !important; display:{!IF(isDeployment && isApproved && !isCompleted,'block','none')}">
+                            Deploy Changes
+                          </button>
+                          <button class="slds-button slds-button_neutral" onclick="rollbackJs();return false;"
+                                  style="display:{!IF(isRollback,'block','none')}">Rollback
+                          </button>
+                          <button class="slds-button slds-button_neutral" onclick="rollbackJs();return false;"
+                                  style="width: 150px !important; display:{!IF(isExecuteRollback,'block','none')};">
+                            Execute Rollback
+                          </button>
+                        </apex:outputPanel>
+                      </div>
+                    </apex:outputPanel>
+                    <!-- <apex:commandButton styleClass="buttonEdit"  value="Edit" onclick="editJs();return false;" />
+                    <apex:commandButton styleClass="buttonRecalculate"  value="Recalculate" onclick="reCalculatePolicyJs();return false;" />
+                    <apex:commandButton styleClass="buttonDelete" value="Delete" onclick="deleteJs();return false;" />
+                    <apex:commandButton styleClass="buttonApprove" value="Approve" onclick="approveJs();return false;" rendered="{!isApproverRejecter}" />
+                    <apex:commandButton styleClass="buttonReject" value="Reject" onclick="rejectJs();return false;" rendered="{!isApproverRejecter}"/>
+                    <apex:commandButton styleClass="buttonRescan" value="Rescan" onclick="rescanJs();return false;" />
+                    <apex:commandButton styleClass="buttonDeploy" value="Deploy" onclick="deployJs();return false;" rendered="{!isApproved && !isDeployment}"/>
+                    <apex:commandButton styleClass="buttonChangeSet" value="Import Customizations" onclick="changeSetJs();return false;" style="width: 155px;"/>
+                    <apex:commandButton styleClass="buttonChangeSet" value="Deploy Changes" onclick="changeDeployment();return false;" style="width: 155px;" rendered="{!isDeployment && isApproved}"/> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <apex:outputPanel layout="block" rendered="{!showProgressBar}" styleClass="slds-scope">
+        <apex:actionPoller rerender="progress" interval="5" action="{!actionCall}"/>
+        <apex:outputPanel layout="block" id="progress">
+          {!batchStatus} <a href="#" onclick="location.reload();"> (Refresh Page) </a> <!-- GF 20200728 -->
+          <progress class="skill-1" max="100" value="{!percent}" style="width:100%;">
+          </progress>
+        </apex:outputPanel>
+      </apex:outputPanel>
+      <apex:outputPanel id="outerPath">
+        <apex:outputPanel id="paths">
+          <div class="slds-scope" style="width:70%;margin-top:50px;margin: 0 auto;">
+            <div class="slds-path" style="margin-top: 25px;">
+              <div class="slds-grid slds-path__track">
+                <div class="slds-grid slds-path__scroller-container">
+                  <div class="slds-path__scroller" role="application">
+                    <div class="slds-path__scroller_inner" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                        <li
+                          class="slds-path__item {!IF(currentCR.Completion_Status__c =='Not Started','slds-is-active slds-is-current', IF(currentCR.Completion_Status__c =='In Progress','slds-is-complete','slds-is-complete') )}"
+                          role="presentation">
+                          <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-1"
+                             role="option" tabindex="-1" onclick="markComplete('Not Started', '{!currentCR.Approval_Status__c}');">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Stage Complete</span> -->
+                                                    </span>
+                            <span class="slds-path__title">Not Started</span>
+                          </a>
+                        </li>
+                        <li
+                          class="slds-path__item {!IF(currentCR.Completion_Status__c =='In Progress','slds-is-active slds-is-current', IF(currentCR.Completion_Status__c =='Not Started','slds-is-incomplete','slds-is-complete') )}"
+                          role="presentation">
+                          <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2"
+                             role="option" tabindex="-1" onclick="markComplete('In Progress', '{!currentCR.Approval_Status__c}');">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use
+                                                              xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Stage Complete</span> -->
+                                                    </span>
+                            <span class="slds-path__title">In Progress</span>
+                          </a>
+                        </li>
+                        <li
+                          class="slds-path__item  {!IF(currentCR.Completion_Status__c =='Completed','slds-is-active slds-is-won slds-is-complete', IF(currentCR.Completion_Status__c =='Not Started','slds-is-incomplete','slds-is-incomplete') )}"
+                          role="presentation">
+                          <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-3"
+                             role="option" tabindex="0" onclick="markComplete('Completed', '{!currentCR.Approval_Status__c}');">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Current Stage:</span> -->
+                                                    </span>
+                            <span class="slds-path__title">Completed</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="slds-grid slds-path__action">
+                    <span class="slds-path__stage-name">Stage: Unqualified</span>
+                    <button class="slds-button slds-button_brand slds-path__mark-complete" onclick="markComplete('Completed');">
+                        <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+                        </svg>Mark Status as Complete</button>
+                    </div>-->
+              </div>
+            </div>
+            <div class="slds-path">
+              <div class="slds-grid slds-path__track">
+                <div class="slds-grid slds-path__scroller-container">
+                  <div class="slds-path__scroller" role="application">
+                    <div class="slds-path__scroller_inner" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                        <li
+                          class="slds-path__item  {!IF(currentCR.Approval_Status__c == null,'slds-is-active slds-is-current', IF(currentCR.Approval_Status__c =='Pending Approval','slds-is-complete',IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-complete')))}"
+                          role="presentation">
+                          <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-1"
+                             role="option" tabindex="-1">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Stage Complete</span> -->
+                                                    </span>
+                            <span class="slds-path__title">None</span>
+                          </a>
+                        </li>
+                        <li
+                          class="slds-path__item {!IF(currentCR.Approval_Status__c =='Pending Approval','slds-is-active slds-is-current', IF(currentCR.Approval_Status__c =='Approved','slds-is-complete',IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-incomplete')))}"
+                          role="presentation">
+                          <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-4"
+                             role="option" tabindex="-1">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Stage Complete</span> -->
+                                                    </span>
+                            <span class="slds-path__title">Pending Approval</span>
+                          </a>
+                        </li>
+                        <li
+                          class="slds-path__item {!IF(currentCR.Approval_Status__c =='Approved','slds-is-active slds-is-won slds-is-current', IF(currentCR.Approval_Status__c =='Rejected','slds-is-incomplete','slds-is-incomplete') )}"
+                          role="presentation">
+                          <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2"
+                             role="option" tabindex="-1">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use
+                                                              xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Stage Complete</span> -->
+                                                    </span>
+                            <span class="slds-path__title">Approved</span>
+                          </a>
+                        </li>
+                        <li
+                          class="slds-path__item {!IF(currentCR.Approval_Status__c =='Rejected','slds-is-active slds-is-lost slds-is-current', IF(currentCR.Approval_Status__c =='Approved','slds-is-incomplete','slds-is-incomplete') )}"
+                          role="presentation">
+                          <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-3"
+                             role="option" tabindex="0">
+                                                    <span class="slds-path__stage">
+                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                        </svg>
+                                                      <!-- <span class="slds-assistive-text">Current Stage:</span> -->
+                                                    </span>
+                            <span class="slds-path__title">Rejected</span>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="slds-grid slds-path__action" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <span class="slds-path__stage-name">Stage: Unqualified</span>
+                    <button class="slds-button slds-button_brand slds-path__mark-complete">
+                        <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.SLDS22,'/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+                        </svg>Mark Approval as Approved</button>
+                    </div>-->
+              </div>
+            </div>
+          </div>
+        </apex:outputPanel>
+      </apex:outputPanel>
+      <apex:actionFunction name="markCompleteAF" action="{!changeCompletationStatus}" reRender="outerPath" oncomplete="reloadPage();">
+        <apex:param name="status" value=""/>
+      </apex:actionFunction>
+      <!-- <apex:actionFunction name="saveImportedAF" action="{!saveImpactedCustomizations}" oncomplete="closeAndRefresh();" status="status">
+      </apex:actionFunction> -->
+    </apex:form>
+    <div class="slds">
+      <apex:form >
+        <div class="slds-text-longform">
+          <div class="slds-panel__section" style="padding: 0px;">
+            <ul style="list-style: none;">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <div class="slds-form-element__control" style="text-align: center;margin-bottom: 10px;">
+                  <apex:outputText value="{!FLODocs__FLO_Change_Request__c.FLODocs__Change_Stage__c}" style=";" escape="false"/>
+                </div>
+              </li>
+            </ul>
+
+      <!--   "display:{!IF(releaseManagementIsEnabled,'block','none')}"   -->
+      <ul style="list-style: none;">
+        <li style="float: left;width: 24%;margin-left: 6px;">
+          <ul style="list-style: none; display: block;margin: 0;">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Custom_Status__c}"/>&nbsp;
+              </div>
+            </li>
+            <!--
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(!releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Completion Status</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLO_Change_Request__c.Completion_Status__c}"/>&nbsp;
+              </div>
+            </li>            
+            -->
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Change Type</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Change_Type__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                style="display:{!IF(releaseManagementIsEnabled && releaseManagementIsEnabled,'block','none')}">
+              <span class="slds-form-element__label">Is Release</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Is_Release__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                style="display:{!IF(releaseManagementIsEnabled && releaseManagementIsEnabled,'block','none')}">
+              <span class="slds-form-element__label">Release Date</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Release_Date__c}"/>&nbsp;
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!--
+        <li style="float: left;width: 24%;margin-left: 6px;">
+          <ul style="list-style: none; display: block;margin: 0;">
+            <apex:repeat value="{!$ObjectType.FLO_Change_Request__c.FieldSets.StrongpointCRMain}" var="w"
+                        first="0" rows="4">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">{!w.label}</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"
+                                    rendered="{!IF(w.label == 'Customizations',false,true)}"/>&nbsp;
+                  <apex:outputpanel rendered="{!IF(w.label == 'Customizations',true,false)}">
+                    <div style="overflow: auto;max-height: 130px;">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                    </div>
+                  </apex:outputpanel>
+                </div>
+              </li>
+            </apex:repeat>
+          </ul>
+        </li>
+        -->
+        <li style="display:{!IF(releaseManagementIsEnabled,'block','none')}; float: left;width: 24%;margin-left: 6px;">
+          <ul style="list-style: none; display: block;margin: 0;">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Change Request Group</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Change_Request_Group__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Release</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Release__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Assigned Business Analyst</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Assigned_BA__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Priority</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Priority__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+              <span class="slds-form-element__label">Development Effort</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Dev_Effort__c}"/>&nbsp;
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li style="float: left;width: 24%;margin-left: 6px;">
+          <ul style="list-style: none; display: block;margin: 0;">
+            <!--ADO-97141 New external fields in the CRMock VF page JN-->
+        <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Type__c != null}">
+          <li class="slds-form-element slds-hint-parent slds-border_bottom">
+            <span class="slds-form-element__label">External Type</span>
+            <div class="slds-form-element__control">
+              <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Type__c}"/>&nbsp;
+            </div>
+          </li>
+        </apex:outputpanel>
+        <!--ADO-97141 New external fields in the CRMock VF page JN-->
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Parent Change Request</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Parent_Change_Request__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Created From</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Created_From__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">External Change Request Number</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Change_Request_Number__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">External Change Request Link</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Link__c}"/>&nbsp;
+              </div>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Package Namespace</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Affected_Bundle_Id__c}"/>&nbsp;
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li style="float: left;width: 24%;margin-left: 6px;">
+          <ul style="list-style: none; display: block;margin: 0;">
+            <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Created_By__c == null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Created By</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.CreatedById}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+          <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Created_By__c == null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Created Date</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.CreatedDate}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+            <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Last_modified_By__c == null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Last Modified By</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.LastModifiedById}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+          <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Last_modified_By__c == null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">Last Modified Date</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.LastModifiedDate}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+            <!--ADO-97141 New external fields in the CRMock VF page JN-->
+            <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Created_By__c != null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">External Created By</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Created_By__c}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+          <apex:outputpanel rendered="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Last_modified_By__c != null}">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom">
+              <span class="slds-form-element__label">External Last Modified By</span>
+              <div class="slds-form-element__control">
+                <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__External_Last_modified_By__c}"/>&nbsp;
+              </div>
+            </li>
+          </apex:outputpanel>
+            <!--ADO-97141 New external fields in the CRMock VF page JN-->
+          </ul>
+        </li>
+      </ul>
+        </div>
+    </div>
+    <div class="slds-section  slds-section__title-action">
+        <h3 class="slds-section__title  ">Scope</h3>
+    </div>
+    <!-- add fields to display Data Records and Proposed Data Records -->
+    <div class="slds-text-longform">
+        <div class="slds-panel__section" style="padding: 0px;">
+            <ul style="list-style: none;">
+                <li style="float: left;width: 24%;margin-left: 6px;">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                        <span class="slds-form-element__label">Change Overview</span>
+                        <div class="slds-form-element__control">
+                          <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Change_Overview__c}"/>&nbsp;
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                <li style="float: left;width: 24%;margin-left: 6px;">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                      <span class="slds-form-element__label">Existing/Scanned Customizations</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputpanel >
+                          <div style="overflow: auto;max-height: 130px;">
+                            <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Customizations__c}"/>&nbsp;
+                          </div>
+                        </apex:outputpanel>
+                      </div>
+                    </li>
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(packageType = 2,'block','none')}">
+                      <span class="slds-form-element__label">Existing Data Records</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputpanel >
+                          <div style="overflow: auto;max-height: 130px;">
+                            <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Data_Records__c}"/>&nbsp;
+                          </div>
+                        </apex:outputpanel>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li style="float: left;width: 24%;margin-left: 6px;">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                          <span class="slds-form-element__label">Proposed Customizations</span>
+                          <div class="slds-form-element__control">
+                              <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Proposed_Customizations__c}"/>&nbsp;
+                          </div>
+                      </li>
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(packageType = 2,'block','none')}">
+                        <span class="slds-form-element__label">Proposed Data Records</span>
+                        <div class="slds-form-element__control">
+                            <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Proposed_Data_Records__c}"/>&nbsp;
+                        </div>
+                    </li>
+                  </ul>
+                </li>
+                <li style="float: left;width: 24%;margin-left: 6px ">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                    <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                      <span class="slds-form-element__label">Customization Import History</span>
+                      <div class="slds-form-element__control">
+                        <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Import_Customizations_History__c}"/>&nbsp;
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <div class="slds-tabs_default">
+          <div class="slds-section  slds-section__title-action">
+            <h3 class="slds-section__title  ">Details</h3>
+          </div>
+          <ul class="slds-tabs--default__nav resultTabs" role="tablist">
+            <!-- <li class="slds-tabs--default__item slds-active" title="Source" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" >Scope</a>
+            </li> -->
+            <li class="slds-tabs--default__item" title="Target" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Approval</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Deployment </a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item">Impact Analysis</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-5" id="tab-default-5__item">Processes</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-6" id="tab-default-6__item">Controls</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-7" id="tab-default-7__item">Related Lists</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+              <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                 aria-selected="false" aria-controls="tab-default-8" id="tab-default-8__item">DRD</a>
+            </li>            
+                        
+            <!--<li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-8" id="tab-default-8__item"></a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-9" id="tab-default-9__item">Controls</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-10" id="tab-default-10__item">ERD</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-11" id="tab-default-11__item">Raw Data</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Related Lists</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-11" id="tab-default-11__item">Integrations</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-12" id="tab-default-12__item">Managed Package</a>
+            </li>
+            <li class="slds-tabs--default__item" title="Diff" role="presentation">
+                <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-13" id="tab-default-13__item">Extended (Other)</a>
+            </li> -->
+          </ul>
+          <!-- RR: no longer used; repurposing Fieldsets.StrongpointCRScope to improve page layout 
+          <div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-1__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;">
+                <apex:repeat value="{!$ObjectType.FLO_Change_Request__c.FieldSets.StrongpointCRScope}" var="w">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                    <span class="slds-form-element__label">{!w.label}</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"
+                                        rendered="{!IF(w.label == 'Customizations',false,true)}"/>&nbsp;
+                      <apex:outputpanel rendered="{!IF(w.label == 'Customizations',true,false)}"
+                                        style="overflow:auto;height: 80px;">
+                        <div id="mauri" style="overflow: auto;max-height: 105px;">
+                          <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                        </div>
+                      </apex:outputpanel>
+
+                    </div>
+                  </li>
+                </apex:repeat>
+              </ul>
+            </div>
+          </div>
+          -->
+          <div id="tab-default-2" class="slds-tabs--default__content slds-show" role="tabpanel"
+               aria-labelledby="tab-default-2__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;">
+                <li style="float: left;width: 45%;margin-left: 6px;">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                    <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__StrongpointCRApproval}" var="w"
+                                 first="0" rows="5">
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                        <span class="slds-form-element__label">{!w.label}</span>
+                        <div class="slds-form-element__control">
+                          <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                        </div>
+                      </li>
+                    </apex:repeat>
+                  </ul>
+                </li>
+                <li style="float: left;width: 45%;margin-left: 6px;">
+                  <ul style="list-style: none; display: block;margin: 0;">
+                    <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__StrongpointCRApproval}" var="w"
+                                 first="5">
+                      <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                        <span class="slds-form-element__label">{!w.label}</span>
+                        <div class="slds-form-element__control">
+                          <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                        </div>
+                      </li>
+                    </apex:repeat>
+                  </ul>
+                </li>
+                <!-- <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__StrongpointCRApproval}" var="w">
+                    <apex:outputpanel layout="none">
+                        <li class="slds-form-element slds-hint-parent slds-border_bottom" >
+                            <span class="slds-form-element__label">{!w.label}</span>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}" />&nbsp;
+                            </div>
+                        </li>
+                    </apex:outputpanel>
+                </apex:repeat> -->
+              </ul>
+            </div>
+          </div>
+          <!--here was tab 3 JN sf 1428-->
+          <div id="tab-default-4" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-4__item">
+            <div>
+              <!-- Scopes  -->
+              <div class="slds-scope IA">
+                <button class="slds-button slds-button_neutral " onclick="openWindow();return false;"
+                        style="font-size:10pt;">Open Full Screen
+                </button>
+                <a class="slds-button slds-button_neutral"
+                   href="/apex/StrongpointImpactAnalysisExport?id={!FLO_Change_Request__c.id}" target="_blank"
+                   style="font-size:10pt;">Export To Excel</a>
+                <button class="slds-button slds-button_neutral " onclick="openWindowImportImp(); return false;"
+                        style="font-size:10pt;">Import Impacted Customizations
+                </button>
+
+
+                <div class="slds-tabs_default">
+                  <ul class="slds-tabs--default__nav resultTabsIA" role="tablist">
+                    <li class="slds-tabs--default__item slds-active" title="Source" role="presentation"
+                        style="padding:10px;">
+                      <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0"
+                         aria-selected="true" aria-controls="tab-default-41" id="tab-default-41__item">Can Be Safely
+                        Deleted Or Modified</a>
+                    </li>
+                    <li class="slds-tabs--default__item" title="Target" role="presentation" style="padding:10px;">
+                      <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                         aria-selected="false" aria-controls="tab-default-42" id="tab-default-42__item">Cannot Be Safely
+                        Deleted Or Modified</a>
+                    </li>
+                    <li class="slds-tabs--default__item" title="Diff" role="presentation" style="padding:10px;">
+                      <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                         aria-selected="false" aria-controls="tab-default-43" id="tab-default-43__item">Inactive
+                        Customizations</a>
+                    </li>
+                  </ul>
+                  <div id="tab-default-41" class="slds-tabs--default__content slds-show" role="tabpanel"
+                       aria-labelledby="tab-default-41__item">
+                    <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList != null && safetyImpactAnalysisList.size > 0,true,false)}">
+                      <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                        <tr>
+                          <th>Customization</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <apex:repeat value="{!safetyImpactAnalysisList}" var="cus">
+                          <tr>
+                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                          </tr>
+                        </apex:repeat>
+                        </tbody>
+                      </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(safetyImpactAnalysisList != null && safetyImpactAnalysisList.size == 0,true,false)}">
+                      <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                  </div>
+                  <div id="tab-default-42" class="slds-tabs--default__content slds-hide" role="tabpanel"
+                       aria-labelledby="tab-default-42__item">
+                    <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList != null &&  notSafetyImpactAnalysisList.size > 0,true,false)}">
+                      <div class="container" style="margin: 0;padding: 0;">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                          <thead>
+                          <tr>
+                            <th>Customization</th>
+                            <th>Warning</th>
+                            <th>Impacted Customization</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+
+                          <apex:repeat value="{!notSafetyImpactAnalysisList}" var="cus">
+                            <tr>
+                              <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                              <td>
+                                <apex:outputText value="{!cus.warning_message}" escape="false"/>
+                              </td>
+                              <td>
+                                <apex:repeat value="{!cus.impactedCustomization}" var="cusImp">
+                                  <a target="_blank" href="/{!cusImp.Id}">{!cusImp.Name}</a><br/>
+                                </apex:repeat>
+                              </td>
+                            </tr>
+                          </apex:repeat>
+                          </tbody>
+                        </table>
+                      </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(notSafetyImpactAnalysisList != null && notSafetyImpactAnalysisList.size == 0,true,false)}">
+                      <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                  </div>
+                  <div id="tab-default-43" class="slds-tabs--default__content slds-hide" role="tabpanel"
+                       aria-labelledby="tab-default-43__item">
+                    <apex:outputPanel rendered="{!IF(inactiveCustomizations != null && inactiveCustomizations.size > 0,true,false)}">
+                      <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                        <tr>
+                          <th>Customization</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <apex:repeat value="{!inactiveCustomizations}" var="cus">
+                          <tr>
+                            <td><a target="_blank" href="/{!cus.customization.Id}">{!cus.customization.Name}</a></td>
+                          </tr>
+                        </apex:repeat>
+                        </tbody>
+                      </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(inactiveCustomizations.size == 0,true,false)}">
+                      <apex:outputText value="No Record to show"/>
+                    </apex:outputPanel>
+                  </div>
+                </div>
+                <!--    <div id="ModalImpactedCusto" style="display:none;" >
+                                            <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                                                <div class="slds-modal__container">
+                                                  <div class="slds-modal__header">
+                                                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                                                      <span class="slds-assistive-text">Close</span>
+                                                    </button>
+                                                    <h2 id="header433" class="slds-text-heading--medium">Add Impacted Customizations</h2>
+                                                    <p class="slds-m-top--x-small">Select related, dependendent Customizations related to the one from change request.</p>
+                                                  </div>
+                                                  <div class="slds-modal__content slds-p-around--medium">
+                                                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Is Selected?</th>
+                                                                        <th>Customization</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <apex:repeat value="{!CustomizationsToImport}" var="cus">
+                                                                    <tr>
+                                                                        <td><apex:inputCheckbox value="{!cus.isSelected}" /></td>
+                                                                        <td><a target="_blank" href="/{!cus.custoId}">{!cus.custoName}</a></td>
+                                                                    </tr>
+                                                                    </apex:repeat>
+                                                                </tbody>
+                                                        </table>
+                                                  </div>
+                                                  <div class="slds-modal__footer">
+                                                  <button class="slds-button slds-button--neutral" onclick="$('#ModalImpactedCusto').toggle(); return false;">Cancel</button>
+                                                    <button class="slds-button slds-button--neutral" onclick="modalImpactedCustoJs(); return false;">Save</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-backdrop slds-backdrop--open"></div>
+                                      </div> -->
+              </div>
+              <script>
+              function openWindow()
+              {
+                openLookupPopupIA();
+              }
+
+              function openWindowImportImp()
+              {
+                $('#ModalImpactedCusto').toggle();
+              }
+
+              function openLookupPopupIA()
+              {
+                var url = '/apex/FloImpactAnalysisCRSection?id={!FLO_Change_Request__c.Id}';
+                newWin = window.open(url, 'Popup', 'height=800,width=1100,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+                if (window.focus)
+                {
+                  newWin.focus();
+                }
+                return false;
+              }
+
+              function modalImpactedCustoJs()
+              {
+                // if(confirm('Are you sure?')){
+                //       $('#ModalImpactedCusto').toggle();
+                //       saveImportedAF();
+                //       reloadPage();
+                //       return false;
+                // }else{
+                //       $('#ModalImpactedCusto').toggle();
+                //       return true;
+                // }
+              }
+
+              function closeAndRefresh()
+              {
+                console.log('ADENTRO DEL CLOSE');
+                reloadPage();
+              }
+              </script>
+            </div>
+          </div>
+          <div id="tab-default-5" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-5__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;" class="crSections">
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__StrongpointCRProcess}" var="w">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                    <span class="slds-form-element__label">{!w.label}</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:repeat>
+              </ul>
+            </div>
+          </div>
+          <div id="tab-default-6" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-6__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+              <ul style="list-style: none;width: 100%;" class="crSections">
+                <apex:repeat value="{!$ObjectType.FLODocs__FLO_Change_Request__c.FieldSets.FLODocs__StrongpointCRControls}" var="w">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                    <span class="slds-form-element__label">{!w.label}</span>
+                    <div class="slds-form-element__control">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c[w]}"/>&nbsp;
+                    </div>
+                  </li>
+                </apex:repeat>
+              </ul>
+            </div>
+          </div>
+          <!-- <div id="tab-default-7" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-7__item">
+             <div class="slds-grid slds-wrap" style="margin:0 20px">
+
+             </div>
+          </div> -->
+          <div id="tab-default-8" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-8__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+            </div>
+          </div>
+          <div id="tab-default-9" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-9__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+            </div>
+          </div>
+          <div id="tab-default-10" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-10__item">
+          </div>
+          <div id="tab-default-11" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-11__item">
+          </div>
+          <div id="tab-default-12" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-12__item">
+            <div class="slds-grid slds-wrap">
+              <!-- <apex:relatedList list="FLO_Change_Logs__r" rendered="{!packageType > 0}" />
+                                <apex:relatedList list="CombinedAttachments" />
+                                <apex:relatedList list="Histories" /> -->
+            </div>
+          </div>
+          <div id="tab-default-13" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-12__item">
+
+          </div>
+          <div id="tab-default-14" class="slds-tabs--default__content slds-hide" role="tabpanel"
+               aria-labelledby="tab-default-13__item">
+          </div>
+        </div>
+      </apex:form>
+      <!--new place for tab deployment to zoom out from apex form tag JN sf-1428 -->
+      <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel"
+                    aria-labelledby="tab-default-3__item">
+            <div class="slds-grid slds-wrap" style="margin:0 20px">
+                <ul style="list-style: none;width: 100%;">
+                    <li style="float: left;width: 31%;margin-left: 6px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">Source Environment</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Source_Enviroment__c}"/>&nbsp;
+                </div>
+              </li>
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">Target Environment</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Target_Environment__c}"/>&nbsp;
+                </div>
+              </li>
+                        </ul>
+                    </li>
+                    <li style="display:{!IF(releaseManagementIsEnabled,'block','none')}; float: left;width: 31%;margin-left: 6px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+                <span class="slds-form-element__label">Requires Manual Deployment Steps</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Requires_Manual_Deployment_Steps__c}"/>&nbsp;
+                </div>
+              </li>
+              <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+                <span class="slds-form-element__label">Pre-Deployment Steps</span>
+                <div class="slds-form-element__control">
+                  <apex:outputpanel >
+                    <div style="overflow: auto;max-height: 130px;">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Pre_Deployment_Steps__c}" />&nbsp;
+                    </div>
+                  </apex:outputpanel>
+                </div>
+              </li>
+              <li class="slds-form-element slds-hint-parent slds-border_bottom" style="display:{!IF(releaseManagementIsEnabled,'block','none')};">
+                <span class="slds-form-element__label">Post-Deployment Steps</span>
+                <div class="slds-form-element__control">
+                  <apex:outputpanel >
+                    <div style="overflow: auto;max-height: 130px;">
+                      <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Post_Deployment_Steps__c}" />&nbsp;
+                    </div>
+                  </apex:outputpanel>
+                </div>
+              </li>
+                        </ul>
+                    </li>
+                    <li style="float: left;width: 31%;margin-left: 6px;">
+                        <ul style="list-style: none; display: block;margin: 0;">
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">Deployment Date</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Deployment_Date__c}"/>&nbsp;
+                </div>
+              </li>
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">Deployment Staff</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Deployment_Assigned__c}"/>&nbsp;
+                </div>
+              </li>
+              <li class="slds-form-element slds-hint-parent slds-border_bottom">
+                <span class="slds-form-element__label">Development Staff</span>
+                <div class="slds-form-element__control">
+                  <apex:outputField value="{!FLODocs__FLO_Change_Request__c.FLODocs__Developers__c}"/>&nbsp;
+                </div>
+              </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- new apex related list combined attachments sf-1428-->
+                <ul style="list-style: none;width: 100%;">
+                  <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+                     <apex:relatedList list="CombinedAttachments"/>
+                  </li>
+               </ul>
+            </div>
+        </div>
+      <div id="tab-default-7" class="slds-tabs--default__content slds-hide" role="tabpanel"
+           aria-labelledby="tab-default-7__item">
+        <div class="slds-grid slds-wrap">
+          <ul style="list-style: none;width: 100%;">
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                style="display:{!IF(releaseManagementIsEnabled && FLO_Change_Request__c.Is_Release__c,'block','none')}; margin: 10px 0px;">
+                <apex:relatedList list="Release_Items__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Change_Logs__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" 
+                style="display:{!IF(vcsIsEnabled && hasVCSCredentials,'block','none')}; margin: 10px 0px;">
+              <apex:relatedList list="Version_Control_System_Logs__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Environment_Compare_Logs__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Change_Requests__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="Deployment_Logs__r"/>
+            </li>
+            <!-- AD-03122020-SF-1462
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="OpenActivities"/>
+            </li>-->
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Test_Records__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="CombinedAttachments"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="Histories"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Junctions__r"/>
+            </li>
+            <li class="slds-form-element slds-hint-parent slds-border_bottom" style="margin: 10px 0px;">
+              <apex:relatedList list="FLO_Junctions1__r"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="tab-default-8" class="slds-tabs--default__content slds-hide" role="tabpanel"
+      aria-labelledby="tab-default-8__item">
+        <div class="slds-grid slds-wrap" >
+          <!-- //SF-1020 - DRD in Change Requests and Process Issues - 20191212 -->
+          <iframe id="DRDIframe" src="/apex/FLOERDViewRefactor?isDRDFromCR=true&changeRequestId={!URLENCODE(cr.Id)}&isRecordView=false" style="width: 100%;height: 400px;" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"></iframe>
+        </div>
+      </div>
+      <!-- <div class="slds-section  slds-section__title-action">
+       <h3 class="slds-section__title  ">Related Lists</h3>
+       </div> -->
+    </div>
+  </apex:outputPanel>
+  <script>
+  jQuery(function ($)
+  {
+    $('.resultTabs li a').click(function ()
+    {
+      var tabClicked = $(this).attr('id');
+      $('.resultTabs li').each(function ()
+      {
+        $(this).removeClass('slds-active');
+      });
+      $(this).parent().addClass('slds-active');
+      $('.slds-tabs--default__content').each(function ()
+      {
+        $(this).addClass('slds-hide');
+        $(this).removeClass('slds-show');
+      });
+      if (tabClicked == 'tab-default-1__item')
+      {
+        $('[id$=tab-default-1]').addClass('slds-show');
+        currentTab = 'tab-default-1__item';
+      }
+      if (tabClicked == 'tab-default-2__item')
+      {
+        $('[id$=tab-default-2]').addClass('slds-show');
+        currentTab = 'tab-default-2__item';
+      }
+      if (tabClicked == 'tab-default-3__item')
+      {
+        $('[id$=tab-default-3]').addClass('slds-show');
+        currentTab = 'tab-default-3__item';
+      }
+      if (tabClicked == 'tab-default-4__item')
+      {
+        $('[id$=tab-default-4]').addClass('slds-show');
+        currentTab = 'tab-default-4__item';
+      }
+      if (tabClicked == 'tab-default-5__item')
+      {
+        $('[id$=tab-default-5]').addClass('slds-show');
+        currentTab = 'tab-default-5__item';
+      }
+      if (tabClicked == 'tab-default-6__item')
+      {
+        $('[id$=tab-default-6]').addClass('slds-show');
+        currentTab = 'tab-default-6__item';
+      }
+      if (tabClicked == 'tab-default-7__item')
+      {
+        $('[id$=tab-default-7]').addClass('slds-show');
+        currentTab = 'tab-default-7__item';
+      }
+      if (tabClicked == 'tab-default-8__item')
+      {
+        document.getElementById('DRDIframe').src="/apex/FLOERDViewRefactor?isDRDFromCR=true&changeRequestId={!URLENCODE(cr.Id)}&isRecordView=false";
+                document.getElementById('DRDIframe').contentWindow.location.reload(true);
+        $('[id$=tab-default-8]').addClass('slds-show');
+        currentTab = 'tab-default-8__item';
+      }
+      if (tabClicked == 'tab-default-9__item')
+      {
+        $('[id$=tab-default-9]').addClass('slds-show');
+        currentTab = 'tab-default-9__item';
+      }
+      if (tabClicked == 'tab-default-10__item')
+      {
+        $('[id$=tab-default-10]').addClass('slds-show');
+        currentTab = 'tab-default-10__item';
+      }
+      if (tabClicked == 'tab-default-11__item')
+      {
+        $('[id$=tab-default-11]').addClass('slds-show');
+        currentTab = 'tab-default-11__item';
+      }
+      if (tabClicked == 'tab-default-12__item')
+      {
+        $('[id$=tab-default-12]').addClass('slds-show');
+        currentTab = 'tab-default-12__item';
+      }
+      if (tabClicked == 'tab-default-13__item')
+      {
+        $('[id$=tab-default-13]').addClass('slds-show');
+        currentTab = 'tab-default-13__item';
+      }
+      if (tabClicked == 'tab-default-14__item')
+      {
+        $('[id$=tab-default-14]').addClass('slds-show');
+        currentTab = 'tab-default-14__item';
+      }
+    })
+
+    $('.resultTabsIA li a').click(function ()
+    {
+      var tabClicked = $(this).attr('id');
+      $('.resultTabsIA li').each(function ()
+      {
+        $(this).removeClass('slds-active');
+      });
+      $(this).parent().addClass('slds-active');
+      $('.IA .slds-tabs--default__content').each(function ()
+      {
+        $(this).addClass('slds-hide');
+        $(this).removeClass('slds-show');
+      });
+      if (tabClicked == 'tab-default-41__item')
+      {
+        $('[id$=tab-default-41]').addClass('slds-show');
+        currentTab = 'tab-default-41__item';
+      }
+      if (tabClicked == 'tab-default-42__item')
+      {
+        $('[id$=tab-default-42]').addClass('slds-show');
+        currentTab = 'tab-default-42__item';
+      }
+      if (tabClicked == 'tab-default-43__item')
+      {
+        $('[id$=tab-default-43]').addClass('slds-show');
+        currentTab = 'tab-default-43__item';
+      }
+    })
+    // function openWindow(){
+    //  openLookupPopup();
+    // }
+
+    $('.list > h3').click(function ()
+    {
+      $(this).parent().find('ul').toggle();
+    });
+
+    $('.slds-vertical-tabs__link').click(function ()
+    {
+      var elemId = $(this).attr('id');
+      elemId = elemId.replace('__nav', '');
+      $('.slds-show').each(function ()
+      {
+        if (!$(this).hasClass('slds-tabs--default__content'))
+        {
+          $(this).removeClass('slds-show');
+          $(this).addClass('slds-hide');
+        }
+      });
+      $('#' + elemId).addClass('slds-show');
+      $('.slds-is-active').each(function ()
+      {
+        $(this).removeClass('slds-is-active');
+      });
+      $(this).parent().addClass('slds-is-active');
+    });
+  });
+  </script>
+</apex:page>

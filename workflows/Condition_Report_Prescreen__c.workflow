@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>CR_Is_Under_Review</fullName>
+        <description>CR Is Under Review</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Prescreen_Email_Target__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>salesforce@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ConditionReportPrescreenEmails/Prescreen_Under_Review_Email_1650549528134</template>
+    </alerts>
+    <alerts>
+        <fullName>CR_Review_Completed_No_Changes_Made</fullName>
+        <description>CR Review Completed - No Changes Made</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Prescreen_Email_Target__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ConditionReportPrescreenEmails/Prescreen_Review_Completed_No_Changes_Made_1650549692503</template>
+    </alerts>
+    <alerts>
+        <fullName>CR_Review_Completed_Yes_Changes_Notes</fullName>
+        <description>CR Review Completed - Yes Changes/Notes</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Prescreen_Email_Target__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ConditionReportPrescreenEmails/Prescreen_Review_Completed_Changes_Notes_1650549900025</template>
+    </alerts>
+    <alerts>
+        <fullName>CR_Sent_To_Prescreen</fullName>
+        <description>CR Sent To Prescreen</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Prescreen_Email_Target__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ConditionReportPrescreenEmails/Prescreen_Created_Email_1650548825229</template>
+    </alerts>
+    <alerts>
+        <fullName>CR_Timed_Out</fullName>
+        <description>CR Timed Out</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Prescreen_Email_Target__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>system@acvauctions.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>ConditionReportPrescreenEmails/Prescreen_Time_Out_1650550532483</template>
+    </alerts>
+    <alerts>
         <fullName>Condition_Report_Review_Completed</fullName>
         <description>Condition Report Review Completed</description>
         <protected>false</protected>
@@ -125,7 +185,7 @@
             <name>Notify_VCI_of_CR_Review_Decision</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Status__c</field>
             <operation>equals</operation>
@@ -194,7 +254,7 @@
             <name>Condition_Report_Review_Completed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Condition_Report_Prescreen__c.Status__c</field>
             <operation>equals</operation>

@@ -469,6 +469,10 @@
         <name>FSL__IsMultiDay__c</name>
     </fields>
     <fields>
+        <label><!-- Last Updated Epoch --></label>
+        <name>FSL__Last_Updated_Epoch__c</name>
+    </fields>
+    <fields>
         <label><!-- Multiday Work Calculated length --></label>
         <name>FSL__MDS_Calculated_length__c</name>
     </fields>
@@ -563,6 +567,10 @@
         <name>Filter_for_Nightly_Optimization__c</name>
     </fields>
     <fields>
+        <label><!-- Has Been Rescheduled --></label>
+        <name>Has_Been_Rescheduled__c</name>
+    </fields>
+    <fields>
         <label><!-- Include in Optimization --></label>
         <name>Include_in_Optimization__c</name>
     </fields>
@@ -573,6 +581,10 @@
     <fields>
         <label><!-- Is Beta --></label>
         <name>Is_Beta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Reschedule --></label>
+        <name>Is_Reschedule__c</name>
     </fields>
     <fields>
         <label><!-- Live Appraisal Event --></label>
@@ -610,6 +622,12 @@
     <fields>
         <label><!-- Original Sched Start --></label>
         <name>Original_Sched_Start__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Reschedule record used to track the Service Appointment&apos;s reschedule history. --></help>
+        <label><!-- Reschedule --></label>
+        <name>Reschedule__c</name>
+        <relationshipLabel><!-- Service Appointments --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Selected Offer --></label>
@@ -757,6 +775,10 @@
     <validationRules>
         <errorMessage><!-- Status cannot be updated to Canceled for Work Types = ACV Home. --></errorMessage>
         <name>Prevent_Canceling_of_ACVHome_Jobs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status cannot be updated to Canceled for Work Types equal to Unwind Inspection or Arbitration Inspection. --></errorMessage>
+        <name>Prevent_LC_TM_RSD_OLS_from_Canceling_Unw</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Status cannot be changed for ASI Work Types. --></errorMessage>

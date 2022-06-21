@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"
-      xmlns:n1="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>CallHighlightAction</actionName>
         <type>Default</type>
@@ -1345,6 +1344,39 @@ Normal = regular activity based on monthly average</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Additional_Carrier_Authority__c</fullName>
+        <description>Represents the additional authority for the transporter and this field helps identify the type of compliance needed for this transporter</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Represents the additional authority for the transporter and this field helps identify the type of compliance needed for this transporter</inlineHelpText>
+        <label>Additional Carrier Authority</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Brokers</fullName>
+                    <default>false</default>
+                    <label>Brokers</label>
+                </value>
+                <value>
+                    <fullName>Direct Dispatch</fullName>
+                    <default>false</default>
+                    <label>Direct Dispatch</label>
+                </value>
+                <value>
+                    <fullName>Strategic Partners</fullName>
+                    <default>false</default>
+                    <label>Strategic Partners</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Advantage_Terms__c</fullName>
         <defaultValue>45</defaultValue>
         <description>Used by Capital to indicate the Advantage Terms</description>
@@ -1924,6 +1956,21 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Bronze</fullName>
+                    <default>false</default>
+                    <label>Bronze</label>
+                </value>
+                <value>
+                    <fullName>Silver</fullName>
+                    <default>false</default>
+                    <label>Silver</label>
+                </value>
+                <value>
+                    <fullName>Gold</fullName>
+                    <default>false</default>
+                    <label>Gold</label>
+                </value>
+                <value>
                     <fullName>Capital Orange Elite</fullName>
                     <default>false</default>
                     <label>Capital Orange Elite</label>
@@ -2179,6 +2226,18 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Comments__c</fullName>
+        <description>Used by the transport team to make notes bout carriers and possibly what other dispatches they work with.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments section for use by the transportation team</inlineHelpText>
+        <label>Comments</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Commercial_Acct_Location__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For commercial client use, only.  Indicates lot number, city, dealership - whatever it is the commercial client uses to identify specific location.</inlineHelpText>
@@ -2353,18 +2412,6 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Copado_Test__c</fullName>
-        <description>testing new field</description>
-        <externalId>false</externalId>
-        <label>Copado Test</label>
-        <length>12</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Count_of_Vehicles_Listed__c</fullName>
@@ -4728,6 +4775,19 @@ Blank = FastPass not offered</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Global_Limiter__c</fullName>
+        <description>Sets limits on how many jobs a carrier can have assigned to their account at one time.</description>
+        <externalId>false</externalId>
+        <label>Global Limiter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Go_Green_Seller__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Set by integration to designate if a seller is go-green.</description>
@@ -5925,6 +5985,17 @@ Blank = FastPass not offered</inlineHelpText>
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Lot_Sweep_Insurance_Expiration_Date__c</fullName>
+        <description>Used to track the expiration date of the transporters participation in the lot sweep program</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to track the expiration date of the transporters participation in the lot sweep program</inlineHelpText>
+        <label>Lot Sweep Insurance Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Lot_Sweep_Join_Date__c</fullName>
         <description>Indicates the date a selling dealership signed up to participate in Lot Sweep.</description>
         <externalId>false</externalId>
@@ -5992,18 +6063,6 @@ Blank = FastPass not offered</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>MV_Field__c</fullName>
-        <description>mv field test</description>
-        <externalId>false</externalId>
-        <label>MV Field</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -6367,6 +6426,26 @@ Blank = FastPass not offered</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notice_of_Assignment_Date__c</fullName>
+        <description>Field used on Validation Rule = Account_Works_With_Factoring_Company &amp; Works_With_Factoring_Company_Changed_2F</description>
+        <externalId>false</externalId>
+        <label>Notice of Assignment Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Notice_of_Release_Date__c</fullName>
+        <description>Field used on Validation Rule = Account_Works_With_Factoring_Company &amp; Works_With_Factoring_Company_Changed_2F</description>
+        <externalId>false</externalId>
+        <label>Notice of Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Num_90_Day_RecPrices_Accepted__c</fullName>
@@ -7317,17 +7396,6 @@ Field to be deprecated. - MM 11/8/21</description>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Pipeline_Test__c</fullName>
-        <externalId>false</externalId>
-        <label>Pipeline Test</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Platform_Status__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Select the Stage based on what percentage of the dealer&apos;s monthly potential sell volume they are actually giving to ACV
@@ -7936,6 +8004,21 @@ IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_P
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Related_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>used by transport team to identify transporter accounts related to each other</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Transporters that are related.</inlineHelpText>
+        <label>Related Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Related Account)</relationshipLabel>
+        <relationshipName>RelatedAccount</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ReportCounter__c</fullName>
@@ -9641,6 +9724,38 @@ Title_Mailing_Zip_Code__c</formula>
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+        <fullName>Transporter_Services_Rendered__c</fullName>
+        <description>Field used to indicate which services the transporter participates in.</description>
+        <externalId>false</externalId>
+        <label>Transporter Services Rendered</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Lot Sweep</fullName>
+                    <default>false</default>
+                    <label>Lot Sweep</label>
+                </value>
+                <value>
+                    <fullName>Marshalling</fullName>
+                    <default>false</default>
+                    <label>Marshalling</label>
+                </value>
+                <value>
+                    <fullName>Rental/Storage</fullName>
+                    <default>false</default>
+                    <label>Rental/Storage</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Transporter_Type__c</fullName>
         <externalId>false</externalId>
         <label>Transporter Type</label>
@@ -10080,6 +10195,16 @@ Title_Mailing_Zip_Code__c</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Works_With_Factoring_Company__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Field used on Validation Rule = Account_Works_With_Factoring_Company &amp; Works_With_Factoring_Company_Changed_2F</description>
+        <externalId>false</externalId>
+        <label>Works With Factoring Company</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>X90_Day_Sell_Thru_Rate__c</fullName>
         <externalId>false</externalId>
         <formula>Total_Sold_the_Past_90_Days__c/Total_Runs_the_Past_90_Days__c</formula>
@@ -10345,11 +10470,6 @@ Title_Mailing_Zip_Code__c</formula>
             <field>ACCOUNT.ADDRESS1_STATE</field>
             <operation>notEqual</operation>
         </filters>
-        <filters>
-            <field>Dealership_ID__c</field>
-            <operation>equals</operation>
-            <value>71862</value>
-        </filters>
         <label>ACV Capital - All Accounts</label>
         <sharedTo>
             <role>ACV_Capital</role>
@@ -10403,7 +10523,6 @@ Title_Mailing_Zip_Code__c</formula>
     <listViews>
         <fullName>Accounts_Newly_Created</fullName>
         <columns>ACCOUNT.NAME</columns>
-        <columns>ACCOUNT.SITE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.ADDRESS1_ZIP</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -11268,6 +11387,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Additional_Carrier_Authority__c</picklist>
+            <values>
+                <fullName>Brokers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Dispatch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Partners</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Association_Coupon_s_Redeemed__c</picklist>
             <values>
                 <fullName>Indiana IADA 2019</fullName>
@@ -11322,7 +11456,19 @@ Title_Mailing_Zip_Code__c</formula>
         <picklistValues>
             <picklist>Capital_Dealer_Type__c</picklist>
             <values>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Capital Orange Elite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14561,6 +14707,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transporter_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Type__c</picklist>
             <values>
                 <fullName>Broker</fullName>
@@ -14966,6 +15127,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>VinSolutions</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Additional_Carrier_Authority__c</picklist>
+            <values>
+                <fullName>Brokers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Dispatch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Partners</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -17807,6 +17983,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transporter_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Type__c</picklist>
             <values>
                 <fullName>Broker</fullName>
@@ -18224,6 +18415,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>VinSolutions</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Additional_Carrier_Authority__c</picklist>
+            <values>
+                <fullName>Brokers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Dispatch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Partners</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -21525,6 +21731,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transporter_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Type__c</picklist>
             <values>
                 <fullName>Broker</fullName>
@@ -21906,6 +22127,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
             <values>
                 <fullName>VinSolutions</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Additional_Carrier_Authority__c</picklist>
+            <values>
+                <fullName>Brokers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Dispatch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Partners</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -25131,6 +25367,21 @@ Title_Mailing_Zip_Code__c</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Transporter_Services_Rendered__c</picklist>
+            <values>
+                <fullName>Lot Sweep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshalling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental%2FStorage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Transporter_Type__c</picklist>
             <values>
                 <fullName>Broker</fullName>
@@ -25268,7 +25519,6 @@ Title_Mailing_Zip_Code__c</formula>
         <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
         <customTabListAdditionalFields>Monthly_Buy_Percent__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields n1:nil="true" />
         <listViewButtons>geopointe__Map_Records_Account</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
@@ -25295,6 +25545,18 @@ Title_Mailing_Zip_Code__c</formula>
         <searchResultsAdditionalFields>ACCOUNT.URL</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Account_Works_With_Factoring_Company</fullName>
+        <active>true</active>
+        <description>Need to have notice of assignment populated when the Works with factoring company is true</description>
+        <errorConditionFormula>AND(
+RecordType.DeveloperName = &apos;Transporters&apos;,
+Works_With_Factoring_Company__c,
+ISBLANK(Notice_of_Assignment_Date__c)
+)</errorConditionFormula>
+        <errorDisplayField>Notice_of_Assignment_Date__c</errorDisplayField>
+        <errorMessage>You must fill this field.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Active_Account_must_have_billing_address</fullName>
         <active>true</active>
@@ -25416,6 +25678,16 @@ REGEX(EIN_Number__c , &quot;^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-
         <errorConditionFormula>AND(TEXT( Reason_for_Idle__c) =&quot;Other - COVID Related&quot;, ISBLANK( Other_COVID__c))</errorConditionFormula>
         <errorDisplayField>Other_COVID__c</errorDisplayField>
         <errorMessage>Since you chose &quot;Other - COVID Related&quot; in the Reason for Idle field, please fill out the field &quot;Other COVID Related Idle Reason&quot;, with those details before saving.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Global_Limiter_Can_Not_Be_Negative</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+RecordType.Name = &apos;Transporters&apos;,
+Global_Limiter__c &lt; 0
+)</errorConditionFormula>
+        <errorDisplayField>Global_Limiter__c</errorDisplayField>
+        <errorMessage>Value must be zero or higher.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Inactive_If_Insurance_Expired</fullName>
@@ -25559,6 +25831,19 @@ ISCHANGED(Tax_ID__c)
         <description>Only have the ability to edit the Active field on Transporter Accounts</description>
         <errorConditionFormula>AND(RecordType.Name &lt;&gt; &apos;Transporters&apos;,$Profile.Name &lt;&gt; &apos;System Administrator&apos;,ISCHANGED(Active__c))</errorConditionFormula>
         <errorMessage>Active field can only be updated by System Administrators</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Works_With_Factoring_Company_Changed_2F</fullName>
+        <active>true</active>
+        <description>Need to have Notice of Release populated when un-checked works with factoring company is changed from true to false</description>
+        <errorConditionFormula>AND(
+RecordType.DeveloperName = &apos;Transporters&apos;,
+ISCHANGED(Works_With_Factoring_Company__c),
+!Works_With_Factoring_Company__c,
+ISBLANK(Notice_of_Release_Date__c)
+)</errorConditionFormula>
+        <errorDisplayField>Notice_of_Release_Date__c</errorDisplayField>
+        <errorMessage>You must fill this field.</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>EXPRN__Alert_Me</fullName>

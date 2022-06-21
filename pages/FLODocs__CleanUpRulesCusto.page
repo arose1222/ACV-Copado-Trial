@@ -1,0 +1,102 @@
+<!--
+ * @descp:  designed to view page of retain or restore customizations
+ *SF--1093 Error when trying to retain reports from a Clean Up Rule
+ * @author: Flodocs Dev Team (juan.nacimiento@Strongpoint.io) - Copyright (c)
+ * Date: 17/02/2020
+ -->
+<apex:page standardController="FLODocs__FLO_Customization__c" extensions="FLODocs.CleanUpRulesController">
+    <c:StrongpointAnalytics />
+    <style type="text/css">
+        
+        .my_button{
+                box-sizing: border-box;
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 3.01px;
+                color:#555353;
+                cursor: pointer;
+                display: inline-block;
+                font-family: inherit;
+                font-size: 14px;
+                font-variant: normal;
+                font-weight: 400;
+                height: 2.14285714em;
+                line-height: 1.42857143;
+                margin: 10px;
+                padding: 4px 50px;
+                text-decoration: none;
+                vertical-align: baseline;
+                white-space: nowrap;
+            }
+        </style>
+    <apex:slds />
+    <div class="slds-page-header">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;" />
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset"> Retain-Restore Reports</p>
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Change Logs Clean Up Tool Process Run">
+                            CleanUp Tool Rules</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<apex:pageMessages id="showmsg"></apex:pageMessages>
+    
+    <!--if the custo not found -->
+              <apex:outputPanel id="notFound" layout="block" rendered="{!custoNotFound}">
+                  <label class="slds-form-element__label">Customization Not Found.</label>
+              </apex:outputPanel>
+    
+    <!--if is not retained to retain-->
+              <apex:outputPanel id="NotRetained" layout="block" rendered="{!NotRetainedRendered}">
+                  <apex:form >
+                  <div>
+            <label class="slds-form-element__label">Name: </label>
+            <apex:outputText value="{!floCusto.name}" styleclass="slds-form-element__label"></apex:outputText>
+                      </div>
+                      <div>
+                      <label class="slds-form-element__label">Retain Reason: You may add reason for retaining </label>
+                          <div>
+                             <apex:inputTextarea id="newDesc" value="{!reasonRetain}" styleClass="slds-textarea" style="width:250px;height:80px;" /> 
+                          </div>
+            		<div>
+                      <apex:commandButton action="{!retainCusto}" value="Retain" styleClass="my_button" />  
+                          </div>
+                      
+            </div>
+                      </apex:form>
+              </apex:outputPanel>
+    
+     <!--if is not retained to restore-->
+              <apex:outputPanel id="toRestore" layout="block" rendered="{!isRestore}">
+                  <apex:form >
+                  <div>
+            <label class="slds-form-element__label">Name: </label>
+            <apex:outputText value="{!floCusto.name}" styleClass="slds-form-element__label" ></apex:outputText>  
+                      </div>
+                      <div>
+                      <apex:commandButton rendered="{!!isRestoredDone}" action="{!restoreCusto}" value="Restore" styleClass="my_button" />       
+                      <apex:outputPanel rendered="{!isRestoredDone}">Report already restored</apex:outputPanel>
+                      </div>
+                      </apex:form>
+              </apex:outputPanel>
+    
+    <!--if isRetained -->
+              <apex:outputPanel id="isRetained" layout="block" rendered="{!isRetained}">
+                  <div>
+                  <label class="slds-form-element__label">The report {!floCusto.name} is now retained in the system.</label>    
+                  </div>
+                  <div>
+                  <label class="slds-form-element__label">Retain Reason: </label>    
+                      <apex:outputText id="newDesc" value="{!floCusto.FLODocs__Improvement_Comments__c}"></apex:outputText> 
+                  </div>
+              </apex:outputPanel>
+    
+</apex:page>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Id of the batch job tha commits the files. --></help>
+        <label><!-- Async Job Id --></label>
+        <name>FLODocs__Async_Job_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Branch Name --></label>
+        <name>FLODocs__Branch_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Request --></label>
+        <name>FLODocs__Change_Request__c</name>
+        <relationshipLabel><!-- Version Control System Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Git Commit message. --></help>
+        <label><!-- Commit Message --></label>
+        <name>FLODocs__Commit_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Date --></label>
+        <name>FLODocs__Completed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customizations --></label>
+        <name>FLODocs__Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Apex exception type name. Internal platform errors are represented as the System.UnexpectedException type. --></help>
+        <label><!-- Exception Type --></label>
+        <name>FLODocs__Exception_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- The BatchApexErrorEvent returns the &apos;scope&apos; value here. For the commit batch, the &apos;scope&apos; is the name of the file being commited. --></help>
+        <label><!-- Failed File --></label>
+        <name>FLODocs__Job_Scope__c</name>
+    </fields>
+    <fields>
+        <help><!-- The BatchApexErrorEvent can return an error message of max length 5000. --></help>
+        <label><!-- Failure Message --></label>
+        <name>FLODocs__Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- The phase of the batch job when the error occurred: START, EXECUTE, FINISH. --></help>
+        <label><!-- Failure Phase --></label>
+        <name>FLODocs__Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Repository Name --></label>
+        <name>FLODocs__Repository_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Name --></label>
+        <name>FLODocs__Resource_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Type --></label>
+        <name>FLODocs__Resource_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Apex stack trace of the BatchApexErrorEvent failure. Max length 5000. --></help>
+        <label><!-- Stack Trace --></label>
+        <name>FLODocs__Stack_Trace__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>FLODocs__Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FLODocs__Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Succeeded</masterLabel>
+            <translation><!-- Succeeded --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Version Control Credentials Id --></label>
+        <name>FLODocs__Version_Control_Credentials_Id__c</name>
+    </fields>
+</CustomObjectTranslation>

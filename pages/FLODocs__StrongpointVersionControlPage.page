@@ -1,0 +1,423 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0"
+            controller="FLODocs.StrongpointVersionControlController" 
+            extensions="FLODocs.BatchApexErrorEventHandler" >
+    
+
+    <style>
+        .breadcrumbSpacing .bDescription {
+            margin-top: 40px;
+        }
+        .breadcrumbSpacingEdit .bDescription {
+            margin-top: 15px;
+        }
+        body .bPageTitle {
+            margin-bottom: 0;
+        }
+        .breadcrumbParent .ptBreadcrumb a {
+            color:#015ba7;
+            text-decoration: none;
+            margin-bottom: 0;
+        }
+        .breadcrumbParent .ptBreadcrumb {
+            height: auto;
+            margin-top: 3px;
+            margin-bottom: 0;
+            font-family: 'Verdana', 'Geneva', sans-serif;
+            font-size: 91.3%;
+            vertical-align: middle;
+        }
+        .longRunningTests {
+            background-color: #e7bc49;
+            color: white;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .coverageWarning {
+            background-color: #e7bc49;
+            color: white;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .coverageSuccess {
+            background-color: green;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }        
+        .coverageFailure {
+            background-color: #d68184;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .fatalError {
+            background-color: #d68184;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .errorHeader {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom:4px;
+            display: inline-block;
+        }
+        .longRunning {
+            color: white;
+        }
+        .warningInfo {
+            font-size:1.2em;
+        }
+        table.warnings {
+            margin-left: -2px;
+            margin-top: 6px;
+        }
+        table.warnings td.warningInfo {
+            color: white;
+            font-size:1.2em;
+            font-family: "Arial";
+            padding-right: 50px;
+        }
+        li.warningInfo {
+            margin-left: 1.1em;
+        }
+        ul.coverage_warnings {
+            padding: 0px;
+            margin: 0px;
+            margin-top: 5px;
+        }
+        .componentType {
+            white-space: nowrap;
+        }
+        .statusImage {
+            float: left;
+            padding-right:7px;
+            padding-top: 2px;
+        }
+        #incompleteDeploymentsContainer {
+            border: 1px solid #eaeaea;
+            border-radius:5px;
+            margin-top:10px;
+            margin-bottom: 15px;
+        }
+        div.tooltipDiv:hover + div {
+            display:block !important;
+        }
+    </style>
+    <apex:slds />
+
+    <apex:includeScript value="{!$Resource.FLODocs__cometd}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+    <apex:includeScript value="{!$Resource.FLODocs__cometd_jquery}"/>
+    <!--
+    <apex:includescript value="{!URLFOR($Resource.FlodocResources, 'js/jquery.dataTables.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FlodocResources, 'css/jquery.dataTables.css')}" />
+    -->
+
+    <script>
+        
+        $(document).ready(function () {
+            
+            jQuery('[id$=closeButton]').hide();
+            jQuery('[id$=statusSidebar]').show();
+
+            //configure the event listener
+            $.cometd.configure({
+                url: window.location.protocol + '//' + window.location.hostname + '/cometd/48.0/',
+                requestHeaders: {Authorization: 'OAuth {!$Api.Session_ID}'}, appendMessageTypeToURL: false
+            });
+            
+            console.log('after configure; before handshake');
+            
+            // prevents websocket error (https://developer.salesforce.com/forums/?id=9062I000000Qy9gQAC) 
+            $.cometd.websocketEnabled = false;
+            $.cometd.handshake(function(handshakeReply) {
+                if (handshakeReply.successful) {
+                    console.log('CometD handshake successful');
+                    // Subscribe to the Platform Event to receive messages from the server.
+                    // NOTE: FLODocs namespace prefix is required for the event string and the field api names for packaging
+                    $.cometd.subscribe('/event/FLODocs__Commit_Event__e', 
+                                        function (message) {
+                                            var evt = message.data.payload;
+                                            console.log('platform event: ' + evt.FLODocs__Status__c);
+                                            console.log('files processes: ' + evt.FLODocs__Files_Committed__c + ' at ' + evt.CreatedDate);
+                                            updateCommitProgress(evt.FLODocs__Status__c, evt.FLODocs__Change_Request_Id__c,
+                                                                 evt.FLODocs__Files_Committed__c, evt.FLODocs__Total_Files__c);
+                                        },
+                                        function(subscribeReply) {
+                                            console.log('subscribeReply: ' + JSON.stringify(subscribeReply));
+                                            if (subscribeReply.successful) {
+                                                console.log('cometd subscribe to Commit_Event__e event successful');
+                                            } else {
+                                                console.log('cometd could not subscribe to Commit_Event__e event.')
+                                            }
+                                        }
+                    );
+                    $.cometd.subscribe('/event/BatchApexErrorEvent', 
+                                        function (message) {
+                                            var evt = message.data.payload;
+                                            console.log(evt);
+                                            handleBatchApexErrorEvent(evt);
+                                        },
+                                        function(subscribeReply) {
+                                            if (subscribeReply.successful) {
+                                                console.log('cometd subscribe to BatchApexErrorEvent successful');
+                                            } else {
+                                                console.log('cometd could not subscribe to BatchApexErrorEvent.')
+                                            }
+                                        }
+                    );
+                } else {
+                    console.log('CometD handshake failed');
+                }
+            });
+        });
+
+        function validateNewBranchName() {
+            console.log('in validateNewBranchName');
+            validateNewBranchNameAF();
+        }
+
+        
+        function handleBatchApexErrorEvent(event) {
+            console.log('in handeBatchApexErrorEvent');
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.BatchApexErrorEventHandler.handle}',
+                JSON.stringify(event), 
+                function(result, evt){
+                    if (evt.status) {
+                        // Get DOM IDs for HTML and Visualforce elements like this
+                        console.log('handleBatchApexErrorEvent success');
+                    } else if (evt.type === 'exception') {
+                        console.log('handleBatchApexErrorEvent exception type: ' + evt.message);
+                        //document.getElementById("responseErrors").innerHTML = 
+                        //    evt.message + "<br/>\n<pre>" + event.where + "</pre>";
+                    } else {
+                        console.log('handleBatchApexErrorEvent other type: ' + evt.message);
+                        //document.getElementById("responseErrors").innerHTML = evt.message;
+                    }
+                }, 
+                {escape: true}
+            );
+        }
+
+        function updateCommitProgress(status, crId, filesCommitted, totalFiles) {
+            // only process events related to this Change Request
+            if (crId == '{!crId}') {
+
+                if (status == 'Request Zip') {
+                    // delay the progress ring to wait for the button to disable
+                    setTimeout(() => { jQuery('[id$=statusSidebar]').show(); }, 2000);
+                    jQuery('[id$=hdnCommitButtonDisabled').val(true);
+                    disableCommitButtonAF();
+                    $('.loadingOverlay').show();        
+                    //jQuery('[id$=hdnStatusMessage]').val('Retrieving files . . .');
+                    requestZipFileAF();
+                }
+
+                if (status == 'Ready to Commit') {          
+                    commitCRAF();
+                }
+
+                if (status == 'In Progress'){
+                    $('.loadingOverlay').hide();
+                    jQuery('[id$=hdnCompleted]').val(filesCommitted); 
+                    jQuery('[id$=hdnFailures]').val(0);
+                    jQuery('[id$=hdnTotal]').val(totalFiles);
+                    jQuery('[id$=hdnStatusMessage]').val('Committing files . . .');
+                }
+
+                if (status == 'Succeeded'){
+                    jQuery('[id$=hdnCompleted]').val(filesCommitted); 
+                    jQuery('[id$=hdnFailures]').val(0);
+                    jQuery('[id$=hdnTotal]').val(totalFiles);
+                    jQuery('[id$=hdnStatusMessage]').val('Completed.');
+                    
+                    // delay the 'close' button, to give time for the commit status to update to "Completed"
+                    setTimeout(() => { jQuery('[id$=commitButton]').hide();
+                                       jQuery('[id$=closeButton]').show(); }, 2000);
+                }
+
+                if (status == 'Failed'){
+                    jQuery('[id$=hdnCompleted]').val(0); 
+                    jQuery('[id$=hdnFailures]').val(1);
+                    jQuery('[id$=hdnTotal]').val(totalFiles);
+                    jQuery('[id$=hdnStatusMessage]').val('Failed.');
+                    
+                    // delay the 'close' button, to give time for the commit status to update to "Failed"
+                    setTimeout(() => { jQuery('[id$=commitButton]').hide();
+                                       jQuery('[id$=closeButton]').show(); }, 2000);
+                }
+
+                updateCommitStatusAF();
+            }       
+        }
+    </script>
+    
+    
+    <div class="slds-page-header">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset">Version Control: Commit to Repository</p>
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">{!changeRequest.Name}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <apex:form >  
+        <!-- hidden variables to pass the results of the event messages -->
+        <apex:inputHidden value="{!commitStatus.completed}" id="hdnCompleted" />
+        <apex:inputHidden value="{!commitStatus.total}" id="hdnTotal" />
+        <apex:inputHidden value="{!commitStatus.failures}" id="hdnFailures" />
+        <apex:inputHidden value="{!commitStatusMessage}" id="hdnStatusMessage" />
+        <apex:inputHidden value="{!commitButtonDisabled}" id="hdnCommitButtonDisabled" />
+        
+         <!-- For rerendering after the event messages have been processed -->
+        <apex:actionFunction name="updateCommitStatusAF" action="{!updateCommitStatus}" rerender="commit-status,saveMessage,saveError"/>
+        <apex:actionFunction name="commitCRAF" action="{!commitCR}" rerender="commitButton,messages,commit-status"/>
+        <apex:actionFunction name="requestZipFileAF" action="{!requestZipFile}" rerender="poller,commit-status,messages"/>
+        <apex:actionFunction name="disableCommitButtonAF" rerender="commitButton" />
+        <apex:actionFunction name="validateNewBranchNameAF" action="{!validateNewBranchName}" rerender="commitButton,new-branch,messages" />
+
+        <apex:pageMessages id="messages"/>  
+
+        <apex:outputPanel layout="block" id="saveError">
+            <div class="coverageFailure" style="display: {!IF(saveErrorMessage != '','block','none')}">
+                <span class="warningInfo"><apex:outputText value="{!saveErrorMessage}" escape="false"/></span>
+            </div>
+        </apex:outputPanel>
+
+        <apex:outputPanel layout="block" id="saveMessage">
+            <div class="coverageSuccess" style="display: {!IF(saveSuccessfulMessage != '','block','none')}">
+                <span class="warningInfo"><apex:outputText value="{!saveSuccessfulMessage}" escape="false"/></span>
+            </div>
+        </apex:outputPanel>
+        
+        <apex:pageBlock title="Select Existing Branch" id="repository-input">
+            <apex:actionRegion >
+                <apex:pageBlockSection >
+                    <apex:selectList value="{!resourceType}" size="1" label="Provider" styleClass="resourceTypeSelect" >
+                        <apex:actionSupport event="onchange" action="{!setResourceType}" reRender="credentials,repositories,branches,new-branch,messages"/>
+                        <apex:selectOptions value="{!resourceTypes}"/>
+                    </apex:selectList><p/>
+                </apex:pageBlockSection>
+            </apex:actionRegion>
+            <apex:actionRegion >
+                <apex:pageBlockSection >
+                    <apex:selectList value="{!resourceName}" size="1" label="Credential" id="credentials" styleClass="resourceNameSelect" >
+                        <apex:actionSupport event="onchange" action="{!setResourceName}" reRender="repositories,branches,new-branch,messages"/>
+                        <apex:selectOptions value="{!resourceNames}"/>
+                    </apex:selectList><p/>
+                </apex:pageBlockSection>
+            </apex:actionRegion>
+            <apex:actionRegion >
+                <apex:pageBlockSection >
+                    <apex:selectList value="{!repositoryName}" size="1" label="Repository" id="repositories" styleClass="repositoryNameSelect" >
+                        <apex:actionSupport event="onchange" action="{!setRepository}" reRender="branches,new-branch,messages"/>
+                        <apex:selectOptions value="{!repositories}"/>
+                    </apex:selectList><p/>
+                </apex:pageBlockSection>
+            </apex:actionRegion>
+            <apex:actionRegion >
+                <apex:pageBlockSection > 
+                    <apex:selectList value="{!branchName}" size="1" label="Branch" id="branches" styleClass="branchNameSelect" >
+                        <apex:actionSupport event="onchange" action="{!setBranch}" reRender="messages,new-branch,commitButton"/>
+                        <apex:selectOptions value="{!branches}"/>
+                    </apex:selectList><p/>
+                </apex:pageBlockSection>
+            </apex:actionRegion>
+        </apex:pageBlock>
+
+        <apex:pageBlock title="Create New Branch">
+            <apex:pageBlockSection id="new-branch">
+                <apex:inputText value="{!newBranchName}" label="New Branch Name" style="width: 100%"/> <apex:outputText > from existing branch <strong>{!branchName}</strong></apex:outputText> <p/>
+            </apex:pageBlockSection>                
+        </apex:pageBlock>                
+
+        <apex:pageBlock title="Commit Message" id="commit-message">
+            <apex:inputTextarea value="{!commitMessage}" style="width: 500px"/>
+        </apex:pageBlock>   
+        
+        <apex:pageBlock title="">
+            <apex:pageBlockSection >
+                <apex:outputPanel layout="block" id="ButtonPanel">
+                    <div >
+                        <apex:commandButton id="commitButton" onclick="validateNewBranchName()" value="Commit" disabled="{!commitButtonDisabled}" styleClass="commitbuttonclass slds-button slds-button--brand slds-order--3" 
+                        style="font-size: 12pt;" rerender="commit-status"/> 
+                        
+                        <!-- comment out spinner for commit event testing
+                        <apex:actionStatus id="statusC">
+                            <apex:facet name="start">
+                            <div >
+                                <div class="slds-spinner_container">
+                                    <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                                        <span class="slds-assistive-text">Loading</span>
+                                        <div class="slds-spinner__dot-a"></div>
+                                        <div class="slds-spinner__dot-b"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </apex:facet>
+                        </apex:actionStatus>
+                        -->
+                    </div> 
+                    <div >
+                        <input id="closeButton" value="Close" class="slds-button slds-button--brand slds-order--3" 
+                        style="font-size: 12pt;" onClick="window.close()" type="button"/>                
+                    </div>
+                                       
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+              
+        <apex:pageBlock id="commit-status" >
+            <div id="statusSidebar" style="float:center; width:250px">
+                <legend class="slds-form-element__label slds-text-title--caps" style="padding: 1rem 0rem;font-size: 1rem;border-bottom: 1px solid orange;width: 100%;">
+                    Commit Status
+                </legend>
+                <c:ProgressRing title="{!commitStatusMessage}" 
+                                percentComplete="{!commitStatus.intPercentComplete}" 
+                                total="{!commitStatus.total}" 
+                                completed="{!commitStatus.completed}" 
+                                failures="{!commitStatus.failures}" 
+                                progressX="{!commitStatus.progressRingX}" 
+                                progressY="{!commitStatus.progressRingY}"/>
+            </div>
+        </apex:pageBlock>
+        
+        <!-- <apex:actionPoller interval="5" action="{!checkRetrieveStatus}" enabled="{!runPoll}" onsubmit="openOverlay()" oncomplete="closeOverlay()" reRender="ButtonPanel"/> -->
+        <apex:actionPoller id="poller" interval="5" action="{!checkRetrieveStatus}" enabled="{!runPoll}" />
+                    
+        <div class="loadingOverlay" style="display: none;">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 25% 45%;">
+                <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                    <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                    <span style="display: inline-block; padding: 10px 0px;">Preparing files . . .</span>
+                </div>
+            </div>
+        </div>
+
+    </apex:form>
+
+</apex:page>

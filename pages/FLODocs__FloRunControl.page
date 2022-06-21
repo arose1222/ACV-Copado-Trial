@@ -1,0 +1,17 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Customization__c" extensions="FLODocs.FloRunControlController" >
+	<apex:form >
+		<apex:actionFunction action="{!runControlBatch}" name="runControlAF" >
+		</apex:actionFunction>
+		<apex:outputPanel id="test"/>
+	</apex:form>
+	<script>
+		   //I don't know if this will prevent the Init Executuon
+			if(confirm('Are you sure you want to Run Control?')){
+			 	 var cId = '{!$CurrentPage.parameters.cid}';
+		     	 runControlAF();
+			     window.history.back();
+			}else{
+				window.history.back();
+			}
+	</script>
+</apex:page>

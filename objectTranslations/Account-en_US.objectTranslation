@@ -259,6 +259,23 @@ Normal = regular activity based on monthly average --></help>
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Represents the additional authority for the transporter and this field helps identify the type of compliance needed for this transporter --></help>
+        <label><!-- Additional Carrier Authority --></label>
+        <name>Additional_Carrier_Authority__c</name>
+        <picklistValues>
+            <masterLabel>Brokers</masterLabel>
+            <translation><!-- Brokers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Dispatch</masterLabel>
+            <translation><!-- Direct Dispatch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategic Partners</masterLabel>
+            <translation><!-- Strategic Partners --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <help><!-- Used by Capital to indicate the Advantage Terms --></help>
         <label><!-- Advantage Terms --></label>
         <name>Advantage_Terms__c</name>
@@ -473,8 +490,20 @@ Third time offense = &quot;Deny&quot; --></help>
         <label><!-- Capital Dealer Type --></label>
         <name>Capital_Dealer_Type__c</name>
         <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Capital Orange Elite</masterLabel>
             <translation><!-- Capital Orange Elite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -572,6 +601,11 @@ Third time offense = &quot;Deny&quot; --></help>
     <fields>
         <label><!-- Shipping Timezone --></label>
         <name>CloudingoAgent__STZ__c</name>
+    </fields>
+    <fields>
+        <help><!-- Comments section for use by the transportation team --></help>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
     </fields>
     <fields>
         <help><!-- For commercial client use, only.  Indicates lot number, city, dealership - whatever it is the commercial client uses to identify specific location. --></help>
@@ -1894,6 +1928,10 @@ Blank = FastPass not offered --></help>
         <name>GCLID__c</name>
     </fields>
     <fields>
+        <label><!-- Global Limiter --></label>
+        <name>Global_Limiter__c</name>
+    </fields>
+    <fields>
         <label><!-- Go-Green Seller --></label>
         <name>Go_Green_Seller__c</name>
     </fields>
@@ -2497,6 +2535,11 @@ Blank = FastPass not offered --></help>
         <name>Lot_Sweep_End_Date__c</name>
     </fields>
     <fields>
+        <help><!-- Used to track the expiration date of the transporters participation in the lot sweep program --></help>
+        <label><!-- Lot Sweep Insurance Expiration Date --></label>
+        <name>Lot_Sweep_Insurance_Expiration_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- Indicates the date a selling dealership signed up to participate in Lot Sweep. --></help>
         <label><!-- Lot Sweep Join Date --></label>
         <name>Lot_Sweep_Join_Date__c</name>
@@ -2664,6 +2707,14 @@ Blank = FastPass not offered --></help>
     <fields>
         <label><!-- Not_Active --></label>
         <name>Not_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notice of Assignment Date --></label>
+        <name>Notice_of_Assignment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notice of Release Date --></label>
+        <name>Notice_of_Release_Date__c</name>
     </fields>
     <fields>
         <label><!-- 90 Day RecPrices Seller Accepted --></label>
@@ -3496,6 +3547,12 @@ Idle if not giving any cars to ACV --></help>
             <masterLabel>Step 4 – Active: Purchased</masterLabel>
             <translation><!-- Step 4 – Active: Purchased --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Transporters that are related. --></help>
+        <label><!-- Related Account --></label>
+        <name>Related_Account__c</name>
+        <relationshipLabel><!-- Accounts (Related Account) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- ReportCounter --></label>
@@ -4428,6 +4485,22 @@ Idle if not giving any cars to ACV --></help>
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Transporter Services Rendered --></label>
+        <name>Transporter_Services_Rendered__c</name>
+        <picklistValues>
+            <masterLabel>Lot Sweep</masterLabel>
+            <translation><!-- Lot Sweep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marshalling</masterLabel>
+            <translation><!-- Marshalling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental/Storage</masterLabel>
+            <translation><!-- Rental/Storage --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Transporter Type --></label>
         <name>Transporter_Type__c</name>
         <picklistValues>
@@ -4651,6 +4724,10 @@ Idle if not giving any cars to ACV --></help>
         <name>Why_Don_t_You_buy_online__c</name>
     </fields>
     <fields>
+        <label><!-- Works With Factoring Company --></label>
+        <name>Works_With_Factoring_Company__c</name>
+    </fields>
+    <fields>
         <label><!-- 90 Day Sell-Thru Rate --></label>
         <name>X90_Day_Sell_Thru_Rate__c</name>
     </fields>
@@ -4759,6 +4836,10 @@ Idle if not giving any cars to ACV --></help>
         <name>WLS_Test</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- You must fill this field. --></errorMessage>
+        <name>Account_Works_With_Factoring_Company</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- If Active is changed to true, the Account must have a billing address --></errorMessage>
         <name>Active_Account_must_have_billing_address</name>
     </validationRules>
@@ -4801,6 +4882,10 @@ Idle if not giving any cars to ACV --></help>
     <validationRules>
         <errorMessage><!-- Since you chose &quot;Other - COVID Related&quot; in the Reason for Idle field, please fill out the field &quot;Other COVID Related Idle Reason&quot;, with those details before saving. --></errorMessage>
         <name>Fill_In_Covid_Reason_Text_Box</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value must be zero or higher. --></errorMessage>
+        <name>Global_Limiter_Can_Not_Be_Negative</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Insurance is Expired, Carrier Status must be &apos;Inactive.&apos; --></errorMessage>
@@ -4850,6 +4935,10 @@ Dealer Type, Legal Name --></errorMessage>
     <validationRules>
         <errorMessage><!-- Active field can only be updated by System Administrators --></errorMessage>
         <name>Transporter_Account_Deactivation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must fill this field. --></errorMessage>
+        <name>Works_With_Factoring_Company_Changed_2F</name>
     </validationRules>
     <webLinks>
         <label><!-- Alert_Me --></label>

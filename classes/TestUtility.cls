@@ -147,6 +147,20 @@ public class TestUtility {
     }
     
     /**
+     * Creates an Bundle_Offer__c with a populated Dealer__c Id
+     * @param  accountId The dealer id
+     * @return           Returns back a Bundle_Offer__c record with a random name and bundle_Id__c
+     */
+    public static Bundled_Offer__c createBundleOffer(Id accountId){
+        Bundled_Offer__c bundleOffer = new Bundled_Offer__c(
+            name='Test bundle Offer',
+            Dealer__c=accountId,
+            Bundle_Id__c=123
+        );
+        return bundleOffer;
+    }
+    
+    /**
      * Creates an Arbitration case with related details
      * @param  auctionObj The Auction__c the arbitration case is about
      * @param  vehicleObj The Vehicle__c the arbitration and auction are related to

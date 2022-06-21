@@ -1,0 +1,82 @@
+<!--
+  @description       : Component to marke a service appointment as a dry run
+  @author            : dilan.chaves@globant.com
+  @group             : Scheduling
+  @last modified on  : 05-10-2022
+  @last modified by  : v-dchaves@acvauctions.com
+-->
+<template >
+    <lightning-card variant='Narrow' iconname='standard:service_appointment'>
+        <template if:true='{showSpinner}'>
+            <div class='acv-spinner-container'>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false='{showSpinner}'>
+
+            <template if:true={alreadyDryRun}>
+                <div class='acv-dryrun-main-container'>
+                    <div class="slds-align_absolute-center slds-var-m-top_large">
+                        <b><p style="color:gray">The Service Appointment has already been marked as Dry Run.</p></b>
+                    </div>
+                </div>
+            </template>
+            
+
+            <template if:true={showForm}>
+                <div class='slds-var-m-around_medium acv-form-container'>
+
+                    <!-- Success Templates -->
+                    <template if:true={showSuccessForGantt}>
+                        <div class="slds-align_absolute-center slds-var-m-top_large">
+                            <b><p style="color:green">Success! The appointment has been updated.</p></b>
+                        </div>
+                        <div class="slds-align_absolute-center slds-var-m-top_large">
+                            Use "X" in upper-right corner to Close this screen.
+                        </div>
+                    </template>
+
+                    <!-- Error Templates -->
+                    <div class='acv-error-main-container'>
+                        <div class="slds-align_absolute-center slds-var-m-top_large">
+                            <template if:true={showError}>
+                                <b><p style="color:red">{errorMsg}</p></b>
+                            </template>
+                        </div>
+
+                        
+                    </div>
+
+                    <lightning-input label='Start Date' 
+                                    type='datetime' 
+                                    required 
+                                    onchange='{setStartDate}' 
+                                    disabled='{alreadyDryRun}'
+                                    value='{record.actualStart}'>
+                    </lightning-input>
+                    <lightning-input class='acv-input-container' 
+                                    label='End Date' 
+                                    type='datetime' 
+                                    required 
+                                    onchange='{setEndDate}' 
+                                    disabled='{alreadyDryRun}'
+                                    value='{record.actualEnd}'>
+                    </lightning-input>
+                    <lightning-combobox class='acv-input-container' 
+                                        label='Cannot Complete Reason' 
+                                        options='{cannotCompleteOptions}' 
+                                        onchange='{setCannotCompleteReason}'
+                                        disabled='{alreadyDryRun}'
+                                        required
+                                        value='{record.cannotCompleteReason}'>
+                    </lightning-combobox>
+
+                    <div class='slds-var-m-top_medium'>
+                        <lightning-button variant='neutral' name='save' label='Save' disabled='{alreadyDryRun}' onclick='{markAsDryRun}'></lightning-button>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

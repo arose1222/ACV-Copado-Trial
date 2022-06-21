@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Approver Order --></label>
+        <name>FLODocs__Approver_Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the Customization Source when the relationship is between Customizations --></help>
+        <label><!-- Customization Source Name --></label>
+        <name>FLODocs__Customization_Source_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the Target customizations when the relationship for this FLO Junction is between customizations --></help>
+        <label><!-- Customization Target Name --></label>
+        <name>FLODocs__Customization_Target_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Record Id of the data record associated with a Change Request. --></help>
+        <label><!-- Data Target Record Id --></label>
+        <name>FLODocs__Data_Target_Record_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the data record that is associated with the Change Request. --></help>
+        <label><!-- Data Target Record Name --></label>
+        <name>FLODocs__Data_Target_Record_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- For a data record associated with a Change Request, this is the SObject Api name. --></help>
+        <label><!-- Data Target SObject Api --></label>
+        <name>FLODocs__Data_Target_SObject_Api__c</name>
+    </fields>
+    <fields>
+        <help><!-- Change Request source in the rel between FLO Objects to represent a Join (e.g: CR with Customizations) --></help>
+        <label><!-- Change Request Source --></label>
+        <name>FLODocs__FLO_Change_Request_Source__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to FLO Change request as Target in the relationship between FLO Objects (e.g: Process to CR, Customizations with Change Request) --></help>
+        <label><!-- Change Request Target --></label>
+        <name>FLODocs__FLO_Change_Request_Target__c</name>
+        <relationshipLabel><!-- Junctions (Change Request Target) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- FLO Customization Source in the relationship between FLO Objects (e.g: Customization to Customization to represent a Join ) --></help>
+        <label><!-- Customization Source --></label>
+        <name>FLODocs__FLO_Customization_Source__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This represent the FLO Customization record as the Target of the relationship between two FLO Objects --></help>
+        <label><!-- Customization Target --></label>
+        <name>FLODocs__FLO_Customization_Target__c</name>
+        <relationshipLabel><!-- Junctions (FLO Customization Target) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Change Request Source --></label>
+        <name>FLODocs__FLO_Parent_Change_Request_Source__c</name>
+        <relationshipLabel><!-- Junctions (Parent Change Request Source) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- FLO process issue lookup as the source of this relationship in this FLO Junction (e.g: Process Issue with Customization) --></help>
+        <label><!-- Process Issue Source --></label>
+        <name>FLODocs__FLO_Process_Issue_Source__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- FLO Process issue as target in the relationship between Process Issues and other objects in this FLO Junction (e.g: Change Request with Process Issue) --></help>
+        <label><!-- Process Issue Target --></label>
+        <name>FLODocs__FLO_Process_Issue_Target__c</name>
+        <relationshipLabel><!-- Junctions (FLO Process Issue Target) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to the FLO Process as source in the relationship between FLO Objects (e.g: Process with Customization) --></help>
+        <label><!-- Process Source --></label>
+        <name>FLODocs__FLO_Process_Source__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to FLO Process as target in the relationship between Process(es) and Customizations, or Change Request to Process(es), etc. --></help>
+        <label><!-- Process Target --></label>
+        <name>FLODocs__FLO_Process_Target__c</name>
+        <relationshipLabel><!-- Junctions (Process Target) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Type of the Process related to a Change Request. (e.g: Impacted Process, Affected Process, etc) --></help>
+        <label><!-- Process Type --></label>
+        <name>FLODocs__FLO_Process_Type__c</name>
+        <picklistValues>
+            <masterLabel>Affected</masterLabel>
+            <translation><!-- Affected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Impacted</masterLabel>
+            <translation><!-- Impacted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposed</masterLabel>
+            <translation><!-- Proposed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This represent the Join between objects. Used by Strongpoint to identify joins  between Change request and Customizations, Customizations itself, Process with Customizations, etc. --></help>
+        <label><!-- Field --></label>
+        <name>FLODocs__Field__c</name>
+        <picklistValues>
+            <masterLabel>Additional Approver</masterLabel>
+            <translation><!-- Additional Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apex Class/Trigger</masterLabel>
+            <translation><!-- Apex Class/Trigger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Source</masterLabel>
+            <translation><!-- Data Source --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extended</masterLabel>
+            <translation><!-- Extended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Field</masterLabel>
+            <translation><!-- Field --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Form</masterLabel>
+            <translation><!-- Form --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>List</masterLabel>
+            <translation><!-- List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Customization</masterLabel>
+            <translation><!-- Other Customization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent</masterLabel>
+            <translation><!-- Parent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process / Step</masterLabel>
+            <translation><!-- Process / Step --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Audience</masterLabel>
+            <translation><!-- Process Audience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Editor</masterLabel>
+            <translation><!-- Process Editor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report</masterLabel>
+            <translation><!-- Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollback Backup</masterLabel>
+            <translation><!-- Rollback Backup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Script</masterLabel>
+            <translation><!-- Script --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supporting Process</masterLabel>
+            <translation><!-- Supporting Process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visualforce Page</masterLabel>
+            <translation><!-- Visualforce Page --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workflow/Flow/Approval Process</masterLabel>
+            <translation><!-- Workflow/Flow/Approval Process --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Name of the Profile target from Process when select Process Audience --></help>
+        <label><!-- Profile Target --></label>
+        <name>FLODocs__Profile_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role Target Name --></label>
+        <name>FLODocs__Role_Target_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role Target --></label>
+        <name>FLODocs__Role_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollback Log --></label>
+        <name>FLODocs__RollbackLog__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Search Clean-up Rule --></label>
+        <name>FLODocs__Search_Clean_up_Rule__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Metadata Type of the Customization Source --></help>
+        <label><!-- Source Type --></label>
+        <name>FLODocs__Source_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Metadata Type of this FLO Junction when Target is FLO Customization Record. --></help>
+        <label><!-- Target Type --></label>
+        <name>FLODocs__Target_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- User to be populated as Mandated, Additional, Approved By, Reject By. Also, user can be a Developer assigned to a Change Request for example. --></help>
+        <label><!-- User Target --></label>
+        <name>FLODocs__User_Target__c</name>
+        <relationshipLabel><!-- Junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User Type --></label>
+        <name>FLODocs__User_Type__c</name>
+        <picklistValues>
+            <masterLabel>Additional Approver</masterLabel>
+            <translation><!-- Additional Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved By</masterLabel>
+            <translation><!-- Approved By --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clean up rule owner</masterLabel>
+            <translation><!-- Clean up rule owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deployment Assigned</masterLabel>
+            <translation><!-- Deployment Assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Developer</masterLabel>
+            <translation><!-- Developer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive Owner</masterLabel>
+            <translation><!-- Inactive Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mandated Approver</masterLabel>
+            <translation><!-- Mandated Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected By</masterLabel>
+            <translation><!-- Rejected By --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report Owner</masterLabel>
+            <translation><!-- Report Owner --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Change Request to Customization --></label>
+        <name>FLODocs__Change_Request_to_Customization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Request to Process --></label>
+        <name>FLODocs__Change_Request_to_Process</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Request to User --></label>
+        <name>FLODocs__Change_Request_to_User</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Cleanup Rule to User --></label>
+        <name>FLODocs__Cleanup_Rule_to_User</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customization to Change Request --></label>
+        <name>FLODocs__Customization_to_Change_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Customization Junction Records --></description>
+        <label><!-- Customization to Customization --></label>
+        <name>FLODocs__Customization_to_Customization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customization to Process --></label>
+        <name>FLODocs__Customization_to_Process</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customization to Process Issue --></label>
+        <name>FLODocs__Customization_to_Process_Issue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Process Issue to Customization --></label>
+        <name>FLODocs__Process_Issue_to_Customization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Process to Customization --></label>
+        <name>FLODocs__Process_to_Customization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Process to Process --></label>
+        <name>FLODocs__Process_to_Process</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Process to User --></label>
+        <name>FLODocs__Process_to_User</name>
+    </recordTypes>
+</CustomObjectTranslation>

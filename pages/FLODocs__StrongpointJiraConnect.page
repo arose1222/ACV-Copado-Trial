@@ -1,0 +1,881 @@
+<apex:page showHeader="false" sidebar="false" controller="FLODocs.StrongpointJiraConnectController" standardStylesheets="false" cache="false" >
+
+        <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnect}"/>
+        <apex:stylesheet value="{!$Resource.FLODocs__strongpointJiraConnectFDL}"/>
+    <head>
+        <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all"/>
+        <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui.min.css" media="all"/>
+        <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui-experimental.min.css" media="all"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui.min.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-experimental.min.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-datepicker.min.js"></script>
+        <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-soy.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js" ></script> 
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>    
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/js/bootstrap-dialog.min.js" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/js/bootstrap-dialog.js" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/css/bootstrap-dialog.min.css" media="all"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/css/bootstrap-dialog.css" media="all"/>
+        <style type="text/css">
+            
+            #aui-flag-container {
+                position: fixed;
+                top: 45px!important;
+                right: 30px;
+                z-index: 2;
+            }
+
+            .my_field_group{
+                width: 200px;
+                margin: 0;
+                float: left;
+            }
+           .my_button{
+                box-sizing: border-box;
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 3.01px;
+                color: #333;
+                cursor: pointer;
+                display: inline-block;
+                font-family: inherit;
+                font-size: 14px;
+                font-variant: normal;
+                font-weight: 400;
+                height: 2.14285714em;
+                line-height: 1.42857143;
+                margin: 0;
+                padding: 4px 10px;
+                text-decoration: none;
+                vertical-align: baseline;
+                white-space: nowrap;
+            }
+            .ap-iframe{
+                width: 100%;
+                height: 400px!important;
+            }
+            .module>.mod-content iframe {
+                border: 0;
+                margin: 0;
+                height: 500px;
+                padding: 0;
+                width: 100%;
+            }
+            html { height: 100%; } body { min-height: 100%; }
+            #my_container input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            /* Set a style for all buttons */
+            #my_container button {
+                background-color: #205081;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            /* Add a hover effect for buttons */
+            #my_container button:hover {
+                opacity: 0.8;
+            }
+            /* Add padding to containers */
+            #my_container .container {
+                padding: 16px;
+            }
+             /* The "Forgot password" text */
+            #my_container span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            .tableSuggest{
+                font-size:12px;
+            }
+
+            .tooltipHover:hover + .tooltipText {
+                visibility: visible;
+                opacity: 1;
+            }   
+            .tooltipText {
+                visibility: hidden;
+                width: 450px !important;
+                background-color: #FFF;
+                position: absolute;
+                padding: 20px;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                overflow: hidden;
+                left: -400px;
+                z-index: 1;
+            }     
+        </style>
+    </head>
+
+    <body class="ac-content" style="font-family: sans-serif; overflow: auto; overflow: hidden; color: #1b1f33; ">
+            <section id="content" class="ac-content">
+                <div class="aui-page-header">
+                    <div class="aui-page-header-main">
+                    </div>
+                    <div id="aui-message-bar"></div>
+                </div>
+                <div data-nc-container="top-left" id="yui_3_17_2_1_1508616918708_344" style="background-color: currentColor;">
+                    <a href="/" class="Header-branding" data-nc-element="branding" data-content-field="site-title" id="yui_3_17_2_1_1508616918708_343">
+                        <img src="//static1.squarespace.com/static/59709e3f893fc0cc2912ef0e/t/59709f5df5e2311272d2bd81/1508344372790/?format=1500w"
+                            alt="Strongpoint" class="Header-branding-logo"/>
+
+                    </a>
+                </div>
+               <!-- CONNECTOR to Salesforce (USER PASS AND TOKEN) -->
+               <div class="aui-flatpack-example" style="padding-top: 8px;">
+                 <div id="my_container" class="container">
+                    <apex:form >
+                       <div class="" style="float: right;padding-right: 1%;">
+                            <apex:inputCheckbox id="sandbox_account" value="{!sf_isSandbox}">
+                                <label for=""><i>Sandbox Account? </i></label>
+                            </apex:inputCheckbox>
+                       </div>
+                        <!-- <apex:outputPanel layout="lock" id="errorMessage" >
+                            {!errorMessage}
+                        </apex:outputPanel> -->
+                        <label><b>Email</b></label>
+                        <apex:inputText id="email"   value="{!sf_username}" ></apex:inputText>
+                        <label><b>Password</b></label>
+                        <apex:inputSecret id="password"   value="{!sf_passwd}" reDisplay="true" ></apex:inputSecret>
+                        <label><b>Security Token</b></label>
+                        <apex:inputSecret id="token"   value="{!sf_token}" reDisplay="true" ></apex:inputSecret>
+                        <button id="submit" type="">Connect</button>
+                        <apex:actionFunction name="salesforceLogin" action="{!sfLogin}" reRender="opSession, opData" oncomplete="getInformation()">
+                         <apex:param name="sessId" value="" id="sessi"   /> 
+                         <apex:param name="endpointURL" value="" id="endpoU"   /> 
+                         <apex:param name="usId" value="" id="uId"   /> 
+                         <apex:param name="oName" value="" id="orgName" /> 
+                        </apex:actionFunction>
+                        <apex:outputPanel id="opSession">
+                            <apex:inputHidden value="{!sessionId}" id="sesion_id" />
+                            <apex:inputHidden value="{!serverUrl}" id="url_id" />
+                            <apex:inputHidden value="{!sf_ep}" id="sfEp" />
+                            <apex:inputHidden value="{!userId}" id="user_id" />
+                            <apex:inputHidden value="{!orgName}" id="org_name" />
+
+                        </apex:outputPanel>
+                    </apex:form>
+               </div>
+                <!-- FORM With Customizations, Text Area, etc. -->
+               <div id="container_form" style="display: none">
+                    <apex:form id="formi">
+
+
+                    <apex:outputPanel layout="lock" id="errorVFP" style="color:red;">
+                            {!errorToVFP} {!errorMessage}
+                    </apex:outputPanel>
+                    <fieldset id="form_to_send"  class="aui">
+                       <table style="undefined;table-layout: fixed;">
+                            <colgroup>
+                                <col style="width: 139px"/>
+                                <col style="width: 134px"/>
+                                <col style="width: 134px"/>
+                                <col style="width: 134px"/>
+                                <col style="width: 134px"/>
+                             </colgroup>
+                             <tr>
+                                <td> <label id="label_add_custom" style="cursor: pointer;" for="add_custom_bundle_id" original-title="Org connected">Synchronized with:</label></td>
+                                <td></td>
+                                <td><b><label id="organizationNameId"></label></b></td>
+                                <td></td>
+                                <td>
+                                    <button class="aui-button" id="logout" resolved="" style="float: right;margin-left: 10%;margin-top: -1%;"><span class="aui-icon aui-icon-small aui-iconfont-configure"></span> Change Instance</button>
+                                </td>
+                             </tr>
+                       </table>
+                        <div class="field-group top-label">
+                            <div class="my_container">  
+                                <br>
+                                <table style="undefined;table-layout: fixed;">
+                                     <colgroup>
+                                        <col style="width: 139px"/>
+                                        <col style="width: 134px"/>
+                                        <col style="width: 134px"/>
+                                        <col style="width: 134px"/>
+                                     </colgroup>
+                                     <tr>
+                                        <td><label id="label_add_custom" style="cursor: pointer;" for="add_custom" original-title="Type for add customizations to the Changer Request scope">Add Customizations</label></td>
+                                         <td><input class="text" type="text" id="add_custom" name="fname" title=""></input></td>
+                                        <td> 
+                                            <apex:selectList label="Select Metadata Type"  value="{!metadataSelected}"  size="1"  style="height: 30px;line-height: 30px;border: 1px solid #ccc;border-radius: 3.01px;overflow: auto;resize: both;" id="selector">
+                                                 <apex:selectOptions value="{!sfdcTypes}" />
+                                            </apex:selectList>
+                                        </td>
+                                        <td><button id="my_button_add" class="my_button_add" resolved="">+</button></td>
+                                      </tr>
+                                      <tr>
+                                        <td> <label id="label_add_custom" style="cursor: pointer;" for="add_custom_bundle_id" original-title="Type for add the affected package">Affected Package Namespace prefix</label></td>
+                                        <td><input class="text" type="text" id="add_custom_bundle_id" name="fname" title=""></input></td>
+                                        <td><button id="my_button_add_bundleid" class="my_button_add" resolved="">+</button></td>
+                                        <td></td>
+                                      </tr>
+                                </table>
+
+
+                                <section id="demo-dialog2" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="false" style="width: 600px !important; z-index: 3000; display: none;" data-aui-focus="false" data-aui-blanketed="true">
+                                    <header class="aui-dialog2-header">
+                                        <h2 class="aui-dialog2-header-main" style="font-size: 18px!important;">Select Customizations to attach</h2>
+                                        <a class="aui-dialog2-header-close" onclick="$('#demo-dialog2').hide();$('.aui-blanket').hide();"><span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span></a>
+                                    </header>
+                                    <apex:actionRegion >
+
+                                         <apex:actionFunction action="{!customizationsRecordsFromOverview}" name="getCustosOverviewAF" reRender="tableCustoPopup,tableCustoPopupProp,opData" oncomplete="gatherCrData">
+                                             <apex:param name="notformatted" value="" id="notformatted"   /> 
+                                             <apex:param name="formatted" value="" id="formatted"   /> 
+                                         </apex:actionFunction>
+                                         
+                                        <apex:outputPanel id="tableCustoPopup">
+                                            <div class="aui-dialog2-content" style="max-height: 365px;">
+                                                <table class="aui popUpTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th id="name">Name</th>
+                                                            <th id="type">Details</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                          <apex:repeat var="custo" value="{!listInnerCusto}">
+                                                              <tr>
+                                                                <td headers="name">
+                                                                    <input type="checkbox" name="" style="margin-right: 8px;" value="{!custo.isSelected}" />{!custo.custoName}
+                                                                    <input hidden="true" value="{!custo.custoApiName} -- {!custo.custoType}"/>
+                                                                </td>
+                                                                <td style="position:relative;">
+                                                                    <a data-aui-trigger="" aria-controls="more-details-30" href="#" style="color: #3572b0!important;" aria-expanded="false" class="tooltipHover aui-alignment-target" resolved="" aria-haspopup="true" id="{!custo.custoApiName}">View</a>
+                                                                    <div class="tooltipText aui-inline-dialog-contents" >
+                                                                        <p><strong>Type</strong>: <i>{!custo.custoType}</i></p>
+                                                                        <apex:outputPanel layout="none" rendered="{!custo.custoParent != null}">
+                                                                            <p><strong>Parent</strong>:<apex:outputText value="{!custo.custoParent}" escape="false"/></p>
+                                                                        </apex:outputPanel>
+                                                                        <p><strong>API Name</strong>: {!custo.custoApiName}</p>
+                                                                    </div>
+                                                                </td>
+                                                                </tr>
+                                                          </apex:repeat>      
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </apex:outputPanel>
+
+                                        <apex:outputPanel id="tableCustoPopupProp" rendered="{!!proplistInnerCusto.empty}">
+                                     
+                                            <div class="aui-dialog2-content" style="overflow: auto;height: 130px;">
+                                                <table class="aui popUpTableProposed">
+                                                        <thead>
+                                                            <tr>
+                                                                <th id="name">Name</th>
+                                                                <th id="type">Type</th>
+                                                                <th id="type">API Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <apex:repeat value="{!proplistInnerCusto}" var="ppCusto">
+                                                            <tr>
+                                                                <td headers="name" id="apiNameAddedInPop">{!ppCusto.custoApiName}</td>
+                                                                <td>
+                                                                    <apex:selectList label="Select Metadata Type"  value="{!ppCusto.custoType}"  size="1" styleClass="type_customization_list" id="selector2">
+                                                                        <apex:selectOptions value="{!sfdcTypes}" />
+                                                                    </apex:selectList>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" id="my_proposed_{!ppCusto.custoApiName}" value="{!ppCusto.custoApiName}"/> 
+                                                                </td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>    
+                                        </apex:outputPanel>
+                                    </apex:actionRegion>
+                                    <footer class="aui-dialog2-footer">
+                                        <div class="aui-dialog2-footer-actions">
+                                            <div id="errorPopUpMessages" style="font-size: 12px;color: red;text-align: left;max-width: 300px;float: left;"></div>
+                                            <button id="dialog-submit-button" onclick="return false;" class="aui-button aui-button-primary" resolved="">Add selected Customizations</button>
+                                            <!-- onclick="addCustomziations();" -->
+                                        </div>
+                                    </footer>
+                                </section>
+                                <div class="aui-blanket" tabindex="0" aria-hidden="false" style="z-index: 2980;display: none;"></div>
+                                </br>
+                                <div id="my_add"></div>
+                            </div>
+                        </div>
+                        <div class="field-group _50">
+                            <label for="customizations-id" title="These are the customizations related to the change request" id="label_existing_custom" style="cursor: pointer;">Existing Customizations</label>
+                            <textarea class="textarea" name="comment" id="customizations-id" placeholder="Existing customizations will appear here" style="margin: 0px;width: 267px;height: 66px;top: auto;margin-top: -5%;margin-left: 50%;" disabled = "true"></textarea>
+                        </div>
+                        <div class="field-group _50">
+                            <label for="proposed-id" title='Proposed Customizations will be show Here' style="cursor: pointer;" id="proposed_id_label">Proposed Customizations</label>
+                            <textarea class="textarea" name="comment" id="proposed-id" placeholder="Proposed customizations will appear here" style="margin: 0px;width: 268px;height: 66px;margin-left: 50%;" disabled = "true"></textarea>
+                        </div>
+                        <div id= "nspref" class="field-group _50" >
+                            <div style="float:left; width: 40%;">
+                                <label for="NSP-id" title='Affected Namespace/s Prefixes will appear here' style="cursor: pointer;overflow: hidden;" id="nsp_id_label">Affected Namespace Prefix</label>
+                            </div>
+                            <div style="float:left;">
+                                <textarea class="textarea" name="comment" id="NSP-id" placeholder="Affected Namespace prefix will appear here" style="float: left; border: 1px solid rgb(204, 204, 204); border-radius: 3.01px; min-height: 15px; padding: 10px; margin: 0px; width: 329px; overflow: hidden; height: 33px;" disabled = "true"></textarea>
+                            </div>
+                        </div>
+                        <div style="float: left;"> 
+                       <!--  <button id="editcr" class="my_button_add" resolved="" ><span class="aui-icon aui-icon-small aui-iconfont-edit"></span> </button>  -->
+                        </div>
+                    </fieldset>
+                    <div class="my_field_group" >
+                        <div class="aui-group" style="margin-top: 3px;width: 400px;">
+                                <apex:actionRegion >
+                                    <button style="width: 170px; float:left;" id="toggle-progress-button" class="aui-button " resolved="">Update/Create</button>
+                                    <button style="width: 170px; float:left;" id="toggle-progress-button-approve" class="aui-button " resolved="">Approve</button>
+                                    <apex:actionFunction name="createCr" action="{!crCreationUpdate}" reRender="opData,approveButt,errorVFP" oncomplete="gatherCrData()">
+                                        <apex:param name="jiraIssueKeyG" value="" id="issueKey"   /> 
+                                        <apex:param name="buttonpressed" value="" id="buttonpressed"   /> 
+                                        <apex:param name="addcustoButtonPressed" value="" id="addcustoButtonPressed"   /> 
+                                        <apex:param name="addNamespaceButtonPressed" value="" id="addNamespaceButtonPressed"   /> 
+                                        <apex:param name="manApproved" value="" id="manApproved"   /> 
+                                        <apex:param name="desriptionProc" value="" id="desriptionProc"   /> 
+                                    </apex:actionFunction>
+                                    <apex:outputPanel id="opData">
+                                        <apex:inputHidden value="{!cr_NSP}"  id="crNSP" />
+                                        <apex:inputHidden value="{!cr_prop}" id="crProp" />
+                                        <apex:inputHidden value="{!scriptids}" id="scriptids" />
+                                        <apex:inputHidden value="{!cr_exist}" id="cr_exist"  />
+                                        <apex:inputHidden value="{!openPopUp}" id="open_PopUp"  />
+                                        <apex:inputHidden value="{!cr_custos}" id="crCustos" />
+                                        <apex:inputHidden value="{!cr_custos_existing}" id="crcustosexisting" />
+                                        <apex:inputHidden value="{!cr_descp_proc}" id="cr_descp_proc"/>
+                                        <apex:inputHidden value="{!userLogged}" id="userLoggedJs" />
+                                        <apex:inputHidden value="{!notFormattedCustomizations}" id="notFormattedCustomizations" />
+                                        <apex:outputText value="{!errorMessage}" id="errors" style="display: none;" />
+                                    </apex:outputPanel>
+                            </apex:actionRegion>
+                            <div class="button-spinner"></div>
+                        </div>
+                    </div>
+                    </apex:form>
+                </div>
+                <script id="connect-loader" data-options="sizeToParent:true;">
+                    (function () {
+                        var getUrlParam = function (param) {
+                            var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
+                            return decodeURIComponent(codedParam);
+                        };
+                        var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+                        var options = document.getElementById('connect-loader').getAttribute('data-options');
+                        var script = document.createElement("script");
+                        script.src = baseUrl + '/atlassian-connect/all.js';
+
+                        if (options) {
+                            script.setAttribute('data-options', options);
+                        }
+                        document.getElementsByTagName("head")[0].appendChild(script);
+                    })();
+                </script>
+                <script type="text/javascript">
+
+                    // getLogin();
+                    var sfEp;
+                    var jiraIssueKey ;
+                    var buttonpressed = "F" ;
+                    var addNamespaceButtonPressed = "F"  ;
+                    var addcustoButtonPressed = "F" ;
+                    var manApproved = "F";
+                    var overviewProcessed = "F";
+
+                    //AJS Object with its funcitons
+                    AJS.$(function () {
+                        setTimeout(function () { 
+                            AP.getLocation(function (pageLocation) {
+                                jiraIssueKey = AP._data.options.productContext["issue.key"];
+                                sfEp = sessionStorage.getItem("sessionURL");
+                                //getInformation();
+                                getCustomizations();    
+
+                                var sessionIdvalue= sessionStorage.getItem("sessionId");
+                                var userIdValue= sessionStorage.getItem("userId");
+                                var oName= sessionStorage.getItem("orgName");
+
+                                //If already existin Session ID and URL - Auto Login
+                                if (sfEp != null &&  sessionIdvalue != null){
+                                    salesforceLogin(sessionIdvalue,sfEp,userIdValue,oName);  
+                                }
+                            });
+                            //This line will retrieve the number of Issue of Jira (i.e: JIS-172)
+                            jiraIssueKey = AP._data.options.productContext["issue.key"];
+
+                            //Size Attributes 
+                            AP.sizeToParent();
+                            AP.resize("100%", "720px")
+
+                        }, 1000)
+
+                        AJS.$('#label_add_custom').tooltip({gravity: 'w'});
+                        AJS.$('#proposed_id_label').tooltip({gravity: 'e'});
+                        AJS.$('#label_existing_custom').tooltip({gravity: 'w'});
+                        var spinning = false;
+
+                        //Submit Button When the use is logging in
+                        AJS.$("#submit").click(function () {
+                            salesforceLogin(sessionStorage.getItem("sessionId"),sessionStorage.getItem("sessionURL"),sessionStorage.getItem("userId"),sessionStorage.getItem("orgName"));
+                            return false;
+                        });
+
+                        //Create Update button - To Upsert CR
+                        AJS.$("#toggle-progress-button").click(function () {
+
+                            buttonpressed = "T";
+                            addcustoButtonPressed = "F";
+                            addNamespaceButtonPressed = "F";
+                            overviewProcessed = "F";
+                            AJS.$(this).text('Updating..');
+                            AJS.$('.button-spinner').spin();
+                            spinning = true;
+                            var selfm = AP;
+                            // $('[id$="notFormattedCustomizations"]').val('');
+                            createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved,overviewProcessed);
+
+                            var notFormattedCustomizations = $('[id$="notFormattedCustomizations"]').val().trim();
+
+                            var myFlag = AJS.flag({
+                                type: 'success',
+                                title: 'Sucess Event!',
+                                body: '<p>Your Change Request was updated!.</p>'
+                            });
+
+                            //Show Pop up with findings of parsed things or Proposed
+                           // if ((notFormattedCustomizations != null) && (notFormattedCustomizations != '') && (notFormattedCustomizations != undefined ) ){
+                           //      //Put Proposed Here
+                           //      console.log('notFormattedCustomizations',notFormattedCustomizations);
+                           //      $('#demo-dialog2').show();
+                           // }
+                            // Reload Page
+                            //AP.navigator.reload();
+                            //Not Formatted Strings -- REmove this
+                            // if ((notFormattedCustomizations != null) && (notFormattedCustomizations != '') && (notFormattedCustomizations != undefined ) ){
+                            //     var warFLag = AJS.flag({
+                            //     type: 'warning',
+                            //     title: 'Customization not attached',
+                            //     body: '<p> These customizations are not written in the correct format: '+ notFormattedCustomizations  +', ("API_Name -- Type")</p>'
+                            //     });
+                            //     $('[id$="notFormattedCustomizations"]').val("");
+                            // }
+
+                            return false;  
+                        });
+                        //Approve Button (Logic when Approve)
+                        AJS.$("#toggle-progress-button-approve").click(function () {
+
+                            buttonpressed = "F";
+                            addcustoButtonPressed = "F";
+                            addNamespaceButtonPressed = "F";
+                            manApproved = "T";
+                            overviewProcessed = "F";
+                            createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved,overviewProcessed);
+                             var myFlag = AJS.flag({
+                                type: 'success',
+                                title: 'Sucess Event!',
+                                body: '<p>Your Change Request was updated!.</p>'
+                            });
+
+                             return false;
+                        });
+                        //Button when you are in the Pop-up and Click Add Cusotmizaitons for 
+                        //the Selected ones
+                        AJS.$("#dialog-submit-button").click(function (){
+
+                            // - Add Customization selected and inputted - 
+                            var apiNames = '';
+                            var haserror = false;
+                            //Proposed Customizations Added 
+                            var tableProposedRows = document.getElementsByClassName('popUpTableProposed')[0].getElementsByTagName('tr');
+                            if(tableProposedRows.length > 1){
+                                var qProp = tableProposedRows.length;
+                                for(var i = 1 ; i < qProp ; i++ ){
+                                    var sfdcTypeProp = tableProposedRows[i].getElementsByTagName('select')[0].value;
+                                    var apiNamePropAdded = tableProposedRows[i].getElementsByTagName('td')[2].getElementsByTagName('input')[0].value;
+
+                                    if(tableProposedRows[i] != undefined && sfdcTypeProp != 'All' && apiNamePropAdded != ''){
+                                         apiNames += apiNamePropAdded + ' -- ' + sfdcTypeProp +',';
+                                    }else{
+                                        $('#errorPopUpMessages').html('');
+                                        $('#errorPopUpMessages').append('You should select Type and introduce api name for all the proposed rows');
+                                        haserror = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            //Existing API Names Checked in the pop up 
+                            if(!haserror){
+                                var tableExistingRows = document.getElementsByClassName('popUpTable')[0].getElementsByTagName('tr');
+                                if( tableExistingRows.length > 0 ){
+                                    var q = tableExistingRows.length ;
+                                    for(var i = 1 ; i < q ; i++ ){
+                                        var isChecked = tableExistingRows[i].getElementsByTagName('input')[0].checked;
+                                        var apiNameHidden = tableExistingRows[i].getElementsByTagName('input')[1].value;
+
+                                        if(tableExistingRows[i] != undefined && isChecked ){
+                                            console.log('apiNameHidden',apiNameHidden);
+                                            apiNames += apiNameHidden + ',';
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log('Api Names: ' , apiNames);
+
+                            if(apiNames != ''){
+                                   $('#demo-dialog2').hide();
+                                   $('.aui-blanket').hide();
+
+                                   overviewProcessed = 'T'; //--> always mark as overview processed
+                                   var crCustos   = $('[id$="crcustosexisting"]').val();
+                                    console.log('crCustos ' , crCustos);
+                                   if(crCustos != '' 
+                                    && crCustos != undefined 
+                                    && crCustos.split(',') != undefined 
+                                    && crCustos.split(',').length > 0){
+                                    var crCustosSplitted = crCustos.split(',');
+                                    for(var i = 0 ; i < crCustosSplitted.length ; i++){
+                                        if(apiNames.indexOf(crCustosSplitted[i]) == -1 ){
+                                            apiNames += crCustosSplitted[i] + ',';
+                                        }
+                                    }
+                                   }
+
+                                   console.log('Api Names: 2 ' , apiNames);
+                                   createCr(jiraIssueKey,buttonpressed,apiNames,addNamespaceButtonPressed,manApproved,overviewProcessed);
+                            }
+                            
+                           return false;
+                        });
+                        //Customization Button + to open the pop up or show messages
+                        AJS.$("#my_button_add").click(function () {
+                            //Change Request not Created - CHECK EXISTENCE
+                            if( sessionStorage.getItem("cr_id") == "F" 
+                                || sessionStorage.getItem("cr_id") == null
+                                || sessionStorage.getItem("cr_id") == '' ) {
+
+                                var errorFlag = AJS.flag({
+                                    type: 'warning',
+                                    title: 'Falied.',
+                                    body: '<p>There is not a Change Request creatend in your organization, please click on "Create/Update" button first.</p>'
+                                });
+                            }else{
+                                //CHECK IF API NAME ADDED - OTHER WISE SHOW ERROR MESSAGE
+                                if( $('#add_custom').val() == '' ){
+
+                                      var errorFlag = AJS.flag({
+                                        type: 'warning',
+                                        title: 'Falied.',
+                                        body: '<p>Please type the API Name of the customization first.</p>'
+                                       });
+
+                                }else{
+                                    //Open Pop up
+                                    $('#demo-dialog2').show();
+                                    $('.aui-blanket').show();
+                                    var txtinputted = $('#add_custom').val();
+                                    var typeSelect = $('[id$="selector"]').val();
+
+                                    //formatted and not formatted
+                                    var formated = '';
+                                    var notFormatted = '';
+                                    console.log('Type Selected: ' + typeSelect + '  txtinputted: ' + txtinputted);
+                                    if(typeSelect == 'All'){
+                                        var arraySplitted = txtinputted.split(',');
+                                        if( arraySplitted != undefined && arraySplitted.length > 0  ){
+                                            for(var i = 0 ; i < arraySplitted.length ; i ++){
+                                                var valueSplited = arraySplitted[i];
+                                                if( isWellWritten(valueSplited) ){
+                                                    formated += valueSplited + ',';
+                                                }else{
+                                                    notFormatted += valueSplited + ',';
+                                                }
+                                            }
+                                        }
+                                        getCustosOverviewAF(notFormatted,formated);     
+                                    }else{
+                                        var formattedApiName = txtinputted + ' -- ' + typeSelect;
+                                        getCustosOverviewAF('',formattedApiName);     
+                                    }
+                                }
+                            }
+                            return false;
+                        });
+                        //Add Namespace Button + - When add namespace and click +
+                        AJS.$("#my_button_add_bundleid").click(function () {
+                            addcustoButtonPressed = "F";
+                            buttonpressed = "F";
+                            //$('[id$="addNamespaceButtonPressed"]').val(addNamespaceButtonPressed);
+                            var spinning = false;
+                           // AJS.$("#my_add").spin();
+                            
+                            addNamespacePrefix();
+                            return false;
+                        });
+                        //Logout and remove session Id
+                        AJS.$("#logout").click(function () {
+                              sessionStorage.removeItem("sessionId");
+                              sessionStorage.removeItem("sessionURL");
+                              sessionStorage.removeItem("cr_id");
+                              sessionStorage.removeItem("login");
+                              sessionStorage.removeItem("userId");
+                              sessionStorage.removeItem("orgName");
+                              sessionStorage.removeItem("cr_descp_proc");
+                            AP.require('jira', function(jira){
+                              localStorage.removeItem("sessionId");
+                              localStorage.removeItem("sessionURL");
+                              localStorage.removeItem("cr_id");
+                              localStorage.removeItem("login");
+                              localStorage.removeItem("userId");
+                              localStorage.removeItem("orgName");
+                              localStorage.removeItem("cr_descp_proc");
+                              AP.navigator.reload();
+                            });
+                        });
+                    });
+
+                    /*
+                    * @descp: Method to get information of the existing CR and populate input hidden to show Data
+                    */
+                    function getInformation() {
+
+                        var sesionid = $('[id$="sesion_id"]').val();
+                        var sesionurl = $('[id$="url_id"]').val();
+                        var uIdi = $('[id$="user_id"]').val();
+                        var oName = $('[id$="org_name"]').val();
+                        
+                        //Connection and Session populated
+                        if ((sesionid != null) && (sesionid != '') 
+                            && (typeof(sesionid) != undefined) 
+                            && (sessionStorage.getItem("login") != "T")  ){
+                            //Set Session storage
+                            sessionStorage.setItem("sessionId", sesionid);
+                            sessionStorage.setItem("login", "T");
+                            sessionStorage.setItem("sessionURL", sesionurl);
+                            sessionStorage.setItem("userId", uIdi);
+                            sessionStorage.setItem("orgName", oName);
+                            //Jira Description Proccesed? 
+                            sessionStorage.setItem("cr_descp_proc", 'F');
+                            sfEp = sessionStorage.getItem("sessionURL");
+                            var successFlag = AJS.flag({
+                                type: 'success',
+                                title: 'Success!',
+                                body: '<p>Successful login.</p>'
+                            });
+                            if(sfEp != null){    
+                                buttonpressed = 'F';
+                                overviewProcessed = 'F';
+                                createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved,overviewProcessed);
+                            }
+
+                            AP.navigator.reload();
+
+                        }else if (sessionStorage.getItem("login") == 'T'){ 
+
+                            //This is when the user already logged in. 
+                            //It goes to the Controller to determine if the Change Request exists
+                            if(sfEp != null){    
+                                buttonpressed = 'F';
+                                overviewProcessed = 'F';
+                                $('[id$="buttonpressed"]').val(buttonpressed);
+                                //Go to Apex Function Method
+                                createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved,overviewProcessed);
+                                //Hide and Show Login Form or not
+                                getLoginHideWindows();
+                            }
+
+                            //AP.navigator.reload();
+
+                        }else if  ((sesionid == null) || (sesionid == '') || (typeof(sesionid) == undefined) ){
+                            var errorFlag = AJS.flag({
+                                type: 'error',
+                                title: 'Falied.',
+                                body: '<p>Wrong credentials.</p>'
+                            });
+                        }
+                        //Check Windows to hide
+                        getLoginHideWindows();
+                    }
+                     /*
+                    * @descp: Gather CR Data after APEX Controller we poppulate Text Areas, Namespace, etc
+                    */
+                    function gatherCrData(){
+
+                        AJS.$("#toggle-progress-button").text('Update/Create');
+                        //Input Fields - Hidden
+                        var crCustos   = $('[id$="crCustos"]').val();
+                        var proposedCustos   = $('[id$="crProp"]').val();
+                        var namespaces =  $('[id$="crNSP"]').val();
+                        var isOverProc = $('[id$="cr_descp_proc"]').val();
+
+                        //Scripts Ids - Formatted and not formatted
+                        var scriptidsFromDescp = $('[id$="scriptids"]').val();
+                        var notFormattedCustomizations = $('[id$="notFormattedCustomizations"]').val().trim();   
+
+                        //Output fields - to be Shown 
+                        $('[id$="proposed-id"]').val(proposedCustos);
+                        $('[id$="customizations-id"]').val(crCustos);
+                        $('[id$="NSP-id"]').val(namespaces);
+                        $('[id$="organizationNameId"]').html($('[id$="org_name"]').val());
+
+                        //Add Session Storage CR_ID of the existing CR ID 
+                        sessionStorage.setItem("cr_id", $('[id$="cr_exist"]').val() );
+                        sessionStorage.setItem("userId",$('[id$="user_id"]').val());
+                        sessionStorage.setItem("orgName",$('[id$="org_name"]').val());
+                        sessionStorage.setItem("cr_descp_proc", isOverProc);
+
+                        //Stop Spinner - Not sure if working
+                        AJS.$('.button-spinner').spinStop();
+                        spinning = false;
+                        var selfm = AP;
+
+                        //Hide Approve Button if needed 
+                        var jsUlogged =  $('[id$="userLoggedJs"]').val();
+                        if(jsUlogged == 'false'){
+                            $('[id$="toggle-progress-button-approve"]').hide();
+                        }
+
+                        //Check if the JIRA Overview was processed or not to auto-open the pop up with customization selector
+                        if(isOverProc == 'F' && sessionStorage.getItem("cr_id") != 'F'){
+                            if( (notFormattedCustomizations != null && notFormattedCustomizations != undefined && notFormattedCustomizations != '') 
+                            || (scriptidsFromDescp != '' && scriptidsFromDescp != undefined)) {
+                                //OPEN POP UP
+                                $('#demo-dialog2').show();
+                                $('.aui-blanket').show();
+                                //Go to Apex to find Customizaitons and re-build tables in pop up
+                                getCustosOverviewAF(notFormattedCustomizations,scriptidsFromDescp);
+                            }
+                        }
+                    }
+
+                    /*
+                    * @JS Function : To hide the Login window or show it 
+                    */
+                    function getLoginHideWindows(){
+                        
+                        if( sessionStorage.getItem("login") != null && sessionStorage.getItem("login")=='T'){
+                            document.getElementById('my_container').style.display='none';
+                            document.getElementById('container_form').style.display='block';
+                        }else{
+                            document.getElementById('my_container').style.display='block';
+                            document.getElementById('container_form').style.display='none';
+                        }
+                    }
+                    function getCustomizations() {
+                       if(!sessionStorage.getItem("cr_id") != "T") return 0;
+                    }
+                    //Function Related to Add Customizatons button and show messages if empty
+                    function addCustomziations() {
+
+                        addcustoButtonPressed = $('#add_custom').val();
+
+                        if( (addcustoButtonPressed != null) && (addcustoButtonPressed != undefined) && (addcustoButtonPressed != '')) 
+                            addcustoButtonPressed = addcustoButtonPressed.trim()+' -- '+$('[id$="selector"]').val();
+
+                        if( (sessionStorage.getItem("cr_id") == "F") || (sessionStorage.getItem("cr_id") == null) ) {
+                            var errorFlag = AJS.flag({
+                                type: 'warning',
+                                title: 'Falied.',
+                                body: '<p>There is not a Change Request creatend in your organization, please click on "Create/Update" button first.</p>'
+                            });
+                        }else if (addcustoButtonPressed == ''){
+                            var errorFlag = AJS.flag({
+                                type: 'warning',
+                                title: 'Falied.',
+                                body: '<p>Please type the API Name of the customization first.</p>'
+                            });
+                        }else{
+                            overviewProcessed = 'F';
+                            createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved,overviewProcessed);
+                            var selfm = AP;
+                            $('#add_custom').val('');
+                        }
+                    };
+                    function openOverlay() {
+                        $('.loadingOverlay').show();
+                    }
+                    // function closeOverlay() {
+                    //     var shouldClose = '';
+                    //     console.log(shouldClose);
+
+                    //     if (shouldClose == 'false') {
+                    //         $('.loadingOverlay').hide();
+                    //     }
+                    // }
+                    /*
+                    * @descp: Method to add Namespace Prefix to Apex Controller and save into SFDC
+                    */
+                    function addNamespacePrefix() {
+                        //Take Namespace fro the UI and pass it to the output
+                        var nmspcs = $('#add_custom_bundle_id').val();
+
+                        if( (nmspcs != null) && (nmspcs != undefined)) nmspcs = nmspcs.trim();
+
+                        if( (sessionStorage.getItem("cr_id") == "F") || (sessionStorage.getItem("cr_id") == null) ) {
+                            var errorFlag = AJS.flag({
+                                type: 'warning',
+                                title: 'Falied.',
+                                body: '<p>There is not a ChangeRequest created in your organization, please click on "Create/Update" button first.</p>'
+                            });
+                        }else if (nmspcs == ''){
+                            var errorFlag = AJS.flag({
+                                type: 'warning',
+                                title: 'Falied.',
+                                body: '<p>Please type the Namespace prefix of the customization first.</p>'
+                            });
+                        }else{
+                            addNamespaceButtonPressed = nmspcs;
+                            createCr(jiraIssueKey,buttonpressed,addcustoButtonPressed,addNamespaceButtonPressed,manApproved);
+                            var selfm = AP;
+                            $('#add_custom_bundle_id').val('');
+                        }
+                    }
+
+
+                    function isWellWritten(ids){
+
+                        var arrayTypes = $('[id$="selector"]').find('option');
+                        var sftypes = '';
+                        for(var i = 0 ; i < arrayTypes.length ; i ++){
+                            sftypes += arrayTypes[i].value + ',';
+                        }
+
+                        if (ids.indexOf(' -- ') != -1 ){
+                            var typeWritten = ids.split(' -- ')[1];
+                            if (sftypes.indexOf(typeWritten) !=  -1 ) return true;
+                            else return false;
+                        }else{
+                            return false;
+                        }
+
+                    }
+                </script>
+             </div>
+            </section>
+
+            <div class="loadingOverlay" style="display: none;">
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                    &nbsp;
+                </div>
+                <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%;">
+                    <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                        <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                        <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+</apex:page>

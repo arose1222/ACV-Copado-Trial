@@ -1,0 +1,631 @@
+<apex:page showHeader="false" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloChangeRequestButtonsController" standardStylesheets="false">
+
+<apex:slds />
+<style>
+	.activeTab {
+		border-bottom : 5px solid #0070d2;
+		padding: 10px !important;
+		text-align: center !important;
+		font-size: 12pt !important;
+		background: #FFF;
+	}
+	.tabsStyle {
+		padding: 10px !important;
+		text-align: center !important;
+		font-size: 12pt !important;
+		background: #FFF;
+	}
+	.rich-tabhdr-side-border {
+		display: none;
+	}
+	.rich-tabhdr-side-cell {
+		border-top: 0;
+	}
+	.errorM3 {
+		padding: 20px;
+    	background: #ffc;
+	}
+</style>
+
+<script>
+function closeWindow(){
+	window.parent.opener.reloadPage();
+	window.self.close();
+}
+function changeSelected(custoId,selected){
+
+	
+
+	// var isSelected;
+	// if(selected == 'on'){
+	// 	isSelected = 'true';
+	// }else{
+	// 	isSelected = 'false';
+	// }
+	console.log(custoId);
+	console.log(selected);
+	changeAF(custoId,selected);
+}
+</script>
+	<apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+	
+	<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/jquery.dataTables.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/jquery.dataTables.css')}" />
+	<apex:form id="formi">
+		<script>
+			j$ = jQuery.noConflict();
+			function openOverlay() {
+				j$('.loadingOverlay').show();
+			}
+			function closeOverlay() {
+				var shouldClose = '{!runPoll}';
+				console.log(shouldClose);
+
+				if (shouldClose == 'false') {
+					j$('.loadingOverlay').hide();
+				}
+			}
+			function changeInboundJs(value){
+				changeInboundAF(value);
+			}
+
+			function openSaveModal() {
+				j$('div.saveCredsModal').show();
+			}
+			function closeModal() {
+				j$('div.saveCredsModal').hide();
+			}
+
+			function callforCredsTarget(){
+				gettargetCreds();
+			}
+
+			function callforCredsSource() {
+				getsourceCreds();
+			}
+						
+		</script>
+		 <div class="slds-page-header">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title--caps slds-line-height--reset">Import Customizations</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Change Request : {!cr.Name}</h1>
+                        </div>
+                        <apex:outputPanel layout="block" style="text-align: center;margin-top: 10px;">
+							<button onclick="closeWindow();" class="slds-button slds-button--brand slds-order--3" >
+								Close and Refresh CR
+							</button>
+						</apex:outputPanel>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <apex:actionRegion >
+			<apex:actionFunction name="changeAF" action="{!changeSelect}" reRender="">
+				<apex:param value="" name="customizationId" />
+				<apex:param value="" name="selectedId" />
+			</apex:actionFunction>
+		</apex:actionRegion>
+ 	    <apex:actionPoller rerender="formi" interval="5" action="{!retrieveCS}" enabled="{!runPoll}" oncomplete="closeOverlay()"/>
+
+		<apex:pageMessages />
+		<div class="slds-scope">
+			<apex:pageBlock >
+				<apex:tabPanel switchType="client" selectedTab="name2" id="theTabPanel" style="width: 100%;margin-top: 20px;" tabClass="tabsStyle" activeTabClass="activeTab">
+					<apex:tab label="Change Set" name="changeSet" id="tabOne" switchType="server" >
+						<apex:outputPanel layout="block" style="padding: 30px 15px; background: #FFF;">
+							<apex:actionRegion >
+								<apex:actionFunction name="changeInboundAF" action="{!changeInbound}" reRender="formi">
+									<apex:param value="" name="inboundSelected" />
+								</apex:actionFunction>
+								<apex:actionFunction action="{!setEnviromenCredsTarget}" name="setTargetCreds" reRender="saveCredsModal" oncomplete="openSaveModal();" status="statusC"/>
+								<apex:actionFunction action="{!setEnviromentTarget}" name="gettargetCreds" reRender="targetBlock" status="statusC"/>
+								<apex:pageBlockSection columns="1">
+									<apex:outputLabel StyleClass="slds-form-element__label" value="Add Change Set Name"/>
+									<apex:inputText value="{!changeSetName}" styleClass="slds-input"/>
+								</apex:pageBlockSection>
+								<apex:pageBlockSection columns="1">
+									<apex:outputLabel StyleClass="slds-form-element__label" value="Is it Inbound Change Set?"/>
+									<apex:inputCheckbox value="{!inboundChangeSet}" onchange="changeInboundJs(this.checked);return false;" />
+								</apex:pageBlockSection>
+								<apex:outputPanel id="credentials" rendered="{!IF(inboundChangeSet,true,false)}">
+								<!-- <apex:pageMessages /> -->
+
+								   <apex:outputPanel layout="block" id="sourceMessage" >
+										<apex:outputPanel layout="block" rendered="{!sourceLoginMessage != ''}" >	
+											{!sourceLoginMessage}
+										</apex:outputPanel>
+									</apex:outputPanel>
+									<br/>
+									<apex:outputPanel layout="block" id="remoteSiteMessage">
+										<script>
+											function createRemoteSite()
+											{ 
+												// Disable button 
+												document.getElementById('createremotesitebtn').disabled = true;
+												console.log('{!remoteName}');
+												console.log('{!remoteUrl}');
+												// Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+												var binding = new XMLHttpRequest();
+												var request = 
+													'<?xml version="1.0" encoding="utf-8"?>' + 
+													'<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+														'<env:Header>' + 
+															'<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' + 
+																'<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' + 
+															'</urn:SessionHeader>' + 
+														'</env:Header>' + 
+														'<env:Body>' +
+															'<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' + 
+																'<metadata xsi:type="RemoteSiteSetting">' + 
+																	'<fullName>{!remoteName}</fullName>' + 
+																	'<description>{!remoteDescription}</description>' + 
+																	'<disableProtocolSecurity>false</disableProtocolSecurity>' + 
+																	'<isActive>true</isActive>' + 
+																	'<url>https://{!remoteUrl}</url>' +
+																'</metadata>' +
+															'</createMetadata>' +
+														'</env:Body>' + 
+													'</env:Envelope>';
+
+												console.log(request);
+
+												binding.open('POST', 'https://{!Host}/services/Soap/m/31.0');
+												binding.setRequestHeader('SOAPAction','""');
+												binding.setRequestHeader('Content-Type', 'text/xml');
+												binding.onreadystatechange = 
+													function() { 
+														if(this.readyState==4) {
+															var parser = new DOMParser();
+															var doc  = parser.parseFromString(this.response, 'application/xml');
+															var errors = doc.getElementsByTagName('errors');
+															var messageText = '';
+															for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+																messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+															displayMetadataResponse(messageText);
+														} 
+													}
+												binding.send(request);
+												j$('.remoteSiteMessage').hide
+											}
+										</script>
+										<apex:actionFunction action="{!createRemoteSite2}" name="createRemoteSite2"  status="statusC"/>
+										<apex:outputPanel layout="block" rendered="{!showRemoteSiteSettingCreation}" styleClass="remoteSiteMessage">
+											<h1>Important Message:</h1> 
+											<p>In order to utilise the features of Environment Comparison, you need to permit the tool access to the environments to compare. This can be accomplished by adding a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> with this Salesforce Server URL <b>https://{!remoteUrl}</b></p>
+											<p> 
+												Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you. 
+												<input id="createremotesitebtn" type="button" onclick="createRemoteSite2();" value="Create Remote Site Setting"/>
+											</p>
+										</apex:outputPanel>
+										<apex:outputPanel layout="block" rendered="{!showRemoteSiteSettingCreated}" styleClass="remoteSiteMessage">
+											<h1>Important Message:</h1> 
+											<p>{!rssMessage}</p>
+										</apex:outputPanel>										
+									</apex:outputPanel>	
+
+									<apex:outputPanel layout="block" styleclass="slds-form-element__group" id="targetBlock">
+										<div class="slds-form-element__row">
+											<apex:outputPanel layout="block" StyleClass="slds-form-element slds-size--1-of-1" id="targetEnvSelect">
+												<label class="slds-form-element__label" for="input-03">Saved Environments:</label><br/>
+												<apex:selectList value="{!selectedEnviroment}" size="1" styleClass="slds-input" onchange="callforCredsTarget()">
+													<apex:selectOptions value="{!savedEnviroments}" />
+												</apex:selectList>
+											</apex:outputPanel>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+												<apex:inputText value="{!username}" id="targetUsername" styleClass="slds-input"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+												<apex:inputSecret value="{!password}" styleClass="slds-input" redisplay="true"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+												<apex:inputSecret value="{!token}" styleClass="slds-input"  redisplay="true"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+												<apex:inputCheckbox value="{!isSandbox}" />
+											</div>
+											<div class="slds-form-element slds-size--1-of-1" id="msgSaved" style="display:none;">
+												<label class="slds-form-element__label" for="input-03">{!msgSaved}</label>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<apex:commandButton action="{!testConnection}" value="Test Connection" reRender="remoteSiteMessage,sourceMessage" styleClass="slds-button slds-button--brand slds-order--3"/>
+												<button class="slds-button slds-button--brand" onclick="setTargetCreds(); return false;">
+													Save Credentials
+												</button>
+											</div>
+										</div>
+									</apex:outputPanel>
+								</apex:outputPanel>
+								<apex:outputPanel layout="block" style="text-align: center; padding: 5px;">
+									<apex:commandButton value="Get Customizations" action="{!changeSet}" reRender="formi" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/>
+								</apex:outputPanel>
+								<div class="saveCredsModal" style="display: none;">
+									<apex:outputPanel layout="block" id="saveCredsModal">
+										<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+											<div class="slds-modal__container">
+												<div class="slds-modal__header">
+													<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="closeModal(); return false;">
+														 X
+														<span class="slds-assistive-text">Close</span>
+													</button>
+													<h2 id="header43" class="slds-text-heading--medium">Save Credentials</h2>
+												</div>
+												<div class="slds-modal__content slds-p-around--medium">
+													<div class="slds-form-element__row">
+														<div class="slds-form-element slds-size--1-of-1">
+															<label class="slds-form-element__label" for="input-03">Environment Name: <span class="required">*</span></label><br/>
+															<apex:inputText value="{!toSaveCreds.FLODocs__Custom_Name__c}" id="toSaveName" styleClass="slds-input" maxlength="19"/><br/>
+															<apex:outputText value="{!credNameError}" rendered="{!credNameError != ''}" style="color:red;"/>
+														</div>
+													</div>
+													<div class="slds-form-element__row">
+														<div class="slds-form-element slds-size--1-of-1">
+															<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+															<apex:inputText value="{!toSaveCreds.FLODocs__Username__c}" id="toSaveUsername" styleClass="slds-input" /><br/>
+															<apex:outputText value="{!credUserNameError}" rendered="{!credUserNameError != ''}" style="color:red;"/>
+						 								</div>
+													</div>
+													<div class="slds-form-element__row">
+														<div class="slds-form-element slds-size--1-of-1">
+															<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+															<apex:inputSecret value="{!toSaveCreds.FLODocs__Password__c}" styleClass="slds-input" redisplay="true"/><br/>
+															<apex:outputText value="{!credPasswordError}" rendered="{!credPasswordError != ''}" style="color:red;"/>
+														</div>
+													</div>
+													<div class="slds-form-element__row">
+														<div class="slds-form-element slds-size--1-of-1">
+															<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+															<apex:inputSecret value="{!toSaveCreds.FLODocs__Token__c}" styleClass="slds-input" redisplay="true"/><br/>
+															<apex:outputText value="{!credTokenError}" rendered="{!credTokenError != ''}" style="color:red;"/>
+														</div>
+													</div>
+													<div class="slds-form-element__row">
+														<div class="slds-form-element slds-size--1-of-1">
+															<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+															<apex:inputCheckbox value="{!toSaveCreds.FLODocs__Sandbox__c}" />
+														</div>
+													</div>
+												</div>
+												<div class="slds-modal__footer">
+													<apex:commandButton action="{!saveEnviroment}" value="Save" reRender="targetBlock,saveCredsModal" styleClass="slds-button slds-button--brand slds-order--3" oncomplete="closeModalAfterSave()" status="statusC"/>
+													<!-- <button class="slds-button slds-button--brand">Save</button> -->
+												</div>
+											</div>
+										</div>
+										<div class="slds-backdrop slds-backdrop--open"></div>
+										<script>
+											function closeModalAfterSave() {
+												//if ({!closeModal}) {
+													j$('div.saveCredsModal').hide();
+												//}
+												showOrHideMsgSaved();
+											}
+											//SF--1152 to show msg saved
+											function showOrHideMsgSaved(){
+													var saved='{!showMsgSaved}';
+													if(saved==='true'){
+														document.getElementById("msgSaved").style.display = "block";
+														setTimeout(function(){//to hide the msg saved after 5 seconds
+															document.getElementById("msgSaved").style.display = "none";
+														  }, 5000);
+														
+													}
+												}
+										</script>
+									</apex:outputPanel>
+								</div>
+							</apex:actionRegion>
+						</apex:outputPanel>
+					</apex:tab>
+					<apex:tab label="Manifest (Package.xml)" name="manifest" id="tabTwo" switchType="server">
+						<apex:pageBlockSection columns="1">
+							<apex:outputPanel layout="block" style="padding: 30px 15px;background: #FFF;">
+								<apex:outputLabel StyleClass="slds-form-element__label" value="Add Manifest File"/>
+								<apex:inputFile value="{!manifest}" filename="package.xml" accept="text/xml"  styleClass="slds-form-element__label"/>
+								<apex:outputPanel layout="block" style="text-align: center; padding: 10px;">
+									<apex:commandButton value="Get Customizations" action="{!getCustosFromXML}" styleClass="slds-button slds-button_neutral slds-order--3"/>
+								</apex:outputPanel>
+
+								<apex:outputLabel StyleClass="slds-form-element__label" value="Note: * Wild card will get customizations related to the current organization."/>
+							</apex:outputPanel>
+						</apex:pageBlockSection>
+					</apex:tab>
+					<apex:tab label="Change Request (Other Orgs)" name="changeRequest" id="tabThree" switchType="server">
+						<apex:pageBlockSection columns="1">
+							<apex:outputPanel layout="block" style="padding: 30px 15px;background: #FFF;">
+							
+								<apex:actionRegion >
+									<apex:actionFunction name="changeInboundAF" action="{!changeInbound}" reRender="formi">
+										<apex:param value="" name="inboundSelected" />
+									</apex:actionFunction>
+									<apex:actionFunction action="{!setEnviromenCredsTarget}" name="setTargetCreds" reRender="saveCredsModal" oncomplete="openSaveModal();" status="statusC"/>
+									<apex:actionFunction action="{!setEnviromentTarget}" name="gettargetCreds" reRender="targetBlock" status="statusC"/>
+								
+								   <apex:outputPanel layout="block" id="sourceMessage" >
+										<apex:outputPanel layout="block" rendered="{!sourceLoginMessage != ''}" >	
+											{!sourceLoginMessage}
+										</apex:outputPanel>
+									</apex:outputPanel>
+									<br/>
+									<apex:outputPanel layout="block" id="remoteSiteMessage">
+										<script>
+											function createRemoteSite()
+											{ 
+												// Disable button 
+												document.getElementById('createremotesitebtn').disabled = true;
+												console.log('{!remoteName}');
+												console.log('{!remoteUrl}');
+												// Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+												var binding = new XMLHttpRequest();
+												var request = 
+													'<?xml version="1.0" encoding="utf-8"?>' + 
+													'<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+														'<env:Header>' + 
+															'<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' + 
+																'<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' + 
+															'</urn:SessionHeader>' + 
+														'</env:Header>' + 
+														'<env:Body>' +
+															'<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' + 
+																'<metadata xsi:type="RemoteSiteSetting">' + 
+																	'<fullName>{!remoteName}</fullName>' + 
+																	'<description>{!remoteDescription}</description>' + 
+																	'<disableProtocolSecurity>false</disableProtocolSecurity>' + 
+																	'<isActive>true</isActive>' + 
+																	'<url>https://{!remoteUrl}</url>' +
+																'</metadata>' +
+															'</createMetadata>' +
+														'</env:Body>' + 
+													'</env:Envelope>';
+
+												console.log(request);
+
+												binding.open('POST', 'https://{!Host}/services/Soap/m/31.0');
+												binding.setRequestHeader('SOAPAction','""');
+												binding.setRequestHeader('Content-Type', 'text/xml');
+												binding.onreadystatechange = 
+													function() { 
+														if(this.readyState==4) {
+															var parser = new DOMParser();
+															var doc  = parser.parseFromString(this.response, 'application/xml');
+															var errors = doc.getElementsByTagName('errors');
+															var messageText = '';
+															for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+																messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+															displayMetadataResponse(messageText);
+														} 
+													}
+												binding.send(request);
+												j$('.remoteSiteMessage').hide
+											}
+										</script>
+										<apex:actionFunction action="{!createRemoteSite2}" name="createRemoteSite2"  status="statusC"/>
+										<apex:outputPanel layout="block" rendered="{!showRemoteSiteSettingCreation}" styleClass="remoteSiteMessage">
+											<h1>Important Message:</h1> 
+											<p>In order to utilise the features of Environment Comparison, you need to permit the tool access to the environments to compare. This can be accomplished by adding a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> with this Salesforce Server URL <b>https://{!remoteUrl}</b></p>
+											<p> 
+												Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you. 
+												<input id="createremotesitebtn" type="button" onclick="createRemoteSite2();" value="Create Remote Site Setting"/>
+											</p>
+										</apex:outputPanel>
+										<apex:outputPanel layout="block" rendered="{!showRemoteSiteSettingCreated}" styleClass="remoteSiteMessage">
+											<h1>Important Message:</h1> 
+											<p>{!rssMessage}</p>
+										</apex:outputPanel>										
+									</apex:outputPanel>	
+
+									<apex:outputPanel layout="block" styleclass="slds-form-element__group" id="targetBlock">
+										<div class="slds-form-element__row">
+											<apex:outputPanel layout="block" StyleClass="slds-form-element slds-size--1-of-1" id="targetEnvSelect">
+												<label class="slds-form-element__label" for="input-03">Saved Environments:</label><br/>
+												<apex:selectList value="{!selectedEnviroment}" size="1" styleClass="slds-input" onchange="callforCredsTarget()">
+													<apex:selectOptions value="{!savedEnviroments}" />
+												</apex:selectList>
+											</apex:outputPanel>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+												<apex:inputText value="{!username}" id="targetUsername" styleClass="slds-input"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+												<apex:inputSecret value="{!password}" styleClass="slds-input" redisplay="true"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+												<apex:inputSecret value="{!token}" styleClass="slds-input"  redisplay="true"/>
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+												<apex:inputCheckbox value="{!isSandbox}" />
+											</div>
+										</div>
+										<div class="slds-form-element__row">
+											<div class="slds-form-element slds-size--1-of-1">
+												<apex:commandButton action="{!testConnection}" value="Test Connection" reRender="remoteSiteMessage,sourceMessage" styleClass="slds-button slds-button--brand slds-order--3"/>
+												<button class="slds-button slds-button--brand" onclick="setTargetCreds(); return false;">
+													Save Credentials
+												</button>
+												<!-- <apex:outputPanel layout="block" style="text-align: center; padding: 5px;"> -->
+													<apex:commandButton value="Get Change Requests" action="{!changeRequests}" reRender="crlisti" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/>
+												<!-- </apex:outputPanel> -->
+											</div>
+										</div>
+									</apex:outputPanel>
+
+									<div style="margin-top: 40px;">
+										<apex:outputPanel id="crlisti">
+										   <apex:outputLabel StyleClass="slds-form-element__label" value="Select Change Request to display Customizations"/>
+											<apex:selectList value="{!crSelected}" multiselect="false" size="1">
+												<apex:selectOptions value="{!crRetrievedList}"/>
+											</apex:selectList>
+											<apex:commandButton value="Load Customizations" action="{!loadCustoFromCR}" reRender="formi" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/>
+										</apex:outputPanel>
+									</div>
+									<div class="saveCredsModal" style="display: none;">
+										<apex:outputPanel layout="block" id="saveCredsModal">
+											<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+												<div class="slds-modal__container">
+													<div class="slds-modal__header">
+														<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="closeModal(); return false;">
+															 X
+															<span class="slds-assistive-text">Close</span>
+														</button>
+														<h2 id="header43" class="slds-text-heading--medium">Save Credentials</h2>
+													</div>
+													<div class="slds-modal__content slds-p-around--medium">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size--1-of-1">
+																<label class="slds-form-element__label" for="input-03">Environment Name: <span class="required">*</span></label><br/>
+																<apex:inputText value="{!toSaveCreds.FLODocs__Custom_Name__c}" id="toSaveName" styleClass="slds-input" maxlength="19"/><br/>
+																<apex:outputText value="{!credNameError}" rendered="{!credNameError != ''}" style="color:red;"/>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size--1-of-1">
+																<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+																<apex:inputText value="{!toSaveCreds.FLODocs__Username__c}" id="toSaveUsername" styleClass="slds-input" /><br/>
+																<apex:outputText value="{!credUserNameError}" rendered="{!credUserNameError != ''}" style="color:red;"/>
+							 								</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size--1-of-1">
+																<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+																<apex:inputSecret value="{!toSaveCreds.FLODocs__Password__c}" styleClass="slds-input" redisplay="true"/><br/>
+																<apex:outputText value="{!credPasswordError}" rendered="{!credPasswordError != ''}" style="color:red;"/>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size--1-of-1">
+																<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+																<apex:inputSecret value="{!toSaveCreds.FLODocs__Token__c}" styleClass="slds-input" redisplay="true"/><br/>
+																<apex:outputText value="{!credTokenError}" rendered="{!credTokenError != ''}" style="color:red;"/>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size--1-of-1">
+																<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+																<apex:inputCheckbox value="{!toSaveCreds.FLODocs__Sandbox__c}" />
+															</div>
+														</div>
+													</div>
+													<div class="slds-modal__footer">
+														<apex:commandButton action="{!saveEnviroment}" value="Save" reRender="targetBlock,saveCredsModal" styleClass="slds-button slds-button--brand slds-order--3" oncomplete="closeModalAfterSave()" status="statusC"/>
+														<!-- <button class="slds-button slds-button--brand">Save</button> -->
+													</div>
+												</div>
+											</div>
+											<div class="slds-backdrop slds-backdrop--open"></div>
+											<script>
+												function closeModalAfterSave() {
+													//if ({!closeModal}) {
+														j$('div.saveCredsModal').hide();
+													//}
+												}
+											</script>
+										</apex:outputPanel>
+									</div>
+								</apex:actionRegion>
+							</apex:outputPanel>
+						</apex:pageBlockSection>
+					</apex:tab>
+				</apex:tabPanel>
+
+			
+			</apex:pageBlock>
+		</div>
+		<apex:actionRegion >
+			<apex:pageBlock rendered="{!isCSDone && custos.size > 0}" >
+
+				<div class="slds-section slds-is-open" style="margin-top: 1.5rem;margin-bottom: 1.5rem;">
+				  <h3 class="slds-section__title">
+				    <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="display:block;">
+				      <span class="slds-truncate" title="Section Title" style="float: left;">Customizations To Import</span>
+				      <apex:commandButton value="Import Customizations" action="{!importSelected}" onclick="openOverlay()" oncomplete="closeOverlay();closeWindow();" styleClass="slds-button slds-button--brand slds-order--3" style="float:right;"/>
+				    </button>
+				  </h3>
+				</div>
+
+	 			<apex:outputPanel layout="block" id="custoTable" style="padding: 15px;">
+	                <script>
+	                    j$(document).ready( function () {
+	                        var contactTable = j$('[id$="custable"]').DataTable({
+	                        	"iDisplayLength": 5000,
+	                        	"bLengthChange": false
+	                        });
+	                    });
+	                </script>
+	                <table id="custable" class="display slds-table slds-table_bordered slds-table_cell-buffer">
+	                    <thead>
+	                        <tr class="slds-text-title_caps">
+	                            <th scope="col">Is Selected?</th>
+	                            <th scope="col">API Name</th>
+	                            <th scope="col">Salesforce Type</th>
+	                            <th scope="col">Exists as Customizaiton (Already Scanned)</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <apex:repeat value="{!listCustos}" var="cus">
+	                        	<apex:repeat value="{!cus}" var="c" >
+	                            <tr>
+	                                <td scope="row">
+	                                	<apex:inputCheckbox onChange="changeSelected('{!c.custoId}',this.checked);return false;" value="{!c.isSelected}" />
+									</td>
+	                                <td scope="row">{!c.custoName}</td>
+	                                <td scope="row">{!c.custoType}</td>
+	                                <td style="background-color: {!IF(c.Exist == true, 'green','red')};" scope="row">
+	                                	{!IF(c.Exist == true, 'Exists','Create Prototype')}
+	                               	</td>
+	                            </tr>
+	                            </apex:repeat>
+	                        </apex:repeat>
+	                    </tbody>
+	                </table>
+	            </apex:outputPanel>
+			</apex:pageBlock>
+	    </apex:actionRegion>
+	</apex:form>
+
+
+	<div class="loadingOverlay" style="display: none;">
+		<div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+	        &nbsp;
+	    </div>
+	    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%;">
+	        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+	            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+	            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+	        </div>
+	    </div>
+	</div>
+
+
+</apex:page>

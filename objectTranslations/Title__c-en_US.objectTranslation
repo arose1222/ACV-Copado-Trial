@@ -9,6 +9,10 @@
         <value>Titles</value>
     </caseValues>
     <fields>
+        <label><!-- ACV Titles External ID --></label>
+        <name>ACV_Titles_External_ID__c</name>
+    </fields>
+    <fields>
         <help><!-- Buyer Account Id - populated by the backed (engineering team) using SF TitleService. --></help>
         <label><!-- Buyer Organization Id --></label>
         <name>Buyer_Organization_Id__c</name>
@@ -22,6 +26,10 @@
         <label><!-- Case --></label>
         <name>Case__c</name>
         <relationshipLabel><!-- Titles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Is Pending Related Info --></label>
+        <name>Is_Pending_Related_Info__c</name>
     </fields>
     <fields>
         <help><!-- Auction Id - populated by the backed (engineering team) using SF TitleService. --></help>

@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>This is a process tracking record.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>FLODocs__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates the activation of the FLO Process Record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the activation of the FLO Process Record</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Additional_Approvers__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Additional approves to be consider in any change request associated to this process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Additional approves to be consider in any change request associated to this process</inlineHelpText>
+        <label>Additional Approvers</label>
+        <length>15000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Archive_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status to be manually set, and organize process(es) by archiving by status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status to be manually set, and organize process(es) by archiving by status</inlineHelpText>
+        <label>Archive Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Assign_from_Record__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Assign from Record</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Assigned_Employee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Assigned Employee</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>FLO_Processes1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Assigned_Implementer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the implementer assigned to implement this process or step</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the implementer assigned to implement this process or step</inlineHelpText>
+        <label>Assigned Implementer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>FLO_Processes2</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Assistant_Step__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This holds the current step in the assistant for this process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This holds the current step in the assistant for this process.  It is used to ensure the assistant loads at the correct step.</inlineHelpText>
+        <label>Assistant Step</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Audit_Approval_Policy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field designates the approval policy and audit path relating to this process.  If not specified, the next highest policy applies.  If none is found, the default policy applies.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field designates the approval policy and audit path relating to this process.  If not specified, the next highest policy applies.  If none is found, the default policy applies.</inlineHelpText>
+        <label>Audit / Approval Policy</label>
+        <referenceTo>FLODocs__FLO_Change_Approval_Policy__c</referenceTo>
+        <relationshipName>FLO_Processes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Comment_Ideas__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are comments or ideas about the process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are comments or ideas about the process</inlineHelpText>
+        <label>Comment / Ideas</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Controls__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are objects that function as controls on the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are objects that function as controls on the process.  This designation allows the change management system to ensure that any changes to the controls may be specially highlighted.</inlineHelpText>
+        <label>Controls</label>
+        <length>16384</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Copy_Children__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is the flag used to tell the backend script to copy all children.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the flag used to tell the backend script to copy all children.</inlineHelpText>
+        <label>Copy Children</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Copy_Of__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This records the process that this process is copied from.  Used when copying a process to create a new draft.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This records the process that this process is copied from.  Used when copying a process to create a new draft.</inlineHelpText>
+        <label>Copy Of</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Current_Process_Maturity_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The level of process maturity of the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The level of process maturity of the process.</inlineHelpText>
+        <label>Current Process Maturity Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Estimated_Implementation_Effort__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Estimate of the effort involved in applying the documented process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimate of the effort involved in applying the documented process.</inlineHelpText>
+        <label>Estimated Implementation Effort</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Fields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The fields relevant to the customization.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The fields relevant to the customization.</inlineHelpText>
+        <label>Fields</label>
+        <length>16384</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__First_Step_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description of the first step of the process, the starting point of the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the first step of the process, the starting point of the process.</inlineHelpText>
+        <label>First Step Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__First_Step__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The starting point of the process. EDITED.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The starting point of the process. EDITED.</inlineHelpText>
+        <label>First Step</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Forms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of forms used within the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of forms used within the process.</inlineHelpText>
+        <label>Visualforce Page(s)/Component(s)</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Initial_Process_Maturity_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the process maturity score of this process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the process maturity score of this process.</inlineHelpText>
+        <label>Initial Process Maturity Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Last_Step_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description of the process last step.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the process last step.</inlineHelpText>
+        <label>Last Step Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Last_Step__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the process last step.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the process last step.</inlineHelpText>
+        <label>Last Step</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Material_Risk_Assessed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field allows the admins to designate that a given process has been assessed for material risk.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this field to indicate that material risk analysis has been completed for this process.</inlineHelpText>
+        <label>Material Risk Assessed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Next_Process_Review_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date in which the process will be reviewed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date in which the process will be reviewed.</inlineHelpText>
+        <label>Next Process Review Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Next_Process__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is a link to another process record - not the parent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a link to another process record - not the parent.</inlineHelpText>
+        <label>Next Process</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes4</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__No_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Flag the process as process without steps.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag the process as process without steps.</inlineHelpText>
+        <label>No Step</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes2</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Process number for identification.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Process number for identification.</inlineHelpText>
+        <label>Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Other_Customizations__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Customizations related to a process other than Fields, Forms, Searches, Scripts, Workflows or Controls.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customizations related to a process other than Fields, Forms, Searches, Scripts, Workflows or Controls.</inlineHelpText>
+        <label>Other Customizations</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Other_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the step for the &quot;other&quot; outcome of a decision</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the step for the &quot;other&quot; outcome of a decision</inlineHelpText>
+        <label>Other Step</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes3</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Overview__c</fullName>
+        <deprecated>false</deprecated>
+        <description>High level overview of the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>High level overview of the process.</inlineHelpText>
+        <label>Overview</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Parent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Parent process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Parent process.</inlineHelpText>
+        <label>Parent</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Parent_num__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the number of the parent process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the number of the parent process.</inlineHelpText>
+        <label>Parent #</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Audience__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Roles entitled to see the process - if blank, process is public.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roles entitled to see the process - if blank, process is public.</inlineHelpText>
+        <label>Process Audience</label>
+        <length>15000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Detail explanation of the project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Detail explanation of the project.</inlineHelpText>
+        <label>Process Description</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Diagram__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is an auto-generated svg image of the process created by Strongpoint</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is an auto-generated svg image of the process created by Strongpoint</inlineHelpText>
+        <label>Process Diagram</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Editors__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Employees entitled to edit the process record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Employees entitled to edit the process record.</inlineHelpText>
+        <label>Process Editors</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Participants__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Roles involve in the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roles involve in the process.</inlineHelpText>
+        <label>Process Participants</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Rank__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field is used to ensure all processes appear in the correct order by number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is used to ensure all processes appear in the correct order by number.</inlineHelpText>
+        <label>Rank</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__RedirectPopupTo__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Redirect - Beta</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Redirect - Beta</inlineHelpText>
+        <label>RedirectPopupTo</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Reports__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are reports relevant to the step or process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are reports relevant to the step or process</inlineHelpText>
+        <label>Reports</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Scripts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are scripts / Apex classes and triggers used in the process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are scripts / Apex classes and triggers used in the process.</inlineHelpText>
+        <label>Apex Class(es)/Trigger(s)</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Searches__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are searches relevant to the step or process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are searches relevant to the step or process</inlineHelpText>
+        <label>Searches</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Shape_Order__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the order in which items are displayed on the high level process view</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the order in which items are displayed on the high level process view</inlineHelpText>
+        <label>Shape Order</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field tracks whether the process described is a current or proposed process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field tracks whether the process described is a current or proposed process.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Process_Status</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Step_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This designates the type of process step.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This designates the type of process step.</inlineHelpText>
+        <label>Step Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>FLODocs__FLO_Step_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Subsidiary__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Subsidiary</label>
+        <referenceTo>FLODocs__FLO_Customization__c</referenceTo>
+        <relationshipName>FLO_Processes8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Supporting_Processes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are processes that support this process but are not part of its workflow.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are processes that support this process but are not part of its workflow.</inlineHelpText>
+        <label>Supporting Processes</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Target_Implementation_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the date by which the implementation and testing should be completed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the date by which the implementation and testing should be completed.</inlineHelpText>
+        <label>Target Implementation Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Target_Process_Maturity_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the target score for this process by the review date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the target score for this process by the review date.</inlineHelpText>
+        <label>Target Process Maturity Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Test_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date of the Test for this FLO Process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date of the Test for this FLO Process</inlineHelpText>
+        <label>Test Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Test_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Test template related to the FLO Process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Test template related to the FLO Process</inlineHelpText>
+        <label>Test Template</label>
+        <referenceTo>FLODocs__FLO_Test_Record__c</referenceTo>
+        <relationshipLabel>Processes</relationshipLabel>
+        <relationshipName>FLO_Processes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Text_Formula__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number formula</description>
+        <externalId>false</externalId>
+        <formula>VALUE( SUBSTITUTE(FLODocs__Number__c, &apos;.&apos;, &apos;000&apos; ) )</formula>
+        <inlineHelpText>Number formula</inlineHelpText>
+        <label>RANK / Text (Formula)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__To_Archive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates that this Process will be to Archived</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this Process will be to Archived</inlineHelpText>
+        <label>To Archive</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Update_Child_Owners_and_Approvers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field controls whether the process owners are updated on  all child processes when the parent is changed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to update the owner to change on all child processes.  This will override any existing owner.</inlineHelpText>
+        <label>Update Child Owners and Approvers</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Update_Child_Process_Policies__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field updates the Audit / Approval Policy on child processes  overriding any existing policy.  If left unchecked, the policy propagates until a different policy is detected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field updates the Audit / Approval Policy on child processes  overriding any existing policy.  If left unchecked, the policy propagates until a different policy is detected.</inlineHelpText>
+        <label>Update Child Process Policies</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Update_Child_Statuses__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field controls whether child process or step statuses are updated to match the parent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to update the status of all child processes and steps.  This will override any existing process status.</inlineHelpText>
+        <label>Update Child Statuses</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Workflows__c</fullName>
+        <deprecated>false</deprecated>
+        <description>These are the workflows/flows/approval processes used in this process or step</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are the workflows/flows/approval processes used in this process or step</inlineHelpText>
+        <label>Workflow(s)/Flow(s)/Approval Process(es)</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Yes_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the step / subprocess triggered in the positive case of the decision</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the step / subprocess triggered in the positive case of the decision</inlineHelpText>
+        <label>Yes Step</label>
+        <referenceTo>FLODocs__FLO_Process__c</referenceTo>
+        <relationshipName>FLO_Processes1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Process</label>
+    <nameField>
+        <label>Process Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Processes</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FLODocs__Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Controls__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Assistant_Step__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Scripts__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

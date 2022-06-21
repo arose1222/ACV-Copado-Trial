@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Name of the unit test class that failed. --></help>
+        <label><!-- Class Name --></label>
+        <name>FLODocs__Class_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Unique identifier for this test failure record in this deployment. --></help>
+        <label><!-- Composite Key --></label>
+        <name>FLODocs__Composite_Key__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Deployment Log of the deployment that resulted in the Unit Test failure. --></help>
+        <label><!-- Deployment Log --></label>
+        <name>FLODocs__Deployment_Log__c</name>
+        <relationshipLabel><!-- Deployment Test Failures --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Unit test failure message. --></help>
+        <label><!-- Message --></label>
+        <name>FLODocs__Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- Name of the unit test method that failed. --></help>
+        <label><!-- Method Name --></label>
+        <name>FLODocs__Method_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Namespace prefix of the package that owns the unit test. --></help>
+        <label><!-- Namespace --></label>
+        <name>FLODocs__Namespace__c</name>
+    </fields>
+    <fields>
+        <help><!-- Stack Trace of the unit test failure. --></help>
+        <label><!-- Stack Trace --></label>
+        <name>FLODocs__Stack_Trace__c</name>
+    </fields>
+</CustomObjectTranslation>

@@ -24,7 +24,7 @@ public class ContactACVUserChangeEvent extends TriggerInterface{
                 ChangedFieldsMap.get(ConRec.Id).Contains('is_staff__c') || ChangedFieldsMap.get(ConRec.Id).Contains('is_superuser__c') || ChangedFieldsMap.get(ConRec.Id).Contains('phone') ||
                 ChangedFieldsMap.get(ConRec.Id).Contains('promotion_code__c') || ChangedFieldsMap.get(ConRec.Id).Contains('sms_opt_in__c') || ChangedFieldsMap.get(ConRec.Id).Contains('identity_id__c') ||
                 ChangedFieldsMap.get(ConRec.Id).Contains('mailingpostalcode') || ChangedFieldsMap.get(ConRec.Id).Contains('email_opt_out_categories__c') || ChangedFieldsMap.get(ConRec.Id).Contains('creation_source__c') ||
-                ChangedFieldsMap.get(ConRec.Id).Contains('mobilephone'))){
+                ChangedFieldsMap.get(ConRec.Id).Contains('mobilephone') || ChangedFieldsMap.get(ConRec.Id).Contains('programmatic_sms_opt_in__c'))){
                     //add Middle Name if its not null
                     if(ConRec.MiddleName == null && ConRec.FirstName == null){
                         fullName = ConRec.LastName;
@@ -48,6 +48,7 @@ public class ContactACVUserChangeEvent extends TriggerInterface{
                     Phone_Number__c = ConRec.Phone,
                     Referral_Code__c = ConRec.Promotion_Code__c,
                     Sms_Opt_In__c = ConRec.SMS_Opt_In__c,
+                    Programmatic_Sms_Opt_In__c = ConRec.Programmatic_Sms_Opt_In__c,
                     Zip_Code__c = ConRec.MailingPostalCode,
                     Email_Opt_Out_Categories__c = ConRec.Email_Opt_Out_Categories__c,
                     Creation_Source__c = ConRec.Creation_Source__c,
@@ -75,7 +76,7 @@ public class ContactACVUserChangeEvent extends TriggerInterface{
         List<Acv_User__e> UserEvents = New List<Acv_User__e>();
         String fullName;
 
-        Map<id,Contact> ConMap = new Map<Id, Contact>([Select id, id__c, Contact_Guid__c,  Identity_Id__c, Is_Staff__c, Is_Superuser__c, Promotion_Code__c, SMS_Opt_In__c, MailingPostalCode,
+        Map<id,Contact> ConMap = new Map<Id, Contact>([Select id, id__c, Contact_Guid__c,  Identity_Id__c, Is_Staff__c, Is_Superuser__c, Promotion_Code__c, SMS_Opt_In__c, Programmatic_Sms_Opt_In__c, MailingPostalCode,
         Active__c, Email, Phone, FirstName, MiddleName, LastName, Email_Opt_Out_Categories__c, creation_source__c, MobilePhone, LastModifiedBy.Email From Contact Where id IN: newUser.keyset()]);
             
             //trigger anytime a Contact(ACv User) is Created
@@ -105,6 +106,7 @@ public class ContactACVUserChangeEvent extends TriggerInterface{
                     Phone_Number__c = ConMap.get(ConRec.id).Phone,
                     Referral_Code__c = ConMap.get(ConRec.id).Promotion_Code__c,
                     Sms_Opt_In__c = ConMap.get(ConRec.id).SMS_Opt_In__c,
+                    Programmatic_Sms_Opt_In__c = ConMap.get(ConRec.id).Programmatic_Sms_Opt_In__c,
                     Zip_Code__c = ConMap.get(ConRec.id).MailingPostalCode,
                     Email_Opt_Out_Categories__c = ConRec.Email_Opt_Out_Categories__c,
                     Creation_Source__c = ConRec.Creation_Source__c,
@@ -187,6 +189,7 @@ public class ContactACVUserChangeEvent extends TriggerInterface{
                     Phone_Number__c = ConRec.Phone,
                     Referral_Code__c = ConRec.Promotion_Code__c,
                     Sms_Opt_In__c = ConRec.SMS_Opt_In__c,
+                    Programmatic_Sms_Opt_In__c = ConRec.Programmatic_Sms_Opt_In__c,
                     Zip_Code__c = ConRec.MailingPostalCode,
                     Email_Opt_Out_Categories__c = ConRec.Email_Opt_Out_Categories__c,
                     Creation_Source__c = ConRec.Creation_Source__c,

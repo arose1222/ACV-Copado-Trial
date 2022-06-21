@@ -1362,6 +1362,16 @@ ISPICKVAL(Account.Dealer_Type__c, &apos;2&apos;), &apos;Independent&apos;, IF(IS
         </valueSet>
     </fields>
     <fields>
+        <fullName>Programmatic_Sms_Opt_In__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to determine if the user has opt in to programmatic SMS messages</description>
+        <externalId>false</externalId>
+        <label>Programmatic SMS Opt In</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Promotion_Code__c</fullName>
         <description>Promo code used when the user signed up, this is populated via the Identity services</description>
         <externalId>false</externalId>
@@ -1853,6 +1863,44 @@ true,false
         <label>Independents - Phil Stasiak</label>
     </listViews>
     <listViews>
+        <fullName>Austin_Buyers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>Account.Date_of_Last_Purchase__c</columns>
+        <columns>Role__c</columns>
+        <columns>CONTACT.RECORDTYPE</columns>
+        <columns>Account.Maps_Sales_Territory_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account.Maps_Sales_Territory_Name__c</field>
+            <operation>contains</operation>
+            <value>Austin,Antonio</value>
+        </filters>
+        <filters>
+            <field>Account.Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Account.Date_of_Last_Purchase__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.ACV_User</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Austin Buyers</label>
+    </listViews>
+    <listViews>
         <fullName>Copy_of_Independents_Joe_Hacherl</fullName>
         <columns>FULL_NAME</columns>
         <columns>ACCOUNT.NAME</columns>
@@ -2300,6 +2348,10 @@ true,false
                 <fullName>orgUpdates</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>progUpdates</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Language_Preference__c</picklist>
@@ -2609,6 +2661,10 @@ true,false
             <picklist>Email_Opt_Out_Categories__c</picklist>
             <values>
                 <fullName>orgUpdates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>progUpdates</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2928,6 +2984,10 @@ true,false
             <picklist>Email_Opt_Out_Categories__c</picklist>
             <values>
                 <fullName>orgUpdates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>progUpdates</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3277,12 +3337,18 @@ Lead_Created_Contact__c = true
         <fullName>Mailing_postal_code_must_be_valid</fullName>
         <active>true</active>
         <description>Mailing_postal_code_must_be_valid</description>
-        <errorConditionFormula>AND(
-OR(MailingCountry = &quot;USA&quot;, MailingCountry = &quot;US&quot;, ISBLANK(MailingCountry)),
-NOT(ISBLANK(MailingPostalCode)),
-NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
-)</errorConditionFormula>
-        <errorMessage>Mailing Postal Code must be either 99999 or 99999-9999</errorMessage>
+        <errorConditionFormula>AND(OR(
+AND(
+NOT(REGEX(MailingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;)),
+1 = CASE(MailingCountry, &apos;USA&apos;, 1, &apos;US&apos;, 1, 0)
+),
+AND(
+NOT(REGEX(MailingPostalCode, &apos;((?i)[ABCEGHJKLMNPRSTVXY]\\d[A-Z]?\\s?\\d[A-Z]\\d)?&apos;)),
+1 = CASE(MailingCountry, &apos;CAN&apos;, 1, &apos;CA&apos;, 1, &apos;Canada&apos;, 1, 0)
+)
+),
+NOT(ISBLANK(MailingPostalCode)))</errorConditionFormula>
+        <errorMessage>US postal code must be in 99999 or 99999-9999 format. Canadian postal code must be in A9A 9A9 format.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Must_have_Prescreen_with_CR_Review</fullName>

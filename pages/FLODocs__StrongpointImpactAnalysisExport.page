@@ -1,0 +1,107 @@
+<apex:page showHeader="false" sidebar="false" readOnly="true" standardController="FLODocs__FLO_Change_Request__c"
+           extensions="FLODocs.FloImpactAnalysisCRSectionController" contentType="txt/xml#ImpactAnalysis.xls" cache="true">
+	<apex:outputText value="{!xlsHeader}"/>
+	<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:o="urn:schemas-microsoft-com:office:office"
+		 xmlns:x="urn:schemas-microsoft-com:office:excel"
+		 xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+		 xmlns:html="http://www.w3.org/TR/REC-html40">
+		 <Styles>
+		 	<Style ss:ID="s1">
+				<Alignment/>
+				<Borders/>
+				<Font ss:Bold="1"/>
+				<Interior/>
+				<NumberFormat/>
+		 	</Style>
+		 	<Style ss:ID="s2">
+				<Alignment ss:Vertical="Top" ss:WrapText="1"/>
+		 	</Style>
+		 </Styles>
+	    <Worksheet ss:Name="Can Be Safely Deleted or Modified">
+	    	<apex:outputPanel layout="none" rendered="{!IF(safetyImpactAnalysisList.size > 0,true,false)}">
+    			<Table x:FullColumns="1" x:FullRows="1">
+					 <Column ss:Width="300"/>
+					 <Row>
+						 <Cell ss:StyleID="s1"><Data ss:Type="String" >Customization</Data></Cell>
+					</Row>
+					<apex:repeat value="{!safetyImpactAnalysisList}" var="cus">
+						<Row>
+						 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!cus.customization.Name}</Data></Cell>
+						</Row>
+					</apex:repeat>
+        		</Table>
+        	</apex:outputPanel>
+        	<apex:outputPanel layout="none" rendered="{!IF(safetyImpactAnalysisList.size == 0,true,false)}">
+        		<Table x:FullColumns="1" x:FullRows="1">
+					 <Column ss:Width="300"/>
+					 <Row>
+						 <Cell ss:StyleID="s1"><Data ss:Type="String" >No Record to show</Data></Cell>
+					</Row>
+        		</Table>
+        	</apex:outputPanel>
+	    </Worksheet>
+	    <Worksheet ss:Name="Cannot Be Safely Deleted or Modified">
+	    	<apex:outputPanel layout="none" rendered="{!IF(notSafetyImpactAnalysisList.size > 0,true,false)}">
+    			<Table x:FullColumns="1" x:FullRows="1">
+					<Column ss:Width="300"/>
+					<Column ss:Width="300"/>
+ 					<Column ss:Width="250"/>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Customization</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Warning</Data></Cell>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Impacted Customization</Data></Cell>
+					</Row>
+					<apex:repeat value="{!notSafetyImpactAnalysisList}" var="cus">
+						<Row>
+						 	<Cell ss:StyleID="s2">
+						 		<Data ss:Type="String">{!cus.customization.Name}</Data>
+						 	</Cell>
+							<Cell ss:StyleID="s2">
+								<Data ss:Type="String">{!SUBSTITUTE(cus.warning_message,'<br>','&#10;&nbsp; ')}</Data>
+							</Cell>
+							<Cell ss:StyleID="s2">
+								<Data ss:Type="String">
+									<apex:repeat value="{!cus.impactedCustomization}" var="cusImp">
+{!cusImp.Name},
+									</apex:repeat>
+								</Data>
+							</Cell>
+						</Row>
+					</apex:repeat>
+        		</Table>
+        	</apex:outputPanel>
+        	<apex:outputPanel layout="none" rendered="{!IF(notSafetyImpactAnalysisList.size == 0,true,false)}">
+        		<Table x:FullColumns="1" x:FullRows="1">
+					 <Column ss:Width="170"/>
+					 <Row>
+						 <Cell ss:StyleID="s1"><Data ss:Type="String" >No Record to show</Data></Cell>
+					</Row>
+        		</Table>
+        	</apex:outputPanel>
+	    </Worksheet>
+	    <Worksheet ss:Name="Inactive Customizations">
+	    	<apex:outputPanel layout="none" rendered="{!IF(inactiveCustomizations.size > 0,true,false)}">
+	        	<Table x:FullColumns="1" x:FullRows="1">
+					<Column ss:Width="250"/>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >Customization</Data></Cell>
+					</Row>
+					<apex:repeat value="{!inactiveCustomizations}" var="cus">
+						<Row>
+						 	<Cell ss:StyleID="s2"><Data ss:Type="String">{!cus.customization.Name}</Data></Cell>
+						</Row>
+					</apex:repeat>
+        		</Table>
+	        </apex:outputPanel>
+		    <apex:outputPanel layout="none" rendered="{!IF(inactiveCustomizations.size == 0,true,false)}">
+		        <Table x:FullColumns="1" x:FullRows="1">
+					<Column ss:Width="170"/>
+					<Row>
+						<Cell ss:StyleID="s1"><Data ss:Type="String" >No Record to show</Data></Cell>
+					</Row>
+        		</Table>
+		    </apex:outputPanel>
+	    </Worksheet>
+	</Workbook>
+</apex:page>

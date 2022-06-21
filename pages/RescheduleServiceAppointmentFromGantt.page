@@ -1,0 +1,22 @@
+<apex:page standardController="ServiceAppointment">
+    <!-- This is used to include the JS files that makes embedding a Lightning App in VF page possible -->
+    <apex:includeLightning />
+    
+    <!-- This is where the component gets embeded -->
+    <div id="LightningComponentid"></div>
+
+    <script>
+
+        $Lightning.use("c:RescheduleServiceAppointmentFromGanttApp", function() {
+            $Lightning.createComponent("c:rescheduleServiceAppointment",
+            { 
+                recordId : '{!$CurrentPage.parameters.id}'
+            },
+            "LightningComponentid",
+            );
+        });
+
+    </script>
+
+
+</apex:page>

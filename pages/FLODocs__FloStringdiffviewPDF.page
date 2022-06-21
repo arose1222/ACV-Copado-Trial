@@ -1,0 +1,27 @@
+<apex:page showHeader="false" sidebar="false" standardController="FLODocs__FLO_Change_Log__c" readOnly="true" renderAs="pdf" standardStylesheets="false" applyBodyTag="false"  extensions="FLODocs.FloEnviromentDiffViewController">
+	<head>
+		<style>
+			@page {
+				size: landscape;
+				margin: 2mm;
+			}
+			table.viewTable td {
+	    		font-family: Monospace;
+	    		font-size: 7pt;
+	    	}
+	    	table.viewTable {
+	    	    empty-cells: show;
+				border-collapse: collapse;
+    			page-break-inside: avoid;
+	    	}
+	    	pre {
+	    		margin: 0;
+    			page-break-inside: avoid;
+	    	}
+		</style>
+	</head>
+	<body>
+		<c:FloStringDiffViewComponent text2="{!xml2}" text1="{!xml1}" 
+			renderAsPDF="true"/>
+	</body>
+</apex:page>

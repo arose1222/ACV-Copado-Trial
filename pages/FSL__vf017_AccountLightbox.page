@@ -136,7 +136,7 @@
 
 			<apex:form >
 				<apex:pageBlock mode="detail">
-					<apex:pageBlockSection title="{!$Label.fsl__account_details}" columns="2">
+					<apex:pageBlockSection title="{!$Label.FSL__Account_Details}" columns="2">
 						<apex:repeat value="{!$ObjectType.Account.FieldSets.FSL__Gantt_Lightbox}" var="d">
 							<apex:outputField value="{!Account[d]}"/>
 						</apex:repeat>

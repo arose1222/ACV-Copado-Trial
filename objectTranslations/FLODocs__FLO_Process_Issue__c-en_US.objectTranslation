@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Fields to VFP --></label>
+        <name>FLODocs__Fields_to_VFP_FLO</name>
+    </fieldSets>
+    <fields>
+        <help><!-- Active indicator of the FLO Process Issue Record --></help>
+        <label><!-- Active --></label>
+        <name>FLODocs__Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the approval status of the process issue.  Approval is not always required depending on policy of your company. --></help>
+        <label><!-- Approval Status --></label>
+        <name>FLODocs__Approval_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the person assigned to approve the process issue. By default, it is the issue owner&apos;s supervisor. --></help>
+        <label><!-- Approver --></label>
+        <name>FLODocs__Approver__c</name>
+        <relationshipLabel><!-- Process Issues (Approver) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select this field to automatically assign this issue to an user to resolve. A task will automatically be generated. --></help>
+        <label><!-- Assigned --></label>
+        <name>FLODocs__Assigned__c</name>
+        <relationshipLabel><!-- Process Issues (Assigned) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Change Level --></label>
+        <name>FLODocs__Change_Level__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of records represented by this issue. --></help>
+        <label><!-- Control Count --></label>
+        <name>FLODocs__Control_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Control Internal Id --></label>
+        <name>FLODocs__Control_Internal_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the control that resolved the material risk or generated the issue log.  (see description for details) --></help>
+        <label><!-- Control --></label>
+        <name>FLODocs__Control__c</name>
+        <relationshipLabel><!-- Process Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- These are the customizations related to the issue. --></help>
+        <label><!-- Customization(s) --></label>
+        <name>FLODocs__Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of time required to implement a requirement or fix an issue. --></help>
+        <label><!-- Effort Required --></label>
+        <name>FLODocs__Effort_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of times that the script error has been detected --></help>
+        <label><!-- Error Count --></label>
+        <name>FLODocs__Error_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the link to the external ticket corresponding to this process issue. --></help>
+        <label><!-- External Ticket Link --></label>
+        <name>FLODocs__External_Ticket_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the ticket corresponding to this process issue in an external system. --></help>
+        <label><!-- External Ticket Number --></label>
+        <name>FLODocs__External_Ticket_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- The description of the process issue. --></help>
+        <label><!-- Issue Description --></label>
+        <name>FLODocs__Issue_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the URL that the issue was logged from --></help>
+        <label><!-- Originating URL --></label>
+        <name>FLODocs__Originating_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the change request associated with the issue. --></help>
+        <label><!-- Parent Change Request --></label>
+        <name>FLODocs__Parent_Change_Request__c</name>
+        <relationshipLabel><!-- Process Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Use this field to group issues together --></help>
+        <label><!-- Parent Issue --></label>
+        <name>FLODocs__Parent_Issue__c</name>
+        <relationshipLabel><!-- Process Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the process that this issue is assigned to. --></help>
+        <label><!-- Process --></label>
+        <name>FLODocs__Process__c</name>
+        <relationshipLabel><!-- Process Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is a test record that the process issue originated from.   Used to track issues that arise during testing. --></help>
+        <label><!-- Related Test --></label>
+        <name>FLODocs__Related_Test__c</name>
+        <relationshipLabel><!-- Process Issues (Related Test) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Completing this field sends a message to FLO or your Salesforce consultant detailing the issue and providing them with access to your relevant process record. --></help>
+        <label><!-- Request Process Help --></label>
+        <name>FLODocs__Request_Process_Help__c</name>
+    </fields>
+    <fields>
+        <help><!-- Hidden --></help>
+        <label><!-- Search Customization --></label>
+        <name>FLODocs__Search_Customization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>FLODocs__Severity__c</name>
+        <picklistValues>
+            <masterLabel>Low Importance</masterLabel>
+            <translation><!-- Low Importance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Importance</masterLabel>
+            <translation><!-- Medium Importance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Urgent Issue</masterLabel>
+            <translation><!-- Urgent Issue --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the status of the issue. --></help>
+        <label><!-- Status --></label>
+        <name>FLODocs__Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the date on which the issue is expected to be addressed. --></help>
+        <label><!-- Target Resolution Date --></label>
+        <name>FLODocs__Target_Resolution_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a test report associated with this issue.  Used to track open issues relating to a test. --></help>
+        <label><!-- Test --></label>
+        <name>FLODocs__Test__c</name>
+        <relationshipLabel><!-- Process Issues (Test) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field tracks the type and severity of the issue.  These types can be used to trigger alerts to relevant managers and object owners. --></help>
+        <label><!-- Type --></label>
+        <name>FLODocs__Type__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Create_FLO_Change_Request --></label>
+        <name>FLODocs__Create_FLO_Change_Request</name>
+    </webLinks>
+</CustomObjectTranslation>

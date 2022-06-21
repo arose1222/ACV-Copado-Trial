@@ -1,4 +1,5 @@
-public with sharing class workOrderIngestController {
+// public with sharing class workOrderIngestController extends InspectionRequest{
+public with sharing class workOrderIngestController{
 
     public static final Id WHOLESALE_INSPECTION = [SELECT id FROM WorkType WHERE Name = 'Standard Inspection' LIMIT 1].id;
     public static final Id TRUE_360 = [SELECT id FROM WorkType WHERE name = 'True 360' LIMIT 1].id;
@@ -7,7 +8,7 @@ public with sharing class workOrderIngestController {
     public static final Id AUCTION_SITE = [SELECT id FROM WorkType WHERE name = 'Auction Site' LIMIT 1].id;
 
     private final static Integer MAX_RESULTS = 5;
-    
+
     @AuraEnabled(Cacheable=true)
     public static List<LookupSearchResult> getContacts(String searchTerm, List<String> selectedIds){
         // Prepare query paramters
@@ -44,6 +45,8 @@ public with sharing class workOrderIngestController {
     @AuraEnabled
     public static Response submitWorkOrders(String woInfoJSON, Boolean isProcessingOffers){
 
+        system.debug('In Submit workorders');
+
         string logMessage = 'Work Order Submission: ' + woInfoJson + '\n';
         Set<string> successfulIds = new Set<string>();
         List<SplunkHelper.SFErrorRecord> errorRecords = new List<SplunkHelper.SFErrorRecord>();
@@ -78,7 +81,6 @@ public with sharing class workOrderIngestController {
                 }
             }
 
-
             id contact;
 
             Date woDate;
@@ -106,22 +108,15 @@ public with sharing class workOrderIngestController {
             vehicleCountMap.put(TRUE_360, Integer.valueOf(woInfo.get('T360Count')));
             vehicleCountMap.put(SIRIUS_XM, Integer.valueOf(woInfo.get('SXMCount')));
 
-      final Boolean BUYER_SIGN_UP = Boolean.valueOf(woInfo.get('BSUCheck'));
+            final Boolean BUYER_SIGN_UP = Boolean.valueOf(woInfo.get('BSUCheck'));
             if ( BUYER_SIGN_UP ) { vehicleCountMap.put(BUYER_SIGNUP, 0 ); }
-            /* Buyer Sign-up doesn't need a Vehicle Count
-            integer buyerSignupCount = 0;
-            if(Boolean.valueOf(woInfo.get('BSUCheck')) == true ){
-                buyerSignupCount = 1;
-            }
-            vehicleCountMap.put(BUYER_SIGNUP, buyerSignupCount);*/
-
-            //get start and due date information based on work types
-
 
             Map<Id, DateTime> dueDateMap = new Map<Id, DateTime>();
             Map<Id, DateTime> startDateMap = new Map<Id, DateTime>();
 
             List<WorkOrder> woInsertList = new List<WorkOrder>();
+            List<AssignedResource> arInsertionList = new List<AssignedResource>();
+            List<Email_Notification_Subscription__c> subscriptionInsertList = new List<Email_Notification_Subscription__c>();
 
             Id inspectionReqId = InspectionRequest.createInspectionRequest(account, vehicleCountMap, timeSelection);
 
@@ -138,7 +133,7 @@ public with sharing class workOrderIngestController {
                         Origin__c = origin,
                         StartDate = earliestStart,
                         Inspection_Number_of_Vehicles__c = vehicleCountMap.get(wtId),
-                        Special_Instructions__c = specialInstructions,
+                        Special_Instructions_for_VCI__c = specialInstructions,
                         WorkTypeId = wtId,
                         City = city,
                         Street = street,
@@ -150,16 +145,48 @@ public with sharing class workOrderIngestController {
                         DueDate_Adjustment_Engine_Bypass__c = TRUE
                     );
 
+                    ServiceAppointment sa = new ServiceAppointment();
+
+                    if(vehicleCountMap.containsKey(wtId) && (vehicleCountMap.get(wtId) > 0 || ( wtId == BUYER_SIGNUP && BUYER_SIGN_UP ))){
+                        if(startDateMap.containsKey(wtId)){
+                            sa.earliestStartTime = startDateMap.get(wtId);
+                            if(timeSelection == 'Now' && srId != null){
+                                sa.SchedStartTime = startDateMap.get(wtId);
+
+                                if(vehicleCountMap.get(wtId) > 0){
+                                    sa.SchedEndTime = sa.SchedStartTime.addMinutes(30*vehicleCountMap.get(wtId));
+                                } else {
+                                    sa.SchedEndTime = sa.SchedStartTime.addMinutes(30);
+                                }
+
+                                sa.Status = 'Dispatched';
+                            }
+                        }
+                        if(dueDateMap.containsKey(wtId)){
+                            sa.dueDate = dueDateMap.get(wtId);
+
+                        }
+                    }
+
                     if(isProcessingOffers == true && wtId != BUYER_SIGNUP){
                         wo.Processing_Offers__c = true;
                         wo.Subject = 'DISREGARD ---- Processing Offers';
+                        sa.Exclude_from_Optimization__c = true;
+                        sa.Subject = 'DISREGARD ---- Processing Offers';
                     }
 
+                    wo.Service_Appt_Map_Id__c = CreateServiceAppointment.getUniqueId();
                     woInsertList.add(wo);
+
+                    //Pass ServiceAppointment details to CreateServiceAppointment trigger so update of SA is no longer necessary
+                    CreateServiceAppointment.SAOverrideMap.put(wo.Service_Appt_Map_Id__c,sa);
                 }
             }
 
+            //Insert the Work Order(s)
+            System.debug('Saving WO');
             Database.SaveResult[] woInsertionResults = Database.insert(woInsertList);
+            System.debug('WO saved');
             logMessage += workOrderInsertionLog(woInsertionResults);
             successfulIds.addAll(getSuccessfulIds(woInsertionResults));
             errorRecords.addAll(getErrorRecords(woInsertionResults));
@@ -172,109 +199,58 @@ public with sharing class workOrderIngestController {
                 }
             }
 
-            Map<Id, ServiceAppointment> saMap = new Map<id, ServiceAppointment>([SELECT id, WorkTypeId, ServiceTerritoryId, parentRecordId, Duration, Account__c FROM ServiceAppointment WHERE parentRecordId in :insertedWos ]);
+            //Retrieve the inserted Service Appointments to create related records if necessary
+            for(ServiceAppointment insertedSA : [SELECT id, WorkTypeId, ServiceTerritoryId, parentRecordId, Duration, Account__c FROM ServiceAppointment WHERE parentRecordId in :insertedWos ]){
 
-            //get and update service appointment start time based on work type
-
-            Boolean addSA = false;
-            List<ServiceAppointment> saUpdateList = new List<ServiceAppointment>();
-
-            List<ServiceAppointment> selfAssignAppointments = new List<ServiceAppointment>();
-            List<ServiceAppointment> createSubscriptionAppointments = new List<ServiceAppointment>();
-
-            for(serviceAppointment sa : saMap.values()){
-
-                if(sa.workTypeId == WHOLESALE_INSPECTION){
-                    res.inspectionWOId = sa.parentRecordId;
-                    res.inspectionDuration = sa.Duration;
+                //Return Work Order Id's and Duration to LWC
+                if(insertedSA.workTypeId == WHOLESALE_INSPECTION){
+                    res.inspectionWOId = insertedSA.parentRecordId;
+                    res.inspectionDuration = insertedSA.Duration;
                 }
-                else if(sa.workTypeId == TRUE_360){
-                    res.true360WOId = sa.parentRecordId;
-                    res.true360Duration = sa.Duration;
+                else if(insertedSA.workTypeId == TRUE_360){
+                    res.true360WOId = insertedSA.parentRecordId;
+                    res.true360Duration = insertedSA.Duration;
                 }
-                else if(sa.workTypeId == SIRIUS_XM){
-                    res.siriusXMWOId = sa.parentRecordId;
-                    res.siriusXMDuration = sa.Duration;
+                else if(insertedSA.workTypeId == SIRIUS_XM){
+                    res.siriusXMWOId = insertedSA.parentRecordId;
+                    res.siriusXMDuration = insertedSA.Duration;
                 }
 
-                if(isProcessingOffers == true && sa.workTypeId != BUYER_SIGNUP){
-                    sa.Exclude_from_Optimization__c = true;
-                    sa.Subject = 'DISREGARD ---- Processing Offers';
-                }
-
-
-                //update earliest start and due date based on map created from work order info
-                if(vehicleCountMap.containsKey(sa.workTypeId) && (vehicleCountMap.get(sa.workTypeId) > 0 || ( sa.workTypeId == BUYER_SIGNUP && BUYER_SIGN_UP ))){
-                    if(startDateMap.containsKey(sa.workTypeId)){
-                        sa.earliestStartTime = startDateMap.get(sa.workTypeId);
-                        addSA = true;
-                        if(timeSelection == 'Now' && srId != null){
-                            sa.SchedStartTime = startDateMap.get(sa.workTypeId);
-
-                            if(vehicleCountMap.get(sa.workTypeId) > 0){
-                                sa.SchedEndTime = sa.SchedStartTime.addMinutes(30*vehicleCountMap.get(sa.WorkTypeId));
-                            } else {
-                                sa.SchedEndTime = sa.SchedStartTime.addMinutes(30);
-                            }
-
-                            sa.Status = 'Dispatched';
-                            selfAssignAppointments.add(sa);
-                        }
-                    }
-                    if(dueDateMap.containsKey(sa.workTypeId)){
-                        sa.dueDate = dueDateMap.get(sa.workTypeId);
-                        addSA = true;
-
-                    }
-                }
-
+                //Create Email Subscription if requested
                 if(notificationRequest){
-                    createSubscriptionAppointments.add(sa);
-                }
-
-                //if any info was updated, then add the sa to the list of sa's to be updated
-                if(addSA){
-                    saUpdateList.add(sa);
-                }
-
-                addSA = false;
-            }
-            Database.SaveResult[] saUpdateResults = Database.update(saUpdateList);
-            logMessage += serviceAppointmentUpdateLog(saUpdateResults);
-            successfulIds.addAll(getSuccessfulIds(saUpdateResults));
-            errorRecords.addAll(getErrorRecords(saUpdateResults));
-
-            List<AssignedResource> arInsertionList = new List<AssignedResource>();
-
-            if(selfAssignAppointments.size() > 0){
-                for(ServiceAppointment sa : selfAssignAppointments){
-                    arInsertionList.add(new AssignedResource(ServiceResourceId = srId, ServiceAppointmentId = sa.Id));
-                }
-            }
-
-            Database.SaveResult[] arInsertionResults = Database.Insert(arInsertionList);
-            logMessage += assignedResourceInsertionLog(arInsertionResults);
-            successfulIds.addAll(getSuccessfulIds(arInsertionResults));
-            errorRecords.addAll(getErrorRecords(arInsertionResults));
-
-
-            List<Email_Notification_Subscription__c> subscriptionInsertList = new List<Email_Notification_Subscription__c>();
-
-            if(createSubscriptionAppointments.size() > 0){
-                for(ServiceAppointment sa : createSubscriptionAppointments){
                     subscriptionInsertList.add(new Email_Notification_Subscription__c(
                         Email_on_Request_Inspection_Fulfillment__c = true,
-                        Service_Appointment__c = sa.Id,
+                        Service_Appointment__c = insertedSA.Id,
                         User__c = UserInfo.getUserId(),
-                        Account__c = sa.Account__c
+                        Account__c = insertedSA.Account__c
                     ));
+                }
+
+                //Create Assigned Resource if Self Assign
+                if(vehicleCountMap.containsKey(insertedSA.workTypeId) && (vehicleCountMap.get(insertedSA.workTypeId) > 0 || ( insertedSA.workTypeId == BUYER_SIGNUP && BUYER_SIGN_UP ))){
+                    if(startDateMap.containsKey(insertedSA.workTypeId)){
+                        if(timeSelection == 'Now' && srId != null){
+                            arInsertionList.add(new AssignedResource(ServiceResourceId = srId, ServiceAppointmentId = insertedSA.Id));
+                        }
+                    }
                 }
             }
 
-            Database.SaveResult[] subscriptionInsertionResults = Database.Insert(subscriptionInsertList);
-            logMessage += subscriptionInsertionLog(subscriptionInsertionResults);
-            successfulIds.addAll(getSuccessfulIds(subscriptionInsertionResults));
-            errorRecords.addAll(getErrorRecords(subscriptionInsertionResults));
+            //Insert Assigned Resources
+            if(arInsertionList.size() > 0){
+                Database.SaveResult[] arInsertionResults = Database.Insert(arInsertionList);
+                logMessage += assignedResourceInsertionLog(arInsertionResults);
+                successfulIds.addAll(getSuccessfulIds(arInsertionResults));
+                errorRecords.addAll(getErrorRecords(arInsertionResults));
+            }
+
+            //Insert Email Subscriptions
+            if(subscriptionInsertList.size() > 0){
+                Database.SaveResult[] subscriptionInsertionResults = Database.Insert(subscriptionInsertList);
+                logMessage += subscriptionInsertionLog(subscriptionInsertionResults);
+                successfulIds.addAll(getSuccessfulIds(subscriptionInsertionResults));
+                errorRecords.addAll(getErrorRecords(subscriptionInsertionResults));
+            }
 
 
             res.status = 'Success';
@@ -290,6 +266,7 @@ public with sharing class workOrderIngestController {
         }
 
         makeLog(logMessage, logLevel, errorRecords, successfulIds, ex);
+        System.debug('Ending submit work orders');
         return res;
     }
 
@@ -554,6 +531,53 @@ public with sharing class workOrderIngestController {
         saRec.Subject = '';
         update saRec;
 
+
+    }
+
+    @AuraEnabled
+    public static Response updateWork(String woInfoJSON, Id inspectionWOId, Id true360WOId, Id siriusXMWOId){
+        Response res = new Response();
+
+        List<Id> workOrderIdList = new List<Id>{inspectionWOId, true360WOId, siriusXMWOId};
+
+        List<WorkOrder> woUpdateList = new List<WorkOrder>();
+        List<ServiceAppointment> saUpdateList = new List<ServiceAppointment>();
+
+        Map<String, Object> woInfo = new Map<String,Object>();
+        woInfo = (Map<String,Object>)JSON.deserializeUntyped(woInfoJSON);
+
+        for(WorkOrder wo: [SELECT Id, (SELECT Id FROM ServiceAppointments) FROM WorkOrder WHERE Id IN :workOrderIdList]){
+            wo.Special_Instructions_for_VCI__c = (string)woInfo.get('notes');
+            wo.City = (string)woInfo.get('city');
+            wo.State = (string)woInfo.get('state');
+            wo.Country = (string)woInfo.get('country');
+            wo.PostalCode = (string)woInfo.get('zip');
+            wo.Street = (string)woINfo.get('street');
+            wo.ContactId = (id)woInfo.get('contact');
+
+            woUpdateList.add(wo);
+
+            for(ServiceAppointment sa : wo.ServiceAppointments){
+                sa.City = wo.City;
+                sa.State = wo.State;
+                sa.Country = wo.Country;
+                sa.PostalCode = wo.PostalCode;
+                sa.Street = wo.Street;
+
+                saUpdateList.add(sa);
+            }
+        }
+
+        try{
+            update woUpdateList;
+            update saUpdateList;
+            res.status = 'Success';
+        } catch(Exception e){
+            res.status = 'Failure';
+            res.message = e.getMessage();
+        }
+
+        return res;
 
     }
 

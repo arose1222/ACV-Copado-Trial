@@ -888,6 +888,122 @@ function ToastController($scope, UtilsService) {
 }
 'use strict';
 
+(function () {
+
+    ResourceFilter.$inject = ['DataService', 'UtilsService'];
+
+    angular.module('Crews').filter('ResourceFilter', ResourceFilter);
+
+    function ResourceFilter(DataService, UtilsService) {
+
+        return function (territory, selectedFilterSkills, resourceSearch, logicOperator) {
+
+            var resources = DataService.getResources(),
+                filteredResources = [],
+                filteredSkills = {},
+                resourcesInFilter = {},
+                logicOperatorSkillsFunction = logicOperator === 'or' ? doesResourceHaveSomeSkills : doesResourceHaveAllSkills;
+
+            // which skills are selected
+            for (var id in selectedFilterSkills) {
+                if (selectedFilterSkills[id]) {
+                    filteredSkills[id] = true;
+                }
+            }
+
+            for (var _id in territory.territoryMemberships) {
+
+                var stm = territory.territoryMemberships[_id];
+
+                if (!UtilsService.isIntersect(scheduler._min_date, scheduler._max_date, stm.ganttEffectiveStartDate, stm.ganttEffectiveEndDate)) {
+                    continue;
+                }
+
+                var resource = resources[stm.ServiceResourceId];
+
+                if (!resource || resource.IsCapacityBased || !resource.IsActive) {
+                    continue;
+                }
+
+                if (!logicOperatorSkillsFunction(filteredSkills, resource)) {
+                    continue;
+                }
+
+                if (resourceSearch && !resource.Name.toUpperCase().includes(resourceSearch.toUpperCase())) {
+                    continue;
+                }
+
+                if (resourcesInFilter[resource.Id]) {
+                    continue;
+                }
+
+                resourcesInFilter[resource.Id] = true;
+
+                filteredResources.push(resource);
+            }
+
+            return filteredResources;
+        };
+    }
+
+    function doesResourceHaveAllSkills(skills, resource) {
+
+        if (Object.keys(skills).length > 0) {
+
+            var resourceGotSkills = {};
+
+            // create a map of the resource skills
+            if (resource.ServiceResourceSkills) {
+                resource.ServiceResourceSkills.forEach(function (skill) {
+                    return resourceGotSkills[skill.SkillId] = skill;
+                });
+            }
+
+            // go over checked skills
+            for (var id in skills) {
+
+                // resource doesn't have the skill, resource is filtered
+                if (!resourceGotSkills[id]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
+    function doesResourceHaveSomeSkills(skills, resource) {
+
+        if (Object.keys(skills).length > 0) {
+
+            var resourceGotSkills = {};
+
+            // create a map of the resource skills
+            if (resource.ServiceResourceSkills) {
+                resource.ServiceResourceSkills.forEach(function (skill) {
+                    return resourceGotSkills[skill.SkillId] = skill;
+                });
+            }
+
+            // go over checked skills
+            for (var id in skills) {
+
+                // resource doesn't have the skill, resource is filtered
+                if (resourceGotSkills[id]) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+})();
+'use strict';
+
 dragTarget.$inject = ['DataService', 'UtilsService', 'ScmLightbox'];
 
 angular.module('Crews').directive('dragTarget', dragTarget);
@@ -1732,122 +1848,6 @@ function CrewManagementTerritory(ter, timezone) {
 })();
 'use strict';
 
-(function () {
-
-    ResourceFilter.$inject = ['DataService', 'UtilsService'];
-
-    angular.module('Crews').filter('ResourceFilter', ResourceFilter);
-
-    function ResourceFilter(DataService, UtilsService) {
-
-        return function (territory, selectedFilterSkills, resourceSearch, logicOperator) {
-
-            var resources = DataService.getResources(),
-                filteredResources = [],
-                filteredSkills = {},
-                resourcesInFilter = {},
-                logicOperatorSkillsFunction = logicOperator === 'or' ? doesResourceHaveSomeSkills : doesResourceHaveAllSkills;
-
-            // which skills are selected
-            for (var id in selectedFilterSkills) {
-                if (selectedFilterSkills[id]) {
-                    filteredSkills[id] = true;
-                }
-            }
-
-            for (var _id in territory.territoryMemberships) {
-
-                var stm = territory.territoryMemberships[_id];
-
-                if (!UtilsService.isIntersect(scheduler._min_date, scheduler._max_date, stm.ganttEffectiveStartDate, stm.ganttEffectiveEndDate)) {
-                    continue;
-                }
-
-                var resource = resources[stm.ServiceResourceId];
-
-                if (!resource || resource.IsCapacityBased || !resource.IsActive) {
-                    continue;
-                }
-
-                if (!logicOperatorSkillsFunction(filteredSkills, resource)) {
-                    continue;
-                }
-
-                if (resourceSearch && !resource.Name.toUpperCase().includes(resourceSearch.toUpperCase())) {
-                    continue;
-                }
-
-                if (resourcesInFilter[resource.Id]) {
-                    continue;
-                }
-
-                resourcesInFilter[resource.Id] = true;
-
-                filteredResources.push(resource);
-            }
-
-            return filteredResources;
-        };
-    }
-
-    function doesResourceHaveAllSkills(skills, resource) {
-
-        if (Object.keys(skills).length > 0) {
-
-            var resourceGotSkills = {};
-
-            // create a map of the resource skills
-            if (resource.ServiceResourceSkills) {
-                resource.ServiceResourceSkills.forEach(function (skill) {
-                    return resourceGotSkills[skill.SkillId] = skill;
-                });
-            }
-
-            // go over checked skills
-            for (var id in skills) {
-
-                // resource doesn't have the skill, resource is filtered
-                if (!resourceGotSkills[id]) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        return true;
-    }
-
-    function doesResourceHaveSomeSkills(skills, resource) {
-
-        if (Object.keys(skills).length > 0) {
-
-            var resourceGotSkills = {};
-
-            // create a map of the resource skills
-            if (resource.ServiceResourceSkills) {
-                resource.ServiceResourceSkills.forEach(function (skill) {
-                    return resourceGotSkills[skill.SkillId] = skill;
-                });
-            }
-
-            // go over checked skills
-            for (var id in skills) {
-
-                // resource doesn't have the skill, resource is filtered
-                if (resourceGotSkills[id]) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return true;
-    }
-})();
-'use strict';
-
 CreateCrewLightbox.$inject = ['$rootScope', '$compile', 'DataService', 'UtilsService', 'RemoteActionsService'];
 
 angular.module('Crews').factory('CreateCrewLightbox', CreateCrewLightbox);
@@ -2043,6 +2043,7 @@ function CreateCrewLightbox($rootScope, $compile, DataService, UtilsService, Rem
         for (var id in $scope.selectedSkills) {
             $scope.selectedSkills[id] && selectedSkillsIds.push(id);
         }
+        // let beforeSaveCrewObject = Object.assign({}, $scope.crewObject);
 
         $scope.crewObject.skillsIds = selectedSkillsIds.toString();
 
@@ -2050,11 +2051,15 @@ function CreateCrewLightbox($rootScope, $compile, DataService, UtilsService, Rem
         $scope.crewObject.stmStart = UtilsService.convertDateToUTC($scope.crewObject.stmStart, $scope.territories[$scope.crewObject.stmTerritoryId].timezone);
 
         if ($scope.crewObject.stmEnd) {
-            $scope.crewObject.stmEnd = UtilsService.convertDateToUTC($scope.crewObject.stmEnd, $scope.territories[$scope.crewObject.stmTerritoryId].timezone);
+            var convertedStmEndToUTC = UtilsService.convertDateToUTC($scope.crewObject.stmEnd, $scope.territories[$scope.crewObject.stmTerritoryId].timezone);
+            var isSimilarToStartStm = new Date(convertedStmEndToUTC).getTime() === new Date($scope.crewObject.stmStart).getTime();
+            $scope.crewObject.stmEnd = isSimilarToStartStm ? moment(new Date(convertedStmEndToUTC)).add(24, 'hours').toDate() : convertedStmEndToUTC;
         }
 
         if ($scope.crewObject.scmEnd) {
-            $scope.crewObject.scmEnd = UtilsService.convertDateToUTC($scope.crewObject.scmEnd, $scope.territories[$scope.crewObject.stmTerritoryId].timezone);
+            var convertedScmEndToUTC = UtilsService.convertDateToUTC($scope.crewObject.scmEnd, $scope.territories[$scope.crewObject.stmTerritoryId].timezone);
+            var isSimilarToStartScm = new Date(convertedScmEndToUTC).getTime() === new Date($scope.crewObject.scmStart).getTime();
+            $scope.crewObject.scmEnd = isSimilarToStartScm ? moment(new Date(convertedScmEndToUTC)).add(24, 'hours').toDate() : convertedScmEndToUTC;
         }
 
         $scope.saving = true;
@@ -2063,6 +2068,7 @@ function CreateCrewLightbox($rootScope, $compile, DataService, UtilsService, Rem
             return $scope.closeLightbox();
         }).catch(function (ex) {
             $scope.error = ex.message;
+            // $scope.crewObject = Object.assign({}, beforeSaveCrewObject);
             $scope.saving = false;
         });
     }

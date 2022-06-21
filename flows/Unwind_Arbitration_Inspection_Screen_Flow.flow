@@ -153,7 +153,7 @@
             <label>Work Order Already Exists</label>
         </rules>
     </decisions>
-    <description>ID-3597 Arbitration - Special Instructions = Notes for Inspector (new field on Case)</description>
+    <description>ID-3615 Special Instructions field needs to be changed to Long text.</description>
     <formulas>
         <description>Identify the city based on case details.</description>
         <name>City</name>
@@ -360,7 +360,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Special_Instructions__c</field>
+            <field>Special_Instructions_for_VCI__c</field>
             <value>
                 <elementReference>Get_Current_Case.Notes_for_Inspector__c</elementReference>
             </value>

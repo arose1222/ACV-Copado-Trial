@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Strongpoint object to track information of the change itself including who changed a customization and when among other details.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>FLODocs__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Actual_Change_DateTime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Last Modified Date of the Customization related to the change log.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last Modified Date of the Customization related to the change log.</inlineHelpText>
+        <label>Actual Change Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Allow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to make changes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to make changes</inlineHelpText>
+        <label>Allow</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Audited_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Auitor user</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auitor user</inlineHelpText>
+        <label>Audited By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Change_Logs1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Auditor_As__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Auditor assigned notes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auditor assigned notes.</inlineHelpText>
+        <label>Auditor Assigned</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Change_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASE
+(
+  FLODocs__Metadata_Type__c,
+  &quot;ApexClass&quot;, TEXT(FLODocs__Policy__r.FLODocs__Scripted_Objects_Changes__c),
+  &quot;ApexPage&quot;, TEXT(FLODocs__Policy__r.FLODocs__Scripted_Objects_Changes__c),
+  &quot;ApexTrigger&quot;, TEXT(FLODocs__Policy__r.FLODocs__Scripted_Objects_Changes__c),
+  &quot;CustomField&quot;, TEXT(FLODocs__Policy__r.FLODocs__Scripted_Objects_Changes__c),
+  null
+)</formula>
+        <label>Change Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Change_Overview_Beta__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Future Formulas - Beta</description>
+        <externalId>false</externalId>
+        <formula>&quot;&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Future Formulas - Beta</inlineHelpText>
+        <label>Change Overview (Beta)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Change_Overview__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Information of the FLO change log based on what changed.  For Profiles (BETA) we are extracting Object Permission, Field Permission and User Permissions.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Brief Information of the change log based on what changed for the related customization. (See description of this field for more details)</inlineHelpText>
+        <label>Change Overview</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Compliance__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Text that reflect is the FLO Change logs is compliant or not: Examples: Complaint - Non-Compliant</description>
+        <externalId>false</externalId>
+        <formula>IF(FLODocs__Noncompliance__c = True, &apos;Non-Compliant&apos;, &apos;Compliant&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Text that reflect is the FLO Change logs is compliant or not: Examples: Complaint - Non-Compliant</inlineHelpText>
+        <label>Compliance</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Compliant_Indicator__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Flag red/green of the FLO Change Log</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(
+IF( FLODocs__Noncompliance__c == true, &quot;/img/samples/flag_red.gif&quot;,&quot;/img/samples/flag_green.gif&quot;),&quot; &quot;
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Flag red/green of the FLO Change Log</inlineHelpText>
+        <label>Compliant Indicator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Customization_Created_By__c</fullName>
+        <deprecated>false</deprecated>
+        <description>User who has created the Customization related to this change log</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp;  FLODocs__FLO_Customization__r.FLODocs__Customization_Created_By__c  , FLODocs__FLO_Customization__r.FLODocs__Customization_Created_By__r.FirstName &amp; &apos; &apos; &amp; FLODocs__FLO_Customization__r.FLODocs__Customization_Created_By__r.LastName , &apos;_blank&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>User who has created the Customization related to this change log</inlineHelpText>
+        <label>Customization Created By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Customization_Modified_ByLookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Last User who has modified this customization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last User who has modified this customization</inlineHelpText>
+        <label>Customization Modified By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Change_Logs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Process__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Data Process</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Record_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Id of the data record that was changed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Id of the data record that was changed.</inlineHelpText>
+        <label>Data Record Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Record_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the data record that has been changed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the data record that has been changed.</inlineHelpText>
+        <label>Data Record Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Data_Record_SObject_API__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For the data record that has been changed, this is the Api Name of the parent SObject.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For the data record that has been changed, this is the Api Name of the parent SObject.</inlineHelpText>
+        <label>Data Record SObject API</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Profile_Category_Group_Visibility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Profile Category Group Visibility</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Profile_External_Data_Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Profile External Data Source</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Rich_Summary__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field is used by FLO Change Log Layout to show with colors all highlighted differences.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is used by FLO Change Log Layout to show with colors all highlighted differences.</inlineHelpText>
+        <label>Diff Summary (Rich text)</label>
+        <length>131000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Layout_Assignment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Layout Assignment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Action_Override__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile Action Override</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_App_Visibility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile App Visibility</label>
+        <length>3000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Base__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile/PS Base</label>
+        <length>1024</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Class_Access__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile/PS Class Access</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Custom_Permissions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile Custom Permissions</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Field_Permissions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Prof/PS Field Permissions</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Ip_Ranges__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile Ip Ranges</label>
+        <length>3000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Login_Hours__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile Login Hours</label>
+        <length>1500</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Object_Permissions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Prof/PS Object Permissions</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Page_Access__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile/PS Page Access</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_RecordTy_Visibility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile RecordTy Visibility</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_Tab_Visibility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary  Profile Tab Visibility</label>
+        <length>100000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary_Profile_User_Permissions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Diff Summary Profile/PS User Permissions</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Diff_Summary__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Diff related to old and new values when something change</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Diff related to old and new values when something change - To be used in all Reports or Excel files</inlineHelpText>
+        <label>Diff Summary</label>
+        <length>131000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__ExternalId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__External_Audit_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notes from the external audition</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Notes from the external audition</inlineHelpText>
+        <label>External Audit Comments</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__External_Audit_Status__c</fullName>
+        <defaultValue>&quot;  &quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>External audit status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>External audit status</inlineHelpText>
+        <label>External Audit Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Under Investigation</fullName>
+                    <default>false</default>
+                    <label>Under Investigation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__FLO_Customization__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Linked customization that have been changed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Linked customization that have been changed.</inlineHelpText>
+        <label>Customization</label>
+        <referenceTo>FLODocs__FLO_Customization__c</referenceTo>
+        <relationshipLabel>Change Logs</relationshipLabel>
+        <relationshipName>FLO_Change_Logs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Field_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the Field changed by the user/system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the Field changed by the user/system.</inlineHelpText>
+        <label>Field Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Filters__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Names of the filters that were satisfied for this data record change. If blank, then these data records are not filtered.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Names of the filters that were satisfied for this data record change. If blank, then these data records are not filtered.</inlineHelpText>
+        <label>Filters</label>
+        <length>131000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Internal_Audit_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notes from the internal audit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Notes from the internal audit</inlineHelpText>
+        <label>Internal Audit Comments</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Internal_Audit_Status__c</fullName>
+        <defaultValue>&quot;  &quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Status of the internal audition</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the internal audition</inlineHelpText>
+        <label>Internal Audit Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Under Investigation</fullName>
+                    <default>false</default>
+                    <label>Under Investigation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Last_External_Audit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>User that did the last external audit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>User that did the last external audit</inlineHelpText>
+        <label>Last External Audit</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Change_Logs3</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Last_Internal_audit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>User that did the last internal audit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>User that did the last internal audit</inlineHelpText>
+        <label>Last Internal audit</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Change_Logs2</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Metadata_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Salesforce metadata type of the Customization related to the change log</description>
+        <externalId>false</externalId>
+        <formula>TEXT(FLODocs__FLO_Customization__r.FLODocs__Salesforce_Types__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Salesforce metadata type of the Customization related to the change log</inlineHelpText>
+        <label>Metadata Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Namespace__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the Managed Package where the customization belongs</description>
+        <externalId>false</externalId>
+        <formula>FLODocs__FLO_Customization__r.FLODocs__Namespace_Prefix__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Name of the Managed Package where the customization belongs</inlineHelpText>
+        <label>Namespace</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__New_Customization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Strongpoint will check this field only when the FLO Customization and Change Log were created at a first time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Strongpoint will check this field only when the FLO Customization and Change Log were created at a first time</inlineHelpText>
+        <label>New Customization</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__New_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Value set to the field during the documented update.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Value set to the field during the documented update.</inlineHelpText>
+        <label>New Value</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Noncompliance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is checked when Change log is a non-compliance</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is checked when Change log is a non-compliance</inlineHelpText>
+        <label>Non-Compliant</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Old_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Value present in the field before the documented update.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Value present in the field before the documented update.</inlineHelpText>
+        <label>Old Value</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Operation__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Flag if is a change or a new record created</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag if is a change or a new record created</inlineHelpText>
+        <label>Operation</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Package__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Managed Package name of the Customization Related</description>
+        <externalId>false</externalId>
+        <formula>FLODocs__FLO_Customization__r.FLODocs__Namespace_Prefix__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Managed Package name of the Customization Related</inlineHelpText>
+        <label>Package</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Parent_Change_Log__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Parent Change Log</label>
+        <referenceTo>FLODocs__FLO_Change_Log__c</referenceTo>
+        <relationshipName>FLO_Change_Logs1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Policy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Policy</label>
+        <referenceTo>FLODocs__FLO_Change_Approval_Policy__c</referenceTo>
+        <relationshipName>FLO_Change_Logs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Process_Package_CR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Internal Field to manage Change logs from Managed Package</inlineHelpText>
+        <label>Process Package CR</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the name of the policy violated by the change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the name of the policy violated by the change.</inlineHelpText>
+        <label>Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Related_Change_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the change request that is related to the change or that was used to perform regression analysis of a noncompliant change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the change request that is related to the change or that was used to perform regression analysis of a noncompliant change.</inlineHelpText>
+        <label>Related Change Request</label>
+        <referenceTo>FLODocs__FLO_Change_Request__c</referenceTo>
+        <relationshipName>FLO_Change_Logs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Related_Process_Issue__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This is the process issue that is related to the change or use to resolve it.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the process issue that is related to the change or use to resolve it.</inlineHelpText>
+        <label>Related Process Issue</label>
+        <referenceTo>FLODocs__FLO_Process_Issue__c</referenceTo>
+        <relationshipName>FLO_Change_Logs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Resolution_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is a description of the steps taken to resolve any noncompliant change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a description of any steps taken to bring the change back into compliance.  For example, a change request can be created and evaluated retrospectively or the change can be examined and determined to be inconsequential.</inlineHelpText>
+        <label>Resolution Description</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Sampled_For_Audit__c</fullName>
+        <defaultValue>&quot;  &quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Sampled audtior</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sampled audtior</inlineHelpText>
+        <label>Sampled For Audit</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal</fullName>
+                    <default>false</default>
+                    <label>Internal</label>
+                </value>
+                <value>
+                    <fullName>External</fullName>
+                    <default>false</default>
+                    <label>External</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Script__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Script to be used in Change log - N/A - Future use</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Script to be used in Change log - N/A - Future use</inlineHelpText>
+        <label>Script</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Short_Resolution_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is a short description of the steps taken to resolve any noncompliant change.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a short description of any steps taken to bring the change back into compliance.  For example, a change request can be created and evaluated retrospectively or the change can be examined and determined to be inconsequential.</inlineHelpText>
+        <label>Short Resolution Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Status_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of the Change log to be manually set</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the Change log to be manually set</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>To Be Cleaned Up</fullName>
+                    <default>false</default>
+                    <label>To Be Cleaned Up</label>
+                </value>
+                <value>
+                    <fullName>Under Investigation</fullName>
+                    <default>false</default>
+                    <label>Under Investigation</label>
+                </value>
+                <value>
+                    <fullName>Archive</fullName>
+                    <default>false</default>
+                    <label>Archive</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Change Log</label>
+    <listViews>
+        <fullName>FLODocs__Apex_Script_Changes_2</fullName>
+        <booleanFilter>(1 OR 2 OR 3 OR 4) AND 5</booleanFilter>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FLODocs__Compliant_Indicator__c</columns>
+        <columns>FLODocs__Compliance__c</columns>
+        <columns>FLODocs__Reason__c</columns>
+        <columns>FLODocs__Metadata_Type__c</columns>
+        <columns>FLODocs__FLO_Customization__c</columns>
+        <columns>FLODocs__Status_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FLODocs__Metadata_Type__c</field>
+            <operation>equals</operation>
+            <value>ApexClass</value>
+        </filters>
+        <filters>
+            <field>FLODocs__Metadata_Type__c</field>
+            <operation>equals</operation>
+            <value>ApexComponent</value>
+        </filters>
+        <filters>
+            <field>FLODocs__Metadata_Type__c</field>
+            <operation>equals</operation>
+            <value>ApexTrigger</value>
+        </filters>
+        <filters>
+            <field>FLODocs__Metadata_Type__c</field>
+            <operation>equals</operation>
+            <value>ApexPage</value>
+        </filters>
+        <filters>
+            <field>FLODocs__New_Customization__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Apex Script Changes (v2)</label>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__Managed_Package_Changes_2</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FLODocs__Actual_Change_DateTime__c</columns>
+        <columns>FLODocs__FLO_Customization__c</columns>
+        <columns>FLODocs__Metadata_Type__c</columns>
+        <columns>FLODocs__Compliance__c</columns>
+        <columns>FLODocs__Compliant_Indicator__c</columns>
+        <columns>FLODocs__Related_Change_Request__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FLODocs__Package__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Managed Package Changes (v2)</label>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__Open_Noncompliant_Changes_2</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FLODocs__Compliance__c</columns>
+        <columns>FLODocs__Compliant_Indicator__c</columns>
+        <columns>FLODocs__Reason__c</columns>
+        <columns>FLODocs__Metadata_Type__c</columns>
+        <columns>FLODocs__Status_Value__c</columns>
+        <columns>FLODocs__Old_Value__c</columns>
+        <columns>FLODocs__New_Value__c</columns>
+        <columns>FLODocs__Short_Resolution_Description__c</columns>
+        <columns>FLODocs__Related_Change_Request__c</columns>
+        <columns>FLODocs__Related_Process_Issue__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FLODocs__Package__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>FLODocs__Noncompliance__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>FLODocs__Status_Value__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <label>Unresolved Non-Compliant Changes (v2)</label>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__Resolved_Non_Compliant_Changes_by_User_2</fullName>
+        <columns>NAME</columns>
+        <columns>FLODocs__FLO_Customization__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>FLODocs__Status_Value__c</columns>
+        <columns>FLODocs__Short_Resolution_Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FLODocs__Noncompliance__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>FLODocs__Status_Value__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>Resolved Non-Compliant Changes (v2)</label>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__What_Changed_Latest_Changes_2</fullName>
+        <columns>NAME</columns>
+        <columns>FLODocs__Actual_Change_DateTime__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FLODocs__Compliant_Indicator__c</columns>
+        <columns>FLODocs__FLO_Customization__c</columns>
+        <columns>FLODocs__Metadata_Type__c</columns>
+        <columns>FLODocs__Operation__c</columns>
+        <columns>FLODocs__Policy__c</columns>
+        <columns>FLODocs__Reason__c</columns>
+        <columns>FLODocs__Related_Change_Request__c</columns>
+        <columns>FLODocs__Related_Process_Issue__c</columns>
+        <columns>FLODocs__Short_Resolution_Description__c</columns>
+        <columns>FLODocs__Status_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>What Changed - Latest Changes (v2)</label>
+    </listViews>
+    <listViews>
+        <fullName>FLODocs__What_Changed_None_managed_package</fullName>
+        <columns>NAME</columns>
+        <columns>FLODocs__Actual_Change_DateTime__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FLODocs__Compliant_Indicator__c</columns>
+        <columns>FLODocs__FLO_Customization__c</columns>
+        <columns>FLODocs__Metadata_Type__c</columns>
+        <columns>FLODocs__Operation__c</columns>
+        <columns>FLODocs__Policy__c</columns>
+        <columns>FLODocs__Reason__c</columns>
+        <columns>FLODocs__Related_Change_Request__c</columns>
+        <columns>FLODocs__Related_Process_Issue__c</columns>
+        <columns>FLODocs__Short_Resolution_Description__c</columns>
+        <columns>FLODocs__Status_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FLODocs__Package__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>What Changed - None managed package</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CL-{00000}</displayFormat>
+        <label>Change Log Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Change Logs</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>FLODocs__Flo_Change_Log_Other</fullName>
+        <active>true</active>
+        <label>Flo Change Log Other</label>
+        <picklistValues>
+            <picklist>FLODocs__External_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Internal_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Sampled_For_Audit__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Status_Value__c</picklist>
+            <values>
+                <fullName>Archive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>To Be Cleaned Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FLODocs__Flo_Change_Log_PermissionSet</fullName>
+        <active>true</active>
+        <label>Flo Change Log PermissionSet</label>
+        <picklistValues>
+            <picklist>FLODocs__External_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Internal_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Sampled_For_Audit__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Status_Value__c</picklist>
+            <values>
+                <fullName>Archive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>To Be Cleaned Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FLODocs__Flo_Change_Log_Profile</fullName>
+        <active>true</active>
+        <label>Flo Change Log Profile</label>
+        <picklistValues>
+            <picklist>FLODocs__External_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Internal_Audit_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Sampled_For_Audit__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FLODocs__Status_Value__c</picklist>
+            <values>
+                <fullName>Archive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>To Be Cleaned Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Investigation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Metadata_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Operation__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Reason__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Compliance__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Compliant_Indicator__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__FLO_Customization__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Related_Change_Request__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FLODocs__Related_Process_Issue__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Actual_Change_DateTime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Customization_Modified_ByLookup__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Noncompliance__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Related_Process_Issue__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FLODocs__Related_Change_Request__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>FLODocs__Diff_Summary</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Diff Summary</masterLabel>
+        <openType>newWindow</openType>
+        <page>FLODocs__FloStringDiffView</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+</CustomObject>

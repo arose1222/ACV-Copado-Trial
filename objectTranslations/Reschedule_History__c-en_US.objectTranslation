@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Reschedule History</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Reschedule Histories</value>
+    </caseValues>
+    <fields>
+        <help><!-- The time that the original Service Appointment was scheduled to start. --></help>
+        <label><!-- Original Scheduled Start Time --></label>
+        <name>Original_Scheduled_Start_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- &quot;Cannot Complete Reason&quot; from the rescheduled Service Appointment. --></help>
+        <label><!-- Reason for Reschedule --></label>
+        <name>Reason_for_Reschedule__c</name>
+    </fields>
+    <fields>
+        <help><!-- The parent reschedule object used to connect all related Reschedule Histories. --></help>
+        <label><!-- Reschedule --></label>
+        <name>Reschedule__c</name>
+        <relationshipLabel><!-- Reschedule Histories --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The user who initiated the reschedule. --></help>
+        <label><!-- Rescheduled By --></label>
+        <name>Rescheduled_By__c</name>
+        <relationshipLabel><!-- Reschedule Histories --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date and time that this reschedule occurred. --></help>
+        <label><!-- Rescheduled Datetime --></label>
+        <name>Rescheduled_Datetime__c</name>
+    </fields>
+    <fields>
+        <help><!-- The original service appointment that has been rescheduled. --></help>
+        <label><!-- Rescheduled From --></label>
+        <name>Rescheduled_From__c</name>
+        <relationshipLabel><!-- Reschedule Histories --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The new Service Appointment that resulted from the original being rescheduled. --></help>
+        <label><!-- Rescheduled To --></label>
+        <name>Rescheduled_To__c</name>
+        <relationshipLabel><!-- Reschedule Histories (Rescheduled To) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The Service Resource who was assigned to the original service appointment. --></help>
+        <label><!-- Service Resource --></label>
+        <name>Service_Resource__c</name>
+        <relationshipLabel><!-- Reschedule Histories --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

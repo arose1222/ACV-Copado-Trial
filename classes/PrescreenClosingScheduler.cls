@@ -2,8 +2,6 @@ global class PrescreenClosingScheduler extends SchedulingInterface{
 
     private static final String ARB_GUARD_PRESCREEN_REASON_NAME = 'Arb Guard';
     private static final String AMP_ML_PRESCREEN_REASON_NAME = 'AMP ML';
-    private static final String BUMPER_LIGHS_REASON_STRING = 'Bumper/Lights';
-    private static final String EXTERIOR_COSMETIC_REASON_STRING = 'Exterior Cosmetic';
     private static final String PRESCREEN_STATUS_NEW = 'New';
     private static final String PRESCREEN_STATUS_CLOSED = 'Closed';
     private static final String PRESCREEN_CLOSING_SCHEDULER = 'PrescreenClosingScheduler';
@@ -15,9 +13,12 @@ global class PrescreenClosingScheduler extends SchedulingInterface{
     public class PrescreenClosingSchedulerQueuable implements Queueable{
 		
 		public void execute(QueueableContext context) {
+            System.debug('PrescreenClosingScheduler start');
 
-			Set<String> reasonNames = new Set<String>{ARB_GUARD_PRESCREEN_REASON_NAME,AMP_ML_PRESCREEN_REASON_NAME};
-            Set<String> reasonStrings = new Set<String>{BUMPER_LIGHS_REASON_STRING,EXTERIOR_COSMETIC_REASON_STRING};
+            List<Prescreen_Reasons__mdt> allowedReasons = [SELECT MasterLabel FROM Prescreen_Reasons__mdt WHERE Include_For_Time_Out__c = TRUE];
+            
+            Set<String> reasonNames = new Set<String>();
+            for(Prescreen_Reasons__mdt reason : allowedReasons){ reasonNames.add(reason.MasterLabel); }
 
             List<Condition_Report_Prescreen__c> prescreensToClose = new  List<Condition_Report_Prescreen__c>();
 
@@ -25,7 +26,7 @@ global class PrescreenClosingScheduler extends SchedulingInterface{
                                                                             (select Id, Name from Prescreen_Reasons__r where Name IN: reasonNames) 
                                                                     FROM  Condition_Report_Prescreen__c 
                                                                     WHERE Status__c =: PRESCREEN_STATUS_NEW
-                                                                        AND Reason__c NOT IN: reasonStrings];
+                                                                    FOR UPDATE];
 
             Datetime now = Datetime.now();
 
@@ -45,8 +46,11 @@ global class PrescreenClosingScheduler extends SchedulingInterface{
                 prescreen.CR_Review_Timeout__c = true;
             }
             
-            if(!prescreensToClose.isEmpty()){ update prescreensToClose; }
+            if(!prescreensToClose.isEmpty()){ Database.update(prescreensToClose,false); }
+            System.debug('PrescreenClosingScheduler end');
 		}
-		
+        
+        
+        
 	}
 }

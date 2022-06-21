@@ -236,26 +236,34 @@ UPPER(Country))))</errorConditionFormula>
         <fullName>Valid_Postal_Code</fullName>
         <active>true</active>
         <description>Verifies that Postal Code is Valid</description>
-        <errorConditionFormula>AND(
-OR(Country = &quot;USA&quot;, Country = &quot;US&quot;, ISBLANK(Country)),
-NOT(REGEX(PostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
-)</errorConditionFormula>
-        <errorMessage>Zip code must be in 99999 or 99999-9999 format.</errorMessage>
+        <errorConditionFormula>NOT(REGEX(PostalCode, &quot;^([0-9]{5})?$|^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$&quot;))</errorConditionFormula>
+        <errorMessage>US postal code must be in 99999 or 99999-9999 format. Canadian postal code must be in A9A 9A9 format.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Valid_State</fullName>
         <active>true</active>
         <description>Verifies that the State is a Valid 2 character</description>
-        <errorConditionFormula>AND (
-OR(Country = &quot;US&quot;, ISBLANK(Country)), 
-OR(
-LEN(State) &lt; 2,
-NOT(
-CONTAINS(&quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp;
-&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp;
-&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp;
-&quot;WA:WV:WI:WY:PR:VI&quot;, UPPER(State))
-)))</errorConditionFormula>
-        <errorMessage>A valid two-letter state abbreviation is required.</errorMessage>
+        <errorConditionFormula>OR(
+    AND(
+        OR(Country = &quot;US&quot;, Country = &quot;USA&quot;),
+		OR(
+			LEN(State) &lt; 2,NOT(
+				CONTAINS(&quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp;
+				&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp;
+				&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp;
+				&quot;WA:WV:WI:WY:PR:VI&quot;, UPPER(State))
+			)
+		)
+    ),
+    AND(
+        OR(Country = &quot;CA&quot;, Country = &quot;CAN&quot;, Country = &quot;Canada&quot;),
+		OR(
+			LEN(State) &lt; 2,NOT(
+				CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot;, UPPER(State))
+			)
+		)
+    )
+)</errorConditionFormula>
+        <errorMessage>A valid two-letter state/province abbreviation is required.</errorMessage>
     </validationRules>
 </CustomObject>

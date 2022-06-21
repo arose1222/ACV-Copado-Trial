@@ -1,0 +1,327 @@
+<apex:page showHeader="false" sidebar="false" standardController="FLODocs__FLO_Change_Request__c" extensions="FLODocs.FloChangeRequestButtonsController">
+	<apex:slds />
+	<style>
+		.activeTab {
+			border-bottom : 5px solid #0070d2;
+			padding: 10px !important;
+			text-align: center !important;
+			font-size: 12pt !important;
+			background: #FFF;
+		}
+		.tabsStyle {
+			padding: 10px !important;
+			text-align: center !important;
+			font-size: 12pt !important;
+			background: #FFF;
+		}
+		.rich-tabhdr-side-border {
+			display: none;
+		}
+		.rich-tabhdr-side-cell {
+			border-top: 0;
+		}
+		.errorM3 {
+			padding: 20px;
+	    	background: #ffc;
+		}
+		.coverageFailure {
+            background-color: #d68184;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .successMessage {
+            background-color: #04844b;
+            color: white; 
+            padding-left: 20px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            border-radius: 3px;
+        }
+        .warningInfo {
+            font-size:1.2em;
+        }
+	</style>
+	<apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/jquery.dataTables.css')}" />
+	
+	<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/jquery.dataTables.min.js')}" />
+    <apex:form >
+    	<div class="slds-page-header">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title--caps slds-line-height--reset">Change Request</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title" style="float:left;"> 
+                            	{!cr.Name}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<apex:outputPanel layout="block" style="padding: 30px 15px;background: #FFF;">
+			<apex:actionRegion >
+				<apex:actionFunction name="changeInboundAF" action="{!changeInbound}" reRender="formi">
+					<apex:param value="" name="inboundSelected" />
+				</apex:actionFunction>
+				<apex:actionFunction action="{!setEnviromenCredsTarget}" name="setTargetCreds" reRender="saveCredsModal" oncomplete="openSaveModal();" status="statusC"/>
+				<apex:actionFunction action="{!setEnviromentTarget}" name="gettargetCreds" reRender="targetBlock" status="statusC"/>
+			
+			   <apex:outputPanel layout="block" id="sourceMessage" >
+					<apex:outputPanel layout="block" rendered="{!sourceLoginMessage != ''}" >	
+						{!sourceLoginMessage}
+					</apex:outputPanel>
+				</apex:outputPanel>
+				<apex:outputPanel layout="block" id="errorMessage">
+                    <div class="coverageFailure" style="display: {!IF(csErrorMessage != '','block','none')}">
+                        <span class="warningInfo"><apex:outputText value="{!csErrorMessage}" escape="false"/></span>
+                    </div>
+
+                    <div class="successMessage" style="display: {!IF(successMessage == '','none','block')}">
+                        <span class="warningInfo"><apex:outputText value="Push Successful" escape="false"/></span>
+                    </div>
+
+                     <div class="successMessage" style="display: {!IF(successMessagePull != 'YES1','none','block')}">
+                        <span class="warningInfo"><apex:outputText value="Pull Successful" escape="false"/></span>
+                    </div>
+                </apex:outputPanel>
+				<br/>
+				<apex:outputPanel layout="block" id="remoteSiteMessage">
+					<script>
+
+						j$ = jQuery.noConflict();
+						function createRemoteSite()
+						{ 
+							// Disable button 
+							document.getElementById('createremotesitebtn').disabled = true;
+							console.log('{!remoteName}');
+							console.log('{!remoteUrl}');
+							// Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+							var binding = new XMLHttpRequest();
+							var request = 
+								'<?xml version="1.0" encoding="utf-8"?>' + 
+								'<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+									'<env:Header>' + 
+										'<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' + 
+											'<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' + 
+										'</urn:SessionHeader>' + 
+									'</env:Header>' + 
+									'<env:Body>' +
+										'<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' + 
+											'<metadata xsi:type="RemoteSiteSetting">' + 
+												'<fullName>{!remoteName}</fullName>' + 
+												'<description>{!remoteDescription}</description>' + 
+												'<disableProtocolSecurity>false</disableProtocolSecurity>' + 
+												'<isActive>true</isActive>' + 
+												'<url>https://{!remoteUrl}</url>' +
+											'</metadata>' +
+										'</createMetadata>' +
+									'</env:Body>' + 
+								'</env:Envelope>';
+
+							console.log(request);
+
+							binding.open('POST', 'https://{!Host}/services/Soap/m/31.0');
+							binding.setRequestHeader('SOAPAction','""');
+							binding.setRequestHeader('Content-Type', 'text/xml');
+							binding.onreadystatechange = 
+								function() { 
+									if(this.readyState==4) {
+										var parser = new DOMParser();
+										var doc  = parser.parseFromString(this.response, 'application/xml');
+										var errors = doc.getElementsByTagName('errors');
+										var messageText = '';
+										for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+											messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+										displayMetadataResponse(messageText);
+									} 
+								}
+							binding.send(request);
+							j$('.remoteSiteMessage').hide
+						}
+						function callforCredsTarget(){
+							gettargetCreds();
+						}
+						function openSaveModal() {
+							j$('div.saveCredsModal').show();
+						}
+						function closeModal() {
+							j$('div.saveCredsModal').hide();
+						}
+						function openOverlay() {
+							j$('.loadingOverlay').show();
+						}
+						function closeOverlay() {
+							var shouldClose = '{!runPoll}';
+							console.log(shouldClose);
+
+							if (shouldClose == 'false') {
+								j$('.loadingOverlay').hide();
+							}
+						}
+					</script>
+					<apex:outputPanel layout="block" rendered="{!showRemoteSiteSettingCreation}" styleClass="remoteSiteMessage">
+						<h1>Important Message:</h1> 
+						<p>In order to utilise the features of Environment Comparison, you need to permit the tool access to the environments to compare. This can be accomplished by adding a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> with this Salesforce Server URL <b>https://{!remoteUrl}</b></p>
+						<p> 
+							Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you. 
+							<input id="createremotesitebtn" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
+						</p>
+					</apex:outputPanel>
+				</apex:outputPanel>	
+
+				<apex:outputPanel layout="block" styleclass="slds-form-element__group" id="targetBlock">
+					<div class="slds-form-element__row">
+						<apex:outputPanel layout="block" StyleClass="slds-form-element slds-size--1-of-1" id="targetEnvSelect">
+							<label class="slds-form-element__label" for="input-03">Saved Environments:</label><br/>
+							<apex:selectList value="{!selectedEnviroment}" size="1" styleClass="slds-input" onchange="callforCredsTarget()">
+								<apex:selectOptions value="{!savedEnviroments}" />
+							</apex:selectList>
+						</apex:outputPanel>
+					</div>
+					<div class="slds-form-element__row">
+						<div class="slds-form-element slds-size--1-of-1">
+							<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+							<apex:inputText value="{!username}" id="targetUsername" styleClass="slds-input"/>
+						</div>
+					</div>
+					<div class="slds-form-element__row">
+						<div class="slds-form-element slds-size--1-of-1">
+							<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+							<apex:inputSecret value="{!password}" styleClass="slds-input" redisplay="true"/>
+						</div>
+					</div>
+					<div class="slds-form-element__row">
+						<div class="slds-form-element slds-size--1-of-1">
+							<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+							<apex:inputSecret value="{!token}" styleClass="slds-input"  redisplay="true"/>
+						</div>
+					</div>
+					<div class="slds-form-element__row">
+						<div class="slds-form-element slds-size--1-of-1">
+							<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+							<apex:inputCheckbox value="{!isSandbox}" />
+						</div>
+					</div>
+					<div class="slds-form-element__row">
+						<div class="slds-form-element slds-size--1-of-1">
+							<apex:commandButton action="{!testConnection}" value="Test Connection" reRender="remoteSiteMessage,sourceMessage" styleClass="slds-button slds-button--brand slds-order--3"/>
+							<button class="slds-button slds-button--brand" onclick="setTargetCreds(); return false;">
+								Save Credentials
+							</button>
+						</div>
+					</div>
+				</apex:outputPanel>
+
+				<apex:tabPanel selectedTab="pulltab" id="theTabPanel" style="width: 100%;margin-top: 20px;" tabClass="tabsStyle" activeTabClass="activeTab" switchType="client">
+					<apex:tab label="Pull" name="pulltab" id="tabOne" >
+						<div style="margin: 0 auto;padding: 20px;">
+							<apex:outputPanel id="crlisti">
+
+								<apex:commandButton value="Get Change Requests" action="{!changeRequests}" reRender="crLists" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/>
+
+								<apex:outputPanel layout="block" id="crLists" style="margin-top:20px;">
+									<apex:outputPanel layout="block" rendered="{!crRetrievedList.size > 0}" >
+									   	<apex:outputLabel StyleClass="slds-form-element__label" value="Select Change Request to display Customizations"/>
+										<apex:selectList value="{!crSelected}" multiselect="false" size="1">
+											<apex:selectOptions value="{!crRetrievedList}"/>
+										</apex:selectList>
+										<!-- <apex:commandButton value="Load Customizations" action="{!loadCustoFromCR}" reRender="formi, errorMessage" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/> -->
+										<apex:commandButton value="Pull Change Request" action="{!loadCRFromTargetOrg}" onclick="openOverlay()" oncomplete="closeOverlay()" reRender="formi, errorMessage" styleClass="slds-button slds-button_neutral slds-order--3"/>
+									</apex:outputPanel>
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</div>
+					</apex:tab>
+					<apex:tab label="Push" name="pushtab" id="tabTwo" >
+						<div style="margin: 0 auto;width: 20%;padding: 20px;">
+							<apex:commandButton value="Push CR" action="{!pushCR}" reRender="formi, errorMessage" onclick="openOverlay()" oncomplete="closeOverlay()" styleClass="slds-button slds-button_neutral slds-order--3"/>
+						</div>
+					</apex:tab>
+				</apex:tabPanel>
+				<div class="saveCredsModal" style="display: none;">
+					<apex:outputPanel layout="block" id="saveCredsModal">
+						<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+							<div class="slds-modal__container">
+								<div class="slds-modal__header">
+									<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="closeModal(); return false;">
+										 X
+										<span class="slds-assistive-text">Close</span>
+									</button>
+									<h2 id="header43" class="slds-text-heading--medium">Save Credentials</h2>
+								</div>
+								<div class="slds-modal__content slds-p-around--medium">
+									<div class="slds-form-element__row">
+										<div class="slds-form-element slds-size--1-of-1">
+											<label class="slds-form-element__label" for="input-03">Environment Name: <span class="required">*</span></label><br/>
+											<apex:inputText value="{!toSaveCreds.FLODocs__Custom_Name__c}" id="toSaveName" styleClass="slds-input" maxlength="19"/><br/>
+											<apex:outputText value="{!credNameError}" rendered="{!credNameError != ''}" style="color:red;"/>
+										</div>
+									</div>
+									<div class="slds-form-element__row">
+										<div class="slds-form-element slds-size--1-of-1">
+											<label class="slds-form-element__label" for="input-03">Username: <span class="required">*</span></label><br/>
+											<apex:inputText value="{!toSaveCreds.FLODocs__Username__c}" id="toSaveUsername" styleClass="slds-input" /><br/>
+											<apex:outputText value="{!credUserNameError}" rendered="{!credUserNameError != ''}" style="color:red;"/>
+		 								</div>
+									</div>
+									<div class="slds-form-element__row">
+										<div class="slds-form-element slds-size--1-of-1">
+											<label class="slds-form-element__label" for="input-03">Password: <span class="required">*</span></label><br/>
+											<apex:inputSecret value="{!toSaveCreds.FLODocs__Password__c}" styleClass="slds-input" redisplay="true"/><br/>
+											<apex:outputText value="{!credPasswordError}" rendered="{!credPasswordError != ''}" style="color:red;"/>
+										</div>
+									</div>
+									<div class="slds-form-element__row">
+										<div class="slds-form-element slds-size--1-of-1">
+											<label class="slds-form-element__label" for="input-03">Token: </label><br/>
+											<apex:inputSecret value="{!toSaveCreds.FLODocs__Token__c}" styleClass="slds-input" redisplay="true"/><br/>
+											<apex:outputText value="{!credTokenError}" rendered="{!credTokenError != ''}" style="color:red;"/>
+										</div>
+									</div>
+									<div class="slds-form-element__row">
+										<div class="slds-form-element slds-size--1-of-1">
+											<label class="slds-form-element__label" for="input-03">Sandbox: </label>
+											<apex:inputCheckbox value="{!toSaveCreds.FLODocs__Sandbox__c}" />
+										</div>
+									</div>
+								</div>
+								<div class="slds-modal__footer">
+									<apex:commandButton action="{!saveEnviroment}" value="Save" reRender="targetBlock,saveCredsModal" styleClass="slds-button slds-button--brand slds-order--3" oncomplete="closeModalAfterSave()" status="statusC"/>
+									<!-- <button class="slds-button slds-button--brand">Save</button> -->
+								</div>
+							</div>
+						</div>
+						<div class="slds-backdrop slds-backdrop--open"></div>
+						<script>
+							function closeModalAfterSave() {
+								//if ({!closeModal}) {
+									j$('div.saveCredsModal').hide();
+								//}
+							}
+						</script>
+					</apex:outputPanel>
+				</div>
+			</apex:actionRegion>
+		</apex:outputPanel>
+	</apex:form>
+	<div class="loadingOverlay" style="display: none;">
+		<div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+	        &nbsp;
+	    </div>
+	    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%;">
+	        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+	            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+	            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+	        </div>
+	    </div>
+	</div>
+</apex:page>

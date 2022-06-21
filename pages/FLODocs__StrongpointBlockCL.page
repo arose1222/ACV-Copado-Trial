@@ -1,0 +1,58 @@
+<apex:page showHeader="true" sidebar="false" standardController="FLODocs__FLO_Change_Log__c" extensions="FLODocs.StrongpointBlockActionController" action="{!calculateObject}">
+	<style>
+		.sptColors {
+			background-color: #3A3F71;
+			/*ORANGE #f47a20*/
+		}
+		.h1Styles {
+			color: #f47a20;
+			font-family: Salesforce Sans,Arial,sans-serif;
+		    font-weight: 700;
+		    font-style: normal;
+		    font-size: 40px;
+		    letter-spacing: 0em;
+		    line-height: 1.1em;
+		    text-transform: none;
+
+		}
+		.h2Styles{
+			font-family: Salesforce Sans,Arial,sans-serif;
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 1.2em;
+			/*font-family: Salesforce Sans,Arial,sans-serif;*/
+			font-weight: 300;
+			font-style: normal;
+			font-size: 15px;
+			letter-spacing: 0em;
+			line-height: 1.4em;
+			text-transform: none;
+			color:  #766f6b;
+		}
+		.container{
+			margin: 30px;
+		}
+		.containerPerBlock{
+				margin: 30px;
+				/*text-align: center;*/
+		}
+	</style>
+
+	 
+	  
+	<apex:outputPanel rendered="{!onlyDoc}">
+	<div style="background-color: #3A3F71; width: 100%;height: 75px;">
+					<img align="left" src="http://static1.squarespace.com/static/59709e3f893fc0cc2912ef0e/t/59709f5df5e2311272d2bd81/1517337485695/%3Fformat=1500w" style="max-width: 226px;"/>
+				</div>
+		<div class="slds-container_medium" data-reactid="108" style="margin: 20px;">
+			<div class="containerPerBlock" data-reactid="109" style="font-size: 8pt;">
+			<!-- <br/> -->
+			<h2 class="h2Styles" >Hey there!  Thanks for your interest in doing more with Change Logs using Strongpoint for Salesforce.</h2><br/><br/>
+			<h2 class="h2Styles">The Change Log is a consolidated repository of changes made to your system.  You can quickly identify what was changed and, in many cases, reverse it if necessary, through accessing the the data kept in the Strongpoint Change log.</h2><br/><br/>
+			<h2 class="h2Styles">The beauty of the Change Log is you can quickly identify changes made to the code, without having to dig through each line of code. You will see all the changes made in the system that would otherwise be difficult to identify without Strongpoint Change Logs (i.e. Reports, Layouts, Static Resources and Matching Rules.)  The time savings and efficiency for your team is measurable!</h2><br/><br/>
+			<h2 class="h2Styles"> To find out more and get a quote on this safe, and fast, feature <a style="text-decoration: none; color: blue;" href="https://strongpoint.io/strongpoint-for-salesforce" target="_blank">click here</a> and one of us from here at Strongpoint will get back to you right away.</h2>
+		</div>
+			<hr data-reactid="110" />
+		</div>
+	</apex:outputPanel>
+</apex:page>

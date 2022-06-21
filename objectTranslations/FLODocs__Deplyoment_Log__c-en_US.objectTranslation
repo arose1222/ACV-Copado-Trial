@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Internal ID used by Strongpoint and Salesforce to determine the real deployment process --></help>
+        <label><!-- Async Internal Id --></label>
+        <name>FLODocs__Async_Internal_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Request --></label>
+        <name>FLODocs__Change_Request__c</name>
+        <relationshipLabel><!-- Deployment Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Completed Date --></label>
+        <name>FLODocs__Completed_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of components that generated errors during this deployment. --></help>
+        <label><!-- Component Errors --></label>
+        <name>FLODocs__Component_Errors__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of components deployed in the deployment process. Strongpoint use this value with the numberComponentsTotal value to get an estimate of the deployment’s progress. --></help>
+        <label><!-- Components Deployed --></label>
+        <name>FLODocs__Components_Deployed__c</name>
+    </fields>
+    <fields>
+        <help><!-- The total number of components in the deployment --></help>
+        <label><!-- Components Total --></label>
+        <name>FLODocs__Components_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customizations --></label>
+        <name>FLODocs__Customizations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Strongpoint will use this text area to show all the Components and its errors during the deployment. --></help>
+        <label><!-- Deploy Error Messages --></label>
+        <name>FLODocs__Deploy_Error_Messages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deployment Status --></label>
+        <name>FLODocs__Deployment_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Environment Compare Log --></label>
+        <name>FLODocs__Environment_Compare_Log__c</name>
+        <relationshipLabel><!-- Deployment Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Retrieve Error Message --></label>
+        <name>FLODocs__Retrieve_Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieve Status --></label>
+        <name>FLODocs__Retrieve_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Test Enabled --></label>
+        <name>FLODocs__Run_Test_Enabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Tests --></label>
+        <name>FLODocs__Run_Tests__c</name>
+    </fields>
+    <fields>
+        <help><!-- Deployment Start Date --></help>
+        <label><!-- Start Date --></label>
+        <name>FLODocs__Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates which component is being deployed or which Apex test class is running. --></help>
+        <label><!-- State Detail --></label>
+        <name>FLODocs__State_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FLODocs__Status__c</name>
+        <picklistValues>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canceling</masterLabel>
+            <translation><!-- Canceling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>InProgress</masterLabel>
+            <translation><!-- InProgress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieve Completed</masterLabel>
+            <translation><!-- Retrieve Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieve Failed</masterLabel>
+            <translation><!-- Retrieve Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieve In Progress</masterLabel>
+            <translation><!-- Retrieve In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollback Completed</masterLabel>
+            <translation><!-- Rollback Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollback Failed</masterLabel>
+            <translation><!-- Rollback Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollback In Progress</masterLabel>
+            <translation><!-- Rollback In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollback Partial</masterLabel>
+            <translation><!-- Rollback Partial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Succeeded</masterLabel>
+            <translation><!-- Succeeded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SucceededPartial</masterLabel>
+            <translation><!-- SucceededPartial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Completed</masterLabel>
+            <translation><!-- Validation Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Failed</masterLabel>
+            <translation><!-- Validation Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation In Progress</masterLabel>
+            <translation><!-- Validation In Progress --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Test Level --></label>
+        <name>FLODocs__Test_Level__c</name>
+    </fields>
+    <fields>
+        <help><!-- Strongpoint will use this field to include all the test failures during the deplyoment --></help>
+        <label><!-- Tests Error Message --></label>
+        <name>FLODocs__Tests_Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tests Selected --></label>
+        <name>FLODocs__Tests_Selected__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Customizations Deployed --></label>
+        <name>FLODocs__of_Customizations_Deployed__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of Apex tests that have generated errors during this deployment. --></help>
+        <label><!-- # of Test Errors --></label>
+        <name>FLODocs__of_Test_Errors__c</name>
+    </fields>
+    <fields>
+        <help><!-- The number of completed Apex tests for this deployment. Strongpoint uses this value with the numberTestsTotal value to get an estimate of the deployment’s test progress. --></help>
+        <label><!-- # of Tests Completed --></label>
+        <name>FLODocs__of_Tests_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- The total number of Apex tests for this deployment. --></help>
+        <label><!-- # of Tests Total --></label>
+        <name>FLODocs__of_Tests_Total__c</name>
+    </fields>
+</CustomObjectTranslation>

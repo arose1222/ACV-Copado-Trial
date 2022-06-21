@@ -1,6 +1,9 @@
-/*
-    This class is called from leadConversion LWC
-*/
+/**
+ * This class is called from leadConversion LWC
+ * @author James Lacour
+ * @since 2021
+ * @group Identity & Org
+ */
 public class LeadConversion {
 
     // This field is used in before insert triggers of Contact & Account to set "Lead Convert Status" field on Account
@@ -36,6 +39,7 @@ public class LeadConversion {
 
             isConverting= true;
             List<Lead> lead = [Select Id, Company, Email, Street, City, State, PostalCode, Country, RecordTypeId, NumberOfEmployees, Dealer_Type__c, Website, Referral_Code__c, Market_Place_Report_User__c from Lead WHERE Id = :recordId];
+            // List<Lead> lead = [Select Id, Company, Email, Street, City, State, PostalCode, Country, RecordTypeId,RecordType.Name,NumberOfEmployees, Dealer_Type__c, Website,IsConverted, Referral_Code__c, Market_Place_Report_User__c, ConvertedOpportunityID, ConvertedAccountId, ConvertedContactId from Lead WHERE Id = :recordId];
             
             // Checking for duplicate lead
             List<Lead> leadDupeCheck = [ SELECT Id FROM Lead WHERE Email = :lead[0].Email AND RecordTypeId = :lead[0].RecordTypeId AND isConverted = false ];
@@ -63,10 +67,12 @@ public class LeadConversion {
             lc.setLeadId(recordId);
             lc.setSendNotificationEmail(false);
             lc.setDoNotCreateOpportunity(true);
-            leadstatus ls = [SELECT Id, MasterLabel, IsConverted FROM LeadStatus WHERE IsConverted = true LIMIT 1];
+
+            leadstatus ls = [SELECT Id, MasterLabel,ApiName, IsConverted FROM LeadStatus WHERE IsConverted = true LIMIT 1];
             lc.setConvertedStatus(ls.MasterLabel);
-        
+        system.debug('DEALER TYPE: '+lead[0].Dealer_type__c);
             Database.LeadConvertResult lcr= Database.convertLead(lc);
+            system.debug('AFTER CONVERT');
 
 
             Id accId = lcr.getAccountId();
@@ -112,7 +118,14 @@ public class LeadConversion {
              update con;
 
             // Link address to dealer
-            AddressHelper.AddressWrapper aw= new AddressHelper.AddressWrapper(lead[0].Street, lead[0].City, lead[0].State, lead[0].PostalCode, lead[0].Country, 'billing', '', '');
+            AddressHelper.AddressWrapper aw = new AddressHelper.AddressWrapper();
+            aw.Street =  lead[0].Street;
+            aw.City =  lead[0].City;
+            aw.State = lead[0].State;
+            aw.PostalCode =  lead[0].PostalCode;
+            aw.Country = lead[0].Country; 
+            aw.type = 'billing';
+
             try{
                 insert AddressHelper.generateAddressStack(aw, accId);
             }
@@ -142,6 +155,7 @@ public class LeadConversion {
         }
         Catch(Exception ex)
         {
+            System.debug('IN CATCH');
             sendLog(SplunkHelper.LOGLEVEL.ERROR, ACVUtility.currentLineNumber(),ex.getMessage(),ex.getStackTraceString(),recordId);
             if(ex.getMessage().contains('Lead conversion process aborted'))
             {

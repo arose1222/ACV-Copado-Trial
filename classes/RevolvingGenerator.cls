@@ -166,7 +166,6 @@ public class RevolvingGenerator {
 
         wosWithErrors.addAll([SELECT Id FROM WorkOrder WHERE Id in (SELECT Work_Order__c FROM ServiceAppointment WHERE Id in : saErrorIds)]);
         wosWithErrors.addAll([SELECT Id FROM WorkOrder WHERE Id in (SELECT RelatedRecordId FROM ResourcePreference WHERE Id in : rpErrorIds)]);
-
         occsWithFailedChildren.putAll([SELECT Id, Farthest_Date_Generated__c FROM Occurrence__c WHERE Id in (SELECT Occurrence__c FROM WorkOrder WHERE Id in : wosWithErrors)]);
         Map<Id, Occurrence__c> occsToUpdate = new Map<Id, Occurrence__c>();
         for(Occurrence__c occ : occs.values()){
@@ -259,7 +258,8 @@ public class RevolvingGenerator {
                 Origin__c = 'Revolving Term',
                 Inspection_Number_of_Vehicles__c = occ.Timeline__r.Average_Number_Cars__c,
                 Created_Without_Line_Items__c = TRUE,
-                DueDate_Adjustment_Engine_Bypass__c = TRUE
+                DueDate_Adjustment_Engine_Bypass__c = TRUE,
+                Special_Instructions_for_VCI__c = occ.Timeline__r.Special_Instructions__c
             );
 
             setAddress(woRec, occ);

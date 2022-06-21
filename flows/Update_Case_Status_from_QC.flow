@@ -4,8 +4,8 @@
     <assignments>
         <name>Count_of_QC_Records</name>
         <label>Count of QC Records</label>
-        <locationX>385</locationX>
-        <locationY>285</locationY>
+        <locationX>364</locationX>
+        <locationY>741</locationY>
         <assignmentItems>
             <assignToReference>NumberofQCRecords</assignToReference>
             <operator>AssignCount</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Number_of_Closed_QC_Records</name>
         <label>Number of Closed QC Records</label>
-        <locationX>448</locationX>
-        <locationY>433</locationY>
+        <locationX>796</locationX>
+        <locationY>631</locationY>
         <assignmentItems>
             <assignToReference>NumberofClosedQCRecords</assignToReference>
             <operator>Add</operator>
@@ -36,8 +36,8 @@
     <decisions>
         <name>Are_all_QC_Records_Closed</name>
         <label>Are all QC Records Closed</label>
-        <locationX>788</locationX>
-        <locationY>377</locationY>
+        <locationX>891</locationX>
+        <locationY>309</locationY>
         <defaultConnectorLabel>QC Not Closed</defaultConnectorLabel>
         <rules>
             <name>QC_Closed</name>
@@ -79,7 +79,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Case_to_Working</targetReference>
+                <targetReference>Disable_Validation_Rule_0</targetReference>
             </connector>
             <label>All QC Records Are Closed No Hold</label>
         </rules>
@@ -101,7 +101,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Case_to_Received</targetReference>
+                <targetReference>Disable_Validation_Rule</targetReference>
             </connector>
             <label>All QC Records Closed Title Hold</label>
         </rules>
@@ -109,8 +109,8 @@
     <decisions>
         <name>Is_case_in_Problem_or_Return_To_Seller_Status</name>
         <label>Is case in Problem or Return To Seller Status?</label>
-        <locationX>202</locationX>
-        <locationY>467</locationY>
+        <locationX>167</locationX>
+        <locationY>566</locationY>
         <defaultConnectorLabel>Not problem related Status</defaultConnectorLabel>
         <rules>
             <name>Case_is_Problem_or_Return_to_Seller</name>
@@ -135,14 +135,14 @@
             <label>Case is Problem or Return to Seller</label>
         </rules>
     </decisions>
-    <description>Looks at the QC records to see when all are closed and then updates the related case to working  - working to look at all qc records</description>
+    <description>Looks at the QC records to see when all are closed and then updates the related case to Working  or or Received. The goal of this flow is to reduce the updates needed to be made when closing out the QC record.</description>
     <interviewLabel>Update Case Status from QC {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Case Status from QC</label>
     <loops>
         <name>Look_at_all_QC_Records</name>
         <label>Look at all QC Records</label>
-        <locationX>530</locationX>
-        <locationY>285</locationY>
+        <locationX>365</locationX>
+        <locationY>391</locationY>
         <collectionReference>Get_All_QC_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -174,8 +174,8 @@
     <recordLookups>
         <name>Get_All_QC_Records</name>
         <label>Get All QC Records</label>
-        <locationX>340</locationX>
-        <locationY>548</locationY>
+        <locationX>172</locationX>
+        <locationY>741</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Count_of_QC_Records</targetReference>
@@ -195,8 +195,8 @@
     <recordLookups>
         <name>Get_Case_Record</name>
         <label>Get Case Record</label>
-        <locationX>65</locationX>
-        <locationY>363</locationY>
+        <locationX>175</locationX>
+        <locationY>415</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_case_in_Problem_or_Return_To_Seller_Status</targetReference>
@@ -214,11 +214,108 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <description>looks to the custom metadata called TitleProblemStatus and allows us to utilize the disable validation field to bypass the validation rule saying all QC records have to be closed to update the status from Problem or Return to seller - we then turn back on after the update is made.  Since this flow already checks all are closed we do not need to pass through that validation here.</description>
+        <name>Disable_Validation_Rule</name>
+        <label>Disable Validation Rule</label>
+        <locationX>1038</locationX>
+        <locationY>167</locationY>
+        <connector>
+            <targetReference>Update_Case_to_Received</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>EasyName__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>ACVOrg</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>DisableValidation__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>TitleProblemStatus__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>looks to the custom metadata called TitleProblemStatus and allows us to utilize the disable validation field to bypass the validation rule saying all QC records have to be closed to update he status from Problem or Return to seller - we then turn back on after the update is made.  Since this flow already checks all are closed we do not need to pass through that validation here.</description>
+        <name>Disable_Validation_Rule_0</name>
+        <label>Disable Validation Rule</label>
+        <locationX>1042</locationX>
+        <locationY>477</locationY>
+        <connector>
+            <targetReference>Update_Case_to_Working</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>EasyName__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>ACVOrg</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>DisableValidation__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>TitleProblemStatus__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Looks to the custom metadata called TitleProblemStatus and turns disable Validation Back to false</description>
+        <name>Disable_Validation_Rule_0_0</name>
+        <label>Turn Disable Validation Off</label>
+        <locationX>1304</locationX>
+        <locationY>481</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>EasyName__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>ACVOrg</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>DisableValidation__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>TitleProblemStatus__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Looks to the custom metadata called TitleProblemStatus and turns disable Validation Back to false</description>
+        <name>Turn_Disable_Validation_Off</name>
+        <label>Turn Disable Validation Off</label>
+        <locationX>1304</locationX>
+        <locationY>167</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>EasyName__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>ACVOrg</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>DisableValidation__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>TitleProblemStatus__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <description>This is used to bypass the validation rule that will not allow title cases where the Buyer is on a title hold to be moved to working - but we still want this out of problem so we are pushing it back to received and then it can we worked and still hit the appropriate error.</description>
         <name>Update_Case_to_Received</name>
         <label>Update Case to Received</label>
-        <locationX>1054</locationX>
-        <locationY>216</locationY>
+        <locationX>1173</locationX>
+        <locationY>166</locationY>
+        <connector>
+            <targetReference>Turn_Disable_Validation_Off</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -244,8 +341,11 @@
     <recordUpdates>
         <name>Update_Case_to_Working</name>
         <label>Update Case to Working</label>
-        <locationX>1063</locationX>
-        <locationY>455</locationY>
+        <locationX>1171</locationX>
+        <locationY>478</locationY>
+        <connector>
+            <targetReference>Disable_Validation_Rule_0_0</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>

@@ -1,0 +1,15 @@
+<apex:page showHeader="true" sidebar="true" standardController="FLODocs__FLO_Change_Log__c">
+    <apex:outputText value="{!SUBSTITUTE(
+                                SUBSTITUTE(
+                                    SUBSTITUTE(
+                                        SUBSTITUTE(FLO_Change_Log__c.Diff_Summary__c,
+                                                    '{{openSourceDiv}}',
+                                                    '<span style=color:green;>'),
+                                        '{{opeTargetDiv}}', 
+                                        '<span style=color:red;>'),
+                                    '{{closeDiv}}',
+                                    '</span><br/>'),
+                                '@',
+                                '<br/>@')}" 
+                    escape="false" />
+</apex:page>

@@ -208,8 +208,8 @@ global class GMBundlerBatch extends SchedulingInterface implements Database.Batc
 
         //Update the work order
         List<WorkOrder> woToUpdateList = new List<WorkOrder>();
-        for(WorkOrder wo : [SELECT Id, Special_Instructions__c FROM WorkOrder WHERE Id IN :AddressKeyWoIdUpdateMap.values()]){
-            wo.Special_Instructions__c = 'This is a CPOGM and GMFIA assignment.';
+        for(WorkOrder wo : [SELECT Id, Special_Instructions_for_VCI__c FROM WorkOrder WHERE Id IN :AddressKeyWoIdUpdateMap.values()]){
+            wo.Special_Instructions_for_VCI__c = 'This is a CPOGM and GMFIA assignment.';
             woToUpdateList.add(wo);
         }
         Database.SaveResult[] updateWOResultList = Database.update(woToUpdateList, false);

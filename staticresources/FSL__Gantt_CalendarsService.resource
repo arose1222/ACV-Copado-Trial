@@ -405,8 +405,9 @@
 					if (intersection.intersection) {
 						var currentSlot = tempInterval; //slotsByIntervals[currentInterval.getTime()+'_'+nextInterval.getTime()];
 
-						//when to keep current slot - no slot, always override timeslot, shift with territory over shift without
-						if (currentSlot === undefined || currentSlot.record == 'timeslot' || currentSlot.record == 'shift' && !currentSlot.hasTerritory && slot.hasTerritory) {
+						//when to keep current slot - no slot, always override timeslot, shift with territory over shift without, 
+						//holiday shift over non-holiday shift
+						if (currentSlot === undefined || currentSlot.record == 'timeslot' || currentSlot.record == 'shift' && (!currentSlot.hasTerritory && slot.hasTerritory || !currentSlot.isHolidaySlot && slot.isHolidaySlot)) {
 							tempInterval = {
 								slotStart: currentInterval,
 								slotFinish: nextInterval,

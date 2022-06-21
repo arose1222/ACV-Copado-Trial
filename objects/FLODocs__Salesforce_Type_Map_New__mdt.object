@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Map of Salesforce metadata types to a (small) number of categories.</description>
+    <fields>
+        <fullName>FLODocs__Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Coarse-grained category that contains many Salesforce metadata types.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Coarse-grained category that contains many Salesforce metadata types.</inlineHelpText>
+        <label>Category</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FLODocs__Salesforce_Type__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>Granular Salesforce metadata type (eg, CustomObject, ApexClass, CustomField, ApexTrigger, ...)</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Granular Salesforce metadata type (eg, CustomObject, ApexClass, CustomField, ApexTrigger, ...)</inlineHelpText>
+        <label>Salesforce Type</label>
+        <length>40</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Salesforce Type Map New</label>
+    <pluralLabel>Salesforce Types Map New</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

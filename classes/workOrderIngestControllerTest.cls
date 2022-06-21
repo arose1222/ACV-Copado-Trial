@@ -153,4 +153,38 @@ public class workOrderIngestControllerTest {
         system.assert(saRec?.Exclude_from_Optimization__c == false, 'Expected Exclude_from_Optimization__c to be false');
 
     }
+
+    @isTest
+    static void updateWork(){
+
+        String json = '{"city":"Buffalo","state":"NY","zip":"14203","country":"United States","street":"101 Main Street","NotificationRequest":false,"accountName":"';
+
+        Account acct = [ SELECT Id, Name FROM Account LIMIT 1 ];
+        json += acct.Name;
+
+        json +='","serviceTerritory":null,"contact":null,"accountId":"';
+        json += acct.Id;
+        json += '","WSCount":"1","AVCount":"0","T360Count":"0","date":"';
+
+        json += System.today().year() + '-' + System.today().month() + '-' + System.today().day();
+
+        json += '","time":"ASAP","notes":"New Inspection Notes",';
+
+        json +='"userId":"';
+        json += '","SXMCount":"0","BSUCheck":false,"timeSelection":"Later"}';
+
+        WorkType standardWT = [SELECT Id, Name, EstimatedDuration, DurationType FROM WorkType WHERE Work_Type_Unique_Id__c = 'inspection'];
+        ServiceTerritory servTerrRec = [SELECT Id FROM ServiceTerritory LIMIT 1];
+        WorkOrder standardWO = FSLTestUtility.createWorkOrder(standardWT, acct, '14203', servTerrRec, null);
+        insert standardWO;
+
+        Test.startTest();
+        workOrderIngestController.updateWork( json, standardWO.Id, null, null );
+        Test.stopTest();
+
+        WorkOrder updatedWO = [SELECT Id, Special_Instructions_for_VCI__c FROM WorkOrder WHERE Id = :standardWO.Id];
+
+        System.assert(updatedWO.Special_Instructions_for_VCI__c == 'New Inspection Notes');
+    }
+
 }

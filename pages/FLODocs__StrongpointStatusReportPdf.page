@@ -1,0 +1,371 @@
+<apex:page showHeader="false" sidebar="false" cache="true" controller="FLODocs.FloStatusReportController" renderAs="pdf" action="{!moreInformationForPdf}">
+
+ 	 <head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		 <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+  		 <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/jquery-ui.css')}"  />
+		<style type="text/css">
+		@page{
+		    size:A4 portrait;
+
+		    @bottom-right {
+		        content: "Page " counter(page) " - " counter(pages);
+		        font-family: 'Arial', 'Helvetica', sans-serif;
+		        font-size:10px;
+		    }
+		}
+		</style>
+		<style type="text/css">
+		.contentWrapper {
+			border: 1px solid #d8dde6;
+		}
+		.titleContent {
+			padding: 5px 0;
+		    line-height: 1.5rem !important;
+		    display: block;
+		}
+		.contentBody {
+			padding: 20px;
+		}
+		.dividers {
+			display: block;
+			margin: 20px 0;
+		}
+		.background {
+		    fill: #FFFFFF;
+		    fill-opacity: 0.01;
+		}
+
+		.component {
+		    fill: #e1e1e1;
+		}
+
+		.component .label {
+		    font-family: Myriad, "Helvetic Neue", Helvetica, Arial;
+		    text-anchor: middle;
+		    fill: #0000FF;
+		}
+
+		.arc {
+		    stroke-weight:0.1;
+		    fill: #4e8fff;
+		}
+
+
+		.arc2 {
+		    stroke-weight:0.1;
+		    fill: #3660b0;
+		}
+
+
+		.label {
+		    font-family:  Myriad, "Helvetic Neue", Helvetica, Arial;
+		    text-anchor: middle;
+		}
+
+		.radial-svg {
+		    display: block;
+		    margin: 0 auto;
+		}
+
+		#test .arc2 {
+            stroke-weight:0.1;
+            fill: #3660b0;
+        }
+
+        #outer {
+            background:#FFFFFF;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        #div1, #div2, #div3, #div4 {
+            width: 33%;
+            height: 200px;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #div2 .arc {
+            stroke-weight: 0.1;
+            fill: #f0a417;
+        }
+
+        #div2 .arc2 {
+            stroke-weight: 0.1;
+            fill: #b00d08;
+        }
+
+        #div3 .arc {
+            stroke-weight: 0.1;
+            fill: #1d871b;
+        }
+
+
+        .selectedRadial {
+            border-radius: 3px;
+            background: #f4f4f4;
+            color: #000;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            border: 1px solid rgba(200,200,200,0.85);
+        }
+
+        .radial {
+            border-radius: 3px;
+            background: #FFFFFF;
+            color: #000;
+
+        }
+        .widget {
+		    /* display: inline-block; */
+		    position: absolute;
+		    /* width: 40%; */
+		    margin-left: 500px;
+		    margin-top: 20px;
+		    border-radius: 5px;
+		    min-width: 500px;
+		    text-align: left;
+		}
+
+		.header{
+		    background-color: #29384D;
+		    height:40px;
+		    color:#929DAF;
+		    text-align: center;
+		    line-height: 40px;
+		    border-top-left-radius: 7px;
+		    border-top-right-radius: 7px;
+		    font-weight: 400;
+		    font-size: 1.5em;
+		    text-shadow: 1px 1px #06060d;
+		}
+
+		.chart-container{
+		    /*padding:25px;*/
+		}
+
+		.shadow {
+		    -webkit-filter: drop-shadow( 0px 3px 3px rgba(0,0,0,.5) );
+		    filter: drop-shadow( 0px 3px 3px rgba(0,0,0,.5) );
+		}
+	</style>
+		</head>
+
+		<div class="contentWrapper">
+		<div class="slds-page-header">
+			<div class="slds-grid">
+				<div class="slds-col slds-has-flexi-truncate">
+					<div class="slds-media slds-no-space slds-grow">
+						<div class="slds-media__figure">
+							<img src="{!$Resource.FLO_Logo}" style="height:50%;width:50%"/>
+						</div>
+						<div class="slds-media__body">
+							<p class="slds-text-title--caps slds-line-height--reset">Strongpoint Configuration and Stats</p>
+							<br/>
+							<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">Strongpoint Configuration and Stats</h1>
+							<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title"><b>User:</b> {!$User.FirstName} {!$User.LastName}</h1>
+							<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title"><b>Date:</b> {!NOW()}</h1>
+							<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title"><b>Organization:</b> {!$Organization.Name}</h1>
+							<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title"><b>License Type:</b> {!licenseType}</h1>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="contentBody">
+			<div class="slds-form-element">
+				<br/>
+			    <label class="slds-form-element__label" for="overviewText" style="font-size: 1rem;"><b>Overview</b></label>
+			    <div class="slds-form-element__control" style="display: block;">
+			      	<span class="slds-section__title titleContent" id="overviewText" style="display: block;">This report provides a printable live update on the status and results of the Strongpoint Automated Documentation system. Each section below relates to a different area of the application. The instructions at the start of each section provide a brief explanation of the section. Additional information can be found in the relevant part of our <a href="https://help.strongpoint.io/Strongpoint_for_Salesforce/index.htm" target="https://help.strongpoint.io/Strongpoint_for_Salesforce/index.htm">User Guide</a>.</span>
+			    </div>
+			</div>
+			<br/>
+		    <h3 class="slds-section-title--divider dividers"><b>Scanner Status</b></h3>
+			<div class="slds-form-element">
+				<br/>
+			    <label class="slds-form-element__label" style="font-size: 1rem;">Scanner Status Overview</label>
+			    <div class="slds-form-element__control">
+			      	<span class="slds-section__title titleContent">The Scanner Status section shows you the current status of the scanner and the values of the fields that control the scanner. The scanners execute in generally the order presented. It is not uncommon for one or more of the scanners to be running as they work to update the data on your customizations.</span>
+			    </div>
+			</div>
+			 <br/>
+			 <br/>
+			<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+			  <thead>
+			    <tr class="slds-text-title--caps">
+			      <th scope="col">
+			        <div class="slds-truncate" title="Scanner Name">Scanner Name</div>
+			      </th>
+			      <th scope="col">
+			        <div class="slds-truncate" title="Status">Status</div>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+
+			   <tr>
+			      <th scope="row" data-label="Init/List Metadata Backend">
+			        <div class="slds-truncate" title="Init/List Metadata Backend">Init/List Metadata Backend</div>
+			      </th>
+			      <td data-label="initStatus">
+			        <div class="slds-truncate" title="{!initStatus}">{!initStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Reinit/ReList Metadata Backend">
+			        <div class="slds-truncate" title="Init/List Metadata Backend">ReInit/ReList Metadata Backend</div>
+			      </th>
+			      <td data-label="reInitStatus">
+			        <div class="slds-truncate" title="{!reInitStatus}">{!reInitStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Retrieve Metadata Backend">
+			        <div class="slds-truncate" title="Retrieve Metadata Backend">Retrieve Metadata Backend</div>
+			      </th>
+			      <td data-label="retriveMetaStatus">
+			        <div class="slds-truncate" title="{!retriveMetaStatus}">{!retriveMetaStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Back End">
+			        <div class="slds-truncate" title="Read/Create Back End">Read/Create Back End</div>
+			      </th>
+			      <td data-label="spiderStatus">
+			        <div class="slds-truncate" title="{!spiderStatus}">{!spiderStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Script Parser">
+			        <div class="slds-truncate" title="Script Parser">Script Parser</div>
+			      </th>
+			      <td data-label="parserStatus">
+			        <div class="slds-truncate" title="{!parserStatus}">{!parserStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Script Parser">
+			        <div class="slds-truncate" title="Script Parser">Make Joins</div>
+			      </th>
+			      <td data-label="joinStatus">
+			        <div class="slds-truncate" title="{!joinStatus}">{!joinStatus}</div>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" data-label="Script Parser">
+			        <div class="slds-truncate" title="Script Parser">Deduplicate</div>
+			      </th>
+			      <td data-label="dedupeStatus">
+			        <div class="slds-truncate" title="{!dedupeStatus}">{!dedupeStatus}</div>
+			      </td>
+
+			    </tr>
+			  </tbody>
+			</table>
+
+		    <div id="main" style="width:600px; height:200px; margin: 0px auto;display: none; ">
+		        <div id="div1"></div>
+		        <div id="div2"></div>
+		        <div id="div3"></div>
+		    </div>
+		    <br/>
+		    <br/>
+		    <br/>
+		    <br/>
+		    <h3 class="slds-section-title--divider dividers"><b>Documentation</b></h3>
+		    <br/>
+			<div class="slds-form-element">
+			    <label class="slds-form-element__label" style="font-size: 1rem;">Documentation Stats</label>
+			    <div class="slds-form-element__control">
+			      	<span class="slds-section__title titleContent" >Strongpoint has automatically created vital documentation that will enable you to understand your account better, clean up unused customizations and respond more quickly with more confidence to questions and change requests. This section lists the total number of customizations created. It also provides the number of critical joins that Strongpoint has created. "Joins" are the relationships between different customizations. The joins represent the critical information that tells you if it is safe to delete or change something, help you identify what scripts or workflows may be affecting a given field. These relationships are constantly updated.</span>
+			    </div>
+			</div>
+			<div style="text-align: left;height: 275px;">
+				<div style="display:inline-block; width: 50%;text-align: left; position: absolute;margin-top: 30px;">
+				    <div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Total Customizations: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!customizationsCount}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Total Joins: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!totalJoins}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Script Joins: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!scriptJoins}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Sourcing Join: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!sourcingJoins}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Workflow Joins: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!workflowJoins}</span>
+					</div>
+					<div class="slds-form-element">
+                        <label class="slds-form-element__label" style="font-size: 1rem;">Report/Dashboard Join: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!reportJoins}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">ListView/Layout Join: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!layoutJoins}</span>
+					</div>
+					<div class="slds-form-element">
+					    <label class="slds-form-element__label" style="font-size: 1rem;">Other Join: </label>
+					    <span class="slds-section__title titleContent" style="display: inline;">{!otherJoins}</span>
+					</div>                    
+				</div>
+
+				<div class="widget">
+				    <div id="chart" class="chart-container"></div>
+				</div>
+			</div>
+			<h3 class="slds-section-title--divider dividers">Scanner Logs</h3>
+			<br/>
+			<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+				<thead>
+					<tr class="slds-text-title--caps">
+
+						<th scope="col">
+							<div class="slds-truncate" title="Salesforce Type">Type</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Retrieved Stage">Stage</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Total Customization">Total</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Total Customization">Counted</div>
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<apex:repeat value="{!logList}" var="log" >
+						<tr>
+							<td data-label="Salesforce Type">
+								<div class="slds-truncate" title="{!log.FLODocs__Salesforce_Type__c}">{!log.FLODocs__Salesforce_Type__c}</div>
+							</td>
+							<td data-label="Retrieved Stage">
+								<div class="slds-truncate" title="{!log.FLODocs__Retrieved_Stage__c}">{!log.FLODocs__Retrieved_Stage__c}</div>
+							</td>
+							<td data-label="Total Customization">
+								<div class="slds-truncate" title="{!log.FLODocs__Total_Customization__c}">{!log.FLODocs__Total_Customization__c}</div>
+							</td>
+							<td data-label="Total Customization">
+								<div class="slds-truncate" title="{!log.FLODocs__Scanner_Count__c}">{!log.FLODocs__Scanner_Count__c}</div>
+							</td>
+
+						</tr>
+					</apex:repeat>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+</apex:page>

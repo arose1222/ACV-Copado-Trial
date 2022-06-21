@@ -1,0 +1,1050 @@
+<apex:page showHeader="{!showHeader}" sidebar="false" applyBodyTag="false" controller="FLODocs.FloDRDViewControllerRefactor" tabstyle="FLODocs__tab" readOnly="true" action="{!actionInit}">
+<head>
+<apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />
+<apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.FLODocs__FlodocResources, 'css/font-awesome.css')}" />
+
+<style type="text/css">
+    .zen .zen-tabMenu a {
+        color: #353535 !important;
+        font-family: Arial,Helvetica,sans-serif !important;
+    }
+    html {
+        line-height: 1;
+        background: none;
+        box-sizing: initial;
+    }
+    .material-switch > input[type="checkbox"] {
+        display: none;
+    }
+    .material-switch > label {
+        cursor: pointer;
+        height: 0px;
+        position: relative;
+        width: 40px;
+    }
+    .material-switch > label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position:absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+    }
+    .material-switch > label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+    }
+    .material-switch > input[type="checkbox"]:checked + label::before {
+        background: inherit;
+        opacity: 0.5;
+    }
+    .material-switch > input[type="checkbox"]:checked + label::after {
+        background: inherit;
+        left: 20px;
+    }
+
+    .slds-dropdown--inverse {
+        background: #FFF !important;/*#FFC55A;*/
+        border-top: 3px solid orange !important;
+        border-left: 0 solid !important;
+        border-right: 0 solid !important;
+        border-bottom: 0 solid !important;
+        margin-top: -3px !important;
+        font-family: 'Salesforce Sans',Arial,sans-serif;
+    }
+    .bPageBlock {
+        border-top: 0px solid !important;
+    }
+    .pbBody {
+        margin: 0 !important;
+    }
+    .slds-dropdown__item a {
+        text-decoration: none;
+        color: #747474 !important;
+        /*font-weight: bold;*/
+        font-family: 'Salesforce Sans',Arial,sans-serif;
+    }
+    .slds-dropdown-trigger button.slds-button {
+        color: #747474 !important;
+    }
+    .pbSubheader {
+        background-color: #f7f9fb !important;
+        padding: 8px !important;
+        color: #222 !important;
+        border-bottom: 1px solid #d8dde6 !important;
+    }
+    .bPageBlock {
+        border: 0 !important;
+        background: #FFF !important;
+    }
+    .slds-dropdown {
+        margin-top: 0;
+        border-radius: 0 0 0.25rem 0.25rem;
+    }
+    ol li {
+        margin-left: 0;
+    }
+    .information p {
+        margin: 10px;
+    }
+    .slds-button--brand  {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        background-color: #0070d2 !important;
+        background: #0070d2 !important;
+        border: 1px solid #0070d2 !important;
+        color: white !important;
+    }
+    .message.errorM3 {
+        display:none;
+    }
+    .schedulerWrapper .slds-form-element {
+        display: inline-block;
+        margin-right: 20px;
+        min-width: 140px;
+    }
+    .dateInput {
+        min-height: 23px;
+        line-height: 1;
+    }
+    div.slds-input input {
+        background-color: white;
+        color: #16325c;
+        border: 1px solid #d8dde6;
+        border-radius: 0.25rem;
+        width: 100%;
+        transition: border 0.1s linear, background-color 0.1s linear;
+        display: inline-block;
+        padding: 0 1rem 0 0.75rem;
+        line-height: 1.875rem;
+        min-height: calc(1.875rem + (1px * 2));
+        max-width: 250px;
+        margin-left: 20px
+    }
+    div.slds-input select {
+        background-color: white;
+        color: #16325c;
+        border: 1px solid #d8dde6;
+        border-radius: 0.25rem;
+        width: 100%;
+        transition: border 0.1s linear, background-color 0.1s linear;
+        display: inline-block;
+        padding: 0 1rem 0 0.75rem;
+        line-height: 1.875rem;
+        min-height: calc(1.875rem + (1px * 2));
+        max-width: 200px;
+    }
+    div.slds-input {
+        border: 0;
+    }
+    button.mainMenuButton:hover div {
+        display: block !important;
+    }
+    li.mainMenuButton:hover div {
+        display: block !important;
+    }
+
+    span.submenuList {
+        margin-left: 200px;
+        margin-top: -34px !important;
+        box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+    }
+
+    li.subMenuButton:hover span.subMenuList {
+        display: block !important;
+        margin-left: 200px;
+        margin-top: -34px !important;
+        box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.2);
+    }
+
+    li.subMenuButton {
+        min-width: 200px;
+    }
+
+    .slds-tabs--default__item {
+        margin-left: 1.5em !important;
+    }
+
+    .slds-tabs--default__item.slds-active:after, .slds-tabs--default__item.slds-is-active:after {
+        background-color: orange !important;
+    }
+    ul > li.slds-tabs--default__item {
+        margin-bottom: 0;
+    }
+    .slds-trial-header {
+        height: 40px !important;
+        padding: 0 !important;
+    }
+
+    .slds-trial-header a:not(.slds-button--neutral):hover, .slds-trial-header a:not(.slds-button--neutral):focus, .slds-trial-header button:not(.slds-button--neutral):hover, .slds-trial-header button:not(.slds-button--neutral):focus {
+        color: currentColor;
+    }
+
+    ul.flodocslinksUl {
+        font-size: 1rem;
+        font-family: 'Salesforce Sans',Arial,sans-serif;
+        padding: 20px 0;
+    }
+
+    ul.flodocslinksUl  li{
+        padding: 5px 0;
+    }
+
+    /*ul.flodocslinksUl li ul {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 2s linear;
+    }*/
+
+    ul.flodocslinksUl li:hover ul {
+        /*display:block !important;
+        visibility: visible;
+        opacity: 1;*/
+    }
+    #collapseall {
+        font-size: 1rem;
+        font-family: 'Salesforce Sans',Arial,sans-serif;
+    }
+    #expandall {
+        font-size: 1rem;
+        font-family: 'Salesforce Sans',Arial,sans-serif;
+    }
+    .successMessage {
+        padding: 5px;
+        text-align: center;
+        background-color: #4bca81;
+        color: white;
+        font-weight: bold;
+    }
+    .errorMessage {
+        padding: 5px;
+        text-align: center;
+        background-color: #d4504c;
+        color: white;
+        font-weight: bold;
+    }
+
+    .slds-dropdown__list li:hover{
+        background-color: orange;
+    }
+
+    .toTheRight {
+        float: right;
+    }
+
+    .toTheLeft {
+        float: left;
+    }
+
+    td.left {
+        width: 85px !important;
+        height: auto;
+    }
+    td.left div{
+        width: 85px !important;
+    }
+    img#phHeaderLogoImage {
+        width: 85px;
+        height: 55px;
+    }
+</style>
+
+<script>
+ 
+Visualforce.remoting.timeout = 120000;
+
+// ============== page wide variables ==============
+var currentId = ""; // id of current parent object
+var tableCounter = 0; // number of category tables already created (for generating table ids)
+var nextY = 0; // y position of last table
+var showBackButton = true;
+
+// page will open different depending on whether it was opened from the 
+// DRD generator, a customization record, or from the main menu
+$(document).ready(function(){
+    if ({!isDRDGenerator}) {
+        let searchName = '{!cName}';
+        let searchAPIName = '{!cAPIName}';
+        createResultList(searchName, searchAPIName);
+    } else if ({!isRecordView}) {
+        let cId = '{!cId}';
+        createRecordView(cId);
+    } else if({!isDRDFromCR}) {
+        //SF-1020 - DRD in Change Requests and Process Issues - 20191212
+        let changeRequestId = '{!changeRequestId}';
+        createResultListFromCR(changeRequestId);
+    } else if({!isDRDFromPI}) {
+        //SF-1020 - DRD in Change Requests and Process Issues - 20191212
+        let processIssueId = '{!processIssueId}';
+        createResultListFromPI(processIssueId);
+    } else {
+        $('#CUST').show();
+    }
+    if(isLightningExperienceOrSalesforce1()) {
+        $('#CUST').css({ top: '150px' });        
+    }
+});
+/**
+ * function that creates the result list for a drd generator search
+ * 
+ * @param searchName: the name to be searched
+ * @param searchAPIName: the api name to be searched
+ * 
+**/
+function createResultList(searchName, searchAPIName) {
+    //$('#loadingSpinner').show();
+    $('#loadingSpinner').css("display", "block");
+    $("#mainlist").append("<div id='resultList' class='attrlabel'"
+        + "style='min-width:300px; width: auto;'>" 
+        + "<div class='listtext'>Results</div></div>");
+    showBackButton = true;
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.FloDRDViewControllerRefactor.searchRecords}',
+        searchName,
+        searchAPIName,
+        appendChildren,
+        {escape: true}
+    );
+    //$('#loadingSpinner').hide();
+    $('#loadingSpinner').css("display", "none");
+}
+
+//SF-1020 - DRD in Change Requests and Process Issues - 20191212
+function createResultListFromCR(changeRequestId) {
+    //$('#loadingSpinner').show();
+    $('#loadingSpinner').css("display", "block");
+    $("#mainlist").append("<div id='resultList' class='attrlabel'"
+        + "style='min-width:300px; width: auto;'>" 
+        + "<div class='listtext'>Results</div></div>");
+    showBackButton = false;
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.FloDRDViewControllerRefactor.searchRecordsFromChangeRequest}',
+        changeRequestId,
+        appendChildren,
+        {escape: true}
+    );
+    //$('#loadingSpinner').hide();
+    $('#loadingSpinner').css("display", "none");
+}
+
+//SF-1020 - DRD in Change Requests and Process Issues - 20191212
+function createResultListFromPI(processIssueId) {
+    //$('#loadingSpinner').show();
+    $('#loadingSpinner').css("display", "block");
+    $("#mainlist").append("<div id='resultList' class='attrlabel'"
+        + "style='min-width:300px; width: auto;'>" 
+        + "<div class='listtext'>Results</div></div>");
+    showBackButton = false;
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.FloDRDViewControllerRefactor.searchRecordsFromProcessIssue}',
+        processIssueId,
+        appendChildren,
+        {escape: true}
+    );
+    //$('#loadingSpinner').hide();
+    $('#loadingSpinner').css("display", "none");
+}
+
+/**
+ * function that creates the one record result list when drd is opened
+ * from a customization record
+ * 
+ * @param cId: the Id of the customization record
+ * 
+**/
+function createRecordView(cId) {
+    $("#mainlist").append("<div id='resultList' class='attrlabel'"
+        + "style='min-width:300px; width: auto;'>" 
+        + "<div class='listtext'>Results</div></div>"); 
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.FloDRDViewControllerRefactor.retrieveRecordInfo}',
+        cId,
+        function(result, event) {
+            $('#mainlist').show();
+            appendChild(result);
+            showDetail(document.getElementById(cId));
+        }
+    );
+}
+
+
+/**
+ * function that remotely retrieves the record info for the inputted id and
+ * children and creates the DRD; calls appendChildren
+ * 
+ * @param: objectId: an object id, string
+ * 
+ **/
+function createDiagram(objectId) {
+    if (objectId != '') {
+        // update currentId
+        currentId = objectId;
+        // retrieve the record info for objectId with remote call
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.FloDRDViewControllerRefactor.retrieveRecordInfo}',
+            objectId,
+            function(result, event) {
+                if (event.status) {
+                    // hide object dropdown menu element
+                    $('#CUST').hide();
+                    //$('#loadingSpinner').show();
+                    $('#loadingSpinner').css("display", "block");
+                    // append base object to diagram main list
+                    $("#mainlist").append("<div id='"+currentId+"' class='attrlabel'"+ 
+                                    "style='min-width:300px; width: auto;'>" +
+                                    "<div class='listtext'>"+result.name+"</div></div>");
+                    // retrieve records of all children with remote call 
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.FloDRDViewControllerRefactor.retrieveChildrenRecords}',
+                        objectId,
+                        false,
+                        true,
+                        appendChildren,
+                        {escape: true}
+                    );
+                    //$('#loadingSpinner').hide();
+                    $('#loadingSpinner').css("display", "none");
+                } else {
+                    $('#errors').innerHTML = event.message;
+                }
+            },
+            {escape: true}
+        );
+    }
+}
+
+/**
+ * function that takes in the JSON information of child records and appends
+ * the children to the main list in the diagram
+ * 
+ * @param result: the JSON output of the event
+ * @param event: the remote invocation of retrieveChildrenRecords() in 
+ *               createDiagram()
+ * 
+**/
+function appendChildren(result, event) {
+    if (event.status) {
+        if (result != null) {
+            let children = result.uncategorizedChildren;
+
+            if (!isLightningExperienceOrSalesforce1() && ( !{!isRecordView} && !{!isDRDFromCR} && !{!isDRDFromPI} && !{!isDRDFromCusto} )) {// deleted line (!{!isDRDGenerator} && for drd generator not lining
+            svg.style.height=(children.length * 25) +1000;//JN SF--1124
+            }
+
+            for (i = 0; i < children.length; i++) {
+                appendChild(children[i]);
+            }
+            // if there is more than one child, we want to hide standard fields
+            if (children.length > 1) {
+                toggleStandard();
+            }
+            $('#mainlist').show();
+            if (showBackButton) {
+                $('.backButton').show();
+            }
+            // if there is only one child, we want to showDetails() by default
+            if (children.length == 1) {
+                showDetail(document.getElementById(children[0].internalId));
+            }
+            //$('#loadingSpinner').hide();
+            $('#loadingSpinner').css("display", "none");
+        } else {
+            console.log('appendChildren: result null');
+        }
+    } else {
+        $('#errors').innerHTML = event.message;
+    }
+}
+
+/**
+ * helper function for appendChildren that takes a child object as an input
+ * and appends the child to the main list of the diagram
+ * 
+ * @param child: a child object received from the controller 
+ * 
+ **/
+function appendChild(child) {
+    // overflow label to next line if longer than 30 characters
+    if (child.name != undefined && child.name.length > 30) {
+        let lastSpace = child.name.lastIndexOf(' ');
+        child.name = child.name.substring(0, lastSpace) + '\n' + 
+            child.name.substring(lastSpace);
+    }
+
+    // append labeled element (without details)
+    $("#mainlist").append("<div id='" + child.internalId + "'" +
+        "onclick='showDetail(this)'" +
+        "class='listcell'><div class='listtext'>" + child.name + 
+        "</div></div>");
+    // append hidden details element (to do: change field names in Controller)
+    $("#mainlist").append("<div style='display:none;'" + 
+        "id='detail" + child.internalId + "' class='details'><table width='100%'style=''>" + 
+        "<tr><td>API Name:</td><td style=''>" + child.scriptId + 
+        "</td></tr><tr><td>Owner:</td><td>" + child.ownerName + 
+        "</td></tr><tr><td>Data Type:</td><td>" + child.dataType + 
+        "</td></tr><tr><td width='50'>DLU:</td><td>" + child.lastModified + 
+        "</td></tr><tr><td></td><td align='right'><input type='button'" +
+        "name='open record' value='Open Record'" + 
+        "onclick='openNewWindowDetailCustomization("+ '"' + child.internalId + 
+        '"'+")'/></td></tr></table></div>");
+}
+
+/**
+ * function triggered when user clicks on an object in the diagram; hides
+ * previous diagram elements (if necessary), expands hidden detail element,
+ * retrieves children record information remotely, and shows children in diagram
+ * 
+ * @param obj   
+ * 
+ **/
+function showDetail(object) {
+    // make sure user clicked on a different object
+    if (object!= null && object.id != currentId) {
+        $(object).parent().find(".details").hide(); // hide previous parent details
+        $("#detail"+object.id).show(); // show new parent details
+        
+        let thisClass = object.className;
+        let cellString = '.' + thisClass.replace(/ /g, '.');
+        // remove children of siblings
+        $(cellString).not("[class='" + thisClass + "']").remove();
+        // remove wrappers of children of siblings
+        let wrapperString = cellString.replace("listcell", "attrwrapper");
+        $(wrapperString).not("[class='" 
+            + thisClass.replace("listcell", "attrwrapper") + "']").remove();
+        // remove connectors of children of siblings
+        let connectorString = cellString.replace("listcell", "FLOConnector");
+        $(connectorString).not("[class='" 
+            + thisClass.replace("listcell", "FLOConnector") + "']").remove();
+
+        currentId = object.id; // update current id
+
+        /* To set the y position of the child table to be created, check to see
+         * whether the parent object was in the original main list of fields
+         * (in which case it won't contain '__') or not. This is simply an
+         * aesthetic choice
+         */
+        if (currentId.includes('__')) {
+            nextY = $("#detail" + currentId).parent().position().top
+                + $("#detail" + currentId).position().top;
+        } else {
+            nextY = $("#detail" + currentId).position().top;
+        }
+        // if necessary, need to remove __# before requesting info from controller
+        let recordId = currentId;
+        if (recordId.includes('__')) {
+            recordId = recordId.substring(0, currentId.indexOf('__'));
+        }
+        // retrieve records of all children with remote call and show them
+         Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.FloDRDViewControllerRefactor.retrieveChildrenRecords}',
+            recordId,
+            true,
+            false,
+            showChildren,
+            {escape: true}
+        );
+        $("div").css("cursor","default");
+		$(".listcell").css("cursor","pointer");
+		$(".listtext").css("cursor","pointer");
+    }
+}
+
+/**
+ * function similar to appendChildren, but the result children are shown 
+ * extended from parent rather than appended onto the mainlist and are
+ * sorted into different tables depending on child type
+ * 
+ * @param result: the JSON output of the event
+ * @param event: the remote invocation of retrieveChildrenRecords in showDetail()
+ * 
+ **/
+function showChildren(result, event) {
+    if (event.status) {
+        if (result != null) {
+            // convert the result object into an iterable array
+            const allChildren = Object.entries(result.categoryMap);
+            // push "Other" bin to the back of the container array and sort alphabetically
+            allChildren.sort(function(a,b) {
+                if (a[0] == "Other") {
+                    return 1;
+                } else if (b[0] == "Other") {
+                    return -1;
+                } else if (a[0] > b[0]) {
+                    return 1;
+                } else if (a[0] < b[0]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+            // create a table for each category of children
+            for (let [category,childList] of allChildren) {
+                createTable(category, childList);
+                tableCounter++; // increase number of tables created so far
+            }
+        } else {
+            console.log('showChildren: result null');
+        }
+    } else {
+        $('#errors').innerHTML = event.message;
+    }
+}
+
+/**
+ * function that creates an object table for a given group of objects
+ * 
+ * @param label: label for the created table
+ * @param objList: list of objects (children) to be displayed in table
+ * 
+ **/
+function createTable(label, objList) {
+    // the html id of the table wrapper
+    let tableId = label.trim() + '__' + currentId + '__' + tableCounter;
+    // the classes of the current obj
+    let parentClassName = document.getElementById(currentId).className;
+    let tableClassName = parentClassName.replace('listcell', 'attrwrapper')
+        +  ' ' + currentId;
+    
+    // added below line so that in classic when the iframe is scrolled over 
+    // so that the object you click on is partially out of frame (to the left), 
+    // the new object position won't be calculated with a negative parent value which
+    // would cause the new object to be too far to the left and potentially overlap
+    let currentParentX = Math.max($("#"+currentId).parent().position().left, 20);
+    
+    $("#mainlist").append('<div id="' + tableId
+        +'" class="' + tableClassName
+        +'" style="display: block; min-width:300px;width: auto;position:absolute;left:'
+        + (currentParentX +$("#"+ currentId).position().left
+        + $("#"+currentId).width()+150)+'px;top:'+ nextY + 'px;"></div>');
+    
+    $('#'+ tableId).append("<div id='label" + tableId
+        + "' class='attrlabel'><div class='listtext'>"+label+"</div></div>");
+    // loop through the objects and append to the object table
+    for (i = 0; i < objList.length; i++) {
+        let object = objList[i];
+        // create object component
+        $('#'+ tableId).append("<div id='"+ object.internalId+"__"+ tableCounter 
+            + "' class='" + parentClassName + ' ' + currentId
+            + "' onclick='showDetail(this)'>"
+            + "<div class='listtext'>" +object.name+"</div></div>");
+        // create object details component
+        $('#'+ tableId).append("<div style='display:none;' id='detail"
+            +object.internalId+"__"+ tableCounter 
+            +"' class='details'><table><tr><td>API Name:</td><td style=''>"+object.scriptId
+            +"</td></tr><tr><td>Owner:</td><td>"+object.ownerName
+            +"</td></tr><tr><td>Data Type:</td><td>"+ object.dataType
+            +"</td></tr><tr><td width='50'>DLU:</td><td>"+object.lastModified
+            +"</td></tr><tr><td></td><td align='right'><input type='button'"
+            +"name='open record' value='Open Record'" 
+            +"onclick='openNewWindowDetailCustomization("+'"'+object.internalId+'"'
+            +")'/></td></tr></table></div>");
+    }
+    // draw the connector between current parent object and table
+    drawConnector($('#detail'+currentId), $('#' + tableId));
+    $('.attrwrapper'+ currentId).show();
+	$('.listcell'+ currentId).show();
+    nextY = $('#' + tableId).position().top
+        + $('#' + tableId).height() + 155;
+
+        if (!isLightningExperienceOrSalesforce1() && ( !{!isRecordView} && !{!isDRDFromCR} && !{!isDRDFromPI} && !{!isDRDFromCusto} )) {//deleted line (!{!isDRDGenerator} && for drd generator not lining in classic
+        if(nextY > svg.clientHeight){//JN SF--1124
+            svg.style.height=nextY+500;//JN SF--1124
+        }//JN SF--1124
+        }
+}
+
+/**
+ * function that draws a connector line between a parent and a table of children
+ * 
+ * @param startObj: the parent object, the object where the line starts
+ * @param endObj: a table holding children of the parent object
+ * 
+**/
+function drawConnector(startObj,endObj) {
+
+    if({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto}) {
+        document.getElementById('mainlist').style.top = "100px";
+    }
+
+    // in classic, when the iframe was scrolled down , the parents' positions
+    // would be negative, causing the connector positions to be calculated 
+    // incorrectly and become very disconnected from their objects. 
+    // (20, 40) is the normal position of the mainlist, so no parent positions
+    // should be less in either direction than that
+    let startParentX = Math.max(startObj.parent().position().left, 20);
+    let startParentY = Math.max(startObj.parent().position().top, 40);
+    let endParentX = Math.max(endObj.parent().position().left, 20);
+    let endParentY = Math.max(endObj.parent().position().top, 40);
+    
+    // starting x position of the connector
+    let startX = startParentX + startObj.position().left 
+        + startObj.width();
+    // starting y position of the connector
+    //GF 20200102 let startY = startParentY + startObj.position().top + 10;
+    let startY = startParentY + startObj.position().top + 40;
+    // ending x position of the connector
+    let endX = endParentX + endObj.position().left;  
+    // ending y position of the connector
+    //GF 20200102 let endY = endParentY + endObj.position().top;
+    let endY = endParentY + endObj.position().top - 120;
+    // adjust if page is not lightning
+    if (!isLightningExperienceOrSalesforce1() && ((!{!isDRDGenerator} && !{!isRecordView}) || !{!isDRDFromCR} || !{!isDRDFromPI} || !{!isDRDFromCusto} )) {
+        //GF 20200102 - comment out
+        // startX += -25;
+        //startY += -10;
+        //endY += -130;
+    }
+    if((startObj.parent().attr('id') != 'mainlist') && ({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto})) {
+        startY += 80;        
+    }
+    if(!isLightningExperienceOrSalesforce1() && ({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto})) {
+        endY += 90;
+        endX += 10;
+    }
+    if(isLightningExperienceOrSalesforce1() && (!{!isDRDFromCR} && !{!isDRDFromPI} && !{!isDRDFromCusto})){
+        endY += 20;
+        endX += 10;
+    }
+    if(isLightningExperienceOrSalesforce1() && ({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto}) && startObj.parent().attr('id') != 'mainlist') {
+        endX += 25;
+        startY += -20;
+        endY += 90;        
+    } 
+    if(isLightningExperienceOrSalesforce1() && ({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto}) && startObj.parent().attr('id') == 'mainlist') {
+        endY += 90;        
+    }        
+    if(!isLightningExperienceOrSalesforce1() && ({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto}) && startObj.parent().attr('id') == 'mainlist') {        
+        //endY += -50;
+        endY += 0;
+    }    
+    /*
+    if({!isDRDFromCR} || {!isDRDFromPI} || {!isDRDFromCusto}) {
+        document.getElementById('mainlist').style.top = "100px";
+    }
+    */
+    // to fix slight misallignment in classic drd generator lines
+    if ({!isDRDGenerator}) {
+        //GF 20200102 - comment out
+        //startX += -15;
+    }
+    // adjust connector from initial column
+    if (startObj.parent().attr('id') == 'mainlist') {
+        //GF 20200102 startY += -40;
+        startX += -25;
+        startY += -100;
+    }
+    let midX = (startX + endX) / 2; // average of startX and endX
+    // coordinate pair strings
+    let start = startX + ',' + startY;
+    let end = endX + ',' + endY;
+    let midpoint1 = midX + ',' + startY; // first turn 
+    let midpoint2 = midX + ',' + endY; // second turn
+
+    // increase svg boundaries if necessary
+    if (endX > svg.clientWidth) {
+        svg.style.width = endX + 500;
+    }
+    if (endY > svg.clientHeight) {
+        svg.style.height = endY + 500;
+    }
+    
+    let svgNS = 'http://www.w3.org/2000/svg';
+
+    var theLine = document.createElementNS(svgNS,"polyline");
+    let lineId = "line__" + startObj[0].id + "__" + endObj[0].id;
+    
+    theLine.setAttributeNS(null,"id", lineId);
+    theLine.setAttributeNS(null,"points", start + " " + midpoint1 + " "
+                                            + midpoint2 + " " + end);
+
+    let parentClassName = document.getElementById(currentId).className;
+    let connectorClassName = parentClassName.replace('listcell', 'FLOConnector')
+        +  ' ' + currentId;
+
+    theLine.setAttributeNS(null,"class",connectorClassName);
+    theLine.setAttributeNS(null,"fill","black");
+    theLine.setAttributeNS(null,"style","fill:none;stroke:black;stroke-width:2");
+
+    document.getElementById("svg").appendChild(theLine);
+
+}
+
+/**
+ * function that toggles the appearance of standard fields
+ * 
+**/
+function toggleStandard() {
+    $(".listcell > .listtext").each( function() {
+        if ($(this).text().indexOf('(Standard:') != -1) {
+            $(this).parent().toggle();
+            $(".details").hide(); // hide all details
+            $(".attrwrapper").remove(); // remove all tables
+            $(".FLOConnector").remove(); // remove all connnectors    
+        }
+    });
+    // change tetx of button
+    if ($('#toggleStandardButton').text() == 'Show Standard Fields') {
+        $('#toggleStandardButton').text('Hide Standard Fields');
+    } else {
+        $('#toggleStandardButton').text('Show Standard Fields');
+    }
+    nextY = 0; // reset next y position for new tables
+    currentId = ""; // reset the current id
+}
+
+/**
+ * function that opens a new window of a selected record
+ * 
+**/
+function openNewWindowDetailCustomization(id) {
+    window.open('/'+id);
+}
+
+/**
+ * function that returns true if the page is in lightning experience
+ * 
+**/
+function isLightningExperienceOrSalesforce1() {
+    return (((typeof sforce != 'undefined') && sforce && (!!sforce.one)) || (document.referrer.indexOf("lightning") > 0));
+}
+
+</script>
+<style>
+.bodyDiv {
+	overflow:scroll;
+}
+table#bodyTable {
+	table-layout: fixed;
+}
+.fa-10x {
+	font-size: 10em;
+}
+.cust {
+	position:absolute;
+	top:5%;
+	left:15%;
+    color: orange;
+    display: none;
+}
+
+.custform {
+	position:relative;
+	left:20%;
+	margin-right: 40px;
+	margin-left: 40px;
+	//display:none;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	float: left;
+	color: orange;
+}
+#loadingdatagif{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	align:center;
+}
+
+
+#mainlist,.attrwrapper{
+	position:absolute;
+	left:20px;
+	top:180px;
+	border:2px solid black;
+	align:center;
+	text-align: center;
+    display: none;
+}
+#svgdiv,#svg{
+	/*position:absolute;*/
+	left:0px;
+	top:0px;
+	background-color: #FFFFFF;
+
+}
+
+#custdetail{
+	border: 0px;
+	height: 1000px;
+	width: 80%;
+	position: fixed;
+}
+
+.listcell,.openlistcell{
+	align:center;
+	height:25px;
+	min-width:250px;
+	width: auto;
+	background-color: #CED8F6;
+	border:1px solid gray;
+	font-size:10px;
+	text-align: center;
+	//onclick: explodedView(this.id);
+}
+
+.listcell{
+	cursor:pointer;
+}
+
+.openlistcell{
+	cursor:wait;
+}
+
+.listtext{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.details{
+	word-wrap: break-word;
+	background-color: white;
+}
+
+.attrlabel{
+	align:center;
+	height:25px;
+	min-width:250px;
+	width: auto;
+	background-color: #DDDDDD;
+	border:1px solid black;
+	font-size:small;
+	font-weight:bold;
+	text-align: center;
+	vertical-align:text-bottom;
+}
+.scriptid{
+	align:center;
+	height:25px;
+	min-width:250px;
+	width: auto;
+	background-color: #CCCCCC;
+	border:1px solid gray;
+	font-size:small;
+	text-align: center;
+}
+
+body{
+	height: 1500px;
+}
+.backButton {
+	display: none;
+	position: absolute;
+}
+.btn {
+	padding: 5px;
+}
+</style>
+</head>
+<!-- HTML Structure below -->
+<body>
+<apex:form >
+
+<apex:outputPanel layout="none" rendered="{!showHeader}">
+    <c:StrongpointMenu />
+</apex:outputPanel>
+
+<div id="maindiv" class="maindiv" width="100%" height="600">
+    <div class="slds-page-header">
+        <apex:outputPanel layout="none" rendered="{!showHeader}">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <img src="{!$Resource.FLODocs__FLO_Logo}" style="max-width: 80px;"/>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title--caps slds-line-height--reset"> Dependency Relationship Diagram</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="this should match the Record Title">DRD</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </apex:outputPanel>            
+    </div>    
+    <div id="custframe" class="custframe" width="100%" height="100%">
+
+        <div class="backButton">
+            <apex:commandButton value="Back" action="{!refreshPage}" />
+            <button id="toggleStandardButton" class="btn" onclick="toggleStandard();return false;">Hide Standard Fields</button>
+        </div>
+        <br></br>
+
+        <table width="100%">
+            <tr>
+                <td id="mapdiv" width="100%">
+
+                    <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xstyle="position:absolute;top:10px;left:270px;" height="4000" width="100%">Sorry, your browser does not support inline SVG.</svg>
+                    <div id="errors" />
+                    
+                    <div id="mainlist"></div>
+                    <div id="CUST" class="cust">
+                        <div id="custlogo" class="custform"><i class="fa fa-sitemap fa-10x"></i></div>
+                        <div id="custform" class="custform">
+                            <form name="custform" id="custform" action="" method="GET" target="">
+                                <input type="hidden" name="script" value="customscript_flo_cust_viz"></input>
+                                <input type="hidden" name="deploy" value="1"></input>
+                                <table>
+                                    <tr>
+                                        <td colspan="2" width="200">Please select an Object to view using the pull-down below. </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Select an Object:</td>
+                                        <td>
+                                            <apex:selectList id="targetRec" onchange="createDiagram(this.value)" value="{!objectSelected}" multiselect="false" size="1">
+                                                <apex:selectOptions value="{!FloRecords}" />
+                                            </apex:selectList>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <!--
+                            <div id="loading" class="slds-spinner_container" style="display:block;">
+                                <div class="slds-spinner slds-spinner--large" aria-hidden="false" role="alert">
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div>
+                            -->
+                            <div class="slds-m-around--xx-small">
+                                <div id="lightningvfDIV" style="min-height: 100vh !important;display:none;" /></div>
+                        </div>
+                    </div>
+                </td>
+                <td id="detaildiv" width="0" border="1">
+                    <iframe name="custdetail" id="custdetail" frameborder="0" src="" style="background-color:white;"></iframe>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</apex:form>
+</body>
+<div id="loadingSpinner" class="loadingOverlay" style="display: none;">
+    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0; z-index: 1000; background-color: black;">
+    &nbsp;
+    </div>
+    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%;">
+            <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+            <span style="display: inline-block; padding: 10px 0px;">Loading...</span>
+        </div>
+    </div>
+</div>
+
+</apex:page>

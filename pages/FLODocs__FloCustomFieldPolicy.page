@@ -1,0 +1,326 @@
+<apex:page controller="FLODocs.FloCustomFieldPolicyController" title="Custom Fields - Inherit Policy"  lightningStylesheets="true" showHeader="false" sidebar="false"  tabstyle="FLODocs__tab" standardStylesheets="false" docType="HTML-5.0" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:stylesheet value="{!URLFOR($Resource.FLODocs__SLDS22, 'assets/styles/salesforce-lightning-design-system.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/external/jquery/jquery.js')}"  />            
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/jquery-ui.js')}"  />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/d3.min.js')}"  />
+        <apex:includeScript value="{!URLFOR($Resource.FLODocs__FlodocResources, 'js/radialProgress.js')}"  />    
+        <apex:stylesheet value="{!URLFOR($Resource.FLODocs__FLOJQuery, '/jquery-ui-1.12.1.custom/jquery-ui.css')}"  />
+        
+        <div class="slds slds-scope">
+            <apex:form > 
+                <script type="text/javascript">
+                
+                function selectAllCheckboxes(obj,receivedInputID){
+                    var inputCheckBox = document.getElementsByTagName("input");  
+                    
+                    for(var i=0; i<inputCheckBox.length; i++){
+                        if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){  
+                            inputCheckBox[i].checked = obj.checked;
+                        }
+                    } 
+                                      
+                } 
+                
+                function verifyAllCheckboxes(receivedInputID){
+                    var inputCheckBox = document.getElementsByTagName("input");
+                    var selectAllCheckBox = document.getElementById("j_id0:j_id9:table:selectAll");
+					                   
+                    var allSelected= true;
+                    
+                    for(var i=0; i<inputCheckBox.length; i++){
+                        if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){ 
+                            if(inputCheckBox[i].checked == false){
+                                allSelected= false;
+                                break;
+                            }
+                        }                    
+                    }
+                    if(allSelected){
+                        selectAllCheckBox.checked= true;
+                    }else{
+                        selectAllCheckBox.checked= false;
+                    }
+					                    
+                }
+                
+                function savePolicy(){
+                    var saveButton = document.getElementById('j_id0:j_id9:saveButton');                    
+                    if(confirm('You are going to update the Policy field of the selected records. Are you sure you want to continue?' )){
+                    	saveButton.disabled = true;                        
+                        saveAF();                       
+                        
+                    }else{
+                    	saveButton.disabled = false;
+                    }
+                }
+                
+                function saveAll(){
+                    var saveButton = document.getElementById('updateAll');
+					var policy = '{!currentCustomization.FLO_Change_Approval_Policy__r.Name}';
+                    if(policy != ''){
+                        if(confirm('You are going to set "'+policy+'" Policy for all child records. Are you sure you want to continue?')){
+                            saveButton.disabled = true; 
+                            saveAllAF();
+                        }else{
+                            saveButton.disabled = false;
+                        }
+                    }else{
+                        if(confirm('You are going to remove Policy for all child records. Are you sure you want to continue?')){
+                            saveButton.disabled = true;
+                            saveAllAF();
+                        }else{
+                            saveButton.disabled = false;
+                        }
+                    }
+                }
+                
+                </script>
+                <style>
+                    input {
+                    max-width: 540px;
+                    }
+                    a.slds-input {
+                    max-width: 50px;
+                    border: 0;
+                    }
+                    select.slds-input {
+                    max-width: 540px;
+                    }
+                    td.buttonCell {
+                    width: 40px;
+                    }
+                    .slds-button--brand  {
+                    padding-top: 0 !important;
+                    padding-bottom: 0 !important;
+                    padding-left: 1rem !important;
+                    padding-right: 1rem !important;
+                    background-color: #0070d2 !important;
+                    background: #0070d2 !important;
+                    border: 1px solid #0070d2 !important;
+                    color: white !important;
+                    }
+                    
+                    table.messageTable tbody tr td span ul {
+                    font-family: 'Salesforce Sans',Arial,sans-serif !important;
+                    }
+                    
+                    table.list {
+                    border: 0;
+                    border-bottom: 1px solid #e0e3e5;
+                    border-top: 1px solid #e0e3e5;
+                    }
+                    
+                    .paginationControlls {
+                    text-align: center;
+                    border: 1px solid #ededed;
+                    margin-top: -17px;
+                    padding: 20px;
+                    }
+                    
+                    td.left {
+                    width: 85px !important;
+                    height: auto;
+                    }
+                    td.left div{
+                    width: 85px !important;
+                    }
+                    img#phHeaderLogoImage {
+                    width: 85px;
+                    height: 55px;
+                    }
+                    
+                    #footer {                                                                               
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                    height: 50px;
+                    background :white;
+                    padding-top: 10px !important;
+                    }
+                    
+                    html {
+                    line-height: 1;
+                    background: none;
+                    box-sizing: initial;
+                    }
+                    
+                    ol li {
+                    margin-left: 0;
+                    }
+                    
+                    .slds-button--brand  {
+                    padding-top: 0 !important;
+                    padding-bottom: 0 !important;
+                    padding-left: 1rem !important;
+                    padding-right: 1rem !important;
+                    background-color: #0070d2 !important;
+                    background: #0070d2 !important;
+                    border: 1px solid #0070d2 !important;
+                    color: white !important;
+                    }
+                    
+                    div.slds-input input {
+                    background-color: white;
+                    color: #16325c;
+                    border: 1px solid #d8dde6;
+                    border-radius: 0.25rem;
+                    width: 100%;
+                    transition: border 0.1s linear, background-color 0.1s linear;
+                    display: inline-block;
+                    padding: 0 1rem 0 0.75rem;
+                    line-height: 1.875rem;
+                    min-height: calc(1.875rem + (1px * 2));
+                    max-width: 250px;
+                    margin-left: 20px
+                    }
+                    div.slds-input select {
+                    background-color: white;
+                    color: #16325c;
+                    border: 1px solid #d8dde6;
+                    border-radius: 0.25rem;
+                    width: 100%;
+                    transition: border 0.1s linear, background-color 0.1s linear;
+                    display: inline-block;
+                    padding: 0 1rem 0 0.75rem;
+                    line-height: 1.875rem;
+                    min-height: calc(1.875rem + (1px * 2));
+                    max-width: 200px;
+                    }
+                    div.slds-input {
+                    border: 0;
+                    }
+                                        
+                    .slds-tabs--default__item {
+                    margin-left: 1.5em !important;
+                    }
+                    
+                    .slds-tabs--default__item.slds-active:after, .slds-tabs--default__item.slds-is-active:after {
+                    background-color: orange !important;
+                    }
+                    ul > li.slds-tabs--default__item {
+                    margin-bottom: 0;
+                    }
+                                        
+                    td.left {
+                    width: 85px !important;
+                    height: auto;
+                    }
+                    td.left div{
+                    width: 85px !important;
+                    }
+                    img#phHeaderLogoImage {
+                    width: 85px;
+                    height: 55px;
+                    }
+                    
+                    #footer {                                                                               
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                    height: 50px;
+                    background :white;
+                    padding-top: 10px !important;
+                    }
+                                        
+                </style>
+                <!--HEADER SECTION --> 
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <img src="{!$Resource.FLO_Logo}" style="max-width: 80px;"/>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-form-element__label slds-text-title--caps">FLO Customization</p>
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">{!currentCustomization.Name}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--HEADER SECTION --> 
+                
+                <!--DETAIL SECTION --> 
+                <apex:outputPanel >
+                    <ul style="list-style: none;float: left; width: 95%; margin: 20px" > 
+                        <li class="slds-form-element slds-hint-parent slds-border--bottom slds-p-bottom--small">
+                            <span class="slds-form-element__label">Salesforce Type</span>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!currentCustomization.FLODocs__Salesforce_Types__c}">&nbsp;                                    
+                                </apex:outputField>                                                                 
+                            </div>
+                        </li>                        
+                        <li class="slds-form-element slds-hint-parent slds-border--bottom slds-p-bottom--small" >
+                            <span class="slds-form-element__label">API Name</span>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!currentCustomization.FLODocs__ScriptId__c}">                                    
+                                </apex:outputField>                                                                 
+                            </div>
+                        </li>                        
+                        <li class="slds-form-element slds-hint-parent slds-border--bottom slds-p-bottom--small" >
+                            <span class="slds-form-element__label">Change / Approval Policy</span>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!currentCustomization.FLODocs__FLO_Change_Approval_Policy__c}"> 
+                                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                            hideOnEdit="editButton" event="ondblclick"
+                                                            changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                                </apex:outputField> 
+                            </div>
+                        </li>
+                    </ul>                    
+                </apex:outputPanel>
+                <!--DETAIL SECTION --> 
+                                                
+                <!--TABLE SECTION --> 
+                <apex:outputPanel id="tableSection">                    
+                    <div style="list-style: none;float: left;width: 95%; margin: 20px; margin-bottom: 50px;">  
+                        <apex:pageMessages id="msgId"/>                
+                        <apex:dataTable id="table" value="{!childCustomizationList}" var="child" styleClass="slds-table slds-table--bordered slds-table--striped">
+                            <apex:column > 
+                                <apex:facet name="header">
+                                    <apex:inputCheckbox id="selectAll" selected="false" onclick="selectAllCheckboxes(this,'inputId')"/>                                        
+                                </apex:facet>                                
+                                <apex:inputCheckbox value="{!child.isSelected}" onclick="verifyAllCheckboxes('inputId')" id="inputId"/> 
+                            </apex:column>                             
+                            <apex:column >
+                                <apex:facet name="header" >Customization Name</apex:facet>
+                                <apex:outputText value="{!child.custo.Name}"/>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Salesforce Type</apex:facet>
+                                <apex:outputText value="{!child.custo.FLODocs__Salesforce_Types__c}"/>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Policy</apex:facet>
+                                <apex:outputText value="{!child.custo.FLO_Change_Approval_Policy__r.Name}"/>
+                            </apex:column>
+                        </apex:dataTable>    
+                    </div>
+                    <!--TABLE SECTION -->  
+                    
+                    <!--PAGINATION SECTION -->  
+                    <apex:actionFunction name="saveAF" action="{!save}" reRender="msgId" oncomplete="setTimeout(function() { location.reload() },3000)" />
+                    <apex:actionFunction name="saveAllAF" action="{!saveAllChildRecords}" reRender="msgId" oncomplete="setTimeout(function() { location.reload() },3000)" />
+                    <div align="center" draggable="false">                        
+                        <footer id="footer">                            
+                            <apex:commandButton action="{!First}" oncomplete="verifyAllCheckboxes('inputId')" title="First" value="First" reRender="tableSection" disabled="{!NOT(setController.HasPrevious)}"/>
+                            <apex:commandButton action="{!Previous}" oncomplete="verifyAllCheckboxes('inputId')" title="Previous" value="Previous" reRender="tableSection" disabled="{!NOT(setController.HasPrevious)}"/> 
+                            
+                            <apex:outputText rendered="{!IF(setController!= null, true, false)}" >&nbsp;Page Number: {!setController.pageNumber} / {!(setController.pageNumber * pageSize)+1-pageSize}-{!IF((setController.pageNumber * pageSize)>setController.ResultSize, setController.ResultSize,(setController.pageNumber * pageSize))} of {!setController.ResultSize} records</apex:outputText>
+                            
+                            <apex:commandButton action="{!Next}" oncomplete="verifyAllCheckboxes('inputId')" title="Next" value="Next" reRender="tableSection" disabled="{!NOT(setController.HasNext)}" />
+                            <apex:commandButton action="{!Last}" oncomplete="verifyAllCheckboxes('inputId')" title="Last" value="Last" reRender="tableSection" disabled="{!NOT(setController.HasNext)}"/>
+                            
+                            <button id="updateAll" class="slds-button slds-button--success slds-float--right" onclick="saveAll(); return false;" style="margin-right: 10%;">Update All</button>
+                            <apex:commandButton id="saveButton" title="Save" value="Save" onclick="savePolicy(); return false;" styleClass="slds-button slds-button--brand slds-float--right" style="margin-right: 8px;"/>                            
+                            <apex:commandButton id="cancelButton" title="Cancel" onclick="window.close();" value="Cancel" styleClass="slds-button slds-float--right"/> 
+                        </footer>                                             
+                    </div>
+                    <!--PAGINATION SECTION END-->
+                </apex:outputPanel>                
+            </apex:form>
+        </div>        
+    </html>
+</apex:page>

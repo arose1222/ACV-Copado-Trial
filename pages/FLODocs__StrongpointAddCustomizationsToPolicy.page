@@ -1,0 +1,16 @@
+<apex:page showHeader="true" sidebar="true" controller="FLODocs.StrongpointAddCustoToPolicyController"  tabStyle="Account">
+	
+	<apex:form >
+
+			<apex:pageBlock >
+				<apex:pageMessages />
+				<apex:pageBlockButtons >
+					<apex:commandButton action="{!saveCustos}" value="Save" />
+					<apex:commandButton action="{!back}" value="Cancel" />
+				</apex:pageBlockButtons>
+				<apex:pageBlockSection title="Select Customizaitons to be updated">
+					<c:FloMultiSelectList id="multi2" leftLabel="Select Customization(s)" leftOption="{!listCustomizationsOptions}" rightLabel="Selected Customization(s)" rightOption="{!selectedCustomization}" size="12" width="450px" isCustomization="true"/>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+	</apex:form>
+</apex:page>

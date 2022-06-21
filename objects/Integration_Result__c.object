@@ -261,7 +261,18 @@
         <columns>Status_Message__c</columns>
         <columns>Sobject_name__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>response_message__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>5/12/2022 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Integration_Name__c</field>
+            <operation>equals</operation>
+            <value>Update Transportation Request</value>
+        </filters>
         <label>All</label>
     </listViews>
     <listViews>
@@ -321,7 +332,7 @@
         <filters>
             <field>CREATED_DATE</field>
             <operation>lessThan</operation>
-            <value>LAST_N_DAYS:7</value>
+            <value>TODAY</value>
         </filters>
         <label>Create Arb</label>
     </listViews>

@@ -36,7 +36,7 @@
         <name>CannotCompleteNotes_Reason_Notes</name>
         <label>CannotCompleteNotes Reason Notes</label>
         <locationX>2257</locationX>
-        <locationY>2393</locationY>
+        <locationY>2348</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -238,7 +238,7 @@
         <name>DryRun_NextStatus_Reason_Notes</name>
         <label>DryRun NextStatus Reason Notes</label>
         <locationX>1492</locationX>
-        <locationY>2372</locationY>
+        <locationY>2374</locationY>
         <assignmentItems>
             <assignToReference>SA.Dry_Run__c</assignToReference>
             <operator>Assign</operator>
@@ -635,8 +635,8 @@
     <assignments>
         <name>Remaining_DryRun_Reason</name>
         <label>Remaining DryRun Reason</label>
-        <locationX>2024</locationX>
-        <locationY>1560</locationY>
+        <locationX>2014</locationX>
+        <locationY>1535</locationY>
         <assignmentItems>
             <assignToReference>SA.Cannot_Complete_Reason__c</assignToReference>
             <operator>Assign</operator>
@@ -759,7 +759,7 @@
         <description>Assign Special Instructions Acknowledged</description>
         <name>Special_Instructions_to_Acknowledged</name>
         <label>Special Instructions to Acknowledged</label>
-        <locationX>1776</locationX>
+        <locationX>1793</locationX>
         <locationY>481</locationY>
         <assignmentItems>
             <assignToReference>SA.Special_Instructions_Acknowledged__c</assignToReference>
@@ -1186,7 +1186,7 @@
         <name>Are_Notes_Empty</name>
         <label>Are Notes Empty?</label>
         <locationX>2251</locationX>
-        <locationY>1432</locationY>
+        <locationY>1436</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Notes_Empty_WOLIs_Cannot_Complete</name>
@@ -1526,8 +1526,8 @@
         <description>Check for Special Instructions</description>
         <name>Check_for_Special_Instructions</name>
         <label>Check for Special Instructions</label>
-        <locationX>1375</locationX>
-        <locationY>425</locationY>
+        <locationX>1414</locationX>
+        <locationY>424</locationY>
         <defaultConnector>
             <targetReference>NextStatus_tsestatus_to_Travel</targetReference>
         </defaultConnector>
@@ -1536,7 +1536,7 @@
             <name>Yes_Special_Instructions</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>var_GetWorkOrder.Special_Instructions__c</leftValueReference>
+                <leftValueReference>var_GetWorkOrder.Special_Instructions_for_VCI__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1844,7 +1844,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_Number_Of_Vehicles</targetReference>
+                <targetReference>Set_Num_of_Default_Vehicles</targetReference>
             </connector>
             <label>Standard SiriusXM True360</label>
         </rules>
@@ -2143,35 +2143,28 @@
     </decisions>
     <decisions>
         <description>Sets a default value for the number of vehicles.</description>
-        <name>Set_Number_Of_Vehicles</name>
-        <label>Set Number Of Vehicles</label>
-        <locationX>1028</locationX>
+        <name>Set_Num_of_Default_Vehicles</name>
+        <label>Set Num of Default Vehicles</label>
+        <locationX>1031</locationX>
         <locationY>1482</locationY>
         <defaultConnector>
-            <targetReference>Get_Vehicle_Count</targetReference>
+            <targetReference>Set_Of_Vehicles</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel># WOLIs &lt; Inspection # Vehicles</defaultConnectorLabel>
         <rules>
-            <name>No_WOLI_Count</name>
+            <name>WOLIs_Inspection_Vehicles</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>var_GetWorkOrder.LineItemCount</leftValueReference>
-                <operator>IsNull</operator>
+                <operator>GreaterThanOrEqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>var_GetWorkOrder.LineItemCount</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
+                    <elementReference>var_GetWorkOrder.Inspection_Number_of_Vehicles__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_Of_Vehicles</targetReference>
+                <targetReference>Get_Vehicle_Count</targetReference>
             </connector>
-            <label>No WOLI Count</label>
+            <label># WOLIs &gt;= Inspection # Vehicles</label>
         </rules>
     </decisions>
     <decisions>
@@ -2243,7 +2236,7 @@
             <label>Standard Inspection Sirius XM True 360</label>
         </rules>
     </decisions>
-    <description>ID-3561 Allow VCI to instantly status self assigned appointments, despite there being work in progress.</description>
+    <description>ID-3615 Special Instructions field needs to be changed to Long text.</description>
     <dynamicChoiceSets>
         <name>CantCompleteReason</name>
         <dataType>Picklist</dataType>
@@ -2449,7 +2442,7 @@
         <object>WorkOrder</object>
         <outputReference>var_GetWorkOrder</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Special_Instructions__c</queriedFields>
+        <queriedFields>Special_Instructions_for_VCI__c</queriedFields>
         <queriedFields>LineItemCount</queriedFields>
         <queriedFields>WOLI_Completed_Status_Category_Cnt__c</queriedFields>
         <queriedFields>WOLI_Cannot_Complete_Status_Category_Cnt__c</queriedFields>
@@ -2539,6 +2532,7 @@
             <choiceReferences>DryRunAuction_Auctionuncooperative</choiceReferences>
             <choiceReferences>SafetyHazard</choiceReferences>
             <choiceReferences>DealerClosed</choiceReferences>
+            <choiceReferences>InsufficientTimeToComplete</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Dry Run (Cannot Complete) Reasons</fieldText>
             <fieldType>DropdownBox</fieldType>
@@ -2551,7 +2545,7 @@
         <name>Cannot_Complete_Notes</name>
         <label>Cannot Complete Notes</label>
         <locationX>2119</locationX>
-        <locationY>2393</locationY>
+        <locationY>2348</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2577,7 +2571,7 @@
         <name>Cannot_Complete_Reason_Screen</name>
         <label>Cannot Complete Reason Screen</label>
         <locationX>1987</locationX>
-        <locationY>2393</locationY>
+        <locationY>2348</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2660,8 +2654,8 @@
     <screens>
         <name>Close_In_Progress_Work</name>
         <label>Close In Progress Work</label>
-        <locationX>1264</locationX>
-        <locationY>253</locationY>
+        <locationX>1262</locationX>
+        <locationY>218</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2743,6 +2737,7 @@
             <choiceReferences>DryRunDealer_Purchasing</choiceReferences>
             <choiceReferences>DealerUncooperative</choiceReferences>
             <choiceReferences>SafetyHazard</choiceReferences>
+            <choiceReferences>InsufficientTimeToComplete</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Dry Run (Cannot Complete) Reasons</fieldText>
             <fieldType>DropdownBox</fieldType>
@@ -2754,8 +2749,8 @@
     <screens>
         <name>Dry_Run_Notes</name>
         <label>Dry Run Notes</label>
-        <locationX>2145</locationX>
-        <locationY>1430</locationY>
+        <locationX>2148</locationX>
+        <locationY>1434</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2804,8 +2799,8 @@
     <screens>
         <name>Remaining_Work_Types_Dry_Run_Reasons</name>
         <label>Remaining Work Types Dry Run Reasons</label>
-        <locationX>1902</locationX>
-        <locationY>1560</locationY>
+        <locationX>1904</locationX>
+        <locationY>1535</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2818,6 +2813,7 @@
             <choiceReferences>DealerOutofBusiness</choiceReferences>
             <choiceReferences>DealerUncooperative</choiceReferences>
             <choiceReferences>SafetyHazard</choiceReferences>
+            <choiceReferences>InsufficientTimeToComplete</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Dry Run (Cannot Complete) Reasons</fieldText>
             <fieldType>DropdownBox</fieldType>
@@ -2830,7 +2826,7 @@
         <description>Special Instructions Confirmation</description>
         <name>Special_Instructions_Confirmation</name>
         <label>Special Instructions Confirmation</label>
-        <locationX>1612</locationX>
+        <locationX>1657</locationX>
         <locationY>481</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -2840,7 +2836,7 @@
         </connector>
         <fields>
             <name>Special_Instructions_Display_Text</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(255, 0, 0);&quot;&gt;*&lt;/b&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(244, 1, 1);&quot;&gt; &lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(11, 11, 11);&quot;&gt;﻿Special Instructions:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!var_GetWorkOrder.Special_Instructions__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 0, 0); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;*&lt;/b&gt;&lt;b style=&quot;color: rgb(244, 1, 1); background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;span style=&quot;color: rgb(11, 11, 11); background-color: rgb(255, 255, 255);&quot;&gt;﻿Special Instructions:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!var_GetWorkOrder.Special_Instructions_for_VCI__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2878,6 +2874,7 @@
             <choiceReferences>DealerOutofBusiness</choiceReferences>
             <choiceReferences>DealerUncooperative</choiceReferences>
             <choiceReferences>SafetyHazard</choiceReferences>
+            <choiceReferences>InsufficientTimeToComplete</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Dry Run (Cannot Complete) Reasons</fieldText>
             <fieldType>DropdownBox</fieldType>

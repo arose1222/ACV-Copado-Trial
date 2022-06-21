@@ -1,0 +1,60 @@
+<apex:page controller="FLODocs.FloFinderExcelController" action="{!exportToExcel}" readOnly="true" contentType="application/vnd.ms-excel#FloFinderExcel.xls" >
+
+    <apex:panelGrid columns="1">
+        <apex:outputText value="Dependencies" style="font-weight: bold"/>
+    </apex:panelGrid>
+
+    <apex:panelGrid columns="1">
+        <apex:outputText value=""/>
+    </apex:panelGrid>
+
+    <apex:pageBlock >
+       <apex:pageBlockTable value="{!custoGraphList}" var="x">
+          <apex:column headerValue="Type">
+               {!x.sfdcType}
+           </apex:column>
+          <apex:column headerValue="Direct Matches">
+               {!x.direct}
+           </apex:column>
+           <apex:column headerValue="Dependencies">
+               {!x.dependency}
+           </apex:column>
+       </apex:pageBlockTable>
+   </apex:pageBlock>
+
+   <apex:panelGrid columns="1">
+       <apex:outputText value=""/>
+   </apex:panelGrid>
+
+   <apex:panelGrid columns="1">
+       <apex:outputText value="Customization Details" style="font-weight: bold"/>
+   </apex:panelGrid>
+
+   <apex:panelGrid columns="1">
+       <apex:outputText value=""/>
+   </apex:panelGrid>
+
+    <apex:pageBlock >
+       <apex:pageBlockTable value="{!lstwrapper}" var="x">
+          <apex:column headerValue="Cust. Id">
+               {!x.custId}
+           </apex:column>
+          <apex:column headerValue="Name">
+               {!x.name}
+           </apex:column>
+           <apex:column headerValue="Type">
+               {!x.sfdcType}
+           </apex:column>
+            <apex:column headerValue="API Name">
+               {!x.api_name}
+           </apex:column>
+            <apex:column headerValue="Direct/Dependency">
+               {!x.directMessage}
+           </apex:column>
+            <apex:column headerValue="Last Modified Date / DLU">
+               {!x.lastMetadataModified}
+           </apex:column>
+       </apex:pageBlockTable>
+   </apex:pageBlock>
+
+</apex:page>

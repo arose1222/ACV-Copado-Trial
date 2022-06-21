@@ -11,6 +11,9 @@ public class OrganizationAddressChangeEventTest {
         
         Schema.Location l2 = new Schema.Location(Name='Test1');
         locationList.add(l2);
+
+        Schema.Location l3 = new Schema.Location(Name='Test2');
+        locationList.add(l3);
         
         insert locationList;
         
@@ -19,6 +22,9 @@ public class OrganizationAddressChangeEventTest {
 
         Schema.Address a2 = new Schema.Address(ParentId = locationList[1].id, Street = '1234 Street Rd', City = 'Buffalo', State = 'NY', PostalCode= '12345', Country = 'US');
         addressList.add(a2);
+
+        Schema.Address a3 = new Schema.Address(ParentId = locationList[2].id, Street = '290 Tanner Street', City = 'Vancouver', State = 'BC', PostalCode= 'V5R 2T4', Country = 'CA');
+        addressList.add(a3);
         
         insert addressList;
 
@@ -28,6 +34,8 @@ public class OrganizationAddressChangeEventTest {
         locationList.add(l0);
         l2.VisitorAddressId = a2.id;
         locationList.add(l2);
+        l3.VisitorAddressId = a3.id;
+        locationList.add(l3);
         update locationList;
 
         List<Account> accountList = new List<Account>();
@@ -39,6 +47,8 @@ public class OrganizationAddressChangeEventTest {
         accountList.add(acc2);
         Account acc3 = new Account(Dealership_ID__c = '456789', RecordTypeId = orgRecordTypeId ,Name='buyer', legal_Name__c='buyer', dealer_type__c='1');
         accountList.add(acc3);
+        Account acc4 = new Account(Dealership_ID__c = '456767', RecordTypeId = orgRecordTypeId ,Name='buyer', legal_Name__c='buyer', dealer_type__c='1');
+        accountList.add(acc4);
         insert accountList;
 
         List<AssociatedLocation> alInsertList = new List<AssociatedLocation>();
@@ -55,6 +65,8 @@ public class OrganizationAddressChangeEventTest {
         AssociatedLocation al5 = new AssociatedLocation(ParentRecordId=acc3.id, LocationId=l2.id, Type='legal', Notes__c = 'TEST legal');
         alInsertList.add(al5);
         alDeleteList.add(al5);
+        AssociatedLocation al6 = new AssociatedLocation(ParentRecordId=acc4.id, LocationId=l3.id, Type='legal', Notes__c = 'TEST legal');
+        alInsertList.add(al6);
         
         insert alInsertList;
         delete alDeleteList;
