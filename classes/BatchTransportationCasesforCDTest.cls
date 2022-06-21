@@ -1,7 +1,9 @@
 @isTest
 public class BatchTransportationCasesforCDTest {
 
-	@TestSetup static void createData(){
+	    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 		test.startTest();
 			Account actObj = TestUtility.createAccount();
 	        insert actObj;

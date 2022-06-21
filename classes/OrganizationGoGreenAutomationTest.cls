@@ -1,7 +1,8 @@
 @istest
 public class OrganizationGoGreenAutomationTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         Account a1 = TestUtility.createAccount('Insert Account check');
         a1.Dealership_Id__c = '1';

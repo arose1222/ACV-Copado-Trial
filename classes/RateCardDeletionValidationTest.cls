@@ -8,8 +8,9 @@ public class RateCardDeletionValidationTest{
     /**
      * Makes Test data per Test Method
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Rate_Card__c rc = TestUtility.createRateCard();
         rc.Approval_Status__c = 'Draft';
         insert rc;

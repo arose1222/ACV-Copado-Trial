@@ -35,8 +35,9 @@ public class AuctionKillControllerTest {
      * Creates Test data for each test method
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount('Test Dealership With DealerId');
         acct.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Standard').getRecordTypeId();
         acct.Dealership_Id__c = 'dealerId123';

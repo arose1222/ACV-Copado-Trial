@@ -9,8 +9,9 @@ public class Case48HourLogicTest {
      * Data setup
      * @return void
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Auction__c a = new Auction__c();
         a.Name = 'Test Auction';
         a.Payment_Status__c = 'Paid';

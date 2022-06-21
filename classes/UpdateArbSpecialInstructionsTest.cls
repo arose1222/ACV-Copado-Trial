@@ -1,8 +1,9 @@
 @isTest
 public class UpdateArbSpecialInstructionsTest {
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         OperatingHours vciOperatingHours = new OperatingHours(Name = 'vciTestOpHours');
         insert vciOperatingHours;

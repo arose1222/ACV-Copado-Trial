@@ -9,8 +9,9 @@ public class PrivateLaneAccessContTest {
      * Creates Data needed for Test Methods
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Fee__c fee = TestUtility.createFee();
         insert fee;
         Private_Lane__c pl = TestUtility.createPrivateLane();

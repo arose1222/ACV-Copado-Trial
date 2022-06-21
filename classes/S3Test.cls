@@ -6,8 +6,9 @@ private class S3Test {
 	public static final String folderName = 'test';
     private static string mockAWSCreds = '[{"DeveloperName":"testMetadata","NamespacePrefix":"","Access_Key__c":"qwertyuiop","Secret_Key__c":"qwertyuiopasdfghjkl","Bucket_Name__c":"dealer-docs-uat"}]';
 
-	@TestSetup
-	static void makeData(){
+	    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 		S3.mockMetadata = (List<AWS_Credential__mdt>)JSON.deserializeStrict(mockAWSCreds, List<AWS_Credential__mdt>.class);
 		insert TestUtility.createAccount(ACCOUNT_NAME);
 	}

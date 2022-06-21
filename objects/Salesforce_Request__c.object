@@ -2737,7 +2737,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>Assigned_Owner__c</field>
             <operation>equals</operation>
-            <value>dorothy robertson</value>
+            <value>dorothy robertson,Marti Saling</value>
         </filters>
         <label>All Open Requests</label>
     </listViews>
@@ -3016,6 +3016,24 @@ Employment Status Request - Select which days in a week to have employee work</i
             <operation>equals</operation>
         </filters>
         <label>COPY New SF Request Tickets</label>
+    </listViews>
+    <listViews>
+        <fullName>Caty_Brown_Tickets</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Salesforce_Request__c.Salesforce_Request</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Caty Brown</value>
+        </filters>
+        <label>Caty Brown Tickets</label>
     </listViews>
     <listViews>
         <fullName>Chase_s_SF_Tickets</fullName>
@@ -3458,7 +3476,7 @@ Employment Status Request - Select which days in a week to have employee work</i
         <filters>
             <field>Assigned_Owner__c</field>
             <operation>equals</operation>
-            <value>Dorothy Robertson</value>
+            <value>Dorothy Robertson,Marti Saling</value>
         </filters>
         <label>Dorothy All Open Requests</label>
     </listViews>

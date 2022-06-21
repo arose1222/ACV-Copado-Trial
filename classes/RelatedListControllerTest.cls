@@ -2,8 +2,9 @@
 public with sharing class RelatedListControllerTest {
     public static final Id junctionId = Schema.SObjectType.Inquiry_Comment__c.getRecordTypeInfosByDeveloperName().get('Inquiry_Junction_Object').getRecordTypeId();
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acc = TestUtility.createAccount('Test');
         insert acc;
 

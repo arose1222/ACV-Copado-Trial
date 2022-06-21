@@ -1,7 +1,8 @@
 @isTest
 public class TerritoryGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         maps__ShapeLayer__c a = new maps__ShapeLayer__c(ACV_Territory_ID__c='1', Name='Test Name');
         insert a;
         maps__ShapeLayer__c a1 = new maps__ShapeLayer__c(ACV_Territory_ID__c='2', Name='Test Name 2');

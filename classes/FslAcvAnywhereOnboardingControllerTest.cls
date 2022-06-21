@@ -12,8 +12,9 @@ public class FslAcvAnywhereOnboardingControllerTest {
         }
     }
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount();
         acct.Active__c = true;
         acct.Dealership_ID__c = '12345';

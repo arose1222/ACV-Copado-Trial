@@ -9,8 +9,9 @@ public class MajorAccountBadgeLogicTest {
      * Creates Data needed for Test Methods
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount('Test Dealership');
         insert acct;
         Contact con = TestUtility.createContact(acct);

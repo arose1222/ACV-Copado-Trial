@@ -6,8 +6,9 @@
 @isTest
 public class PreventContactDeletionTest {
 
-    @TestSetup
-    static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
        
         Id acvuserRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('ACV User').getRecordTypeId();
         

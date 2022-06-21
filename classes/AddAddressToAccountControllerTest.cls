@@ -3,8 +3,9 @@ public class AddAddressToAccountControllerTest {
     public static string addyStringBilling = '{"street":"8369 Lower East Hill Rd","city":"Colden","state":"AK","postalCode":"14033","country":"US","type":"billing","note":"8369 Lower East Hill Rd"}';
     public static string addyStringDelivery = '{"street":"8369 Lower East Hill Rd","city":"Colden","state":"AK","postalCode":"14033","country":"US","type":"delivery","note":"8369 Lower East Hill Rd"}';
     public static string addyStringBillingBad = '{"street":"8369 Lower East Hill Rd","city":"Colden","state":"NYC","postalCode":"14033","country":"US","type":"billing","note":"8369 Lower East Hill Rd"}';
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         insert a;
     }

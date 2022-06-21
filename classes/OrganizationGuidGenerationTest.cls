@@ -1,7 +1,8 @@
 @istest
 public class OrganizationGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Dealership_ID__c = '456', Name='seller',legal_Name__c='seller', dealer_type__c='1',BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US');
         insert a;
         Account a2 = new Account(Dealership_ID__c = '123', Name='buyer',legal_Name__c='buyer', dealer_type__c='1',BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US');

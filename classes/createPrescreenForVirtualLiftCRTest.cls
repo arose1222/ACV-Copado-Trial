@@ -4,8 +4,9 @@ public class createPrescreenForVirtualLiftCRTest {
     private static string vLRuleData = '[{"DeveloperName":"createPrescreenForVirtualLiftCR","NamespacePrefix":"","Active__c":true,"Class_Name__c":"createPrescreenForVirtualLiftCR","Is_Advanced_Logic__c":true}]';
     private static string vLRuleData2Entries = '[{"DeveloperName":"createPrescreenForVirtualLiftCR","NamespacePrefix":"","Active__c":true,"Class_Name__c":"createPrescreenForVirtualLiftCR","Is_Advanced_Logic__c":true},{"DeveloperName":"testCriteria","NamespacePrefix":"","Active__c":true,"Query_Path__c":"ACV_Saved_Auction_Id__c","Trigger_Value__c":"421","Value_Type__c":"String","Prescreen_Reason__c":"auction420"}]';
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         // String disableTrigger = '[{"DeveloperName": "TestHandler", "NamespacePrefix": "","After_Insert__c": "true","After_Update__c": "true","sObject__c": "Condition_Report__c", "Class_Name__c": "ConditionReportReviewGeneration"}]';
         // TriggerFrameWork.mockMetaData = (List<TriggerHandler__mdt>)JSON.deserializeStrict(disableTrigger, List<TriggerHandler__mdt>.class);
         Account a = TestUtility.createAccount('BillTest');

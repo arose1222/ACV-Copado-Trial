@@ -13,8 +13,9 @@ public class InventoryLifeCycleWOLITest{
      * Creates Test Data
      * @return void
      */
-    @testSetup
-    public static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> acctsToInsert = New List<Account>();
 
         Account acct = TestUtility.createAccount();

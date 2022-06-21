@@ -11,7 +11,9 @@
  */
 @isTest
 public class CalculateTitleDueDateCaseTest {
-    @TestSetup static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Test.startTest();    
         Account actObj = TestUtility.createAccount();
         actObj.BillingState='CA';

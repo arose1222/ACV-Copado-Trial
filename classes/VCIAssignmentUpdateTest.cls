@@ -2,8 +2,9 @@
 public class VCIAssignmentUpdateTest {
     
     
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         system.runAs(new user(id=UserInfo.getUserId())){
             List<Profile> p = [SELECT Id FROM Profile WHERE Name='System Administrator' limit 1]; 
             system.debug(p);

@@ -1,7 +1,8 @@
 @isTest
 public class MLTitlesExceptionTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         // Create 2 users:   testuser1 (Seller) and testuser2 (Buyer)
         String uniqueUserName1 = 'testuser1' + DateTime.now().getTime() + '@testorg.com';
         String uniqueUserName2 = 'testuser2' + DateTime.now().getTime() + '@testorg.com';

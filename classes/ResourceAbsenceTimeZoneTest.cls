@@ -1,8 +1,9 @@
 @isTest
  public class ResourceAbsenceTimeZoneTest {
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         List<OperatingHours> opLst = FSLTestUtility.createOperatingHours( new Set<String>{ 'CDT Mon-Fri 8am-8pm, Sat 9am-5pm', 'EDT Mon-Fri 8am-8pm, Sat 9am-5pm' } );
         opLst[0].TimeZone = 'America/Chicago';

@@ -1,7 +1,8 @@
 @isTest
 public with sharing class InquiryCommentInsertHandlerTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Customer_Inquiry__c> ciList = new List<Customer_Inquiry__c>();
         ciList.add(new Customer_Inquiry__c(Call_Bucket__c = 'Titles', Call_Type__c = 'Seller Title Status'));
         ciList.add(new Customer_Inquiry__c(Call_Bucket__c = 'Helpdesk', Call_Type__c = 'Ghost Bid'));

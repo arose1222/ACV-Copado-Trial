@@ -1,7 +1,8 @@
 @istest
 public class ContactACVUserChangeEventTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Id contactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Dealership Contact').getRecordTypeId();

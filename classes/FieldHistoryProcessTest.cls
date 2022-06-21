@@ -1,8 +1,9 @@
 @isTest
 public class FieldHistoryProcessTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         Account acct = new Account(
             Dealership_ID__c = '456', Name='seller',legal_Name__c='seller', dealer_type__c='1',IST_Account_Owner__c =UserInfo.getUserId(),BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US'

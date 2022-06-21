@@ -1,8 +1,9 @@
 @isTest
 public class ClearCustomFieldHistoryBatchTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Field_History__c> integrationLst = new List<Field_History__c>();
         for ( Integer index = 0; index < 10; index++ ) {
             integrationLst.add( new Field_History__c(

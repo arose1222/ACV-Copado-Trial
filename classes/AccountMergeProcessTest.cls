@@ -1,8 +1,8 @@
 @isTest
 public class AccountMergeProcessTest {
-    @TestSetup
-
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         List<Schema.Account> accountList = new List<Schema.Account>();
         List<Schema.Contact> contactList = new List<Schema.Contact>();

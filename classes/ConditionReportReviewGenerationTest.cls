@@ -85,8 +85,9 @@ public class ConditionReportReviewGenerationTest {
     }
 
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Account a = new Account(Name='Bill Test', Active__c = true, legal_name__c='Bill Test', Dealer_type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US', phone= '1234567890');

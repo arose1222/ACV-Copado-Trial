@@ -2,8 +2,9 @@
 public class VehicleSoldOrArbedPreviouslyCRUpdateTest {
     private static string mockDataLocalString = '[{"DeveloperName":"testCriteria","NamespacePrefix":"","Active__c":true,"Query_Path__c":"Vehicle__r.Make__c","Trigger_Value__c":"Saab","Value_Type__c":"String"}]';
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name = 'ACV');
         insert a;
         Contact c = new Contact(FirstName = 'Jinx', LastName = 'Best VCI', AccountId = a.Id);

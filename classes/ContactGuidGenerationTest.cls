@@ -1,8 +1,9 @@
 @istest
 public class ContactGuidGenerationTest {
 
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Id contactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Dealership Contact').getRecordTypeId();

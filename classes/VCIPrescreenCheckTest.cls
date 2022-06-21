@@ -5,8 +5,9 @@ public with sharing class VCIPrescreenCheckTest {
     //metadata record
 
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Account account = TestUtility.createAccount();        account.Dealership_Id__c = '2147479405';

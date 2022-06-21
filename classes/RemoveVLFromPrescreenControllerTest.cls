@@ -1,8 +1,9 @@
 @isTest
 public class RemoveVLFromPrescreenControllerTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name = 'ACV');
         insert a;
         Contact c = new Contact(FirstName = 'Bill', LastName = 'Best VCI',AccountId = a.id);

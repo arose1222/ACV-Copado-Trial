@@ -1,8 +1,9 @@
 @isTest
 public class TitlesReceivedAPITest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         TestUtility.createAccount();
         final Id TITLE_CASE_RT = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get( 'Title_Information' ).getRecordTypeId();
         Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];

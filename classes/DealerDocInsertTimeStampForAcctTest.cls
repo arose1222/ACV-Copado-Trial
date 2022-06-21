@@ -3,8 +3,9 @@ public class DealerDocInsertTimeStampForAcctTest {
     public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
     public static final Id resaleId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> acctList = new List<account>();
         DateTime testDate = System.Today().addDays(-5);
         acctList.add(new Account(Name = 'Test 1', IST_Account_Owner__c = UserInfo.getUserId()));

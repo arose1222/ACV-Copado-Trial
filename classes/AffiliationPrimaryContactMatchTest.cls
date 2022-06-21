@@ -1,7 +1,8 @@
 @isTest
 public class AffiliationPrimaryContactMatchTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         
     }
 

@@ -1,8 +1,9 @@
 @isTest
 public class TransferTicketControllerTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //Case__c, Auction__c, Related_Vehicle__c, Related_Account__c, Jira_Link__c
         Vehicle__c vech = TestUtility.createVehicle();
         insert vech;

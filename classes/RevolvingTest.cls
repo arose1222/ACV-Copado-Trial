@@ -25,8 +25,9 @@ global class RevolvingTest {
         return occ0;
     }
 
-    @TestSetup
-    global static void setUp(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Data_Schedule__c ds = new Data_Schedule__c();
         ds.Frequency__c = 'Daily';
         ds.Active__c = true;

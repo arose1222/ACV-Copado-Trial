@@ -6,8 +6,9 @@ public class SyncWorkOriginTest {
      private final static String ASSET = 'Asset Verification';
      private final static String TRUE_360 = 'True 360';
 
-    @TestSetup
-    static void createTerritory() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         insert a;
 

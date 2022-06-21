@@ -1,7 +1,8 @@
 @istest
 public class ParentOrganizationChangeEventTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         System.Debug('Make data 1');
         List<Account> accountList = New List<Account>();
         accountList.add(new Account(Dealership_ID__c = '456', legal_Name__c='parent', dealer_type__c='1', Name='parent',IST_Account_Owner__c =UserInfo.getUserId(),BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US'));

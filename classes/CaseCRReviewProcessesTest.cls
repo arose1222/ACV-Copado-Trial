@@ -1,7 +1,8 @@
 @isTest
 public class CaseCRReviewProcessesTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         List<Account> accountList = New List<Account>();
         accountList.add(new Account(Name='seller',IST_Account_Owner__c =UserInfo.getUserId()));

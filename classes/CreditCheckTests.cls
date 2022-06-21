@@ -3,6 +3,7 @@ public class CreditCheckTests {
 
     @TestSetup
     static void makeData(){
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //add to another method. call method
         Group grp = new Group();
         grp.name = 'Credit Test Budget';

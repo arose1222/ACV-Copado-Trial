@@ -3,8 +3,9 @@ public class RemoveInactiveResourcePrefsTest {
     /**
      * Test Setup Method to make a Account, Preferred Resource, & General FSL Data including Work Order
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount();
         insert acct;
 

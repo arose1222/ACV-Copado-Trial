@@ -1,7 +1,8 @@
 @isTest
 public class Arbitration_Trigger_Test {
-@testSetup
-    public static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account actObj = TestUtility.createAccount();
         insert actObj;
         Contact contactObj = TestUtility.createContact(actObj);

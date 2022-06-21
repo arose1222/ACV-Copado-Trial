@@ -1,7 +1,8 @@
 @istest
 public class AssociatedLocAddressGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         Account a4 = new Account(Name='Test',legal_Name__c='Test',Dealership_ID__c='1234567', dealer_type__c='1',BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US');
         insert a4;

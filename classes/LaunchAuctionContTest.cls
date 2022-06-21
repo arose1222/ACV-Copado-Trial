@@ -5,8 +5,9 @@ public class LaunchAuctionContTest {
      * Creates Test data for each test method
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Profile> pList = [ SELECT Id FROM Profile WHERE Name='Standard User' LIMIT 1 ]; 
         // User u = new User(Alias = 'testSys', Email='systemAdmin@testorg.com', 
         //     EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 

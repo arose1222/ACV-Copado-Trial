@@ -1,7 +1,8 @@
 @isTest
 public class DemoRequestReminderTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //set up a few test holidays
         Date saturdayHoliday = Date.newInstance(2019, 09, 07);
         Date sundayHoliday = Date.newInstance(2019, 09, 15);

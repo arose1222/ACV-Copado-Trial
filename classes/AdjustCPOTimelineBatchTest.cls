@@ -1,8 +1,9 @@
 @isTest
 public class AdjustCPOTimelineBatchTest {
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Offer Attempted' );
 
@@ -64,7 +65,7 @@ public class AdjustCPOTimelineBatchTest {
         Test.stopTest();
 
         //Confirm that CPO appointments have been pinned
-        List<ServiceAppointment> svcApptList = [ SELECT Id, FSL__InJeopardy__c, EarliestStartTime FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c IN ('cpobm', 'cpofr', 'cpogm', 'cpogmcomp', 'cpohnice', 'cpohn04', 'cpohn06', 'cpohn08', 'cpohn10', 'cpohn12', 'cpohn14', 'cpohn16', 'cpohn18', 'cpohn20', 'cpopo', 'vcpofr', 'vcpogm', 'vcpohn', 'vcpopo', 'cpolnc', 'gmfia') ];
+        List<ServiceAppointment> svcApptList = [ SELECT Id, FSL__InJeopardy__c, EarliestStartTime FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c IN ('cpobd', 'cpobm', 'cpofr', 'cpogm', 'cpogmcomp', 'cpohnice', 'cpojlr', 'cpohn04', 'cpohn06', 'cpohn08', 'cpohn10', 'cpohn12', 'cpohn14', 'cpohn16', 'cpohn18', 'cpohn20', 'cpopo', 'cpo90', 'cpo120', 'cpo150', 'cpo180', 'cpo240', 'cpo270', 'cpo300', 'vcpofr', 'vcpogm', 'vcpohn', 'vcpopo', 'cpolnc', 'gmfia') ];
 
         system.assert(svcApptList.size() > 0);
 
@@ -74,7 +75,7 @@ public class AdjustCPOTimelineBatchTest {
         }
 
         //Confirm that non-CPO appointments have not been pinned
-        List<ServiceAppointment> notSvcApptList = [ SELECT Id, FSL__InJeopardy__c, EarliestStartTime FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c NOT IN ('cpobm', 'cpofr', 'cpogm', 'cpogmcomp', 'cpohnice', 'cpohn04', 'cpohn06', 'cpohn08', 'cpohn10', 'cpohn12', 'cpohn14', 'cpohn16', 'cpohn18', 'cpohn20', 'cpopo', 'vcpofr', 'vcpogm', 'vcpohn', 'vcpopo', 'cpolnc', 'gmfia') ];
+        List<ServiceAppointment> notSvcApptList = [ SELECT Id, FSL__InJeopardy__c, EarliestStartTime FROM ServiceAppointment WHERE WorkType.Work_Type_Unique_ID__c NOT IN ('cpobd', 'cpobm', 'cpofr', 'cpogm', 'cpogmcomp', 'cpohnice', 'cpojlr', 'cpohn04', 'cpohn06', 'cpohn08', 'cpohn10', 'cpohn12', 'cpohn14', 'cpohn16', 'cpohn18', 'cpohn20', 'cpopo', 'cpo90', 'cpo120', 'cpo150', 'cpo180', 'cpo240', 'cpo270', 'cpo300', 'vcpofr', 'vcpogm', 'vcpohn', 'vcpopo', 'cpolnc', 'gmfia') ];
 
         system.assert(notSvcApptList.size() > 0);
 

@@ -1,7 +1,8 @@
 @isTest
 public with sharing class SearchTitleClerkApexHandlerTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Id recordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Title Information').getRecordTypeId();

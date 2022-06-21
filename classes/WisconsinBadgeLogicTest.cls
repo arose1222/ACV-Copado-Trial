@@ -10,8 +10,9 @@ public class WisconsinBadgeLogicTest {
      * Creates Data needed for Test Methods
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount('Test Dealership');
         acct.BillingState = 'WI';
         insert acct;

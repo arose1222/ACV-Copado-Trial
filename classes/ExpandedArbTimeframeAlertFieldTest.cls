@@ -1,7 +1,8 @@
 @isTest
 public class ExpandedArbTimeframeAlertFieldTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //account
         Account a = TestUtility.createAccount('Test 1');
         insert a;

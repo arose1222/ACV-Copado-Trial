@@ -1,7 +1,8 @@
 @isTest
 public class PredictedPriceComponentTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> accountList = New List<Account>();
         accountList.add(new Account(Name='seller',IST_Account_Owner__c =UserInfo.getUserId()));
         accountList.add(new Account(Name='buyer',IST_Account_Owner__c = UserInfo.getUserId()));

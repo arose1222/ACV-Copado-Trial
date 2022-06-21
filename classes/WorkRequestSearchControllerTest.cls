@@ -1,8 +1,9 @@
 @isTest
 public class WorkRequestSearchControllerTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Scheduled' );
         
         Account a = TestUtility.createAccount();

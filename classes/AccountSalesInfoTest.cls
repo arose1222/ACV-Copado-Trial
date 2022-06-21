@@ -1,8 +1,9 @@
 @isTest
 public class AccountSalesInfoTest {
     
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
       List<Auction__c> newAuctions = new List<Auction__c>();
       List<Account> AccountList = new List<Account>();
       accountList.add(new Account(Name='seller',IST_Account_Owner__c =UserInfo.getUserId(),legal_Name__c='seller', dealer_type__c='1'));
@@ -19,8 +20,7 @@ public class AccountSalesInfoTest {
           newAuctions.add(newAuction);   
       }
    
-      insert newAuctions;
-        
+      insert newAuctions;    
     }
 
     @IsTest

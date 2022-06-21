@@ -10,8 +10,9 @@ public class ILCMassPopulationViaTriggerTest{
     public static final String TEST_VIN = '1234abcdVINtest';
     public static final string TEST_DEALER_ID = 'dealerId123';
     /****************Test Setup****************************/
-    @TestSetup
-    public static void testData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> accountList = New List<Account>();
         Account acct = TestUtility.createAccount();
         acct.Name = ACCOUNT_WITH_DEALER_ID_NAME;

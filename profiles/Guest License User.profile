@@ -166,6 +166,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>standard__DataManager</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>standard__Insights</application>
         <default>false</default>
         <visible>false</visible>
@@ -3483,6 +3488,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__EhanceJobsUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__EmergencyLightboxController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3675,6 +3684,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__InDayProcessor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__InstallScript</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3780,6 +3793,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__O2JsonSerializer</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__O2OptimizationAsyncResponse</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__O2RSORequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3899,6 +3920,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__OptimizationHub</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__OptimizationInsightsKPIController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3908,6 +3933,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__OptimizationInsightsSummaryController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__OptimizationLimitsUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3968,6 +3997,22 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__QueueableOptimization</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__QueueableOptimizationForO2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOBody</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOCommonProcessor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__RSOPreProcessor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4479,7 +4524,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FSL__TR031_WorkRuleEntryValidator</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FSL__TR066_ServiceObjectiveUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__TerritoriesHorizonBasedRequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4560,6 +4613,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FSL__countRule</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FSL__createBundleSchedulable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -15282,84 +15339,84 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.AddToBundleStatuses</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.BundleStatusesToPropagate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.CriteriaForAutoUnbundlingId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.MemberStatusesNotToPropagate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.RemoveFromBundleStatuses</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundleConfig.StatusesNotToUpdateOnUnbundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.BundleEndTimeFieldName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.BundleStartTimeFieldName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.CanAllowSchleDepndInBundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.ConstantTimeValue</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.FilterCriteriaId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsAutomaticBundling</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsManualBundling</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.IsTimeCalcByBundleDurationFld</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.LimitAmountOfBundleMembers</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ApptBundlePolicy.LimitDurationOfBundle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -15379,6 +15436,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ApptBundlePropagatePolicy.ConstantValue</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ApptBundlePropagatePolicy.DateValue</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28863,6 +28925,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWithWindowAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWithWindowBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWoWindowAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__AvgResponseTimeForSasWoWindowBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__AvgTravelTimeAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28893,6 +28975,116 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCapacityAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCapacityBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCrewAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToCrewBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToResourcesAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumOfScheduledSasToResourcesBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasSchedToPreferredSrAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasSchedToPreferredSrBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfSasWithPreferredResource__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCapacityAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCapacityBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCrewAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledCrewBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledResourcesAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__NumberOfUnscheduledResourcesBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalCrewWorkCapacity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalLunchBreakDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalLunchBreakDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWithGeolocationDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWithGeolocationDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWoGeolocationDurationAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNaWoGeolocationDurationBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfCapacityBasedResources__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28904,6 +29096,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfOptimizableServices__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfPinnedServices__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28923,6 +29120,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfServicesWithWindow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalNumberOfServicesWithoutWindow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalOvertimeForCrews__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalOvertimeForResources__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalScheduledTimeOnOvertimeAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalScheduledTimeOnOvertimeBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelByPrimaryMembershipAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28933,12 +29160,62 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceFromHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceFromHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceToHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceToHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceWoHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelDistanceWoHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeAfter__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeFromHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeFromHomebaseBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeToHomebaseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalTravelTimeToHomebaseBefore__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28964,6 +29241,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__Territory_Optimization_Request__c.FSL__TotalWorkDurationScheduledBefore__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TotalWorkTime__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TravelTimeOnTheResourcesExpenseAfter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Territory_Optimization_Request__c.FSL__TravelTimeOnTheResourcesExpenseBefore__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29219,6 +29511,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FSL__User_Territory__c.FSL__User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Break_Duration__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Earliest_Break_Start__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FSL__Work_Rule_Entry__c.FSL__Latest_Break_End__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35908,6 +36215,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ResourceAbsence.FSL__Last_Updated_Epoch__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ResourceAbsence.FSL__Scheduling_Policy_Used__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -37013,6 +37325,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ServiceAppointment.FSL__Last_Updated_Epoch__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ServiceAppointment.FSL__MDS_Calculated_length__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -37564,6 +37881,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Shift.BackgroundColor</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Shift.IsHolidayShift</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -51718,6 +52040,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmissionDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmittedBy__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>maps__TPAlignment__c.maps__Config__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -51839,6 +52171,31 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>maps__TPHistory__c.maps__Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__AccountAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__AccountTeamRole__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__CaseAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__OpportunityAccessLevel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>maps__TPRole__c.maps__TerritoryTeamRole__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -52457,6 +52814,12 @@
         <layout>Appointment_Offer__c-Appointment Offer Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ApptBundleConfig-Appointment Bundle Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ApptBundlePolicy-Appointment Bundle Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Arbitration_Claim__mdt-Arbitration Claim CheckBox Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53020,6 +53383,9 @@
         <layout>OperatingHours-Operating Hours Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>OperatingHoursHoliday-Operating Hours Holiday Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53486,6 +53852,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Transportation_Email_Address__mdt-Transportation Email Address Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TravelMode-Travel Mode Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TriggerHandler__mdt-TriggerHandler Layout</layout>
@@ -54795,7 +55164,15 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>maps__AlignmentBuilder</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>maps__AlignmentComparison</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__AlignmentRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -54832,6 +55209,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>maps__CustomDispositionForm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__DataSetRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -54904,6 +55285,14 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>maps__Nearby</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__NewAlignmentRedirect</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__NewDataSetRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -55272,6 +55661,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>FSL__Service_Goal__c.FSL__Objective_Skill_Level</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FSL__Work_Rule_Entry__c.FSL__Gap_Rule_Service</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

@@ -1,8 +1,9 @@
 @isTest
 public class ClearBadLocationBatchTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Schema.Location l0 = new Schema.Location(
             Name = 'Bad Location'
         );

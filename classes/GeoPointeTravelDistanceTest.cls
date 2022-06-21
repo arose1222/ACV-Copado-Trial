@@ -1,7 +1,8 @@
 @isTest
 public class GeoPointeTravelDistanceTest {
-    @testSetup
-    public static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
 
         Integer numCases = 1;

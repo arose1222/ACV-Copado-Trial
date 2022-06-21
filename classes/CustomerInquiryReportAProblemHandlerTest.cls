@@ -1,7 +1,8 @@
 @isTest
 public class CustomerInquiryReportAProblemHandlerTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //need two accounts (one with specialist and CSA populated, one without) - think i will set the running user as both of these fields. instead of creating a new user
         List<Account> acctList = new List<Account>();
         acctList.add(TestUtility.createAccount('Test 1'));

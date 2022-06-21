@@ -1,7 +1,8 @@
 @isTest
 public class IdentityServiceAffiliationDeactTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         a.dealership_ID__c = '333';
         insert a;

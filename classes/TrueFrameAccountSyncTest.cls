@@ -1,8 +1,9 @@
 @isTest
 public class TrueFrameAccountSyncTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         a.Dealership_ID__c = '1';
         insert a;

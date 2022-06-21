@@ -1,7 +1,8 @@
 @isTest
 public class FullCalendarControllerTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( /*'Great Lakes',*/ 'Buffalo', '14209' );
         WorkType workTypeResult = [ SELECT Id, Name, Work_Type_Color__c FROM WorkType LIMIT 1 ];
         DateTime rightNow = System.now();

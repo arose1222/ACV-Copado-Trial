@@ -6,8 +6,9 @@ public class WorkRequestParentEventTest {
     private final static String ZIPCODE = '14209';
     private final static String TERRITORY_NAME = 'Buffalo';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Test.setMock( HttpCalloutMock.class, new MockCalloutUpdateSuccess() );
         WorkType cpo = new workType( Name = WORK_TYPE_UNIQUE_NAME, EstimatedDuration = 30, DurationType = 'Minutes', Work_Type_Unique_ID__c = WORK_TYPE_UNIQUE_NAME );
         insert cpo;

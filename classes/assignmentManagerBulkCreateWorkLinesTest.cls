@@ -1,4 +1,11 @@
-@isTest
+/**
+ * @description Bulk test class for assignmentManagerCreateWorkLinesCont. The class was turned off from the test suite as of 4/22/2022. This test class should still be run whenever changes are made to assignment manager.
+ * @author Adam Richbart
+ * @since 4/22/2022
+ * @group Inspector Dispatch
+ */
+
+//@isTest
 public with sharing class assignmentManagerBulkCreateWorkLinesTest {
     private static final String BUFFALO_ST = 'Buffalo';
 
@@ -18,15 +25,16 @@ public with sharing class assignmentManagerBulkCreateWorkLinesTest {
         set;
     }
 
-    @TestSetup
-    static void makeData(){
+    //@TestSetup
+    static void makeData() {
+        //TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name='test', Dealership_Id__c = DEALER_ID, legal_Name__c='test', dealer_type__c='1' );
         insert a;
 
         FSLTestUtility.createAllStructureWithParentST( /*'Great Lakes',*/ BUFFALO_ST, '14209' );
     }
 
-    @isTest
+    //@isTest
     static void createMassRowsWithoutMatchingZip() {
         List<assignmentManagerCreateWorkLinesCont.jsonVin> createLineLst = new List<assignmentManagerCreateWorkLinesCont.jsonVin>();
 
@@ -63,7 +71,7 @@ public with sharing class assignmentManagerBulkCreateWorkLinesTest {
 
     }
 
-    @isTest
+    //@isTest
     static void createMassRows() {
         List<assignmentManagerCreateWorkLinesCont.jsonVin> createLineLst = new List<assignmentManagerCreateWorkLinesCont.jsonVin>();
 
@@ -105,7 +113,7 @@ public with sharing class assignmentManagerBulkCreateWorkLinesTest {
         System.assert(checkReturn != null);
     }
 
-    @isTest
+    //@isTest
     static void checkErrorService() {
         // Call Error WorkType Ref
         Test.startTest();

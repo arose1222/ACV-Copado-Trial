@@ -3,8 +3,9 @@ public class LeadConversionTest {
  
     static String leadRTID = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Lead leadRec = TestUtility.createLead();
         leadRec.EIN_Number__c= '456123';
         leadRec.RecordTypeId = leadRTID;

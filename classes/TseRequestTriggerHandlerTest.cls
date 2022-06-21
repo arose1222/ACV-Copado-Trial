@@ -5,8 +5,9 @@ public class TseRequestTriggerHandlerTest {
     public static final Date DATE_NEXT_WEEK = Date.today().addDays(7);
     public static final DateTime DT_NOW = Datetime.now();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         OperatingHours oh = new OperatingHours(Name = 'Test Hours');
         insert oh;
 

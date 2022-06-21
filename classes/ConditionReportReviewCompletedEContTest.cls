@@ -1,8 +1,9 @@
 @isTest
 public class ConditionReportReviewCompletedEContTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         ContentVersion contentVersion = new ContentVersion(
         Title = 'Penguins',
         PathOnClient = 'Penguins.jpg',

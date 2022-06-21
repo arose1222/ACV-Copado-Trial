@@ -1,8 +1,9 @@
 @isTest
 public class ACVUtilityTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //set spesific dates in time so we can use them for steady testing instead of using system.now/today
         Date saturdayHoliday = Date.newInstance(2019, 09, 21);
         Date sundayHoliday = Date.newInstance(2019, 09, 22);

@@ -1,7 +1,8 @@
 @isTest
 public class CaseCreateUtilityControllerTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acc = TestUtility.createAccount('Test');
         acc.BillingState = 'NY';
         insert acc;

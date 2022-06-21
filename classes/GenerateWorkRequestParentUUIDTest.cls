@@ -4,8 +4,9 @@ public class GenerateWorkRequestParentUUIDTest {
     final static String ZIPCODE = '14209';
     final static String INSPECTION = 'Standard Inspection';
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         insert a;
 

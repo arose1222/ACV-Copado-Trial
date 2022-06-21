@@ -1,7 +1,8 @@
 @isTest
 public class UpdateSAExcludeFromOptimizationTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Cannot Complete' );
 
         Account a = TestUtility.createAccount();

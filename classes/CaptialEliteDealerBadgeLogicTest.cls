@@ -10,8 +10,9 @@ public  class CaptialEliteDealerBadgeLogicTest {
      * Creates Data needed for Test Methods
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> accList = new List<Account>();
         Account acct = TestUtility.createAccount('Test Dealer Type');
         acct.Capital_Dealer_Type__c = 'Capital Orange Elite';

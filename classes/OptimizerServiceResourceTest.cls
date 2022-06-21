@@ -1,8 +1,9 @@
 @isTest
 public class OptimizerServiceResourceTest {
  
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account testAcct = TestUtility.createAccount( 'TEST Account Dealership' );
         insert testAcct;
         Contact testCon = TestUtility.createContact( testAcct );

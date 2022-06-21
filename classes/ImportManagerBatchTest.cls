@@ -22,8 +22,9 @@ public with sharing class ImportManagerBatchTest {
         set;
     }
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
         Account a = new Account(Name='test', Dealership_Id__c = DEALER_ID, legal_Name__c='test', dealer_type__c='1' );
         insert a;

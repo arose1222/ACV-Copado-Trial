@@ -1,8 +1,9 @@
 @isTest
 public class RevolvingGenerationMissedTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         Data_Schedule__c schedule = new Data_Schedule__c();
             schedule.Frequency__c = 'Monthly';

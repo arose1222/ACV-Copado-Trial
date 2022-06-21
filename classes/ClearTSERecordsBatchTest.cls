@@ -3,8 +3,9 @@ public class ClearTSERecordsBatchTest {
 
     public static boolean BatchTestFlag = FALSE;
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<TSE_Request__c> tserLst = new List<TSE_Request__c>();
         for ( Integer index = 0; index < 10; index++ ) {
             tserLst.add( new TSE_Request__c(

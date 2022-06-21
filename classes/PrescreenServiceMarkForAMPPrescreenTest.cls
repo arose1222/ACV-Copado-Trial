@@ -1,8 +1,9 @@
 @isTest
 public class PrescreenServiceMarkForAMPPrescreenTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Vehicle__c v = TestUtility.createVehicle();
         insert v;
         Condition_Report__c cr = TestUtility.createCr(v);

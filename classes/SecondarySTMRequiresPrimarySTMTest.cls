@@ -1,7 +1,8 @@
 @isTest
 public class SecondarySTMRequiresPrimarySTMTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( 'Buffalo', '14209' );
         Account acct = TestUtility.createAccount();
         insert acct;

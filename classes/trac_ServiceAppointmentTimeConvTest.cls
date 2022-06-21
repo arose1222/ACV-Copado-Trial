@@ -6,7 +6,9 @@ public with sharing class trac_ServiceAppointmentTimeConvTest {
     private static final Integer RECORDS_TO_CREATE = 1;
     private static final TLTestFactory factory = new TLTestFactory();
 
-    @TestSetup static void SetupServiceAppointmentData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         // Operating Hours and service territory needs to be created first
         List<SObject> operatingHoursList = new List<SObject>();
         operatingHoursList.add(new OperatingHours(Name='Testing123'));

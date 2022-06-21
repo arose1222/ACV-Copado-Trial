@@ -9,7 +9,7 @@
 	<script type='text/javascript' src="{!URLFOR($Resource.Maps3rdPartyPlugins, 'jquery/jquery-3.6.0.min.js')}"></script> 
     <script type="text/javascript" src="{!URLFOR($Resource.Maps3rdPartyPlugins, 'toastr/toastr.min.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Maps3rdPartyPlugins, 'toastr/toastr.min.css')}"></link>
-    <link rel="stylesheet" type="text/css" href="{!resourcePaths['MapsJS']}/dist/live/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="{!resourcePaths['VueLive']}/build/main.css"></link>
 
     <!-- Legacy style toast notifications - would like to remove these in favor of a Vue equivalent to completely strip jQuery from the project -->
     <script type='text/javascript'>
@@ -84,5 +84,5 @@
 
     <!-- App Root -->
     <div id="malive-vue-root"></div>
-    <script src="{!resourcePaths['MapsJS']}/dist/live/bundle.js"></script>
+    <script src="{!resourcePaths['VueLive']}/build/bundle.js"></script>
 </apex:page>

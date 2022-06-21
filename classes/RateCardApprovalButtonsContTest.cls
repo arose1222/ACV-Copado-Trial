@@ -8,8 +8,9 @@ public class RateCardApprovalButtonsContTest {
     /**
      * Creates Test Data
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         User testUser = TestUtility.createUser();
         testUser.email = 'testingonetwothree@test.test';
         testUser.Id__c = '1234';

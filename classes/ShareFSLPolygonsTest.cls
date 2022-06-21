@@ -12,8 +12,9 @@ public class ShareFSLPolygonsTest {
     /**
      * Test Setup Method that simply generated Generic FSL Setup Data
      */
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( 'Buffalo', '14209' );
     }
 

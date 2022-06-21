@@ -207,6 +207,11 @@
             <isRequired>false</isRequired>
         </availableFields>
         <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
             <field>Latitude</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -363,6 +368,11 @@
         </availableFields>
         <availableFields>
             <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </availableFields>
@@ -538,6 +548,11 @@
         </availableFields>
         <availableFields>
             <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FSL__Last_Updated_Epoch__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </availableFields>
@@ -801,6 +816,18 @@
         <scale>6</scale>
         <trackHistory>false</trackHistory>
         <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>FSL__Last_Updated_Epoch__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Updated Epoch</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FSL__Scheduling_Policy_Used__c</fullName>

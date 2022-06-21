@@ -4,8 +4,9 @@
 @isTest
 public class UpdateBuyFeeRateCardControllerTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         // Create 2 rate cards. one published and one draft
         List<Rate_Card__c> ratecards= new List<Rate_Card__c>();
         Rate_Card__c rc = TestUtility.createRateCard();

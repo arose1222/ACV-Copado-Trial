@@ -1,7 +1,8 @@
 @isTest
 public class RevAppActiveFieldTest {
-    @TestSetup
-    public static void createTerritory() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(
             Name = 'ACV Dealership', Dealership_Id__c = '1', BillingPostalCode = '14209', legal_Name__c='ACV Dealership', dealer_type__c='1'
         );

@@ -1,8 +1,9 @@
 @isTest
 public class AssignmentManagerVehicleUpdateTest {
 
-    // @TestSetup
-    // static void makeData(){
+    //     @TestSetup
+    // static void makeData() {
+    //     TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
     //     List<Account> accountList = New List<Account>();
     //     Account acct = TestUtility.createAccount('seller');
     //     acct.IST_Account_Owner__c =UserInfo.getUserId();

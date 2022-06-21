@@ -5,8 +5,9 @@ public class ClearEntitySubscriptionsBatchTest {
     
     public final static String INTEGRATION_TYPE = 'Create Case';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> acctLst = new List<Account>();
         for ( Integer index = 0; index < 10; index++ ) {
             acctLst.add( 

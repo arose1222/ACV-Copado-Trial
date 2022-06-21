@@ -1,8 +1,9 @@
 @isTest
 public class PinnedNumDaysOutCPOGM_CPOGMCOMPBatchTest {
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         // Create Account (needed for Work Order):
         Account vciAccount = TestUtility.createAccount('vciTestAccount');

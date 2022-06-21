@@ -1009,7 +1009,7 @@
         <fullName>Seller_Link__c</fullName>
         <description>Link to the Seller Account on the related ops case.  Within Salesforce this will work in all environments.  Will only work properly from an email template when used in production.</description>
         <externalId>false</externalId>
-        <formula>IF( $Organization.Id = &apos;00D8D0000004wdm&apos;, 
+        <formula>IF( $Organization.Id = &apos;00D760000004eNX&apos;, 
 HYPERLINK( &quot;https://acvauctions.lightning.force.com/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;),
 HYPERLINK( &quot;/&quot; +  Ops_Case__r.Seller_Dealership__c ,  Ops_Case__r.Seller_Dealership__r.Name , &quot;_self&quot;)
 )</formula>

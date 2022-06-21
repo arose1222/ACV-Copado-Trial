@@ -1,7 +1,8 @@
 @isTest
 public class TimeSheetEntryFieldTriggerTest {
-    @TestSetup
-    static void MakeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account vciAccount = TestUtility.createAccount('vciTestAccount');
         insert vciAccount;
 

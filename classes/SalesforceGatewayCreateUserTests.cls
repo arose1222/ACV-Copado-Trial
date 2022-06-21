@@ -1,8 +1,9 @@
 @isTest
 public class SalesforceGatewayCreateUserTests {
  
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert TestUtility.createAccount();
 
         Lead leadRec = TestUtility.createLead();

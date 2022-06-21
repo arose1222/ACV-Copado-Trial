@@ -1,7 +1,8 @@
 @isTest
 public class EasyPostTitleUpdateAPITest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         // Create Case Trigger Flag
         insert new CaseTriggerFlag__c( Name='Default', Enabled__c = true );
 

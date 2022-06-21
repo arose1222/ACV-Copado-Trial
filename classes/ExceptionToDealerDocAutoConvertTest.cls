@@ -3,8 +3,9 @@ private class ExceptionToDealerDocAutoConvertTest {
     public static final Id licenseId = Schema.SObjectType.Exception__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
     public static final Id resaleId = Schema.SObjectType.Exception__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
 
-	@TestSetup
+	    @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //dates
         Date future = System.Today().addMonths(5);
         Date past = System.Today().addMonths(-5);

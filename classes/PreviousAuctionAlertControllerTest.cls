@@ -5,8 +5,9 @@
  */
 @isTest
 public class PreviousAuctionAlertControllerTest {
-@TestSetup
-    static void makeData(){
+    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         
       //Create new account record
         Account a = new Account (Name='Test Exceptions Update');

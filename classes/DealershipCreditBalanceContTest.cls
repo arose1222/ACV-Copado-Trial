@@ -16,8 +16,9 @@ public without sharing class DealershipCreditBalanceContTest {
     /**
      * Creates the data needed for the test in this class
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount( ACCOUNT_NAME );
         acct.Organization_Credit_Id__c = '1234';
         insert acct;

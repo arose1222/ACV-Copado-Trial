@@ -1,7 +1,9 @@
 @isTest
 public class TransportationDispatchRequestHandlerTest {
     private static Integer numCases = 1;
-    @TestSetup static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         List<Case> cases = new List<Case>();
         List<Transportation_Dispatch_Request__C> TDRs = new List<Transportation_Dispatch_Request__c>();

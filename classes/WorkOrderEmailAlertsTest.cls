@@ -1,7 +1,8 @@
 @isTest
 public class WorkOrderEmailAlertsTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //need an account
         List<Account> acctList = new List<Account>();
         

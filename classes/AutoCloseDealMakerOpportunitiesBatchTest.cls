@@ -1,8 +1,9 @@
 @isTest
 public class AutoCloseDealMakerOpportunitiesBatchTest {
     
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Opportunity> newOppList = New List<Opportunity>();
         Id DealerMakerOppRecordType = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Deal Maker').getRecordTypeId();
       for(Integer i = 0; i < 100; i++){

@@ -5,8 +5,9 @@
 *******************************************/
 @isTest
 public class DealerProgramApplicationControllerTest {
-   @TestSetup
-    static void makeData(){
+       @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acc=TestUtility.createAccount();
         insert acc;
         

@@ -3,8 +3,9 @@ public class ArbCreditRejectionResolutionUpdateTest {
     /**
      * Create Test Data
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         Account acctSeller = TestUtility.createAccount('seller');
         Account acctBuyer = TestUtility.createAccount('buyer');

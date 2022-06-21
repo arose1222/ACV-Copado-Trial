@@ -1,6 +1,8 @@
 @isTest
 public class CreateEmailInquiryComments_Test {
-    @TestSetup static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account actObj = TestUtility.createAccount();
         insert actObj;
         Contact contactObj = TestUtility.createContact(actObj);

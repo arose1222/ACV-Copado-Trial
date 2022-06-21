@@ -3,8 +3,9 @@ public class updateVLCountOnPrescreenCloseTest {
 
     public static String mockMetaDataString = '[{"DeveloperName": "updateVLCountOnPrescreenClose","Active__c":"true","NamespacePrefix": "","Before_Update__c": "true","sObject__c": "Condition_Report_Prescreen__c", "Class_Name__c": "updateVLCountOnPrescreenClose"}]';
     
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name = 'ACV');
         insert a;
         Contact c = new Contact(FirstName = 'Bill', LastName = 'Best VCI',AccountId = a.id);

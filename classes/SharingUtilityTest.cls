@@ -11,8 +11,9 @@ public class SharingUtilityTest {
     /**
      * Setup data that creates the standard Account and Opportunity data for sharing usage
      */
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount();
         insert acct;
 

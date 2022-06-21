@@ -1,7 +1,9 @@
 @istest
 public class EmailMessageTest {
     
-    @TestSetup static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         String uniqueUserName = 'Adminuser' + DateTime.now().getTime() + '@testorg.com';
         // This code runs as the system user
         //Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];

@@ -1,7 +1,9 @@
 @isTest
 public class ComplaintTrigger_Test {
     
-    @TestSetup static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Test.setMock(HttpCalloutMock.class, New AcvIntegrationQueueableMock());
         Account actObj = TestUtility.createAccount();
         insert actObj;

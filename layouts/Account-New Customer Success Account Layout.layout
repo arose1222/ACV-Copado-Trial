@@ -149,10 +149,6 @@
                 <behavior>Edit</behavior>
                 <field>Late_Title_Fee_Start_Date__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MV_Field__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -988,6 +984,11 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
+            <actionName>Account.Work_Order_Ingest</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>27</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>Event</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
@@ -1121,11 +1122,6 @@
             <actionName>Account.Reactivate</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>26</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Account.Work_Order_Ingest</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>27</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>

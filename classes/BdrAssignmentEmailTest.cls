@@ -9,8 +9,9 @@ public class BdrAssignmentEmailTest {
      * Test Setup method for the test methods
      * 
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //TriggerFrameWork.mockMetadata = new List<TriggerHandler__mdt>();
         Lead l = TestUtility.createLead();
         l.RecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Organization_Lead').getRecordTypeId();

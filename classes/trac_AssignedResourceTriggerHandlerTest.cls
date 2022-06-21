@@ -12,8 +12,9 @@ private class trac_AssignedResourceTriggerHandlerTest {
     private final static String ASSET = 'Asset Verification';
     private final static String TRUE_360 = 'True 360';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<WorkType> wtLst = new List<WorkType>();
         wtLst.add( new workType( Name = INSPECTION, EstimatedDuration = 30 ) );
         wtLst.add( new workType( Name = ASSET, EstimatedDuration = 5 ) );

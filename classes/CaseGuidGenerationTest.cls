@@ -1,7 +1,8 @@
 @istest
 public with sharing class CaseGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Id arbrecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Arbitration Claim').getRecordTypeId();
         Id titleRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Title Information').getRecordTypeId();
         Id unwindRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Unwind').getRecordTypeId();

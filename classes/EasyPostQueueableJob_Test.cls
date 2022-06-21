@@ -1,7 +1,9 @@
 @isTest
 private class EasyPostQueueableJob_Test {
 	
-	@TestSetup static void createData(){
+	    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Test.startTest();
             Map<String, String> responseHeaders = new Map<String,String>{'Content-Type' => 'application/json'};
             String body = '{"status":"ok"}';

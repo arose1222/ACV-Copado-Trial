@@ -11,8 +11,9 @@ public class FilterManagerSidebarControllerTest {
     /**
      * Creates Data needed for Test Methods
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         User u = TestUtility.createUser();
         u.Id__c = ACV_TEST_ID;
         insert u;

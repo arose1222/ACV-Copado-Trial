@@ -1,7 +1,8 @@
 @isTest
 public class AccountLogisticsUnwindHandlerBatchTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //need four dates
         Date firstDate = System.Today().addDays(-3);
         Date secondDate = System.Today().addDays(-2);

@@ -12,8 +12,9 @@ public class LeadOwnerAssignmentBDRTest {
      * Test Setup method for the test methods
      * 
      */
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         DateTime todayTime = System.now();
         DateTime yesterday = System.now().addDays(-1);
         DateTime beforeYesterday = System.now().addDays(-2);

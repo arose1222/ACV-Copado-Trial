@@ -3,8 +3,9 @@ public class SchedulingFrameworkTest {
     private static final string SAMPLE_INTERFACE_CLASS = 'ClearIntegrationResultsBatch';
     private static final string SAMPLE_NAMESPACE_PREFIX = null; // No Namespace for current example
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Integration_Result__c> createTestDataLst = new List<Integration_Result__c>();
         createTestDataLst.add( ClearIntegrationResultsBatchTest.makeIntLog( 1 ) );
         insert createTestDataLst;

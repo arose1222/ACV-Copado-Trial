@@ -6052,6 +6052,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmissionDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPAlignment__c.maps__ApprovalSubmittedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>maps__TPAlignment__c.maps__Config__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6173,6 +6183,31 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>maps__TPHistory__c.maps__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPRole__c.maps__AccountAccessLevel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPRole__c.maps__AccountTeamRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPRole__c.maps__CaseAccessLevel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPRole__c.maps__OpportunityAccessLevel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>maps__TPRole__c.maps__TerritoryTeamRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7053,6 +7088,15 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>maps__TPRole__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>maps__TPUnitAssignment__c</object>
         <viewAllRecords>true</viewAllRecords>
@@ -7131,7 +7175,15 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>maps__AlignmentBuilder</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>maps__AlignmentComparison</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__AlignmentRedirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -7168,6 +7220,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>maps__CustomDispositionForm</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__DataSetRedirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -7240,6 +7296,14 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>maps__Nearby</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__NewAlignmentRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>maps__NewDataSetRedirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

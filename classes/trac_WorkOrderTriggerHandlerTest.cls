@@ -6,8 +6,9 @@
 
 @IsTest
 private class trac_WorkOrderTriggerHandlerTest {
-    @TestSetup
-    static void setup() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Group gr;
         try {
             gr = [SELECT Id, DeveloperName, Type FROM Group WHERE Name = 'Great Lakes' AND Type = 'Queue' LIMIT 1];

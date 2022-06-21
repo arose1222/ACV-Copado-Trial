@@ -1,7 +1,9 @@
 @isTest(isParallel=false)
 private class PrescreenReasonTriggerTest {
     
-    @testSetup static void init(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Condition_Report__c report = new Condition_Report__c();
         report.Name = 'Test';
         insert report;

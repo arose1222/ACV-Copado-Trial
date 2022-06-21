@@ -1,7 +1,8 @@
 @istest
 public class GroupChangeEventTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Group__c> groupList = new List<Group__c>();
         groupList.add(TestUtility.createGroup('TEST GROUP 1'));
         insert groupList;

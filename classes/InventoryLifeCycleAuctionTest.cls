@@ -13,8 +13,9 @@ public class InventoryLifeCycleAuctionTest{
      * Creates Test Data
      * @return void
      */
-    @testSetup
-    public static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = new Account();
         acct.Name = ACCOUNT_WITH_DEALER_ID_NAME;
         acct.RecordTypeId = STANDARD_ACCOUNT_RTID;

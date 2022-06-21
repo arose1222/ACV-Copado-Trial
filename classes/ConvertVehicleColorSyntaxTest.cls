@@ -1,7 +1,8 @@
 @isTest
 public class ConvertVehicleColorSyntaxTest {
-	@TestSetup
-    public static void makeData() {
+	    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         a.Dealership_Id__c = '1';
         insert a;

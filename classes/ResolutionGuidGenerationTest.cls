@@ -1,7 +1,8 @@
 @istest
 public with sharing class ResolutionGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name='test account');
         insert a;
         Contact c = new Contact(FirstName = 'test', LastName='Contact', AccountId = a.id);

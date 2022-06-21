@@ -2,8 +2,9 @@
 public class CreateDealerDocHandlerTest {
     public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = new Account(Name = 'Account1', IST_Account_Owner__c = UserInfo.getUserId());
         insert acct;
         //create expiration date

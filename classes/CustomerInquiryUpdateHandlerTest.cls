@@ -6,8 +6,9 @@ public with sharing class CustomerInquiryUpdateHandlerTest {
     static final String amFollowUp = 'AM Follow Up';
     static final String closed = 'Closed';
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         List<User> newUsers = new List<User>();
         User titleSpecialist = TestUtility.createUser();

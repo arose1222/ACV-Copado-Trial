@@ -4,8 +4,9 @@
  */
 @isTest
 public class InventoryLifeCycleListViewControllerTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         String testVin = '321TestVin';
         Account acct = TestUtility.createAccount('Account Test');
         acct.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Standard').getRecordTypeId();

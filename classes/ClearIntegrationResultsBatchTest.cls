@@ -4,8 +4,9 @@ public class ClearIntegrationResultsBatchTest {
     public static boolean BatchTestFlag = FALSE;
     public final static String INTEGRATION_TYPE = 'Create Case';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Integration_Result__c> integrationLst = new List<Integration_Result__c>();
         for ( Integer index = 0; index < 10; index++ ) {
             integrationLst.add( makeIntLog( index ) );

@@ -8,8 +8,9 @@ public class ACVSandboxRefreshScriptTest {
      * creates test data for test methods
      * @return void
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Environment_Information__c ei = Environment_Information__c.getOrgDefaults();
         ei.Sandbox_Name__c = 'TestCode';
         ei.Organization_Id__c = 'testOrgId';

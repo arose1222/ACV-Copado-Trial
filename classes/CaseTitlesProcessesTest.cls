@@ -4,8 +4,9 @@ public class CaseTitlesProcessesTest {
     public final static String TEST_EMAIL2 = 'test@yahoo.com.test';
     static final String amFollowUp = 'AM Follow Up';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Test.startTest();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         List<Account> accountList = New List<Account>();

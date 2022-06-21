@@ -93,96 +93,6 @@
     <label>Customer Success Console</label>
     <navType>Console</navType>
     <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>CST_record_page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Title_Information</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>CST_record_page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Title_Information</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>IST_Call_Center_Case1</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Support</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>IST_Call_Center_Case1</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Support</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Account_Page_for_Customer_Success_Team</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Account_Page_for_Customer_Success_Team</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Standard</recordType>
-        <type>Flexipage</type>
-        <profile>Customer Success Team</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Pre_Development_Survey</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
-        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
-        <type>Flexipage</type>
-        <profile>System Platform Developer</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
         <actionName>Tab</actionName>
         <content>ACV_Capital_Operations_HomePage</content>
         <formFactor>Large</formFactor>
@@ -208,84 +118,102 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Revenue Recovery - Read Only</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
+        <content>Account_Page_for_Customer_Success_Team</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
         <type>Flexipage</type>
-        <profile>Revenue Recovery - Read Only</profile>
+        <profile>Customer Success Team</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>SolutionManager</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
+        <content>Pre_Development_Survey</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
+        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
+        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
-        <profile>SolutionManager</profile>
+        <profile>System Platform Developer</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
+        <content>Pre_Development_Survey</content>
         <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Standard</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Standard</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
+        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
+        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
+        <content>Pre_Development_Survey</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
+        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
+        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>Pre_Development_Survey</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Release_Survey__c</pageOrSobjectType>
+        <recordType>Release_Survey__c.Pre_Development_Survey</recordType>
+        <type>Flexipage</type>
+        <profile>System Platform Developer</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CST_record_page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Title_Information</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Success Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CST_record_page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Title_Information</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Success Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>IST_Call_Center_Case1</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Support</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Success Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>IST_Call_Center_Case1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Support</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Success Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Page_for_Customer_Success_Team</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Standard</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Success Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>Organization_Lead_Record_Page</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Territory Manager</profile>
+        <profile>ACV Capital</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -294,7 +222,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Territory Manager</profile>
+        <profile>ACV Capital</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -303,7 +231,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Title Manager</profile>
+        <profile>ACV Capital Sales</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -312,7 +240,142 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Title Manager</profile>
+        <profile>ACV Capital Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Capital With Unwind</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User SAML</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User SAML</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User SSO</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>ACV Standard User SSO</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Integration User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Integration User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Security User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Security User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Organization_Lead_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Organization_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>API Only User</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -637,42 +700,6 @@
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
         <profile>HR</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Titles</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Titles</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Training</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>Training</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1050,7 +1077,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics</profile>
+        <profile>Revenue Recovery - Read Only</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1059,7 +1086,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics</profile>
+        <profile>Revenue Recovery - Read Only</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1068,7 +1095,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics Cloud Integration User</profile>
+        <profile>SolutionManager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1077,7 +1104,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics Cloud Integration User</profile>
+        <profile>SolutionManager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1086,7 +1113,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics Cloud Security User</profile>
+        <profile>Standard</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1095,7 +1122,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>Analytics Cloud Security User</profile>
+        <profile>Standard</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1104,16 +1131,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>API Only User</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1122,7 +1140,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital With Unwind</profile>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1131,7 +1149,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User</profile>
+        <profile>Territory Manager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1140,7 +1158,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User</profile>
+        <profile>Territory Manager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1149,7 +1167,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User SAML</profile>
+        <profile>Title Manager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1158,7 +1176,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User SAML</profile>
+        <profile>Title Manager</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1167,7 +1185,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User SSO</profile>
+        <profile>Titles</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1176,7 +1194,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Standard User SSO</profile>
+        <profile>Titles</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1185,7 +1203,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
+        <profile>Training</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1194,25 +1212,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Organization_Lead</recordType>
         <type>Flexipage</type>
-        <profile>ACV Capital</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Organization_Lead_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Organization_Lead</recordType>
-        <type>Flexipage</type>
-        <profile>ACV Capital Sales</profile>
+        <profile>Training</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>

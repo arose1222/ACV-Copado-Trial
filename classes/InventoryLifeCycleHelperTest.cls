@@ -14,8 +14,9 @@ public class InventoryLifeCycleHelperTest{
      * Creates Test Data
      * @return void
      */
-    @TestSetup
-    public static void createData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> accountList = New List<Account>();
         Account acct = TestUtility.createAccount();
         acct.Name = ACCOUNT_WITH_DEALER_ID_NAME;

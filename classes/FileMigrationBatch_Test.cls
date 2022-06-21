@@ -1,8 +1,9 @@
 @IsTest
 public with sharing class FileMigrationBatch_Test {
     public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acc = TestUtility.createAccount('AccountForFileMigration');
         acc.Active__c = TRUE;
         insert acc;

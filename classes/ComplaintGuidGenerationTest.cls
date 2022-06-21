@@ -1,7 +1,8 @@
 @istest
 public with sharing class ComplaintGuidGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Id arbrecordTypeId = Schema.SObjectType.Complaint__c.getRecordTypeInfosByName().get('Arbitration Complaint').getRecordTypeId();
 
         Account a = new Account(Name='test account');

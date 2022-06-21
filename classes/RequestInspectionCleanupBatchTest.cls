@@ -1,8 +1,9 @@
 @isTest
 public class RequestInspectionCleanupBatchTest {
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         Account acc = TestUtility.createAccount('TestAccount');
         insert acc;

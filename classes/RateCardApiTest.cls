@@ -8,8 +8,9 @@ public class RateCardApiTest {
     /**
      * Creates Test Data
      */
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         User u = TestUtility.createUser();
         u.LastName = 'RateCardTestLastName';
         u.Id__c = '9999';

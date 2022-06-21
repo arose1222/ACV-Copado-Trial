@@ -6,8 +6,9 @@ public class OffersAPITest {
     private final static Integer STARTING_HOUR = 8;
     private final static Integer ENDING_HOUR = 17;
     
-    @TestSetup
-    static void createTerritory() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         a.Dealership_ID__c = '1';
         insert a;

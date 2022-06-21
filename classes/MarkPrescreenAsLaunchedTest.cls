@@ -1,8 +1,9 @@
 @isTest
 public class MarkPrescreenAsLaunchedTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = TestUtility.createAccount();
         insert a;
         Contact c = TestUtility.createContact(a);

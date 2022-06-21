@@ -2,8 +2,9 @@
 public class STMsOnlyOnLowestTerritoryLevelTest {
     private final static String CHILD_NAME = 'vciParent';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( 'vciTest', '14209' );
         Account acct = TestUtility.createAccount();
         insert acct;

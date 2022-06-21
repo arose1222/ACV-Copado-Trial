@@ -1,7 +1,8 @@
 @isTest
 public class SearchAllTitlesApexHandlerTest {
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //make three titles
         //pass in a search for one of the vins
         //make sure it is returning only that vin (or that the first item it returns is that vin)

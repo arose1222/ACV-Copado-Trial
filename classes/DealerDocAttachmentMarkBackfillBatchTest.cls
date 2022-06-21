@@ -3,8 +3,9 @@ public class DealerDocAttachmentMarkBackfillBatchTest {
     public static final Id licenseId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Dealer_License').getRecordTypeId();
     public static final Id resaleId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         String disableTrigger = '[{"DeveloperName": "TestHandler", "NamespacePrefix": "","After_Delete__c": "true","sObject__c": "Account", "Class_Name__c": "TriggerFrameWorkTest.TestHandler"}]';
         TriggerFrameWork.mockMetaData = (List<TriggerHandler__mdt>)JSON.deserializeStrict(disableTrigger, List<TriggerHandler__mdt>.class);
         ContentVersion contentVersion = new ContentVersion(

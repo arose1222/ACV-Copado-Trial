@@ -10,8 +10,9 @@ public class PrescreenServiceInspectionReviewTest {
     //private static string mockDataDouble = '[{"DeveloperName":"testCriteria","NamespacePrefix":"","Active__c":true,"Inspection_Field__c":"inspectedVehicle.model","Trigger_Value__c":"DoubleTest","Value_Type__c":"Double"}]';
     private static string mockDataAdvancedLogic = '[{"DeveloperName":"testCriteria","NamespacePrefix":"","Active__c":true,"Inspection_Field__c":"inspectedVehicle.model","Trigger_Value__c":"AdvancedLogic","Value_Type__c":"String","Comma_Seperated_Inspection_Types__c":"OFF_LEASE","Prescreen_Reason__c":"test"}]';
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
         Account account = TestUtility.createAccount();
         account.Dealership_Id__c = '2147479405';

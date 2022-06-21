@@ -4,8 +4,9 @@ public class DealerDocExpirationReminderHandlerTest {
     public static final Id resaleId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('Resale_Certificate').getRecordTypeId();
     public static final Id confirmationId = Schema.SObjectType.Dealer_Docs__c.getRecordTypeInfosByDeveloperName().get('License_Renewal_Confirmation').getRecordTypeId();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> acctList = new List<Account>();
         //need an account with two docs - one expiring a year in the future, one that doesn't expire
         acctList.add(new Account(Name = 'Test 1', phone='1234567890',IST_Account_Owner__c = UserInfo.getUserId(), legal_name__c='Test 1', Dealer_Type__c='1', BillingStreet='158 main st', BillingState='NY', BillingCity='Buffalo', BillingPostalCode='14214', BillingCountry='US'));

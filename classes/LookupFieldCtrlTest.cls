@@ -29,7 +29,7 @@ public class LookupFieldCtrlTest {
 
     }
     @isTest
-    public static void getSingleAccount(){
+    static void getSingleAccount(){
         Test.startTest();
         List<Account> accounts = [SELECT Id FROM Account LIMIT 1];
         System.assertNotEquals(NULL, accounts);

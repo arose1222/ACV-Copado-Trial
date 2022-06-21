@@ -1,8 +1,9 @@
 @isTest
 public class AssignedCaseToQueueTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new CaseTriggerFlag__c(Name='Default', Enabled__c = true);
         List<Account> accountList = New List<Account>();
         accountList.add( TestUtility.createAccount( '456' ) );

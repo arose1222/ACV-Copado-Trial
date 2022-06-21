@@ -8,8 +8,9 @@ public class WorkOrderLineItemTriggerUtilityTest {
     private final static String ASSET = 'Asset Verification';
     private final static String TRUE_360 = 'True 360';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( /*'Great Lakes',*/ 'Buffalo', '14209' );
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Completed' );
     }

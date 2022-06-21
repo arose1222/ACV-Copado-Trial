@@ -1,7 +1,8 @@
 @isTest
 public class PreventWOLIFieldUpdatesTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acct = TestUtility.createAccount();
         FSLTestUtility.createData( acct, 1 );
     }

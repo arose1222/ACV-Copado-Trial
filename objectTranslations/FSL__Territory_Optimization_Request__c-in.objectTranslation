@@ -9,6 +9,22 @@
         <value>Permintaan Pengoptimalan Wilayah</value>
     </caseValues>
     <fields>
+        <label><!-- Response Time After (with Window) --></label>
+        <name>FSL__AvgResponseTimeForSasWithWindowAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Time Before (with Window) --></label>
+        <name>FSL__AvgResponseTimeForSasWithWindowBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Time After (without Window) --></label>
+        <name>FSL__AvgResponseTimeForSasWoWindowAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Time Before (without Window) --></label>
+        <name>FSL__AvgResponseTimeForSasWoWindowBefore__c</name>
+    </fields>
+    <fields>
         <label><!-- Avg Travel Per Service With Home After --></label>
         <name>FSL__AvgTravelTimeAfter__c</name>
     </fields>
@@ -33,6 +49,66 @@
         <name>FSL__NonCapacityBasedServicesBefore__c</name>
     </fields>
     <fields>
+        <label><!-- Other Assigned Appointments After --></label>
+        <name>FSL__NumOfScheduledSasToCapacityAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Assigned Appointments Before --></label>
+        <name>FSL__NumOfScheduledSasToCapacityBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appointments Assigned to Crews After --></label>
+        <name>FSL__NumOfScheduledSasToCrewAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appointments Assigned to Crews Before --></label>
+        <name>FSL__NumOfScheduledSasToCrewBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Assigned Appointments After --></label>
+        <name>FSL__NumOfScheduledSasToResourcesAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Assigned Appointments Before --></label>
+        <name>FSL__NumOfScheduledSasToResourcesBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Resource Appointments After --></label>
+        <name>FSL__NumberOfSasSchedToPreferredSrAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Resource Appointments Before --></label>
+        <name>FSL__NumberOfSasSchedToPreferredSrBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Resource Assigned Appointments --></label>
+        <name>FSL__NumberOfSasWithPreferredResource__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Unscheduled Resources After --></label>
+        <name>FSL__NumberOfUnscheduledCapacityAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Unscheduled Resources Before --></label>
+        <name>FSL__NumberOfUnscheduledCapacityBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unscheduled Crews After --></label>
+        <name>FSL__NumberOfUnscheduledCrewAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unscheduled Crews Before --></label>
+        <name>FSL__NumberOfUnscheduledCrewBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unscheduled Resources After --></label>
+        <name>FSL__NumberOfUnscheduledResourcesAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unscheduled Resources Before --></label>
+        <name>FSL__NumberOfUnscheduledResourcesBefore__c</name>
+    </fields>
+    <fields>
         <label><!-- Optimization Request --></label>
         <name>FSL__Optimization_Request__c</name>
         <relationshipLabel><!-- Territory Optimization Requests --></relationshipLabel>
@@ -43,7 +119,35 @@
         <relationshipLabel><!-- Territory Optimization Requests --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Number Of Capacity Based Resources --></label>
+        <label><!-- Crews Availability --></label>
+        <name>FSL__TotalCrewWorkCapacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lunch Break After --></label>
+        <name>FSL__TotalLunchBreakDurationAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lunch Break Before --></label>
+        <name>FSL__TotalLunchBreakDurationBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Availability With Travel After --></label>
+        <name>FSL__TotalNaWithGeolocationDurationAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Availability With Travel Before --></label>
+        <name>FSL__TotalNaWithGeolocationDurationBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Availability Without Travel After --></label>
+        <name>FSL__TotalNaWoGeolocationDurationAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Availability Without Travel Before --></label>
+        <name>FSL__TotalNaWoGeolocationDurationBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Capacity-Based Resources --></label>
         <name>FSL__TotalNumberOfCapacityBasedResources__c</name>
     </fields>
     <fields>
@@ -51,20 +155,48 @@
         <name>FSL__TotalNumberOfCrews__c</name>
     </fields>
     <fields>
-        <label><!-- Number Of Optimizable Services --></label>
+        <label><!-- Optimizable Appointments --></label>
         <name>FSL__TotalNumberOfOptimizableServices__c</name>
     </fields>
     <fields>
-        <label><!-- Number Of Resources --></label>
+        <label><!-- Pinned Appointments --></label>
+        <name>FSL__TotalNumberOfPinnedServices__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Resources --></label>
         <name>FSL__TotalNumberOfResources__c</name>
     </fields>
     <fields>
-        <label><!-- Number Of Scheduled Services After --></label>
+        <label><!-- Scheduled Appointments After --></label>
         <name>FSL__TotalNumberOfScheduledServicesAfter__c</name>
     </fields>
     <fields>
-        <label><!-- Number Of Scheduled Services Before --></label>
+        <label><!-- Scheduled Appointments Before --></label>
         <name>FSL__TotalNumberOfScheduledServicesBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appointments With Arrival Window --></label>
+        <name>FSL__TotalNumberOfServicesWithWindow__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appointments Without Arrival Window --></label>
+        <name>FSL__TotalNumberOfServicesWithoutWindow__c</name>
+    </fields>
+    <fields>
+        <label><!-- Crews Overtime --></label>
+        <name>FSL__TotalOvertimeForCrews__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resources Overtime --></label>
+        <name>FSL__TotalOvertimeForResources__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduled Overtime After --></label>
+        <name>FSL__TotalScheduledTimeOnOvertimeAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduled Overtime Before --></label>
+        <name>FSL__TotalScheduledTimeOnOvertimeBefore__c</name>
     </fields>
     <fields>
         <label><!-- Total Travel By Primary STM After --></label>
@@ -75,6 +207,30 @@
         <name>FSL__TotalTravelByPrimaryMembershipBefore__c</name>
     </fields>
     <fields>
+        <label><!-- Distance from Homebase After --></label>
+        <name>FSL__TotalTravelDistanceFromHomebaseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distance from Homebase Before --></label>
+        <name>FSL__TotalTravelDistanceFromHomebaseBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distance to Homebase After --></label>
+        <name>FSL__TotalTravelDistanceToHomebaseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distance to Homebase Before --></label>
+        <name>FSL__TotalTravelDistanceToHomebaseBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distance Between Appointments After --></label>
+        <name>FSL__TotalTravelDistanceWoHomebaseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distance Between Appointments Before --></label>
+        <name>FSL__TotalTravelDistanceWoHomebaseBefore__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Travel With Home After --></label>
         <name>FSL__TotalTravelTimeAfter__c</name>
     </fields>
@@ -83,24 +239,52 @@
         <name>FSL__TotalTravelTimeBefore__c</name>
     </fields>
     <fields>
-        <label><!-- Total Travel Without Home After --></label>
+        <label><!-- Travel Time from Homebase After --></label>
+        <name>FSL__TotalTravelTimeFromHomebaseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time from Homebase Before --></label>
+        <name>FSL__TotalTravelTimeFromHomebaseBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time to Homebase After --></label>
+        <name>FSL__TotalTravelTimeToHomebaseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time to Homebase Before --></label>
+        <name>FSL__TotalTravelTimeToHomebaseBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time Between Appointments After --></label>
         <name>FSL__TotalTravelTimeWithoutHomeAfter__c</name>
     </fields>
     <fields>
-        <label><!-- Total Travel Without Home Before --></label>
+        <label><!-- Travel Time Between Appointments Before --></label>
         <name>FSL__TotalTravelTimeWithoutHomeBefore__c</name>
     </fields>
     <fields>
-        <label><!-- Work Capacity --></label>
+        <label><!-- Resources Availability --></label>
         <name>FSL__TotalWorkCapacity__c</name>
     </fields>
     <fields>
-        <label><!-- Total Work Duration Scheduled After --></label>
+        <label><!-- Scheduled Appointments Duration After --></label>
         <name>FSL__TotalWorkDurationScheduledAfter__c</name>
     </fields>
     <fields>
-        <label><!-- Total Work Duration Scheduled Before --></label>
+        <label><!-- Scheduled Appointments Duration Before --></label>
         <name>FSL__TotalWorkDurationScheduledBefore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration of All Appointments --></label>
+        <name>FSL__TotalWorkTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time at Resource’s Expense After --></label>
+        <name>FSL__TravelTimeOnTheResourcesExpenseAfter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Time at Resource’s Expense Before --></label>
+        <name>FSL__TravelTimeOnTheResourcesExpenseBefore__c</name>
     </fields>
     <fields>
         <label><!-- Utilization Total After --></label>

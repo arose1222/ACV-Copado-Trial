@@ -1,8 +1,9 @@
 @isTest
 public class CRQueueControllerTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         Vehicle__c v = TestUtility.createVehicle();

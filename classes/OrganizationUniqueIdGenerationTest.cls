@@ -1,7 +1,8 @@
 @istest
 public class OrganizationUniqueIdGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Id transporterAccountRecordId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Transporters').getRecordTypeId();
 
         List<Account> accList = new List<Account>();

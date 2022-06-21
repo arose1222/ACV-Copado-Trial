@@ -1,8 +1,9 @@
 @isTest
 public class AdjustedDatesOnSATest {
 
-    /*@TestSetup
-    static void makeData(){
+    /*    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Canceled' );
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Scheduled' );
         FSL.GlobalAPIS.addStatusTransition( 'Scheduled', 'Cannot Complete' );

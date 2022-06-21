@@ -2,8 +2,9 @@
 public class OverlappingTimeSheetEntryCheckTest {
     private static final String USER_NAME = 'vciUser';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.makeResourceData();
     }
 

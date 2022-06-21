@@ -1,8 +1,9 @@
 @isTest
 // Get rid of one day
 public class AccountTerritoryProcessesTest {
-    /*@TestSetup
-    static void makeData(){
+    /*    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account a = new Account(Name='seller',IST_Account_Owner__c =UserInfo.getUserId(),Sales_Territory__C = 'a0m0a00000LKjLUAA1');
         insert a;
     }

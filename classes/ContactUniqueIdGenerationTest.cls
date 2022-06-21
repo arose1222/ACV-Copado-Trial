@@ -1,7 +1,8 @@
 @istest
 public class ContactUniqueIdGenerationTest {
-    @testSetup
-    Static void createTestData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Id contactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Dealership Contact').getRecordTypeId();
         Id acvuserRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('ACV User').getRecordTypeId();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
@@ -77,12 +78,11 @@ public class ContactUniqueIdGenerationTest {
         Contact con = TestUtility.createContact(acc);
 
         test.startTest();
-        system.debug('starting test');
         insert con;
         test.stopTest();
 
         con = [SELECT Id, Id__c FROM Contact WHERE Id = :con.Id];
-        if (environmentName == 'UAT') {
+        if (environmentName != 'UAT') {
             system.assert(con.Id__c > auto_inc_jump.value__c);
         }
         else {

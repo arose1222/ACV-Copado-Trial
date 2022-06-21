@@ -1,7 +1,8 @@
 @isTest
 public class CaseTransportationProcessesTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         SalesforceGatewayUserCreateLogic.disableGatewayLogic();
 
         String uniqueUserName = 'Adminuser' + DateTime.now().getTime() + '@testorg.com';

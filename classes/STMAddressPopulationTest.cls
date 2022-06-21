@@ -1,8 +1,9 @@
 @isTest
 public class STMAddressPopulationTest {
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( /*'Great Lakes',*/ 'Buffalo', '14209' );
         FSLTestUtility.makeResourceData();
     }

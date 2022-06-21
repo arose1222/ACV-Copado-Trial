@@ -6,8 +6,9 @@ public class UpdateWorkTypeSATimesTest {
     private final static Integer STARTING_HOUR = 8;
     private final static Integer ENDING_HOUR = 17;
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( 'Buffalo', '14209' );
 
         WorkType fbi = [ SELECT Id, Name, EstimatedDuration, Work_Type_Unique_ID__c FROM WorkType WHERE Work_Type_Unique_Id__c = :WORK_TYPE_UNIQUE_NAME LIMIT 1 ];

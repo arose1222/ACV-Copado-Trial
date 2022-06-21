@@ -2,8 +2,9 @@
 public class updateSellerTitleClerkEmailTest {
     public static  Id conDealershipRecTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Dealership_Contact').getRecordTypeId();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
        Account accRec = TestUtility.createAccount('Acc Test');
         insert accRec ;
         

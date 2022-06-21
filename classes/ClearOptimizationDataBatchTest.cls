@@ -3,8 +3,9 @@ public class ClearOptimizationDataBatchTest {
 
     private static Integer totalRun = 10;
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<FSL__Optimization_Data__c> lst = new List<FSL__Optimization_Data__c>();
         for ( Integer index = 0; index < totalRun; index++ ) {
             lst.add( new FSL__Optimization_Data__c(

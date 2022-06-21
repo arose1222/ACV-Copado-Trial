@@ -1,7 +1,8 @@
 @isTest
 public class ServiceAppointmentNotificationTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Completed' );
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Canceled' );
         FSL.GlobalAPIS.addStatusTransition( 'New', 'Expired' );

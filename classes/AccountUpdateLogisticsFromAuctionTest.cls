@@ -18,8 +18,9 @@ public class AccountUpdateLogisticsFromAuctionTest {
     public static Date FIFTH_DATE = FIRST_DATE.date().addMonths(-2);
     public static Date SIXTH_DATE = FIRST_DATE.date().addDays(-2);
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         List<Auction__c> auctionList = new List<Auction__c>();

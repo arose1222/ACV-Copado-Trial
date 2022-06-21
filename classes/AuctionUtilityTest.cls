@@ -1,8 +1,9 @@
 @isTest
 public class AuctionUtilityTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
       //Create new account record
         Account a = new Account (Name='Test Exceptions Update');
         insert a;

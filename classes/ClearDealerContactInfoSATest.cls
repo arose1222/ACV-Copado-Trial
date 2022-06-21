@@ -3,8 +3,9 @@ public class ClearDealerContactInfoSATest {
     private final static String WORK_TYPE_UNIQUE_NAME = 'fbi';
     private final static String WORK_TYPE_STANDARD = 'inspection';
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         FSLTestUtility.createAllStructureWithParentST( 'Buffalo', '14209' );
 
         Account a = TestUtility.createAccount();

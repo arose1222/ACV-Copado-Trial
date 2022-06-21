@@ -1,8 +1,9 @@
 @isTest
 public class ACVAPIHelperTest {
     
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         insert new Account(Name='Test Account', Dealership_Id__c = '123',legal_Name__c='Test Account', dealer_type__c='1');
     }
 

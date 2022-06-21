@@ -2,8 +2,9 @@
 private class DealerDocsS3UploadHandlerTest {
 	private static string mockAWSCreds = '[{"DeveloperName":"testMetadata","NamespacePrefix":"","Access_Key__c":"123456789","Secret_Key__c":"asdfghjknbvcxcvbn","Bucket_Name__c":"dealer-docs-uat"}]';
 	
-	@TestSetup
-	static void makeData(){
+	    @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 		DealerDocsS3UploadHandler.mockMetadata = (List<AWS_Credential__mdt>)JSON.deserializeStrict(mockAWSCreds, List<AWS_Credential__mdt>.class);
 		String baseStr = 'THIS IS A TEST STRING';
 		Blob encodedBlob = EncodingUtil.base64Decode(baseStr);

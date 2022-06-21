@@ -1,7 +1,8 @@
 @isTest
 public class AccountUpdateLogisticsMonthlyBatchTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         List<Account> accountList = new List<Account>();
         accountList.add(new Account(Name = 'test1', legal_name__c='test1', dealer_type__c='1', IST_Account_Owner__c = UserInfo.getUserId(), MTD_Purchases__c = 6, Purchase_Last_Month__c = 4));
         accountList.add(new Account(Name = 'test2', legal_name__c='test2', dealer_type__c='1',IST_Account_Owner__c = UserInfo.getUserId(), MTD_Purchases__c = 5, Purchase_Last_Month__c = 0));

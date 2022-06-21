@@ -2,8 +2,9 @@
 private class ArbCaseTransportPurchasedAtCheckoutTest {
     public static final Id arbId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Arbitration_Claim').getRecordTypeId();
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Salesforce_Setting__mdt setting = [SELECT Value__c FROM Salesforce_Setting__mdt WHERE Label = 'Transportation Case SF Consumer Name' LIMIT 1];
         User user = [SELECT Id FROM User WHERE Name = :setting.Value__c];
 

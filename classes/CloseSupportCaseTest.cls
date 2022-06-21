@@ -3,8 +3,9 @@ public with sharing class CloseSupportCaseTest {
 
     static final String closed = 'Closed';
 
-    @TestSetup
+        @TestSetup
     static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account acc = TestUtility.createAccount('Test 1');
         insert acc;
 

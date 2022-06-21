@@ -1,7 +1,8 @@
 @isTest
 public class RequestInquiriesCheckAssignedToTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         //create 2 users
         String uniqueUserName1 = 'testuser1' + DateTime.now().getTime() + '@testorg.com';
         String uniqueUserName2 = 'testuser2' + DateTime.now().getTime() + '@testorg.com';

@@ -1,7 +1,8 @@
 @isTest
 public with sharing class RevolvingAppointmentTriggerTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         OperatingHours oh = new OperatingHours(Name = 'Test Hours');
         insert oh;
 

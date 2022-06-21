@@ -9,8 +9,9 @@ public class HondaPurgeBatchTest {
 
     public static Integer RECORD_COUNT = 10;
 
-    @TestSetup
-    public static void makeData() {
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
 
         Account acc = TestUtility.createAccount('TestAccount');
         acc.Dealership_Id__c = HondaPurgeBatch.HONDA_DEALER_ID;

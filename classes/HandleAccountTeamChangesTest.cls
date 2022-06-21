@@ -10,8 +10,9 @@ public class HandleAccountTeamChangesTest {
 
     public static Integer RECORD_COUNT = 5;
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         PermissionSet ps = [SELECT Id, Name FROM PermissionSet WHERE Name = 'Related_Case_Object_Access'];
         Profile p = [SELECT Name, Id FROM Profile WHERE Name = 'Inside Sales - Account Managers Unwind'];
 

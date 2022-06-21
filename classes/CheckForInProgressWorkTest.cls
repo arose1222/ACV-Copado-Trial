@@ -5,8 +5,9 @@ public class CheckForInProgressWorkTest {
     static Datetime SCHED_START = system.now();
     static Datetime SCHED_END = system.now().addHours(1);
 
-    @TestSetup
-    static void MakeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account vciAccount = TestUtility.createAccount('vciTestAccount');
         insert vciAccount;
 

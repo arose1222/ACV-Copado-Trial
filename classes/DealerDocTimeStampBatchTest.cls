@@ -16,8 +16,9 @@ public class DealerDocTimeStampBatchTest {
         return correctedDateTime;
     }
 
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Account newAcct = new Account(Name = 'Test', IST_Account_Owner__c = UserInfo.getUserId(), legal_name__c='Test', Dealer_Type__c='1');
         insert newAcct;
     }

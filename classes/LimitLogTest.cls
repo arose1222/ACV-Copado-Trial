@@ -1,8 +1,9 @@
 @isTest
 public class LimitLogTest {
     
-    // @TestSetup
-    // static void makeData(){
+    //     @TestSetup
+    // static void makeData() {
+    //     TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         
     //     insert u;
     //     PermissionSet ps = [Select Id from PermissionSet where Name = 'System_Administrator_Extended' limit 1];

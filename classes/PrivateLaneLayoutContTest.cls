@@ -17,8 +17,9 @@ public class PrivateLaneLayoutContTest {
      * Creates Data needed for Test Methods
      * @return void
      */
-    @TestSetup
-    public static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         Fee__c buyFee = TestUtility.createFee();
         buyFee.Name = 'Buy Fee';
         buyFee.Type__c = 'Buyer Fee';

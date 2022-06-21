@@ -5,8 +5,9 @@
 *******************************************/
 @isTest
 public class UpdateProgramEnrollmentsOnAccountTest {
-    @TestSetup
-    static void makeData(){
+        @TestSetup
+    static void makeData() {
+        TriggerFramework.mockMetaData = new List<TriggerHandler__mdt>();
         User p = TestUtility.createUser();
         User u = TestUtility.createUser(p.Id);
         
