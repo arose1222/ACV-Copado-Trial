@@ -38884,6 +38884,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Title__c.Is_Pending_Related_Info__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Title__c.Legacy_Auction_Id__c</field>
         <readable>true</readable>
