@@ -7379,6 +7379,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TitleServicePopulateRelatedDataBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TitleServicePopulateRelatedDataBatchTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TitleServiceTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -38881,6 +38889,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Title__c.Case__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Title__c.Is_Pending_Related_Info__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
