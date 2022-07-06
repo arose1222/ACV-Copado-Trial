@@ -1,6 +1,7 @@
 @isTest
 public class TitlesAutomationAPITest {
-    @TestSetup
+    static final Id TITLE_CASE_RT = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get( 'Title_Information' ).getRecordTypeId();
+
     static void makeData(){
         TestUtility.createAccount();
         final Id TITLE_CASE_RT = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get( 'Title_Information' ).getRecordTypeId();
@@ -38,7 +39,7 @@ public class TitlesAutomationAPITest {
         fpRec.Name__c = 'test_payment_method_1';
         fpRec.Payment_Method_API_Name__c = 'test_payment_method_1';
         fpRec.Payment_Method_Group_Name__c = 'test_payment_method_group';
-        fpRec.Internal_Delivery__c = true;
+        //fpRec.Internal_Delivery__c = true;
         fpRec.Company__c = 'Unit Testing';
         fpRec.Street1__c = '640 Ellicott St, Suite #321';
         fpRec.City__c = 'Buffalo';
@@ -51,7 +52,20 @@ public class TitlesAutomationAPITest {
         fpRec.Name__c = 'test_payment_method_2';
         fpRec.Payment_Method_API_Name__c = 'test_payment_method_2';
         fpRec.Payment_Method_Group_Name__c = 'test_payment_method_group';
-        fpRec.Internal_Delivery__c = true;
+        //fpRec.Internal_Delivery__c = true;
+        fpRec.Company__c = 'Unit Testing';
+        fpRec.Street1__c = '640 Ellicott St, Suite #321';
+        fpRec.City__c = 'Buffalo';
+        fpRec.State__c = 'NY';
+        fpRec.Country__c = 'USA';
+        fpRec.Zip__c = '14203';        
+        TitlesAutomationAPI.floorPlanMap.put(fpRec.Payment_Method_API_Name__c, fpRec);  
+        
+        fpRec= new Floor_Plan_Setting__mdt();
+        fpRec.Name__c = 'test_payment_method_3';
+        fpRec.Payment_Method_API_Name__c = 'test_payment_method_3';
+        fpRec.Send_Title_to_Buyer__c = false;
+        //fpRec.Internal_Delivery__c = false;
         fpRec.Company__c = 'Unit Testing';
         fpRec.Street1__c = '640 Ellicott St, Suite #321';
         fpRec.City__c = 'Buffalo';
@@ -59,6 +73,767 @@ public class TitlesAutomationAPITest {
         fpRec.Country__c = 'USA';
         fpRec.Zip__c = '14203';        
         TitlesAutomationAPI.floorPlanMap.put(fpRec.Payment_Method_API_Name__c, fpRec);        
+
+        fpRec= new Floor_Plan_Setting__mdt();
+        fpRec.Name__c = 'test_payment_method_3';
+        fpRec.Payment_Method_API_Name__c = 'test_payment_method_4';
+        fpRec.Send_Title_to_Buyer__c = true;
+        //fpRec.Internal_Delivery__c = false;
+        fpRec.Company__c = 'Unit Testing';
+        fpRec.Street1__c = '640 Ellicott St, Suite #321';
+        fpRec.City__c = 'Buffalo';
+        fpRec.State__c = 'NY';
+        fpRec.Country__c = 'USA';
+        fpRec.Zip__c = '14203';        
+        TitlesAutomationAPI.floorPlanMap.put(fpRec.Payment_Method_API_Name__c, fpRec);        
+        
+    }
+    
+    /*
+     * New shipping label will be generated and saved in the Internal Delivery object for the Buyer (using Account Id).
+     */
+    @isTest
+    public static void testBuyerShippingLabelsNew()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        Test.startTest();
+
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'ach';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+
+        Test.stopTest();
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(0, internalDel.size());
+        
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('794668170255', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals(newBuyerAcct.Id, internalDel[0].Account__c);
+		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
+    }
+
+    /*
+     * New shipping label will be generated and saved in the Internal Delivery object for the Buyer (using Account Id).
+     * Floor plan Send_Title_to_Buyer__c=true, so Account Id should be used instead of Floor plan.
+     */
+    @isTest
+    public static void testBuyerShippingLabelsNew2()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        Test.startTest();
+
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'test_payment_method_4';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+
+        Test.stopTest();
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(0, internalDel.size());
+        
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('794668170255', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals(null, internalDel[0].Payment_Method_API_Name__c);
+		System.assertEquals(null, internalDel[0].Payment_Method_Group_Name__c);
+		System.assertEquals(newBuyerAcct.Id, internalDel[0].Account__c);
+		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
+    }
+    
+    /*
+     * Existing shipping label will be used from the Internal Delivery object for the Buyer (using Account Id).
+     */
+    @isTest
+    public static void testBuyerShippingLabelsExisting()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'ach';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Internal_Delivery__c internalDelv = new Internal_Delivery__c(
+            Account__c = newBuyerAcct.Id,
+            Easypost_Tracker__c = '555568172222',
+            Easypost_Postage_Label_URL__c = 'some_shipping_label_url',
+            Shipping_Label_Created_Date__c = System.now()
+        );
+        insert internalDelv;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        Test.startTest();
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        //
+        //TODO - This test is failing when run between 6-7PM EST so disable it until find the solution
+        //
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('555568172222', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals(newBuyerAcct.Id, internalDel[0].Account__c);
+		System.assertEquals('555568172222', internalDel[0].Easypost_Tracker__c);
+
+        Test.stopTest();
+    }
+    
+    /*
+     * Existing shipping label will be used from the Internal Delivery object for the Buyer (using Account Id).
+     * Internal delivery Shipping_Label_Created_Date__c was set to 2 days ago.
+     */
+    @isTest
+    public static void testBuyerShippingLabelsExisting2()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'ach';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Internal_Delivery__c internalDelv = new Internal_Delivery__c(
+            Account__c = newBuyerAcct.Id,
+            Easypost_Tracker__c = '555568172222',
+            Easypost_Postage_Label_URL__c = 'some_shipping_label_url',
+            Shipping_Label_Created_Date__c = Date.today().addDays(-2) // shippling label was created 2 days ago.
+        );
+        insert internalDelv;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        Test.startTest();
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        //
+        //TODO - This test is failing when run between 6-7PM EST so disable it until find the solution
+        //
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('794668170255', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals(newBuyerAcct.Id, internalDel[0].Account__c);
+		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
+
+        Test.stopTest();
+    }
+    
+    
+    /*
+     * New shipping label will be generated and saved in the Internal Delivery object for the Floor (using Payment Method).
+     */
+    @isTest
+    public static void testFloorPlanShippingLabelsNew()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        Test.startTest();
+
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'test_payment_method_3';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+
+        Test.stopTest();
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(0, internalDel.size());
+        
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('794668170255', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        internalDel = [SELECT Account__c, Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals(null, internalDel[0].Account__c);
+		System.assertEquals(null, internalDel[0].Payment_Method_Group_Name__c);
+		System.assertEquals('test_payment_method_3', internalDel[0].Payment_Method_API_Name__c);
+		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
+    }
+    
+    /*
+     * Existing shipping label will be used from the Internal Delivery object for the Floor Plan (using Payment Method).
+     */
+    @isTest
+    public static void testFloorPlanShippingLabelsExisting()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        setupFloorPlanMetadata();
+            
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'test_payment_method_3';
+        insert newAuction;
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Internal_Delivery__c internalDelv = new Internal_Delivery__c(
+            Payment_Method_API_Name__c = 'test_payment_method_3',
+            Easypost_Tracker__c = '555568172222',
+            Easypost_Postage_Label_URL__c = 'some_shipping_label_url',
+            Shipping_Label_Created_Date__c = DateTime.now()
+        );
+        insert internalDelv;
+        
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        Test.startTest();
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        //
+        //TODO - This test is failing when run between 6-7PM EST so disable it until find the solution
+        //
+        List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals('555568172222', casesWithTrackingCode[0].Easypost_Tracker__c);        
+        System.assertEquals('Sent', casesWithTrackingCode[0].Status); 
+        
+        List<Internal_Delivery__c> internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
+		System.assertEquals(1, internalDel.size());
+		System.assertEquals('test_payment_method_3', internalDel[0].Payment_Method_API_Name__c);
+		System.assertEquals('555568172222', internalDel[0].Easypost_Tracker__c);
+
+        Test.stopTest();
+    }
+    
+    /*
+     * Create Exception record if there is an Unwind Case Record Type associated with the Auction.
+     */
+    @isTest
+    public static void testHasUnwindCaseRecordTypeAwaitingApproval()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        Test.startTest();        
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'test_payment_method_1';
+        insert newAuction;
+
+        //List<Auction__c> auctions2 = [SELECT Id, Buyer_Dealership__c, Seller_Dealership__c, Name, id__c, Payment_Status__c, Payment_Method__c FROM Auction__c];
+        //System.assertEquals(1, auctions2.size());
+        //System.assertEquals(acctUniqueName, auctions2[0].id__c);
+        
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Working';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        //newTitleCase.ClosedDate = System.now();
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        Id unwindCaseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Unwind').getRecordTypeId();
+        Case unwindCase = new Case(
+            RecordTypeId = unwindCaseRecordTypeId,
+            Status = 'Awaiting Approval',
+            Unwind_Type__c = 'Return_to_Seller',
+            Auction_Number__c = newAuction.Id,
+            ACV_Titles_External_ID__c = ACVUtility.NewGuid()
+        );
+        insert unwindCase;
+
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
+        Test.stopTest();
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        List<Case> casesWithTrackingCode = [SELECT Status, Easypost_Tracker__c FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals(null, casesWithTrackingCode[0].Easypost_Tracker__c,'Unwind Case Type is found so do not create tracking info.');        
+        System.assertNotEquals('Sent', casesWithTrackingCode[0].Status, 'Unwind Case Type is found so do not set the Status to Sent');
+        
+        Id excepRecId = Schema.SObjectType.Exception__c.getRecordTypeInfosByDeveloperName().get( 'Titles' ).getRecordTypeId();
+        List<Exception__c> exceptions = [SELECT RecordTypeId, Status__c, Exceptions_Found__c, Related_Case__c, Related_Auction__c FROM Exception__c];
+        System.assertEquals(1, exceptions.size());        
+        System.assertEquals(excepRecId, exceptions[0].RecordTypeId,'Unwind Case Type is found so create an Exception rec with Titles record type.');        
+        System.assertEquals('Open', exceptions[0].Status__c,'Unwind Case Type is found so create an Exception rec with Titles record type.');        
+        //System.assertEquals('Potential pending/approved unwind for this auction', exceptions[0].Exceptions_Found__c);        
+        System.assertEquals(newTitleCase.Id, exceptions[0].Related_Case__c);        
+        System.assertEquals(newAuction.Id, exceptions[0].Related_Auction__c);                
+    }
+
+    /*
+     * Create Exception record if there is an Unwind Case Record Type associated with the Auction.
+     */
+    @isTest
+    public static void testHasUnwindCaseRecordTypeUnwound()
+    {
+        //
+        // Begin : Setup Testing Data
+        // 
+        Test.startTest();        
+        String acvTitlesExternalId = 'external_title_uuid_BB';
+        String acctUniqueName = 'BB_TitlesAuto_BB';
+        
+        Account newBuyerAcct = TestUtility.createAccount(acctUniqueName + ' Buyer');         
+        Account newSellerAcct = TestUtility.createAccount(acctUniqueName + ' Seller');  
+        Contact newContact = TestUtility.createContact(newSellerAcct);
+        Vehicle__c newVehicle = TestUtility.createVehicle();
+
+        SObject[] newObjs = new SObject[] {newBuyerAcct, newSellerAcct, newContact, newVehicle};
+        insert newObjs;
+        
+        Auction__c newAuction = TestUtility.createAuction(newSellerAcct, newContact, newVehicle);
+        newAuction.Buyer_Dealership__c = newBuyerAcct.Id;
+        newAuction.Seller_Dealership__c = newSellerAcct.Id;
+        newAuction.Name = acctUniqueName;
+        newAuction.id__c = acctUniqueName;        
+        newAuction.Payment_Status__c = 'Paid';
+        newAuction.Payment_Method__c= 'test_payment_method_1';
+        insert newAuction;
+
+        //List<Auction__c> auctions2 = [SELECT Id, Buyer_Dealership__c, Seller_Dealership__c, Name, id__c, Payment_Status__c, Payment_Method__c FROM Auction__c];
+        //System.assertEquals(1, auctions2.size());
+        //System.assertEquals(acctUniqueName, auctions2[0].id__c);
+        
+        // Assume Approval Process for Unwind is Approved and the Status is set to Closed Unwound.
+		Case newTitleCase = TestUtility.createTitleCase(newAuction, newBuyerAcct, newContact);
+        newTitleCase.AccountId = newBuyerAcct.Id;
+        newTitleCase.Seller_Dealership__c = newSellerAcct.Id;
+        newTitleCase.Status = 'Closed Unwound';
+        newTitleCase.ACV_Titles_External_ID__c = acvTitlesExternalId;
+        newTitleCase.Title_Attached__c = true;
+        newTitleCase.Digital_Title__c = false;
+        newTitleCase.Vehicle__c = newVehicle.Id;        
+        newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
+        insert newTitleCase;
+        
+        // Assume Approval Process for Unwind is Approved and the Status is set to Unwound.
+        Id unwindCaseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Unwind').getRecordTypeId();
+        Case unwindCase = new Case(
+            RecordTypeId = unwindCaseRecordTypeId,
+            Status = 'Unwound',
+            Unwind_Type__c = 'ACV_Relaunch',
+            Auction_Number__c = newAuction.Id,
+            ACV_Titles_External_ID__c = ACVUtility.NewGuid()
+        );
+        insert unwindCase;
+
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
+        Test.stopTest();
+        //
+        // End : Setup Testing Data
+        // 
+                
+        RestResponse res = new RestResponse();
+        RestRequest req = new RestRequest();
+        RestContext.response = res;
+        RestContext.request = req;
+        Test.setMock( HttpCalloutMock.class, new EasyPostMockCalloutGoodCall() ); 
+        
+        TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
+        
+        List<Case> casesWithTrackingCode = [SELECT Status, Easypost_Tracker__c FROM Case WHERE Id = :newTitleCase.Id];
+        System.assertEquals(1, casesWithTrackingCode.size());        
+        System.assertEquals(null, casesWithTrackingCode[0].Easypost_Tracker__c,'Unwind Case Type is found so do not create tracking info.');        
+        System.assertNotEquals('Sent', casesWithTrackingCode[0].Status, 'Unwind Case Type is found so do not set the Status to Sent');
+        
+        Id excepRecId = Schema.SObjectType.Exception__c.getRecordTypeInfosByDeveloperName().get( 'Titles' ).getRecordTypeId();
+        List<Exception__c> exceptions = [SELECT RecordTypeId, Status__c, Exceptions_Found__c, Related_Case__c, Related_Auction__c FROM Exception__c];
+        System.assertEquals(1, exceptions.size());        
+        System.assertEquals(excepRecId, exceptions[0].RecordTypeId,'Unwind Case Type is found so create an Exception rec with Titles record type.');        
+        System.assertEquals('Open', exceptions[0].Status__c,'Unwind Case Type is found so create an Exception rec with Titles record type.');        
+        //System.assertEquals('Potential pending/approved unwind for this auction', exceptions[0].Exceptions_Found__c);        
+        System.assertEquals(newTitleCase.Id, exceptions[0].Related_Case__c);        
+        System.assertEquals(newAuction.Id, exceptions[0].Related_Auction__c);                
     }
     
     /*
@@ -70,6 +845,8 @@ public class TitlesAutomationAPITest {
         //
         // Begin : Setup Testing Data
         // 
+        Test.startTest();
+
         setupFloorPlanMetadata();
             
         String acvTitlesExternalId = 'external_title_uuid_BB';
@@ -104,6 +881,22 @@ public class TitlesAutomationAPITest {
         newTitleCase.Auction_Number_Searchable__c = acctUniqueName;
         insert newTitleCase;
         
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+
+        Test.stopTest();
+        
         //
         // End : Setup Testing Data
         // 
@@ -117,7 +910,6 @@ public class TitlesAutomationAPITest {
         List<Internal_Delivery__c> internalDel = [SELECT Payment_Method_API_Name__c, Payment_Method_Group_Name__c, Easypost_Tracker__c, Shipping_Label_Created_Date__c FROM Internal_Delivery__c];
 		System.assertEquals(0, internalDel.size());
         
-        Test.startTest();
         TitlesAutomationAPI.validateParams(acctUniqueName, 'gamer@420.com', Datetime.now(), null, null);
         
         List<Case> casesWithTrackingCode = [SELECT Easypost_Tracker__c, Status FROM Case WHERE Id = :newTitleCase.Id];
@@ -129,8 +921,6 @@ public class TitlesAutomationAPITest {
 		System.assertEquals(1, internalDel.size());
 		System.assertEquals('test_payment_method_group', internalDel[0].Payment_Method_Group_Name__c);
 		System.assertEquals('794668170255', internalDel[0].Easypost_Tracker__c);
-
-        Test.stopTest();
     }
 
     /*
@@ -185,6 +975,20 @@ public class TitlesAutomationAPITest {
         );
         insert internalDelv;
         
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+        User usah = new User(
+            LastName = 'gamer',
+            Username = 'gamer@420.com',
+            Email = 'gamer@420.com',
+            TimeZoneSidKey = 'America/New_York',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US',
+            Alias = 'admSU3',
+            ProfileId = profile.id
+            );
+        insert usah;
+        
         //
         // End : Setup Testing Data
         // 
@@ -216,6 +1020,8 @@ public class TitlesAutomationAPITest {
     
     @isTest
     public static void codeCoverage() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -230,6 +1036,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void goodCall() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -250,6 +1058,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void goodCallACHPush() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -293,6 +1103,8 @@ public class TitlesAutomationAPITest {
 */
     @isTest
     public static void addressException() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -313,6 +1125,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void floorplanPayment(){
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -321,7 +1135,6 @@ public class TitlesAutomationAPITest {
         Case c = [SELECT Id, Auction_Number_Searchable__c, Dealer_doc_hold__c FROM Case LIMIT 1];
         final Id TITLE_CASE_RT = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get( 'Title_Information' ).getRecordTypeId();
         Account a = [SELECT Id, Title_Hold__c FROM Account LIMIT 1];
-        System.debug(c.Dealer_doc_hold__c);
         Auction__c auc = [SELECT Id, Payment_Method__c, Payment_Status__c FROM Auction__c LIMIT 1];
         auc.Payment_Method__c = 'adi';
         auc.Payment_Status__c = 'Approved';
@@ -336,6 +1149,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void titlesMailingAddress(){
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -372,6 +1187,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void notPaidForException() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
@@ -391,6 +1208,8 @@ public class TitlesAutomationAPITest {
 
     @isTest
     public static void notPaidForDealerPermitted() {
+        makeData();
+        
         RestResponse res = new RestResponse();
         RestRequest req = new RestRequest();
         RestContext.response = res;
