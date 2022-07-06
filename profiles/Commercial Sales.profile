@@ -29686,11 +29686,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Floor_Plan_Setting__mdt.Internal_Delivery__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Floor_Plan_Setting__mdt.Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
