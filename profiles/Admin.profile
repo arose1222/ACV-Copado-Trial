@@ -38121,6 +38121,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Internal_Delivery__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Internal_Delivery__c.Easypost_Postage_Label_URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
