@@ -195,6 +195,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Is_Pending_Related_Info__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>We only create shell Case &amp; Title records when we get a &apos;created&apos; event in TitleService. A batch file is run separately to populate related salesforce ids to avoid Row Lock error. This field is set to False by the batch file that populates the related salesforce ids in Case &amp; Title records.</description>
+        <externalId>false</externalId>
+        <label>Is Pending Related Info</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Legacy_Auction_Id__c</fullName>
         <description>Auction Id - populated by the backed (engineering team) using SF TitleService.</description>
         <externalId>false</externalId>
@@ -315,7 +325,7 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
