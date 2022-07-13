@@ -284,6 +284,19 @@ public class ACVUtility {
      * @return  Id of your Scheduled Job
      */
     public static String scheduleJob(DateTime runTime, String className){
+        return scheduleJob(runTime, className, TIME_LEVEL.SECOND);
+    }
+    
+    public enum TIME_LEVEL {DAY, HOUR, MINUTE, SECOND}
+    /**
+     * A method to make the process of scheduling a job easier
+     * 
+     * @param runTime Datetime you want your job to run
+     * @param className Name of the class you want to run
+     * @param timeLevel sets the timestamp in the name only to the specified level, or as far as possible (to seconds) by default
+     * @return  Id of your Scheduled Job
+     */
+    public static String scheduleJob(DateTime runTime, String className, TIME_LEVEL timeLevel){
         String JobId = '';
         //time components
         String hour = String.valueOf(runtime.hour());
@@ -295,10 +308,27 @@ public class ACVUtility {
         String year = String.valueOf(runTime.year());
         //Cron Expression Generation
         String cronExpression = second+' '+min+' '+hour+' '+day+' '+month+' ? '+year;
+
+        String scheduledNameTimestamp = String.valueOf(DateTime.Now());
+        switch on timeLevel{
+            when DAY{
+                Integer firstSpaceIndex = scheduledNameTimestamp.indexOf(' ');
+                scheduledNameTimestamp = scheduledNameTimestamp.remove(scheduledNameTimestamp.substring(firstSpaceIndex));
+            }
+            when HOUR{
+                Integer firstColonIndex = scheduledNameTimestamp.indexOf(':');
+                scheduledNameTimestamp = scheduledNameTimestamp.remove(scheduledNameTimestamp.substring(firstColonIndex));
+            }
+            when MINUTE{
+                Integer lastColonIndex = scheduledNameTimestamp.lastIndexOf(':');
+                scheduledNameTimestamp = scheduledNameTimestamp.remove(scheduledNameTimestamp.substring(lastColonIndex));
+            }
+        }
+
         try{
             //do some voodoo magic to instantiate the class out of a string
             Type dynamicClass = Type.forName(className);
-            JobId = System.schedule(className +' Scheduled At: ' + String.valueOf(DateTime.Now()), cronExpression, (Schedulable)dynamicClass.newInstance());
+            JobId = System.schedule(className +' Scheduled At: ' + scheduledNameTimestamp, cronExpression, (Schedulable)dynamicClass.newInstance());
         }
         catch(Exception e){
             sendLog(new Set<SplunkHelper.DOMAIN>{ SplunkHelper.DOMAIN.ENTERPRISE_APPS}, className, '', SplunkHelper.LOGLEVEL.FATAL, currentLineNumber(), e.getMessage(), e.getStackTraceString(), 'BatchRecords');

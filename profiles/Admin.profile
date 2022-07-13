@@ -31549,6 +31549,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Internal_Delivery__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Internal_Delivery__c.Easypost_Postage_Label_URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -39391,6 +39396,11 @@
         <editable>true</editable>
         <field>Title__c.Case__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Title__c.Is_Pending_Related_Info__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
