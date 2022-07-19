@@ -3614,6 +3614,28 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Email_Problem_Subset_Continued__c</fullName>
+        <description>Used in Email telling seller about the title problem the full list of title problem subsets has been split in two fields due to character limits</description>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( Title_Problem_Subset__c , &quot;Misspelling on Title&quot;), &quot;Misspelling on Title&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Letter of Correction not Accepted in Purchaser State&quot;), &quot;Letter of Correction not Accepted in Purchaser State&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Information or Signature in Incorrect Location on Title&quot;), &quot;Information or Signature in Incorrect Location on Title&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Misspelling on Reassignment&quot;), &quot;Misspelling on Reassignment&quot;+ BR(), NULL)+
+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Information or Signature in Incorrect Location on Reassignment&quot;), &quot;Information or Signature in Incorrect Location on Reassignment&quot;+ BR(), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email Problem Subset Continued</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Email_Problem_Subset__c</fullName>
         <externalId>false</externalId>
         <formula>IF(INCLUDES( Title_Problem_Subset__c , &quot;A&quot;), &quot;Address - Write over&quot;+ BR(), NULL)+
