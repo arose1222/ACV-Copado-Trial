@@ -16,6 +16,10 @@
             <field>Seller_Title_Clerk_Email__c</field>
             <type>email</type>
         </recipients>
+        <recipients>
+            <recipient>areilly@acvauctions.com</recipient>
+            <type>user</type>
+        </recipients>
         <senderAddress>system@acvauctions.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Assigned_Fee_Title_Late_Fee_Applied_1652107102601</template>
