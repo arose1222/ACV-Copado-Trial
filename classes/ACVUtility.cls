@@ -1,4 +1,3 @@
-//Copado Test
 /**
  * Utility Class for ACV with methods for frequent use cases.
  *
