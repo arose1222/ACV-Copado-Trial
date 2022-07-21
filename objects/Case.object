@@ -8917,6 +8917,52 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>X48_Hour_Notice_Eligible__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;Approved&quot; &amp;&amp; 
+Payment_Status__c  &lt;&gt; &quot;Paid&quot;&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;Deposited&quot;&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;ta_hold&quot; &amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;ta_on_file&quot;&amp;&amp;
+Title_Due_Date__c &lt; NOW(),
+&quot;Is Not Eligible&quot;,
+
+IF(
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Title_Due_Date__c &lt; NOW()&amp;&amp;
+ISBLANK(Title_Received_Date__c)&amp;&amp;
+Payment_Status__c = &quot;Approved&quot; ||
+Payment_Status__c = &quot;Paid&quot;||
+Payment_Status__c = &quot;Deposited&quot;||
+Payment_Status__c = &quot;ta_hold&quot; ||
+Payment_Status__c = &quot;ta_on_file&quot;,
+&quot;Is Eligible&quot;, 
+
+IF(
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Title_Due_Date__c &lt; NOW()&amp;&amp;
+NOT(ISBLANK(Title_Received_Date__c))&amp;&amp;
+Payment_Status__c = &quot;Approved&quot; ||
+Payment_Status__c = &quot;Paid&quot;||
+Payment_Status__c = &quot;Deposited&quot;||
+Payment_Status__c = &quot;ta_hold&quot; ||
+Payment_Status__c = &quot;ta_on_file&quot;,
+&quot;Is Not Eligible&quot;, 
+
+IF(
+ISPICKVAL(Status,&quot;48 Hour Notice&quot;),
+&quot;48 Hour Notice Placed&quot;, &quot;Check With Title Specialist&quot;))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>48 Hour Notice Eligible</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>X48_Hour_Notice__c</fullName>
         <externalId>false</externalId>
         <formula>If(IsPickVal(Status, &quot;48 Hour Notice&quot;),IMAGE(&quot;/resource/Redlight&quot;,TEXT(Date_Time_of_48_Hour_Notice__c),32,32),null)</formula>
