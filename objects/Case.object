@@ -3614,6 +3614,28 @@ IMAGE(&quot;https://acvauctions--uat--c.documentforce.com/servlet/servlet.ImageS
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Email_Problem_Subset_Continued__c</fullName>
+        <description>Used in Email telling seller about the title problem the full list of title problem subsets has been split in two fields due to character limits</description>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( Title_Problem_Subset__c , &quot;Misspelling on Title&quot;), &quot;Misspelling on Title&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Letter of Correction not Accepted in Purchaser State&quot;), &quot;Letter of Correction not Accepted in Purchaser State&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Information or Signature in Incorrect Location on Title&quot;), &quot;Information or Signature in Incorrect Location on Title&quot;+ BR(), NULL)+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Misspelling on Reassignment&quot;), &quot;Misspelling on Reassignment&quot;+ BR(), NULL)+
+
+
+IF(INCLUDES( Title_Problem_Subset__c , &quot;Information or Signature in Incorrect Location on Reassignment&quot;), &quot;Information or Signature in Incorrect Location on Reassignment&quot;+ BR(), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email Problem Subset Continued</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Email_Problem_Subset__c</fullName>
         <externalId>false</externalId>
         <formula>IF(INCLUDES( Title_Problem_Subset__c , &quot;A&quot;), &quot;Address - Write over&quot;+ BR(), NULL)+
@@ -8893,6 +8915,52 @@ Returns &apos;1&apos; if there are any valid Complaints on the Case. Returns (nu
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>X48_Hour_Notice_Eligible__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;Approved&quot; &amp;&amp; 
+Payment_Status__c  &lt;&gt; &quot;Paid&quot;&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;Deposited&quot;&amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;ta_hold&quot; &amp;&amp;
+Payment_Status__c  &lt;&gt; &quot;ta_on_file&quot;&amp;&amp;
+Title_Due_Date__c &lt; NOW(),
+&quot;Is Not Eligible&quot;,
+
+IF(
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Title_Due_Date__c &lt; NOW()&amp;&amp;
+ISBLANK(Title_Received_Date__c)&amp;&amp;
+Payment_Status__c = &quot;Approved&quot; ||
+Payment_Status__c = &quot;Paid&quot;||
+Payment_Status__c = &quot;Deposited&quot;||
+Payment_Status__c = &quot;ta_hold&quot; ||
+Payment_Status__c = &quot;ta_on_file&quot;,
+&quot;Is Eligible&quot;, 
+
+IF(
+NOT(ISPICKVAL(Status,&quot;48 Hour Notice&quot;))&amp;&amp;
+Title_Due_Date__c &lt; NOW()&amp;&amp;
+NOT(ISBLANK(Title_Received_Date__c))&amp;&amp;
+Payment_Status__c = &quot;Approved&quot; ||
+Payment_Status__c = &quot;Paid&quot;||
+Payment_Status__c = &quot;Deposited&quot;||
+Payment_Status__c = &quot;ta_hold&quot; ||
+Payment_Status__c = &quot;ta_on_file&quot;,
+&quot;Is Not Eligible&quot;, 
+
+IF(
+ISPICKVAL(Status,&quot;48 Hour Notice&quot;),
+&quot;48 Hour Notice Placed&quot;, &quot;Check With Title Specialist&quot;))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>48 Hour Notice Eligible</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>X48_Hour_Notice__c</fullName>
